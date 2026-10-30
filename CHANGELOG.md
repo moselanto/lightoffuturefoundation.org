@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1 - 30 Oct 2026 (theme only)
+
+- Fix: header and footer logos did not show on the live site. Hello Elementor 3.x uses `template-parts/dynamic-header.php` / `dynamic-footer.php` (site title only) when Elementor is active; the child theme now overrides both to use the Light of Future header and footer with the Logo Kit logos.
+
 ## 0.3.0 - 30 Oct 2026 (theme 0.3.0, Core 0.3.0)
 
 Goal (Agnes): clearly better than Smile Community Centre and Cistern of Hope.

@@ -44,6 +44,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 
 ## Work log
 
+- **30 Oct 2026, 19:40 EAT:** 0.3.1: header/footer logos were missing live because Hello Elementor 3.x loads dynamic-header/footer.php; overridden in the child theme. Lesson: when Hello Elementor is the parent, override both `header.php`/`footer.php` parts and the `dynamic-*` parts.
+
 - **30 Oct 2026, 19:30 EAT:** 0.3.0 on `main` (see CHANGELOG): real photos, hero collage, giving band, gallery, ribbon, secure enquiry form, count-up, WhatsApp/mobile donate, Apply latest design. Site is live on lightoffuturefoundation.org with Elementor 4.3.5, Hello Elementor 3.5.1. After uploading zips click Appearance > Light of Future setup > Apply latest design.
 
 - **30 Oct 2026, 19:06 EAT:** Agnes confirmed Frank Omosh (proposal contact) is founder Francis Ouma Sikuku. Docs updated; no code change needed.
