@@ -11,7 +11,7 @@ Updated 30 Oct 2026 after Agnes confirmed: official name, impact figures, Precio
 | Payments | **Paystack** (M-PESA and card) for donations and the shop. Replaces the proposal's Daraja/Pesapal/Flutterwave/PayPal options. |
 | Live site | Built directly on https://lightoffuturefoundation.org/ (no separate staging). Search-engine visibility should stay off until launch. |
 | Logo and brand | Logo Kit v1.0 (Oct 2026). |
-| Client contact | Frank Omosh, +254 715 394 295 (proposal PMF-QT-2026-0105). |
+| Client contact | Frank Omosh = founder **Francis Ouma Sikuku** (same person, confirmed 30 Oct 2026), +254 715 394 295 (proposal PMF-QT-2026-0105). On the website he appears as Francis Ouma Sikuku, Founder. |
 
 ## Still needed
 | Item | Notes |
@@ -22,7 +22,7 @@ Updated 30 Oct 2026 after Agnes confirmed: official name, impact figures, Precio
 | Office address, Google Maps pin, office hours | Only "Nairobi, Kenya" so far. |
 | WhatsApp number and social media links | WhatsApp button and social icons stay hidden until set. |
 | Branded emails (info@, donate@) | Proposal scope; set up on the new domain. |
-| Leadership: Chairperson?, bios, photos | Founder, Vice Chairman, Secretary and Treasurer are seeded from the old site. Is Frank Omosh (proposal contact) the same person as founder Francis Ouma Sikuku, or a separate role? |
+| Leadership: Chairperson?, bios, photos | Founder, Vice Chairman, Secretary and Treasurer are seeded from the old site. Still need: is there a Chairperson (and who), short bios for the board, approved photos. |
 | Governance structure, policies, reports | Leadership page shows people only for now. |
 | Programme details | Locations, numbers, start dates, photos for each of the 5 programmes. |
 | Projects | None supplied; Projects page is a draft. |

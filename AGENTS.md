@@ -8,7 +8,7 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 - **Built by:** Pimofy Digital (Moses Munyi). Agreed budget KES 35,000, 2-3 week delivery (from the proposal).
 - **New domain (ours):** https://lightoffuturefoundation.org/
 - **Legacy site (read-only content source):** https://lightoffuture.org/ - no access to its hosting or developer. Content captured in `docs/legacy-content.md`.
-- **Official name:** Light of Future Foundation. **Client contact:** Frank Omosh (+254 715 394 295).
+- **Official name:** Light of Future Foundation. **Client contact:** Frank Omosh (+254 715 394 295), who is founder Francis Ouma Sikuku (same person; use the full name on the site).
 - **Hosting plan:** the site is built directly on the live domain (no staging). Keep "Discourage search engines" on until launch.
 - **Brief:** "Light of the Future WordPress Theme Design Prompt" (premium WordPress + Elementor theme, companion core plugin, WooCommerce crafts shop, donations). Summary in `PRD.md`.
 - **Brand:** Logo Kit v1.0 (October 2026) from the client's Google Drive folder. Colours and fonts in `docs/brand.md`.
@@ -43,6 +43,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **30 Oct 2026, 19:06 EAT:** Agnes confirmed Frank Omosh (proposal contact) is founder Francis Ouma Sikuku. Docs updated; no code change needed.
 
 - **30 Oct 2026 (evening):** 0.2.0 committed directly to `main` (PR #1 closed; Agnes wants direct commits). Read the Proposal & Quotation and Content Requirements PDFs. Decisions recorded: official name, figures confirmed, Precious consent held, Paystack, build on live domain. Added 11 Light of Future Elementor widgets (Hero with sunrise artwork, Section Heading, Story Feature, Cards/FAQ, Programmes, Impact Figures, Impact Stories, Leadership, Partners, Call to Action, Contact Details), all text/images/links/colours/spacing editable; dynamic ones read the Core plugin and hide when empty. Added Appearance > Light of Future setup (idempotent): 11 published pages + 3 draft pages (Projects, Gallery, Resources) with Elementor layouts and plain-HTML fallback, main and footer menus, home page. Core: starter content (5 programmes, 3 stories with consent, 4 leaders, 4 verified figures), Paystack note in settings, listing addresses now served by Elementor pages (archives off), permalink refresh on update. Theme: single template for programmes/stories/projects/reports, sections.css.
 
