@@ -1,0 +1,115 @@
+/* Light of Future Foundation - design system v0.1.0
+   Brand: Logo Kit v1.0 (October 2026). Proportion in use: 50% Earth Brown, 25% Cream, 25% sun tones. */
+
+@font-face { font-family: "Montserrat"; src: url("../fonts/montserrat-variable.woff2") format("woff2"); font-weight: 400 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cinzel"; src: url("../fonts/cinzel-variable.woff2") format("woff2"); font-weight: 600 700; font-style: normal; font-display: swap; }
+
+:root {
+	--lof-earth: #5C3D1E;
+	--lof-earth-deep: #3F2913;
+	--lof-cream: #FCF6E1;
+	--lof-sand: #F5EBCB;
+	--lof-yellow: #FBD62B;
+	--lof-gold: #F4AF16;
+	--lof-amber: #DC8C13;
+	--lof-ink: #2B1D0E;
+	--lof-white: #FFFFFF;
+	--lof-font-display: "Cinzel", "Trajan Pro", Georgia, serif;
+	--lof-font-body: "Montserrat", "Segoe UI", Arial, sans-serif;
+	--lof-radius: 14px;
+	--lof-radius-lg: 28px;
+	--lof-shadow: 0 18px 40px -22px rgba(63, 41, 19, .45);
+	--lof-container: 1200px;
+	--lof-gap: clamp(1rem, 2.5vw, 2rem);
+	--lof-section: clamp(3.5rem, 8vw, 7rem);
+}
+
+/* Base */
+body { font-family: var(--lof-font-body); color: var(--lof-ink); background: var(--lof-cream); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, .lof-display { font-family: var(--lof-font-display); color: var(--lof-earth); line-height: 1.15; letter-spacing: .01em; }
+h4, h5, h6 { font-family: var(--lof-font-body); font-weight: 700; color: var(--lof-earth); }
+a { color: var(--lof-amber); }
+a:hover, a:focus { color: var(--lof-earth); }
+:focus-visible { outline: 3px solid var(--lof-gold); outline-offset: 3px; }
+img { max-width: 100%; height: auto; }
+.lof-container { width: min(100% - 2.5rem, var(--lof-container)); margin-inline: auto; }
+.lof-eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--lof-amber); }
+.screen-reader-text { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
+.lof-skip-link:focus { position: fixed !important; top: 1rem; left: 1rem; width: auto; height: auto; clip: auto; z-index: 10000; padding: .75rem 1rem; background: var(--lof-earth); color: var(--lof-cream); border-radius: 8px; }
+
+/* Buttons */
+.lof-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 46px; padding: .75rem 1.5rem; border-radius: 999px; font-weight: 700; font-size: .95rem; letter-spacing: .02em; text-decoration: none; border: 2px solid transparent; transition: transform .2s ease, background-color .2s ease, color .2s ease; }
+.lof-btn:hover { transform: translateY(-2px); }
+.lof-btn--sun { background: var(--lof-gold); color: var(--lof-ink); }
+.lof-btn--sun:hover, .lof-btn--sun:focus { background: var(--lof-yellow); color: var(--lof-ink); }
+.lof-btn--earth { background: var(--lof-earth); color: var(--lof-cream); }
+.lof-btn--earth:hover, .lof-btn--earth:focus { background: var(--lof-earth-deep); color: var(--lof-cream); }
+.lof-btn--ghost { border-color: currentColor; color: var(--lof-cream); background: transparent; }
+
+/* Top bar */
+.lof-topbar { background: var(--lof-earth-deep); color: var(--lof-cream); font-size: .82rem; }
+.lof-topbar__inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-block: .45rem; }
+.lof-topbar__tag { margin: 0; opacity: .85; }
+.lof-topbar__contacts { display: flex; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+.lof-topbar a { color: var(--lof-cream); text-decoration: none; }
+.lof-topbar a:hover { color: var(--lof-yellow); }
+
+/* Header */
+.lof-header { position: sticky; top: 0; z-index: 900; background: rgba(252, 246, 225, .96); backdrop-filter: saturate(140%) blur(8px); border-bottom: 1px solid rgba(92, 61, 30, .08); transition: box-shadow .25s ease; }
+.lof-header.is-scrolled { box-shadow: 0 10px 30px -20px rgba(63, 41, 19, .5); }
+.admin-bar .lof-header { top: 32px; }
+.lof-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 84px; }
+.lof-logo img, .lof-header__brand .custom-logo { display: block; width: auto; height: 58px; max-width: 260px; }
+.lof-nav { display: flex; align-items: center; gap: 1.75rem; }
+.lof-menu { display: flex; gap: 1.5rem; margin: 0; padding: 0; list-style: none; }
+.lof-menu a { color: var(--lof-earth); font-weight: 600; font-size: .95rem; text-decoration: none; padding-block: .5rem; position: relative; }
+.lof-menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--lof-gold); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+.lof-menu a:hover::after, .lof-menu .current-menu-item > a::after { transform: scaleX(1); }
+.lof-menu .sub-menu { display: none; }
+.lof-nav-toggle { display: none; width: 46px; height: 46px; border: 0; border-radius: 12px; background: var(--lof-earth); cursor: pointer; position: relative; }
+.lof-nav-toggle__bars, .lof-nav-toggle__bars::before, .lof-nav-toggle__bars::after { position: absolute; left: 12px; right: 12px; height: 2px; background: var(--lof-cream); content: ""; transition: transform .25s ease; }
+.lof-nav-toggle__bars { top: 22px; }
+.lof-nav-toggle__bars::before { top: -7px; left: 0; right: 0; }
+.lof-nav-toggle__bars::after { top: 7px; left: 0; right: 0; }
+.lof-nav-toggle[aria-expanded="true"] .lof-nav-toggle__bars { background: transparent; }
+.lof-nav-toggle[aria-expanded="true"] .lof-nav-toggle__bars::before { transform: translateY(7px) rotate(45deg); }
+.lof-nav-toggle[aria-expanded="true"] .lof-nav-toggle__bars::after { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 1024px) {
+	.lof-nav-toggle { display: block; }
+	.lof-nav { position: fixed; inset: 84px 0 0 0; flex-direction: column; align-items: stretch; gap: 1rem; padding: 1.5rem 1.25rem 2rem; background: var(--lof-cream); overflow-y: auto; transform: translateX(100%); visibility: hidden; transition: transform .3s ease, visibility .3s; }
+	.lof-nav.is-open { transform: none; visibility: visible; }
+	.lof-menu { flex-direction: column; gap: 0; }
+	.lof-menu a { display: block; padding: .9rem .25rem; border-bottom: 1px solid rgba(92, 61, 30, .1); font-size: 1.05rem; }
+	.lof-menu .sub-menu { display: block; list-style: none; padding-left: 1rem; }
+	.lof-topbar__tag { display: none; }
+	.lof-logo img, .lof-header__brand .custom-logo { height: 46px; }
+	.admin-bar .lof-nav { top: calc(84px + 46px); }
+}
+@media (max-width: 782px) { .admin-bar .lof-header { top: 46px; } }
+
+/* Footer */
+.lof-footer { position: relative; overflow: hidden; background: var(--lof-earth); color: var(--lof-cream); padding-top: var(--lof-section); }
+.lof-footer__glow { position: absolute; width: 520px; height: 520px; right: -160px; top: -200px; border-radius: 50%; background: radial-gradient(circle, rgba(244, 175, 22, .35), rgba(244, 175, 22, 0) 70%); pointer-events: none; }
+.lof-footer__grid { position: relative; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--lof-gap); padding-bottom: 3rem; }
+.lof-footer .lof-logo img { height: 140px; max-width: 220px; margin-bottom: 1rem; }
+.lof-footer__title { font-family: var(--lof-font-body); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--lof-gold); margin-bottom: 1rem; }
+.lof-footer ul { list-style: none; margin: 0; padding: 0; }
+.lof-footer li { margin-bottom: .5rem; }
+.lof-footer a { color: var(--lof-cream); text-decoration: none; }
+.lof-footer a:hover { color: var(--lof-yellow); }
+.lof-footer .lof-menu { flex-direction: column; gap: .25rem; }
+.lof-footer .lof-menu a { color: var(--lof-cream); font-weight: 500; }
+.lof-social { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem !important; }
+.lof-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; border-top: 1px solid rgba(252, 246, 225, .15); font-size: .85rem; }
+.lof-footer__bottom p { margin: 0; opacity: .8; }
+.lof-footer__legal { display: flex; gap: 1rem; }
+@media (max-width: 860px) { .lof-footer__grid { grid-template-columns: 1fr; } }
+
+/* Reveal motion (respects reduced-motion) */
+.lof-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.lof-reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+	.lof-reveal { opacity: 1; transform: none; }
+}
