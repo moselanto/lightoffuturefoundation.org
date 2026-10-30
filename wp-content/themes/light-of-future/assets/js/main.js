@@ -1,4 +1,4 @@
-/* Light of Future Foundation - front-end behaviour v0.3.0 */
+/* Light of Future Foundation - front-end behaviour v0.5.0 */
 (function () {
 	'use strict';
 
@@ -70,7 +70,48 @@
 		els.forEach(function (el) { io.observe(el); });
 	}
 
+	function initTheme() {
+		var btn = document.querySelector('.lof-theme-toggle');
+		var root = document.documentElement;
+		if (!btn) { return; }
+		function sync() {
+			var dark = root.getAttribute('data-theme') === 'dark';
+			btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+			btn.setAttribute('aria-label', dark ? btn.getAttribute('data-label-light') : btn.getAttribute('data-label-dark'));
+		}
+		btn.addEventListener('click', function () {
+			var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+			root.setAttribute('data-theme', next);
+			try { localStorage.setItem('lof-theme', next); } catch (e) {}
+			sync();
+		});
+		if (window.matchMedia) {
+			var mq = window.matchMedia('(prefers-color-scheme: dark)');
+			var onChange = function (e) {
+				var saved = null;
+				try { saved = localStorage.getItem('lof-theme'); } catch (err) {}
+				if (!saved) { root.setAttribute('data-theme', e.matches ? 'dark' : 'light'); sync(); }
+			};
+			if (mq.addEventListener) { mq.addEventListener('change', onChange); }
+		}
+		sync();
+	}
+
+	function initSubmenus() {
+		document.querySelectorAll('.lof-nav .menu-item-has-children > a').forEach(function (a) {
+			a.setAttribute('aria-haspopup', 'true');
+			a.setAttribute('aria-expanded', 'false');
+			var li = a.parentNode;
+			li.addEventListener('mouseenter', function () { a.setAttribute('aria-expanded', 'true'); });
+			li.addEventListener('mouseleave', function () { a.setAttribute('aria-expanded', 'false'); });
+			li.addEventListener('focusin', function () { a.setAttribute('aria-expanded', 'true'); });
+			li.addEventListener('focusout', function (e) { if (!li.contains(e.relatedTarget)) { a.setAttribute('aria-expanded', 'false'); } });
+		});
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
+		initTheme();
+		initSubmenus();
 		initCount();
 		initNav();
 		initHeaderShadow();

@@ -18,7 +18,7 @@ History, vision, mission, 7 values, registration (charitable organisation, NGO B
 
 To confirm:
 - Vincent's role is written "administration manager and general security" - we used **General Secretary** (the old site listed him as Secretary). Confirm.
-- Third portrait (man in colourful shirt, arms crossed) has no name or role yet - not published until we know.
+- Third portrait: the updated document adds **Frederick Otieno, Finance Manager** after Vincent, so the third photo is published as Frederick. Confirm.
 - Impact figure changed from 5 to **11 programmes** to match the new programme list. Confirm.
 - Specific objective (h) was cut off in the message ("...to bring a long lastin...").
 - Is there a Chairperson? Old site listed Vice Chairman Nixon Omondo Owino and Treasurer Kennedy Oyamo Mumbo - still current?

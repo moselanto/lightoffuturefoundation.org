@@ -102,6 +102,10 @@ function lof_run_setup() {
 	$report = array_merge( $report, lof_import_photos() );
 	$report = array_merge( $report, lof_setup_pages() );
 	$report = array_merge( $report, lof_setup_menus() );
+	$locs   = get_theme_mod( 'nav_menu_locations', array() );
+	if ( empty( $locs['lof-primary'] ) ) {
+		$report = array_merge( $report, lof_rebuild_primary_menu() );
+	}
 	update_option( 'lof_setup_done', LOF_THEME_VERSION, false );
 	flush_rewrite_rules();
 	set_transient( 'lof_setup_report', $report, 300 );
@@ -251,7 +255,7 @@ function lof_setup_page_defs() {
 						'btn2_url'   => lof_link( '/donate/' ),
 						'collage1'   => lof_photo( 'story-elijah-new-home' ),
 						'collage2'   => lof_photo( 'story-philister-home' ),
-						'collage3'   => lof_photo( 'founder-francis-ouma-sikuku' ),
+						'collage3'   => lof_photo( 'leader-francis-ouma-sikuku' ),
 						'badge1'     => __( 'Registered with the NGO Board, 2025', 'light-of-future' ),
 						'badge2'     => __( '200+ children supported', 'light-of-future' ),
 						'badge3'     => __( 'Nairobi & Inungo village', 'light-of-future' ),
@@ -647,7 +651,6 @@ function lof_setup_menus() {
 	$report    = array();
 	$locations = get_theme_mod( 'nav_menu_locations', array() );
 	$menus     = array(
-		'lof-primary' => array( __( 'Main menu', 'light-of-future' ), array( 'about-us', 'programmes', 'talent-development', 'impact', 'stories', 'get-involved', 'contact' ) ),
 		'lof-footer'  => array( __( 'Footer quick links', 'light-of-future' ), array( 'about-us', 'leadership', 'programmes', 'talent-development', 'impact', 'stories', 'donate', 'get-involved', 'faq', 'contact' ) ),
 	);
 	foreach ( $menus as $location => $menu ) {
@@ -697,6 +700,7 @@ function lof_bundled_photos() {
 		'story-precious-school-shoes' => array( __( 'Precious holding up her new school shoes and socks', 'light-of-future' ), __( 'New school shoes for Precious (shared with her guardian\'s consent).', 'light-of-future' ) ),
 		'founder-francis-ouma-sikuku' => array( __( 'Francis Ouma Sikuku, founder of Light of Future Foundation', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder.', 'light-of-future' ) ),
 		'leader-francis-ouma-sikuku'  => array( __( 'Portrait of Francis Ouma Sikuku', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder & Executive Director.', 'light-of-future' ) ),
+		'leader-frederick-otieno'     => array( __( 'Portrait of Frederick Otieno', 'light-of-future' ), __( 'Frederick Otieno, Finance Manager.', 'light-of-future' ) ),
 		'leader-vincent-okoth-okallo' => array( __( 'Portrait of Vincent Okoth Okallo', 'light-of-future' ), __( 'Vincent Okoth Okallo, Administration Manager & General Secretary.', 'light-of-future' ) ),
 	);
 }
@@ -764,6 +768,7 @@ function lof_import_photos() {
 		array( 'lof_story', 'precious', 'story-precious-school-shoes' ),
 		array( 'lof_leader', 'francis-ouma-sikuku', 'leader-francis-ouma-sikuku' ),
 		array( 'lof_leader', 'vincent-okoth-okallo', 'leader-vincent-okoth-okallo' ),
+		array( 'lof_leader', 'frederick-otieno', 'leader-frederick-otieno' ),
 		array( 'lof_programme', 'decent-houses', 'story-elijah-new-home' ),
 		array( 'lof_programme', 'health-medical-support', 'story-elijah-new-home' ),
 		array( 'lof_programme', 'education-support', 'story-precious-school-shoes' ),
@@ -816,7 +821,7 @@ function lof_apply_design() {
 	}
 	/* translators: %d: number of pages */
 	$report[] = sprintf( _n( '%d page updated to the latest design (previous layout backed up).', '%d pages updated to the latest design (previous layouts backed up).', $updated, 'light-of-future' ), $updated );
-	$report   = array_merge( $report, lof_setup_pages(), lof_setup_menus() );
+	$report   = array_merge( $report, lof_setup_pages(), lof_setup_menus(), lof_rebuild_primary_menu() );
 	update_option( 'lof_design_version', LOF_THEME_VERSION, false );
 	if ( class_exists( '\Elementor\Plugin' ) ) {
 		\Elementor\Plugin::$instance->files_manager->clear_cache();
@@ -826,3 +831,85 @@ function lof_apply_design() {
 	exit;
 }
 add_action( 'admin_post_lof_apply_design', 'lof_apply_design' );
+
+/**
+ * Main menu structure with dropdowns: [label, page slug, children slugs].
+ *
+ * @return array
+ */
+function lof_primary_menu_tree() {
+	return array(
+		array( __( 'About', 'light-of-future' ), 'about-us', array( 'about-us', 'leadership', 'faq' ) ),
+		array( __( 'Our Work', 'light-of-future' ), 'programmes', array( 'programmes', 'talent-development', 'impact', 'stories' ) ),
+		array( __( 'Get Involved', 'light-of-future' ), 'get-involved', array() ),
+		array( __( 'Contact', 'light-of-future' ), 'contact', array() ),
+	);
+}
+
+/**
+ * Add one page to a menu.
+ *
+ * @param int    $menu_id Menu.
+ * @param string $slug    Page slug.
+ * @param int    $parent  Parent item ID.
+ * @param string $label   Label (defaults to page title).
+ * @param int    $order   Position.
+ * @return int Item ID or 0.
+ */
+function lof_menu_add_page( $menu_id, $slug, $parent = 0, $label = '', $order = 0 ) {
+	$page = get_page_by_path( $slug, OBJECT, 'page' );
+	if ( ! $page || 'publish' !== $page->post_status ) {
+		return 0;
+	}
+	$id = wp_update_nav_menu_item(
+		$menu_id,
+		0,
+		array(
+			'menu-item-title'     => $label ? $label : get_the_title( $page ),
+			'menu-item-object'    => 'page',
+			'menu-item-object-id' => $page->ID,
+			'menu-item-type'      => 'post_type',
+			'menu-item-status'    => 'publish',
+			'menu-item-parent-id' => (int) $parent,
+			'menu-item-position'  => (int) $order,
+		)
+	);
+	return is_wp_error( $id ) ? 0 : (int) $id;
+}
+
+/**
+ * Rebuild the main menu created by setup ("Main menu") with dropdowns.
+ * A menu with any other name is treated as hand-made and left alone.
+ *
+ * @return string[] Report.
+ */
+function lof_rebuild_primary_menu() {
+	$locations = get_theme_mod( 'nav_menu_locations', array() );
+	$menu      = ! empty( $locations['lof-primary'] ) ? wp_get_nav_menu_object( $locations['lof-primary'] ) : false;
+	$setup     = __( 'Main menu', 'light-of-future' );
+	if ( $menu && $menu->name !== $setup && 'Main menu' !== $menu->name ) {
+		return array( __( 'Main menu left unchanged (it was edited by hand).', 'light-of-future' ) );
+	}
+	if ( ! $menu ) {
+		$menu_id = wp_create_nav_menu( $setup );
+		if ( is_wp_error( $menu_id ) ) {
+			return array();
+		}
+		$menu = wp_get_nav_menu_object( $menu_id );
+	}
+	foreach ( (array) wp_get_nav_menu_items( $menu->term_id ) as $item ) {
+		wp_delete_post( $item->ID, true );
+	}
+	$pos = 1;
+	foreach ( lof_primary_menu_tree() as $node ) {
+		$parent = lof_menu_add_page( $menu->term_id, $node[1], 0, $node[0], $pos++ );
+		if ( $parent ) {
+			foreach ( $node[2] as $child ) {
+				lof_menu_add_page( $menu->term_id, $child, $parent, '', $pos++ );
+			}
+		}
+	}
+	$locations['lof-primary'] = (int) $menu->term_id;
+	set_theme_mod( 'nav_menu_locations', $locations );
+	return array( __( 'Main menu rebuilt with About and Our Work dropdowns.', 'light-of-future' ) );
+}

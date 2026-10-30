@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0 - 30 Oct 2026 (theme 0.5.0, Core 0.5.0)
+
+Goal (Agnes): unique, classic, professional, international standard; light and dark mode for every visitor; professional, well-aligned menus.
+
+- Light and dark mode: follows the visitor's device setting by default; a sun/moon switch in the header lets anyone choose, remembered on that device; applied before the page paints (no flash); colours moved to design tokens with contrast-checked dark values; logo swaps to the dark-background artwork.
+- Header: one-line navigation (no wrapping), About and Our Work dropdowns (hover, keyboard focus, aria-expanded), short "Donate" button, theme switch, slimmer bar; mobile drawer with nested items.
+- "Apply latest design" now also rebuilds the setup-created Main menu into the new structure (a hand-renamed menu is left alone).
+- Hero: refined title scale, slimmer horizon bands that no longer run through the badges, founder portrait in the collage.
+- Leadership: Frederick Otieno, Finance Manager (from the updated content document) with portrait.
+
 ## 0.4.0 - 30 Oct 2026 (theme 0.4.0, Core 0.4.0)
 
 Uses the foundation's own content document (history, vision, mission, values, registration, objectives, 11 programmes, leadership) and three new portraits.

@@ -47,6 +47,15 @@ function lof_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'lof_enqueue_assets', 20 );
 
 /**
+ * Apply the saved or device colour theme before the page paints (no flash).
+ */
+function lof_theme_mode_script() {
+	echo '<meta name="color-scheme" content="light dark">' . "\n";
+	echo "<script>(function(){try{var t=localStorage.getItem('lof-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>\n";
+}
+add_action( 'wp_head', 'lof_theme_mode_script', 0 );
+
+/**
  * Preload the two self-hosted brand fonts (Cinzel and Montserrat, SIL OFL).
  */
 function lof_preload_fonts() {

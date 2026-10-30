@@ -27,7 +27,7 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 
 ## Current state (30 Oct 2026, evening)
 
-- Theme **0.4.0** and Core **0.4.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.5.0** and Core **0.5.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
 
@@ -43,6 +43,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **30 Oct 2026, 20:05 EAT:** 0.5.0: light/dark mode (tokens in main.css :root and html[data-theme=dark]; no-flash script in inc/setup.php), header with dropdowns + theme switch, menu rebuild on Apply latest design, hero polish, Frederick Otieno added. When adding colours, use the --lof-bg/surface/text/heading tokens, never raw cream/white for surfaces, so dark mode keeps working.
 
 - **30 Oct 2026, 19:55 EAT:** 0.4.0: foundation's content document applied (see CHANGELOG, CONTENT-GAPS 'To confirm'). Seeder revisions: bump an item's revision in seed.php to push new client copy; items edited in WordPress are skipped.
 

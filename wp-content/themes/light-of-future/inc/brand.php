@@ -38,6 +38,24 @@ function lof_brand_url( $file ) {
 }
 
 /**
+ * Header logo that swaps with the colour theme (light artwork on cream,
+ * dark artwork on the dark theme). A Custom Logo, if uploaded, is used for both.
+ */
+function lof_logo_themed() {
+	if ( has_custom_logo() ) {
+		the_custom_logo();
+		return;
+	}
+	printf(
+		'<a class="lof-logo lof-logo--horizontal lof-logo--themed" href="%1$s" rel="home"><img class="lof-logo__light" src="%2$s" alt="%4$s" width="260" height="70" decoding="async"><img class="lof-logo__dark" src="%3$s" alt="" aria-hidden="true" width="260" height="70" decoding="async"></a>',
+		esc_url( home_url( '/' ) ),
+		esc_url( lof_brand_url( 'logo-horizontal-light.svg' ) ),
+		esc_url( lof_brand_url( 'logo-horizontal-dark.svg' ) ),
+		esc_attr( get_bloginfo( 'name' ) )
+	);
+}
+
+/**
  * Print the site logo. Uses the Custom Logo when an editor uploads one,
  * otherwise the bundled Logo Kit artwork.
  *
