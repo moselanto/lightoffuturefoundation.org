@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0 - 30 Oct 2026 (theme 0.6.0, Core 0.6.0)
+
+- Inner pages: Programmes (approach band, 11 programmes, giving band, CTA), Stories (featured story spotlight, consent and dignity band), Donate (amounts with photo, where your gift goes, ways to give, why give with confidence, giving FAQ, enquiry form pre-set to giving). Programme cards without photos get a branded panel.
+- Accessibility and speed fixes from the audit in `docs/ACCESSIBILITY-AND-SPEED-AUDIT.md` (main landmark, heading order, contrast in both themes, ribbon pause, focus rings, target sizes, theme switch semantics, mobile menu focus, compression and caching rules, lighter logos, trimmed head).
+
 ## 0.5.0 - 30 Oct 2026 (theme 0.5.0, Core 0.5.0)
 
 Goal (Agnes): unique, classic, professional, international standard; light and dark mode for every visitor; professional, well-aligned menus.

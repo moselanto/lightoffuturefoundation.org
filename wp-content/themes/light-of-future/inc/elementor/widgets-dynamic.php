@@ -42,7 +42,7 @@ class LOF_Widget_Programmes extends LOF_Widget_Base {
 			return;
 		}
 		$this->open_section( $s );
-		$this->render_heading( $s );
+		$this->render_heading( $s, __( 'Our programmes', 'light-of-future' ) );
 		echo '<div class="lof-grid lof-grid--3">';
 		foreach ( $items as $i => $p ) {
 			$link = get_permalink( $p );
@@ -98,7 +98,7 @@ class LOF_Widget_Impact extends LOF_Widget_Base {
 			return;
 		}
 		$this->open_section( $s, 'lof-impact' );
-		$this->render_heading( $s );
+		$this->render_heading( $s, __( 'Our impact in numbers', 'light-of-future' ) );
 		echo '<dl class="lof-impact__grid">';
 		foreach ( $metrics as $m ) {
 			echo '<div class="lof-impact__item lof-reveal">';
@@ -132,6 +132,15 @@ class LOF_Widget_Stories extends LOF_Widget_Base {
 		$this->start_controls_section( 'content', array( 'label' => __( 'Content', 'light-of-future' ) ) );
 		$this->add_heading_controls( __( 'Stories of change', 'light-of-future' ), __( 'Real people, real change', 'light-of-future' ), '' );
 		$this->add_control( 'count', array( 'label' => __( 'How many', 'light-of-future' ), 'type' => Controls_Manager::NUMBER, 'default' => 3, 'min' => 1, 'max' => 24 ) );
+		$this->add_control(
+			'layout',
+			array(
+				'label'   => __( 'Layout', 'light-of-future' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'grid',
+				'options' => array( 'grid' => __( 'Cards', 'light-of-future' ), 'featured' => __( 'First story large, then cards', 'light-of-future' ) ),
+			)
+		);
 		$this->add_control( 'more_label', array( 'label' => __( 'Card link text', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'default' => __( 'Read the story', 'light-of-future' ) ) );
 		$this->add_button_controls( 'btn1', '', '', __( 'Button below the stories', 'light-of-future' ) );
 		$this->add_layout_controls( 'sand' );
@@ -146,8 +155,23 @@ class LOF_Widget_Stories extends LOF_Widget_Base {
 			return;
 		}
 		$this->open_section( $s );
-		$this->render_heading( $s );
-		echo '<div class="lof-grid lof-grid--3">';
+		$this->render_heading( $s, __( 'Impact stories', 'light-of-future' ) );
+		if ( isset( $s['layout'] ) && 'featured' === $s['layout'] ) {
+			$f     = array_shift( $items );
+			$flink = get_permalink( $f );
+			$fquote = (string) get_post_meta( $f->ID, 'lof_quote', true );
+			$fplace = (string) get_post_meta( $f->ID, 'lof_location', true );
+			echo '<article class="lof-spot lof-reveal">';
+			if ( has_post_thumbnail( $f ) ) {
+				printf( '<a class="lof-spot__media" href="%1$s" tabindex="-1" aria-hidden="true">%2$s</a>', esc_url( $flink ), get_the_post_thumbnail( $f, 'large', array( 'loading' => 'lazy' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+			echo '<div class="lof-spot__body"><p class="lof-eyebrow">' . esc_html__( 'Featured story', 'light-of-future' ) . ( $fplace ? ' &middot; ' . esc_html( $fplace ) : '' ) . '</p>';
+			printf( '<h3 class="lof-spot__title"><a href="%1$s">%2$s</a></h3>', esc_url( $flink ), esc_html( get_the_title( $f ) ) );
+			printf( '<p class="lof-spot__text">%s</p>', esc_html( $fquote ? $fquote : get_the_excerpt( $f ) ) );
+			printf( '<a class="lof-btn lof-btn--earth" href="%1$s">%2$s<span class="screen-reader-text"> %3$s</span></a>', esc_url( $flink ), esc_html( $s['more_label'] ? $s['more_label'] : __( 'Read the story', 'light-of-future' ) ), esc_html( get_the_title( $f ) ) );
+			echo '</div></article>';
+		}
+		echo $items ? '<div class="lof-grid lof-grid--3">' : '<div>';
 		foreach ( $items as $p ) {
 			$link  = get_permalink( $p );
 			$quote = (string) get_post_meta( $p->ID, 'lof_quote', true );
@@ -213,7 +237,7 @@ class LOF_Widget_Leaders extends LOF_Widget_Base {
 			return;
 		}
 		$this->open_section( $s );
-		$this->render_heading( $s );
+		$this->render_heading( $s, __( 'Our leadership team', 'light-of-future' ) );
 		echo '<div class="lof-grid lof-grid--4">';
 		foreach ( $items as $p ) {
 			echo '<article class="lof-person lof-reveal"><div class="lof-person__photo">';
@@ -277,7 +301,7 @@ class LOF_Widget_Partners extends LOF_Widget_Base {
 			return;
 		}
 		$this->open_section( $s, 'lof-section--compact' );
-		$this->render_heading( $s );
+		$this->render_heading( $s, __( 'Our partners', 'light-of-future' ) );
 		echo '<ul class="lof-partners">';
 		foreach ( $items as $p ) {
 			$url  = (string) get_post_meta( $p->ID, 'lof_url', true );

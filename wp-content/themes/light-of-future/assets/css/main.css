@@ -33,7 +33,7 @@
 	--lof-line-strong: rgba(92, 61, 30, .28);
 	--lof-header-bg: rgba(252, 246, 225, .94);
 	--lof-on-sun: #2B1D0E;
-	--lof-link: #A5620A;
+	--lof-link: #8A5208; /* 5.9:1 on cream, 5.4:1 on sand */
 	color-scheme: light;
 }
 

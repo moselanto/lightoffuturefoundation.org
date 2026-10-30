@@ -146,7 +146,7 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 				$this->render_media( $m, 0 === $i ? 'large' : 'lof-card', 'lof-hero__shot-img', 0 === $i );
 				echo '</figure>';
 			}
-			echo '<span class="lof-hero__seal" aria-hidden="true"><img src="' . esc_url( lof_brand_url( 'symbol-dark.svg' ) ) . '" alt=""></span>';
+			echo '<span class="lof-hero__seal" aria-hidden="true"><img src="' . esc_url( lof_brand_url( 'symbol-dark.svg' ) ) . '" alt="" width="80" height="80" loading="lazy" decoding="async"></span>';
 			echo '</div>';
 		}
 		echo '</div></section>';
@@ -313,7 +313,7 @@ class LOF_Widget_Cards extends LOF_Widget_Base {
 			return;
 		}
 		$this->open_section( $s );
-		$this->render_heading( $s );
+		$this->render_heading( $s, isset( $s['style'] ) && 'faq' === $s['style'] ? __( 'Frequently asked questions', 'light-of-future' ) : __( 'More information', 'light-of-future' ) );
 		if ( isset( $s['style'] ) && 'faq' === $s['style'] ) {
 			echo '<div class="lof-faq">';
 			foreach ( $s['items'] as $item ) {

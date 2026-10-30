@@ -405,7 +405,32 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_page_hero( __( 'Our work', 'light-of-future' ), __( 'Programmes', 'light-of-future' ), __( 'Eleven programmes that restore hope, dignity and self-reliance.', 'light-of-future' ) ),
-				lof_el( 'lof-programmes', array( 'eyebrow' => '', 'title' => '', 'count' => 24, 'tone' => 'cream' ) ),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Our approach', 'light-of-future' ),
+						'title'   => __( 'From relief to self-reliance', 'light-of-future' ),
+						'intro'   => __( 'We meet urgent needs first, then walk with families until they can stand on their own.', 'light-of-future' ),
+						'columns' => '3',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 'p1', 'kicker' => '01', 'title' => __( 'Meet urgent needs', 'light-of-future' ), 'text' => __( 'Safe houses, food, medical care and hygiene kits for those who need them most.', 'light-of-future' ) ),
+							array( '_id' => 'p2', 'kicker' => '02', 'title' => __( 'Open doors', 'light-of-future' ), 'text' => __( 'Education, talent platforms and awareness of rights, so people can see and seize opportunity.', 'light-of-future' ) ),
+							array( '_id' => 'p3', 'kicker' => '03', 'title' => __( 'Build self-reliance', 'light-of-future' ), 'text' => __( 'Hand skills training, organic farming and business start-ups for a lasting way out of poverty.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el( 'lof-programmes', array( 'eyebrow' => __( '11 programmes', 'light-of-future' ), 'title' => __( 'Explore our programmes', 'light-of-future' ), 'count' => 24, 'tone' => 'cream' ) ),
+				lof_el(
+					'lof-donate',
+					array(
+						'eyebrow' => __( 'Support a programme', 'light-of-future' ),
+						'title'   => __( 'Choose an amount', 'light-of-future' ),
+						'intro'   => __( 'Tell us which programme you would like to support, or let us use your gift where it is needed most.', 'light-of-future' ),
+						'target'  => lof_link( '/donate/' ),
+						'tone'    => 'earth',
+					)
+				),
 				lof_closing_cta(),
 			),
 		),
@@ -457,7 +482,21 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_page_hero( __( 'Impact stories', 'light-of-future' ), __( 'Real people, real change', 'light-of-future' ), __( 'These are just a few of the lives changed through your support.', 'light-of-future' ) ),
-				lof_el( 'lof-stories', array( 'eyebrow' => '', 'title' => '', 'count' => 24, 'tone' => 'cream' ) ),
+				lof_el( 'lof-stories', array( 'eyebrow' => '', 'title' => '', 'count' => 24, 'layout' => 'featured', 'tone' => 'cream' ) ),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'How we tell stories', 'light-of-future' ),
+						'title'   => __( 'With dignity and consent', 'light-of-future' ),
+						'columns' => '3',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 's1', 'title' => __( 'Consent first', 'light-of-future' ), 'text' => __( 'Every story and photo is shared with the person\'s consent, and a guardian\'s consent for children.', 'light-of-future' ) ),
+							array( '_id' => 's2', 'title' => __( 'Dignity, not pity', 'light-of-future' ), 'text' => __( 'We show people as capable and strong, and never share details that could put them at risk.', 'light-of-future' ) ),
+							array( '_id' => 's3', 'title' => __( 'Honest updates', 'light-of-future' ), 'text' => __( 'We report back to donors within agreed timeframes on how their support was used.', 'light-of-future' ) ),
+						),
+					)
+				),
 				lof_closing_cta(),
 			),
 		),
@@ -465,34 +504,70 @@ function lof_setup_page_defs() {
 			__( 'Donate', 'light-of-future' ),
 			'publish',
 			array(
-				lof_page_hero( __( 'Donate', 'light-of-future' ), __( 'Support the future', 'light-of-future' ), __( 'Your gift provides education, clean water, safe homes and care to vulnerable families.', 'light-of-future' ) ),
-				lof_el( 'lof-donate', array( 'eyebrow' => __( 'Choose an amount', 'light-of-future' ), 'title' => __( 'Give in Kenya Shillings', 'light-of-future' ), 'target' => lof_link( '/contact/' ), 'note' => __( 'Online giving through Paystack (M-PESA and card) is being set up. Choosing an amount takes you to our contact form for now.', 'light-of-future' ), 'tone' => 'earth' ) ),
+				lof_page_hero( __( 'Donate', 'light-of-future' ), __( 'Support the future', 'light-of-future' ), __( 'Your gift builds safe homes, keeps children in school and brings clean water and care to vulnerable families.', 'light-of-future' ) ),
+				lof_el( 'lof-donate', array( 'eyebrow' => __( 'Choose an amount', 'light-of-future' ), 'title' => __( 'Give in Kenya Shillings', 'light-of-future' ), 'target' => lof_link( '/contact/' ), 'note' => __( 'Secure online giving through Paystack (M-PESA and card) is being set up. For now, choosing an amount takes you to our contact form and we will guide you.', 'light-of-future' ), 'image' => lof_photo( 'story-precious-school-shoes' ), 'tone' => 'earth' ) ),
 				lof_el(
 					'lof-cards',
 					array(
-						'eyebrow' => __( 'How your gift helps', 'light-of-future' ),
-						'title'   => __( 'Where your support goes', 'light-of-future' ),
+						'eyebrow' => __( 'Where your gift goes', 'light-of-future' ),
+						'title'   => __( 'Real needs, real change', 'light-of-future' ),
 						'columns' => '3',
 						'tone'    => 'white',
 						'items'   => array(
-							array( '_id' => 'd1', 'title' => __( 'Keeping children in school', 'light-of-future' ), 'text' => __( 'School fees, uniforms and shoes for vulnerable children and orphans.', 'light-of-future' ) ),
-							array( '_id' => 'd2', 'title' => __( 'Safe homes and care', 'light-of-future' ), 'text' => __( 'Building safe homes and covering urgent medical care for widows and widowers.', 'light-of-future' ) ),
-							array( '_id' => 'd3', 'title' => __( 'Clean water', 'light-of-future' ), 'text' => __( 'Improving access to safe drinking water for local communities.', 'light-of-future' ) ),
+							array( '_id' => 'd1', 'title' => __( 'Decent houses', 'light-of-future' ), 'text' => __( 'Safe homes for widows, widowers and total orphans, like Philister and Elijah.', 'light-of-future' ), 'link_label' => __( 'Read Philister\'s story', 'light-of-future' ), 'link' => lof_link( '/stories/philister/' ) ),
+							array( '_id' => 'd2', 'title' => __( 'School for every child', 'light-of-future' ), 'text' => __( 'School fees, uniforms and shoes so vulnerable children stay in class.', 'light-of-future' ), 'link_label' => __( 'Read Precious\'s story', 'light-of-future' ), 'link' => lof_link( '/stories/precious/' ) ),
+							array( '_id' => 'd3', 'title' => __( 'Health and dignity', 'light-of-future' ), 'text' => __( 'Medical support for those in crisis and hygiene kits for adolescent girls.', 'light-of-future' ) ),
+							array( '_id' => 'd4', 'title' => __( 'Clean water', 'light-of-future' ), 'text' => __( 'Water and sanitation projects that keep families healthy.', 'light-of-future' ) ),
+							array( '_id' => 'd5', 'title' => __( 'Food for the vulnerable', 'light-of-future' ), 'text' => __( 'Food donations for vulnerable children and the elderly.', 'light-of-future' ) ),
+							array( '_id' => 'd6', 'title' => __( 'A way out of poverty', 'light-of-future' ), 'text' => __( 'Hand skills training and business start-ups that build self-reliance.', 'light-of-future' ) ),
 						),
 					)
 				),
 				lof_el(
-					'lof-feature',
+					'lof-cards',
 					array(
-						'eyebrow'    => __( 'Give online', 'light-of-future' ),
-						'title'      => __( 'Secure giving by M-PESA and card', 'light-of-future' ),
-						'body'       => '<p>' . __( 'Secure online giving through Paystack (M-PESA and card) is being set up. Until it goes live, please contact us and we will guide you.', 'light-of-future' ) . '</p>',
-						'btn1_label' => __( 'Contact us to give', 'light-of-future' ),
-						'btn1_url'   => lof_link( '/contact/' ),
-						'image_side' => 'right',
-						'tone'       => 'cream',
+						'eyebrow' => __( 'Ways to give', 'light-of-future' ),
+						'title'   => __( 'Give in the way that suits you', 'light-of-future' ),
+						'columns' => '4',
+						'tone'    => 'sand',
+						'items'   => array(
+							array( '_id' => 'w1', 'kicker' => '01', 'title' => __( 'Online', 'light-of-future' ), 'text' => __( 'M-PESA and card through Paystack - launching soon.', 'light-of-future' ) ),
+							array( '_id' => 'w2', 'kicker' => '02', 'title' => __( 'Talk to us', 'light-of-future' ), 'text' => __( 'Call or write and we will guide you through giving today.', 'light-of-future' ), 'link_label' => __( 'Contact us', 'light-of-future' ), 'link' => lof_link( '/contact/' ) ),
+							array( '_id' => 'w3', 'kicker' => '03', 'title' => __( 'Give in kind', 'light-of-future' ), 'text' => __( 'Food, school supplies, sanitary pads or building materials.', 'light-of-future' ), 'link_label' => __( 'Arrange a donation', 'light-of-future' ), 'link' => lof_link( '/contact/' ) ),
+							array( '_id' => 'w4', 'kicker' => '04', 'title' => __( 'Partner or sponsor', 'light-of-future' ), 'text' => __( 'Sponsor a child, a programme or a project as a church, business or group.', 'light-of-future' ), 'link_label' => __( 'Get involved', 'light-of-future' ), 'link' => lof_link( '/get-involved/' ) ),
+						),
 					)
 				),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Why give with confidence', 'light-of-future' ),
+						'title'   => __( 'Transparent and accountable', 'light-of-future' ),
+						'columns' => '3',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 't1', 'title' => __( 'Registered', 'light-of-future' ), 'text' => __( 'Registered with the NGO Board of Kenya on 23 May 2025 as a charitable organisation.', 'light-of-future' ) ),
+							array( '_id' => 't2', 'title' => __( 'Accountable', 'light-of-future' ), 'text' => __( 'Responsible stewardship of donor funds, with reports to donors within agreed timeframes.', 'light-of-future' ) ),
+							array( '_id' => 't3', 'title' => __( 'Community-led', 'light-of-future' ), 'text' => __( 'We work hand in hand with communities, churches and local groups, never in isolation.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Questions about giving', 'light-of-future' ),
+						'title'   => __( 'Giving FAQ', 'light-of-future' ),
+						'style'   => 'faq',
+						'tone'    => 'cream',
+						'items'   => array(
+							array( '_id' => 'q1', 'title' => __( 'Can I give by M-PESA?', 'light-of-future' ), 'text' => __( 'Yes. M-PESA and card giving through Paystack is being set up. Until it goes live, contact us and we will guide you.', 'light-of-future' ) ),
+							array( '_id' => 'q2', 'title' => __( 'Can I choose which programme my gift supports?', 'light-of-future' ), 'text' => __( 'Yes. Tell us the programme you would like to support, or let us use your gift where it is needed most.', 'light-of-future' ) ),
+							array( '_id' => 'q3', 'title' => __( 'Can I give food or items instead of money?', 'light-of-future' ), 'text' => __( 'Yes. Contact us to arrange donations of food, school supplies, sanitary pads or other items.', 'light-of-future' ) ),
+							array( '_id' => 'q4', 'title' => __( 'Will I hear how my gift was used?', 'light-of-future' ), 'text' => __( 'Yes. Accountability is one of our values: we report back to donors within agreed timeframes.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el( 'lof-form', array( 'eyebrow' => __( 'Ready to give?', 'light-of-future' ), 'title' => __( 'Talk to us about your gift', 'light-of-future' ), 'interest' => 'donate', 'button' => __( 'Send', 'light-of-future' ), 'tone' => 'white' ) ),
 			),
 		),
 		'get-involved'       => array(
@@ -821,7 +896,7 @@ function lof_apply_design() {
 	}
 	/* translators: %d: number of pages */
 	$report[] = sprintf( _n( '%d page updated to the latest design (previous layout backed up).', '%d pages updated to the latest design (previous layouts backed up).', $updated, 'light-of-future' ), $updated );
-	$report   = array_merge( $report, lof_setup_pages(), lof_setup_menus(), lof_rebuild_primary_menu() );
+	$report   = array_merge( $report, lof_setup_pages(), lof_setup_menus(), lof_rebuild_primary_menu(), lof_write_performance_rules() );
 	update_option( 'lof_design_version', LOF_THEME_VERSION, false );
 	if ( class_exists( '\Elementor\Plugin' ) ) {
 		\Elementor\Plugin::$instance->files_manager->clear_cache();

@@ -29,7 +29,7 @@ $lof_email = lof_setting( 'email' );
 <header id="site-header" class="lof-header" data-lof-header>
 	<div class="lof-container lof-header__inner">
 		<div class="lof-header__brand"><?php lof_logo_themed(); ?></div>
-		<button class="lof-theme-toggle" type="button" aria-pressed="false" data-label-dark="<?php esc_attr_e( 'Switch to dark mode', 'light-of-future' ); ?>" data-label-light="<?php esc_attr_e( 'Switch to light mode', 'light-of-future' ); ?>" aria-label="<?php esc_attr_e( 'Switch to dark mode', 'light-of-future' ); ?>" title="<?php esc_attr_e( 'Light / dark mode', 'light-of-future' ); ?>">
+		<button class="lof-theme-toggle" type="button" aria-pressed="false" aria-label="<?php esc_attr_e( 'Dark mode', 'light-of-future' ); ?>" title="<?php esc_attr_e( 'Switch between light and dark mode', 'light-of-future' ); ?>">" data-label-light="<?php esc_attr_e( 'Switch to light mode', 'light-of-future' ); ?>" aria-label="<?php esc_attr_e( 'Switch to dark mode', 'light-of-future' ); ?>" title="<?php esc_attr_e( 'Light / dark mode', 'light-of-future' ); ?>">
 			<svg class="lof-icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 14.5A9 9 0 0 1 9.5 3a.7.7 0 0 0-.9-.8A10 10 0 1 0 21.8 15.4a.7.7 0 0 0-.8-.9z"/></svg>
 			<svg class="lof-icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
 		</button>

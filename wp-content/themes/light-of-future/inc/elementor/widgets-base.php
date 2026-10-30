@@ -153,7 +153,11 @@ abstract class LOF_Widget_Base extends Widget_Base {
 	 *
 	 * @param array $s Settings.
 	 */
-	protected function render_heading( $s ) {
+	protected function render_heading( $s, $fallback = '' ) {
+		if ( empty( $s['title'] ) && '' !== $fallback ) {
+			// Keep the heading outline intact (h1 -> h2 -> h3) for screen readers.
+			printf( '<h2 class="screen-reader-text">%s</h2>', esc_html( $fallback ) );
+		}
 		if ( empty( $s['eyebrow'] ) && empty( $s['title'] ) && empty( $s['intro'] ) ) {
 			return;
 		}

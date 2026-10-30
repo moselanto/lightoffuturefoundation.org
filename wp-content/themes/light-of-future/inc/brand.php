@@ -47,7 +47,7 @@ function lof_logo_themed() {
 		return;
 	}
 	printf(
-		'<a class="lof-logo lof-logo--horizontal lof-logo--themed" href="%1$s" rel="home"><img class="lof-logo__light" src="%2$s" alt="%4$s" width="260" height="70" decoding="async"><img class="lof-logo__dark" src="%3$s" alt="" aria-hidden="true" width="260" height="70" decoding="async"></a>',
+		'<a class="lof-logo lof-logo--horizontal lof-logo--themed" href="%1$s" rel="home"><img class="lof-logo__light" src="%2$s" alt="%4$s" width="260" height="70" decoding="async"><img class="lof-logo__dark" src="%3$s" alt="" aria-hidden="true" width="260" height="70" decoding="async" loading="lazy"></a>',
 		esc_url( home_url( '/' ) ),
 		esc_url( lof_brand_url( 'logo-horizontal-light.svg' ) ),
 		esc_url( lof_brand_url( 'logo-horizontal-dark.svg' ) ),
@@ -71,12 +71,13 @@ function lof_logo( $variant = 'light', $layout = 'horizontal' ) {
 	$variant = in_array( $variant, array( 'light', 'dark' ), true ) ? $variant : 'light';
 	$layout  = in_array( $layout, array( 'horizontal', 'compact', 'stacked' ), true ) ? $layout : 'horizontal';
 	printf(
-		'<a class="lof-logo lof-logo--%1$s" href="%2$s" rel="home"><img src="%3$s" alt="%4$s" width="%5$d" height="%6$d" decoding="async"></a>',
+		'<a class="lof-logo lof-logo--%1$s" href="%2$s" rel="home"><img src="%3$s" alt="%4$s" width="%5$d" height="%6$d" decoding="async"%7$s></a>',
 		esc_attr( $layout ),
 		esc_url( home_url( '/' ) ),
 		esc_url( lof_brand_url( 'logo-' . $layout . '-' . $variant . '.svg' ) ),
 		esc_attr( $name ),
 		'stacked' === $layout ? 220 : 260,
-		'stacked' === $layout ? 220 : 70
+		'stacked' === $layout ? 220 : 70,
+		'stacked' === $layout ? ' loading="lazy"' : ''
 	);
 }

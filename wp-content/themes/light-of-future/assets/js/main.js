@@ -77,7 +77,6 @@
 		function sync() {
 			var dark = root.getAttribute('data-theme') === 'dark';
 			btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
-			btn.setAttribute('aria-label', dark ? btn.getAttribute('data-label-light') : btn.getAttribute('data-label-dark'));
 		}
 		btn.addEventListener('click', function () {
 			var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -109,7 +108,33 @@
 		});
 	}
 
+	function initRibbons() {
+		document.querySelectorAll('.lof-ribbon__pause').forEach(function (btn) {
+			btn.addEventListener('click', function () {
+				var r = btn.closest('.lof-ribbon');
+				var paused = r.classList.toggle('is-paused');
+				btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+			});
+		});
+	}
+
+	function initMobileNavFocus() {
+		var nav = document.getElementById('lof-primary-nav');
+		var toggle = document.querySelector('.lof-nav-toggle');
+		if (!nav || !toggle) { return; }
+		nav.addEventListener('keydown', function (e) {
+			if (e.key !== 'Tab' || !nav.classList.contains('is-open')) { return; }
+			var f = nav.querySelectorAll('a, button');
+			if (!f.length) { return; }
+			var first = f[0], last = f[f.length - 1];
+			if (e.shiftKey && document.activeElement === first) { e.preventDefault(); toggle.focus(); }
+			else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); toggle.focus(); }
+		});
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
+		initRibbons();
+		initMobileNavFocus();
 		initTheme();
 		initSubmenus();
 		initCount();
