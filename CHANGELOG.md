@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.0 - 30 Oct 2026
+
+Benchmarked against Cistern of Hope (home, about, leadership) and Smile Community Centre staging.
+
+- Leadership page rebuilt: 01 Executive leadership (Francis, full profile card), 02 Board of Directors (Nixon, Vincent, Frederick as profile cards with board role badges), 03 Programmes team (Edith Atieno, new), "How the foundation is governed" joined steps panel, accountability cards (safeguarding, financial accountability, responsible communication).
+- New: leader groups (executive / board / team) and profile-card layout in the Leadership widget; numbered section eyebrows (01 ——— LABEL); milestones on the story feature; joined "steps" card style.
+- Home: purpose cards (vision, mission, objective) and a "Meet the people behind the work" team strip; founder story with milestones (age 20, 2021, 2025) on Home and About.
+- Edith Atieno - Education & Skills Development Coordinator (children and youth): school support, educational materials, scholarships, child protection and safeguarding, vocational training. Portrait added.
+
 ## 0.6.1 - 30 Oct 2026
 
 - Fix: theme switch printed raw attribute text (broken markup in 0.6.0).

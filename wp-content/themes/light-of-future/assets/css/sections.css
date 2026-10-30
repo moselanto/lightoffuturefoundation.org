@@ -330,3 +330,45 @@ html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
 .lof-tone-sand .lof-card--pillar { border-top-color: var(--lof-amber); }
 
 .lof-person__board { display: inline-block; margin: .1rem 0 .35rem; padding: .25rem .7rem; border-radius: 999px; font-size: .74rem; font-weight: 700; background: var(--lof-surface-2); color: var(--lof-heading); }
+
+/* ===== v0.7.0 benchmark-grade leadership and story ===== */
+.lof-eyebrow--numbered { display: inline-flex; align-items: center; gap: .75rem; }
+.lof-eyebrow__num { color: var(--lof-heading); }
+.lof-eyebrow__rule { width: 48px; height: 1px; background: currentColor; opacity: .5; }
+.lof-section__head + .lof-grid, .lof-section__head + .lof-faq { margin-top: 0; }
+.lof-section__head.lof-align-center { padding-bottom: clamp(1.25rem, 3vw, 2rem); border-bottom: 1px solid var(--lof-line); }
+/* Profile cards: photo beside text */
+.lof-people--row { gap: clamp(1rem, 2.5vw, 1.75rem); }
+.lof-people--single { max-width: 860px; margin-inline: auto; grid-template-columns: 1fr; }
+.lof-person--row { display: grid; grid-template-columns: minmax(150px, 38%) 1fr; text-align: left; background: var(--lof-surface); border: 1px solid var(--lof-line); border-radius: var(--lof-radius-lg); overflow: hidden; box-shadow: var(--lof-shadow); }
+.lof-tone-white .lof-person--row { background: var(--lof-bg); }
+.lof-person--row .lof-person__photo { margin: 0; border-radius: 0; aspect-ratio: auto; min-height: 100%; }
+.lof-person--row .lof-person__photo img { height: 100%; min-height: 260px; object-position: center top; }
+.lof-person--row .lof-person__info { padding: clamp(1.25rem, 2.5vw, 2rem); display: flex; flex-direction: column; justify-content: center; }
+.lof-person--row .lof-person__name { font-family: var(--lof-font-display); font-size: clamp(1.25rem, 2vw, 1.55rem); margin-bottom: .35rem; }
+.lof-person--row .lof-person__role { min-height: 0; margin: .15rem 0 .75rem; }
+.lof-person--row .lof-person__bio { font-size: .95rem; color: var(--lof-muted); }
+.lof-person--row .lof-person__bio p:last-child { margin-bottom: 0; }
+.lof-people--single .lof-person--row { grid-template-columns: minmax(200px, 36%) 1fr; }
+.lof-people--single .lof-person__bio { font-size: 1.02rem; }
+.lof-person:not(.lof-person--row) .lof-person__info { padding-top: .25rem; }
+@media (max-width: 1024px) { .lof-people--row { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .lof-person--row, .lof-people--single .lof-person--row { grid-template-columns: 1fr; } .lof-person--row .lof-person__photo img { min-height: 0; aspect-ratio: 4 / 4; } }
+/* Milestones under a story feature */
+.lof-milestones { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: .75rem; margin: 1.5rem 0 0; }
+.lof-milestones div { padding: 1rem 1.1rem; border-radius: var(--lof-radius); border: 1px solid var(--lof-line-strong); background: var(--lof-surface); }
+.lof-milestones dt { font-family: var(--lof-font-display); font-size: 1.6rem; font-weight: 700; color: var(--lof-heading); line-height: 1.1; }
+.lof-milestones dd { margin: .3rem 0 0; font-size: .8rem; color: var(--lof-muted); line-height: 1.4; }
+.lof-tone-earth .lof-milestones div { background: rgba(252, 246, 225, .05); border-color: rgba(252, 246, 225, .2); }
+.lof-tone-earth .lof-milestones dt { color: var(--lof-gold); }
+.lof-tone-earth .lof-milestones dd { color: rgba(252, 246, 225, .8); }
+/* Joined steps panel (governance) */
+.lof-steps { gap: 0; background: var(--lof-surface); border: 1px solid var(--lof-line); border-radius: var(--lof-radius-lg); overflow: hidden; box-shadow: var(--lof-shadow); }
+.lof-steps .lof-card { border-radius: 0; box-shadow: none; border: 0; border-top: 0; background: transparent; }
+.lof-steps .lof-card + .lof-card { border-left: 1px solid var(--lof-line); }
+.lof-steps .lof-card:hover { transform: none; box-shadow: none; }
+@media (max-width: 1024px) { .lof-steps .lof-card:nth-child(odd) { border-left: 0; } .lof-steps .lof-card:nth-child(n+3) { border-top: 1px solid var(--lof-line); } }
+@media (max-width: 640px) { .lof-steps .lof-card + .lof-card { border-left: 0; border-top: 1px solid var(--lof-line); } }
+/* Purpose cards: kicker as a label */
+.lof-card--pillar .lof-card__kicker:not(:empty) { font-family: var(--lof-font-body); font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--lof-link); }
+.lof-steps .lof-card__kicker, .lof-card--pillar .lof-card__kicker[data-num] { font-family: var(--lof-font-display); }

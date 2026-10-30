@@ -46,6 +46,7 @@ abstract class LOF_Widget_Base extends Widget_Base {
 	 * @param string $intro   Default intro.
 	 */
 	protected function add_heading_controls( $eyebrow = '', $title = '', $intro = '' ) {
+		$this->add_control( 'number', array( 'label' => __( 'Section number (optional, e.g. 01)', 'light-of-future' ), 'type' => Controls_Manager::TEXT ) );
 		$this->add_control( 'eyebrow', array( 'label' => __( 'Small label', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'default' => $eyebrow, 'label_block' => true ) );
 		$this->add_control( 'title', array( 'label' => __( 'Heading', 'light-of-future' ), 'type' => Controls_Manager::TEXTAREA, 'rows' => 2, 'default' => $title ) );
 		$this->add_control( 'intro', array( 'label' => __( 'Introduction', 'light-of-future' ), 'type' => Controls_Manager::TEXTAREA, 'rows' => 3, 'default' => $intro ) );
@@ -164,7 +165,9 @@ abstract class LOF_Widget_Base extends Widget_Base {
 		$align = isset( $s['align'] ) && 'left' === $s['align'] ? 'left' : 'center';
 		$tag   = isset( $s['heading_tag'] ) && in_array( $s['heading_tag'], array( 'h1', 'h2', 'h3' ), true ) ? $s['heading_tag'] : 'h2';
 		printf( '<header class="lof-section__head lof-align-%s lof-reveal">', esc_attr( $align ) );
-		if ( ! empty( $s['eyebrow'] ) ) {
+		if ( ! empty( $s['eyebrow'] ) && ! empty( $s['number'] ) ) {
+			printf( '<p class="lof-eyebrow lof-eyebrow--numbered"><span class="lof-eyebrow__num">%1$s</span><span class="lof-eyebrow__rule" aria-hidden="true"></span><span>%2$s</span></p>', esc_html( $s['number'] ), esc_html( $s['eyebrow'] ) );
+		} elseif ( ! empty( $s['eyebrow'] ) ) {
 			printf( '<p class="lof-eyebrow">%s</p>', esc_html( $s['eyebrow'] ) );
 		}
 		if ( ! empty( $s['title'] ) ) {

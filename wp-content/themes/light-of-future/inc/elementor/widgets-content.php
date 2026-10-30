@@ -201,6 +201,10 @@ class LOF_Widget_Feature extends LOF_Widget_Base {
 		$this->add_control( 'body', array( 'label' => __( 'Text', 'light-of-future' ), 'type' => Controls_Manager::WYSIWYG, 'default' => '<p>' . __( 'Add your text here.', 'light-of-future' ) . '</p>' ) );
 		$this->add_control( 'quote', array( 'label' => __( 'Pull quote (optional)', 'light-of-future' ), 'type' => Controls_Manager::TEXTAREA, 'rows' => 3 ) );
 		$this->add_control( 'quote_by', array( 'label' => __( 'Quote by', 'light-of-future' ), 'type' => Controls_Manager::TEXT ) );
+		$mr = new Repeater();
+		$mr->add_control( 'value', array( 'label' => __( 'Value (e.g. 2025)', 'light-of-future' ), 'type' => Controls_Manager::TEXT ) );
+		$mr->add_control( 'label', array( 'label' => __( 'Label', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
+		$this->add_control( 'milestones', array( 'label' => __( 'Milestones (optional)', 'light-of-future' ), 'type' => Controls_Manager::REPEATER, 'fields' => $mr->get_controls(), 'title_field' => '{{{ value }}}', 'default' => array() ) );
 		$this->add_button_controls( 'btn1', '', '', __( 'Button', 'light-of-future' ) );
 		$this->add_control( 'image', array( 'label' => __( 'Image', 'light-of-future' ), 'type' => Controls_Manager::MEDIA, 'separator' => 'before' ) );
 		$this->add_control( 'image_caption', array( 'label' => __( 'Image caption', 'light-of-future' ), 'type' => Controls_Manager::TEXT ) );
@@ -245,6 +249,16 @@ class LOF_Widget_Feature extends LOF_Widget_Base {
 		echo '<div class="lof-prose">' . wp_kses_post( (string) $s['body'] ) . '</div>';
 		if ( ! empty( $s['quote'] ) ) {
 			printf( '<blockquote class="lof-quote"><p>%1$s</p>%2$s</blockquote>', esc_html( $s['quote'] ), ! empty( $s['quote_by'] ) ? '<cite>' . esc_html( $s['quote_by'] ) . '</cite>' : '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+		if ( ! empty( $s['milestones'] ) && is_array( $s['milestones'] ) ) {
+			echo '<dl class="lof-milestones">';
+			foreach ( $s['milestones'] as $m ) {
+				if ( empty( $m['value'] ) ) {
+					continue;
+				}
+				printf( '<div><dt>%1$s</dt><dd>%2$s</dd></div>', esc_html( $m['value'] ), esc_html( isset( $m['label'] ) ? $m['label'] : '' ) );
+			}
+			echo '</dl>';
 		}
 		echo '<div class="lof-btn-row">';
 		$this->render_button( $s, 'btn1', isset( $s['tone'] ) && 'earth' === $s['tone'] ? 'sun' : 'earth' );
@@ -300,7 +314,7 @@ class LOF_Widget_Cards extends LOF_Widget_Base {
 				'label'   => __( 'Display as', 'light-of-future' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'card',
-				'options' => array( 'card' => __( 'Cards', 'light-of-future' ), 'faq' => __( 'FAQ (open / close)', 'light-of-future' ) ),
+				'options' => array( 'card' => __( 'Cards', 'light-of-future' ), 'steps' => __( 'Joined steps panel', 'light-of-future' ), 'faq' => __( 'FAQ (open / close)', 'light-of-future' ) ),
 			)
 		);
 		$this->add_layout_controls();
@@ -322,7 +336,7 @@ class LOF_Widget_Cards extends LOF_Widget_Base {
 			echo '</div>';
 		} else {
 			$cols = in_array( (string) $s['columns'], array( '2', '3', '4' ), true ) ? (int) $s['columns'] : 3;
-			printf( '<div class="lof-grid lof-grid--%d">', (int) $cols );
+			printf( '<div class="lof-grid lof-grid--%1$d%2$s">', (int) $cols, isset( $s['style'] ) && 'steps' === $s['style'] ? ' lof-steps' : '' );
 			foreach ( $s['items'] as $i => $item ) {
 				echo '<article class="lof-card lof-card--pillar lof-reveal">';
 				if ( ! empty( $item['kicker'] ) ) {

@@ -215,32 +215,54 @@ class LOF_Widget_Leaders extends LOF_Widget_Base {
 		$this->start_controls_section( 'content', array( 'label' => __( 'Content', 'light-of-future' ) ) );
 		$this->add_heading_controls( __( 'Leadership', 'light-of-future' ), __( 'The people guiding our work', 'light-of-future' ), '' );
 		$this->add_control( 'show_bio', array( 'label' => __( 'Show short bios', 'light-of-future' ), 'type' => Controls_Manager::SWITCHER, 'default' => 'yes' ) );
+		$this->add_control(
+			'group',
+			array(
+				'label'   => __( 'Show', 'light-of-future' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => array( '' => __( 'Everyone', 'light-of-future' ), 'executive' => __( 'Executive leadership', 'light-of-future' ), 'board' => __( 'Board of Directors', 'light-of-future' ), 'team' => __( 'Management & programme team', 'light-of-future' ) ),
+				'description' => __( 'Each person\'s group is set under Light of Future > Leadership.', 'light-of-future' ),
+			)
+		);
+		$this->add_control(
+			'layout',
+			array(
+				'label'   => __( 'Card style', 'light-of-future' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'grid',
+				'options' => array( 'grid' => __( 'Portrait cards', 'light-of-future' ), 'row' => __( 'Profile cards (photo beside text)', 'light-of-future' ) ),
+			)
+		);
 		$this->add_layout_controls( 'white' );
 		$this->end_controls_section();
 		$this->add_style_controls();
 	}
 	protected function render() {
 		$s     = $this->get_settings_for_display();
-		$items = get_posts(
-			array(
-				'post_type'      => 'lof_leader',
-				'post_status'    => 'publish',
-				'posts_per_page' => 30,
-				'orderby'        => 'menu_order',
-				'order'          => 'ASC',
-				'meta_key'       => 'lof_approved', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-				'meta_value'     => '1', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-			)
+		$query = array(
+			'post_type'      => 'lof_leader',
+			'post_status'    => 'publish',
+			'posts_per_page' => 30,
+			'orderby'        => 'menu_order',
+			'order'          => 'ASC',
+			'meta_query'     => array( array( 'key' => 'lof_approved', 'value' => '1' ) ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		);
+		if ( ! empty( $s['group'] ) ) {
+			$query['meta_query'][] = array( 'key' => 'lof_group', 'value' => sanitize_key( $s['group'] ) );
+		}
+		$items = get_posts( $query );
 		if ( ! $items ) {
 			$this->editor_notice( __( 'No approved leaders yet. Add them under Light of Future > Leadership and tick "Approved for publication".', 'light-of-future' ) );
 			return;
 		}
 		$this->open_section( $s );
 		$this->render_heading( $s, __( 'Our leadership team', 'light-of-future' ) );
-		echo '<div class="lof-grid lof-grid--4">';
+		$row  = isset( $s['layout'] ) && 'row' === $s['layout'];
+		$cols = $row ? ( count( $items ) > 1 ? 2 : 1 ) : min( 4, max( 2, count( $items ) ) );
+		printf( '<div class="lof-grid lof-grid--%1$d%2$s">', (int) $cols, $row ? ' lof-people--row' . ( 1 === $cols ? ' lof-people--single' : '' ) : '' );
 		foreach ( $items as $p ) {
-			echo '<article class="lof-person lof-reveal"><div class="lof-person__photo">';
+			echo '<article class="lof-person lof-reveal' . ( $row ? ' lof-person--row' : '' ) . '"><div class="lof-person__photo">';
 			if ( has_post_thumbnail( $p ) ) {
 				echo get_the_post_thumbnail( $p, 'lof-portrait', array( 'loading' => 'lazy' ) );
 			} else {
@@ -250,7 +272,7 @@ class LOF_Widget_Leaders extends LOF_Widget_Base {
 				}
 				printf( '<span class="lof-person__initials" aria-hidden="true">%s</span>', esc_html( $initials ) );
 			}
-			echo '</div>';
+			echo '</div><div class="lof-person__info">';
 			printf( '<h3 class="lof-person__name">%s</h3>', esc_html( get_the_title( $p ) ) );
 			if ( $p->post_excerpt ) {
 				printf( '<p class="lof-person__board">%s</p>', esc_html( $p->post_excerpt ) );
@@ -259,7 +281,7 @@ class LOF_Widget_Leaders extends LOF_Widget_Base {
 			if ( isset( $s['show_bio'] ) && 'yes' === $s['show_bio'] && $p->post_content ) {
 				printf( '<div class="lof-person__bio">%s</div>', wp_kses_post( wpautop( $p->post_content ) ) );
 			}
-			echo '</article>';
+			echo '</div></article>';
 		}
 		echo '</div>';
 		$this->close_section();

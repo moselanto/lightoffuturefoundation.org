@@ -234,6 +234,11 @@ function lof_setup_page_defs() {
 		'image_side' => 'right',
 		'tone'       => 'sand',
 		'image'      => lof_photo( 'founder-francis-ouma-sikuku' ),
+		'milestones' => array(
+			array( '_id' => 'ms1', 'value' => '20', 'label' => __( 'Age he began serving widows and families', 'light-of-future' ) ),
+			array( '_id' => 'ms2', 'value' => '2021', 'label' => __( 'Registration begun with a team of 10', 'light-of-future' ) ),
+			array( '_id' => 'ms3', 'value' => '2025', 'label' => __( 'Registered with the NGO Board, 23 May', 'light-of-future' ) ),
+		),
 	);
 
 	return array(
@@ -278,6 +283,20 @@ function lof_setup_page_defs() {
 					)
 				),
 				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Our purpose', 'light-of-future' ),
+						'title'   => __( 'Hope, dignity and lasting change.', 'light-of-future' ),
+						'columns' => '3',
+						'tone'    => 'sand',
+						'items'   => array(
+							array( '_id' => 'hp1', 'kicker' => __( 'Vision', 'light-of-future' ), 'title' => __( 'Empowered communities', 'light-of-future' ), 'text' => __( 'Hope, dignity and opportunity through sustainable support and long-lasting impact.', 'light-of-future' ) ),
+							array( '_id' => 'hp2', 'kicker' => __( 'Mission', 'light-of-future' ), 'title' => __( 'Partnership that restores hope', 'light-of-future' ), 'text' => __( 'Training, seminars and empowerment for orphans, widows, widowers and vulnerable families.', 'light-of-future' ) ),
+							array( '_id' => 'hp3', 'kicker' => __( 'Objective', 'light-of-future' ), 'title' => __( 'Holistic transformation', 'light-of-future' ), 'text' => __( 'For young, middle-aged and older people, through training, empowerment and life-changing innovation.', 'light-of-future' ), 'link_label' => __( 'About us', 'light-of-future' ), 'link' => lof_link( '/about-us/' ) ),
+						),
+					)
+				),
+				lof_el(
 					'lof-programmes',
 					array(
 						'eyebrow'    => __( 'What we do', 'light-of-future' ),
@@ -290,6 +309,7 @@ function lof_setup_page_defs() {
 					)
 				),
 				lof_el( 'lof-feature', array_merge( $founder, array( 'btn1_label' => __( 'Meet our leadership', 'light-of-future' ), 'btn1_url' => lof_link( '/leadership/' ) ) ) ),
+				lof_el( 'lof-leaders', array( 'eyebrow' => __( 'Our leadership', 'light-of-future' ), 'title' => __( 'Meet the people behind the work', 'light-of-future' ), 'show_bio' => '', 'layout' => 'grid', 'tone' => 'white' ) ),
 				lof_el(
 					'lof-donate',
 					array(
@@ -395,8 +415,41 @@ function lof_setup_page_defs() {
 			__( 'Leadership & Governance', 'light-of-future' ),
 			'publish',
 			array(
-				lof_page_hero( __( 'Leadership & governance', 'light-of-future' ), __( 'The people guiding our work', 'light-of-future' ), __( 'Our four-member Board of Directors also leads the foundation\'s day-to-day work, supported by a wider team of 10 members.', 'light-of-future' ) ),
-				lof_el( 'lof-leaders', array( 'eyebrow' => '', 'title' => '', 'tone' => 'white' ) ),
+				lof_page_hero( __( 'People and accountability', 'light-of-future' ), __( 'Leadership & Governance', 'light-of-future' ), __( 'The people accountable for the foundation\'s work, and the structure they are accountable through.', 'light-of-future' ) ),
+				lof_el( 'lof-leaders', array( 'number' => '01', 'eyebrow' => __( 'Executive leadership', 'light-of-future' ), 'title' => __( 'Vision and stewardship.', 'light-of-future' ), 'intro' => __( 'Overall direction, strategy and day-to-day leadership of the foundation.', 'light-of-future' ), 'group' => 'executive', 'layout' => 'row', 'tone' => 'cream' ) ),
+				lof_el( 'lof-leaders', array( 'number' => '02', 'eyebrow' => __( 'Board of Directors', 'light-of-future' ), 'title' => __( 'Governance and oversight.', 'light-of-future' ), 'intro' => __( 'A four-member board, chaired by our founder, oversees direction, finances and accountability. Each director also serves in the foundation\'s management.', 'light-of-future' ), 'group' => 'board', 'layout' => 'row', 'tone' => 'white' ) ),
+				lof_el( 'lof-leaders', array( 'number' => '03', 'eyebrow' => __( 'Programmes team', 'light-of-future' ), 'title' => __( 'The people moving the work forward.', 'light-of-future' ), 'intro' => __( 'The team delivering programmes for children, young people and families.', 'light-of-future' ), 'group' => 'team', 'layout' => 'row', 'tone' => 'cream' ) ),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Governance', 'light-of-future' ),
+						'title'   => __( 'How the foundation is governed.', 'light-of-future' ),
+						'intro'   => __( 'Registered with the NGO Board of Kenya on 23 May 2025 as a charitable organisation.', 'light-of-future' ),
+						'style'   => 'steps',
+						'columns' => '4',
+						'tone'    => 'sand',
+						'items'   => array(
+							array( '_id' => 'gv1', 'kicker' => '01', 'title' => __( 'Members', 'light-of-future' ), 'text' => __( 'A team of 10 members who came together to register and grow the foundation.', 'light-of-future' ) ),
+							array( '_id' => 'gv2', 'kicker' => '02', 'title' => __( 'Board of Directors', 'light-of-future' ), 'text' => __( 'Chairman, Vice Chairperson, Secretary and Treasurer provide oversight and direction.', 'light-of-future' ) ),
+							array( '_id' => 'gv3', 'kicker' => '03', 'title' => __( 'Executive Director', 'light-of-future' ), 'text' => __( 'Leads strategy, partnerships and programme implementation.', 'light-of-future' ) ),
+							array( '_id' => 'gv4', 'kicker' => '04', 'title' => __( 'Management & programmes', 'light-of-future' ), 'text' => __( 'Run operations, finance, administration and programmes day to day.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Accountability', 'light-of-future' ),
+						'title'   => __( 'How we keep faith with communities and donors.', 'light-of-future' ),
+						'columns' => '3',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 'ac1', 'title' => __( 'Safeguarding', 'light-of-future' ), 'text' => __( 'Child protection and safeguarding are coordinated within our education and skills programmes, so children are protected in everything we do.', 'light-of-future' ) ),
+							array( '_id' => 'ac2', 'title' => __( 'Financial accountability', 'light-of-future' ), 'text' => __( 'Funds are managed transparently, used directly for the mission, and reported to donors within agreed timeframes.', 'light-of-future' ) ),
+							array( '_id' => 'ac3', 'title' => __( 'Responsible communication', 'light-of-future' ), 'text' => __( 'Stories and photos are shared only with consent, protecting the dignity and privacy of the people we serve.', 'light-of-future' ) ),
+						),
+					)
+				),
 				lof_closing_cta(),
 			),
 		),
@@ -775,6 +828,7 @@ function lof_bundled_photos() {
 		'story-precious-school-shoes' => array( __( 'Precious holding up her new school shoes and socks', 'light-of-future' ), __( 'New school shoes for Precious (shared with her guardian\'s consent).', 'light-of-future' ) ),
 		'founder-francis-ouma-sikuku' => array( __( 'Francis Ouma Sikuku, founder of Light of Future Foundation', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder.', 'light-of-future' ) ),
 		'leader-francis-ouma-sikuku'  => array( __( 'Portrait of Francis Ouma Sikuku', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder & Executive Director.', 'light-of-future' ) ),
+		'leader-edith-atieno'         => array( __( 'Portrait of Edith Atieno', 'light-of-future' ), __( 'Edith Atieno, Education & Skills Development Coordinator.', 'light-of-future' ) ),
 		'leader-nixon-omondo-owino'   => array( __( 'Portrait of Nixon Omondo Owino', 'light-of-future' ), __( 'Nixon Omondo Owino, General Operations Manager & Chief Adviser.', 'light-of-future' ) ),
 		'leader-frederick-otieno'     => array( __( 'Portrait of Frederick Otieno', 'light-of-future' ), __( 'Frederick Otieno, Finance Manager.', 'light-of-future' ) ),
 		'leader-vincent-okoth-okallo' => array( __( 'Portrait of Vincent Okoth Okallo', 'light-of-future' ), __( 'Vincent Okoth Okallo, Administration Manager & General Secretary.', 'light-of-future' ) ),
@@ -846,6 +900,7 @@ function lof_import_photos() {
 		array( 'lof_leader', 'vincent-okoth-okallo', 'leader-vincent-okoth-okallo' ),
 		array( 'lof_leader', 'frederick-otieno', 'leader-frederick-otieno' ),
 		array( 'lof_leader', 'nixon-omondo-owino', 'leader-nixon-omondo-owino' ),
+		array( 'lof_leader', 'edith-atieno', 'leader-edith-atieno' ),
 		array( 'lof_programme', 'decent-houses', 'story-elijah-new-home' ),
 		array( 'lof_programme', 'health-medical-support', 'story-elijah-new-home' ),
 		array( 'lof_programme', 'education-support', 'story-precious-school-shoes' ),

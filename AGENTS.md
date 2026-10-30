@@ -27,7 +27,7 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 
 ## Current state (30 Oct 2026, evening)
 
-- Theme **0.6.1** and Core **0.6.1** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.7.0** and Core **0.7.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
 
@@ -43,6 +43,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **30 Oct 2026, 20:45 EAT:** 0.7.0: leadership page in Cistern-style groups (set lof_group = executive/board/team on each leader), governance steps, accountability, home purpose + team strip, milestones, Edith Atieno.
 
 - **30 Oct 2026, 20:35 EAT:** 0.6.1 hotfix (theme switch markup; logo SVGs restored - never round SVG transform numbers) + Board of Directors from the foundation.
 

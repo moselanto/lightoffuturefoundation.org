@@ -40,6 +40,7 @@ function lof_core_meta_fields() {
 		),
 		'lof_leader'    => array(
 			'lof_role'     => array( __( 'Role / title', 'light-of-future-core' ), 'text', true ),
+			'lof_group'    => array( __( 'Group: executive, board or team', 'light-of-future-core' ), 'text', true ),
 			'lof_approved' => array( __( 'Approved for publication', 'light-of-future-core' ), 'checkbox', true ),
 		),
 		'lof_partner'   => array(
