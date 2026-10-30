@@ -27,7 +27,7 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 
 ## Current state (30 Oct 2026, evening)
 
-- Theme **0.3.0** and Core **0.3.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.4.0** and Core **0.4.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
 
@@ -43,6 +43,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **30 Oct 2026, 19:55 EAT:** 0.4.0: foundation's content document applied (see CHANGELOG, CONTENT-GAPS 'To confirm'). Seeder revisions: bump an item's revision in seed.php to push new client copy; items edited in WordPress are skipped.
 
 - **30 Oct 2026, 19:40 EAT:** 0.3.1: header/footer logos were missing live because Hello Elementor 3.x loads dynamic-header/footer.php; overridden in the child theme. Lesson: when Hello Elementor is the parent, override both `header.php`/`footer.php` parts and the `dynamic-*` parts.
 

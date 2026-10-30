@@ -209,8 +209,8 @@ function lof_closing_cta() {
 function lof_copy( $key ) {
 	$copy = array(
 		'about'   => '<p>' . __( 'Light of Future Foundation is a charitable organisation dedicated to supporting vulnerable communities in Kenya. We focus on assisting widows, widowers, orphans and people living with disabilities through programmes that create opportunity and restore dignity.', 'light-of-future' ) . '</p><p>' . __( 'Our work includes education support, community empowerment, clean water access and youth development. By working directly with communities, we aim to create lasting and sustainable impact.', 'light-of-future' ) . '</p>',
-		'founder' => '<p>' . __( 'Francis Ouma Sikuku, from Inungo village, is a musician, plumber, choir teacher and counsellor with a deep passion for serving his community. From a young age he visited widows\' homes, helping with cleaning, fetching water and collecting firewood, which planted the seed for his lifelong commitment to helping others.', 'light-of-future' ) . '</p><p>' . __( 'In 2016 he began formal studies in Social and Community Development; financial challenges prevented him from completing his diploma, so he dedicated 20% of his earnings from music and plumbing to charitable work. In 2021 he began registering that work as a charitable organisation, and in May 2025 Light of Future Foundation was formally registered with the NGO Board.', 'light-of-future' ) . '</p>',
-		'quote'   => __( 'Serving humanity is my passion, and it brings me great joy. It has been a long journey, but with God\'s grace, we are now able to make a lasting impact in our community.', 'light-of-future' ),
+		'founder' => '<p>' . __( 'Francis Ouma Sikuku, from Inungo village, is a musician, plumber, choir teacher and counsellor with a deep passion for serving his community. From the age of 20 he engaged in charity work, visiting widows\' homes, helping with cleaning, fetching water and collecting firewood, which planted the seed for his lifelong commitment to helping others.', 'light-of-future' ) . '</p><p>' . __( 'In 2016 he began formal studies in Social Work and Community Development at Kisumu Institute of Management College. Financial challenges prevented him from completing his diploma, so he dedicated 20% of his earnings from music and plumbing to charitable work.', 'light-of-future' ) . '</p><p>' . __( 'In 2021 he began registering that work as a charitable organisation and, knowing he could not do it alone, brought together a team of 10 members. After four years of dedication and paperwork by the team, Light of Future Foundation was formally registered with the NGO Board on 23 May 2025.', 'light-of-future' ) . '</p>',
+		'quote'   => __( 'Serving humanity is our passion and it brings us great joy. It has been a long journey, but with God\'s grace we are now able to make a long-lasting impact in different communities in Kenya.', 'light-of-future' ),
 	);
 	return isset( $copy[ $key ] ) ? $copy[ $key ] : '';
 }
@@ -226,7 +226,7 @@ function lof_setup_page_defs() {
 		'title'      => __( 'A lifelong calling to serve', 'light-of-future' ),
 		'body'       => lof_copy( 'founder' ),
 		'quote'      => lof_copy( 'quote' ),
-		'quote_by'   => __( 'Francis Ouma Sikuku, Founder', 'light-of-future' ),
+		'quote_by'   => __( 'Francis Ouma Sikuku, Founder & Executive Director', 'light-of-future' ),
 		'image_side' => 'right',
 		'tone'       => 'sand',
 		'image'      => lof_photo( 'founder-francis-ouma-sikuku' ),
@@ -277,10 +277,10 @@ function lof_setup_page_defs() {
 					'lof-programmes',
 					array(
 						'eyebrow'    => __( 'What we do', 'light-of-future' ),
-						'title'      => __( 'Five ways we bring light', 'light-of-future' ),
-						'intro'      => __( 'Through education support, clean water, community programmes, youth development and faith, we help individuals and families build sustainable and independent futures.', 'light-of-future' ),
+						'title'      => __( 'Eleven ways we bring light', 'light-of-future' ),
+						'intro'      => __( 'From decent houses and clean water to education, skills and business start-ups, we work hand in hand with communities to restore hope and self-reliance.', 'light-of-future' ),
 						'count'      => 6,
-						'btn1_label' => __( 'See all programmes', 'light-of-future' ),
+						'btn1_label' => __( 'See all 11 programmes', 'light-of-future' ),
 						'btn1_url'   => lof_link( '/programmes/' ),
 						'tone'       => 'white',
 					)
@@ -315,7 +315,7 @@ function lof_setup_page_defs() {
 			__( 'About Us', 'light-of-future' ),
 			'publish',
 			array(
-				lof_page_hero( __( 'About us', 'light-of-future' ), __( 'Who we are', 'light-of-future' ), __( 'A registered charitable organisation serving vulnerable communities in Kenya.', 'light-of-future' ) ),
+				lof_page_hero( __( 'About us', 'light-of-future' ), __( 'Who we are', 'light-of-future' ), __( 'A registered charitable organisation restoring hope, dignity and opportunity in communities across Kenya.', 'light-of-future' ) ),
 				lof_el( 'lof-feature', array( 'eyebrow' => __( 'Our story', 'light-of-future' ), 'title' => __( 'Restoring dignity, creating opportunity', 'light-of-future' ), 'body' => lof_copy( 'about' ), 'image' => lof_photo( 'story-elijah-new-home' ), 'image_caption' => __( 'Elijah at his new home.', 'light-of-future' ), 'image_side' => 'left', 'tone' => 'cream' ) ),
 				lof_el(
 					'lof-cards',
@@ -325,13 +325,64 @@ function lof_setup_page_defs() {
 						'columns' => '3',
 						'tone'    => 'white',
 						'items'   => array(
-							array( '_id' => 'm1', 'kicker' => '01', 'title' => __( 'Our mission', 'light-of-future' ), 'text' => __( 'To bring hope, opportunity and dignity to vulnerable communities in Kenya by supporting widows, widowers, orphaned children and people living with disabilities.', 'light-of-future' ) ),
-							array( '_id' => 'm2', 'kicker' => '02', 'title' => __( 'How we work', 'light-of-future' ), 'text' => __( 'Through education support, clean water initiatives, community programmes, youth development and spreading the Gospel of Christ, we empower individuals and families to build sustainable and independent futures.', 'light-of-future' ) ),
-							array( '_id' => 'm3', 'kicker' => '03', 'title' => __( 'Where we work', 'light-of-future' ), 'text' => __( 'We work directly with communities in Nairobi, including Mathare, and in Inungo village.', 'light-of-future' ) ),
+							array( '_id' => 'm1', 'kicker' => '01', 'title' => __( 'Our vision', 'light-of-future' ), 'text' => __( 'To bring hope, dignity and opportunity by empowering vulnerable communities through sustainable support and long-lasting impact, in collaboration with the people of those communities.', 'light-of-future' ) ),
+							array( '_id' => 'm2', 'kicker' => '02', 'title' => __( 'Our mission', 'light-of-future' ), 'text' => __( 'To harness partnership and collaboration to restore hope and self-realisation among orphans, widows, widowers and vulnerable families, by organising training and seminars and empowering them in different areas of life.', 'light-of-future' ) ),
+							array( '_id' => 'm3', 'kicker' => '03', 'title' => __( 'Our main objective', 'light-of-future' ), 'text' => __( 'To provide holistic transformation to young, middle-aged and older people and disadvantaged communities through training, empowerment and exposure to life-changing innovations.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Our values', 'light-of-future' ),
+						'title'   => __( 'How we work with people', 'light-of-future' ),
+						'columns' => '4',
+						'tone'    => 'sand',
+						'items'   => array(
+							array( '_id' => 'v1', 'title' => __( 'Dignity and respect', 'light-of-future' ), 'text' => __( 'We acknowledge the inherent worth of every person, offer help without judgement, stigma or pity, and honour each person\'s right to self-determination.', 'light-of-future' ) ),
+							array( '_id' => 'v2', 'title' => __( 'Compassion and empathy', 'light-of-future' ), 'text' => __( 'We act from genuine care and a deep understanding of the struggles and trauma faced by marginalised communities.', 'light-of-future' ) ),
+							array( '_id' => 'v3', 'title' => __( 'Social justice and equity', 'light-of-future' ), 'text' => __( 'We stand against the inequalities, discrimination and barriers that keep people vulnerable, and work for fair access to resources and rights.', 'light-of-future' ) ),
+							array( '_id' => 'v4', 'title' => __( 'Empowerment', 'light-of-future' ), 'text' => __( 'We move beyond temporary relief to build self-reliance, equipping people with the skills, tools and confidence to shape their own futures.', 'light-of-future' ) ),
+							array( '_id' => 'v5', 'title' => __( 'Integrity, transparency and accountability', 'light-of-future' ), 'text' => __( 'We keep high ethical standards, care responsibly for donor funds and community trust, and report to donors within agreed timeframes.', 'light-of-future' ) ),
+							array( '_id' => 'v6', 'title' => __( 'Inclusiveness and diversity', 'light-of-future' ), 'text' => __( 'We welcome and serve people regardless of background, ethnicity, gender, religion or economic status, and make sure diverse voices are heard.', 'light-of-future' ) ),
+							array( '_id' => 'v7', 'title' => __( 'Collaboration and partnership', 'light-of-future' ), 'text' => __( 'We work hand in hand with community members, grassroots groups, churches and other partners, never in isolation.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Our objectives', 'light-of-future' ),
+						'title'   => __( 'What we set out to do', 'light-of-future' ),
+						'columns' => '3',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 'o1', 'kicker' => '01', 'title' => __( 'Education', 'light-of-future' ), 'text' => __( 'Mobilise resources and establish educational opportunities for vulnerable children.', 'light-of-future' ) ),
+							array( '_id' => 'o2', 'kicker' => '02', 'title' => __( 'Organic farming', 'light-of-future' ), 'text' => __( 'Support improved agriculture through organic farming.', 'light-of-future' ) ),
+							array( '_id' => 'o3', 'kicker' => '03', 'title' => __( 'Know your rights', 'light-of-future' ), 'text' => __( 'Help vulnerable people know their rights and when to apply them.', 'light-of-future' ) ),
+							array( '_id' => 'o4', 'kicker' => '04', 'title' => __( 'Talent', 'light-of-future' ), 'text' => __( 'Run talent searches in music, dance, drama, art and comedy, and create platforms for young people.', 'light-of-future' ) ),
+							array( '_id' => 'o5', 'kicker' => '05', 'title' => __( 'Decent homes and start-ups', 'light-of-future' ), 'text' => __( 'Improve the living standards of widows, widowers and orphans with decent houses and business start-ups.', 'light-of-future' ) ),
+							array( '_id' => 'o6', 'kicker' => '06', 'title' => __( 'Water and sanitation', 'light-of-future' ), 'text' => __( 'Support water and sanitation projects in the community.', 'light-of-future' ) ),
+							array( '_id' => 'o7', 'kicker' => '07', 'title' => __( 'Economic empowerment', 'light-of-future' ), 'text' => __( 'Empower communities economically through training and start-ups to eradicate poverty.', 'light-of-future' ) ),
 						),
 					)
 				),
 				lof_el( 'lof-feature', $founder ),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'At a glance', 'light-of-future' ),
+						'title'   => __( 'Registration and contacts', 'light-of-future' ),
+						'columns' => '4',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 'r1', 'title' => __( 'Registered', 'light-of-future' ), 'text' => __( 'With the NGO Board of Kenya on 23 May 2025, as a charitable organisation.', 'light-of-future' ) ),
+							array( '_id' => 'r2', 'title' => __( 'Charitable purpose', 'light-of-future' ), 'text' => __( 'Social, educational, health, environmental and poverty-relief goals.', 'light-of-future' ) ),
+							array( '_id' => 'r3', 'title' => __( 'Leadership', 'light-of-future' ), 'text' => __( 'Founder and Executive Director: Francis Ouma Sikuku.', 'light-of-future' ), 'link_label' => __( 'Meet the team', 'light-of-future' ), 'link' => lof_link( '/leadership/' ) ),
+							array( '_id' => 'r4', 'title' => __( 'Postal address', 'light-of-future' ), 'text' => __( 'P.O. Box 53-00520, Ruai, along Kangundo Road, Nairobi, Kenya.', 'light-of-future' ) ),
+						),
+					)
+				),
 				lof_el( 'lof-impact', array( 'eyebrow' => __( 'Our impact', 'light-of-future' ), 'title' => __( 'Hope you can count', 'light-of-future' ), 'tone' => 'earth' ) ),
 				lof_closing_cta(),
 			),
@@ -340,7 +391,7 @@ function lof_setup_page_defs() {
 			__( 'Leadership & Governance', 'light-of-future' ),
 			'publish',
 			array(
-				lof_page_hero( __( 'Leadership & governance', 'light-of-future' ), __( 'The people guiding our work', 'light-of-future' ) ),
+				lof_page_hero( __( 'Leadership & governance', 'light-of-future' ), __( 'The people guiding our work', 'light-of-future' ), __( 'What began with one man\'s calling is now a team effort: a team of 10 members worked together to register and grow the foundation.', 'light-of-future' ) ),
 				lof_el( 'lof-leaders', array( 'eyebrow' => '', 'title' => '', 'tone' => 'white' ) ),
 				lof_closing_cta(),
 			),
@@ -349,7 +400,7 @@ function lof_setup_page_defs() {
 			__( 'Programmes', 'light-of-future' ),
 			'publish',
 			array(
-				lof_page_hero( __( 'Our work', 'light-of-future' ), __( 'Programmes', 'light-of-future' ), __( 'Practical support that creates opportunity and restores dignity.', 'light-of-future' ) ),
+				lof_page_hero( __( 'Our work', 'light-of-future' ), __( 'Programmes', 'light-of-future' ), __( 'Eleven programmes that restore hope, dignity and self-reliance.', 'light-of-future' ) ),
 				lof_el( 'lof-programmes', array( 'eyebrow' => '', 'title' => '', 'count' => 24, 'tone' => 'cream' ) ),
 				lof_closing_cta(),
 			),
@@ -486,9 +537,9 @@ function lof_setup_page_defs() {
 						'style'   => 'faq',
 						'tone'    => 'white',
 						'items'   => array(
-							array( '_id' => 'f1', 'title' => __( 'Is Light of Future Foundation registered?', 'light-of-future' ), 'text' => __( 'Yes. Light of Future Foundation was formally registered with the NGO Board of Kenya in May 2025.', 'light-of-future' ) ),
-							array( '_id' => 'f2', 'title' => __( 'Who do you support?', 'light-of-future' ), 'text' => __( 'Widows, widowers, orphans, vulnerable children and people living with disabilities.', 'light-of-future' ) ),
-							array( '_id' => 'f3', 'title' => __( 'Where do you work?', 'light-of-future' ), 'text' => __( 'In Nairobi, including Mathare, and in Inungo village.', 'light-of-future' ) ),
+							array( '_id' => 'f1', 'title' => __( 'Is Light of Future Foundation registered?', 'light-of-future' ), 'text' => __( 'Yes. Light of Future Foundation was formally registered with the NGO Board of Kenya on 23 May 2025 as a charitable organisation.', 'light-of-future' ) ),
+							array( '_id' => 'f2', 'title' => __( 'Who do you support?', 'light-of-future' ), 'text' => __( 'Orphans, widows, widowers, vulnerable children and families, adolescent girls, the elderly and people living with disabilities.', 'light-of-future' ) ),
+							array( '_id' => 'f3', 'title' => __( 'Where do you work?', 'light-of-future' ), 'text' => __( 'Our office is in Ruai, along Kangundo Road, Nairobi. We work with communities in Nairobi and in Inungo village.', 'light-of-future' ) ),
 							array( '_id' => 'f4', 'title' => __( 'How can I donate?', 'light-of-future' ), 'text' => __( 'Secure online giving by M-PESA and card through Paystack is being set up. Until then, please contact us and we will guide you.', 'light-of-future' ) ),
 							array( '_id' => 'f5', 'title' => __( 'Can I choose which programme my gift supports?', 'light-of-future' ), 'text' => __( 'Yes. Tell us the programme you would like to support, or let us use your gift where it is needed most.', 'light-of-future' ) ),
 						),
@@ -645,6 +696,8 @@ function lof_bundled_photos() {
 		'story-philister-home'        => array( __( 'Philister standing at the door of her new house', 'light-of-future' ), __( 'Philister outside her new home.', 'light-of-future' ) ),
 		'story-precious-school-shoes' => array( __( 'Precious holding up her new school shoes and socks', 'light-of-future' ), __( 'New school shoes for Precious (shared with her guardian\'s consent).', 'light-of-future' ) ),
 		'founder-francis-ouma-sikuku' => array( __( 'Francis Ouma Sikuku, founder of Light of Future Foundation', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder.', 'light-of-future' ) ),
+		'leader-francis-ouma-sikuku'  => array( __( 'Portrait of Francis Ouma Sikuku', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder & Executive Director.', 'light-of-future' ) ),
+		'leader-vincent-okoth-okallo' => array( __( 'Portrait of Vincent Okoth Okallo', 'light-of-future' ), __( 'Vincent Okoth Okallo, Administration Manager & General Secretary.', 'light-of-future' ) ),
 	);
 }
 
@@ -709,10 +762,17 @@ function lof_import_photos() {
 		array( 'lof_story', 'philister', 'story-philister-home' ),
 		array( 'lof_story', 'elijah', 'story-elijah-new-home' ),
 		array( 'lof_story', 'precious', 'story-precious-school-shoes' ),
-		array( 'lof_leader', 'francis-ouma-sikuku', 'founder-francis-ouma-sikuku' ),
+		array( 'lof_leader', 'francis-ouma-sikuku', 'leader-francis-ouma-sikuku' ),
+		array( 'lof_leader', 'vincent-okoth-okallo', 'leader-vincent-okoth-okallo' ),
+		array( 'lof_programme', 'decent-houses', 'story-elijah-new-home' ),
+		array( 'lof_programme', 'health-medical-support', 'story-elijah-new-home' ),
 		array( 'lof_programme', 'education-support', 'story-precious-school-shoes' ),
-		array( 'lof_programme', 'community-empowerment', 'story-philister-home' ),
+
 	);
+	$fr = get_posts( array( 'post_type' => 'lof_leader', 'name' => 'francis-ouma-sikuku', 'post_status' => 'any', 'posts_per_page' => 1, 'fields' => 'ids' ) );
+	if ( $fr && ! empty( $ids['founder-francis-ouma-sikuku'] ) && ! empty( $ids['leader-francis-ouma-sikuku'] ) && (int) get_post_thumbnail_id( $fr[0] ) === (int) $ids['founder-francis-ouma-sikuku'] ) {
+		set_post_thumbnail( $fr[0], (int) $ids['leader-francis-ouma-sikuku'] );
+	}
 	foreach ( $map as $row ) {
 		$found = get_posts( array( 'post_type' => $row[0], 'name' => $row[1], 'post_status' => 'any', 'posts_per_page' => 1, 'fields' => 'ids' ) );
 		if ( $found && ! has_post_thumbnail( $found[0] ) && ! empty( $ids[ $row[2] ] ) ) {

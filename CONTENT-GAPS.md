@@ -13,11 +13,20 @@ Updated 30 Oct 2026 after Agnes confirmed: official name, impact figures, Precio
 | Logo and brand | Logo Kit v1.0 (Oct 2026). |
 | Client contact | Frank Omosh = founder **Francis Ouma Sikuku** (same person, confirmed 30 Oct 2026), +254 715 394 295 (proposal PMF-QT-2026-0105). On the website he appears as Francis Ouma Sikuku, Founder. |
 
+## Received 30 Oct 2026 (content document + 3 portraits)
+History, vision, mission, 7 values, registration (charitable organisation, NGO Board, 23 May 2025), postal address, main + specific objectives, 11 programmes, Francis and Vincent roles and portraits. All now on the site.
+
+To confirm:
+- Vincent's role is written "administration manager and general security" - we used **General Secretary** (the old site listed him as Secretary). Confirm.
+- Third portrait (man in colourful shirt, arms crossed) has no name or role yet - not published until we know.
+- Impact figure changed from 5 to **11 programmes** to match the new programme list. Confirm.
+- Specific objective (h) was cut off in the message ("...to bring a long lastin...").
+- Is there a Chairperson? Old site listed Vice Chairman Nixon Omondo Owino and Treasurer Kennedy Oyamo Mumbo - still current?
+- franksikuku3@gmail.com is Francis's personal email - not published. Which email should show publicly?
+
 ## Still needed
 | Item | Notes |
 |---|---|
-| Vision statement | Not supplied. |
-| Core values | Not supplied. |
 | Registration number / certificate for publication | Publish only if the board approves. |
 | Office address, Google Maps pin, office hours | Only "Nairobi, Kenya" so far. |
 | WhatsApp number and social media links | WhatsApp button and social icons stay hidden until set. |
