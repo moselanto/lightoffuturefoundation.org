@@ -51,10 +51,22 @@ $lof_show_cta = ! is_front_page() && ! is_page( 'donate' );
 		</div>
 	</div>
 	<?php endif; ?>
+	<div class="lof-container lof-footer__reach">
+		<?php if ( $lof_phone ) : ?>
+		<a class="lof-footer__tile" href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $lof_phone ) ); ?>"><span class="lof-footer__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.6a1 1 0 0 1-.3 1z"/></svg></span><span><small><?php esc_html_e( 'Call us', 'light-of-future' ); ?></small><strong><?php echo esc_html( $lof_phone ); ?></strong></span></a>
+		<?php endif; ?>
+		<?php if ( $lof_email ) : ?>
+		<a class="lof-footer__tile" href="<?php echo esc_url( 'mailto:' . antispambot( $lof_email ) ); ?>"><span class="lof-footer__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5z"/></svg></span><span><small><?php esc_html_e( 'Email us', 'light-of-future' ); ?></small><strong><?php echo esc_html( antispambot( $lof_email ) ); ?></strong></span></a>
+		<?php endif; ?>
+		<?php if ( $lof_address ) : ?>
+		<div class="lof-footer__tile"><span class="lof-footer__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span><small><?php esc_html_e( 'Visit us', 'light-of-future' ); ?></small><strong><?php echo esc_html( $lof_address ); ?></strong></span></div>
+		<?php endif; ?>
+	</div>
 	<div class="lof-container lof-footer__main">
 		<div class="lof-footer__brand">
 			<?php lof_logo( 'dark', 'stacked' ); ?>
 			<p class="lof-footer__intro"><?php echo esc_html( lof_setting( 'footer_intro', __( 'Supporting widows, widowers, orphans and vulnerable children through education, clean water and community programmes.', 'light-of-future' ) ) ); ?></p>
+			<p class="lof-footer__badge"><span aria-hidden="true"></span><?php esc_html_e( 'Registered NGO, Kenya', 'light-of-future' ); ?></p>
 			<?php if ( $lof_social ) : ?>
 				<ul class="lof-footer__social">
 					<?php foreach ( $lof_social as $lof_network => $lof_url ) : ?>
@@ -88,20 +100,11 @@ $lof_show_cta = ! is_front_page() && ! is_page( 'donate' );
 			</ul>
 		</nav>
 		<?php endif; ?>
-		<div class="lof-footer__col">
-			<h2 class="lof-footer__title"><?php esc_html_e( 'Get in touch', 'light-of-future' ); ?></h2>
-			<ul class="lof-footer__contact">
-				<?php if ( $lof_address ) : ?>
-					<li><span class="lof-footer__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><span><?php echo esc_html( $lof_address ); ?></span></li>
-				<?php endif; ?>
-				<?php if ( $lof_phone ) : ?>
-					<li><span class="lof-footer__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.6a1 1 0 0 1-.3 1z"/></svg></span><a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $lof_phone ) ); ?>"><?php echo esc_html( $lof_phone ); ?></a></li>
-				<?php endif; ?>
-				<?php if ( $lof_email ) : ?>
-					<li><span class="lof-footer__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5z"/></svg></span><a href="<?php echo esc_url( 'mailto:' . antispambot( $lof_email ) ); ?>"><?php echo esc_html( antispambot( $lof_email ) ); ?></a></li>
-				<?php endif; ?>
-			</ul>
+		<div class="lof-footer__col lof-footer__support">
+			<h2 class="lof-footer__title"><?php esc_html_e( 'Support our work', 'light-of-future' ); ?></h2>
+			<p><?php esc_html_e( 'Your gift helps a child stay in school, a widow rebuild her home and a family reach clean water.', 'light-of-future' ); ?></p>
 			<a class="lof-btn lof-btn--sun lof-footer__donate" href="<?php echo esc_url( lof_donate_url() ); ?>"><?php echo esc_html( lof_setting( 'donate_label', __( 'Support the Future', 'light-of-future' ) ) ); ?></a>
+			<a class="lof-footer__more" href="<?php echo esc_url( home_url( '/get-involved/' ) ); ?>"><?php esc_html_e( 'Volunteer or partner with us', 'light-of-future' ); ?></a>
 		</div>
 	</div>
 	<div class="lof-footer__mark" aria-hidden="true">Light of Future</div>

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.12.1 - 31 Oct 2026
+
+- Fix: home hero text was pushed to the left edge (hero row lost its side margins in 0.12.0). The "Since 2021" card and stamp now sit on the photo's corners.
+- Footer refined: row of three contact tiles (Call, Email, Visit), brand column with "Registered NGO, Kenya" badge, Explore links in two columns, Focus areas, Support our work column with Donate button, outlined wordmark now fits the width.
+
 ## 0.12.0 - 31 Oct 2026
 
 - Home hero now fits the screen on 13.3in laptops and larger without scrolling: height follows the visible window minus the header; title, text, buttons and photo scale with screen height; header slims on short screens.
