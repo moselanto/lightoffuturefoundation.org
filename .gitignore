@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.zip
+.DS_Store
+Thumbs.db
+.env
+wp-config.php
+*.log
+.idea/
+.vscode/
