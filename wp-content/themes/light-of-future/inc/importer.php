@@ -305,11 +305,11 @@ function lof_setup_page_defs() {
 				lof_el(
 					'lof-programmes',
 					array(
-						'eyebrow'    => __( 'What we do', 'light-of-future' ),
-						'title'      => __( 'Built around real community needs.', 'light-of-future' ),
+						'eyebrow'    => __( 'Our focus areas', 'light-of-future' ),
+						'title'      => __( 'Where we make meaningful impact.', 'light-of-future' ),
 						'intro'      => __( 'From decent houses and clean water to education, skills and business start-ups, we work hand in hand with communities to restore hope and self-reliance.', 'light-of-future' ),
 						'count'      => 6,
-						'btn1_label' => __( 'See all 11 programmes', 'light-of-future' ),
+						'btn1_label' => __( 'See all 11 focus areas', 'light-of-future' ),
 						'btn1_url'   => lof_link( '/programmes/' ),
 						'tone'       => 'white',
 					)
@@ -476,7 +476,7 @@ function lof_setup_page_defs() {
 			__( 'Programmes', 'light-of-future' ),
 			'publish',
 			array(
-				lof_page_hero( __( 'Our work', 'light-of-future' ), __( 'Programmes', 'light-of-future' ), __( 'Eleven programmes that restore hope, dignity and self-reliance.', 'light-of-future' ) ),
+				lof_page_hero( __( 'Our work', 'light-of-future' ), __( 'Where we make meaningful impact', 'light-of-future' ), __( 'Eleven focus areas that restore hope, dignity and self-reliance.', 'light-of-future' ) ),
 				lof_el( 'lof-impact', array( 'eyebrow' => '', 'title' => '', 'strip' => 'yes', 'tone' => 'earth' ) ),
 				lof_el(
 					'lof-intro',
@@ -493,7 +493,7 @@ function lof_setup_page_defs() {
 						),
 					)
 				),
-				lof_el( 'lof-programmes', array( 'eyebrow' => __( '11 programmes', 'light-of-future' ), 'title' => __( 'Explore our programmes', 'light-of-future' ), 'count' => 24, 'tone' => 'cream' ) ),
+				lof_el( 'lof-programmes', array( 'eyebrow' => __( '11 focus areas', 'light-of-future' ), 'title' => __( 'Explore our focus areas', 'light-of-future' ), 'count' => 24, 'tone' => 'cream' ) ),
 				lof_el(
 					'lof-donate',
 					array(
@@ -941,7 +941,8 @@ function lof_import_photos() {
 
 	);
 	// 0.10.0: one-time switch of every leader to the uniform studio portrait.
-	if ( (int) get_option( 'lof_leader_photo_set', 0 ) < 2 ) {
+	if ( (int) get_option( 'lof_leader_photo_set', 0 ) < 3 ) {
+		$all = true;
 		$pro = array(
 		'francis-ouma-sikuku' => 'leader-francis-ouma-sikuku-pro',
 		'vincent-okoth-okallo' => 'leader-vincent-okoth-okallo-pro',
@@ -959,9 +960,13 @@ function lof_import_photos() {
 			$found = get_posts( array( 'post_type' => 'lof_leader', 'name' => $post_slug, 'post_status' => 'any', 'posts_per_page' => 1, 'fields' => 'ids' ) );
 			if ( $found && ! empty( $ids[ $photo ] ) ) {
 				set_post_thumbnail( $found[0], (int) $ids[ $photo ] );
+			} else {
+				$all = false;
 			}
 		}
-		update_option( 'lof_leader_photo_set', 2, false );
+		if ( $all ) {
+			update_option( 'lof_leader_photo_set', 3, false );
+		}
 	}
 	$fr = get_posts( array( 'post_type' => 'lof_leader', 'name' => 'francis-ouma-sikuku', 'post_status' => 'any', 'posts_per_page' => 1, 'fields' => 'ids' ) );
 	if ( $fr && ! empty( $ids['founder-francis-ouma-sikuku'] ) && ! empty( $ids['leader-francis-ouma-sikuku'] ) && (int) get_post_thumbnail_id( $fr[0] ) === (int) $ids['founder-francis-ouma-sikuku'] ) {
@@ -1028,9 +1033,11 @@ add_action( 'admin_post_lof_apply_design', 'lof_apply_design' );
  */
 function lof_primary_menu_tree() {
 	return array(
+		array( __( 'Home', 'light-of-future' ), '', array() ),
 		array( __( 'About', 'light-of-future' ), 'about-us', array( 'about-us', 'leadership', 'faq' ) ),
-		array( __( 'Our Work', 'light-of-future' ), 'programmes', array( 'programmes', 'talent-development', 'impact', 'stories' ) ),
-		array( __( 'Get Involved', 'light-of-future' ), 'get-involved', array() ),
+		array( __( 'Programmes', 'light-of-future' ), 'programmes', array( 'programmes', 'talent-development' ) ),
+		array( __( 'Impact', 'light-of-future' ), 'impact', array( 'impact', 'stories' ) ),
+		array( __( 'Get Involved', 'light-of-future' ), 'get-involved', array( 'get-involved', 'donate' ) ),
 		array( __( 'Contact', 'light-of-future' ), 'contact', array() ),
 	);
 }
@@ -1046,6 +1053,10 @@ function lof_primary_menu_tree() {
  * @return int Item ID or 0.
  */
 function lof_menu_add_page( $menu_id, $slug, $parent = 0, $label = '', $order = 0 ) {
+	if ( '' === $slug ) {
+		$id = wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => $label, 'menu-item-url' => home_url( '/' ), 'menu-item-type' => 'custom', 'menu-item-status' => 'publish', 'menu-item-position' => (int) $order ) );
+		return is_wp_error( $id ) ? 0 : (int) $id;
+	}
 	$page = get_page_by_path( $slug, OBJECT, 'page' );
 	if ( ! $page || 'publish' !== $page->post_status ) {
 		return 0;
@@ -1100,5 +1111,5 @@ function lof_rebuild_primary_menu() {
 	}
 	$locations['lof-primary'] = (int) $menu->term_id;
 	set_theme_mod( 'nav_menu_locations', $locations );
-	return array( __( 'Main menu rebuilt with About and Our Work dropdowns.', 'light-of-future' ) );
+	return array( __( 'Main menu rebuilt: Home, About, Programmes, Impact, Get Involved, Contact.', 'light-of-future' ) );
 }

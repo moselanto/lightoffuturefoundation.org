@@ -25,17 +25,17 @@ function lof_core_seed_data() {
 	};
 	return array(
 		'lof_programme' => array(
-			array( 'decent-houses', __( 'Decent Houses for Widows, Widowers and Orphans', 'light-of-future-core' ), __( 'Building decent, safe houses for widows, widowers and total orphans.', 'light-of-future-core' ), $p( __( 'We improve the living standards of widows, widowers and orphans by building them decent houses. Philister, who lived in a grass-thatched house for over 45 years, and Elijah both now live in safe homes built with the help of our donors.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Widows, widowers and total orphans', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 1, 2 ),
-			array( 'hygiene-kits', __( 'Hygiene Kits for Adolescent Girls', 'light-of-future-core' ), __( 'Supporting adolescent girls from vulnerable families with hygiene kits such as sanitary pads.', 'light-of-future-core' ), $p( __( 'We support adolescent girls from vulnerable families with hygiene kits, such as sanitary pads, so that they can learn and live with dignity.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Adolescent girls from vulnerable families', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 2, 2 ),
-			array( 'education-support', __( 'Education Support', 'light-of-future-core' ), __( 'Mobilising resources and creating educational opportunities for vulnerable children.', 'light-of-future-core' ), $p( __( 'We mobilise resources and establish educational opportunities for vulnerable children, from school fees to uniforms and shoes, because children are the future leaders of tomorrow.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Vulnerable children and orphans', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 3, 2 ),
-			array( 'clean-water', __( 'Clean Water and Sanitation', 'light-of-future-core' ), __( 'Supporting water and sanitation projects in the community.', 'light-of-future-core' ), $p( __( 'We support water and sanitation projects that improve access to safe drinking water for local communities.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Local communities', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 4, 2 ),
-			array( 'talent-development', __( 'Talent Development', 'light-of-future-core' ), __( 'Talent search through music, dance, drama, art and comedy, with platforms to shine.', 'light-of-future-core' ), $p( __( 'We conduct talent searches through music, dance, drama, art work and comedy, and create platforms where young people can grow and showcase their gifts.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Young people', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 5, 2 ),
-			array( 'hand-skills', __( 'Hand Skills Development', 'light-of-future-core' ), __( 'Training in practical hand skills that build self-reliance.', 'light-of-future-core' ), $p( __( 'Through hand skills training we equip individuals and families with practical skills, tools and confidence to shape their own futures.', 'light-of-future-core' ) ), array( 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 6, 2 ),
-			array( 'community-empowerment', __( 'Community Empowerment through Business Start-ups', 'light-of-future-core' ), __( 'Trainings and business start-ups that help families earn a living and move out of poverty.', 'light-of-future-core' ), $p( __( 'We empower communities economically by conducting trainings and giving business start-ups to widows, widowers and vulnerable families, to eradicate poverty and bring long-lasting change.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Widows, widowers and vulnerable families', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 7, 2 ),
-			array( 'health-medical-support', __( 'Health Search and Medical Support', 'light-of-future-core' ), __( 'Health checks and medical support for vulnerable people in our communities.', 'light-of-future-core' ), $p( __( 'We help vulnerable people get the medical care they need. When we found Elijah in a coma in December 2023, we arranged urgent hospital treatment and, with our online donors, covered his medical bills.', 'light-of-future-core' ) ), array( 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 8, 2 ),
-			array( 'gbv-awareness', __( 'Domestic and Gender-Based Violence Awareness', 'light-of-future-core' ), __( 'Awareness on domestic and gender-based violence, and helping people know their rights.', 'light-of-future-core' ), $p( __( 'We raise awareness on domestic violence and gender-based violence, and help vulnerable people in the community know their rights and when to apply them.', 'light-of-future-core' ) ), array( 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 9, 2 ),
-			array( 'prison-outreach', __( 'Prison Outreach', 'light-of-future-core' ), __( 'Providing encouragement and guidance through prison visits.', 'light-of-future-core' ), $p( __( 'Through prison outreach visits we offer encouragement, guidance and hope.', 'light-of-future-core' ) ), array( 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 10, 2 ),
-			array( 'food-donations', __( 'Food Donations', 'light-of-future-core' ), __( 'Food for vulnerable children and the elderly in our communities.', 'light-of-future-core' ), $p( __( 'We donate food to vulnerable children and elderly people in the communities we serve.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Vulnerable children and the elderly', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 11, 2 ),
+			array( 'education-support', __( 'Education', 'light-of-future-core' ), __( 'School support, learning materials and scholarships for vulnerable children and young people.', 'light-of-future-core' ), $p( __( 'We mobilise resources and create educational opportunities for vulnerable children, from school fees, uniforms and shoes to educational materials and scholarships, alongside vocational training for young people.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Vulnerable children, orphans and young people', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 1, 3 ),
+			array( 'food-donations', __( 'Food Security', 'light-of-future-core' ), __( 'Addressing hunger with dignity through food donations for children, families and the elderly.', 'light-of-future-core' ), $p( __( 'We address hunger and food insecurity with dignity, coordinating food donations and other support so that vulnerable children, orphans, families and elderly people can thrive.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Vulnerable children, families and the elderly', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 2, 3 ),
+			array( 'health-medical-support', __( 'Healthcare', 'light-of-future-core' ), __( 'Access to medical care, medical camps and wellbeing for vulnerable people.', 'light-of-future-core' ), $p( __( 'We help vulnerable people get the medical care they need and support medical camps and wellbeing in the communities we serve. When we found Elijah in a coma in December 2023, we arranged urgent hospital treatment and, with our online donors, covered his medical bills.', 'light-of-future-core' ) ), array( 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 3, 3 ),
+			array( 'clean-water', __( 'Water and Sanitation', 'light-of-future-core' ), __( 'Safe water, wells and sanitation for underserved communities.', 'light-of-future-core' ), $p( __( 'We support water and sanitation projects, including safe water and wells, that improve access to clean drinking water and sanitation for underserved communities.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Local communities', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 4, 3 ),
+			array( 'hygiene-kits', __( 'Hygiene Kits for the Girl Child', 'light-of-future-core' ), __( 'Sanitary pads and towels so girls can learn and live with dignity.', 'light-of-future-core' ), $p( __( 'We support girls from vulnerable families with hygiene kits such as sanitary pads and towels, so that they can stay in school and live with dignity.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Girls from vulnerable families', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 5, 3 ),
+			array( 'decent-houses', __( 'Decent Houses for Widows, Widowers and Vulnerable Families', 'light-of-future-core' ), __( 'Building decent, safe houses for widows, widowers and vulnerable families.', 'light-of-future-core' ), $p( __( 'We improve the living standards of widows, widowers and vulnerable families by building them decent houses. Philister, who lived in a grass-thatched house for over 45 years, and Elijah both now live in safe homes built with the help of our donors.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Widows, widowers and vulnerable families', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 6, 3 ),
+			array( 'community-empowerment', __( 'Community Empowerment', 'light-of-future-core' ), __( 'Training and business start-ups that help families earn a living and move out of poverty.', 'light-of-future-core' ), $p( __( 'We empower communities economically by conducting trainings and giving business start-ups to widows, widowers and vulnerable families, to eradicate poverty and bring long-lasting change.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Widows, widowers and vulnerable families', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 7, 3 ),
+			array( 'community-development', __( 'Community Development', 'light-of-future-core' ), __( 'Community-focused initiatives that build resilience where people live.', 'light-of-future-core' ), $p( __( 'We support sustainable, community-focused initiatives that build resilience, working hand in hand with local community members, grassroots groups and churches.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Local communities', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 8, 3 ),
+			array( 'children-and-families', __( 'Children and Families', 'light-of-future-core' ), __( 'Helping vulnerable children, orphans and families to thrive.', 'light-of-future-core' ), $p( __( 'We help vulnerable children, orphans and families to thrive, safeguarding children\'s rights and connecting families with the support they need.', 'light-of-future-core' ) ), array( 'lof_beneficiary' => __( 'Vulnerable children, orphans and families', 'light-of-future-core' ), 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 9, 3 ),
+			array( 'gbv-awareness', __( 'Domestic and Gender-Based Violence Awareness', 'light-of-future-core' ), __( 'Raising awareness of the effects of domestic and gender-based violence in the community.', 'light-of-future-core' ), $p( __( 'We raise awareness on the effects of domestic violence and gender-based violence in the community, and help vulnerable people know their rights and when to apply them.', 'light-of-future-core' ) ), array( 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 10, 3 ),
+			array( 'prison-outreach', __( 'Prison Outreach', 'light-of-future-core' ), __( 'Encouragement and guidance through prison outreach visits.', 'light-of-future-core' ), $p( __( 'Through prison outreach visits we offer encouragement, guidance and hope.', 'light-of-future-core' ) ), array( 'lof_status' => __( 'Ongoing', 'light-of-future-core' ) ), 11, 3 ),
 		),
 		'lof_story'     => array(
 			array( 'philister', __( 'Philister: a safe home at 85', 'light-of-future-core' ), __( 'After more than 45 years in a grass-thatched house, Philister now lives in a safe and secure home.', 'light-of-future-core' ), $p( __( 'Philister is a widow from Inungo village whose husband passed away in 1979. Since then, she has faced many years of hardship, struggling to survive on her own.', 'light-of-future-core' ) ) . $p( __( 'When we met her in 2023, she had been living in a grass-thatched house for over 45 years, often suffering from illness due to the poor conditions.', 'light-of-future-core' ) ) . $p( __( 'With the support of generous donors, we were able to build her a safe and secure home at the age of 85, greatly improving her quality of life.', 'light-of-future-core' ) ), array( 'lof_display_name' => 'Philister', 'lof_location' => __( 'Inungo village', 'light-of-future-core' ), 'lof_consent' => '1' ), 1, 1 ),
@@ -58,7 +58,7 @@ function lof_core_seed_data() {
 		'lof_metric'    => array(
 			array( 'children-supported', __( 'Children supported', 'light-of-future-core' ), '', '', array( 'lof_value' => '200', 'lof_suffix' => '+', 'lof_source' => $source, 'lof_verified' => '2026-10-30', 'lof_visible' => '1' ), 1, 1 ),
 			array( 'widows-assisted', __( 'Widows assisted', 'light-of-future-core' ), '', '', array( 'lof_value' => '30', 'lof_suffix' => '+', 'lof_source' => $source, 'lof_verified' => '2026-10-30', 'lof_visible' => '1' ), 2, 1 ),
-			array( 'community-programmes', __( 'Community programmes', 'light-of-future-core' ), '', '', array( 'lof_value' => '11', 'lof_suffix' => '', 'lof_source' => __( 'Programme list supplied by the foundation, October 2026', 'light-of-future-core' ), 'lof_verified' => '2026-10-30', 'lof_visible' => '1' ), 3, 2 ),
+			array( 'community-programmes', __( 'Focus areas', 'light-of-future-core' ), '', '', array( 'lof_value' => '11', 'lof_suffix' => '', 'lof_source' => __( 'Focus areas supplied by the foundation, 30 October 2026', 'light-of-future-core' ), 'lof_verified' => '2026-10-30', 'lof_visible' => '1' ), 3, 3 ),
 			array( 'officially-registered', __( 'Officially registered', 'light-of-future-core' ), '', '', array( 'lof_value' => '2025', 'lof_suffix' => '', 'lof_source' => __( 'NGO Board certificate, 23 May 2025', 'light-of-future-core' ), 'lof_verified' => '2026-10-30', 'lof_visible' => '1' ), 4, 2 ),
 		),
 	);
@@ -66,6 +66,18 @@ function lof_core_seed_data() {
 
 /**
  * Fingerprint of an item's editable fields, to tell whether someone edited it.
+ *
+ * @param int $id Post ID.
+ * @return string
+ */
+function lof_core_seed_retired() {
+	return array(
+		'lof_programme' => array( 'talent-development', 'hand-skills' ),
+	);
+}
+
+/**
+ * Fingerprint of an item's editable fields (see below).
  *
  * @param int $id Post ID.
  * @return string
@@ -137,6 +149,21 @@ function lof_core_seed_content() {
 			update_post_meta( $id, '_lof_seed_print', lof_core_seed_fingerprint( $id ) );
 			update_option( 'lof_seeded_' . $type . '_' . $slug, 1, false );
 			++$created;
+		}
+	}
+	// Items the foundation no longer lists: move to draft, unless someone edited them.
+	foreach ( lof_core_seed_retired() as $type => $slugs ) {
+		foreach ( $slugs as $slug ) {
+			$found = get_posts( array( 'post_type' => $type, 'name' => $slug, 'post_status' => 'publish', 'posts_per_page' => 1, 'fields' => 'ids' ) );
+			if ( ! $found ) {
+				continue;
+			}
+			$print = (string) get_post_meta( $found[0], '_lof_seed_print', true );
+			if ( $print && lof_core_seed_fingerprint( $found[0] ) !== $print ) {
+				continue;
+			}
+			wp_update_post( array( 'ID' => $found[0], 'post_status' => 'draft' ) );
+			++$updated;
 		}
 	}
 	$report = array(

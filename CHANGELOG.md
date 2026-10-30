@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.11.0 - 30 Oct 2026
+
+- Programmes replaced by the foundation's 11 focus areas (Agnes, 30 Oct 2026): Education, Food Security, Healthcare, Water and Sanitation, Hygiene Kits for the Girl Child, Decent Houses, Community Empowerment, Community Development, Children and Families, Domestic and GBV Awareness, Prison Outreach. Talent Development and Hand Skills programme items moved to draft (untouched copies only); the Talent development page stays.
+- Main menu modelled on Cistern of Hope: Home, About (About us, Leadership & Governance, FAQ), Programmes (Programmes, Talent development), Impact (Our impact, Stories), Get Involved (Get involved, Donate), Contact, plus the Donate button.
+- Fix: the five newly added programme leads now get their studio portraits (portrait switch retries until all 11 leaders exist).
+- People grids centre a short last row; square portraits on the same cream backdrop.
+- Impact figure "Community programmes" renamed "Focus areas".
+
 ## 0.10.0 - 30 Oct 2026
 
 Benchmarked again against the Cistern of Hope home page; content from the foundation's content document (leadership structure, 30 Oct 2026).

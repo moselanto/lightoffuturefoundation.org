@@ -261,7 +261,7 @@ class LOF_Widget_Leaders extends LOF_Widget_Base {
 		$this->render_heading( $s, __( 'Our leadership team', 'light-of-future' ) );
 		$row  = isset( $s['layout'] ) && 'row' === $s['layout'];
 		$cols = $row ? ( count( $items ) > 1 ? 2 : 1 ) : min( 4, max( 2, count( $items ) ) );
-		printf( '<div class="lof-grid lof-grid--%1$d%2$s">', (int) $cols, $row ? ' lof-people--row' . ( 1 === $cols ? ' lof-people--single' : '' ) : '' );
+		printf( '<div class="lof-grid lof-grid--%1$d%2$s">', (int) $cols, $row ? ' lof-people--row' . ( 1 === $cols ? ' lof-people--single' : '' ) : ' lof-people--grid' );
 		foreach ( $items as $p ) {
 			echo '<article class="lof-person lof-reveal' . ( $row ? ' lof-person--row' : '' ) . '"><div class="lof-person__photo">';
 			if ( has_post_thumbnail( $p ) ) {

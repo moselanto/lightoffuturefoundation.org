@@ -455,3 +455,10 @@ html[data-theme="dark"] .lof-hero--page::after { background-image: url("../image
 .lof-impact--strip .lof-impact__label { font-size: .74rem; }
 .lof-impact--strip .lof-reveal { opacity: 1; transform: none; }
 .lof-intro__band { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* 0.11.0: people grids centre an incomplete last row; uniform studio portraits */
+.lof-grid.lof-people--grid { display: flex; flex-wrap: wrap; justify-content: center; }
+.lof-people--grid > .lof-person { flex: 0 1 calc((100% - 3 * var(--lof-gap)) / 4); min-width: 210px; }
+.lof-people--grid .lof-person__photo { aspect-ratio: 1; background: #F2E6C9; }
+.lof-people--grid .lof-person__photo img { object-position: center top; }
+@media (max-width: 560px) { .lof-people--grid > .lof-person { flex-basis: 100%; } }
