@@ -260,7 +260,9 @@ function lof_setup_page_defs() {
 						'btn2_url'   => lof_link( '/donate/' ),
 						'collage1'   => lof_photo( 'story-elijah-new-home' ),
 						'collage2'   => lof_photo( 'story-philister-home' ),
-						'collage3'   => lof_photo( 'leader-francis-ouma-sikuku' ),
+						'stamp'      => __( 'Hope in action', 'light-of-future' ),
+						'card_title' => __( 'Since 2021', 'light-of-future' ),
+						'card_text'  => __( 'A community journey, registered with the NGO Board on 23 May 2025.', 'light-of-future' ),
 						'badge1'     => __( 'Registered with the NGO Board, 2025', 'light-of-future' ),
 						'badge2'     => __( '200+ children supported', 'light-of-future' ),
 						'badge3'     => __( 'Nairobi & Inungo village', 'light-of-future' ),
@@ -283,16 +285,18 @@ function lof_setup_page_defs() {
 					)
 				),
 				lof_el(
-					'lof-cards',
+					'lof-intro',
 					array(
-						'eyebrow' => __( 'Our purpose', 'light-of-future' ),
-						'title'   => __( 'Hope, dignity and lasting change.', 'light-of-future' ),
-						'columns' => '3',
-						'tone'    => 'sand',
-						'items'   => array(
-							array( '_id' => 'hp1', 'kicker' => __( 'Vision', 'light-of-future' ), 'title' => __( 'Empowered communities', 'light-of-future' ), 'text' => __( 'Hope, dignity and opportunity through sustainable support and long-lasting impact.', 'light-of-future' ) ),
-							array( '_id' => 'hp2', 'kicker' => __( 'Mission', 'light-of-future' ), 'title' => __( 'Partnership that restores hope', 'light-of-future' ), 'text' => __( 'Training, seminars and empowerment for orphans, widows, widowers and vulnerable families.', 'light-of-future' ) ),
-							array( '_id' => 'hp3', 'kicker' => __( 'Objective', 'light-of-future' ), 'title' => __( 'Holistic transformation', 'light-of-future' ), 'text' => __( 'For young, middle-aged and older people, through training, empowerment and life-changing innovation.', 'light-of-future' ), 'link_label' => __( 'About us', 'light-of-future' ), 'link' => lof_link( '/about-us/' ) ),
+						'eyebrow'    => __( 'Why we exist', 'light-of-future' ),
+						'title'      => __( 'Hope should open doors.', 'light-of-future' ),
+						'statement'  => __( 'We believe every widow, orphan and vulnerable family deserves the dignity, skills and opportunity to shape a better future.', 'light-of-future' ),
+						'text'       => __( 'Light of Future Foundation brings communities, local groups and partners together through training, seminars and practical support, from education and clean water to safe homes, healthcare and youth talent.', 'light-of-future' ),
+						'btn1_label' => __( 'Discover our story', 'light-of-future' ),
+						'btn1_url'   => lof_link( '/about-us/' ),
+						'tone'       => 'white',
+						'panels'     => array(
+							array( '_id' => 'in1', 'kicker' => __( 'Our vision', 'light-of-future' ), 'title' => __( 'Hope, dignity and opportunity for every community.', 'light-of-future' ), 'text' => __( 'To bring hope, dignity and opportunity by empowering vulnerable communities through sustainable support and long-lasting impact, in collaboration with the people of those communities.', 'light-of-future' ) ),
+							array( '_id' => 'in2', 'kicker' => __( 'Our mission', 'light-of-future' ), 'title' => __( 'Partnership that restores hope.', 'light-of-future' ), 'text' => __( 'To harness partnership and collaboration to restore hope and self-realisation among orphans, widows, widowers and vulnerable families, by organising training and seminars and empowering them in different areas of life.', 'light-of-future' ) ),
 						),
 					)
 				),

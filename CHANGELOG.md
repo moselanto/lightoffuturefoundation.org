@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.0 - 30 Oct 2026
+
+Design refinement from Agnes's prototype (index.html), keeping the Logo Kit colours (Earth Brown, Cream, Sand, Gold).
+
+- Hero: arched main photo, rotated gold "Hope in action" stamp, floating "Since 2021" card, fine gold circle outlines (new hero controls: stamp, card title, card text).
+- New LOF Intro Statement widget: "Why we exist" heading beside a large statement with a left rule, plus a vision / mission band. Replaces the home purpose cards.
+- Impact on earth tone becomes a divided trust strip.
+- Crisper system: 6/10px radii, uppercase letter-spaced buttons with arrows, eyebrows with a leading rule, bordered cards that lift on hover.
+- Programme cards: wider image, brand-symbol medallion, Cinzel titles, uppercase arrow links.
+- Closing call to action becomes a split band (text left, buttons right) on desktop.
+
 ## 0.7.0 - 30 Oct 2026
 
 Benchmarked against Cistern of Hope (home, about, leadership) and Smile Community Centre staging.

@@ -43,6 +43,7 @@ function lof_elementor_widgets( $manager ) {
 		'LOF_Widget_Gallery',
 		'LOF_Widget_Ribbon',
 		'LOF_Widget_Form',
+		'LOF_Widget_Intro',
 	);
 	foreach ( $classes as $class ) {
 		if ( class_exists( $class ) ) {

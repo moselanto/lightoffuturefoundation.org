@@ -372,3 +372,62 @@ html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
 /* Purpose cards: kicker as a label */
 .lof-card--pillar .lof-card__kicker:not(:empty) { font-family: var(--lof-font-body); font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--lof-link); }
 .lof-steps .lof-card__kicker, .lof-card--pillar .lof-card__kicker[data-num] { font-family: var(--lof-font-display); }
+
+/* ===== v0.8.0 prototype refinement (our brand colours retained) ===== */
+:root { --lof-radius: 6px; --lof-radius-lg: 10px; }
+.lof-eyebrow:not(.lof-eyebrow--numbered)::before { content: ""; display: inline-block; width: 26px; height: 1px; margin-right: .7rem; background: currentColor; vertical-align: middle; }
+.lof-section__title { letter-spacing: -.01em; line-height: 1.12; }
+/* Buttons: crisp, editorial */
+.lof-btn { border-radius: 4px; text-transform: uppercase; font-size: .8rem; letter-spacing: .07em; padding: .85rem 1.4rem; }
+.lof-btn-row .lof-btn::after { content: "\2192"; display: inline-block; transition: transform .2s ease; }
+.lof-btn-row .lof-btn:hover::after { transform: translateX(4px); }
+/* Cards */
+.lof-card { box-shadow: none; border: 1px solid var(--lof-line); }
+.lof-card:hover { box-shadow: var(--lof-shadow); border-color: var(--lof-line-strong); transform: translateY(-5px); }
+.lof-card--programme .lof-card__media { aspect-ratio: 16 / 10; }
+.lof-card--programme .lof-card__body { position: relative; padding: 2.1rem 1.5rem 1.5rem; }
+.lof-card--programme .lof-card__body::before { content: ""; position: absolute; top: -24px; left: 1.5rem; width: 46px; height: 46px; border-radius: 50%; background: var(--lof-earth) url("../images/brand/symbol-dark.svg") center / 62% no-repeat; border: 4px solid var(--lof-surface); }
+.lof-card--programme .lof-card__title { font-family: var(--lof-font-display); font-size: 1.2rem; line-height: 1.25; }
+.lof-card--programme .lof-card__body p { font-size: .92rem; color: var(--lof-muted); }
+.lof-card__link, .lof-text-link { font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--lof-link); text-decoration: none; }
+.lof-text-link { display: inline-flex; align-items: center; gap: .5rem; min-height: 28px; }
+.lof-text-link::after { content: "\2192"; transition: transform .2s ease; }
+.lof-text-link:hover::after, .lof-card__link:hover::after { transform: translateX(4px); }
+.lof-card__link::after { display: inline-block; transition: transform .2s ease; }
+/* Hero: arched photo, sun stamp, floating card */
+.lof-hero.has-collage .lof-hero__collage { min-height: 560px; }
+.lof-hero.has-collage .lof-hero__collage::before, .lof-hero.has-collage .lof-hero__collage::after { content: ""; position: absolute; border: 1px solid rgba(244, 175, 22, .55); border-radius: 50%; pointer-events: none; }
+.lof-hero.has-collage .lof-hero__collage::before { width: 240px; height: 240px; top: -28px; right: -8px; }
+.lof-hero.has-collage .lof-hero__collage::after { width: 160px; height: 160px; bottom: -26px; left: -6px; }
+.lof-hero.has-collage .lof-hero__shot--1 { inset: 0 12% 0 8%; transform: none; border: 0; border-radius: 46% 46% 6px 6px; z-index: 1; }
+.lof-hero.has-collage .lof-hero__shot--2 { width: 34%; height: 30%; right: 0; bottom: 14%; transform: none; border: 5px solid var(--lof-cream); border-radius: 6px; z-index: 2; }
+.lof-hero.has-collage .lof-hero__shot--3 { display: none; }
+.lof-hero__stamp { position: absolute; z-index: 4; top: 18px; left: 0; width: 112px; height: 112px; border-radius: 50%; background: var(--lof-gold); color: var(--lof-earth-deep); display: grid; place-items: center; text-align: center; padding: 18px; transform: rotate(-12deg); font: 700 .74rem/1.3 var(--lof-font-display); letter-spacing: .1em; text-transform: uppercase; box-shadow: 0 16px 30px -14px rgba(0, 0, 0, .55); }
+.lof-hero__card { position: absolute; z-index: 3; left: -18px; bottom: 40px; max-width: 230px; margin: 0; padding: 1.1rem 1.25rem; background: var(--lof-cream); color: var(--lof-ink); border-radius: 4px; box-shadow: 0 22px 50px -20px rgba(0, 0, 0, .6); }
+.lof-hero__card strong { display: block; font-family: var(--lof-font-display); font-size: 1.35rem; color: var(--lof-earth); }
+.lof-hero__card span { font-size: .78rem; line-height: 1.45; color: rgba(43, 29, 14, .8); }
+.lof-hero__badges li { border-radius: 4px; }
+@media (max-width: 1024px) { .lof-hero.has-collage .lof-hero__collage { min-height: 440px; max-width: 520px; } }
+@media (max-width: 560px) { .lof-hero.has-collage .lof-hero__collage { min-height: 360px; } .lof-hero__stamp { width: 86px; height: 86px; font-size: .62rem; padding: 12px; } .lof-hero__card { left: 0; bottom: 14px; max-width: 200px; } .lof-hero.has-collage .lof-hero__shot--2 { display: none; } .lof-hero.has-collage .lof-hero__shot--1 { inset: 0 4%; } }
+/* Impact on earth: trust strip */
+.lof-tone-earth .lof-impact__grid { gap: 0; }
+.lof-tone-earth .lof-impact__item { background: none; border: 0; border-left: 1px solid rgba(252, 246, 225, .2); border-radius: 0; text-align: left; padding: .5rem 1.75rem; }
+.lof-tone-earth .lof-impact__item:first-child { border-left: 0; padding-left: 0; }
+@media (max-width: 640px) { .lof-tone-earth .lof-impact__grid { grid-template-columns: 1fr 1fr; } .lof-tone-earth .lof-impact__item { padding: 1rem .9rem; border-left: 0; border-bottom: 1px solid rgba(252, 246, 225, .2); } }
+/* Intro statement */
+.lof-intro__grid { display: grid; grid-template-columns: .85fr 1fr; gap: clamp(2rem, 8vw, 7rem); align-items: start; }
+.lof-intro__title { font-size: clamp(2rem, 4.4vw, 3.3rem); margin-top: .75rem; }
+.lof-intro__aside { border-left: 1px solid var(--lof-line-strong); padding: 1.5rem 0 0 2.5rem; }
+.lof-intro__statement { font-family: var(--lof-font-display); font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.5; color: var(--lof-heading); margin: 0 0 1.25rem; }
+.lof-intro__text { color: var(--lof-muted); margin: 0 0 1.25rem; }
+.lof-intro__band { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); margin-top: clamp(2.5rem, 6vw, 4rem); padding: clamp(1.5rem, 4vw, 2.75rem); background: var(--lof-surface-2); border-radius: var(--lof-radius); }
+.lof-intro__band h3 { font-size: clamp(1.15rem, 2vw, 1.45rem); margin: .6rem 0; color: var(--lof-heading); }
+.lof-intro__band p:last-child { margin: 0; color: var(--lof-muted); }
+@media (max-width: 860px) { .lof-intro__grid, .lof-intro__band { grid-template-columns: 1fr; } .lof-intro__aside { padding: 1.25rem 0 0 1.25rem; } }
+/* Closing call to action: split band */
+.lof-cta .lof-section__head { border-bottom: 0; padding-bottom: 0; }
+@media (min-width: 900px) {
+	.lof-cta.lof-tone-sun .lof-cta__box { max-width: none; display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
+	.lof-cta.lof-tone-sun .lof-section__head { text-align: left; margin: 0; max-width: 680px; }
+	.lof-cta.lof-tone-sun .lof-btn-row { margin-top: 0; flex-wrap: nowrap; justify-content: flex-end; }
+}

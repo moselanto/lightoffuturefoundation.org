@@ -59,6 +59,9 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 		$this->add_control( 'collage1', array( 'label' => __( 'Collage photo 1 (large)', 'light-of-future' ), 'type' => Controls_Manager::MEDIA ) );
 		$this->add_control( 'collage2', array( 'label' => __( 'Collage photo 2', 'light-of-future' ), 'type' => Controls_Manager::MEDIA ) );
 		$this->add_control( 'collage3', array( 'label' => __( 'Collage photo 3', 'light-of-future' ), 'type' => Controls_Manager::MEDIA ) );
+		$this->add_control( 'stamp', array( 'label' => __( 'Round stamp text (home layout)', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
+		$this->add_control( 'card_title', array( 'label' => __( 'Floating card title', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
+		$this->add_control( 'card_text', array( 'label' => __( 'Floating card text', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
 		$this->add_control( 'badge_heading', array( 'label' => __( 'Trust badges', 'light-of-future' ), 'type' => Controls_Manager::HEADING, 'separator' => 'before' ) );
 		$this->add_control( 'badge1', array( 'label' => __( 'Badge 1', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
 		$this->add_control( 'badge2', array( 'label' => __( 'Badge 2', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
@@ -146,7 +149,14 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 				$this->render_media( $m, 0 === $i ? 'large' : 'lof-card', 'lof-hero__shot-img', 0 === $i );
 				echo '</figure>';
 			}
-			echo '<span class="lof-hero__seal" aria-hidden="true"><img src="' . esc_url( lof_brand_url( 'symbol-dark.svg' ) ) . '" alt="" width="80" height="80" loading="lazy" decoding="async"></span>';
+			if ( ! empty( $s['stamp'] ) ) {
+				printf( '<span class="lof-hero__stamp" aria-hidden="true"><span>%s</span></span>', esc_html( $s['stamp'] ) );
+			} else {
+				echo '<span class="lof-hero__seal" aria-hidden="true"><img src="' . esc_url( lof_brand_url( 'symbol-dark.svg' ) ) . '" alt="" width="80" height="80" loading="lazy" decoding="async"></span>';
+			}
+			if ( ! empty( $s['card_title'] ) ) {
+				printf( '<p class="lof-hero__card"><strong>%1$s</strong><span>%2$s</span></p>', esc_html( $s['card_title'] ), esc_html( isset( $s['card_text'] ) ? $s['card_text'] : '' ) );
+			}
 			echo '</div>';
 		}
 		echo '</div></section>';
@@ -452,6 +462,75 @@ class LOF_Widget_Contact extends LOF_Widget_Base {
 			printf( '<iframe class="lof-contact__map" src="%1$s" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="%2$s"></iframe>', esc_url( $map ), esc_attr__( 'Map', 'light-of-future' ) );
 		}
 		echo '</div>';
+		$this->close_section();
+	}
+}
+
+/**
+ * Intro statement with a vision / mission band.
+ */
+class LOF_Widget_Intro extends LOF_Widget_Base {
+	public function get_name() {
+		return 'lof-intro';
+	}
+	public function get_title() {
+		return __( 'LOF Intro Statement', 'light-of-future' );
+	}
+	public function get_icon() {
+		return 'eicon-text';
+	}
+	protected function register_controls() {
+		$this->start_controls_section( 'content', array( 'label' => __( 'Content', 'light-of-future' ) ) );
+		$this->add_control( 'eyebrow', array( 'label' => __( 'Small label', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'default' => __( 'Why we exist', 'light-of-future' ) ) );
+		$this->add_control( 'title', array( 'label' => __( 'Heading', 'light-of-future' ), 'type' => Controls_Manager::TEXTAREA, 'rows' => 2 ) );
+		$this->add_control( 'statement', array( 'label' => __( 'Statement (large text)', 'light-of-future' ), 'type' => Controls_Manager::TEXTAREA, 'rows' => 3 ) );
+		$this->add_control( 'text', array( 'label' => __( 'Supporting text', 'light-of-future' ), 'type' => Controls_Manager::TEXTAREA, 'rows' => 4 ) );
+		$this->add_button_controls( 'btn1', __( 'Discover our story', 'light-of-future' ), '/about-us/', __( 'Link', 'light-of-future' ) );
+		$r = new Repeater();
+		$r->add_control( 'kicker', array( 'label' => __( 'Label', 'light-of-future' ), 'type' => Controls_Manager::TEXT ) );
+		$r->add_control( 'title', array( 'label' => __( 'Title', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
+		$r->add_control( 'text', array( 'label' => __( 'Text', 'light-of-future' ), 'type' => Controls_Manager::TEXTAREA ) );
+		$this->add_control( 'panels', array( 'label' => __( 'Band panels (e.g. vision, mission)', 'light-of-future' ), 'type' => Controls_Manager::REPEATER, 'fields' => $r->get_controls(), 'title_field' => '{{{ kicker }}}' ) );
+		$this->add_layout_controls( 'white' );
+		$this->end_controls_section();
+		$this->add_style_controls();
+	}
+	protected function render() {
+		$s = $this->get_settings_for_display();
+		$this->open_section( $s, 'lof-intro' );
+		echo '<div class="lof-intro__grid lof-reveal"><div class="lof-intro__head">';
+		if ( ! empty( $s['eyebrow'] ) ) {
+			printf( '<p class="lof-eyebrow">%s</p>', esc_html( $s['eyebrow'] ) );
+		}
+		printf( '<h2 class="lof-section__title lof-intro__title">%s</h2>', nl2br( esc_html( ! empty( $s['title'] ) ? $s['title'] : __( 'Why we exist', 'light-of-future' ) ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '</div><div class="lof-intro__aside">';
+		if ( ! empty( $s['statement'] ) ) {
+			printf( '<p class="lof-intro__statement">%s</p>', esc_html( $s['statement'] ) );
+		}
+		if ( ! empty( $s['text'] ) ) {
+			printf( '<p class="lof-intro__text">%s</p>', esc_html( $s['text'] ) );
+		}
+		if ( ! empty( $s['btn1_label'] ) && ! empty( $s['btn1_url']['url'] ) ) {
+			printf( '<a class="lof-text-link" href="%1$s">%2$s</a>', esc_url( $s['btn1_url']['url'] ), esc_html( $s['btn1_label'] ) );
+		}
+		echo '</div></div>';
+		if ( ! empty( $s['panels'] ) ) {
+			echo '<div class="lof-intro__band lof-reveal">';
+			foreach ( $s['panels'] as $p ) {
+				echo '<div class="lof-intro__panel">';
+				if ( ! empty( $p['kicker'] ) ) {
+					printf( '<p class="lof-eyebrow">%s</p>', esc_html( $p['kicker'] ) );
+				}
+				if ( ! empty( $p['title'] ) ) {
+					printf( '<h3>%s</h3>', esc_html( $p['title'] ) );
+				}
+				if ( ! empty( $p['text'] ) ) {
+					printf( '<p>%s</p>', esc_html( $p['text'] ) );
+				}
+				echo '</div>';
+			}
+			echo '</div>';
+		}
 		$this->close_section();
 	}
 }

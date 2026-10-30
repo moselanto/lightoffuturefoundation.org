@@ -27,7 +27,7 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 
 ## Current state (30 Oct 2026, evening)
 
-- Theme **0.7.0** and Core **0.7.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.8.0** and Core **0.8.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
 
@@ -43,6 +43,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **30 Oct 2026, 22:15 EAT:** 0.8.0: prototype-inspired refinement (arched hero, stamp, intro statement widget, trust strip, crisper buttons/cards, split CTA). Colours unchanged.
 
 - **30 Oct 2026, 20:45 EAT:** 0.7.0: leadership page in Cistern-style groups (set lof_group = executive/board/team on each leader), governance steps, accountability, home purpose + team strip, milestones, Edith Atieno.
 
