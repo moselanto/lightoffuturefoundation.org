@@ -431,3 +431,8 @@ html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
 	.lof-cta.lof-tone-sun .lof-section__head { text-align: left; margin: 0; max-width: 680px; }
 	.lof-cta.lof-tone-sun .lof-btn-row { margin-top: 0; flex-wrap: nowrap; justify-content: flex-end; }
 }
+
+/* 0.8.1: readable image captions in both modes */
+.lof-feature__media figcaption { opacity: 1; color: var(--lof-muted); }
+.lof-tone-earth .lof-feature__media figcaption { color: rgba(252, 246, 225, .82); }
+html[data-theme="dark"] .lof-feature__media figcaption { color: var(--lof-text); }

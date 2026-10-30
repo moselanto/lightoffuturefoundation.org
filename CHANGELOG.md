@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.1 - 30 Oct 2026
+
+- Image captions (e.g. Philister's safe home) now readable in dark mode.
+
 ## 0.8.0 - 30 Oct 2026
 
 Design refinement from Agnes's prototype (index.html), keeping the Logo Kit colours (Earth Brown, Cream, Sand, Gold).
