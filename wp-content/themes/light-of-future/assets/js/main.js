@@ -108,6 +108,51 @@
 		});
 	}
 
+	function initHeadHeight() {
+		var root = document.documentElement;
+		function set() {
+			var t = document.querySelector('.lof-topbar');
+			var h = document.querySelector('.lof-header');
+			var v = (t ? t.offsetHeight : 0) + (h ? h.offsetHeight : 0);
+			if (v) { root.style.setProperty('--lof-head-h', v + 'px'); }
+			navTop();
+		}
+		function navTop() {
+			var h = document.querySelector('.lof-header');
+			if (h) { root.style.setProperty('--lof-nav-top', Math.max(0, Math.round(h.getBoundingClientRect().bottom)) + 'px'); }
+		}
+		set();
+		window.addEventListener('resize', set);
+		window.addEventListener('scroll', navTop, { passive: true });
+		var tg = document.querySelector('.lof-nav-toggle');
+		if (tg) { tg.addEventListener('click', navTop); }
+	}
+
+	function initHeroSlider() {
+		document.querySelectorAll('[data-lof-slider]').forEach(function (box) {
+			var slides = box.querySelectorAll('.lof-hero__slide');
+			var dots = box.querySelectorAll('.lof-hero__dot');
+			if (slides.length < 2) { return; }
+			var i = 0, timer = null;
+			var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			function go(n) {
+				slides[i].classList.remove('is-active');
+				if (dots[i]) { dots[i].classList.remove('is-active'); dots[i].removeAttribute('aria-current'); }
+				i = (n + slides.length) % slides.length;
+				slides[i].classList.add('is-active');
+				if (dots[i]) { dots[i].classList.add('is-active'); dots[i].setAttribute('aria-current', 'true'); }
+			}
+			function play() { if (!still && !timer) { timer = window.setInterval(function () { go(i + 1); }, 6000); } }
+			function stop() { window.clearInterval(timer); timer = null; }
+			dots.forEach(function (d, n) { d.addEventListener('click', function () { stop(); go(n); play(); }); });
+			box.addEventListener('mouseenter', stop);
+			box.addEventListener('mouseleave', play);
+			box.addEventListener('focusin', stop);
+			box.addEventListener('focusout', play);
+			play();
+		});
+	}
+
 	function initRibbons() {
 		document.querySelectorAll('.lof-ribbon__pause').forEach(function (btn) {
 			btn.addEventListener('click', function () {
@@ -134,6 +179,8 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
+		initHeadHeight();
+		initHeroSlider();
 		initRibbons();
 		initMobileNavFocus();
 		initTheme();

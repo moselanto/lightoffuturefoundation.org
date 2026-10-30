@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.0 - 31 Oct 2026
+
+- Home hero now fits the screen on 13.3in laptops and larger without scrolling: height follows the visible window minus the header; title, text, buttons and photo scale with screen height; header slims on short screens.
+- Hero photo is now a slider (crossfade every 6 seconds, dots, pauses on hover/focus, still for reduced motion).
+- New footer: gold call-to-action card (hidden on Home and Donate, which already end with one), four columns (brand with social icons, Explore, Focus areas, Get in touch with icons and Donate button), large outlined wordmark, base bar with registration line and Back to top. WhatsApp icon appears once the number is set.
+- Phone polish: no sideways scrolling, tighter header and logo, centred topbar contacts, stacked hero buttons, mobile menu always opens directly under the header.
+
 ## 0.11.1 - 31 Oct 2026
 
 - Menu: the Impact dropdown's first link now reads "Our impact" (Agnes).

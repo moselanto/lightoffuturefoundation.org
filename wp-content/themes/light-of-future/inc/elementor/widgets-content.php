@@ -143,11 +143,21 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 		}
 		echo '</div>';
 		if ( $collage ) {
-			echo '<div class="lof-hero__collage">';
+			echo '<div class="lof-hero__collage" data-lof-slider>';
+			echo '<figure class="lof-hero__shot lof-hero__shot--1 lof-hero__slider">';
 			foreach ( $collage as $i => $m ) {
-				printf( '<figure class="lof-hero__shot lof-hero__shot--%d">', (int) $i + 1 );
-				$this->render_media( $m, 0 === $i ? 'large' : 'lof-card', 'lof-hero__shot-img', 0 === $i );
-				echo '</figure>';
+				printf( '<div class="lof-hero__slide%s">', 0 === $i ? ' is-active' : '' );
+				$this->render_media( $m, 'large', 'lof-hero__shot-img', 0 === $i );
+				echo '</div>';
+			}
+			echo '</figure>';
+			if ( count( $collage ) > 1 ) {
+				echo '<div class="lof-hero__dots">';
+				foreach ( $collage as $i => $m ) {
+					/* translators: %d: slide number */
+					printf( '<button type="button" class="lof-hero__dot%1$s" aria-label="%2$s"%3$s></button>', 0 === $i ? ' is-active' : '', esc_attr( sprintf( __( 'Show photo %d', 'light-of-future' ), $i + 1 ) ), 0 === $i ? ' aria-current="true"' : '' );
+				}
+				echo '</div>';
 			}
 			if ( ! empty( $s['stamp'] ) ) {
 				printf( '<span class="lof-hero__stamp" aria-hidden="true"><span>%s</span></span>', esc_html( $s['stamp'] ) );
