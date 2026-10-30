@@ -1,0 +1,602 @@
+<?php
+/**
+ * Website setup: one click creates the pages, Elementor layouts, menus and
+ * home page, and asks the Core plugin to add the starter content.
+ *
+ * Safe to run again: existing pages, menus and content are never changed or
+ * duplicated. To rebuild one page's layout, delete (or rename the slug of)
+ * that page and run setup again.
+ *
+ * @package LightOfFuture
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Admin screen under Appearance.
+ */
+function lof_setup_menu() {
+	add_theme_page( __( 'Light of Future setup', 'light-of-future' ), __( 'Light of Future setup', 'light-of-future' ), 'manage_options', 'lof-setup', 'lof_setup_page' );
+}
+add_action( 'admin_menu', 'lof_setup_menu' );
+
+/**
+ * Remind admins to run setup once.
+ */
+function lof_setup_notice() {
+	if ( ! current_user_can( 'manage_options' ) || get_option( 'lof_setup_done' ) ) {
+		return;
+	}
+	$screen = get_current_screen();
+	if ( $screen && 'appearance_page_lof-setup' === $screen->id ) {
+		return;
+	}
+	printf(
+		'<div class="notice notice-info"><p>%1$s <a class="button button-primary" href="%2$s">%3$s</a></p></div>',
+		esc_html__( 'Light of Future Foundation theme is active. Build the pages and menus in one click:', 'light-of-future' ),
+		esc_url( admin_url( 'themes.php?page=lof-setup' ) ),
+		esc_html__( 'Open setup', 'light-of-future' )
+	);
+}
+add_action( 'admin_notices', 'lof_setup_notice' );
+
+/**
+ * Setup screen.
+ */
+function lof_setup_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$report = get_transient( 'lof_setup_report' );
+	delete_transient( 'lof_setup_report' );
+	$checks = array(
+		__( 'Elementor', 'light-of-future' )            => did_action( 'elementor/loaded' ) > 0,
+		__( 'Light of Future Core plugin', 'light-of-future' ) => function_exists( 'lof_core_seed_content' ),
+	);
+	?>
+	<div class="wrap">
+		<h1><?php esc_html_e( 'Light of Future setup', 'light-of-future' ); ?></h1>
+		<p><?php esc_html_e( 'Creates the website pages with their Elementor layouts, the main and footer menus, sets the home page, and adds the starter programmes, stories, leaders and impact figures. Anything that already exists is left exactly as it is.', 'light-of-future' ); ?></p>
+		<h2><?php esc_html_e( 'Requirements', 'light-of-future' ); ?></h2>
+		<ul>
+			<?php foreach ( $checks as $label => $ok ) : ?>
+				<li><?php echo $ok ? '&#10003; ' : '&#10007; '; ?><?php echo esc_html( $label ); ?><?php echo $ok ? '' : ' - ' . esc_html__( 'please install and activate it first', 'light-of-future' ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+		<?php if ( is_array( $report ) && $report ) : ?>
+			<div class="notice notice-success inline"><p><strong><?php esc_html_e( 'Setup finished:', 'light-of-future' ); ?></strong></p><ul style="list-style:disc;margin-left:2em">
+				<?php foreach ( $report as $line ) : ?>
+					<li><?php echo esc_html( $line ); ?></li>
+				<?php endforeach; ?>
+			</ul></div>
+		<?php endif; ?>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<?php wp_nonce_field( 'lof_run_setup' ); ?>
+			<input type="hidden" name="action" value="lof_run_setup">
+			<?php submit_button( __( 'Run setup', 'light-of-future' ), 'primary', 'submit', false, in_array( false, $checks, true ) ? array( 'disabled' => 'disabled' ) : array() ); ?>
+		</form>
+	</div>
+	<?php
+}
+
+/**
+ * Handle the setup form.
+ */
+function lof_run_setup() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( esc_html__( 'Not allowed.', 'light-of-future' ), 403 );
+	}
+	check_admin_referer( 'lof_run_setup' );
+	$report = array();
+	if ( function_exists( 'lof_core_seed_content' ) ) {
+		$report = array_merge( $report, lof_core_seed_content() );
+	}
+	$report = array_merge( $report, lof_setup_pages() );
+	$report = array_merge( $report, lof_setup_menus() );
+	update_option( 'lof_setup_done', LOF_THEME_VERSION, false );
+	flush_rewrite_rules();
+	set_transient( 'lof_setup_report', $report, 300 );
+	wp_safe_redirect( admin_url( 'themes.php?page=lof-setup' ) );
+	exit;
+}
+add_action( 'admin_post_lof_run_setup', 'lof_run_setup' );
+
+/**
+ * Build one Elementor section containing one widget.
+ *
+ * @param string $widget   Widget name.
+ * @param array  $settings Widget settings.
+ * @return array
+ */
+function lof_el( $widget, $settings ) {
+	$id = function () {
+		return substr( md5( wp_generate_password( 12, false ) ), 0, 7 );
+	};
+	return array(
+		'id'       => $id(),
+		'elType'   => 'section',
+		'isInner'  => false,
+		'settings' => array( 'layout' => 'full_width', 'gap' => 'no', 'padding' => array( 'unit' => 'px', 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0', 'isLinked' => true ) ),
+		'elements' => array(
+			array(
+				'id'       => $id(),
+				'elType'   => 'column',
+				'isInner'  => false,
+				'settings' => array( '_column_size' => 100, 'padding' => array( 'unit' => 'px', 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0', 'isLinked' => true ) ),
+				'elements' => array(
+					array(
+						'id'         => $id(),
+						'elType'     => 'widget',
+						'widgetType' => $widget,
+						'settings'   => $settings,
+						'elements'   => array(),
+					),
+				),
+			),
+		),
+	);
+}
+
+/**
+ * Elementor URL control value for a site path.
+ *
+ * @param string $path Path such as /donate/.
+ * @return array
+ */
+function lof_link( $path ) {
+	return array( 'url' => home_url( $path ), 'is_external' => '', 'nofollow' => '' );
+}
+
+/**
+ * Inner-page banner.
+ *
+ * @param string $eyebrow Label.
+ * @param string $title   Heading.
+ * @param string $text    Text.
+ * @return array
+ */
+function lof_page_hero( $eyebrow, $title, $text = '' ) {
+	return lof_el(
+		'lof-hero',
+		array(
+			'variant'   => 'page',
+			'eyebrow'   => $eyebrow,
+			'title'     => $title,
+			'highlight' => '',
+			'text'      => $text,
+			'btn1_label' => '',
+			'btn2_label' => '',
+		)
+	);
+}
+
+/**
+ * Standard closing call to action.
+ *
+ * @return array
+ */
+function lof_closing_cta() {
+	return lof_el(
+		'lof-cta',
+		array(
+			'eyebrow'    => __( 'Support our work', 'light-of-future' ),
+			'title'      => __( 'Be the light in someone\'s future', 'light-of-future' ),
+			'intro'      => __( 'Your support helps provide education, clean water, safe homes and care to vulnerable families in Kenya.', 'light-of-future' ),
+			'btn1_label' => __( 'Donate', 'light-of-future' ),
+			'btn1_url'   => lof_link( '/donate/' ),
+			'btn2_label' => __( 'Get involved', 'light-of-future' ),
+			'btn2_url'   => lof_link( '/get-involved/' ),
+			'tone'       => 'sun',
+		)
+	);
+}
+
+/**
+ * Text shared by several pages (from the foundation's previous website).
+ *
+ * @param string $key Key.
+ * @return string
+ */
+function lof_copy( $key ) {
+	$copy = array(
+		'about'   => '<p>' . __( 'Light of Future Foundation is a charitable organisation dedicated to supporting vulnerable communities in Kenya. We focus on assisting widows, widowers, orphans and people living with disabilities through programmes that create opportunity and restore dignity.', 'light-of-future' ) . '</p><p>' . __( 'Our work includes education support, community empowerment, clean water access and youth development. By working directly with communities, we aim to create lasting and sustainable impact.', 'light-of-future' ) . '</p>',
+		'founder' => '<p>' . __( 'Francis Ouma Sikuku, from Inungo village, is a musician, plumber, choir teacher and counsellor with a deep passion for serving his community. From a young age he visited widows\' homes, helping with cleaning, fetching water and collecting firewood, which planted the seed for his lifelong commitment to helping others.', 'light-of-future' ) . '</p><p>' . __( 'In 2016 he began formal studies in Social and Community Development; financial challenges prevented him from completing his diploma, so he dedicated 20% of his earnings from music and plumbing to charitable work. In 2021 he began registering that work as a charitable organisation, and in May 2025 Light of Future Foundation was formally registered with the NGO Board.', 'light-of-future' ) . '</p>',
+		'quote'   => __( 'Serving humanity is my passion, and it brings me great joy. It has been a long journey, but with God\'s grace, we are now able to make a lasting impact in our community.', 'light-of-future' ),
+	);
+	return isset( $copy[ $key ] ) ? $copy[ $key ] : '';
+}
+
+/**
+ * Page definitions: slug => [title, status, sections].
+ *
+ * @return array
+ */
+function lof_setup_page_defs() {
+	$founder = array(
+		'eyebrow'    => __( 'Our founder', 'light-of-future' ),
+		'title'      => __( 'A lifelong calling to serve', 'light-of-future' ),
+		'body'       => lof_copy( 'founder' ),
+		'quote'      => lof_copy( 'quote' ),
+		'quote_by'   => __( 'Francis Ouma Sikuku, Founder', 'light-of-future' ),
+		'image_side' => 'right',
+		'tone'       => 'sand',
+	);
+
+	return array(
+		'home'               => array(
+			__( 'Home', 'light-of-future' ),
+			'publish',
+			array(
+				lof_el(
+					'lof-hero',
+					array(
+						'variant'    => 'home',
+						'eyebrow'    => __( 'Light of Future Foundation · Nairobi, Kenya', 'light-of-future' ),
+						'title'      => __( 'Bringing hope and opportunity to communities in Kenya', 'light-of-future' ),
+						'highlight'  => __( 'hope', 'light-of-future' ),
+						'text'       => __( 'We support widows, widowers, orphans, vulnerable children and people living with disabilities through education, clean water and community programmes.', 'light-of-future' ),
+						'btn1_label' => __( 'Explore Our Work', 'light-of-future' ),
+						'btn1_url'   => lof_link( '/programmes/' ),
+						'btn2_label' => __( 'Support the Future', 'light-of-future' ),
+						'btn2_url'   => lof_link( '/donate/' ),
+					)
+				),
+				lof_el( 'lof-impact', array( 'eyebrow' => __( 'Our impact', 'light-of-future' ), 'title' => __( 'Hope you can count', 'light-of-future' ), 'tone' => 'earth' ) ),
+				lof_el(
+					'lof-feature',
+					array(
+						'eyebrow'    => __( 'Who we are', 'light-of-future' ),
+						'title'      => __( 'Restoring dignity, creating opportunity', 'light-of-future' ),
+						'body'       => lof_copy( 'about' ),
+						'btn1_label' => __( 'Our story', 'light-of-future' ),
+						'btn1_url'   => lof_link( '/about-us/' ),
+						'image_side' => 'left',
+						'tone'       => 'cream',
+					)
+				),
+				lof_el(
+					'lof-programmes',
+					array(
+						'eyebrow'    => __( 'What we do', 'light-of-future' ),
+						'title'      => __( 'Five ways we bring light', 'light-of-future' ),
+						'intro'      => __( 'Through education support, clean water, community programmes, youth development and faith, we help individuals and families build sustainable and independent futures.', 'light-of-future' ),
+						'count'      => 6,
+						'btn1_label' => __( 'See all programmes', 'light-of-future' ),
+						'btn1_url'   => lof_link( '/programmes/' ),
+						'tone'       => 'white',
+					)
+				),
+				lof_el( 'lof-feature', array_merge( $founder, array( 'btn1_label' => __( 'Meet our leadership', 'light-of-future' ), 'btn1_url' => lof_link( '/leadership/' ) ) ) ),
+				lof_el(
+					'lof-stories',
+					array(
+						'eyebrow'    => __( 'Stories of change', 'light-of-future' ),
+						'title'      => __( 'Real people, real change', 'light-of-future' ),
+						'btn1_label' => __( 'More stories', 'light-of-future' ),
+						'btn1_url'   => lof_link( '/stories/' ),
+						'tone'       => 'cream',
+					)
+				),
+				lof_el( 'lof-partners', array( 'tone' => 'white' ) ),
+				lof_closing_cta(),
+			),
+		),
+		'about-us'           => array(
+			__( 'About Us', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'About us', 'light-of-future' ), __( 'Who we are', 'light-of-future' ), __( 'A registered charitable organisation serving vulnerable communities in Kenya.', 'light-of-future' ) ),
+				lof_el( 'lof-feature', array( 'eyebrow' => __( 'Our story', 'light-of-future' ), 'title' => __( 'Restoring dignity, creating opportunity', 'light-of-future' ), 'body' => lof_copy( 'about' ), 'image_side' => 'left', 'tone' => 'cream' ) ),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Our purpose', 'light-of-future' ),
+						'title'   => __( 'What guides us', 'light-of-future' ),
+						'columns' => '3',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 'm1', 'kicker' => '01', 'title' => __( 'Our mission', 'light-of-future' ), 'text' => __( 'To bring hope, opportunity and dignity to vulnerable communities in Kenya by supporting widows, widowers, orphaned children and people living with disabilities.', 'light-of-future' ) ),
+							array( '_id' => 'm2', 'kicker' => '02', 'title' => __( 'How we work', 'light-of-future' ), 'text' => __( 'Through education support, clean water initiatives, community programmes, youth development and spreading the Gospel of Christ, we empower individuals and families to build sustainable and independent futures.', 'light-of-future' ) ),
+							array( '_id' => 'm3', 'kicker' => '03', 'title' => __( 'Where we work', 'light-of-future' ), 'text' => __( 'We work directly with communities in Nairobi, including Mathare, and in Inungo village.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el( 'lof-feature', $founder ),
+				lof_el( 'lof-impact', array( 'eyebrow' => __( 'Our impact', 'light-of-future' ), 'title' => __( 'Hope you can count', 'light-of-future' ), 'tone' => 'earth' ) ),
+				lof_closing_cta(),
+			),
+		),
+		'leadership'         => array(
+			__( 'Leadership & Governance', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'Leadership & governance', 'light-of-future' ), __( 'The people guiding our work', 'light-of-future' ) ),
+				lof_el( 'lof-leaders', array( 'eyebrow' => '', 'title' => '', 'tone' => 'white' ) ),
+				lof_closing_cta(),
+			),
+		),
+		'programmes'         => array(
+			__( 'Programmes', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'Our work', 'light-of-future' ), __( 'Programmes', 'light-of-future' ), __( 'Practical support that creates opportunity and restores dignity.', 'light-of-future' ) ),
+				lof_el( 'lof-programmes', array( 'eyebrow' => '', 'title' => '', 'count' => 24, 'tone' => 'cream' ) ),
+				lof_closing_cta(),
+			),
+		),
+		'talent-development' => array(
+			__( 'Talent Development', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'Talent development', 'light-of-future' ), __( 'Growing young talent', 'light-of-future' ), __( 'Encouraging youth talents through sports, music and creative arts.', 'light-of-future' ) ),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Talent areas', 'light-of-future' ),
+						'title'   => __( 'Where young people shine', 'light-of-future' ),
+						'columns' => '3',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 't1', 'title' => __( 'Sports', 'light-of-future' ), 'text' => __( 'Teamwork, discipline and confidence through sport.', 'light-of-future' ) ),
+							array( '_id' => 't2', 'title' => __( 'Music', 'light-of-future' ), 'text' => __( 'Singing, choir and music, a passion close to our founder\'s heart.', 'light-of-future' ) ),
+							array( '_id' => 't3', 'title' => __( 'Creative arts', 'light-of-future' ), 'text' => __( 'Space for young people to create, perform and express themselves.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el(
+					'lof-cta',
+					array(
+						'eyebrow'    => __( 'Sponsor a young talent', 'light-of-future' ),
+						'title'      => __( 'Help a young person discover what they can do', 'light-of-future' ),
+						'btn1_label' => __( 'Talk to us', 'light-of-future' ),
+						'btn1_url'   => lof_link( '/contact/' ),
+						'btn2_label' => __( 'Donate', 'light-of-future' ),
+						'btn2_url'   => lof_link( '/donate/' ),
+						'tone'       => 'sun',
+					)
+				),
+			),
+		),
+		'impact'             => array(
+			__( 'Impact', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'Our impact', 'light-of-future' ), __( 'Hope you can count', 'light-of-future' ) ),
+				lof_el( 'lof-impact', array( 'eyebrow' => '', 'title' => __( 'What your support has made possible', 'light-of-future' ), 'show_source' => 'yes', 'tone' => 'earth' ) ),
+				lof_el( 'lof-stories', array( 'eyebrow' => __( 'Behind the numbers', 'light-of-future' ), 'title' => __( 'Real people, real change', 'light-of-future' ), 'tone' => 'cream' ) ),
+				lof_closing_cta(),
+			),
+		),
+		'stories'            => array(
+			__( 'Stories', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'Impact stories', 'light-of-future' ), __( 'Real people, real change', 'light-of-future' ), __( 'These are just a few of the lives changed through your support.', 'light-of-future' ) ),
+				lof_el( 'lof-stories', array( 'eyebrow' => '', 'title' => '', 'count' => 24, 'tone' => 'cream' ) ),
+				lof_closing_cta(),
+			),
+		),
+		'donate'             => array(
+			__( 'Donate', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'Donate', 'light-of-future' ), __( 'Support the future', 'light-of-future' ), __( 'Your gift provides education, clean water, safe homes and care to vulnerable families.', 'light-of-future' ) ),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'How your gift helps', 'light-of-future' ),
+						'title'   => __( 'Where your support goes', 'light-of-future' ),
+						'columns' => '3',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 'd1', 'title' => __( 'Keeping children in school', 'light-of-future' ), 'text' => __( 'School fees, uniforms and shoes for vulnerable children and orphans.', 'light-of-future' ) ),
+							array( '_id' => 'd2', 'title' => __( 'Safe homes and care', 'light-of-future' ), 'text' => __( 'Building safe homes and covering urgent medical care for widows and widowers.', 'light-of-future' ) ),
+							array( '_id' => 'd3', 'title' => __( 'Clean water', 'light-of-future' ), 'text' => __( 'Improving access to safe drinking water for local communities.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el(
+					'lof-feature',
+					array(
+						'eyebrow'    => __( 'Give online', 'light-of-future' ),
+						'title'      => __( 'Secure giving by M-PESA and card', 'light-of-future' ),
+						'body'       => '<p>' . __( 'Secure online giving through Paystack (M-PESA and card) is being set up. Until it goes live, please contact us and we will guide you.', 'light-of-future' ) . '</p>',
+						'btn1_label' => __( 'Contact us to give', 'light-of-future' ),
+						'btn1_url'   => lof_link( '/contact/' ),
+						'image_side' => 'right',
+						'tone'       => 'cream',
+					)
+				),
+			),
+		),
+		'get-involved'       => array(
+			__( 'Get Involved', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'Get involved', 'light-of-future' ), __( 'Shine a light with us', 'light-of-future' ), __( 'There are many ways to stand with vulnerable families in Kenya.', 'light-of-future' ) ),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => '',
+						'title'   => __( 'Ways to help', 'light-of-future' ),
+						'columns' => '4',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 'g1', 'title' => __( 'Volunteer', 'light-of-future' ), 'text' => __( 'Give your time and skills alongside our team in the community.', 'light-of-future' ), 'link_label' => __( 'Ask about volunteering', 'light-of-future' ), 'link' => lof_link( '/contact/' ) ),
+							array( '_id' => 'g2', 'title' => __( 'Partner', 'light-of-future' ), 'text' => __( 'Organisations, churches and businesses can partner with us on programmes.', 'light-of-future' ), 'link_label' => __( 'Talk about a partnership', 'light-of-future' ), 'link' => lof_link( '/contact/' ) ),
+							array( '_id' => 'g3', 'title' => __( 'Sponsor', 'light-of-future' ), 'text' => __( 'Sponsor a child\'s schooling or a young person\'s talent.', 'light-of-future' ), 'link_label' => __( 'Ask about sponsorship', 'light-of-future' ), 'link' => lof_link( '/contact/' ) ),
+							array( '_id' => 'g4', 'title' => __( 'Fundraise', 'light-of-future' ), 'text' => __( 'Rally your friends, church or workplace behind a cause.', 'light-of-future' ), 'link_label' => __( 'Start a fundraiser', 'light-of-future' ), 'link' => lof_link( '/contact/' ) ),
+						),
+					)
+				),
+				lof_closing_cta(),
+			),
+		),
+		'contact'            => array(
+			__( 'Contact', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'Contact', 'light-of-future' ), __( 'We would love to hear from you', 'light-of-future' ) ),
+				lof_el( 'lof-contact', array( 'eyebrow' => '', 'title' => __( 'Get in touch', 'light-of-future' ), 'align' => 'left', 'tone' => 'white' ) ),
+			),
+		),
+		'faq'                => array(
+			__( 'FAQ', 'light-of-future' ),
+			'publish',
+			array(
+				lof_page_hero( __( 'FAQ', 'light-of-future' ), __( 'Questions and answers', 'light-of-future' ) ),
+				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => '',
+						'title'   => '',
+						'style'   => 'faq',
+						'tone'    => 'white',
+						'items'   => array(
+							array( '_id' => 'f1', 'title' => __( 'Is Light of Future Foundation registered?', 'light-of-future' ), 'text' => __( 'Yes. Light of Future Foundation was formally registered with the NGO Board of Kenya in May 2025.', 'light-of-future' ) ),
+							array( '_id' => 'f2', 'title' => __( 'Who do you support?', 'light-of-future' ), 'text' => __( 'Widows, widowers, orphans, vulnerable children and people living with disabilities.', 'light-of-future' ) ),
+							array( '_id' => 'f3', 'title' => __( 'Where do you work?', 'light-of-future' ), 'text' => __( 'In Nairobi, including Mathare, and in Inungo village.', 'light-of-future' ) ),
+							array( '_id' => 'f4', 'title' => __( 'How can I donate?', 'light-of-future' ), 'text' => __( 'Secure online giving by M-PESA and card through Paystack is being set up. Until then, please contact us and we will guide you.', 'light-of-future' ) ),
+							array( '_id' => 'f5', 'title' => __( 'Can I choose which programme my gift supports?', 'light-of-future' ), 'text' => __( 'Yes. Tell us the programme you would like to support, or let us use your gift where it is needed most.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_closing_cta(),
+			),
+		),
+		// Drafts: pages planned in the brief that wait for the foundation's content.
+		'projects'           => array( __( 'Projects', 'light-of-future' ), 'draft', array( lof_page_hero( __( 'Projects', 'light-of-future' ), __( 'Our projects', 'light-of-future' ) ) ) ),
+		'gallery'            => array( __( 'Gallery', 'light-of-future' ), 'draft', array( lof_page_hero( __( 'Gallery', 'light-of-future' ), __( 'A glimpse into our work', 'light-of-future' ) ) ) ),
+		'resources'          => array( __( 'Resources & Reports', 'light-of-future' ), 'draft', array( lof_page_hero( __( 'Resources', 'light-of-future' ), __( 'Reports and documents', 'light-of-future' ) ) ) ),
+	);
+}
+
+/**
+ * Plain HTML fallback (shown if Elementor is ever deactivated).
+ *
+ * @param array $sections Sections.
+ * @return string
+ */
+function lof_setup_fallback_html( $sections ) {
+	$html = '';
+	foreach ( $sections as $section ) {
+		$s = $section['elements'][0]['elements'][0]['settings'];
+		if ( ! empty( $s['title'] ) ) {
+			$html .= '<h2>' . esc_html( $s['title'] ) . '</h2>';
+		}
+		foreach ( array( 'intro', 'text' ) as $k ) {
+			if ( ! empty( $s[ $k ] ) ) {
+				$html .= '<p>' . esc_html( $s[ $k ] ) . '</p>';
+			}
+		}
+		if ( ! empty( $s['body'] ) ) {
+			$html .= wp_kses_post( $s['body'] );
+		}
+		if ( ! empty( $s['items'] ) ) {
+			foreach ( $s['items'] as $item ) {
+				$html .= '<h3>' . esc_html( $item['title'] ) . '</h3>' . ( ! empty( $item['text'] ) ? '<p>' . esc_html( $item['text'] ) . '</p>' : '' );
+			}
+		}
+	}
+	return $html;
+}
+
+/**
+ * Create missing pages with their Elementor layouts and set the home page.
+ *
+ * @return string[] Report lines.
+ */
+function lof_setup_pages() {
+	$report  = array();
+	$created = 0;
+	$version = defined( 'ELEMENTOR_VERSION' ) ? ELEMENTOR_VERSION : '3.0.0';
+	foreach ( lof_setup_page_defs() as $slug => $def ) {
+		list( $title, $status, $sections ) = $def;
+		$existing = get_page_by_path( $slug, OBJECT, 'page' );
+		if ( $existing ) {
+			continue;
+		}
+		$id = wp_insert_post(
+			array(
+				'post_type'    => 'page',
+				'post_status'  => $status,
+				'post_title'   => $title,
+				'post_name'    => $slug,
+				'post_content' => lof_setup_fallback_html( $sections ),
+			),
+			true
+		);
+		if ( is_wp_error( $id ) ) {
+			/* translators: %s: page title */
+			$report[] = sprintf( __( 'Could not create %s.', 'light-of-future' ), $title );
+			continue;
+		}
+		update_post_meta( $id, '_wp_page_template', 'elementor_header_footer' );
+		update_post_meta( $id, '_elementor_edit_mode', 'builder' );
+		update_post_meta( $id, '_elementor_template_type', 'wp-page' );
+		update_post_meta( $id, '_elementor_version', $version );
+		update_post_meta( $id, '_elementor_data', wp_slash( wp_json_encode( $sections ) ) );
+		update_post_meta( $id, '_lof_setup_page', $slug );
+		++$created;
+	}
+	/* translators: %d: number of pages */
+	$report[] = sprintf( _n( '%d page created (existing pages were left unchanged).', '%d pages created (existing pages were left unchanged).', $created, 'light-of-future' ), $created );
+
+	$home = get_page_by_path( 'home', OBJECT, 'page' );
+	if ( $home && 'page' !== get_option( 'show_on_front' ) ) {
+		update_option( 'show_on_front', 'page' );
+		update_option( 'page_on_front', $home->ID );
+		$report[] = __( 'Home page set.', 'light-of-future' );
+	}
+	if ( class_exists( '\Elementor\Plugin' ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	return $report;
+}
+
+/**
+ * Create the three menus if their locations are empty.
+ *
+ * @return string[] Report lines.
+ */
+function lof_setup_menus() {
+	$report    = array();
+	$locations = get_theme_mod( 'nav_menu_locations', array() );
+	$menus     = array(
+		'lof-primary' => array( __( 'Main menu', 'light-of-future' ), array( 'about-us', 'programmes', 'talent-development', 'impact', 'stories', 'get-involved', 'contact' ) ),
+		'lof-footer'  => array( __( 'Footer quick links', 'light-of-future' ), array( 'about-us', 'leadership', 'programmes', 'talent-development', 'impact', 'stories', 'donate', 'get-involved', 'faq', 'contact' ) ),
+	);
+	foreach ( $menus as $location => $menu ) {
+		if ( ! empty( $locations[ $location ] ) && wp_get_nav_menu_object( $locations[ $location ] ) ) {
+			continue;
+		}
+		$existing = wp_get_nav_menu_object( $menu[0] );
+		$menu_id  = $existing ? (int) $existing->term_id : wp_create_nav_menu( $menu[0] );
+		if ( is_wp_error( $menu_id ) ) {
+			continue;
+		}
+		if ( ! $existing ) {
+			foreach ( $menu[1] as $slug ) {
+				$page = get_page_by_path( $slug, OBJECT, 'page' );
+				if ( $page && 'publish' === $page->post_status ) {
+					wp_update_nav_menu_item(
+						$menu_id,
+						0,
+						array(
+							'menu-item-title'     => get_the_title( $page ),
+							'menu-item-object'    => 'page',
+							'menu-item-object-id' => $page->ID,
+							'menu-item-type'      => 'post_type',
+							'menu-item-status'    => 'publish',
+						)
+					);
+				}
+			}
+		}
+		$locations[ $location ] = $menu_id;
+		/* translators: %s: menu name */
+		$report[] = sprintf( __( '%s ready.', 'light-of-future' ), $menu[0] );
+	}
+	set_theme_mod( 'nav_menu_locations', $locations );
+	return $report;
+}

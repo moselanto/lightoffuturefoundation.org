@@ -1,28 +1,34 @@
 # Content gaps - what we still need from the foundation
 
-Status key: **Have (legacy, confirm)** = published on lightoffuture.org, needs the foundation's OK before launch. **Missing** = not supplied yet. Development continues with labelled placeholders.
+Updated 30 Oct 2026 after Agnes confirmed: official name, impact figures, Precious consent, Paystack, live domain. Development continues with clearly labelled placeholders for anything still missing.
 
-| Item | Status | Notes |
-|---|---|---|
-| Official name | Have (legacy, confirm) | Legacy site and logo say "Light of Future Foundation"; the brief says "Light of the Future". Confirm which is official. |
-| Logo and brand | **Have** | Logo Kit v1.0 (Oct 2026) in Drive. |
-| History / founder story | Have (legacy, confirm) | Francis Ouma Sikuku, Inungo village; registration started 2021; NGO Board certificate May 2025. |
-| Vision | Missing | Legacy only had a "What we do" mission line. |
-| Mission | Have (legacy, confirm) | "To bring hope, opportunity and dignity to vulnerable communities in Kenya..." |
-| Core values | Missing | |
-| Registration details for publication | Missing | Number and certificate: publish only if the board approves. |
-| Areas of operation | Partly | Nairobi (Mathare mentioned) and Inungo village. Confirm county/sub-county. |
-| Leadership | Have (legacy, confirm) | Founder Francis Ouma Sikuku; Vice Chairman Nixon Omondo Owino; Secretary Vincent Okoth Okallo; Treasurer Kennedy Oyamo Mumbo. Need Chairperson?, bios, approved photos. |
-| Governance documents/policies | Missing | |
-| Programmes | Have (legacy, confirm) | Education Support, Community Empowerment, Clean Water Projects, Talent Development, Prison Outreach. Need full descriptions, locations, photos. Legacy also mentions "spreading the Gospel of Christ" - confirm how to present faith. |
-| Projects (ongoing/completed/planned) | Missing | |
-| Talent Development details | Partly | Sports, music, creative arts. Need schedules, mentors, achievements. |
-| Impact figures | Have (legacy, unverified) | 200+ children supported, 30+ widows assisted, 5 programmes, registered 2025. Need source/period before showing. |
-| Impact stories | Have (legacy, confirm consent) | Philister (widow, house built at 85), Elijah (widower, medical bills + home; supporter Kristen named), Precious (girl in Mathare - a minor: needs guardian consent, consider pseudonym and no identifying photo). |
-| Photos | Missing | Legacy gallery images were not readable; need originals with consent. |
-| Crafts / shop catalogue | Missing | Product names, prices, photos, stock, delivery/pickup, returns. |
-| Partners / sponsors | Missing | Logos and permission. |
-| Contact | Have (legacy, confirm) | +254 715 394295, lightoffuturefoundation@gmail.com, Nairobi. Need WhatsApp number, physical address, office hours, social links. |
-| Payments | Missing | M-PESA Paybill/Till, card gateway, PayPal account (legacy accepted PayPal incl. recurring), receipt email. |
-| Proposal & quotation PDF, Website Content Requirements PDF | Missing in this repo | Named in the brief but not attached; please share. |
-| Hosting / DNS / email access for the new domain | Missing | |
+## Confirmed
+| Item | Decision |
+|---|---|
+| Official name | **Light of Future Foundation** (not "Light of the Future"). |
+| Impact figures | 200+ children supported, 30+ widows assisted, 5 community programmes, registered 2025 - confirmed true; shown as verified (source: foundation records, Oct 2026). |
+| Precious's story | Guardian consent held. Published with first name only, location shown as "Nairobi" (no slum name), no photo until an approved one is supplied. |
+| Payments | **Paystack** (M-PESA and card) for donations and the shop. Replaces the proposal's Daraja/Pesapal/Flutterwave/PayPal options. |
+| Live site | Built directly on https://lightoffuturefoundation.org/ (no separate staging). Search-engine visibility should stay off until launch. |
+| Logo and brand | Logo Kit v1.0 (Oct 2026). |
+| Client contact | Frank Omosh, +254 715 394 295 (proposal PMF-QT-2026-0105). |
+
+## Still needed
+| Item | Notes |
+|---|---|
+| Vision statement | Not supplied. |
+| Core values | Not supplied. |
+| Registration number / certificate for publication | Publish only if the board approves. |
+| Office address, Google Maps pin, office hours | Only "Nairobi, Kenya" so far. |
+| WhatsApp number and social media links | WhatsApp button and social icons stay hidden until set. |
+| Branded emails (info@, donate@) | Proposal scope; set up on the new domain. |
+| Leadership: Chairperson?, bios, photos | Founder, Vice Chairman, Secretary and Treasurer are seeded from the old site. Is Frank Omosh (proposal contact) the same person as founder Francis Ouma Sikuku, or a separate role? |
+| Governance structure, policies, reports | Leadership page shows people only for now. |
+| Programme details | Locations, numbers, start dates, photos for each of the 5 programmes. |
+| Projects | None supplied; Projects page is a draft. |
+| Talent Development | Schedules, mentors, achievements, sponsorship options. Card wording is short and generic - please confirm. |
+| Photos (30-50) | No photos yet: placeholders use the brand symbol. Gallery page is a draft. |
+| Shop catalogue | Products, prices, stock, photos, delivery fees/areas, pickup, returns, who handles orders. |
+| Partners / sponsors | Logos and permission (e.g. Kristen named in Elijah's story - logo/name use?). Section stays hidden until added. |
+| Paystack | Account verified in the foundation's name; public/secret keys (go in wp-config.php), settlement account, receipt email. |
+| Hosting / DNS / email access | For the new domain. |

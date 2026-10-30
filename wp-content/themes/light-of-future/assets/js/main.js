@@ -1,4 +1,4 @@
-/* Light of Future Foundation - front-end behaviour v0.1.0 */
+/* Light of Future Foundation - front-end behaviour v0.2.0 */
 (function () {
 	'use strict';
 

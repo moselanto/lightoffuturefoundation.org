@@ -46,7 +46,7 @@ function lof_core_register_post_types() {
 				'show_ui'         => true,
 				'show_in_menu'    => 'lof-core',
 				'show_in_rest'    => true,
-				'has_archive'     => $public ? $slug : false,
+				'has_archive'     => false, // Listing pages are Elementor pages at the same address (e.g. /programmes/).
 				'rewrite'         => $public ? array( 'slug' => $slug, 'with_front' => false ) : false,
 				'menu_icon'       => $icon,
 				'supports'        => $supports,

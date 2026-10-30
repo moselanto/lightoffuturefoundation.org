@@ -33,7 +33,7 @@ function lof_core_setting_fields() {
 		'social_tiktok'     => array( 'TikTok', 'url', '' ),
 		'social_x'          => array( 'X', 'url', '' ),
 		'social_linkedin'   => array( 'LinkedIn', 'url', '' ),
-		'payment_mode'      => array( __( 'Payment mode', 'light-of-future-core' ), 'select', __( 'Stays on "Not set up" until the organisation\'s own merchant accounts are verified and tested.', 'light-of-future-core' ) ),
+		'payment_mode'      => array( __( 'Payment mode', 'light-of-future-core' ), 'select', __( 'Gateway: Paystack (M-PESA and card). Stays on "Not set up" until the foundation\'s Paystack account is verified and tested. API keys go in wp-config.php (LOF_PAYSTACK_PUBLIC_KEY, LOF_PAYSTACK_SECRET_KEY), never here.', 'light-of-future-core' ) ),
 	);
 }
 

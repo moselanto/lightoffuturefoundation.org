@@ -13,13 +13,16 @@ The previous site, https://lightoffuture.org/, is a **read-only content source**
 | `docs/` | Requirements matrix, legacy content capture, brand notes. |
 | `scripts/build-zips.sh` | Builds clean theme and plugin zips in `dist/`. |
 
-## Install order (staging)
+Commits go directly to `main`.
+
+## Install order
 
 1. Install and activate **Elementor** (free). Elementor Pro is optional; without it the theme's own header and footer are used.
 2. Upload `light-of-future-core.zip` (Plugins > Add New > Upload) and activate.
 3. Upload `light-of-future.zip` (Appearance > Themes > Add New > Upload). WordPress installs **Hello Elementor** (the parent) automatically. Activate **Light of Future Foundation**.
-4. Go to **Light of Future > Organisation details** and confirm the contact details.
-5. Optional later: WooCommerce (crafts shop), chosen payment gateway.
+4. Go to **Appearance > Light of Future setup** and click **Run setup** (pages, Elementor layouts, menus, home page, starter content). Safe to run again.
+5. Go to **Light of Future > Organisation details** and confirm the contact details.
+6. Later: WooCommerce (crafts shop) and Paystack.
 
 ## Build
 

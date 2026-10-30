@@ -41,6 +41,7 @@ add_action( 'after_setup_theme', 'lof_theme_setup', 20 );
  */
 function lof_enqueue_assets() {
 	wp_enqueue_style( 'lof-main', LOF_THEME_URI . '/assets/css/main.css', array(), LOF_THEME_VERSION );
+	wp_enqueue_style( 'lof-sections', LOF_THEME_URI . '/assets/css/sections.css', array( 'lof-main' ), LOF_THEME_VERSION );
 	wp_enqueue_script( 'lof-main', LOF_THEME_URI . '/assets/js/main.js', array(), LOF_THEME_VERSION, array( 'in_footer' => true, 'strategy' => 'defer' ) );
 }
 add_action( 'wp_enqueue_scripts', 'lof_enqueue_assets', 20 );

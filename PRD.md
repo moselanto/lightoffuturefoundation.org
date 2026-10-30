@@ -25,6 +25,14 @@ Home, About Us, Leadership & Governance, Programmes (+ single), Projects, Talent
 
 Logo Kit v1.0: Earth Brown #5C3D1E, Cream #FCF6E1, Sun Yellow #FBD62B, Sun Gold #F4AF16, Amber #DC8C13. Cinzel (display) + Montserrat (UI/body). Use about 50% Earth Brown, 25% Cream, 25% sun tones. This replaces the brief's suggested teal/coral palette, which was pending confirmation against the logo.
 
+## Decisions (30 Oct 2026)
+
+- Official name: Light of Future Foundation.
+- Payments: Paystack (M-PESA and card) for donations and the shop.
+- Built directly on https://lightoffuturefoundation.org/.
+- Legacy impact figures confirmed; Precious's guardian consent held.
+- Proposal extras to deliver: cookie banner, GA4 events (donations, sales, enquiries), WhatsApp button, branded email, Search Console, Google Business Profile, training and 3 months' support.
+
 ## Scope context
 
 Agreed budget KES 35,000; delivery 2-3 weeks (proposal).
