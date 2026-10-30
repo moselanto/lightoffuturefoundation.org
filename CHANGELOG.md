@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0 - 30 Oct 2026
+
+Prototype refinement carried to the inner pages, brand colours kept.
+
+- Page heroes (About, Leadership, Programmes, Impact, Stories, Donate, Get Involved, Contact, FAQ): cream band (warm dark surface in dark mode), large Cinzel title with a gold rule, faint brand symbol, no sun bands.
+- Impact widget: new "Compact trust strip" option. Strip added under the hero on About, Programmes, Stories and Get Involved, and before the gift form on Donate. The duplicate figures at the foot of About were removed.
+- Intro statement with band: About (main objective + vision / mission), Programmes (approach + three steps). Band now fits two or three panels.
+
 ## 0.8.1 - 30 Oct 2026
 
 - Image captions (e.g. Philister's safe home) now readable in dark mode.

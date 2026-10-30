@@ -344,18 +344,19 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_page_hero( __( 'About us', 'light-of-future' ), __( 'Who we are', 'light-of-future' ), __( 'A registered charitable organisation restoring hope, dignity and opportunity in communities across Kenya.', 'light-of-future' ) ),
+				lof_el( 'lof-impact', array( 'eyebrow' => '', 'title' => '', 'strip' => 'yes', 'tone' => 'earth' ) ),
 				lof_el( 'lof-feature', array( 'eyebrow' => __( 'Our story', 'light-of-future' ), 'title' => __( 'Restoring dignity, creating opportunity', 'light-of-future' ), 'body' => lof_copy( 'about' ), 'image' => lof_photo( 'story-elijah-new-home' ), 'image_caption' => __( 'Elijah at his new home.', 'light-of-future' ), 'image_side' => 'left', 'tone' => 'cream' ) ),
 				lof_el(
-					'lof-cards',
+					'lof-intro',
 					array(
-						'eyebrow' => __( 'Our purpose', 'light-of-future' ),
-						'title'   => __( 'What guides us', 'light-of-future' ),
-						'columns' => '3',
-						'tone'    => 'white',
-						'items'   => array(
-							array( '_id' => 'm1', 'kicker' => '01', 'title' => __( 'Our vision', 'light-of-future' ), 'text' => __( 'To bring hope, dignity and opportunity by empowering vulnerable communities through sustainable support and long-lasting impact, in collaboration with the people of those communities.', 'light-of-future' ) ),
-							array( '_id' => 'm2', 'kicker' => '02', 'title' => __( 'Our mission', 'light-of-future' ), 'text' => __( 'To harness partnership and collaboration to restore hope and self-realisation among orphans, widows, widowers and vulnerable families, by organising training and seminars and empowering them in different areas of life.', 'light-of-future' ) ),
-							array( '_id' => 'm3', 'kicker' => '03', 'title' => __( 'Our main objective', 'light-of-future' ), 'text' => __( 'To provide holistic transformation to young, middle-aged and older people and disadvantaged communities through training, empowerment and exposure to life-changing innovations.', 'light-of-future' ) ),
+						'eyebrow'    => __( 'What guides us', 'light-of-future' ),
+						'title'      => __( 'Holistic transformation, built together.', 'light-of-future' ),
+						'statement'  => __( 'Our main objective is to provide holistic transformation to young, middle-aged and older people and disadvantaged communities through training, empowerment and exposure to life-changing innovations.', 'light-of-future' ),
+						'btn1_label' => '',
+						'tone'       => 'white',
+						'panels'     => array(
+							array( '_id' => 'm1', 'kicker' => __( 'Our vision', 'light-of-future' ), 'title' => __( 'Hope, dignity and opportunity for every community.', 'light-of-future' ), 'text' => __( 'To bring hope, dignity and opportunity by empowering vulnerable communities through sustainable support and long-lasting impact, in collaboration with the people of those communities.', 'light-of-future' ) ),
+							array( '_id' => 'm2', 'kicker' => __( 'Our mission', 'light-of-future' ), 'title' => __( 'Partnership that restores hope.', 'light-of-future' ), 'text' => __( 'To harness partnership and collaboration to restore hope and self-realisation among orphans, widows, widowers and vulnerable families, by organising training and seminars and empowering them in different areas of life.', 'light-of-future' ) ),
 						),
 					)
 				),
@@ -411,7 +412,6 @@ function lof_setup_page_defs() {
 						),
 					)
 				),
-				lof_el( 'lof-impact', array( 'eyebrow' => __( 'Our impact', 'light-of-future' ), 'title' => __( 'Hope you can count', 'light-of-future' ), 'tone' => 'earth' ) ),
 				lof_closing_cta(),
 			),
 		),
@@ -462,15 +462,16 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_page_hero( __( 'Our work', 'light-of-future' ), __( 'Programmes', 'light-of-future' ), __( 'Eleven programmes that restore hope, dignity and self-reliance.', 'light-of-future' ) ),
+				lof_el( 'lof-impact', array( 'eyebrow' => '', 'title' => '', 'strip' => 'yes', 'tone' => 'earth' ) ),
 				lof_el(
-					'lof-cards',
+					'lof-intro',
 					array(
-						'eyebrow' => __( 'Our approach', 'light-of-future' ),
-						'title'   => __( 'From relief to self-reliance', 'light-of-future' ),
-						'intro'   => __( 'We meet urgent needs first, then walk with families until they can stand on their own.', 'light-of-future' ),
-						'columns' => '3',
-						'tone'    => 'white',
-						'items'   => array(
+						'eyebrow'    => __( 'Our approach', 'light-of-future' ),
+						'title'      => __( 'From relief to self-reliance.', 'light-of-future' ),
+						'statement'  => __( 'We meet urgent needs first, then walk with families until they can stand on their own.', 'light-of-future' ),
+						'btn1_label' => '',
+						'tone'       => 'white',
+						'panels'     => array(
 							array( '_id' => 'p1', 'kicker' => '01', 'title' => __( 'Meet urgent needs', 'light-of-future' ), 'text' => __( 'Safe houses, food, medical care and hygiene kits for those who need them most.', 'light-of-future' ) ),
 							array( '_id' => 'p2', 'kicker' => '02', 'title' => __( 'Open doors', 'light-of-future' ), 'text' => __( 'Education, talent platforms and awareness of rights, so people can see and seize opportunity.', 'light-of-future' ) ),
 							array( '_id' => 'p3', 'kicker' => '03', 'title' => __( 'Build self-reliance', 'light-of-future' ), 'text' => __( 'Hand skills training, organic farming and business start-ups for a lasting way out of poverty.', 'light-of-future' ) ),
@@ -539,6 +540,7 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_page_hero( __( 'Impact stories', 'light-of-future' ), __( 'Real people, real change', 'light-of-future' ), __( 'These are just a few of the lives changed through your support.', 'light-of-future' ) ),
+				lof_el( 'lof-impact', array( 'eyebrow' => '', 'title' => '', 'strip' => 'yes', 'tone' => 'earth' ) ),
 				lof_el( 'lof-stories', array( 'eyebrow' => '', 'title' => '', 'count' => 24, 'layout' => 'featured', 'tone' => 'cream' ) ),
 				lof_el(
 					'lof-cards',
@@ -624,6 +626,7 @@ function lof_setup_page_defs() {
 						),
 					)
 				),
+				lof_el( 'lof-impact', array( 'eyebrow' => '', 'title' => '', 'strip' => 'yes', 'tone' => 'earth' ) ),
 				lof_el( 'lof-form', array( 'eyebrow' => __( 'Ready to give?', 'light-of-future' ), 'title' => __( 'Talk to us about your gift', 'light-of-future' ), 'interest' => 'donate', 'button' => __( 'Send', 'light-of-future' ), 'tone' => 'white' ) ),
 			),
 		),
@@ -632,6 +635,7 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_page_hero( __( 'Get involved', 'light-of-future' ), __( 'Shine a light with us', 'light-of-future' ), __( 'There are many ways to stand with vulnerable families in Kenya.', 'light-of-future' ) ),
+				lof_el( 'lof-impact', array( 'eyebrow' => '', 'title' => '', 'strip' => 'yes', 'tone' => 'earth' ) ),
 				lof_el(
 					'lof-cards',
 					array(

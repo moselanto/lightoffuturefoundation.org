@@ -85,6 +85,7 @@ class LOF_Widget_Impact extends LOF_Widget_Base {
 		$this->start_controls_section( 'content', array( 'label' => __( 'Content', 'light-of-future' ) ) );
 		$this->add_heading_controls( __( 'Our impact', 'light-of-future' ), __( 'Lives changed, one family at a time', 'light-of-future' ), '' );
 		$this->add_control( 'show_source', array( 'label' => __( 'Show source under figures', 'light-of-future' ), 'type' => Controls_Manager::SWITCHER, 'default' => '' ) );
+		$this->add_control( 'strip', array( 'label' => __( 'Compact trust strip (no heading, divided figures)', 'light-of-future' ), 'type' => Controls_Manager::SWITCHER, 'default' => '' ) );
 		$this->add_control( 'note', array( 'type' => Controls_Manager::RAW_HTML, 'raw' => esc_html__( 'Figures come from Light of Future > Impact figures. Only figures ticked "Verified - show on website" appear.', 'light-of-future' ), 'content_classes' => 'elementor-descriptor' ) );
 		$this->add_layout_controls( 'earth' );
 		$this->end_controls_section();
@@ -97,7 +98,7 @@ class LOF_Widget_Impact extends LOF_Widget_Base {
 			$this->editor_notice( __( 'No verified impact figures yet. Add them under Light of Future > Impact figures.', 'light-of-future' ) );
 			return;
 		}
-		$this->open_section( $s, 'lof-impact' );
+		$this->open_section( $s, 'lof-impact' . ( isset( $s['strip'] ) && 'yes' === $s['strip'] ? ' lof-impact--strip' : '' ) );
 		$this->render_heading( $s, __( 'Our impact in numbers', 'light-of-future' ) );
 		echo '<dl class="lof-impact__grid">';
 		foreach ( $metrics as $m ) {

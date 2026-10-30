@@ -436,3 +436,22 @@ html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
 .lof-feature__media figcaption { opacity: 1; color: var(--lof-muted); }
 .lof-tone-earth .lof-feature__media figcaption { color: rgba(252, 246, 225, .82); }
 html[data-theme="dark"] .lof-feature__media figcaption { color: var(--lof-text); }
+
+/* ===== v0.9.0 inner pages: cream page heroes, trust strip, intro band ===== */
+.lof-hero--page { min-height: 0; background: var(--lof-cream); color: var(--lof-text); border-bottom: 1px solid var(--lof-line); }
+.lof-hero--page .lof-hero__art { display: none; }
+.lof-hero--page::after { content: ""; position: absolute; z-index: 0; right: 5%; top: 50%; width: clamp(200px, 26vw, 360px); aspect-ratio: 1; transform: translateY(-50%) rotate(-8deg); background: url("../images/brand/symbol-light.svg") center / contain no-repeat; opacity: .09; pointer-events: none; }
+.lof-hero--page .lof-hero__inner { padding-block: clamp(3.5rem, 7vw, 5.5rem); }
+.lof-hero--page .lof-hero__content { max-width: 820px; }
+.lof-hero--page .lof-hero__eyebrow { color: var(--lof-link); }
+.lof-hero--page .lof-hero__title { color: var(--lof-heading); font-size: clamp(2.5rem, 5.4vw, 4.2rem); line-height: 1.06; letter-spacing: -.015em; max-width: 18ch; margin: .9rem 0 1rem; }
+.lof-hero--page .lof-hero__text { color: var(--lof-muted); font-size: clamp(1rem, 1.4vw, 1.15rem); max-width: 620px; }
+.lof-hero--page .lof-hero__title::after { content: ""; display: block; width: 64px; height: 3px; margin-top: 1.1rem; background: var(--lof-gold); border-radius: 2px; }
+html[data-theme="dark"] .lof-hero--page { background: var(--lof-surface); }
+html[data-theme="dark"] .lof-hero--page::after { background-image: url("../images/brand/symbol-dark.svg"); opacity: .12; }
+@media (max-width: 640px) { .lof-hero--page::after { right: -60px; opacity: .06; } .lof-hero--page .lof-hero__title { font-size: 2.3rem; } }
+.lof-section.lof-impact--strip { padding-block: clamp(1.75rem, 3.5vw, 2.5rem); }
+.lof-impact--strip .lof-impact__value { font-size: clamp(1.9rem, 3vw, 2.5rem); }
+.lof-impact--strip .lof-impact__label { font-size: .74rem; }
+.lof-impact--strip .lof-reveal { opacity: 1; transform: none; }
+.lof-intro__band { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
