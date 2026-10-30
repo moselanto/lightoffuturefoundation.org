@@ -1036,7 +1036,7 @@ function lof_primary_menu_tree() {
 		array( __( 'Home', 'light-of-future' ), '', array() ),
 		array( __( 'About', 'light-of-future' ), 'about-us', array( 'about-us', 'leadership', 'faq' ) ),
 		array( __( 'Programmes', 'light-of-future' ), 'programmes', array( 'programmes', 'talent-development' ) ),
-		array( __( 'Impact', 'light-of-future' ), 'impact', array( 'impact', 'stories' ) ),
+		array( __( 'Impact', 'light-of-future' ), 'impact', array( array( 'impact', __( 'Our impact', 'light-of-future' ) ), 'stories' ) ),
 		array( __( 'Get Involved', 'light-of-future' ), 'get-involved', array( 'get-involved', 'donate' ) ),
 		array( __( 'Contact', 'light-of-future' ), 'contact', array() ),
 	);
@@ -1105,7 +1105,11 @@ function lof_rebuild_primary_menu() {
 		$parent = lof_menu_add_page( $menu->term_id, $node[1], 0, $node[0], $pos++ );
 		if ( $parent ) {
 			foreach ( $node[2] as $child ) {
-				lof_menu_add_page( $menu->term_id, $child, $parent, '', $pos++ );
+				if ( is_array( $child ) ) {
+					lof_menu_add_page( $menu->term_id, $child[0], $parent, $child[1], $pos++ );
+				} else {
+					lof_menu_add_page( $menu->term_id, $child, $parent, '', $pos++ );
+				}
 			}
 		}
 	}

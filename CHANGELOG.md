@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.1 - 31 Oct 2026
+
+- Menu: the Impact dropdown's first link now reads "Our impact" (Agnes).
+- Phone-width preview for checks from a desktop browser: `/?lof_mobile_preview=light` or `=dark` (noindex). A `?lof_theme=light|dark` URL parameter forces the colour mode for that view.
+
 ## 0.11.0 - 30 Oct 2026
 
 - Programmes replaced by the foundation's 11 focus areas (Agnes, 30 Oct 2026): Education, Food Security, Healthcare, Water and Sanitation, Hygiene Kits for the Girl Child, Decent Houses, Community Empowerment, Community Development, Children and Families, Domestic and GBV Awareness, Prison Outreach. Talent Development and Hand Skills programme items moved to draft (untouched copies only); the Talent development page stays.

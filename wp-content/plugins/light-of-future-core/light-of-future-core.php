@@ -3,7 +3,7 @@
  * Plugin Name:       Light of Future Core
  * Plugin URI:        https://lightoffuturefoundation.org/
  * Description:       Content models and organisation settings for Light of Future Foundation: programmes, projects, impact stories, leaders, partners, reports and verified impact figures. Keeps data safe if the theme changes.
- * Version:           0.11.0
+ * Version:           0.11.1
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            Pimofy Digital
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOF_CORE_VERSION', '0.11.0' );
+define( 'LOF_CORE_VERSION', '0.11.1' );
 define( 'LOF_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LOF_CORE_URL', plugin_dir_url( __FILE__ ) );
 
