@@ -268,22 +268,6 @@ function lof_setup_page_defs() {
 						'badge3'     => __( 'Nairobi & Inungo village', 'light-of-future' ),
 					)
 				),
-				lof_el( 'lof-ribbon', array( 'words' => "Education\nClean water\nSafe homes\nHealthcare\nYouth talent\nDignity\nHope", 'tone' => 'sun' ) ),
-				lof_el( 'lof-impact', array( 'eyebrow' => __( 'Our impact', 'light-of-future' ), 'title' => __( 'Hope you can count', 'light-of-future' ), 'tone' => 'earth' ) ),
-				lof_el(
-					'lof-feature',
-					array(
-						'eyebrow'    => __( 'Who we are', 'light-of-future' ),
-						'title'      => __( 'Restoring dignity, creating opportunity', 'light-of-future' ),
-						'body'       => lof_copy( 'about' ),
-						'btn1_label' => __( 'Our story', 'light-of-future' ),
-						'btn1_url'   => lof_link( '/about-us/' ),
-						'image'      => lof_photo( 'story-philister-home' ),
-						'image_caption' => __( 'Philister outside the safe home donors helped build for her.', 'light-of-future' ),
-						'image_side' => 'left',
-						'tone'       => 'cream',
-					)
-				),
 				lof_el(
 					'lof-intro',
 					array(
@@ -301,10 +285,28 @@ function lof_setup_page_defs() {
 					)
 				),
 				lof_el(
+					'lof-cards',
+					array(
+						'eyebrow' => __( 'Our approach', 'light-of-future' ),
+						'title'   => __( 'From support to self-reliance.', 'light-of-future' ),
+						'intro'   => __( 'We meet urgent needs first, then walk with families until they can stand on their own.', 'light-of-future' ),
+						'style'   => 'steps',
+						'columns' => '4',
+						'tone'    => 'sand',
+						'items'   => array(
+							array( '_id' => 'ap1', 'kicker' => '01', 'title' => __( 'Identify', 'light-of-future' ), 'text' => __( 'Our outreach team finds vulnerable families, widows, orphans and children in the community.', 'light-of-future' ) ),
+							array( '_id' => 'ap2', 'kicker' => '02', 'title' => __( 'Meet urgent needs', 'light-of-future' ), 'text' => __( 'Safe houses, food, medical care and hygiene kits for those who need them most.', 'light-of-future' ) ),
+							array( '_id' => 'ap3', 'kicker' => '03', 'title' => __( 'Open doors', 'light-of-future' ), 'text' => __( 'Education, talent platforms and awareness of rights, so people can see and seize opportunity.', 'light-of-future' ) ),
+							array( '_id' => 'ap4', 'kicker' => '04', 'title' => __( 'Build self-reliance', 'light-of-future' ), 'text' => __( 'Hand skills training, organic farming and business start-ups for a lasting way out of poverty.', 'light-of-future' ) ),
+						),
+					)
+				),
+				lof_el( 'lof-feature', array_merge( $founder, array( 'eyebrow' => __( 'Our story', 'light-of-future' ), 'title' => __( 'From a local calling to a growing movement of hope.', 'light-of-future' ), 'btn1_label' => __( 'Read our story', 'light-of-future' ), 'btn1_url' => lof_link( '/about-us/' ) ) ) ),
+				lof_el(
 					'lof-programmes',
 					array(
 						'eyebrow'    => __( 'What we do', 'light-of-future' ),
-						'title'      => __( 'Eleven ways we bring light', 'light-of-future' ),
+						'title'      => __( 'Built around real community needs.', 'light-of-future' ),
 						'intro'      => __( 'From decent houses and clean water to education, skills and business start-ups, we work hand in hand with communities to restore hope and self-reliance.', 'light-of-future' ),
 						'count'      => 6,
 						'btn1_label' => __( 'See all 11 programmes', 'light-of-future' ),
@@ -312,8 +314,17 @@ function lof_setup_page_defs() {
 						'tone'       => 'white',
 					)
 				),
-				lof_el( 'lof-feature', array_merge( $founder, array( 'btn1_label' => __( 'Meet our leadership', 'light-of-future' ), 'btn1_url' => lof_link( '/leadership/' ) ) ) ),
-				lof_el( 'lof-leaders', array( 'eyebrow' => __( 'Our leadership', 'light-of-future' ), 'title' => __( 'Meet the people behind the work', 'light-of-future' ), 'show_bio' => '', 'layout' => 'grid', 'tone' => 'white' ) ),
+				lof_el( 'lof-impact', array( 'eyebrow' => __( 'Our impact', 'light-of-future' ), 'title' => __( 'Turning hope into meaningful change.', 'light-of-future' ), 'intro' => __( 'Progress we can stand behind, shared as the foundation grows.', 'light-of-future' ), 'tone' => 'earth' ) ),
+				lof_el(
+					'lof-stories',
+					array(
+						'eyebrow'    => __( 'Stories of change', 'light-of-future' ),
+						'title'      => __( 'The people behind the figures.', 'light-of-future' ),
+						'btn1_label' => __( 'More stories', 'light-of-future' ),
+						'btn1_url'   => lof_link( '/stories/' ),
+						'tone'       => 'cream',
+					)
+				),
 				lof_el(
 					'lof-donate',
 					array(
@@ -325,17 +336,21 @@ function lof_setup_page_defs() {
 						'tone'    => 'earth',
 					)
 				),
+				lof_el( 'lof-partners', array( 'eyebrow' => __( 'Our partners', 'light-of-future' ), 'title' => __( 'Walking alongside us.', 'light-of-future' ), 'tone' => 'white' ) ),
 				lof_el(
-					'lof-stories',
+					'lof-feature',
 					array(
-						'eyebrow'    => __( 'Stories of change', 'light-of-future' ),
-						'title'      => __( 'Real people, real change', 'light-of-future' ),
-						'btn1_label' => __( 'More stories', 'light-of-future' ),
-						'btn1_url'   => lof_link( '/stories/' ),
-						'tone'       => 'cream',
+						'eyebrow'       => __( 'Who we are', 'light-of-future' ),
+						'title'         => __( 'Every person deserves dignity and a chance to thrive.', 'light-of-future' ),
+						'body'          => lof_copy( 'about' ),
+						'btn1_label'    => __( 'About the foundation', 'light-of-future' ),
+						'btn1_url'      => lof_link( '/about-us/' ),
+						'image'         => lof_photo( 'story-philister-home' ),
+						'image_caption' => __( 'Philister outside the safe home donors helped build for her.', 'light-of-future' ),
+						'image_side'    => 'right',
+						'tone'          => 'cream',
 					)
 				),
-				lof_el( 'lof-partners', array( 'tone' => 'white' ) ),
 				lof_closing_cta(),
 			),
 		),
@@ -422,7 +437,7 @@ function lof_setup_page_defs() {
 				lof_page_hero( __( 'People and accountability', 'light-of-future' ), __( 'Leadership & Governance', 'light-of-future' ), __( 'The people accountable for the foundation\'s work, and the structure they are accountable through.', 'light-of-future' ) ),
 				lof_el( 'lof-leaders', array( 'number' => '01', 'eyebrow' => __( 'Executive leadership', 'light-of-future' ), 'title' => __( 'Vision and stewardship.', 'light-of-future' ), 'intro' => __( 'Overall direction, strategy and day-to-day leadership of the foundation.', 'light-of-future' ), 'group' => 'executive', 'layout' => 'row', 'tone' => 'cream' ) ),
 				lof_el( 'lof-leaders', array( 'number' => '02', 'eyebrow' => __( 'Board of Directors', 'light-of-future' ), 'title' => __( 'Governance and oversight.', 'light-of-future' ), 'intro' => __( 'A four-member board, chaired by our founder, oversees direction, finances and accountability. Each director also serves in the foundation\'s management.', 'light-of-future' ), 'group' => 'board', 'layout' => 'row', 'tone' => 'white' ) ),
-				lof_el( 'lof-leaders', array( 'number' => '03', 'eyebrow' => __( 'Programmes team', 'light-of-future' ), 'title' => __( 'The people moving the work forward.', 'light-of-future' ), 'intro' => __( 'The team delivering programmes for children, young people and families.', 'light-of-future' ), 'group' => 'team', 'layout' => 'row', 'tone' => 'cream' ) ),
+				lof_el( 'lof-leaders', array( 'number' => '03', 'eyebrow' => __( 'Programme leads', 'light-of-future' ), 'title' => __( 'The people moving the work forward.', 'light-of-future' ), 'intro' => __( 'Seven programme leads coordinate our work in education, communications, outreach, health, water and sanitation, housing and food security.', 'light-of-future' ), 'group' => 'team', 'layout' => 'grid', 'tone' => 'cream' ) ),
 				lof_el(
 					'lof-cards',
 					array(
@@ -835,6 +850,17 @@ function lof_bundled_photos() {
 		'story-philister-home'        => array( __( 'Philister standing at the door of her new house', 'light-of-future' ), __( 'Philister outside her new home.', 'light-of-future' ) ),
 		'story-precious-school-shoes' => array( __( 'Precious holding up her new school shoes and socks', 'light-of-future' ), __( 'New school shoes for Precious (shared with her guardian\'s consent).', 'light-of-future' ) ),
 		'founder-francis-ouma-sikuku' => array( __( 'Francis Ouma Sikuku, founder of Light of Future Foundation', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder.', 'light-of-future' ) ),
+		'leader-francis-ouma-sikuku-pro' => array( __( 'Portrait of Francis Ouma Sikuku', 'light-of-future' ), __( 'Francis Ouma Sikuku.', 'light-of-future' ) ),
+		'leader-vincent-okoth-okallo-pro' => array( __( 'Portrait of Vincent Okoth Okallo', 'light-of-future' ), __( 'Vincent Okoth Okallo.', 'light-of-future' ) ),
+		'leader-frederick-otieno-pro' => array( __( 'Portrait of Frederick Otieno', 'light-of-future' ), __( 'Frederick Otieno.', 'light-of-future' ) ),
+		'leader-nixon-omondo-owino-pro' => array( __( 'Portrait of Nixon Omondo Owino', 'light-of-future' ), __( 'Nixon Omondo Owino.', 'light-of-future' ) ),
+		'leader-edith-atieno-pro' => array( __( 'Portrait of Edith Atieno', 'light-of-future' ), __( 'Edith Atieno.', 'light-of-future' ) ),
+		'leader-marion-atieno-pro' => array( __( 'Portrait of Marion Atieno', 'light-of-future' ), __( 'Marion Atieno.', 'light-of-future' ) ),
+		'leader-lucy-habiba-pro' => array( __( 'Portrait of Lucy Habiba', 'light-of-future' ), __( 'Lucy Habiba.', 'light-of-future' ) ),
+		'leader-stephen-oduor-pro' => array( __( 'Portrait of Stephen Oduor', 'light-of-future' ), __( 'Stephen Oduor.', 'light-of-future' ) ),
+		'leader-kennedy-mumbo-pro' => array( __( 'Portrait of Kennedy Mumbo', 'light-of-future' ), __( 'Kennedy Mumbo.', 'light-of-future' ) ),
+		'leader-victor-onyango-pro' => array( __( 'Portrait of Victor Onyango', 'light-of-future' ), __( 'Victor Onyango.', 'light-of-future' ) ),
+		'leader-scholastica-baraza-pro' => array( __( 'Portrait of Scholastica Baraza', 'light-of-future' ), __( 'Scholastica Baraza.', 'light-of-future' ) ),
 		'leader-francis-ouma-sikuku'  => array( __( 'Portrait of Francis Ouma Sikuku', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder & Executive Director.', 'light-of-future' ) ),
 		'leader-edith-atieno'         => array( __( 'Portrait of Edith Atieno', 'light-of-future' ), __( 'Edith Atieno, Education & Skills Development Coordinator.', 'light-of-future' ) ),
 		'leader-nixon-omondo-owino'   => array( __( 'Portrait of Nixon Omondo Owino', 'light-of-future' ), __( 'Nixon Omondo Owino, General Operations Manager & Chief Adviser.', 'light-of-future' ) ),
@@ -914,6 +940,29 @@ function lof_import_photos() {
 		array( 'lof_programme', 'education-support', 'story-precious-school-shoes' ),
 
 	);
+	// 0.10.0: one-time switch of every leader to the uniform studio portrait.
+	if ( (int) get_option( 'lof_leader_photo_set', 0 ) < 2 ) {
+		$pro = array(
+		'francis-ouma-sikuku' => 'leader-francis-ouma-sikuku-pro',
+		'vincent-okoth-okallo' => 'leader-vincent-okoth-okallo-pro',
+		'frederick-otieno' => 'leader-frederick-otieno-pro',
+		'nixon-omondo-owino' => 'leader-nixon-omondo-owino-pro',
+		'edith-atieno' => 'leader-edith-atieno-pro',
+		'marion-atieno' => 'leader-marion-atieno-pro',
+		'lucy-habiba' => 'leader-lucy-habiba-pro',
+		'stephen-oduor' => 'leader-stephen-oduor-pro',
+		'kennedy-oyamo-mumbo' => 'leader-kennedy-mumbo-pro',
+		'victor-onyango' => 'leader-victor-onyango-pro',
+		'scholastica-baraza' => 'leader-scholastica-baraza-pro',
+		);
+		foreach ( $pro as $post_slug => $photo ) {
+			$found = get_posts( array( 'post_type' => 'lof_leader', 'name' => $post_slug, 'post_status' => 'any', 'posts_per_page' => 1, 'fields' => 'ids' ) );
+			if ( $found && ! empty( $ids[ $photo ] ) ) {
+				set_post_thumbnail( $found[0], (int) $ids[ $photo ] );
+			}
+		}
+		update_option( 'lof_leader_photo_set', 2, false );
+	}
 	$fr = get_posts( array( 'post_type' => 'lof_leader', 'name' => 'francis-ouma-sikuku', 'post_status' => 'any', 'posts_per_page' => 1, 'fields' => 'ids' ) );
 	if ( $fr && ! empty( $ids['founder-francis-ouma-sikuku'] ) && ! empty( $ids['leader-francis-ouma-sikuku'] ) && (int) get_post_thumbnail_id( $fr[0] ) === (int) $ids['founder-francis-ouma-sikuku'] ) {
 		set_post_thumbnail( $fr[0], (int) $ids['leader-francis-ouma-sikuku'] );

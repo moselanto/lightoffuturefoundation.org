@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.0 - 30 Oct 2026
+
+Benchmarked again against the Cistern of Hope home page; content from the foundation's content document (leadership structure, 30 Oct 2026).
+
+- Uniform studio portraits for all 11 leaders (same warm cream backdrop, lighting and framing; faces unchanged). Bundled as leader-*-pro.webp and switched on once by Apply latest design (option lof_leader_photo_set = 2).
+- Six programme leads added: Marion Atieno (communication, media and digital engagement), Lucy Habiba (community outreach and social development), Stephen Oduor (assistant operations manager and health care), Kennedy Mumbo (environment, water and sanitation), Victor Onyango (community development), Scholastica Baraza (food security, children and families). Leadership section 03 is now a grid of seven programme leads.
+- Home rebalanced: no leaders strip or word ribbon. Order: hero, why we exist + vision/mission, four-step approach, founder story with milestones, six programmes, impact band, stories, giving, partners, dignity feature, closing call to action.
+
 ## 0.9.0 - 30 Oct 2026
 
 Prototype refinement carried to the inner pages, brand colours kept.
