@@ -1,4 +1,4 @@
-/* Light of Future Foundation - front-end behaviour v0.2.0 */
+/* Light of Future Foundation - front-end behaviour v0.3.0 */
 (function () {
 	'use strict';
 
@@ -48,7 +48,30 @@
 		items.forEach(function (el) { io.observe(el); });
 	}
 
+	function initCount() {
+		var els = document.querySelectorAll('.lof-count[data-count]');
+		if (!els.length || !('IntersectionObserver' in window)) { return; }
+		if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+		var io = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				if (!entry.isIntersecting) { return; }
+				var el = entry.target, end = parseInt(el.getAttribute('data-count'), 10), start = null;
+				io.unobserve(el);
+				function step(ts) {
+					if (!start) { start = ts; }
+					var p = Math.min((ts - start) / 1400, 1);
+					el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))).toLocaleString();
+					if (p < 1) { window.requestAnimationFrame(step); }
+				}
+				el.textContent = '0';
+				window.requestAnimationFrame(step);
+			});
+		}, { threshold: 0.4 });
+		els.forEach(function (el) { io.observe(el); });
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
+		initCount();
 		initNav();
 		initHeaderShadow();
 		initReveal();

@@ -26,6 +26,7 @@ function lof_elementor_widgets( $manager ) {
 	require_once LOF_THEME_DIR . '/inc/elementor/widgets-base.php';
 	require_once LOF_THEME_DIR . '/inc/elementor/widgets-content.php';
 	require_once LOF_THEME_DIR . '/inc/elementor/widgets-dynamic.php';
+	require_once LOF_THEME_DIR . '/inc/elementor/widgets-extra.php';
 	$classes = array(
 		'LOF_Widget_Hero',
 		'LOF_Widget_Heading',
@@ -38,6 +39,10 @@ function lof_elementor_widgets( $manager ) {
 		'LOF_Widget_Partners',
 		'LOF_Widget_CTA',
 		'LOF_Widget_Contact',
+		'LOF_Widget_Donate',
+		'LOF_Widget_Gallery',
+		'LOF_Widget_Ribbon',
+		'LOF_Widget_Form',
 	);
 	foreach ( $classes as $class ) {
 		if ( class_exists( $class ) ) {

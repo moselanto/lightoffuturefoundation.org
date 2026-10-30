@@ -103,7 +103,8 @@ class LOF_Widget_Impact extends LOF_Widget_Base {
 		foreach ( $metrics as $m ) {
 			echo '<div class="lof-impact__item lof-reveal">';
 			printf( '<dt class="lof-impact__label">%s</dt>', esc_html( $m['label'] ) );
-			printf( '<dd class="lof-impact__value">%1$s<span>%2$s</span></dd>', esc_html( $m['value'] ), esc_html( $m['suffix'] ) );
+			$num = preg_match( '/^\d+$/', $m['value'] ) && (int) $m['value'] < 1900 ? (int) $m['value'] : 0;
+			printf( '<dd class="lof-impact__value"><span class="lof-count"%1$s>%2$s</span><span>%3$s</span></dd>', $num ? ' data-count="' . esc_attr( $num ) . '"' : '', esc_html( $m['value'] ), esc_html( $m['suffix'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			if ( isset( $s['show_source'] ) && 'yes' === $s['show_source'] && ( $m['source'] || $m['period'] ) ) {
 				printf( '<dd class="lof-impact__source">%s</dd>', esc_html( trim( $m['period'] . ' ' . $m['source'] ) ) );
 			}

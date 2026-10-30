@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOF_THEME_VERSION', '0.2.0' );
+define( 'LOF_THEME_VERSION', '0.3.0' );
 define( 'LOF_THEME_DIR', get_stylesheet_directory() );
 define( 'LOF_THEME_URI', get_stylesheet_directory_uri() );
 
@@ -20,6 +20,7 @@ require_once LOF_THEME_DIR . '/inc/template-tags.php';
 require_once LOF_THEME_DIR . '/inc/elementor.php';
 require_once LOF_THEME_DIR . '/inc/security.php';
 require_once LOF_THEME_DIR . '/inc/elementor/widgets.php';
+require_once LOF_THEME_DIR . '/inc/floating.php';
 
 if ( is_admin() ) {
 	require_once LOF_THEME_DIR . '/inc/importer.php';

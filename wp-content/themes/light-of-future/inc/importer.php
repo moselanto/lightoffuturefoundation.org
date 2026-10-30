@@ -75,6 +75,14 @@ function lof_setup_page() {
 			<input type="hidden" name="action" value="lof_run_setup">
 			<?php submit_button( __( 'Run setup', 'light-of-future' ), 'primary', 'submit', false, in_array( false, $checks, true ) ? array( 'disabled' => 'disabled' ) : array() ); ?>
 		</form>
+		<hr>
+		<h2><?php esc_html_e( 'Apply latest design', 'light-of-future' ); ?></h2>
+		<p><?php esc_html_e( 'Adds the bundled photos to the Media Library, gives starter stories and the founder their photos (only where none is set), and replaces the layouts of the pages that setup created with the newest design. The previous layout of each page is kept as a backup. Pages you created yourself are never touched.', 'light-of-future' ); ?></p>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm('<?php echo esc_js( __( 'Replace the layouts of the setup pages with the latest design? A backup of each layout is kept.', 'light-of-future' ) ); ?>');">
+			<?php wp_nonce_field( 'lof_apply_design' ); ?>
+			<input type="hidden" name="action" value="lof_apply_design">
+			<?php submit_button( __( 'Apply latest design', 'light-of-future' ), 'secondary', 'submit', false, in_array( false, $checks, true ) ? array( 'disabled' => 'disabled' ) : array() ); ?>
+		</form>
 	</div>
 	<?php
 }
@@ -91,6 +99,7 @@ function lof_run_setup() {
 	if ( function_exists( 'lof_core_seed_content' ) ) {
 		$report = array_merge( $report, lof_core_seed_content() );
 	}
+	$report = array_merge( $report, lof_import_photos() );
 	$report = array_merge( $report, lof_setup_pages() );
 	$report = array_merge( $report, lof_setup_menus() );
 	update_option( 'lof_setup_done', LOF_THEME_VERSION, false );
@@ -220,6 +229,7 @@ function lof_setup_page_defs() {
 		'quote_by'   => __( 'Francis Ouma Sikuku, Founder', 'light-of-future' ),
 		'image_side' => 'right',
 		'tone'       => 'sand',
+		'image'      => lof_photo( 'founder-francis-ouma-sikuku' ),
 	);
 
 	return array(
@@ -239,8 +249,15 @@ function lof_setup_page_defs() {
 						'btn1_url'   => lof_link( '/programmes/' ),
 						'btn2_label' => __( 'Support the Future', 'light-of-future' ),
 						'btn2_url'   => lof_link( '/donate/' ),
+						'collage1'   => lof_photo( 'story-elijah-new-home' ),
+						'collage2'   => lof_photo( 'story-philister-home' ),
+						'collage3'   => lof_photo( 'founder-francis-ouma-sikuku' ),
+						'badge1'     => __( 'Registered with the NGO Board, 2025', 'light-of-future' ),
+						'badge2'     => __( '200+ children supported', 'light-of-future' ),
+						'badge3'     => __( 'Nairobi & Inungo village', 'light-of-future' ),
 					)
 				),
+				lof_el( 'lof-ribbon', array( 'words' => "Education\nClean water\nSafe homes\nHealthcare\nYouth talent\nDignity\nHope", 'tone' => 'sun' ) ),
 				lof_el( 'lof-impact', array( 'eyebrow' => __( 'Our impact', 'light-of-future' ), 'title' => __( 'Hope you can count', 'light-of-future' ), 'tone' => 'earth' ) ),
 				lof_el(
 					'lof-feature',
@@ -250,6 +267,8 @@ function lof_setup_page_defs() {
 						'body'       => lof_copy( 'about' ),
 						'btn1_label' => __( 'Our story', 'light-of-future' ),
 						'btn1_url'   => lof_link( '/about-us/' ),
+						'image'      => lof_photo( 'story-philister-home' ),
+						'image_caption' => __( 'Philister outside the safe home donors helped build for her.', 'light-of-future' ),
 						'image_side' => 'left',
 						'tone'       => 'cream',
 					)
@@ -267,6 +286,17 @@ function lof_setup_page_defs() {
 					)
 				),
 				lof_el( 'lof-feature', array_merge( $founder, array( 'btn1_label' => __( 'Meet our leadership', 'light-of-future' ), 'btn1_url' => lof_link( '/leadership/' ) ) ) ),
+				lof_el(
+					'lof-donate',
+					array(
+						'eyebrow' => __( 'Give today', 'light-of-future' ),
+						'title'   => __( 'Your gift keeps the light on', 'light-of-future' ),
+						'intro'   => __( 'Every shilling goes toward school fees, safe homes, medical care and clean water for families who need it most.', 'light-of-future' ),
+						'target'  => lof_link( '/donate/' ),
+						'image'   => lof_photo( 'story-precious-school-shoes' ),
+						'tone'    => 'earth',
+					)
+				),
 				lof_el(
 					'lof-stories',
 					array(
@@ -286,7 +316,7 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_page_hero( __( 'About us', 'light-of-future' ), __( 'Who we are', 'light-of-future' ), __( 'A registered charitable organisation serving vulnerable communities in Kenya.', 'light-of-future' ) ),
-				lof_el( 'lof-feature', array( 'eyebrow' => __( 'Our story', 'light-of-future' ), 'title' => __( 'Restoring dignity, creating opportunity', 'light-of-future' ), 'body' => lof_copy( 'about' ), 'image_side' => 'left', 'tone' => 'cream' ) ),
+				lof_el( 'lof-feature', array( 'eyebrow' => __( 'Our story', 'light-of-future' ), 'title' => __( 'Restoring dignity, creating opportunity', 'light-of-future' ), 'body' => lof_copy( 'about' ), 'image' => lof_photo( 'story-elijah-new-home' ), 'image_caption' => __( 'Elijah at his new home.', 'light-of-future' ), 'image_side' => 'left', 'tone' => 'cream' ) ),
 				lof_el(
 					'lof-cards',
 					array(
@@ -381,6 +411,7 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_page_hero( __( 'Donate', 'light-of-future' ), __( 'Support the future', 'light-of-future' ), __( 'Your gift provides education, clean water, safe homes and care to vulnerable families.', 'light-of-future' ) ),
+				lof_el( 'lof-donate', array( 'eyebrow' => __( 'Choose an amount', 'light-of-future' ), 'title' => __( 'Give in Kenya Shillings', 'light-of-future' ), 'target' => lof_link( '/contact/' ), 'note' => __( 'Online giving through Paystack (M-PESA and card) is being set up. Choosing an amount takes you to our contact form for now.', 'light-of-future' ), 'tone' => 'earth' ) ),
 				lof_el(
 					'lof-cards',
 					array(
@@ -429,6 +460,7 @@ function lof_setup_page_defs() {
 						),
 					)
 				),
+				lof_el( 'lof-form', array( 'eyebrow' => __( 'Take the first step', 'light-of-future' ), 'title' => __( 'Tell us how you would like to help', 'light-of-future' ), 'interest' => 'volunteer', 'button' => __( 'Send', 'light-of-future' ), 'tone' => 'cream' ) ),
 				lof_closing_cta(),
 			),
 		),
@@ -437,7 +469,8 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_page_hero( __( 'Contact', 'light-of-future' ), __( 'We would love to hear from you', 'light-of-future' ) ),
-				lof_el( 'lof-contact', array( 'eyebrow' => '', 'title' => __( 'Get in touch', 'light-of-future' ), 'align' => 'left', 'tone' => 'white' ) ),
+				lof_el( 'lof-form', array( 'eyebrow' => __( 'Write to us', 'light-of-future' ), 'title' => __( 'Send us a message', 'light-of-future' ), 'tone' => 'white' ) ),
+				lof_el( 'lof-contact', array( 'eyebrow' => '', 'title' => __( 'Other ways to reach us', 'light-of-future' ), 'align' => 'left', 'tone' => 'cream' ) ),
 			),
 		),
 		'faq'                => array(
@@ -466,7 +499,7 @@ function lof_setup_page_defs() {
 		),
 		// Drafts: pages planned in the brief that wait for the foundation's content.
 		'projects'           => array( __( 'Projects', 'light-of-future' ), 'draft', array( lof_page_hero( __( 'Projects', 'light-of-future' ), __( 'Our projects', 'light-of-future' ) ) ) ),
-		'gallery'            => array( __( 'Gallery', 'light-of-future' ), 'draft', array( lof_page_hero( __( 'Gallery', 'light-of-future' ), __( 'A glimpse into our work', 'light-of-future' ) ) ) ),
+		'gallery'            => array( __( 'Gallery', 'light-of-future' ), 'draft', array( lof_page_hero( __( 'Gallery', 'light-of-future' ), __( 'A glimpse into our work', 'light-of-future' ) ), lof_el( 'lof-gallery', array( 'eyebrow' => '', 'title' => '', 'gallery' => array_values( array_filter( array( lof_photo( 'story-philister-home' ), lof_photo( 'story-elijah-new-home' ), lof_photo( 'story-precious-school-shoes' ), lof_photo( 'founder-francis-ouma-sikuku' ) ) ) ), 'tone' => 'white' ) ) ) ),
 		'resources'          => array( __( 'Resources & Reports', 'light-of-future' ), 'draft', array( lof_page_hero( __( 'Resources', 'light-of-future' ), __( 'Reports and documents', 'light-of-future' ) ) ) ),
 	);
 }
@@ -600,3 +633,136 @@ function lof_setup_menus() {
 	set_theme_mod( 'nav_menu_locations', $locations );
 	return $report;
 }
+
+/**
+ * Bundled photos (theme assets/images/photos/): slug => [alt text, caption].
+ *
+ * @return array
+ */
+function lof_bundled_photos() {
+	return array(
+		'story-elijah-new-home'       => array( __( 'Elijah walking outside his newly built home', 'light-of-future' ), __( 'Elijah at his new home.', 'light-of-future' ) ),
+		'story-philister-home'        => array( __( 'Philister standing at the door of her new house', 'light-of-future' ), __( 'Philister outside her new home.', 'light-of-future' ) ),
+		'story-precious-school-shoes' => array( __( 'Precious holding up her new school shoes and socks', 'light-of-future' ), __( 'New school shoes for Precious (shared with her guardian\'s consent).', 'light-of-future' ) ),
+		'founder-francis-ouma-sikuku' => array( __( 'Francis Ouma Sikuku, founder of Light of Future Foundation', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder.', 'light-of-future' ) ),
+	);
+}
+
+/**
+ * Elementor Media value for a bundled photo that has been imported.
+ *
+ * @param string $slug Photo slug.
+ * @return array
+ */
+function lof_photo( $slug ) {
+	$ids = get_option( 'lof_photo_ids', array() );
+	$id  = is_array( $ids ) && isset( $ids[ $slug ] ) ? (int) $ids[ $slug ] : 0;
+	if ( ! $id || 'attachment' !== get_post_type( $id ) ) {
+		return array();
+	}
+	return array( 'id' => $id, 'url' => (string) wp_get_attachment_url( $id ) );
+}
+
+/**
+ * Copy bundled photos into the Media Library once.
+ *
+ * @return string[] Report.
+ */
+function lof_import_photos() {
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	$ids   = get_option( 'lof_photo_ids', array() );
+	$ids   = is_array( $ids ) ? $ids : array();
+	$added = 0;
+	foreach ( lof_bundled_photos() as $slug => $text ) {
+		if ( ! empty( $ids[ $slug ] ) && 'attachment' === get_post_type( (int) $ids[ $slug ] ) ) {
+			continue;
+		}
+		$path = LOF_THEME_DIR . '/assets/images/photos/' . $slug . '.webp';
+		if ( ! file_exists( $path ) ) {
+			continue;
+		}
+		$upload = wp_upload_bits( $slug . '.webp', null, file_get_contents( $path ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- local theme file.
+		if ( ! empty( $upload['error'] ) ) {
+			continue;
+		}
+		$att = wp_insert_attachment(
+			array(
+				'post_mime_type' => 'image/webp',
+				'post_title'     => $text[0],
+				'post_excerpt'   => $text[1],
+				'post_status'    => 'inherit',
+			),
+			$upload['file']
+		);
+		if ( is_wp_error( $att ) || ! $att ) {
+			continue;
+		}
+		wp_update_attachment_metadata( $att, wp_generate_attachment_metadata( $att, $upload['file'] ) );
+		update_post_meta( $att, '_wp_attachment_image_alt', $text[0] );
+		$ids[ $slug ] = (int) $att;
+		++$added;
+	}
+	update_option( 'lof_photo_ids', $ids, false );
+
+	// Featured images for starter items, only where none is set.
+	$map = array(
+		array( 'lof_story', 'philister', 'story-philister-home' ),
+		array( 'lof_story', 'elijah', 'story-elijah-new-home' ),
+		array( 'lof_story', 'precious', 'story-precious-school-shoes' ),
+		array( 'lof_leader', 'francis-ouma-sikuku', 'founder-francis-ouma-sikuku' ),
+		array( 'lof_programme', 'education-support', 'story-precious-school-shoes' ),
+		array( 'lof_programme', 'community-empowerment', 'story-philister-home' ),
+	);
+	foreach ( $map as $row ) {
+		$found = get_posts( array( 'post_type' => $row[0], 'name' => $row[1], 'post_status' => 'any', 'posts_per_page' => 1, 'fields' => 'ids' ) );
+		if ( $found && ! has_post_thumbnail( $found[0] ) && ! empty( $ids[ $row[2] ] ) ) {
+			set_post_thumbnail( $found[0], (int) $ids[ $row[2] ] );
+		}
+	}
+	/* translators: %d: number of photos */
+	return array( sprintf( _n( '%d photo added to the Media Library.', '%d photos added to the Media Library.', $added, 'light-of-future' ), $added ) );
+}
+
+/**
+ * Apply the latest layouts to pages created by setup (with backup).
+ */
+function lof_apply_design() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( esc_html__( 'Not allowed.', 'light-of-future' ), 403 );
+	}
+	check_admin_referer( 'lof_apply_design' );
+	$report = lof_import_photos();
+	if ( function_exists( 'lof_core_seed_content' ) ) {
+		$report = array_merge( $report, lof_core_seed_content() );
+		$report = array_merge( $report, array_slice( lof_import_photos(), 1 ) ); // Thumbnails for any newly seeded items.
+	}
+	$updated = 0;
+	foreach ( lof_setup_page_defs() as $slug => $def ) {
+		$page = get_page_by_path( $slug, OBJECT, 'page' );
+		if ( ! $page || ! get_post_meta( $page->ID, '_lof_setup_page', true ) ) {
+			continue;
+		}
+		$old = get_post_meta( $page->ID, '_elementor_data', true );
+		if ( $old ) {
+			update_post_meta( $page->ID, '_lof_layout_backup', wp_slash( $old ) );
+			update_post_meta( $page->ID, '_lof_layout_backup_date', current_time( 'mysql' ) );
+		}
+		update_post_meta( $page->ID, '_elementor_data', wp_slash( wp_json_encode( $def[2] ) ) );
+		update_post_meta( $page->ID, '_elementor_edit_mode', 'builder' );
+		update_post_meta( $page->ID, '_wp_page_template', 'elementor_header_footer' );
+		delete_post_meta( $page->ID, '_elementor_css' );
+		wp_update_post( array( 'ID' => $page->ID, 'post_content' => lof_setup_fallback_html( $def[2] ) ) );
+		++$updated;
+	}
+	/* translators: %d: number of pages */
+	$report[] = sprintf( _n( '%d page updated to the latest design (previous layout backed up).', '%d pages updated to the latest design (previous layouts backed up).', $updated, 'light-of-future' ), $updated );
+	$report   = array_merge( $report, lof_setup_pages(), lof_setup_menus() );
+	update_option( 'lof_design_version', LOF_THEME_VERSION, false );
+	if ( class_exists( '\Elementor\Plugin' ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	set_transient( 'lof_setup_report', $report, 300 );
+	wp_safe_redirect( admin_url( 'themes.php?page=lof-setup' ) );
+	exit;
+}
+add_action( 'admin_post_lof_apply_design', 'lof_apply_design' );

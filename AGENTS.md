@@ -27,7 +27,7 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 
 ## Current state (30 Oct 2026, evening)
 
-- Theme **0.2.0** and Core **0.2.0** on `main`. Not yet uploaded. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.3.0** and Core **0.3.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
 
@@ -43,6 +43,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **30 Oct 2026, 19:30 EAT:** 0.3.0 on `main` (see CHANGELOG): real photos, hero collage, giving band, gallery, ribbon, secure enquiry form, count-up, WhatsApp/mobile donate, Apply latest design. Site is live on lightoffuturefoundation.org with Elementor 4.3.5, Hello Elementor 3.5.1. After uploading zips click Appearance > Light of Future setup > Apply latest design.
 
 - **30 Oct 2026, 19:06 EAT:** Agnes confirmed Frank Omosh (proposal contact) is founder Francis Ouma Sikuku. Docs updated; no code change needed.
 

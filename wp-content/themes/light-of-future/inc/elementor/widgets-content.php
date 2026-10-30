@@ -55,6 +55,14 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 				),
 			)
 		);
+		$this->add_control( 'collage_heading', array( 'label' => __( 'Photo collage (home layout)', 'light-of-future' ), 'type' => Controls_Manager::HEADING, 'separator' => 'before' ) );
+		$this->add_control( 'collage1', array( 'label' => __( 'Collage photo 1 (large)', 'light-of-future' ), 'type' => Controls_Manager::MEDIA ) );
+		$this->add_control( 'collage2', array( 'label' => __( 'Collage photo 2', 'light-of-future' ), 'type' => Controls_Manager::MEDIA ) );
+		$this->add_control( 'collage3', array( 'label' => __( 'Collage photo 3', 'light-of-future' ), 'type' => Controls_Manager::MEDIA ) );
+		$this->add_control( 'badge_heading', array( 'label' => __( 'Trust badges', 'light-of-future' ), 'type' => Controls_Manager::HEADING, 'separator' => 'before' ) );
+		$this->add_control( 'badge1', array( 'label' => __( 'Badge 1', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
+		$this->add_control( 'badge2', array( 'label' => __( 'Badge 2', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
+		$this->add_control( 'badge3', array( 'label' => __( 'Badge 3', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
 		$this->end_controls_section();
 
 		$this->start_controls_section( 'style_section', array( 'label' => __( 'Style', 'light-of-future' ), 'tab' => Controls_Manager::TAB_STYLE ) );
@@ -95,7 +103,14 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 			}
 		}
 		$has_img = $this->has_media( isset( $s['image'] ) ? $s['image'] : array() );
-		printf( '<section class="lof-hero lof-hero--%1$s%2$s">', esc_attr( $variant ), $has_img ? ' has-photo' : '' );
+		$collage = array();
+		foreach ( array( 'collage1', 'collage2', 'collage3' ) as $ck ) {
+			if ( ! empty( $s[ $ck ] ) && $this->has_media( $s[ $ck ] ) ) {
+				$collage[] = $s[ $ck ];
+			}
+		}
+		$collage = 'home' === $variant && ! $has_img ? $collage : array();
+		printf( '<section class="lof-hero lof-hero--%1$s%2$s%3$s">', esc_attr( $variant ), $has_img ? ' has-photo' : '', $collage ? ' has-collage' : '' );
 		if ( $has_img ) {
 			echo '<div class="lof-hero__media">';
 			$this->render_media( $s['image'], 'lof-hero', 'lof-hero__img', 'home' === $variant );
@@ -114,7 +129,27 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 		echo '<div class="lof-btn-row">';
 		$this->render_button( $s, 'btn1', 'sun' );
 		$this->render_button( $s, 'btn2', 'ghost' );
-		echo '</div></div></div></section>';
+		echo '</div>';
+		$badges = array_filter( array( isset( $s['badge1'] ) ? $s['badge1'] : '', isset( $s['badge2'] ) ? $s['badge2'] : '', isset( $s['badge3'] ) ? $s['badge3'] : '' ) );
+		if ( $badges ) {
+			echo '<ul class="lof-hero__badges">';
+			foreach ( $badges as $b ) {
+				printf( '<li>%s</li>', esc_html( $b ) );
+			}
+			echo '</ul>';
+		}
+		echo '</div>';
+		if ( $collage ) {
+			echo '<div class="lof-hero__collage">';
+			foreach ( $collage as $i => $m ) {
+				printf( '<figure class="lof-hero__shot lof-hero__shot--%d">', (int) $i + 1 );
+				$this->render_media( $m, 0 === $i ? 'large' : 'lof-card', 'lof-hero__shot-img', 0 === $i );
+				echo '</figure>';
+			}
+			echo '<span class="lof-hero__seal" aria-hidden="true"><img src="' . esc_url( lof_brand_url( 'symbol-dark.svg' ) ) . '" alt=""></span>';
+			echo '</div>';
+		}
+		echo '</div></section>';
 	}
 }
 
