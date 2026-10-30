@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.1 - 30 Oct 2026
+
+- Fix: theme switch printed raw attribute text (broken markup in 0.6.0).
+- Fix: logos distorted / dark logo vanished - the 0.6.0 SVG optimisation rounded transform values (scale 0.2647 -> 0.2). Original Logo Kit SVGs restored.
+- Ribbon pause button now announces "Play moving text" when paused.
+- Leadership: Board of Directors - Francis Ouma Sikuku (Chairman; Founder & Executive Director), Nixon Omondo Owino (Vice Chairperson; General Operations Manager & Chief Adviser, new portrait), Vincent Okoth Okallo (Secretary; Administration Manager), Frederick Otieno (Treasurer; Finance Manager). Kennedy Oyamo Mumbo (old site) hidden.
+
 ## 0.6.0 - 30 Oct 2026 (theme 0.6.0, Core 0.6.0)
 
 - Inner pages: Programmes (approach band, 11 programmes, giving band, CTA), Stories (featured story spotlight, consent and dignity band), Donate (amounts with photo, where your gift goes, ways to give, why give with confidence, giving FAQ, enquiry form pre-set to giving). Programme cards without photos get a branded panel.

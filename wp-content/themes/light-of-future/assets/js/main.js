@@ -114,6 +114,7 @@
 				var r = btn.closest('.lof-ribbon');
 				var paused = r.classList.toggle('is-paused');
 				btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+				btn.setAttribute('aria-label', paused ? (btn.getAttribute('data-label-play') || 'Play moving text') : (btn.getAttribute('data-label-pause') || 'Pause moving text'));
 			});
 		});
 	}

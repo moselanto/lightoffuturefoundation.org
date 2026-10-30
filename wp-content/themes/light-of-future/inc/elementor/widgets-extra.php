@@ -174,11 +174,12 @@ class LOF_Widget_Ribbon extends LOF_Widget_Base {
 			$line .= '<span>' . esc_html( $w ) . '</span><i aria-hidden="true"></i>';
 		}
 		printf(
-			'<div class="lof-ribbon lof-tone-%1$s"><p class="screen-reader-text">%2$s</p><div class="lof-ribbon__track" aria-hidden="true"><div class="lof-ribbon__set">%3$s</div><div class="lof-ribbon__set">%3$s</div></div><button class="lof-ribbon__pause" type="button" aria-pressed="false" aria-label="%4$s"><span aria-hidden="true"></span></button></div>',
+			'<div class="lof-ribbon lof-tone-%1$s"><p class="screen-reader-text">%2$s</p><div class="lof-ribbon__track" aria-hidden="true"><div class="lof-ribbon__set">%3$s</div><div class="lof-ribbon__set">%3$s</div></div><button class="lof-ribbon__pause" type="button" aria-pressed="false" aria-label="%4$s" data-label-pause="%4$s" data-label-play="%5$s"><span aria-hidden="true"></span></button></div>',
 			esc_attr( $s['tone'] ),
 			esc_html( implode( ', ', $words ) ),
 			$line, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
-			esc_attr__( 'Pause moving text', 'light-of-future' )
+			esc_attr__( 'Pause moving text', 'light-of-future' ),
+			esc_attr__( 'Play moving text', 'light-of-future' )
 		);
 	}
 }

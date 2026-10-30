@@ -395,7 +395,7 @@ function lof_setup_page_defs() {
 			__( 'Leadership & Governance', 'light-of-future' ),
 			'publish',
 			array(
-				lof_page_hero( __( 'Leadership & governance', 'light-of-future' ), __( 'The people guiding our work', 'light-of-future' ), __( 'What began with one man\'s calling is now a team effort: a team of 10 members worked together to register and grow the foundation.', 'light-of-future' ) ),
+				lof_page_hero( __( 'Leadership & governance', 'light-of-future' ), __( 'The people guiding our work', 'light-of-future' ), __( 'Our four-member Board of Directors also leads the foundation\'s day-to-day work, supported by a wider team of 10 members.', 'light-of-future' ) ),
 				lof_el( 'lof-leaders', array( 'eyebrow' => '', 'title' => '', 'tone' => 'white' ) ),
 				lof_closing_cta(),
 			),
@@ -775,6 +775,7 @@ function lof_bundled_photos() {
 		'story-precious-school-shoes' => array( __( 'Precious holding up her new school shoes and socks', 'light-of-future' ), __( 'New school shoes for Precious (shared with her guardian\'s consent).', 'light-of-future' ) ),
 		'founder-francis-ouma-sikuku' => array( __( 'Francis Ouma Sikuku, founder of Light of Future Foundation', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder.', 'light-of-future' ) ),
 		'leader-francis-ouma-sikuku'  => array( __( 'Portrait of Francis Ouma Sikuku', 'light-of-future' ), __( 'Francis Ouma Sikuku, Founder & Executive Director.', 'light-of-future' ) ),
+		'leader-nixon-omondo-owino'   => array( __( 'Portrait of Nixon Omondo Owino', 'light-of-future' ), __( 'Nixon Omondo Owino, General Operations Manager & Chief Adviser.', 'light-of-future' ) ),
 		'leader-frederick-otieno'     => array( __( 'Portrait of Frederick Otieno', 'light-of-future' ), __( 'Frederick Otieno, Finance Manager.', 'light-of-future' ) ),
 		'leader-vincent-okoth-okallo' => array( __( 'Portrait of Vincent Okoth Okallo', 'light-of-future' ), __( 'Vincent Okoth Okallo, Administration Manager & General Secretary.', 'light-of-future' ) ),
 	);
@@ -844,6 +845,7 @@ function lof_import_photos() {
 		array( 'lof_leader', 'francis-ouma-sikuku', 'leader-francis-ouma-sikuku' ),
 		array( 'lof_leader', 'vincent-okoth-okallo', 'leader-vincent-okoth-okallo' ),
 		array( 'lof_leader', 'frederick-otieno', 'leader-frederick-otieno' ),
+		array( 'lof_leader', 'nixon-omondo-owino', 'leader-nixon-omondo-owino' ),
 		array( 'lof_programme', 'decent-houses', 'story-elijah-new-home' ),
 		array( 'lof_programme', 'health-medical-support', 'story-elijah-new-home' ),
 		array( 'lof_programme', 'education-support', 'story-precious-school-shoes' ),

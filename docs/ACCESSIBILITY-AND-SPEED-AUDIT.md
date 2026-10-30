@@ -21,7 +21,7 @@
 | 10 | Footer/top-bar links below 24px target size (WCAG 2.2 2.5.8) | Low | Min 28px height |
 | 11 | Mobile menu let focus leave the open panel | Low | Focus cycles within the panel; Escape closes |
 | 12 | No compression on HTML/CSS/JS, no browser caching headers (Apache) | High (speed) | gzip + 1-year caching rules written to .htaccess between "Light of Future performance" markers on Apply latest design |
-| 13 | Header loaded both light and dark logos (2 x 62 KB SVG) | Medium (speed) | SVGs minified (421 KB -> 338 KB total kit), dark logo lazy-loaded, footer logo lazy |
+| 13 | Header loaded both light and dark logos (2 x 62 KB SVG) | Medium (speed) | Dark logo lazy-loaded, footer logo lazy (SVG minifying reverted in 0.6.1 - it distorted the artwork) |
 | 14 | Emoji script, shortlink, RSD, WLW links in head | Low (speed) | Removed |
 | 15 | jQuery + migrate render-blocking in head (needed by Elementor) | Known | Left as is; Elementor depends on it |
 

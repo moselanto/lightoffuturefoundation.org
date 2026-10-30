@@ -17,7 +17,7 @@ Updated 30 Oct 2026 after Agnes confirmed: official name, impact figures, Precio
 History, vision, mission, 7 values, registration (charitable organisation, NGO Board, 23 May 2025), postal address, main + specific objectives, 11 programmes, Francis and Vincent roles and portraits. All now on the site.
 
 To confirm:
-- Vincent's role is written "administration manager and general security" - we used **General Secretary** (the old site listed him as Secretary). Confirm.
+- RESOLVED 30 Oct: Board = Francis (Chairman), Nixon (Vice Chairperson), Vincent (Secretary), Frederick (Treasurer). Earlier note: Vincent's role is written "administration manager and general security" - we used **General Secretary** (the old site listed him as Secretary). Confirm.
 - Third portrait: the updated document adds **Frederick Otieno, Finance Manager** after Vincent, so the third photo is published as Frederick. Confirm.
 - Impact figure changed from 5 to **11 programmes** to match the new programme list. Confirm.
 - Specific objective (h) was cut off in the message ("...to bring a long lastin...").

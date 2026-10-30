@@ -252,6 +252,9 @@ class LOF_Widget_Leaders extends LOF_Widget_Base {
 			}
 			echo '</div>';
 			printf( '<h3 class="lof-person__name">%s</h3>', esc_html( get_the_title( $p ) ) );
+			if ( $p->post_excerpt ) {
+				printf( '<p class="lof-person__board">%s</p>', esc_html( $p->post_excerpt ) );
+			}
 			printf( '<p class="lof-person__role">%s</p>', esc_html( (string) get_post_meta( $p->ID, 'lof_role', true ) ) );
 			if ( isset( $s['show_bio'] ) && 'yes' === $s['show_bio'] && $p->post_content ) {
 				printf( '<div class="lof-person__bio">%s</div>', wp_kses_post( wpautop( $p->post_content ) ) );
