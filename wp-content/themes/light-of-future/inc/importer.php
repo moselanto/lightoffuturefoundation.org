@@ -991,6 +991,11 @@ function lof_apply_design() {
 		wp_die( esc_html__( 'Not allowed.', 'light-of-future' ), 403 );
 	}
 	check_admin_referer( 'lof_apply_design' );
+	if ( function_exists( 'set_time_limit' ) ) {
+		@set_time_limit( 300 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+	}
+	wp_raise_memory_limit( 'admin' );
+	ignore_user_abort( true );
 	$report = lof_import_photos();
 	if ( function_exists( 'lof_core_seed_content' ) ) {
 		$report = array_merge( $report, lof_core_seed_content() );
@@ -1118,3 +1123,68 @@ function lof_rebuild_primary_menu() {
 	set_theme_mod( 'nav_menu_locations', $locations );
 	return array( __( 'Main menu rebuilt: Home, About, Programmes, Impact, Get Involved, Contact.', 'light-of-future' ) );
 }
+
+/**
+ * One-off, targeted upgrade of the home hero (registration pill and figures row),
+ * so it does not depend on "Apply latest design". Only replaces values that still
+ * hold the old defaults; anything an editor changed is left alone. Runs once.
+ */
+function lof_upgrade_home_hero() {
+	if ( (int) get_option( 'lof_hero_rev', 0 ) >= 2 ) {
+		return;
+	}
+	update_option( 'lof_hero_rev', 2, false );
+	$page = get_page_by_path( 'home', OBJECT, 'page' );
+	if ( ! $page ) {
+		$front = (int) get_option( 'page_on_front' );
+		$page  = $front ? get_post( $front ) : null;
+	}
+	if ( ! $page ) {
+		return;
+	}
+	$raw  = get_post_meta( $page->ID, '_elementor_data', true );
+	$data = is_string( $raw ) ? json_decode( $raw, true ) : $raw;
+	if ( ! is_array( $data ) ) {
+		return;
+	}
+	$old_badges = array( 'Registered with the NGO Board, 2025', '200+ children supported', 'Nairobi & Inungo village' );
+	$changed    = false;
+	$walk       = function ( &$els ) use ( &$walk, &$changed, $old_badges ) {
+		foreach ( $els as &$el ) {
+			if ( isset( $el['widgetType'] ) && 'lof-hero' === $el['widgetType'] && isset( $el['settings'] ) && ( ! isset( $el['settings']['variant'] ) || 'page' !== $el['settings']['variant'] ) ) {
+				$s = &$el['settings'];
+				if ( ! isset( $s['eyebrow'] ) || 'Light of Future Foundation · Nairobi, Kenya' === $s['eyebrow'] ) {
+					$s['eyebrow'] = __( 'Registered NGO, Kenya · 23 May 2025', 'light-of-future' );
+					$changed      = true;
+				}
+				$cur = array( isset( $s['badge1'] ) ? $s['badge1'] : '', isset( $s['badge2'] ) ? $s['badge2'] : '', isset( $s['badge3'] ) ? $s['badge3'] : '' );
+				if ( $cur === $old_badges || array( '', '', '' ) === $cur ) {
+					$s['badge1'] = __( '200+|Children supported', 'light-of-future' );
+					$s['badge2'] = __( '30+|Widows assisted', 'light-of-future' );
+					$s['badge3'] = __( '11|Focus areas', 'light-of-future' );
+					$s['badge4'] = __( '2025|Officially registered', 'light-of-future' );
+					$changed     = true;
+				}
+				unset( $s );
+			}
+			if ( ! empty( $el['elements'] ) && is_array( $el['elements'] ) ) {
+				$walk( $el['elements'] );
+			}
+		}
+		unset( $el );
+	};
+	$walk( $data );
+	if ( ! $changed ) {
+		return;
+	}
+	if ( $raw ) {
+		update_post_meta( $page->ID, '_lof_layout_backup', wp_slash( is_string( $raw ) ? $raw : wp_json_encode( $raw ) ) );
+		update_post_meta( $page->ID, '_lof_layout_backup_date', current_time( 'mysql' ) );
+	}
+	update_post_meta( $page->ID, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	delete_post_meta( $page->ID, '_elementor_css' );
+	if ( class_exists( '\\Elementor\\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+}
+add_action( 'init', 'lof_upgrade_home_hero', 20 );

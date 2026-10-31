@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.1 - 31 Oct 2026
+
+- "Apply latest design" returned no result twice on the live site (likely a server time-out). The handler now raises the time and memory limits and keeps running if the browser disconnects.
+- The 0.13.0 home hero (registration pill and figures row) is now applied by a one-off, targeted upgrade that runs automatically once (option `lof_hero_rev` = 2). It only replaces the old default values, backs up the previous layout and leaves editor changes alone.
+
 ## 0.13.0 - 31 Oct 2026
 
 Ideas taken from Agnes's reference mock-up (light_of_future_foundation_website.html), using only confirmed facts and the foundation's own photos (the mock-up's stock photos and unconfirmed claims were not used).
