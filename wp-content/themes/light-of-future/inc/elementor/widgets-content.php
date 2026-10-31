@@ -66,6 +66,7 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 		$this->add_control( 'badge1', array( 'label' => __( 'Badge 1', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
 		$this->add_control( 'badge2', array( 'label' => __( 'Badge 2', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
 		$this->add_control( 'badge3', array( 'label' => __( 'Badge 3', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
+		$this->add_control( 'badge4', array( 'label' => __( 'Badge 4', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true, 'description' => __( 'Write "figure|label" (e.g. 200+|Children supported) to show the badges as a row of figures.', 'light-of-future' ) ) );
 		$this->end_controls_section();
 
 		$this->start_controls_section( 'style_section', array( 'label' => __( 'Style', 'light-of-future' ), 'tab' => Controls_Manager::TAB_STYLE ) );
@@ -133,7 +134,16 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 		$this->render_button( $s, 'btn1', 'sun' );
 		$this->render_button( $s, 'btn2', 'ghost' );
 		echo '</div>';
-		$badges = array_filter( array( isset( $s['badge1'] ) ? $s['badge1'] : '', isset( $s['badge2'] ) ? $s['badge2'] : '', isset( $s['badge3'] ) ? $s['badge3'] : '' ) );
+		$badges = array_filter( array( isset( $s['badge1'] ) ? $s['badge1'] : '', isset( $s['badge2'] ) ? $s['badge2'] : '', isset( $s['badge3'] ) ? $s['badge3'] : '', isset( $s['badge4'] ) ? $s['badge4'] : '' ) );
+		if ( $badges && false !== strpos( reset( $badges ), '|' ) ) {
+			echo '<dl class="lof-hero__stats">';
+			foreach ( $badges as $b ) {
+				$parts = array_map( 'trim', explode( '|', $b, 2 ) );
+				printf( '<div><dt>%1$s</dt><dd>%2$s</dd></div>', esc_html( isset( $parts[1] ) ? $parts[1] : '' ), esc_html( $parts[0] ) );
+			}
+			echo '</dl>';
+			$badges = array();
+		}
 		if ( $badges ) {
 			echo '<ul class="lof-hero__badges">';
 			foreach ( $badges as $b ) {

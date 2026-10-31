@@ -70,3 +70,29 @@ function lof_fallback_menu() {
 	}
 	echo '</ul>';
 }
+
+/**
+ * Programme lead, as named in the foundation's own document (leaves blank where it names nobody).
+ * Override per programme with the custom field lof_lead.
+ *
+ * @param WP_Post|int $post Programme.
+ * @return string
+ */
+function lof_programme_lead( $post ) {
+	$post   = get_post( $post );
+	$custom = $post ? (string) get_post_meta( $post->ID, 'lof_lead', true ) : '';
+	if ( $custom ) {
+		return $custom;
+	}
+	$map = array(
+		'education-support'      => 'Edith Atieno',
+		'food-donations'         => 'Scholastica Baraza',
+		'health-medical-support' => 'Stephen Oduor',
+		'clean-water'            => 'Kennedy Mumbo',
+		'hygiene-kits'           => 'Lucy Habiba',
+		'decent-houses'          => 'Victor Onyango',
+		'community-development'  => 'Victor Onyango',
+		'children-and-families'  => 'Scholastica Baraza',
+	);
+	return $post && isset( $map[ $post->post_name ] ) ? $map[ $post->post_name ] : '';
+}

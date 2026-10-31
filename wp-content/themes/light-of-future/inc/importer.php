@@ -250,7 +250,7 @@ function lof_setup_page_defs() {
 					'lof-hero',
 					array(
 						'variant'    => 'home',
-						'eyebrow'    => __( 'Light of Future Foundation · Nairobi, Kenya', 'light-of-future' ),
+						'eyebrow'    => __( 'Registered NGO, Kenya · 23 May 2025', 'light-of-future' ),
 						'title'      => __( 'Bringing hope and opportunity to communities in Kenya', 'light-of-future' ),
 						'highlight'  => __( 'hope', 'light-of-future' ),
 						'text'       => __( 'We support widows, widowers, orphans, vulnerable children and people living with disabilities through education, clean water and community programmes.', 'light-of-future' ),
@@ -263,9 +263,10 @@ function lof_setup_page_defs() {
 						'stamp'      => __( 'Hope in action', 'light-of-future' ),
 						'card_title' => __( 'Since 2021', 'light-of-future' ),
 						'card_text'  => __( 'A community journey, registered with the NGO Board on 23 May 2025.', 'light-of-future' ),
-						'badge1'     => __( 'Registered with the NGO Board, 2025', 'light-of-future' ),
-						'badge2'     => __( '200+ children supported', 'light-of-future' ),
-						'badge3'     => __( 'Nairobi & Inungo village', 'light-of-future' ),
+						'badge1'     => __( '200+|Children supported', 'light-of-future' ),
+						'badge2'     => __( '30+|Widows assisted', 'light-of-future' ),
+						'badge3'     => __( '11|Focus areas', 'light-of-future' ),
+						'badge4'     => __( '2025|Officially registered', 'light-of-future' ),
 					)
 				),
 				lof_el(

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.13.0 - 31 Oct 2026
+
+Ideas taken from Agnes's reference mock-up (light_of_future_foundation_website.html), using only confirmed facts and the foundation's own photos (the mock-up's stock photos and unconfirmed claims were not used).
+
+- Home hero: registration pill ("Registered NGO, Kenya · 23 May 2025") and a row of four figures (200+ children supported, 30+ widows assisted, 11 focus areas, 2025 officially registered) in place of the small badges. Hero widget gains Badge 4; "figure|label" badges render as the figures row.
+- Focus-area cards: number tile on the photo and "Lead: name" where the foundation's document names one (Education: Edith Atieno; Food Security and Children and Families: Scholastica Baraza; Healthcare: Stephen Oduor; Water and Sanitation: Kennedy Mumbo; Hygiene Kits: Lucy Habiba; Decent Houses and Community Development: Victor Onyango). Override with custom field `lof_lead`.
+- Menu and theme buttons no longer turn pink when tapped (Hello Elementor focus colour overridden).
+
 ## 0.12.2 - 31 Oct 2026
 
 - Phone menu now opens as a full panel under the header (the header's blur effect had trapped it in a thin strip).

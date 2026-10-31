@@ -53,9 +53,17 @@ class LOF_Widget_Programmes extends LOF_Widget_Base {
 			} else {
 				printf( '<span class="lof-placeholder"><span class="lof-card__num">%02d</span></span>', (int) $i + 1 );
 			}
+			if ( has_post_thumbnail( $p ) ) {
+				printf( '<span class="lof-card__index" aria-hidden="true">%02d</span>', (int) $i + 1 );
+			}
 			echo '</a><div class="lof-card__body">';
 			printf( '<h3 class="lof-card__title"><a href="%1$s">%2$s</a></h3>', esc_url( $link ), esc_html( get_the_title( $p ) ) );
 			printf( '<p>%s</p>', esc_html( get_the_excerpt( $p ) ) );
+			$lead = function_exists( 'lof_programme_lead' ) ? lof_programme_lead( $p ) : '';
+			if ( $lead ) {
+				/* translators: %s: person's name */
+				printf( '<p class="lof-card__lead">%s</p>', esc_html( sprintf( __( 'Lead: %s', 'light-of-future' ), $lead ) ) );
+			}
 			if ( ! empty( $s['more_label'] ) ) {
 				printf( '<a class="lof-card__link" href="%1$s">%2$s<span class="screen-reader-text"> %3$s</span></a>', esc_url( $link ), esc_html( $s['more_label'] ), esc_html( get_the_title( $p ) ) );
 			}
