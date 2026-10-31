@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.2 - 31 Oct 2026
+
+- Phone menu now opens as a full panel under the header (the header's blur effect had trapped it in a thin strip).
+- Dark mode: menu button is gold with dark bars for contrast.
+- Programmes giving block fits the phone width (two amount columns, stacked buttons, grid items allowed to shrink).
+- Contact: long email address wraps inside its card.
+- Footer: wider email tile on desktop; wordmark sized to fit on phones.
+
 ## 0.12.1 - 31 Oct 2026
 
 - Fix: home hero text was pushed to the left edge (hero row lost its side margins in 0.12.0). The "Since 2021" card and stamp now sit on the photo's corners.
