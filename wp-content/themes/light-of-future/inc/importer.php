@@ -1283,3 +1283,91 @@ function lof_upgrade_home_slider() {
 	}
 }
 add_action( 'init', 'lof_upgrade_home_slider', 21 );
+
+/**
+ * Placeholder wording for the legal pages. Makes no claims about the foundation;
+ * the board replaces it with approved text.
+ *
+ * @return array slug => array( title, html )
+ */
+function lof_legal_page_defs() {
+	$contact = esc_url( home_url( '/contact/' ) );
+	$p       = function ( $t ) {
+		return '<p>' . $t . '</p>';
+	};
+	return array(
+		'privacy-policy' => array(
+			__( 'Privacy Policy', 'light-of-future' ),
+			'<p class="lof-legal__note">' . esc_html__( 'Placeholder: this page is awaiting wording approved by the foundation.', 'light-of-future' ) . '</p>'
+			. $p( esc_html__( 'Light of Future Foundation is preparing its privacy policy. The approved policy will be published on this page once it has been reviewed.', 'light-of-future' ) )
+			. '<h2>' . esc_html__( 'Questions in the meantime', 'light-of-future' ) . '</h2>'
+			/* translators: %s: contact page URL */
+			. $p( sprintf( wp_kses( __( 'If you have a question about information you share through this website, please get in touch through our <a href="%s">contact page</a>.', 'light-of-future' ), array( 'a' => array( 'href' => array() ) ) ), $contact ) )
+			. $p( esc_html__( 'Last updated: to be confirmed.', 'light-of-future' ) ),
+		),
+		'terms'          => array(
+			__( 'Terms of Use', 'light-of-future' ),
+			'<p class="lof-legal__note">' . esc_html__( 'Placeholder: this page is awaiting wording approved by the foundation.', 'light-of-future' ) . '</p>'
+			. $p( esc_html__( 'Light of Future Foundation is preparing the terms that apply to the use of this website. The approved terms will be published on this page once they have been reviewed.', 'light-of-future' ) )
+			. '<h2>' . esc_html__( 'Questions in the meantime', 'light-of-future' ) . '</h2>'
+			/* translators: %s: contact page URL */
+			. $p( sprintf( wp_kses( __( 'If you have a question about this website, please get in touch through our <a href="%s">contact page</a>.', 'light-of-future' ), array( 'a' => array( 'href' => array() ) ) ), $contact ) )
+			. $p( esc_html__( 'Last updated: to be confirmed.', 'light-of-future' ) ),
+		),
+	);
+}
+
+/**
+ * One-off: create Privacy Policy and Terms of Use pages (placeholder wording) and the
+ * footer legal menu. Never overwrites a published page an editor has written.
+ */
+function lof_upgrade_legal_pages() {
+	if ( (int) get_option( 'lof_legal_rev', 0 ) >= 1 ) {
+		return;
+	}
+	update_option( 'lof_legal_rev', 1, false );
+	$ids = array();
+	foreach ( lof_legal_page_defs() as $slug => $def ) {
+		$page = get_page_by_path( $slug, OBJECT, 'page' );
+		if ( $page && 'publish' === $page->post_status ) {
+			$ids[] = (int) $page->ID;
+			continue;
+		}
+		$args = array(
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_title'   => $def[0],
+			'post_name'    => $slug,
+			'post_content' => $def[1],
+		);
+		if ( $page ) {
+			$args['ID'] = $page->ID; // WordPress's default draft privacy page: replace its sample text.
+			$id         = wp_update_post( $args, true );
+		} else {
+			$id = wp_insert_post( $args, true );
+		}
+		if ( ! is_wp_error( $id ) && $id ) {
+			update_post_meta( $id, '_lof_legal_placeholder', 1 );
+			$ids[] = (int) $id;
+			if ( 'privacy-policy' === $slug ) {
+				update_option( 'wp_page_for_privacy_policy', (int) $id );
+			}
+		}
+	}
+	$locations = get_theme_mod( 'nav_menu_locations', array() );
+	if ( $ids && ( empty( $locations['lof-legal'] ) || ! wp_get_nav_menu_object( $locations['lof-legal'] ) ) ) {
+		$existing = wp_get_nav_menu_object( 'Footer legal links' );
+		$menu_id  = $existing ? (int) $existing->term_id : wp_create_nav_menu( 'Footer legal links' );
+		if ( ! is_wp_error( $menu_id ) ) {
+			if ( ! $existing ) {
+				$pos = 1;
+				foreach ( $ids as $pid ) {
+					wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => get_the_title( $pid ), 'menu-item-object' => 'page', 'menu-item-object-id' => $pid, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish', 'menu-item-position' => $pos++ ) );
+				}
+			}
+			$locations['lof-legal'] = (int) $menu_id;
+			set_theme_mod( 'nav_menu_locations', $locations );
+		}
+	}
+}
+add_action( 'init', 'lof_upgrade_legal_pages', 22 );

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.22.0 - 3 Nov 2026
+
+- Legal: Privacy Policy and Terms of Use pages with placeholder wording that makes no claims about the foundation (visible "Placeholder" note), created by a one-off upgrade (`lof_legal_rev`) with a "Footer legal links" menu shown in the footer base bar. WordPress's draft privacy page is reused and set as the site privacy page.
+- Inner pages to the home standard: page hero with warm glow and gold rule; Stories page featured story as a cinematic photo card; single story/programme with framed image, quote card, sticky facts card and gold Donate card; enquiry forms as raised cards with larger fields; styled plain pages for legal text.
+- Audit fixes: meta description and theme colour on every page (skipped if an SEO plugin is active), jQuery Migrate removed on the front end, global gold focus ring, underlined links in prose, 32px footer link targets. Audit report in `docs/ACCESSIBILITY-AND-SPEED-AUDIT.md`.
+- Docs: new `docs/HANDOVER.md` (full status for the next agent); AGENTS.md and CONTENT-GAPS.md updated.
+
 ## 0.21.0 - 3 Nov 2026
 
 - Footer: removed the large outlined "Light of Future" wordmark (Agnes). Gold top edge, cleaner base bar (copyright and registration, legal links, Back to top pill), tidier column titles and logo size.

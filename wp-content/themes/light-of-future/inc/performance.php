@@ -74,3 +74,35 @@ function lof_trim_head() {
 	remove_action( 'wp_head', 'wlwmanifest_link' );
 }
 add_action( 'init', 'lof_trim_head' );
+
+/**
+ * Meta description and theme colour (audit, 3 Nov 2026). Skipped when an SEO plugin handles the head.
+ */
+function lof_meta_description() {
+	if ( defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) || defined( 'SEOPRESS_VERSION' ) ) {
+		return;
+	}
+	$desc = '';
+	if ( is_singular() && ! is_front_page() ) {
+		$desc = has_excerpt() ? get_the_excerpt() : '';
+	}
+	if ( '' === $desc ) {
+		$desc = __( 'Light of Future Foundation is a registered NGO in Nairobi, Kenya, supporting widows, widowers, orphans, vulnerable children and people living with disabilities through education, clean water and community programmes.', 'light-of-future' );
+	}
+	printf( '<meta name="description" content="%s">' . "\n", esc_attr( wp_trim_words( wp_strip_all_tags( $desc ), 32, '' ) ) );
+	echo '<meta name="theme-color" content="#5C3D1E">' . "\n";
+}
+add_action( 'wp_head', 'lof_meta_description', 2 );
+
+/**
+ * jQuery Migrate is only for old plugins; nothing on this site needs it (audit, 3 Nov 2026).
+ *
+ * @param WP_Scripts $scripts Scripts.
+ */
+function lof_drop_jquery_migrate( $scripts ) {
+	if ( is_admin() || ! isset( $scripts->registered['jquery'] ) || ( isset( $_GET['elementor-preview'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return;
+	}
+	$scripts->registered['jquery']->deps = array_diff( $scripts->registered['jquery']->deps, array( 'jquery-migrate' ) );
+}
+add_action( 'wp_default_scripts', 'lof_drop_jquery_migrate' );

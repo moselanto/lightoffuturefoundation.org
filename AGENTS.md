@@ -1,6 +1,6 @@
 # AGENTS.md: start here (for the next AI agent or developer)
 
-Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md` before changing anything. Append to the work log at the bottom when you finish.
+**Start with `docs/HANDOVER.md` (full status, code map, release steps, pending work, as of 0.22.0).** Then read this file, `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md` before changing anything. Append to the work log at the bottom when you finish.
 
 ## The project
 
@@ -25,15 +25,16 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 - Release flow: edit, bump version in `style.css` + `functions.php` (and the plugin header + `LOF_CORE_VERSION` if it changed), `bash scripts/build-zips.sh`, add a `CHANGELOG.md` entry, commit to `main`, upload zips.
 - Wrap every visitor-facing string in `__()` / `esc_html__()` with text domain `light-of-future` (theme) or `light-of-future-core` (plugin).
 
-## Current state (30 Oct 2026, evening)
+## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.21.0** and Core **0.21.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.22.0** and Core **0.22.0** on `main`, deployed to the live site. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
 
 1. Elementor (free) active. 2. Upload `light-of-future-core.zip`, activate. 3. Upload `light-of-future.zip` (Hello Elementor installs automatically), activate. 4. **Appearance > Light of Future setup > Run setup**: creates the pages with Elementor layouts, menus, home page, and the starter programmes, stories, leaders and impact figures. Re-running never changes or duplicates existing items. To rebuild one page's layout, delete that page and run setup again.
 
-## Next steps (phase 3)
+## Next steps (phase 3) - superseded by docs/HANDOVER.md section 7
 
 1. Paystack donations (one-off + monthly via Paystack plans), server-side verification and webhook signature check, receipts; separate from shop orders.
 2. WooCommerce styling + Paystack for WooCommerce; KES, delivery/pickup.
@@ -43,6 +44,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 18:15 EAT:** 0.22.0: Privacy Policy + Terms of Use placeholder pages and footer legal menu (one-off upgrade), inner pages (page hero, Stories featured card, single story/programme, forms, legal pages) to the home standard, audit fixes (meta description, theme colour, jQuery Migrate off, focus rings, link underline, target sizes), full `docs/HANDOVER.md`.
 
 - **3 Nov 2026, 17:50 EAT:** 0.21.0: footer wordmark removed and base bar refined; landing intro, impact and closing CTA polish.
 

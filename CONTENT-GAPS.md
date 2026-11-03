@@ -1,5 +1,17 @@
 # Content gaps - what we still need from the foundation
 
+## Open as of 3 Nov 2026 (latest)
+- Partner logos (partners section hidden until added)
+- Photos for each of the 11 focus areas (5 cards still use numbered tiles)
+- Public email address for the site (never franksikuku3@gmail.com) and WhatsApp number
+- Social media links
+- Paystack public and secret keys (secret sent privately)
+- Kennedy's approval of his edited portrait
+- A sharper original photo of Philister
+- Leads for Community Empowerment, GBV Awareness and Prison Outreach (if any)
+- Board-approved Privacy Policy and Terms of Use wording (placeholders live)
+- Full text of specific objective (h)
+
 Updated 30 Oct 2026 after Agnes confirmed: official name, impact figures, Precious consent, Paystack, live domain. Development continues with clearly labelled placeholders for anything still missing.
 
 ## Confirmed
