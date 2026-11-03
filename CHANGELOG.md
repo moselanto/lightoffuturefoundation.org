@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.31.0 - 3 Nov 2026
+
+- Leadership: no more Board / Programme leads switch. Everyone is shown on one page in order (founder, board members, programme leads, how the foundation is run). A simple "Jump to:" bar with plain buttons stays at the top while scrolling; on phones it scrolls sideways.
+- About: values text slightly larger and easier to read.
+
 ## 0.30.0 - 3 Nov 2026
 
 - Programmes: focus areas without photos now really show the brown and gold icon tile (an older style kept them pale beige); a row of "jump to" chips (01 Education ... 11 Prison Outreach) above the cards scrolls straight to each focus area and highlights it; even spacing between card rows; tidier card footer.

@@ -1809,3 +1809,32 @@ html[data-theme="dark"] .lof-progjump a { border-color: rgba(244, 175, 22, .18);
 
 /* Talent: talent area cards align with the steps panel width */
 .lof-page-talent-development .lof-tone-white .lof-grid--3, .lof-page-talent-development .lof-steps { max-width: 1120px; margin-inline: auto; }
+
+
+/* ===== 0.31.0: Leadership without tabs (simple "Jump to" bar), About polish ===== */
+.lof-tabs-wrap { display: none !important; }
+.lof-leaders[hidden] { display: block !important; }
+.lof-jump { position: sticky; top: var(--lof-header-h, 72px); z-index: 40; padding: .75rem 0; background: rgba(252, 246, 225, .94); border-bottom: 1px solid var(--lof-line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+html[data-theme="dark"] .lof-jump { background: rgba(24, 16, 8, .94); border-bottom-color: rgba(244, 175, 22, .18); }
+.lof-jump .lof-container { display: flex; align-items: center; gap: .85rem; }
+.lof-jump__label { flex: none; font: 800 .78rem/1 var(--lof-font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--lof-muted); }
+.lof-jump ul { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.lof-jump a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem 1.1rem; border-radius: 999px; background: var(--lof-surface); border: 1.5px solid var(--lof-gold); color: var(--lof-heading); font: 700 .92rem/1.2 var(--lof-font-body); text-decoration: none; transition: background .2s, color .2s; }
+.lof-jump a:hover, .lof-jump a:focus-visible { background: var(--lof-gold); color: #2E1E0E; }
+.lof-page-leadership .lof-leaders, .lof-page-leadership section:has(.lof-steps) { scroll-margin-top: calc(var(--lof-header-h, 72px) + 80px); }
+@media (max-width: 760px) {
+	.lof-jump { top: var(--lof-header-h, 64px); padding: .6rem 0; }
+	.lof-jump .lof-container { gap: .5rem; }
+	.lof-jump__label { display: none; }
+	.lof-jump ul { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .15rem; -webkit-overflow-scrolling: touch; }
+	.lof-jump li { flex: none; }
+	.lof-jump a { min-height: 40px; padding: .45rem .95rem; font-size: .88rem; }
+}
+/* Each leadership group gets a clear, plain section heading rhythm */
+.lof-page-leadership .lof-leaders--board { border-top: 1px solid var(--lof-line); }
+.lof-page-leadership .lof-leaders--team .lof-section__head { margin-top: .5rem; }
+
+/* About: values text easier to read, cards evenly sized */
+.lof-page-about-us .lof-tone-sand .lof-card--pillar .lof-card__title { font-size: 1.15rem; }
+.lof-page-about-us .lof-tone-sand .lof-card--pillar p { font-size: 1rem; line-height: 1.65; }
+.lof-page-about-us .lof-intro__panel h3 { margin-top: .25rem; }

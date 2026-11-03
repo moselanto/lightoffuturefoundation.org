@@ -154,47 +154,31 @@
 	}
 
 	function initLeaderTabs() {
+		// 0.31.0: no hidden tabs. Every group stays visible on one page; a simple
+		// "Jump to" bar of plain buttons scrolls to each group (easier for everyone).
 		var secs = Array.prototype.slice.call(document.querySelectorAll('.lof-leaders'));
-		if (secs.length < 2) { return; }
-		var groups = [
-			{ id: 'board', label: document.documentElement.lang && document.documentElement.lang.indexOf('en') !== 0 ? 'Board' : 'Board of Directors', els: secs.filter(function (s) { return /lof-leaders--(executive|board)\b/.test(s.className); }) },
-			{ id: 'programme-leads', label: 'Programme leads', els: secs.filter(function (s) { return /lof-leaders--team\b/.test(s.className); }) }
-		].filter(function (g) { return g.els.length; });
-		if (groups.length < 2) { return; }
-		var bar = document.createElement('div');
-		bar.className = 'lof-tabs-wrap';
-		bar.innerHTML = '<div class="lof-container"><div class="lof-tabs" role="tablist" aria-label="Leadership"></div></div>';
-		var list = bar.querySelector('.lof-tabs');
-		var btns = [];
-		groups.forEach(function (g, n) {
-			var count = 0;
-			g.els.forEach(function (el) { count += el.querySelectorAll('.lof-person').length; el.setAttribute('role', 'tabpanel'); el.id = el.id || ('lof-tab-' + g.id + '-' + n); });
-			var b = document.createElement('button');
-			b.type = 'button';
-			b.className = 'lof-tab';
-			b.setAttribute('role', 'tab');
-			b.setAttribute('aria-controls', g.els[0].id);
-			b.innerHTML = '<span>' + g.label + '</span><span class="lof-tab__count">' + count + '</span>';
-			b.addEventListener('click', function () { show(n, true); });
-			b.addEventListener('keydown', function (e) {
-				if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); var m = (n + (e.key === 'ArrowRight' ? 1 : -1) + groups.length) % groups.length; show(m, true); btns[m].focus(); }
-			});
-			list.appendChild(b);
-			btns.push(b);
+		if (!secs.length) { return; }
+		var steps = document.querySelector('.lof-steps');
+		var stepsSec = steps ? steps.closest('section') : null;
+		var items = [
+			{ id: 'founder', label: 'Our founder', el: secs.filter(function (s) { return /lof-leaders--executive\b/.test(s.className); })[0] },
+			{ id: 'board', label: 'Board members', el: secs.filter(function (s) { return /lof-leaders--board\b/.test(s.className); })[0] },
+			{ id: 'programme-leads', label: 'Programme leads', el: secs.filter(function (s) { return /lof-leaders--team\b/.test(s.className); })[0] },
+			{ id: 'how-we-are-run', label: 'How we are run', el: stepsSec }
+		].filter(function (g) { return g.el; });
+		if (items.length < 2) { return; }
+		var bar = document.createElement('nav');
+		bar.className = 'lof-jump';
+		bar.setAttribute('aria-label', 'Jump to a section');
+		var html = '<div class="lof-container"><span class="lof-jump__label">Jump to:</span><ul>';
+		items.forEach(function (g) {
+			g.el.id = g.el.id || g.id;
+			g.el.hidden = false;
+			html += '<li><a href="#' + g.el.id + '">' + g.label + '</a></li>';
 		});
+		bar.innerHTML = html + '</ul></div>';
 		secs[0].parentNode.insertBefore(bar, secs[0]);
-		function show(n, push) {
-			groups.forEach(function (g, m) {
-				var on = m === n;
-				btns[m].setAttribute('aria-selected', on ? 'true' : 'false');
-				btns[m].tabIndex = on ? 0 : -1;
-				g.els.forEach(function (el) { el.hidden = !on; if (on) { el.querySelectorAll('.lof-reveal').forEach(function (r) { r.classList.add('is-visible'); }); } });
-			});
-			if (push && window.history && history.replaceState) { history.replaceState(null, '', '#' + groups[n].id); }
-		}
-		var start = 0;
-		groups.forEach(function (g, n) { if (location.hash === '#' + g.id) { start = n; } });
-		show(start, false);
+		secs.forEach(function (el) { el.querySelectorAll('.lof-reveal').forEach(function (r) { r.classList.add('is-visible'); }); });
 	}
 
 	function initFaq() {

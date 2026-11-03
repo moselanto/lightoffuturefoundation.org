@@ -1,6 +1,6 @@
 # HANDOVER - Light of Future Foundation website (read this first)
 
-Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.30.0**. Written so the next AI agent or developer can pick up without the chat history.
+Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.31.0**. Written so the next AI agent or developer can pick up without the chat history.
 
 ## 1. Where we are in one paragraph
 The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on WordPress + Elementor (free) + Hello Elementor parent theme, with our child theme `light-of-future` and plugin `light-of-future-core`. Design, content and mobile UX went through many rounds with Agnes (Pimofy Digital) between 30 Oct and 3 Nov 2026. Every page, the header, footer, phone bottom navigation and phone menu are finished to the current design standard. **Not done yet:** Paystack donations (no keys), WooCommerce crafts shop, real partner logos, focus-area photos, public email and WhatsApp number, approved legal wording, and launch (turning indexing on).
@@ -47,7 +47,7 @@ The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on Wo
 To re-run one, delete its option (e.g. with WP-CLI `wp option delete lof_legal_rev`).
 
 ## 6. What each page looks like now (0.22.0)
-- **Header:** logo, menu Home / About (About us, Leadership & Governance, FAQ) / Programmes (Programmes, Talent development) / Impact (Our impact, Stories) / Get Involved (Get involved, Donate) / Contact, Donate button, dark-mode switch. Phone: full-height menu with **accordion sub-menus** (round chevrons, one group open), plus a **fixed bottom navigation** (Home, Focus areas, raised gold Donate, Stories, Menu).
+- **Header:** logo, menu Home / About (About us, Leadership & Governance, FAQ) / Programmes (Programmes, Talent development) / Impact (Our impact, Stories) / Get Involved (Get involved, Donate) / Contact, Donate button, dark-mode switch. Leadership has NO tabs (0.31.0): every group is visible, with a sticky "Jump to" bar of plain buttons - keep it simple for local visitors. Phone: full-height menu with **accordion sub-menus** (round chevrons, one group open), plus a **fixed bottom navigation** (Home, Focus areas, raised gold Donate, Stories, Menu).
 - **Home:** full-width 3-slide slider (Elijah / Philister / Precious, own photos, confirmed copy, progress bars, pause, swipe; fits laptop screens) -> figures card (200+, 30+, 11, 2025) -> Why we exist + Vision/Mission icon cards -> Our approach (4 numbered steps) -> Our story (founder letter: arch portrait, name card, drop cap, quote card, timeline) -> Focus areas (6 cards with leads) -> Impact figures (glass cards) -> Stories of change (cinematic lead + 2 side cards) -> Give today (single card: photo with trust points + "Make your gift" form) -> Who we are (photo with registration badge) -> closing gold CTA card -> footer.
 - **Inner pages:** cream page hero with gold rule (all pages), Programmes (11 focus areas), Stories (cinematic featured story + cards), Donate (giving card + form; giving panel pre-fills the contact form while Paystack is pending), Leadership (Board / Programme leads tabs, 11 portraits), FAQ (accordion), Contact, Get Involved, Impact, About.
 - **Single story / programme:** hero, framed image, quote card, sticky aside with facts and a gold Donate card.
