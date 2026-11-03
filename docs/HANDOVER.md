@@ -1,6 +1,6 @@
 # HANDOVER - Light of Future Foundation website (read this first)
 
-Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.34.0**. Written so the next AI agent or developer can pick up without the chat history.
+Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.34.1**. Written so the next AI agent or developer can pick up without the chat history.
 
 ## 1. Where we are in one paragraph
 The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on WordPress + Elementor (free) + Hello Elementor parent theme, with our child theme `light-of-future` and plugin `light-of-future-core`. Design, content and mobile UX went through many rounds with Agnes (Pimofy Digital) between 30 Oct and 3 Nov 2026. Every page, the header, footer, phone bottom navigation and phone menu are finished to the current design standard. **Not done yet:** Paystack donations (no keys), WooCommerce crafts shop, real partner logos, focus-area photos, public email and WhatsApp number, approved legal wording, and launch (turning indexing on).
@@ -70,6 +70,7 @@ To re-run one, delete its option (e.g. with WP-CLI `wp option delete lof_legal_r
 6. Optional: remove the phone preview page (`lof_mobile_preview` in `inc/setup.php`) after launch, or keep it (noindex) for QA.
 
 ## 8. Known quirks
+- Never nest `:has()` inside another `:has()` in CSS: browsers drop the whole rule (this hid the Donate trust text in 0.29-0.34).
 - `inc/importer.php` loads **only in wp-admin**. Anything the front end needs (hero photo, at-a-glance figures, programme icons) lives in `inc/template-tags.php`. One-off upgrades in importer.php therefore run when someone opens wp-admin.
 - "Apply latest design" times out on this host (no notice). Use one-off upgrades.
 - Hello Elementor gives buttons a pink focus colour; our CSS overrides it for header, bottom-bar and accordion buttons - add the same override to any new `<button>`.

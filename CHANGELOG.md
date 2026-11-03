@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.34.1 - 3 Nov 2026
+
+- Fix: on Donate, "Transparent and accountable" showed pale text on a white background. The three cards (Registered, Accountable, Community-led) now sit on a dark brown panel with gold titles and cream text, readable in light and dark mode.
+
 ## 0.34.0 - 3 Nov 2026
 
 - About, "What we set out to do": heading centred above; the seven objectives sit in one white panel with two even columns, gold number tiles and thin dividers, and a gold "Registered with the NGO Board of Kenya on 23 May 2025" cell completes the last row so the panel ends square. One column on phones.

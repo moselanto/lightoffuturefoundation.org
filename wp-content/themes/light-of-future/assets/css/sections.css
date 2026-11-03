@@ -1746,9 +1746,6 @@ html[data-theme="dark"] .lof-formsec__next { border: 1px solid rgba(244, 175, 22
 html[data-theme="dark"] .lof-page-contact .lof-contact { background: linear-gradient(160deg, #22160A, #170F06) !important; }
 
 /* Donate: "Transparent and accountable" as a dark trust band (varies the rhythm of card grids) */
-.lof-page-donate .lof-tone-white:has(.lof-grid--3:not(:has(> :nth-child(4)))) { background: linear-gradient(160deg, #3F2913, #2A1B0C); }
-.lof-page-donate .lof-tone-white:has(.lof-grid--3:not(:has(> :nth-child(4)))) .lof-section__title { color: var(--lof-cream); }
-.lof-page-donate .lof-tone-white:has(.lof-grid--3:not(:has(> :nth-child(4)))) .lof-eyebrow { color: var(--lof-gold); }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { gap: 0 !important; border-radius: 24px; overflow: hidden; border: 1px solid rgba(244, 175, 22, .25); background: rgba(255, 255, 255, .04); }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { background: transparent; border: 0; border-right: 1px solid rgba(244, 175, 22, .18); border-radius: 0; box-shadow: none; }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar:last-child { border-right: 0; }
@@ -1758,7 +1755,6 @@ html[data-theme="dark"] .lof-page-contact .lof-contact { background: linear-grad
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) .lof-card__title { color: var(--lof-cream); }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) p { color: rgba(252, 246, 225, .82); }
 @media (max-width: 1024px) { .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); } .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar:last-child { border-bottom: 0; } }
-html[data-theme="dark"] .lof-page-donate .lof-tone-white:has(.lof-grid--3:not(:has(> :nth-child(4)))) { background: linear-gradient(160deg, #22160A, #170F06); }
 
 /* Donate: the second figures strip near the form is a repeat - hide it so the page flows FAQ -> form */
 .lof-page-donate .elementor-section:has(.lof-impact--strip) { display: none; }
@@ -1977,3 +1973,14 @@ html[data-theme="dark"] .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof
 
 /* Values: equal card heights and centred last row stay; tighten heading spacing */
 .lof-page-about-us .lof-tone-sand .lof-section__head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+
+
+/* ===== 0.34.1: Donate "Transparent and accountable" - text was invisible ===== */
+/* The section-level rule used a nested :has(), which browsers ignore, so cream text sat on a white background.
+   The dark panel is now applied to the cards' own container, so the text always has a dark background. */
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { background: linear-gradient(160deg, #3F2913, #2A1B0C) !important; border-color: rgba(244, 175, 22, .3) !important; box-shadow: 0 34px 64px -42px rgba(43, 29, 14, .75); }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { background: transparent !important; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) .lof-card__title { color: var(--lof-gold) !important; font-size: 1.15rem; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar p { color: rgba(252, 246, 225, .9) !important; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar::before { background-color: rgba(244, 175, 22, .2); }
+html[data-theme="dark"] .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { background: linear-gradient(160deg, #2A1B0C, #170F06) !important; }
