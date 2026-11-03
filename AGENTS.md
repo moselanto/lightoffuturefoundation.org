@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.31.0** and Core **0.31.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.32.0** and Core **0.32.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 23:20 EAT:** 0.32.0: form sections balanced - heading and contact rows beside the form at equal height (grid areas, intro `display: contents`), "What happens next" moved to a full-width horizontal three-step band below.
 
 - **3 Nov 2026, 23:15 EAT:** 0.31.0: Leadership tabs removed at Agnes's request (locals found switching confusing). All groups show on one page; `initLeaderTabs()` in main.js now builds a sticky "Jump to:" bar (Our founder, Board members, Programme leads, How we are run). About values text larger.
 

@@ -1838,3 +1838,41 @@ html[data-theme="dark"] .lof-jump { background: rgba(24, 16, 8, .94); border-bot
 .lof-page-about-us .lof-tone-sand .lof-card--pillar .lof-card__title { font-size: 1.15rem; }
 .lof-page-about-us .lof-tone-sand .lof-card--pillar p { font-size: 1rem; line-height: 1.65; }
 .lof-page-about-us .lof-intro__panel h3 { margin-top: .25rem; }
+
+
+/* ===== 0.32.0: balanced form sections ("Ready to give?", "Take the first step", "Write to us") ===== */
+/* Heading + contact details sit beside the form at equal height; "What happens next" runs full width underneath */
+@media (min-width: 901px) {
+	.lof-formsec .lof-formsec__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "head form" "details form" "next next"; column-gap: clamp(2rem, 4.5vw, 4rem); row-gap: 0; align-items: start; }
+	.lof-formsec .lof-formsec__intro { display: contents; position: static; }
+	.lof-formsec .lof-formsec__intro > .lof-section__head { grid-area: head; margin: 0 0 1.5rem; max-width: none; text-align: left; }
+	.lof-formsec .lof-formsec__details { grid-area: details; margin: 0; align-self: start; }
+	.lof-formsec .lof-formsec__form { grid-area: form; align-self: stretch; }
+	.lof-formsec .lof-formsec__next { grid-area: next; margin-top: clamp(2rem, 4vw, 3rem); }
+}
+.lof-formsec .lof-formsec__intro > .lof-section__head .lof-section__title { font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.12; }
+
+/* "What happens next" as a horizontal three-step band */
+.lof-formsec__next { padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3vw, 2.5rem); border-radius: 26px; }
+.lof-formsec__next-title { text-align: center; margin-bottom: 1.5rem; }
+@media (min-width: 761px) {
+	.lof-formsec__next ol { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2.5rem); }
+	.lof-formsec__next li { padding-left: 0; padding-top: 3.25rem; text-align: center; }
+	.lof-formsec__next li::before { left: 50%; top: 0; margin-left: -20px; width: 40px; height: 40px; font-size: 1rem; }
+	.lof-formsec__next li:not(:last-child)::after { left: calc(50% + 32px); right: calc(-50% - clamp(1rem, 3vw, 2.5rem) + 32px); top: 19px; bottom: auto; width: auto; height: 2px; }
+	.lof-formsec__next strong { font-size: 1.08rem; margin-bottom: .3rem; }
+	.lof-formsec__next span { max-width: 30ch; margin-inline: auto; }
+}
+
+/* Contact rows: same width as the heading, comfortable height */
+.lof-formsec__details li { min-height: 68px; font-size: 1rem; }
+
+/* Form card fills its column and the button sits at the bottom edge */
+.lof-formsec .lof-formsec__form { display: flex; flex-direction: column; }
+.lof-formsec .lof-formsec__form .lof-form { flex: 1; display: flex; flex-direction: column; }
+.lof-formsec .lof-form textarea { min-height: 170px; }
+
+/* Contact page: details are shown in the band below, so the heading spans both rows */
+@media (min-width: 901px) {
+	.lof-page-contact .lof-formsec .lof-formsec__grid { grid-template-areas: "head form" "head form" "next next"; }
+}

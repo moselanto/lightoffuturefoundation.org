@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.32.0 - 3 Nov 2026
+
+- Form sections ("Ready to give?" on Donate, "Take the first step" on Get Involved, "Write to us" on Contact): the heading and contact details now sit beside the form at the same height, and "What happens next" runs full width underneath as three steps side by side, so the left column no longer hangs below the form.
+
 ## 0.31.0 - 3 Nov 2026
 
 - Leadership: no more Board / Programme leads switch. Everyone is shown on one page in order (founder, board members, programme leads, how the foundation is run). A simple "Jump to:" bar with plain buttons stays at the top while scrolling; on phones it scrolls sideways.
