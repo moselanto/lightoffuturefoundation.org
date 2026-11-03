@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.39.1 - 3 Nov 2026
+
+- Theme picture (Appearance > Themes): the preview image is now a real view of the live home page - top bar, menu with Donate button, the Philister slide and the 200+ / 30+ / 11 / 2025 figures card.
+
 ## 0.39.0 - 3 Nov 2026
 
 - Home page balance pass: even spacing between all sections; "Why we exist" heading and statement aligned with equal-height Vision and Mission cards; "Stories of change" lead story and the two side stories now share the same height, with side stories readable (photo 42%, larger title); "Give today" heading fits on two lines; focus-area cards equal height with the link at the bottom; "See all 11 focus areas" and "More stories" as rounded pill buttons.
