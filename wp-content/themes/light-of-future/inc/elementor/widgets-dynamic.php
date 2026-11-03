@@ -265,7 +265,7 @@ class LOF_Widget_Leaders extends LOF_Widget_Base {
 			$this->editor_notice( __( 'No approved leaders yet. Add them under Light of Future > Leadership and tick "Approved for publication".', 'light-of-future' ) );
 			return;
 		}
-		$this->open_section( $s );
+		$this->open_section( $s, 'lof-leaders lof-leaders--' . sanitize_html_class( ! empty( $s['group'] ) ? $s['group'] : 'all' ) );
 		$this->render_heading( $s, __( 'Our leadership team', 'light-of-future' ) );
 		$row  = isset( $s['layout'] ) && 'row' === $s['layout'];
 		$cols = $row ? ( count( $items ) > 1 ? 2 : 1 ) : min( 4, max( 2, count( $items ) ) );

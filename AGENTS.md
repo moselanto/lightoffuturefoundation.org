@@ -27,7 +27,7 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 
 ## Current state (30 Oct 2026, evening)
 
-- Theme **0.13.1** and Core **0.13.1** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.14.0** and Core **0.14.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
 
@@ -43,6 +43,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 14:20 EAT:** 0.14.0: Leadership tabs, FAQ accordion, giving panel with amount and fund choice (contact form pre-fill).
 
 - **31 Oct 2026, 23:45 EAT:** 0.13.1: one-off home hero upgrade (no Apply needed), sturdier Apply latest design handler.
 

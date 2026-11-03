@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.0 - 3 Nov 2026
+
+From Agnes's mock-up, using only confirmed facts and the foundation's own photos. No "Apply latest design" needed: all changes are in widget output, CSS and JS.
+
+- Leadership: tabs for "Board of Directors" (executive + board sections, 4 people) and "Programme leads" (7), with counts, keyboard arrows and #board / #programme-leads links. Without JS all sections still show.
+- FAQ: polished accordion (cards, round plus/close icon, only one answer open at a time).
+- Giving panel (lof-donate widget): step 1 amount chips plus "Other amount" field, step 2 fund choice (Where it is needed most + every focus area), "Continue to give" button. Until Paystack is live it goes to the Donate/Contact form, which pre-fills the message (e.g. "I would like to give KES 1,000 to Education...") and selects "Giving / donations".
+
 ## 0.13.1 - 31 Oct 2026
 
 - "Apply latest design" returned no result twice on the live site (likely a server time-out). The handler now raises the time and memory limits and keeps running if the browser disconnects.

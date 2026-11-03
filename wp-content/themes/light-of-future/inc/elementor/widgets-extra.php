@@ -61,23 +61,45 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 		}
 		echo '<div class="lof-give__body lof-reveal">';
 		$this->render_heading( array_merge( $s, array( 'align' => $has ? 'left' : ( isset( $s['align'] ) ? $s['align'] : 'center' ) ) ) );
-		echo '<ul class="lof-give__amounts">';
+		$amounts = array();
 		foreach ( (array) $s['amounts'] as $row ) {
-			$amount = (int) $row['amount'];
-			if ( $amount < 1 ) {
-				continue;
+			if ( (int) $row['amount'] > 0 ) {
+				$amounts[] = $row;
 			}
+		}
+		$uid   = 'lof-give-' . $this->get_id();
+		$funds = array( 'general' => __( 'Where it is needed most', 'light-of-future' ) );
+		if ( post_type_exists( 'lof_programme' ) ) {
+			foreach ( get_posts( array( 'post_type' => 'lof_programme', 'posts_per_page' => 20, 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ), 'no_found_rows' => true ) ) as $prog ) {
+				$funds[ $prog->post_name ] = get_the_title( $prog );
+			}
+		}
+		$action = strtok( $target, '?#' );
+		printf( '<form class="lof-givepanel" method="get" action="%1$s" data-lof-give>', esc_url( $action ) );
+		printf( '<fieldset class="lof-givepanel__step"><legend><span>1</span>%s</legend><div class="lof-give__amounts">', esc_html__( 'Choose an amount (KES)', 'light-of-future' ) );
+		foreach ( $amounts as $n => $row ) {
+			$amount = (int) $row['amount'];
 			printf(
-				'<li><a class="lof-chip" href="%1$s"><strong>KES %2$s</strong>%3$s</a></li>',
-				esc_url( add_query_arg( 'amount', $amount, $target ) ),
+				'<label class="lof-chip"><input type="radio" name="amount" value="%1$d"%2$s><strong>KES %3$s</strong>%4$s</label>',
+				$amount,
+				1 === $n ? ' checked' : '',
 				esc_html( number_format_i18n( $amount ) ),
 				! empty( $row['label'] ) ? '<span>' . esc_html( $row['label'] ) . '</span>' : ''
 			);
 		}
 		if ( ! empty( $s['custom_label'] ) ) {
-			printf( '<li><a class="lof-chip lof-chip--other" href="%1$s"><strong>%2$s</strong></a></li>', esc_url( $target ), esc_html( $s['custom_label'] ) );
+			printf( '<label class="lof-chip lof-chip--other"><input type="radio" name="amount" value="other"%2$s><strong>%1$s</strong></label>', esc_html( $s['custom_label'] ), $amounts ? '' : ' checked' );
 		}
-		echo '</ul>';
+		echo '</div>';
+		printf( '<p class="lof-givepanel__other"><label for="%1$s-other">%2$s</label><span class="lof-givepanel__kes"><span aria-hidden="true">KES</span><input id="%1$s-other" type="number" name="amount_other" min="50" step="50" inputmode="numeric" placeholder="%3$s"></span></p>', esc_attr( $uid ), esc_html__( 'Your own amount', 'light-of-future' ), esc_attr__( 'e.g. 1500', 'light-of-future' ) );
+		echo '</fieldset>';
+		printf( '<fieldset class="lof-givepanel__step"><legend><span>2</span>%1$s</legend><label class="screen-reader-text" for="%2$s-fund">%1$s</label><select id="%2$s-fund" name="fund">', esc_html__( 'Choose where it goes', 'light-of-future' ), esc_attr( $uid ) );
+		foreach ( $funds as $key => $label ) {
+			printf( '<option value="%1$s">%2$s</option>', esc_attr( $key ), esc_html( $label ) );
+		}
+		echo '</select></fieldset>';
+		printf( '<button type="submit" class="lof-btn lof-btn--sun lof-givepanel__submit">%s</button>', esc_html__( 'Continue to give', 'light-of-future' ) );
+		echo '</form>';
 		if ( ! empty( $s['note'] ) ) {
 			printf( '<p class="lof-give__note">%s</p>', esc_html( $s['note'] ) );
 		}

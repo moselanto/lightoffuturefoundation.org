@@ -153,6 +153,83 @@
 		});
 	}
 
+	function initLeaderTabs() {
+		var secs = Array.prototype.slice.call(document.querySelectorAll('.lof-leaders'));
+		if (secs.length < 2) { return; }
+		var groups = [
+			{ id: 'board', label: document.documentElement.lang && document.documentElement.lang.indexOf('en') !== 0 ? 'Board' : 'Board of Directors', els: secs.filter(function (s) { return /lof-leaders--(executive|board)\b/.test(s.className); }) },
+			{ id: 'programme-leads', label: 'Programme leads', els: secs.filter(function (s) { return /lof-leaders--team\b/.test(s.className); }) }
+		].filter(function (g) { return g.els.length; });
+		if (groups.length < 2) { return; }
+		var bar = document.createElement('div');
+		bar.className = 'lof-tabs-wrap';
+		bar.innerHTML = '<div class="lof-container"><div class="lof-tabs" role="tablist" aria-label="Leadership"></div></div>';
+		var list = bar.querySelector('.lof-tabs');
+		var btns = [];
+		groups.forEach(function (g, n) {
+			var count = 0;
+			g.els.forEach(function (el) { count += el.querySelectorAll('.lof-person').length; el.setAttribute('role', 'tabpanel'); el.id = el.id || ('lof-tab-' + g.id + '-' + n); });
+			var b = document.createElement('button');
+			b.type = 'button';
+			b.className = 'lof-tab';
+			b.setAttribute('role', 'tab');
+			b.setAttribute('aria-controls', g.els[0].id);
+			b.innerHTML = '<span>' + g.label + '</span><span class="lof-tab__count">' + count + '</span>';
+			b.addEventListener('click', function () { show(n, true); });
+			b.addEventListener('keydown', function (e) {
+				if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); var m = (n + (e.key === 'ArrowRight' ? 1 : -1) + groups.length) % groups.length; show(m, true); btns[m].focus(); }
+			});
+			list.appendChild(b);
+			btns.push(b);
+		});
+		secs[0].parentNode.insertBefore(bar, secs[0]);
+		function show(n, push) {
+			groups.forEach(function (g, m) {
+				var on = m === n;
+				btns[m].setAttribute('aria-selected', on ? 'true' : 'false');
+				btns[m].tabIndex = on ? 0 : -1;
+				g.els.forEach(function (el) { el.hidden = !on; if (on) { el.querySelectorAll('.lof-reveal').forEach(function (r) { r.classList.add('is-visible'); }); } });
+			});
+			if (push && window.history && history.replaceState) { history.replaceState(null, '', '#' + groups[n].id); }
+		}
+		var start = 0;
+		groups.forEach(function (g, n) { if (location.hash === '#' + g.id) { start = n; } });
+		show(start, false);
+	}
+
+	function initFaq() {
+		document.querySelectorAll('.lof-faq').forEach(function (faq) {
+			var items = faq.querySelectorAll('details');
+			items.forEach(function (d) {
+				d.addEventListener('toggle', function () {
+					if (d.open) { items.forEach(function (o) { if (o !== d) { o.open = false; } }); }
+				});
+			});
+		});
+	}
+
+	function initGivePanel() {
+		document.querySelectorAll('[data-lof-give]').forEach(function (f) {
+			var other = f.querySelector('input[name="amount_other"]');
+			var wrap = f.querySelector('.lof-givepanel__other');
+			function sync() {
+				var sel = f.querySelector('input[name="amount"]:checked');
+				var isOther = sel && sel.value === 'other';
+				if (wrap) { wrap.classList.toggle('is-active', !!isOther); }
+				if (other) { other.required = !!isOther; }
+			}
+			f.addEventListener('change', sync);
+			if (other) {
+				other.addEventListener('focus', function () { var o = f.querySelector('input[name="amount"][value="other"]'); if (o) { o.checked = true; sync(); } });
+			}
+			f.addEventListener('submit', function () {
+				var sel = f.querySelector('input[name="amount"]:checked');
+				if (other && !(sel && sel.value === 'other')) { other.disabled = true; }
+			});
+			sync();
+		});
+	}
+
 	function initRibbons() {
 		document.querySelectorAll('.lof-ribbon__pause').forEach(function (btn) {
 			btn.addEventListener('click', function () {
@@ -181,6 +258,9 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		initHeadHeight();
 		initHeroSlider();
+		initLeaderTabs();
+		initFaq();
+		initGivePanel();
 		initRibbons();
 		initMobileNavFocus();
 		initTheme();

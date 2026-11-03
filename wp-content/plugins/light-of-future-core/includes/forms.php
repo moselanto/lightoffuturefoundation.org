@@ -79,6 +79,9 @@ function lof_core_enquiry_form( $args = array() ) {
 	$args     = wp_parse_args( $args, array( 'interest' => 'general', 'button' => __( 'Send message', 'light-of-future-core' ), 'id' => 'lof-form' ) );
 	$types    = lof_core_enquiry_types();
 	$interest = isset( $types[ $args['interest'] ] ) ? $args['interest'] : 'general';
+	if ( '' !== lof_core_give_prefill() ) {
+		$interest = 'donate';
+	}
 	$id       = sanitize_html_class( $args['id'] );
 	$time     = time();
 	$status   = isset( $_GET['lof_form'] ) ? sanitize_key( wp_unslash( $_GET['lof_form'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
@@ -115,7 +118,7 @@ function lof_core_enquiry_form( $args = array() ) {
 					</select>
 				</p>
 			</div>
-			<p class="lof-field"><label for="<?php echo esc_attr( $id ); ?>-message"><?php esc_html_e( 'Message', 'light-of-future-core' ); ?> <span aria-hidden="true">*</span></label><textarea id="<?php echo esc_attr( $id ); ?>-message" name="lof_message" rows="5" required maxlength="3000"></textarea></p>
+			<p class="lof-field"><label for="<?php echo esc_attr( $id ); ?>-message"><?php esc_html_e( 'Message', 'light-of-future-core' ); ?> <span aria-hidden="true">*</span></label><textarea id="<?php echo esc_attr( $id ); ?>-message" name="lof_message" rows="5" required maxlength="3000"><?php echo esc_textarea( lof_core_give_prefill() ); ?></textarea></p>
 			<p class="lof-field lof-field--check"><label><input type="checkbox" name="lof_consent" value="1" required> <?php esc_html_e( 'I agree that Light of Future Foundation may use these details to reply to me.', 'light-of-future-core' ); ?></label></p>
 			<button class="lof-btn lof-btn--earth" type="submit"><?php echo esc_html( $args['button'] ); ?></button>
 		</form>
@@ -234,3 +237,35 @@ function lof_core_enquiry_meta_box() {
 	);
 }
 add_action( 'add_meta_boxes', 'lof_core_enquiry_meta_box' );
+
+/**
+ * Message pre-filled from the giving panel (?amount=&fund=), until online giving is live.
+ *
+ * @return string
+ */
+function lof_core_give_prefill() {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- display only.
+	$amount = isset( $_GET['amount'] ) ? sanitize_text_field( wp_unslash( $_GET['amount'] ) ) : '';
+	if ( 'other' === $amount ) {
+		$amount = isset( $_GET['amount_other'] ) ? sanitize_text_field( wp_unslash( $_GET['amount_other'] ) ) : '';
+	}
+	$amount = absint( $amount );
+	$fund   = isset( $_GET['fund'] ) ? sanitize_title( wp_unslash( $_GET['fund'] ) ) : '';
+	// phpcs:enable
+	if ( ! $amount && ! $fund ) {
+		return '';
+	}
+	$where = __( 'wherever it is needed most', 'light-of-future-core' );
+	if ( $fund && 'general' !== $fund ) {
+		$prog = get_page_by_path( $fund, OBJECT, 'lof_programme' );
+		if ( $prog ) {
+			$where = get_the_title( $prog );
+		}
+	}
+	if ( $amount ) {
+		/* translators: 1: amount, 2: programme */
+		return sprintf( __( 'I would like to give KES %1$s to %2$s. Please tell me how to complete my gift.', 'light-of-future-core' ), number_format_i18n( $amount ), $where );
+	}
+	/* translators: %s: programme */
+	return sprintf( __( 'I would like to give to %s. Please tell me how to complete my gift.', 'light-of-future-core' ), $where );
+}
