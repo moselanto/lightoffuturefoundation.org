@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.19.0 - 3 Nov 2026
+
+- Give today (giving widget with a photo): one premium card on a light section. Left half is the photo with the heading, intro and three confirmed trust points (registered 23 May 2025; you choose where your gift goes; M-PESA and card through Paystack coming soon) over a dark gradient. Right half is a cream "Make your gift" form with dark selected amounts and a full-width button. Stacks on phones.
+- Who we are: editorial two-column layout replacing the full-bleed split. Framed photo with gold gradient backing, dot pattern, caption on the photo and, on the home page, a "2025 / Registered with the NGO Board of Kenya" badge; lead paragraph with gold rule and gold-ruled supporting paragraphs.
+- Phones: fixed bottom navigation (Home, Focus areas, a raised gold Donate button, Stories, Menu) replacing the single Donate bar. Current page highlighted; Menu opens the main menu; light and dark styles; WhatsApp button sits above it.
+
 ## 0.18.2 - 3 Nov 2026
 
 - Lead story: text block anchored to the bottom of the photo on its own dark gradient, so the white title and text are always readable.

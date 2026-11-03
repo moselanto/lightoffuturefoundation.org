@@ -269,7 +269,11 @@ class LOF_Widget_Feature extends LOF_Widget_Base {
 		$this->render_media( isset( $s['image'] ) ? $s['image'] : array(), 'large', 'lof-feature__img' );
 		if ( ! empty( $s['image_caption'] ) ) {
 			printf( '<figcaption>%s</figcaption>', esc_html( $s['image_caption'] ) );
-		} elseif ( $is_story && ! empty( $s['quote_by'] ) ) {
+		}
+		if ( ! $is_story && is_front_page() && function_exists( 'lof_setting' ) ) {
+			echo '<div class="lof-feature__badge" aria-hidden="true"><strong>2025</strong><span>' . esc_html__( 'Registered with the NGO Board of Kenya', 'light-of-future' ) . '</span></div>';
+		}
+		if ( empty( $s['image_caption'] ) && $is_story && ! empty( $s['quote_by'] ) ) {
 			$by = array_map( 'trim', explode( ',', $s['quote_by'], 2 ) );
 			printf( '<figcaption class="lof-feature__name"><strong>%1$s</strong>%2$s</figcaption>', esc_html( $by[0] ), isset( $by[1] ) ? '<span>' . esc_html( $by[1] ) . '</span>' : '' );
 		}

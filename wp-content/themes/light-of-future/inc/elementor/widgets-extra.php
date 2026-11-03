@@ -52,15 +52,27 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 		$s      = $this->get_settings_for_display();
 		$target = ! empty( $s['target']['url'] ) ? $s['target']['url'] : lof_donate_url();
 		$has    = $this->has_media( isset( $s['image'] ) ? $s['image'] : array() );
-		$this->open_section( $s, 'lof-give' . ( $has ? ' lof-give--photo' : '' ) );
-		echo '<div class="lof-give__grid">';
+		$this->open_section( $s, 'lof-give' . ( $has ? ' lof-give--photo lof-give--card' : '' ) );
 		if ( $has ) {
-			echo '<figure class="lof-give__media lof-reveal">';
+			$tick = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>';
+			echo '<div class="lof-give__card lof-reveal"><div class="lof-give__visual">';
 			$this->render_media( $s['image'], 'large', 'lof-give__img' );
-			echo '</figure>';
+			echo '<div class="lof-give__overlay">';
+			$this->render_heading( array_merge( $s, array( 'align' => 'left' ) ) );
+			echo '<ul class="lof-give__trust">';
+			foreach ( array(
+				__( 'Registered with the NGO Board of Kenya, 23 May 2025', 'light-of-future' ),
+				__( 'You choose where your gift goes', 'light-of-future' ),
+				__( 'M-PESA and card through Paystack, coming soon', 'light-of-future' ),
+			) as $t ) {
+				printf( '<li><span class="lof-give__tick">%1$s</span>%2$s</li>', $tick, esc_html( $t ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
+			}
+			echo '</ul></div></div><div class="lof-give__body">';
+			printf( '<p class="lof-give__formtitle">%s</p>', esc_html__( 'Make your gift', 'light-of-future' ) );
+		} else {
+			echo '<div class="lof-give__grid"><div class="lof-give__body lof-reveal">';
+			$this->render_heading( array_merge( $s, array( 'align' => isset( $s['align'] ) ? $s['align'] : 'center' ) ) );
 		}
-		echo '<div class="lof-give__body lof-reveal">';
-		$this->render_heading( array_merge( $s, array( 'align' => $has ? 'left' : ( isset( $s['align'] ) ? $s['align'] : 'center' ) ) ) );
 		$amounts = array();
 		foreach ( (array) $s['amounts'] as $row ) {
 			if ( (int) $row['amount'] > 0 ) {

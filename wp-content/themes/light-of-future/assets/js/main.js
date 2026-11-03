@@ -297,6 +297,17 @@
 		});
 	}
 
+	function initTabbar() {
+		var btn = document.querySelector('[data-lof-tabmenu]');
+		var toggle = document.querySelector('.lof-nav-toggle');
+		if (!btn || !toggle) { return; }
+		btn.addEventListener('click', function () {
+			toggle.click();
+			btn.setAttribute('aria-expanded', toggle.getAttribute('aria-expanded') === 'true' ? 'true' : 'false');
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+	}
+
 	function initRibbons() {
 		document.querySelectorAll('.lof-ribbon__pause').forEach(function (btn) {
 			btn.addEventListener('click', function () {
@@ -326,6 +337,7 @@
 		initHeadHeight();
 		initHeroSlider();
 		initCine();
+		initTabbar();
 		initLeaderTabs();
 		initFaq();
 		initGivePanel();

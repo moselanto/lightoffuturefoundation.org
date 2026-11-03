@@ -23,8 +23,49 @@ function lof_floating_actions() {
 			esc_attr__( 'Chat with us on WhatsApp', 'light-of-future' )
 		);
 	}
-	if ( apply_filters( 'lof_show_mobile_donate', true ) && ! is_page( 'donate' ) ) {
-		printf( '<div class="lof-mbar"><a class="lof-btn lof-btn--sun" href="%1$s">%2$s</a></div>', esc_url( lof_donate_url() ), esc_html( lof_setting( 'donate_label', __( 'Support the Future', 'light-of-future' ) ) ) );
+	if ( apply_filters( 'lof_show_mobile_donate', true ) ) {
+		lof_mobile_tabbar();
 	}
 }
 add_action( 'wp_footer', 'lof_floating_actions', 5 );
+
+/**
+ * Fixed bottom navigation on phones: Home, Focus areas, Donate (raised), Stories, Menu.
+ */
+function lof_mobile_tabbar() {
+	$path  = trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/', PHP_URL_PATH ), '/' );
+	$home  = trim( (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH ), '/' );
+	$path  = trim( $home && 0 === strpos( $path, $home ) ? substr( $path, strlen( $home ) ) : $path, '/' );
+	$first = strtok( $path, '/' );
+	$icons = array(
+		'home'   => '<path d="M12 3 2.5 11h2.6v9.5h5.4V15h3v5.5h5.4V11h2.6z"/>',
+		'areas'  => '<path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/>',
+		'heart'  => '<path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.4 1.1 4.4 2.5C12 6.1 13.4 5 15.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/>',
+		'story'  => '<path d="M5 3h11l3 3v15H5zm2 5v2h10V8zm0 4v2h10v-2zm0 4v2h7v-2z"/>',
+		'menu'   => '<path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/>',
+	);
+	$items = array(
+		array( 'home', __( 'Home', 'light-of-future' ), home_url( '/' ), '' === $path || false === $first ),
+		array( 'areas', __( 'Focus areas', 'light-of-future' ), home_url( '/programmes/' ), in_array( $first, array( 'programmes', 'programme', 'talent-development' ), true ) ),
+		array( 'heart', __( 'Donate', 'light-of-future' ), lof_donate_url(), 'donate' === $first ),
+		array( 'story', __( 'Stories', 'light-of-future' ), home_url( '/stories/' ), in_array( $first, array( 'stories', 'story', 'impact' ), true ) ),
+	);
+	echo '<nav class="lof-tabbar" aria-label="' . esc_attr__( 'Quick links', 'light-of-future' ) . '"><ul>';
+	foreach ( $items as $it ) {
+		printf(
+			'<li class="lof-tabbar__item lof-tabbar__item--%1$s%2$s"><a href="%3$s"%4$s><span class="lof-tabbar__ico"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="currentColor">%5$s</svg></span><span class="lof-tabbar__label">%6$s</span></a></li>',
+			esc_attr( $it[0] ),
+			$it[3] ? ' is-current' : '',
+			esc_url( $it[2] ),
+			$it[3] ? ' aria-current="page"' : '',
+			$icons[ $it[0] ], // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
+			esc_html( $it[1] )
+		);
+	}
+	printf(
+		'<li class="lof-tabbar__item lof-tabbar__item--menu"><button type="button" data-lof-tabmenu aria-controls="lof-primary-nav" aria-expanded="false"><span class="lof-tabbar__ico"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="currentColor">%1$s</svg></span><span class="lof-tabbar__label">%2$s</span></button></li>',
+		$icons['menu'], // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
+		esc_html__( 'Menu', 'light-of-future' )
+	);
+	echo '</ul></nav>';
+}
