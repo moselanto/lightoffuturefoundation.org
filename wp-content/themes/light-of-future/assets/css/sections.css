@@ -1015,3 +1015,22 @@ html[data-theme="dark"] .lof-give--photo.lof-tone-earth { background-color: #241
 .lof-tone-earth .lof-givepanel__submit:hover::after { transform: translateX(4px); }
 .lof-give--photo .lof-give__note { color: rgba(252, 246, 225, .85); opacity: 1; }
 @media (max-width: 860px) { .lof-give__media { max-width: 300px; margin-inline: auto; } }
+
+/* ===== 0.18.1: fixes from the 0.18.0 review ===== */
+/* Give today: one column on tablets and phones (0.18.0 two-column rule had overridden it) */
+@media (max-width: 860px) {
+	.lof-give--photo .lof-give__grid { grid-template-columns: minmax(0, 1fr); }
+	.lof-give--photo .lof-give__body { min-width: 0; }
+	.lof-give__media { max-width: 280px; margin-inline: auto; }
+}
+/* Founder name card: light card with dark text in both modes */
+.lof-feature__media .lof-feature__name { right: auto; background: #FFFDF6; color: #2E1E0E !important; backdrop-filter: none; }
+.lof-feature__media .lof-feature__name strong { color: #2E1E0E; }
+.lof-feature__media .lof-feature__name span { color: #6B4E2E; }
+/* Lead story: darker, taller gradient behind the white text */
+@media (min-width: 900px) {
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__media::after { background: linear-gradient(0deg, rgba(20, 13, 6, .97) 0%, rgba(20, 13, 6, .85) 34%, rgba(20, 13, 6, .45) 58%, rgba(20, 13, 6, .1) 80%); }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__title, .lof-grid--3 > .lof-card--story:first-child .lof-card__body > p { text-shadow: 0 1px 12px rgba(0, 0, 0, .5); }
+}
+/* No mid-word breaks in headings on phones */
+h1, h2, h3, .lof-section__title, .lof-cine__title { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: break-word; word-break: normal; text-wrap: balance; }

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.18.1 - 3 Nov 2026
+
+- Give today: back to one column on tablets and phones (panel was cut off sideways).
+- Founder name card: light card with dark text for readable contrast in both modes.
+- Lead story: darker gradient and text shadow so white text stays readable over the photo.
+- Headings no longer break mid-word on phones.
+
 ## 0.18.0 - 3 Nov 2026
 
 Creative pass on four home sections (Agnes), CSS and widget markup only:
