@@ -1157,3 +1157,34 @@ html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--
 	.lof-cine__inner { width: calc(100% - 2rem) !important; }
 	.lof-cine__ui-inner { width: calc(100% - 2rem) !important; }
 }
+
+/* ===== 0.20.0: phone and tablet menu - accordion sub-menus ===== */
+.lof-sub-toggle { display: none; }
+@media (max-width: 1024px) {
+	.lof-nav { padding: 1rem 1.25rem calc(1.5rem + 80px); gap: 1.25rem; background: var(--lof-bg); }
+	.lof-nav .lof-menu { gap: 0; }
+	.lof-nav .lof-menu > li { position: relative; border-bottom: 1px solid var(--lof-line); }
+	.lof-nav .lof-menu > li > a { display: flex; align-items: center; min-height: 58px; padding: .85rem 3.5rem .85rem .15rem; border: 0; font-family: var(--lof-font-display); font-size: 1.2rem; font-weight: 800; letter-spacing: -.01em; color: var(--lof-heading); background: none; }
+	.lof-nav .lof-menu > li.current-menu-item > a, .lof-nav .lof-menu > li.current-menu-ancestor > a { color: var(--lof-link); }
+	.lof-nav .lof-menu > li.current-menu-item > a::before, .lof-nav .lof-menu > li.current-menu-ancestor > a::before { content: ""; display: block !important; position: absolute; left: -1.25rem; top: 50%; width: 4px; height: 26px; margin: -13px 0 0; border: 0; border-radius: 0 4px 4px 0; background: var(--lof-gold); transform: none; opacity: 1; }
+	.lof-nav .lof-menu > li.menu-item-has-children > a::before { display: none; }
+	.lof-nav .lof-menu > li.menu-item-has-children.current-menu-ancestor > a::before { display: block !important; }
+	.lof-sub-toggle { position: absolute; right: 0; top: 7px; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--lof-line) !important; background: var(--lof-surface) !important; color: var(--lof-heading) !important; cursor: pointer; transition: background .2s, transform .25s, border-color .2s; box-shadow: none !important; }
+	.lof-sub-toggle svg { transition: transform .25s ease; }
+	.lof-sub-toggle:hover, .lof-sub-toggle:focus { background: var(--lof-surface-2) !important; color: var(--lof-heading) !important; }
+	.lof-sub-toggle:focus-visible { outline: 2px solid var(--lof-gold); outline-offset: 2px; }
+	.lof-menu > li.is-open > .lof-sub-toggle { background: var(--lof-gold) !important; border-color: var(--lof-gold) !important; color: #2E1E0E !important; }
+	.lof-menu > li.is-open > .lof-sub-toggle svg { transform: rotate(180deg); }
+	.lof-nav.has-sub-toggles .lof-menu .sub-menu { display: none; }
+	.lof-nav.has-sub-toggles .lof-menu > li.is-open > .sub-menu { display: block; animation: lof-sub-in .25s ease both; }
+	@keyframes lof-sub-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+	.lof-nav .lof-menu .sub-menu { margin: 0 0 .9rem; padding: .4rem; border-radius: 16px; background: var(--lof-surface-2); border: 1px solid var(--lof-line); }
+	.lof-nav .lof-menu .sub-menu li { border: 0; }
+	.lof-nav .lof-menu .sub-menu a { display: flex; align-items: center; gap: .75rem; min-height: 48px; padding: .65rem .9rem; border: 0; border-radius: 12px; font-family: var(--lof-font-body); font-size: 1rem; font-weight: 600; color: var(--lof-text); background: none; }
+	.lof-nav .lof-menu .sub-menu a::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: rgba(220, 140, 19, .45); }
+	.lof-nav .lof-menu .sub-menu a::after { content: "\203A"; margin-left: auto; font-size: 1.3rem; line-height: 1; color: var(--lof-muted); display: inline !important; position: static; background: none; transform: none; }
+	.lof-nav .lof-menu .sub-menu a:hover, .lof-nav .lof-menu .sub-menu a:focus-visible { background: var(--lof-surface); color: var(--lof-heading); }
+	.lof-nav .lof-menu .sub-menu .current-menu-item > a { background: var(--lof-surface); color: var(--lof-heading); box-shadow: inset 3px 0 0 var(--lof-gold); }
+	.lof-nav .lof-menu .sub-menu .current-menu-item > a::before { background: var(--lof-gold); }
+	.lof-nav .lof-nav__cta { width: 100%; justify-content: center; min-height: 54px; margin-top: .5rem; border-radius: 14px; font-size: 1rem; }
+}
