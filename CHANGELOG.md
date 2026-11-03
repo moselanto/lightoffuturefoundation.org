@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.16.0 - 3 Nov 2026
+
+- Home: new full-width slider (widget `lof-slider`) replacing the split hero. Three slides using the foundation's own photos and confirmed copy: mission (Elijah's new home), Philister's safe home at 85, Precious staying in school. Each slide has its own headline, text and two buttons; slow zoom, text rise-in, gold progress bars with labels, slide counter, previous/pause/next buttons, keyboard arrows, swipe on phones, pauses on hover/focus and when the tab is hidden, no motion for reduced-motion users. Fits the screen on laptops and up.
+- Figures bar (200+, 30+, 11, 2025) as a white card overlapping the slider edge.
+- Balance: focus-area cards without a photo now get a light branded tile instead of a heavy brown block; cards gain border, shadow and hover lift.
+- Applied by a one-off upgrade (option `lof_hero_rev` = 3) that swaps only the home hero for the slider and backs up the old layout; no "Apply latest design" needed. The importer's home definition uses the slider too.
+
 ## 0.15.0 - 3 Nov 2026
 
 - Website typography switched to the Smile Community Centre pairing (Agnes): Nunito ExtraBold for headings and figures, Figtree for text, buttons and menus. Fonts are self-hosted from the Smile theme (SIL OFL) and preloaded. Cinzel stays in the logo artwork only and is no longer loaded.

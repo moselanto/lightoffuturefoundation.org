@@ -270,3 +270,119 @@ class LOF_Widget_Form extends LOF_Widget_Base {
 		$this->close_section();
 	}
 }
+
+/**
+ * Full-width home slider: one photo, headline and call to action per slide,
+ * with a figures bar. Uses only the foundation's own photos.
+ */
+class LOF_Widget_Slider extends LOF_Widget_Base {
+	public function get_name() {
+		return 'lof-slider';
+	}
+	public function get_title() {
+		return __( 'LOF Home Slider', 'light-of-future' );
+	}
+	public function get_icon() {
+		return 'eicon-slides';
+	}
+	protected function register_controls() {
+		$this->start_controls_section( 'content', array( 'label' => __( 'Slides', 'light-of-future' ) ) );
+		$r = new Repeater();
+		$r->add_control( 'image', array( 'label' => __( 'Photo', 'light-of-future' ), 'type' => Controls_Manager::MEDIA, 'description' => __( 'Only photos the foundation has consent to publish.', 'light-of-future' ) ) );
+		$r->add_control( 'focus', array( 'label' => __( 'Photo focus', 'light-of-future' ), 'type' => Controls_Manager::SELECT, 'default' => 'center', 'options' => array( 'center' => __( 'Centre', 'light-of-future' ), 'top' => __( 'Top', 'light-of-future' ), 'right' => __( 'Right', 'light-of-future' ), 'left' => __( 'Left', 'light-of-future' ) ) ) );
+		$r->add_control( 'tab', array( 'label' => __( 'Short label (progress bar)', 'light-of-future' ), 'type' => Controls_Manager::TEXT ) );
+		$r->add_control( 'eyebrow', array( 'label' => __( 'Eyebrow', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
+		$r->add_control( 'title', array( 'label' => __( 'Headline', 'light-of-future' ), 'type' => Controls_Manager::TEXTAREA, 'rows' => 2 ) );
+		$r->add_control( 'highlight', array( 'label' => __( 'Gold words in headline', 'light-of-future' ), 'type' => Controls_Manager::TEXT ) );
+		$r->add_control( 'text', array( 'label' => __( 'Text', 'light-of-future' ), 'type' => Controls_Manager::TEXTAREA, 'rows' => 3 ) );
+		$r->add_control( 'btn1_label', array( 'label' => __( 'Button 1', 'light-of-future' ), 'type' => Controls_Manager::TEXT ) );
+		$r->add_control( 'btn1_url', array( 'label' => __( 'Button 1 link', 'light-of-future' ), 'type' => Controls_Manager::URL ) );
+		$r->add_control( 'btn2_label', array( 'label' => __( 'Button 2', 'light-of-future' ), 'type' => Controls_Manager::TEXT ) );
+		$r->add_control( 'btn2_url', array( 'label' => __( 'Button 2 link', 'light-of-future' ), 'type' => Controls_Manager::URL ) );
+		$this->add_control( 'slides', array( 'label' => __( 'Slides', 'light-of-future' ), 'type' => Controls_Manager::REPEATER, 'fields' => $r->get_controls(), 'title_field' => '{{{ tab || title }}}' ) );
+		$this->add_control( 'interval', array( 'label' => __( 'Seconds per slide', 'light-of-future' ), 'type' => Controls_Manager::NUMBER, 'default' => 7, 'min' => 4, 'max' => 15 ) );
+		$this->add_control( 'figures_heading', array( 'label' => __( 'Figures bar', 'light-of-future' ), 'type' => Controls_Manager::HEADING, 'separator' => 'before' ) );
+		foreach ( array( 1, 2, 3, 4 ) as $n ) {
+			/* translators: %d: number */
+			$this->add_control( 'fig' . $n, array( 'label' => sprintf( __( 'Figure %d (figure|label)', 'light-of-future' ), $n ), 'type' => Controls_Manager::TEXT, 'label_block' => true ) );
+		}
+		$this->end_controls_section();
+	}
+	protected function render() {
+		$s      = $this->get_settings_for_display();
+		$slides = array();
+		foreach ( (array) ( isset( $s['slides'] ) ? $s['slides'] : array() ) as $sl ) {
+			if ( ! empty( $sl['title'] ) && $this->has_media( isset( $sl['image'] ) ? $sl['image'] : array() ) ) {
+				$slides[] = $sl;
+			}
+		}
+		if ( ! $slides ) {
+			$this->editor_notice( __( 'Add at least one slide with a photo and a headline.', 'light-of-future' ) );
+			return;
+		}
+		$total = count( $slides );
+		$secs  = max( 4, min( 15, (int) ( isset( $s['interval'] ) ? $s['interval'] : 7 ) ) );
+		printf( '<section class="lof-cine" data-lof-cine data-interval="%1$d" aria-roledescription="carousel" aria-label="%2$s" style="--lof-cine-ms:%3$dms">', (int) $secs, esc_attr__( 'Light of Future Foundation highlights', 'light-of-future' ), (int) $secs * 1000 );
+		echo '<div class="lof-cine__track">';
+		foreach ( $slides as $i => $sl ) {
+			$title = esc_html( (string) $sl['title'] );
+			if ( ! empty( $sl['highlight'] ) ) {
+				$hl  = esc_html( $sl['highlight'] );
+				$pos = stripos( $title, $hl );
+				if ( false !== $pos ) {
+					$title = substr( $title, 0, $pos ) . '<span class="lof-hl">' . substr( $title, $pos, strlen( $hl ) ) . '</span>' . substr( $title, $pos + strlen( $hl ) );
+				}
+			}
+			$focus = isset( $sl['focus'] ) ? sanitize_html_class( $sl['focus'] ) : 'center';
+			/* translators: 1: slide number, 2: total */
+			printf( '<article class="lof-cine__slide lof-cine__slide--%1$s%2$s" aria-roledescription="slide" aria-label="%3$s"%4$s>', esc_attr( $focus ), 0 === $i ? ' is-active' : '', esc_attr( sprintf( __( '%1$d of %2$d', 'light-of-future' ), $i + 1, $total ) ), 0 === $i ? '' : ' aria-hidden="true"' );
+			echo '<div class="lof-cine__media">';
+			$this->render_media( $sl['image'], 'full', 'lof-cine__img', 0 === $i );
+			echo '</div><div class="lof-cine__shade" aria-hidden="true"></div>';
+			echo '<div class="lof-container lof-cine__inner"><div class="lof-cine__content">';
+			if ( ! empty( $sl['eyebrow'] ) ) {
+				printf( '<p class="lof-cine__eyebrow">%s</p>', esc_html( $sl['eyebrow'] ) );
+			}
+			printf( '<%1$s class="lof-cine__title">%2$s</%1$s>', 0 === $i ? 'h1' : 'h2', $title ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
+			if ( ! empty( $sl['text'] ) ) {
+				printf( '<p class="lof-cine__text">%s</p>', esc_html( $sl['text'] ) );
+			}
+			echo '<div class="lof-btn-row">';
+			foreach ( array( 'btn1' => 'sun', 'btn2' => 'ghost' ) as $b => $style ) {
+				if ( ! empty( $sl[ $b . '_label' ] ) && ! empty( $sl[ $b . '_url' ]['url'] ) ) {
+					printf( '<a class="lof-btn lof-btn--%1$s" href="%2$s"%4$s>%3$s</a>', esc_attr( $style ), esc_url( $sl[ $b . '_url' ]['url'] ), esc_html( $sl[ $b . '_label' ] ), 0 === $i ? '' : ' tabindex="-1"' );
+				}
+			}
+			echo '</div></div></div></article>';
+		}
+		echo '</div>';
+		if ( $total > 1 ) {
+			echo '<div class="lof-cine__ui"><div class="lof-container lof-cine__ui-inner">';
+			echo '<div class="lof-cine__tabs">';
+			foreach ( $slides as $i => $sl ) {
+				$label = ! empty( $sl['tab'] ) ? $sl['tab'] : wp_trim_words( $sl['title'], 4, '' );
+				printf( '<button type="button" class="lof-cine__tab%1$s" data-go="%2$d"%3$s><span class="lof-cine__bar"><span></span></span><span class="lof-cine__tab-n">%4$02d</span><span class="lof-cine__tab-l">%5$s</span></button>', 0 === $i ? ' is-active' : '', (int) $i, 0 === $i ? ' aria-current="true"' : '', (int) $i + 1, esc_html( $label ) );
+			}
+			echo '</div><div class="lof-cine__ctrl">';
+			printf( '<span class="lof-cine__count" aria-live="polite"><strong>01</strong> / %02d</span>', (int) $total );
+			printf( '<button type="button" class="lof-cine__btn" data-prev aria-label="%s"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z"/></svg></button>', esc_attr__( 'Previous slide', 'light-of-future' ) );
+			printf( '<button type="button" class="lof-cine__btn lof-cine__pause" data-pause aria-pressed="false" aria-label="%s"><svg class="lof-i-pause" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><svg class="lof-i-play" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button>', esc_attr__( 'Pause slideshow', 'light-of-future' ) );
+			printf( '<button type="button" class="lof-cine__btn" data-next aria-label="%s"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="m8.6 18.6 1.4 1.4 8-8-8-8-1.4 1.4 6.6 6.6z"/></svg></button>', esc_attr__( 'Next slide', 'light-of-future' ) );
+			echo '</div></div></div>';
+		}
+		echo '</section>';
+		$figs = array();
+		foreach ( array( 1, 2, 3, 4 ) as $n ) {
+			if ( ! empty( $s[ 'fig' . $n ] ) && false !== strpos( $s[ 'fig' . $n ], '|' ) ) {
+				$figs[] = array_map( 'trim', explode( '|', $s[ 'fig' . $n ], 2 ) );
+			}
+		}
+		if ( $figs ) {
+			echo '<div class="lof-figbar"><div class="lof-container"><dl class="lof-figbar__grid">';
+			foreach ( $figs as $f ) {
+				printf( '<div><dd>%1$s</dd><dt>%2$s</dt></div>', esc_html( $f[0] ), esc_html( $f[1] ) );
+			}
+			echo '</dl></div></div>';
+		}
+	}
+}

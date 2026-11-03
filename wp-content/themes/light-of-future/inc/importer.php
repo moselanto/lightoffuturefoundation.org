@@ -246,29 +246,7 @@ function lof_setup_page_defs() {
 			__( 'Home', 'light-of-future' ),
 			'publish',
 			array(
-				lof_el(
-					'lof-hero',
-					array(
-						'variant'    => 'home',
-						'eyebrow'    => __( 'Registered NGO, Kenya · 23 May 2025', 'light-of-future' ),
-						'title'      => __( 'Bringing hope and opportunity to communities in Kenya', 'light-of-future' ),
-						'highlight'  => __( 'hope', 'light-of-future' ),
-						'text'       => __( 'We support widows, widowers, orphans, vulnerable children and people living with disabilities through education, clean water and community programmes.', 'light-of-future' ),
-						'btn1_label' => __( 'Explore Our Work', 'light-of-future' ),
-						'btn1_url'   => lof_link( '/programmes/' ),
-						'btn2_label' => __( 'Support the Future', 'light-of-future' ),
-						'btn2_url'   => lof_link( '/donate/' ),
-						'collage1'   => lof_photo( 'story-elijah-new-home' ),
-						'collage2'   => lof_photo( 'story-philister-home' ),
-						'stamp'      => __( 'Hope in action', 'light-of-future' ),
-						'card_title' => __( 'Since 2021', 'light-of-future' ),
-						'card_text'  => __( 'A community journey, registered with the NGO Board on 23 May 2025.', 'light-of-future' ),
-						'badge1'     => __( '200+|Children supported', 'light-of-future' ),
-						'badge2'     => __( '30+|Widows assisted', 'light-of-future' ),
-						'badge3'     => __( '11|Focus areas', 'light-of-future' ),
-						'badge4'     => __( '2025|Officially registered', 'light-of-future' ),
-					)
-				),
+				lof_el( 'lof-slider', lof_home_slider_settings() ),
 				lof_el(
 					'lof-intro',
 					array(
@@ -1188,3 +1166,120 @@ function lof_upgrade_home_hero() {
 	}
 }
 add_action( 'init', 'lof_upgrade_home_hero', 20 );
+
+/**
+ * Home slider: the foundation's own photos and confirmed copy only.
+ *
+ * @return array
+ */
+function lof_home_slider_settings() {
+	$story = function ( $slug, $fallback ) {
+		$p = get_page_by_path( $slug, OBJECT, 'lof_story' );
+		return array( 'url' => $p ? get_permalink( $p ) : home_url( $fallback ), 'is_external' => '', 'nofollow' => '' );
+	};
+	return array(
+		'interval' => 7,
+		'slides'   => array(
+			array(
+				'_id'        => 'sl1',
+				'image'      => lof_photo( 'story-elijah-new-home' ),
+				'focus'      => 'center',
+				'tab'        => __( 'Our mission', 'light-of-future' ),
+				'eyebrow'    => __( 'Registered NGO, Kenya · 23 May 2025', 'light-of-future' ),
+				'title'      => __( 'Bringing hope and opportunity to communities in Kenya', 'light-of-future' ),
+				'highlight'  => __( 'hope', 'light-of-future' ),
+				'text'       => __( 'We support widows, widowers, orphans, vulnerable children and people living with disabilities through education, clean water and community programmes.', 'light-of-future' ),
+				'btn1_label' => __( 'Support the Future', 'light-of-future' ),
+				'btn1_url'   => lof_link( '/donate/' ),
+				'btn2_label' => __( 'Explore Our Work', 'light-of-future' ),
+				'btn2_url'   => lof_link( '/programmes/' ),
+			),
+			array(
+				'_id'        => 'sl2',
+				'image'      => lof_photo( 'story-philister-home' ),
+				'focus'      => 'right',
+				'tab'        => __( 'A safe home at 85', 'light-of-future' ),
+				'eyebrow'    => __( 'Decent houses · Inungo village', 'light-of-future' ),
+				'title'      => __( 'A safe home at 85, after 45 years under thatch.', 'light-of-future' ),
+				'highlight'  => __( 'A safe home', 'light-of-future' ),
+				'text'       => __( 'After more than 45 years in a grass-thatched house, Philister now lives in a safe and secure home.', 'light-of-future' ),
+				'btn1_label' => __( 'Read Philister\'s story', 'light-of-future' ),
+				'btn1_url'   => $story( 'philister', '/stories/' ),
+				'btn2_label' => __( 'Help build a home', 'light-of-future' ),
+				'btn2_url'   => lof_link( '/donate/' ),
+			),
+			array(
+				'_id'        => 'sl3',
+				'image'      => lof_photo( 'story-precious-school-shoes' ),
+				'focus'      => 'top',
+				'tab'        => __( 'Staying in school', 'light-of-future' ),
+				'eyebrow'    => __( 'Education · Nairobi', 'light-of-future' ),
+				'title'      => __( 'Keeping children in school, with dignity.', 'light-of-future' ),
+				'highlight'  => __( 'in school', 'light-of-future' ),
+				'text'       => __( 'School fees, uniforms and shoes helped Precious stay in school with confidence.', 'light-of-future' ),
+				'btn1_label' => __( 'Read Precious\'s story', 'light-of-future' ),
+				'btn1_url'   => $story( 'precious', '/stories/' ),
+				'btn2_label' => __( 'Support education', 'light-of-future' ),
+				'btn2_url'   => lof_link( '/donate/' ),
+			),
+		),
+		'fig1'     => __( '200+|Children supported', 'light-of-future' ),
+		'fig2'     => __( '30+|Widows assisted', 'light-of-future' ),
+		'fig3'     => __( '11|Focus areas', 'light-of-future' ),
+		'fig4'     => __( '2025|Officially registered', 'light-of-future' ),
+	);
+}
+
+/**
+ * One-off: replace the home hero with the full-width slider (rev 3). Runs once, backs up
+ * the previous layout, and only touches the home hero widget Light of Future created.
+ */
+function lof_upgrade_home_slider() {
+	if ( (int) get_option( 'lof_hero_rev', 0 ) >= 3 ) {
+		return;
+	}
+	$ids = get_option( 'lof_photo_ids', array() );
+	if ( ! is_array( $ids ) || empty( $ids['story-elijah-new-home'] ) ) {
+		return; // Photos not imported yet; try again on a later request.
+	}
+	update_option( 'lof_hero_rev', 3, false );
+	$page = get_page_by_path( 'home', OBJECT, 'page' );
+	if ( ! $page ) {
+		$front = (int) get_option( 'page_on_front' );
+		$page  = $front ? get_post( $front ) : null;
+	}
+	if ( ! $page ) {
+		return;
+	}
+	$raw  = get_post_meta( $page->ID, '_elementor_data', true );
+	$data = is_string( $raw ) ? json_decode( $raw, true ) : $raw;
+	if ( ! is_array( $data ) ) {
+		return;
+	}
+	$changed = false;
+	$walk    = function ( &$els ) use ( &$walk, &$changed ) {
+		foreach ( $els as &$el ) {
+			if ( ! $changed && isset( $el['widgetType'] ) && 'lof-hero' === $el['widgetType'] && ( ! isset( $el['settings']['variant'] ) || 'page' !== $el['settings']['variant'] ) ) {
+				$el['widgetType'] = 'lof-slider';
+				$el['settings']   = lof_home_slider_settings();
+				$changed          = true;
+			}
+			if ( ! empty( $el['elements'] ) && is_array( $el['elements'] ) ) {
+				$walk( $el['elements'] );
+			}
+		}
+		unset( $el );
+	};
+	$walk( $data );
+	if ( ! $changed ) {
+		return;
+	}
+	update_post_meta( $page->ID, '_lof_layout_backup', wp_slash( is_string( $raw ) ? $raw : wp_json_encode( $raw ) ) );
+	update_post_meta( $page->ID, '_lof_layout_backup_date', current_time( 'mysql' ) );
+	update_post_meta( $page->ID, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	delete_post_meta( $page->ID, '_elementor_css' );
+	if ( class_exists( '\\Elementor\\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+}
+add_action( 'init', 'lof_upgrade_home_slider', 21 );
