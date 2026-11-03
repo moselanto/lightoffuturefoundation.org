@@ -180,7 +180,10 @@ class LOF_Widget_Stories extends LOF_Widget_Base {
 			printf( '<a class="lof-btn lof-btn--earth" href="%1$s">%2$s<span class="screen-reader-text"> %3$s</span></a>', esc_url( $flink ), esc_html( $s['more_label'] ? $s['more_label'] : __( 'Read the story', 'light-of-future' ) ), esc_html( get_the_title( $f ) ) );
 			echo '</div></article>';
 		}
-		echo $items ? '<div class="lof-grid lof-grid--3">' : '<div>';
+		if ( $items && isset( $s['layout'] ) && 'featured' === $s['layout'] ) {
+			echo '<div class="lof-more-head"><p class="lof-eyebrow">' . esc_html__( 'More stories of change', 'light-of-future' ) . '</p><span class="lof-more-head__rule" aria-hidden="true"></span></div>';
+		}
+		echo $items ? '<div class="lof-grid lof-grid--3' . ( isset( $s['layout'] ) && 'featured' === $s['layout'] ? ' lof-stories-more' : '' ) . '">' : '<div>';
 		foreach ( $items as $p ) {
 			$link  = get_permalink( $p );
 			$quote = (string) get_post_meta( $p->ID, 'lof_quote', true );

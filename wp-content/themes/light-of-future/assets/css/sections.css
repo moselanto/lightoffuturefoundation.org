@@ -1576,3 +1576,57 @@ html[data-theme="dark"] .lof-hero__facts { border: 1px solid rgba(244, 175, 22, 
 html[data-theme="dark"] .lof-page-talent-development .lof-tone-white .lof-card--pillar, html[data-theme="dark"] .lof-page-talent-development .lof-steps { border-color: rgba(244, 175, 22, .16); box-shadow: 0 26px 50px -34px rgba(0, 0, 0, .85); }
 html[data-theme="dark"] .lof-page-talent-development .lof-steps .lof-card--pillar { border-color: rgba(244, 175, 22, .14); }
 html[data-theme="dark"] .lof-placeholder--prog { background: radial-gradient(120% 90% at 85% 0%, rgba(244, 175, 22, .4), rgba(244, 175, 22, 0) 55%), linear-gradient(150deg, #3a2614, #22160a); }
+
+
+/* ===== 0.27.0: Stories and Impact ===== */
+/* "More stories" divider under the featured story */
+.lof-more-head { display: flex; align-items: center; gap: 1rem; margin: clamp(2.25rem, 5vw, 3.5rem) 0 1.5rem; }
+.lof-more-head .lof-eyebrow { margin: 0; white-space: nowrap; }
+.lof-more-head__rule { flex: 1; height: 1px; background: var(--lof-line); }
+
+/* Stories after the featured one: equal, balanced cards (no cinematic lead, no empty column) */
+.lof-grid.lof-stories-more { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; grid-template-rows: none !important; gap: clamp(1rem, 2.4vw, 1.75rem) !important; }
+.lof-grid.lof-stories-more:not(:has(> :nth-child(3))) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+.lof-grid.lof-stories-more > .lof-card--story { position: relative !important; grid-row: auto !important; display: flex !important; flex-direction: column !important; min-height: 0 !important; border: 1px solid var(--lof-line) !important; background: var(--lof-surface) !important; color: inherit !important; border-radius: 24px; overflow: hidden; justify-content: flex-start !important; }
+.lof-grid.lof-stories-more > .lof-card--story .lof-card__media { position: relative !important; inset: auto !important; z-index: 0 !important; flex: none !important; aspect-ratio: 16 / 10 !important; min-height: 0 !important; display: block; overflow: hidden; }
+.lof-grid.lof-stories-more > .lof-card--story .lof-card__media img { width: 100%; height: 100% !important; object-fit: cover; }
+.lof-grid.lof-stories-more > .lof-card--story .lof-card__media::after { display: none !important; }
+.lof-grid.lof-stories-more > .lof-card--story .lof-card__body { flex: 1 1 auto !important; margin-top: 0 !important; background: none !important; padding: 1.5rem 1.6rem 1.6rem !important; justify-content: flex-start !important; display: flex; flex-direction: column; gap: .6rem; }
+.lof-grid.lof-stories-more > .lof-card--story .lof-card__title { font-size: clamp(1.25rem, 1.8vw, 1.5rem) !important; text-shadow: none !important; }
+.lof-grid.lof-stories-more > .lof-card--story .lof-card__title a { color: var(--lof-heading) !important; }
+.lof-grid.lof-stories-more > .lof-card--story .lof-card__body > p { color: var(--lof-muted) !important; text-shadow: none !important; font-size: 1rem !important; max-width: none !important; }
+.lof-grid.lof-stories-more > .lof-card--story .lof-card__link { margin-top: auto; align-self: flex-start; padding: .65rem 1.15rem !important; border-radius: 999px; background: rgba(244, 175, 22, .16) !important; color: var(--lof-heading) !important; }
+.lof-grid.lof-stories-more > .lof-card--story:hover .lof-card__link { background: var(--lof-gold) !important; color: #2E1E0E !important; }
+.lof-grid.lof-stories-more > .lof-card--story .lof-card__place { position: absolute; top: 14px; left: 14px; background: var(--lof-gold) !important; color: #2E1E0E !important; }
+@media (max-width: 760px) { .lof-grid.lof-stories-more, .lof-grid.lof-stories-more:not(:has(> :nth-child(3))) { grid-template-columns: 1fr !important; } }
+html[data-theme="dark"] .lof-grid.lof-stories-more > .lof-card--story { border-color: rgba(244, 175, 22, .16) !important; }
+
+/* Stories: "With dignity and consent" as icon cards */
+.lof-page-stories .lof-tone-white .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.lof-page-stories .lof-tone-white .lof-card--pillar { position: relative; padding: 2.2rem 1.8rem 2rem; border: 1px solid var(--lof-line); border-top: 0; border-radius: 24px; background: var(--lof-surface); box-shadow: 0 26px 50px -38px rgba(43, 29, 14, .6); overflow: hidden; transition: transform .25s ease; }
+.lof-page-stories .lof-tone-white .lof-card--pillar:hover { transform: translateY(-4px); }
+.lof-page-stories .lof-tone-white .lof-card--pillar::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber)); }
+.lof-page-stories .lof-tone-white .lof-card--pillar::before { content: ""; display: block; width: 60px; height: 60px; margin-bottom: 1.2rem; border-radius: 18px; background-color: rgba(244, 175, 22, .16); background-repeat: no-repeat; background-position: center; background-size: 28px 28px; }
+.lof-page-stories .lof-tone-white .lof-card--pillar:nth-child(1)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC8C13'%3E%3Cpath d='M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-1.5 15.5-4-4 1.4-1.4 2.6 2.6 6.1-6.1 1.4 1.4-7.5 7.5z'/%3E%3C/svg%3E"); }
+.lof-page-stories .lof-tone-white .lof-card--pillar:nth-child(2)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC8C13'%3E%3Cpath d='M12 21s-7.5-4.6-9.4-9.3C1.2 8 3.4 4 7.1 4c2 0 3.4 1.1 4.9 3 1.5-1.9 2.9-3 4.9-3 3.7 0 5.9 4 4.5 7.7C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E"); }
+.lof-page-stories .lof-tone-white .lof-card--pillar:nth-child(3)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC8C13'%3E%3Cpath d='M4 3h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H8l-4 4V4a1 1 0 0 1 1-1zm3 5v2h10V8H7zm0 4v2h7v-2H7z'/%3E%3C/svg%3E"); }
+.lof-page-stories .lof-tone-white .lof-card__title { font-size: 1.3rem; margin-bottom: .4rem; }
+.lof-page-stories .lof-tone-white .lof-card--pillar p { font-size: 1rem; line-height: 1.65; color: var(--lof-muted); }
+html[data-theme="dark"] .lof-page-stories .lof-tone-white .lof-card--pillar { border-color: rgba(244, 175, 22, .16); }
+
+/* Impact: figures band, steps panel and section rhythm */
+.lof-page-impact .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.lof-page-impact .lof-impact:not(.lof-impact--strip) .lof-impact__item { padding: 2rem 1.25rem; }
+.lof-page-impact .lof-steps { gap: 0; border-radius: 24px; overflow: hidden; border: 1px solid var(--lof-line); background: var(--lof-surface); box-shadow: 0 26px 50px -40px rgba(43, 29, 14, .6); }
+.lof-page-impact .lof-steps .lof-card--pillar { border: 0; border-right: 1px solid var(--lof-line); border-radius: 0; background: transparent; box-shadow: none; padding: 2rem 1.8rem; }
+.lof-page-impact .lof-steps .lof-card--pillar:last-child { border-right: 0; }
+.lof-page-impact .lof-steps .lof-card__kicker { display: inline-grid; place-items: center; width: 46px; height: 46px; margin-bottom: .9rem; border-radius: 14px; background: var(--lof-gold); color: #2E1E0E; font: 800 .95rem/1 var(--lof-font-display); }
+.lof-page-impact .lof-steps .lof-card__title { font-size: 1.2rem; }
+.lof-page-impact .lof-card--programme { display: flex; flex-direction: column; height: 100%; border-radius: 22px; overflow: hidden; }
+.lof-page-impact .lof-card--programme .lof-card__media { aspect-ratio: 16 / 10; display: block; overflow: hidden; }
+.lof-page-impact .lof-card--programme .lof-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.lof-page-impact .lof-card--programme .lof-card__body { flex: 1; display: flex; flex-direction: column; }
+.lof-page-impact .lof-card--programme .lof-card__link { margin-top: auto; }
+@media (max-width: 1024px) { .lof-page-impact .lof-steps .lof-card--pillar { border-right: 0; border-bottom: 1px solid var(--lof-line); } .lof-page-impact .lof-steps .lof-card--pillar:last-child { border-bottom: 0; } }
+html[data-theme="dark"] .lof-page-impact .lof-steps { border-color: rgba(244, 175, 22, .16); }
+html[data-theme="dark"] .lof-page-impact .lof-steps .lof-card--pillar { border-color: rgba(244, 175, 22, .14); }

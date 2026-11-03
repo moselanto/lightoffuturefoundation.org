@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.27.0 - 3 Nov 2026
+
+- Stories: a "More stories of change" divider under the featured story, and the remaining stories as equal photo cards side by side (no empty column, no mismatched card sizes); "With dignity and consent" as icon cards.
+- Impact: hero intro line; new "From relief to self-reliance" three-step panel and "Focus areas behind the numbers" (six focus areas with a link to all 11), using wording already on the Programmes page; tidier figures and card rhythm.
+
 ## 0.26.0 - 3 Nov 2026
 
 - Fix: the inner-page hero photo (0.24.0) and the Leadership "At a glance" card (0.25.0) now actually show on the live site (their helpers were only loaded in wp-admin).

@@ -524,9 +524,11 @@ function lof_setup_page_defs() {
 			__( 'Impact', 'light-of-future' ),
 			'publish',
 			array(
-				lof_page_hero( __( 'Our impact', 'light-of-future' ), __( 'Hope you can count', 'light-of-future' ) ),
+				lof_page_hero( __( 'Our impact', 'light-of-future' ), __( 'Hope you can count', 'light-of-future' ), __( 'The numbers behind our work, and the people behind the numbers.', 'light-of-future' ) ),
 				lof_el( 'lof-impact', array( 'eyebrow' => '', 'title' => __( 'What your support has made possible', 'light-of-future' ), 'show_source' => 'yes', 'tone' => 'earth' ) ),
 				lof_el( 'lof-stories', array( 'eyebrow' => __( 'Behind the numbers', 'light-of-future' ), 'title' => __( 'Real people, real change', 'light-of-future' ), 'tone' => 'cream' ) ),
+				lof_impact_extra_sections()[0],
+				lof_impact_extra_sections()[1],
 				lof_closing_cta(),
 			),
 		),
@@ -1505,3 +1507,82 @@ function lof_upgrade_talent_page() {
 	}
 }
 add_action( 'init', 'lof_upgrade_talent_page', 24 );
+
+
+/**
+ * Impact page additions (copy reused from the Programmes page; no new claims).
+ *
+ * @return array[] Elementor sections.
+ */
+function lof_impact_extra_sections() {
+	return array(
+		lof_el(
+			'lof-cards',
+			array(
+				'eyebrow' => __( 'How change happens', 'light-of-future' ),
+				'title'   => __( 'From relief to self-reliance', 'light-of-future' ),
+				'intro'   => __( 'We meet urgent needs first, then walk with families until they can stand on their own.', 'light-of-future' ),
+				'style'   => 'steps',
+				'columns' => '3',
+				'tone'    => 'white',
+				'items'   => array(
+					array( '_id' => 'ih1', 'kicker' => '01', 'title' => __( 'Meet urgent needs', 'light-of-future' ), 'text' => __( 'Safe houses, food, medical care and hygiene kits for those who need them most.', 'light-of-future' ) ),
+					array( '_id' => 'ih2', 'kicker' => '02', 'title' => __( 'Open doors', 'light-of-future' ), 'text' => __( 'Education, talent platforms and awareness of rights, so people can see and seize opportunity.', 'light-of-future' ) ),
+					array( '_id' => 'ih3', 'kicker' => '03', 'title' => __( 'Build self-reliance', 'light-of-future' ), 'text' => __( 'Hand skills training, organic farming and business start-ups for a lasting way out of poverty.', 'light-of-future' ) ),
+				),
+			)
+		),
+		lof_el( 'lof-programmes', array( 'eyebrow' => __( 'Where your support goes', 'light-of-future' ), 'title' => __( 'Focus areas behind the numbers', 'light-of-future' ), 'count' => 6, 'btn1_label' => __( 'See all 11 focus areas', 'light-of-future' ), 'btn1_url' => lof_link( '/programmes/' ), 'tone' => 'sand' ) ),
+	);
+}
+
+/**
+ * 0.27.0: Impact page - hero intro, "From relief to self-reliance" and six focus areas,
+ * inserted once before the closing call to action (option lof_impact_rev).
+ */
+function lof_upgrade_impact_page() {
+	if ( (int) get_option( 'lof_impact_rev', 0 ) >= 1 ) {
+		return;
+	}
+	update_option( 'lof_impact_rev', 1, false );
+	$page = get_page_by_path( 'impact', OBJECT, 'page' );
+	if ( ! $page ) {
+		return;
+	}
+	$raw  = get_post_meta( $page->ID, '_elementor_data', true );
+	$data = is_string( $raw ) ? json_decode( $raw, true ) : $raw;
+	if ( ! is_array( $data ) || false !== strpos( (string) wp_json_encode( $data ), 'Focus areas behind the numbers' ) ) {
+		return;
+	}
+	$walk = function ( &$els ) use ( &$walk ) {
+		foreach ( $els as &$el ) {
+			if ( isset( $el['widgetType'] ) && 'lof-hero' === $el['widgetType'] && empty( $el['settings']['text'] ) ) {
+				$el['settings']['text'] = __( 'The numbers behind our work, and the people behind the numbers.', 'light-of-future' );
+			}
+			if ( ! empty( $el['elements'] ) && is_array( $el['elements'] ) ) {
+				$walk( $el['elements'] );
+			}
+		}
+		unset( $el );
+	};
+	$walk( $data );
+	$pos = count( $data );
+	foreach ( $data as $i => $sec ) {
+		if ( false !== strpos( (string) wp_json_encode( $sec ), '"widgetType":"lof-cta"' ) ) {
+			$pos = $i;
+		}
+	}
+	array_splice( $data, $pos, 0, lof_impact_extra_sections() );
+	update_post_meta( $page->ID, '_lof_layout_backup', wp_slash( is_string( $raw ) ? $raw : wp_json_encode( $raw ) ) );
+	update_post_meta( $page->ID, '_lof_layout_backup_date', current_time( 'mysql' ) );
+	update_post_meta( $page->ID, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	delete_post_meta( $page->ID, '_elementor_css' );
+	delete_post_meta( $page->ID, '_elementor_element_cache' );
+	if ( class_exists( '\\Elementor\\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	if ( has_action( 'litespeed_purge_all' ) ) {
+		do_action( 'litespeed_purge_all' );
+	}
+}
+add_action( 'init', 'lof_upgrade_impact_page', 25 );

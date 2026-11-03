@@ -1,6 +1,6 @@
 # HANDOVER - Light of Future Foundation website (read this first)
 
-Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.26.0**. Written so the next AI agent or developer can pick up without the chat history.
+Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.27.0**. Written so the next AI agent or developer can pick up without the chat history.
 
 ## 1. Where we are in one paragraph
 The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on WordPress + Elementor (free) + Hello Elementor parent theme, with our child theme `light-of-future` and plugin `light-of-future-core`. Design, content and mobile UX went through many rounds with Agnes (Pimofy Digital) between 30 Oct and 3 Nov 2026. Every page, the header, footer, phone bottom navigation and phone menu are finished to the current design standard. **Not done yet:** Paystack donations (no keys), WooCommerce crafts shop, real partner logos, focus-area photos, public email and WhatsApp number, approved legal wording, and launch (turning indexing on).
@@ -42,6 +42,7 @@ The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on Wo
 | `lof_upgrade_home_slider()` | `lof_hero_rev` = 3 | Replaces the home hero with the full-width slider (`lof-slider`); backs up the old layout in `_lof_layout_backup`. |
 | `lof_upgrade_faq_more()` | `lof_faq_rev` = 1 | FAQ: hero intro line, section heading and questions 6-10 (only if the page still has the original 5). Backs up the layout in `_lof_layout_backup`. |
 | `lof_upgrade_talent_page()` | `lof_talent_rev` = 1 | Talent Development: inserts the "From discovery to the stage" steps section before the call to action. |
+| `lof_upgrade_impact_page()` | `lof_impact_rev` = 1 | Impact: hero intro line, "From relief to self-reliance" steps and six focus areas before the call to action. |
 | `lof_upgrade_legal_pages()` | `lof_legal_rev` = 1 | Creates **Privacy Policy** and **Terms of Use** with placeholder wording (meta `_lof_legal_placeholder`) and the "Footer legal links" menu in the `lof-legal` location. Never overwrites a published page. |
 To re-run one, delete its option (e.g. with WP-CLI `wp option delete lof_legal_rev`).
 

@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.26.0** and Core **0.26.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.27.0** and Core **0.27.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 23:00 EAT:** 0.27.0: Stories - "More stories of change" divider and equal cards after the featured story (`.lof-stories-more`), consent cards with icons. Impact - hero intro, "From relief to self-reliance" steps and six focus areas added by one-off `lof_upgrade_impact_page` (option `lof_impact_rev`).
 
 - **3 Nov 2026, 22:55 EAT:** 0.26.0: FIX - hero side photo and Leadership "At a glance" helpers moved from admin-only `inc/importer.php` to `inc/template-tags.php` (they never rendered on the front end in 0.24/0.25). Programmes: icon tiles for focus areas without photos (`lof_programme_icon()`), 11 cards balanced with last row centred, equal-height cards. Talent Development: icon cards and a new "From discovery to the stage" section (one-off `lof_upgrade_talent_page`, option `lof_talent_rev`).
 
