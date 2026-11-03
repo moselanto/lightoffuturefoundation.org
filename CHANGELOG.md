@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.16.2 - 3 Nov 2026
+
+- Phone slider rebuilt as a photo card with the text on a dark panel underneath, so the pill and headline never sit over a face; pill stays on one line.
+- Desktop slide 3: text column narrowed so it keeps a clear gap from the photo.
+
 ## 0.16.1 - 3 Nov 2026
 
 - Slider: progress bars and buttons now sit clear of the overlapping figures card on desktop.

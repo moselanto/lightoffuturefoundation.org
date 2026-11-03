@@ -808,3 +808,19 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 	.lof-cine__eyebrow { font-size: .68rem; }
 	.lof-cine__text { font-size: .98rem; }
 }
+
+/* ===== 0.16.2: phone slider as photo card + text panel; slide 3 spacing ===== */
+@media (min-width: 761px) { .lof-cine__slide--top .lof-cine__content { max-width: min(560px, 38vw); } }
+@media (max-width: 760px) {
+	.lof-cine, .lof-cine__track, .lof-cine__slide { min-height: 0; }
+	.lof-cine__slide { display: flex; flex-direction: column; }
+	.lof-cine__media { position: relative; inset: auto; height: auto; aspect-ratio: 4 / 3.3; flex: none; }
+	.lof-cine__media::after { content: ""; position: absolute; inset: auto 0 0 0; height: 45%; background: linear-gradient(0deg, #1C1208, rgba(28, 18, 8, 0)); }
+	.lof-cine__media::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 30%; z-index: 1; background: linear-gradient(180deg, rgba(28, 18, 8, .55), rgba(28, 18, 8, 0)); }
+	.lof-cine__shade { display: none; }
+	.lof-cine__inner { height: auto; min-height: 0; flex: 1; align-items: flex-start; padding-top: .5rem; padding-bottom: 2.75rem; }
+	.lof-cine__content { padding-top: 0; }
+	.lof-cine__eyebrow { font-size: .62rem; letter-spacing: .08em; padding: .35rem .7rem; white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+	.lof-cine__title { font-size: clamp(1.75rem, 7.6vw, 2.25rem); }
+	.lof-cine__media img { transform: none; }
+}
