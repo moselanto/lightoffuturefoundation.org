@@ -2103,3 +2103,29 @@ html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-section__title, html[data-the
 .lof-footer__cta-actions .lof-btn--earth { background: var(--lof-gold) !important; color: #2E1E0E !important; border: 0 !important; }
 .lof-footer__cta-actions .lof-footer__cta-ghost { background: transparent !important; color: var(--lof-cream) !important; border: 1.5px solid rgba(252, 246, 225, .45) !important; }
 @media (max-width: 760px) { .lof-footer__cta-actions { min-width: 0; width: 100%; } }
+
+
+/* ===== 0.37.0: Page hero - full-width background photo, shorter height (benchmark: Cistern of Hope) ===== */
+.lof-hero.lof-hero--page.has-bg { position: relative; display: flex; align-items: center; min-height: clamp(280px, 30vw, 400px); padding-block: clamp(2.75rem, 5vw, 4rem) !important; background: #2A1B0C !important; overflow: hidden; isolation: isolate; }
+.lof-hero.lof-hero--page.has-bg .lof-hero__art, .lof-hero.lof-hero--page.has-bg .lof-hero__side { display: none !important; }
+.lof-hero.lof-hero--page.has-bg .lof-hero__bg { position: absolute; inset: 0; z-index: -2; }
+.lof-hero.lof-hero--page.has-bg .lof-hero__bg img.lof-hero__bg-img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; max-width: none; object-fit: cover; object-position: center 35%; }
+.lof-hero.lof-hero--page.has-bg::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(28, 18, 8, .94) 0%, rgba(28, 18, 8, .82) 38%, rgba(28, 18, 8, .45) 70%, rgba(28, 18, 8, .25) 100%), linear-gradient(0deg, rgba(28, 18, 8, .55), rgba(28, 18, 8, 0) 45%); }
+.lof-hero.lof-hero--page.has-bg::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; z-index: 1; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber), var(--lof-gold)); }
+.lof-hero.lof-hero--page.has-bg .lof-hero__inner { position: relative; width: 100%; }
+.lof-hero.lof-hero--page.has-bg .lof-hero__content { max-width: 680px; }
+.lof-hero.lof-hero--page.has-bg .lof-crumbs, .lof-hero.lof-hero--page.has-bg .lof-crumbs a { color: rgba(252, 246, 225, .78) !important; }
+.lof-hero.lof-hero--page.has-bg .lof-crumbs [aria-current] { color: var(--lof-gold) !important; }
+.lof-hero.lof-hero--page.has-bg .lof-hero__eyebrow { background: rgba(244, 175, 22, .18) !important; color: var(--lof-gold) !important; border: 1px solid rgba(244, 175, 22, .4); }
+.lof-hero.lof-hero--page.has-bg .lof-hero__title { color: #FFFDF6 !important; font-size: clamp(2.3rem, 4.6vw, 3.6rem) !important; line-height: 1.08; margin: .75rem 0 .75rem !important; text-shadow: 0 2px 20px rgba(0, 0, 0, .35); }
+.lof-hero.lof-hero--page.has-bg .lof-hero__text { color: rgba(252, 246, 225, .9) !important; font-size: clamp(1.05rem, 1.4vw, 1.2rem) !important; max-width: 56ch; }
+.lof-hero.lof-hero--page.has-bg .lof-hero__content::after { margin-top: 1.1rem !important; }
+/* Leadership: "At a glance" card sits on the photo */
+.lof-hero.lof-hero--page.has-bg.has-side .lof-hero__inner { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.lof-hero.lof-hero--page.has-bg .lof-hero__facts { background: rgba(28, 18, 8, .72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(244, 175, 22, .3); }
+@media (max-width: 900px) { .lof-hero.lof-hero--page.has-bg.has-side .lof-hero__inner { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+	.lof-hero.lof-hero--page.has-bg { min-height: 240px; padding-block: 2.25rem !important; }
+	.lof-hero.lof-hero--page.has-bg::before { background: linear-gradient(0deg, rgba(28, 18, 8, .95) 0%, rgba(28, 18, 8, .8) 55%, rgba(28, 18, 8, .55) 100%); }
+	.lof-hero.lof-hero--page.has-bg .lof-hero__title { font-size: clamp(2rem, 8.5vw, 2.5rem) !important; }
+}

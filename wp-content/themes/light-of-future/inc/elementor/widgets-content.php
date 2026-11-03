@@ -115,8 +115,13 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 		}
 		$collage = 'home' === $variant && ! $has_img ? $collage : array();
 		$side    = ( 'page' === $variant && ! $has_img && function_exists( 'lof_page_hero_side_photo' ) ) ? lof_page_hero_side_photo() : 0;
-		$facts   = ( 'page' === $variant && ! $has_img && ! $side && function_exists( 'lof_page_hero_facts' ) ) ? lof_page_hero_facts() : array();
-		printf( '<section class="lof-hero lof-hero--%1$s%2$s%3$s%4$s">', esc_attr( $variant ), $has_img ? ' has-photo' : '', $collage ? ' has-collage' : '', ( $side || $facts ) ? ' has-side' : '' );
+		$facts   = ( 'page' === $variant && ! $has_img && function_exists( 'lof_page_hero_facts' ) ) ? lof_page_hero_facts() : array();
+		printf( '<section class="lof-hero lof-hero--%1$s%2$s%3$s%4$s%5$s">', esc_attr( $variant ), $has_img ? ' has-photo' : '', $collage ? ' has-collage' : '', $facts ? ' has-side' : '', $side ? ' has-bg' : '' );
+		if ( $side ) {
+			echo '<div class="lof-hero__bg" aria-hidden="true">';
+			echo wp_get_attachment_image( $side, 'full', false, array( 'class' => 'lof-hero__bg-img', 'alt' => '', 'loading' => 'eager', 'decoding' => 'async', 'fetchpriority' => 'high', 'sizes' => '100vw' ) );
+			echo '</div>';
+		}
 		if ( $has_img ) {
 			echo '<div class="lof-hero__media">';
 			$this->render_media( $s['image'], 'lof-hero', 'lof-hero__img', 'home' === $variant );
@@ -157,11 +162,6 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 			echo '</ul>';
 		}
 		echo '</div>';
-		if ( $side ) {
-			echo '<figure class="lof-hero__side" aria-hidden="true"><span class="lof-hero__side-ring"></span>';
-			echo wp_get_attachment_image( $side, 'large', false, array( 'class' => 'lof-hero__side-img', 'alt' => '', 'loading' => 'eager', 'decoding' => 'async', 'sizes' => '(max-width: 900px) 90vw, 420px' ) );
-			echo '</figure>';
-		}
 		if ( $facts ) {
 			echo '<aside class="lof-hero__facts" aria-label="' . esc_attr__( 'At a glance', 'light-of-future' ) . '"><p class="lof-hero__facts-kicker">' . esc_html__( 'At a glance', 'light-of-future' ) . '</p><dl>';
 			foreach ( $facts as $f ) {

@@ -111,6 +111,7 @@ function lof_page_hero_side_photo() {
 	$map = array(
 		'about-us'           => 'story-elijah-new-home',
 		'faq'                => 'story-philister-home',
+		'leadership'         => 'story-elijah-new-home',
 		'programmes'         => 'story-precious-school-shoes',
 		'talent-development' => 'story-precious-school-shoes',
 		'stories'            => 'story-philister-home',

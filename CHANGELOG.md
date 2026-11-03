@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.37.0 - 3 Nov 2026
+
+- Page heroes (About, Leadership, Programmes, Talent Development, Stories, Impact, Get Involved, Donate, Contact, FAQ): the foundation's photo now fills the whole banner behind the title with a dark brown overlay, white title, gold label and breadcrumb, and a thin gold line along the bottom. Banners are shorter (about 280-400px on laptops, 240px on phones), in the style of the Cistern of Hope site. Leadership keeps its "At a glance" card on top of the photo.
+
 ## 0.36.0 - 3 Nov 2026
 
 - Closing call to action ("Be the light in someone's future", on most pages): the small buttons on the right are now a dark donation panel with a "Make a difference today" label, a large gold Donate button with a heart icon, an outline Get involved button and a "Registered NGO, Kenya - 23 May 2025" trust line. Larger heading on the left. Stacks on phones. The footer's "Every gift lights a future" card uses the same button style.
