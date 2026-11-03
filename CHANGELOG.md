@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.40.1 - 3 Nov 2026
+
+- Home, "Our impact": much shorter band. The heading sits on the left with its short intro on the right on one line, the four figure cards are slimmer with slightly smaller numbers, and the section padding is reduced. Two figures per row on phones.
+
 ## 0.40.0 - 3 Nov 2026
 
 - Home, "Our story": redesigned as one clean card. Francis's portrait fills the left panel from top to bottom with his name and title on a soft dark band; the heading, letter, quote, a simple 20 / 2021 / 2025 timeline and the "Read our story" button sit on the right. The arch frame, offset gold outline, floating name tag and separate timeline box are gone. On tablets and phones the photo sits on top of the card.

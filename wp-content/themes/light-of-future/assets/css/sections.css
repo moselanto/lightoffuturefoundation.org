@@ -2276,3 +2276,23 @@ section.lof-feature--story .lof-btn-row { margin-top: 2rem !important; }
 	section.lof-feature--story .lof-milestones > div::before { top: .35rem !important; }
 }
 html[data-theme="dark"] section.lof-feature--story .lof-feature__grid { border-color: rgba(244, 175, 22, .18); box-shadow: 0 50px 90px -50px rgba(0, 0, 0, .9); }
+
+
+/* ===== 0.40.1: Home "Our impact" band - compact height ===== */
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) { padding-block: clamp(2.5rem, 4.5vw, 3.5rem) !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__head { display: grid; grid-template-columns: auto 1fr; align-items: end; column-gap: 2rem; max-width: none !important; margin: 0 0 1.5rem !important; text-align: left !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__head .lof-eyebrow { grid-column: 1 / -1; justify-content: flex-start !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__title { margin: .2rem 0 0 !important; font-size: clamp(1.7rem, 2.8vw, 2.3rem) !important; text-align: left !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__title br { display: none; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__intro { margin: 0 !important; max-width: 46ch; justify-self: end; text-align: right; font-size: 1rem !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__head::after { display: none !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__grid { gap: .85rem !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__item { padding: 1.1rem 1rem !important; border-radius: 16px !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__value { font-size: clamp(2rem, 3.4vw, 2.6rem) !important; margin: 0 0 .25rem !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__label { font-size: max(.78rem, 13px) !important; }
+body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__note, body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__source, body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__item small { display: none !important; }
+@media (max-width: 760px) {
+	body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__head { grid-template-columns: 1fr; }
+	body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__intro { justify-self: start; text-align: left; margin-top: .5rem !important; }
+	body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__grid { grid-template-columns: 1fr 1fr !important; }
+}
