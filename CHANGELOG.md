@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.18.0 - 3 Nov 2026
+
+Creative pass on four home sections (Agnes), CSS and widget markup only:
+- Our story: founder letter layout. Arch-shaped portrait with gold outline and a name card (from the quote's attribution), drop cap on the first paragraph, quote as a dark pull-quote card, milestones as a gold timeline. Story features get class `lof-feature--story`.
+- Stories of change: lead story becomes a full-photo card with text over a dark gradient and a gold "Read the story" button; other two stay side by side; hover lift on all.
+- Who we are: full-bleed split panel (photo edge to edge on one half, text on a sand panel on the other) with gold ring and caption over the photo, gold rule under the lead paragraph; no hyphen breaks in the phone heading. Plain features get class `lof-feature--about`.
+- Give today: sun-lit brown band with soft rays, arch-shaped photo matching the sun in the logo, giving panel with dashed step divider, brand-font amounts and an arrow on the button.
+
 ## 0.17.0 - 3 Nov 2026
 
 Home sections redesigned (Agnes): CSS and widget markup only, no "Apply latest design" needed.

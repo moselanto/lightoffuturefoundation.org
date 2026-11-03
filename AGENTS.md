@@ -27,7 +27,7 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 
 ## Current state (30 Oct 2026, evening)
 
-- Theme **0.17.0** and Core **0.17.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.18.0** and Core **0.18.0** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
 
@@ -43,6 +43,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 16:20 EAT:** 0.18.0: Our story, Stories of change, Who we are, Give today creative pass.
 
 - **3 Nov 2026, 15:50 EAT:** 0.17.0: focus areas, stories, who we are, give today, approach steps redesigned.
 

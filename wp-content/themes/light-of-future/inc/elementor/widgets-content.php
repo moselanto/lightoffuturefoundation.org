@@ -262,12 +262,16 @@ class LOF_Widget_Feature extends LOF_Widget_Base {
 	protected function render() {
 		$s    = $this->get_settings_for_display();
 		$side = isset( $s['image_side'] ) && 'right' === $s['image_side'] ? 'right' : 'left';
-		$this->open_section( $s, 'lof-feature lof-feature--img-' . $side );
+		$is_story = ! empty( $s['milestones'] ) || ! empty( $s['quote'] );
+		$this->open_section( $s, 'lof-feature lof-feature--img-' . $side . ( $is_story ? ' lof-feature--story' : ' lof-feature--about' ) );
 		echo '<div class="lof-feature__grid">';
 		echo '<figure class="lof-feature__media lof-reveal">';
 		$this->render_media( isset( $s['image'] ) ? $s['image'] : array(), 'large', 'lof-feature__img' );
 		if ( ! empty( $s['image_caption'] ) ) {
 			printf( '<figcaption>%s</figcaption>', esc_html( $s['image_caption'] ) );
+		} elseif ( $is_story && ! empty( $s['quote_by'] ) ) {
+			$by = array_map( 'trim', explode( ',', $s['quote_by'], 2 ) );
+			printf( '<figcaption class="lof-feature__name"><strong>%1$s</strong>%2$s</figcaption>', esc_html( $by[0] ), isset( $by[1] ) ? '<span>' . esc_html( $by[1] ) . '</span>' : '' );
 		}
 		echo '</figure><div class="lof-feature__body lof-reveal">';
 		if ( ! empty( $s['eyebrow'] ) ) {

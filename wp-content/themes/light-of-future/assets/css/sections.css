@@ -918,3 +918,100 @@ html[data-theme="dark"] .lof-tone-earth .lof-givepanel { background: #FCF6E1; }
 .lof-steps { position: relative; }
 .lof-steps .lof-card__kicker { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--lof-gold); color: #2E1E0E; font-size: 1rem; font-weight: 800; box-shadow: 0 0 0 6px rgba(244, 175, 22, .18); margin-bottom: .4rem; }
 .lof-steps .lof-card__title { font-size: 1.12rem; }
+
+/* ===== 0.18.0: Our story, Stories of change, Who we are, Give today (creative pass) ===== */
+/* --- Our story: founder letter with arch portrait, drop cap, pull-quote card, timeline --- */
+.lof-feature--story { position: relative; overflow: hidden; }
+.lof-feature--story::before { content: ""; position: absolute; right: -180px; top: -180px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(244, 175, 22, .22), rgba(244, 175, 22, 0) 65%); pointer-events: none; }
+.lof-feature--story .lof-feature__grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); align-items: start; gap: clamp(2rem, 5vw, 5rem); position: relative; }
+.lof-feature--story.lof-feature--img-left .lof-feature__grid { grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); }
+.lof-feature--story .lof-feature__media { position: sticky; top: calc(var(--lof-head-h, 100px) + 1.5rem); }
+.lof-feature--story .lof-feature__media img { aspect-ratio: 4 / 5; border-radius: 999px 999px 28px 28px; border: 8px solid var(--lof-surface); box-shadow: 0 40px 80px -40px rgba(43, 29, 14, .65); }
+.lof-feature--story .lof-feature__media::before { inset: 26px -18px -18px 26px; width: auto; height: auto; border-radius: 999px 999px 28px 28px; border: 2px solid var(--lof-gold); background: none; opacity: .75; }
+.lof-feature--story .lof-feature__media::after { top: auto; bottom: 22%; right: auto; left: -28px; }
+.lof-feature__name { position: absolute; left: -12px; bottom: 34px; display: flex; flex-direction: column; gap: .15rem; max-width: 78%; margin: 0; padding: .9rem 1.15rem; border-radius: 16px; background: var(--lof-surface); border-left: 4px solid var(--lof-gold); box-shadow: 0 24px 50px -24px rgba(43, 29, 14, .6); }
+.lof-feature__name strong { font-family: var(--lof-font-display); font-weight: 800; font-size: 1.05rem; color: var(--lof-heading); }
+.lof-feature__name span { font-size: .8rem; color: var(--lof-muted); line-height: 1.4; }
+.lof-feature--story .lof-prose { max-width: 62ch; color: var(--lof-text); }
+.lof-feature--story .lof-prose > p { margin: 0 0 1rem; line-height: 1.8; }
+.lof-feature--story .lof-prose > p:first-child { font-size: 1.12rem; color: var(--lof-heading); }
+.lof-feature--story .lof-prose > p:first-child::first-letter { float: left; margin: .35rem .65rem 0 0; font-family: var(--lof-font-display); font-weight: 900; font-size: 4.4rem; line-height: .78; color: var(--lof-amber); }
+.lof-feature--story .lof-quote { position: relative; margin: 1.75rem 0; padding: 1.5rem 1.6rem 1.4rem 1.6rem; border: 0; border-radius: 20px; background: var(--lof-earth); color: var(--lof-cream); box-shadow: 0 30px 60px -36px rgba(43, 29, 14, .7); overflow: hidden; }
+.lof-feature--story .lof-quote::before { content: "\201C"; position: absolute; right: 1rem; top: -.6rem; font-family: var(--lof-font-display); font-weight: 900; font-size: 7rem; line-height: 1; color: rgba(244, 175, 22, .35); }
+.lof-feature--story .lof-quote p { position: relative; color: var(--lof-cream); font-size: 1.12rem; font-style: normal; font-weight: 600; line-height: 1.6; }
+.lof-feature--story .lof-quote cite { display: block; margin-top: .8rem; color: var(--lof-gold); font-style: normal; font-weight: 700; font-size: .82rem; letter-spacing: .04em; }
+html[data-theme="dark"] .lof-feature--story .lof-quote { background: #2A1C0E; border: 1px solid rgba(244, 175, 22, .25); }
+.lof-feature--story .lof-milestones { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.75rem 0 0; padding-top: 1.4rem; }
+.lof-feature--story .lof-milestones::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, var(--lof-gold), rgba(244, 175, 22, .15)); }
+.lof-feature--story .lof-milestones > div { position: relative; padding: 0; border: 0; background: none; box-shadow: none; }
+.lof-feature--story .lof-milestones > div::before { content: ""; position: absolute; left: 0; top: calc(-1.4rem - 6px); width: 14px; height: 14px; border-radius: 50%; background: var(--lof-gold); box-shadow: 0 0 0 5px rgba(244, 175, 22, .22); }
+.lof-feature--story .lof-milestones dt { font-family: var(--lof-font-display); font-weight: 900; font-size: 1.9rem; line-height: 1; color: var(--lof-heading); }
+.lof-feature--story .lof-milestones dd { margin: .4rem 0 0; font-size: .85rem; line-height: 1.45; color: var(--lof-muted); }
+@media (max-width: 860px) {
+	.lof-feature--story .lof-feature__grid, .lof-feature--story.lof-feature--img-left .lof-feature__grid { grid-template-columns: 1fr; }
+	.lof-feature--story .lof-feature__media { position: relative; top: 0; max-width: 420px; margin-inline: auto; }
+	.lof-feature--story .lof-feature__media img { aspect-ratio: 4 / 5; }
+	.lof-feature__name { left: 0; }
+}
+@media (max-width: 560px) { .lof-feature--story .lof-milestones { grid-template-columns: 1fr; gap: 1.4rem; } .lof-feature--story .lof-milestones::before { display: none; } .lof-feature--story .lof-milestones > div { padding-left: 1.6rem; } .lof-feature--story .lof-milestones > div::before { top: .3rem; } }
+
+/* --- Stories of change: cinematic lead story --- */
+@media (min-width: 900px) {
+	.lof-grid--3 > .lof-card--story:first-child { position: relative; min-height: 540px; border: 0; color: #fff; isolation: isolate; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__media { position: absolute; inset: 0; min-height: 0; z-index: -1; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__media img { height: 100%; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20, 13, 6, .94) 0%, rgba(20, 13, 6, .6) 38%, rgba(20, 13, 6, 0) 68%); }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__body { margin-top: auto; background: none; padding: 2rem 2rem 1.9rem; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__title a { color: #fff; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__body > p { color: rgba(255, 250, 238, .88); max-width: 48ch; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__link { align-self: flex-start; padding: .7rem 1.2rem; border-radius: 999px; background: var(--lof-gold); color: #2E1E0E; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__place { background: var(--lof-gold); color: #2E1E0E; }
+	.lof-grid--3 > .lof-card--story:not(:first-child) { align-items: stretch; }
+	.lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__body::before { font-size: 2.4rem; }
+}
+.lof-card--story { transition: transform .25s ease, box-shadow .25s ease; }
+.lof-card--story:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -34px rgba(43, 29, 14, .6); }
+.lof-card--story .lof-card__media img { transition: transform .8s ease; }
+.lof-card--story:hover .lof-card__media img { transform: scale(1.05); }
+
+/* --- Who we are: full-bleed split panel --- */
+.lof-feature--about { padding-block: 0 !important; overflow: hidden; }
+.lof-feature--about > .lof-container { width: 100%; max-width: none; padding: 0; }
+.lof-feature--about .lof-feature__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; align-items: stretch; min-height: min(680px, 82vh); }
+.lof-feature--about .lof-feature__media { margin: 0; min-height: 420px; }
+.lof-feature--about .lof-feature__media img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 0; box-shadow: none; }
+.lof-feature--about .lof-feature__media::before { inset: auto auto 28px 28px; width: 120px; height: 120px; border-radius: 50%; border: 2px solid rgba(244, 175, 22, .9); background: none; z-index: 2; opacity: 1; }
+.lof-feature--about.lof-feature--img-right .lof-feature__media::before { inset: auto 28px 28px auto; }
+.lof-feature--about .lof-feature__media::after { display: none; }
+.lof-feature--about .lof-feature__media figcaption { left: 28px; right: auto; bottom: 28px; max-width: 70%; z-index: 3; }
+.lof-feature--about.lof-feature--img-right .lof-feature__media figcaption { left: auto; right: 28px; }
+.lof-feature--about .lof-feature__body { position: relative; display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 7vw, 6.5rem) clamp(1.5rem, 6vw, 6rem); background: var(--lof-surface-2); }
+.lof-feature--about .lof-feature__body::before { content: ""; position: absolute; left: clamp(1.5rem, 6vw, 6rem); top: clamp(1.75rem, 4vw, 3.5rem); width: 64px; height: 64px; background: url("../images/brand/symbol-dark.svg") center / contain no-repeat; opacity: .14; }
+.lof-feature--about .lof-feature__body > * { max-width: 560px; }
+.lof-feature--about .lof-section__title { font-size: clamp(2rem, 3.4vw, 2.9rem); }
+.lof-feature--about .lof-prose > p:first-child { font-size: 1.16rem; }
+.lof-feature--about .lof-prose > p:first-child::after { content: ""; display: block; width: 56px; height: 3px; margin-top: 1.1rem; border-radius: 3px; background: var(--lof-gold); }
+@media (max-width: 860px) {
+	.lof-feature--about .lof-feature__grid { grid-template-columns: 1fr; min-height: 0; }
+	.lof-feature--about .lof-feature__media { min-height: 0; aspect-ratio: 4 / 3.4; order: 0 !important; }
+	.lof-feature--about .lof-section__title { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; }
+}
+
+/* --- Give today: sun-lit band, arch portrait, impact-style panel --- */
+.lof-give--photo.lof-tone-earth { position: relative; overflow: hidden; background: radial-gradient(70% 90% at 0% 100%, rgba(244, 175, 22, .28), rgba(244, 175, 22, 0) 60%), radial-gradient(50% 60% at 100% 0%, rgba(220, 140, 19, .18), rgba(220, 140, 19, 0) 70%), var(--lof-earth); }
+.lof-give--photo.lof-tone-earth::before { content: ""; position: absolute; left: -10%; bottom: -55%; width: 70%; aspect-ratio: 1; background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(251, 214, 43, .08) 0deg 4deg, transparent 4deg 12deg); mask-image: radial-gradient(circle, #000 25%, transparent 70%); -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 70%); pointer-events: none; }
+html[data-theme="dark"] .lof-give--photo.lof-tone-earth { background-color: #24170B; }
+.lof-give--photo .lof-give__grid { position: relative; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); }
+.lof-give__media img, .lof-give__media .lof-placeholder { border-radius: 999px 999px 28px 28px; border: 8px solid rgba(252, 246, 225, .12); }
+.lof-give__media::before { inset: 22px -20px -20px 22px; border-radius: 999px 999px 28px 28px; }
+.lof-give__media::after { top: auto; bottom: 18%; left: -18px; width: 86px; height: 86px; font-size: 1rem; }
+.lof-give--photo .lof-section__head { margin-bottom: 1.5rem; }
+.lof-give--photo .lof-section__title { color: #fff; }
+.lof-tone-earth .lof-givepanel { border-radius: 26px; padding: clamp(1.4rem, 3vw, 2.25rem); }
+.lof-tone-earth .lof-givepanel__step + .lof-givepanel__step { padding-top: 1.1rem; border-top: 1px dashed rgba(63, 41, 19, .2); }
+.lof-tone-earth .lof-givepanel .lof-chip strong { font-size: 1.1rem; font-family: var(--lof-font-display); font-weight: 800; }
+.lof-tone-earth .lof-givepanel__submit { min-height: 56px; font-size: 1rem; }
+.lof-tone-earth .lof-givepanel__submit::after { content: "\2192"; margin-left: .5rem; transition: transform .2s; }
+.lof-tone-earth .lof-givepanel__submit:hover::after { transform: translateX(4px); }
+.lof-give--photo .lof-give__note { color: rgba(252, 246, 225, .85); opacity: 1; }
+@media (max-width: 860px) { .lof-give__media { max-width: 300px; margin-inline: auto; } }
