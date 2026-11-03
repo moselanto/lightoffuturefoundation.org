@@ -2129,3 +2129,24 @@ html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-section__title, html[data-the
 	.lof-hero.lof-hero--page.has-bg::before { background: linear-gradient(0deg, rgba(28, 18, 8, .95) 0%, rgba(28, 18, 8, .8) 55%, rgba(28, 18, 8, .55) 100%); }
 	.lof-hero.lof-hero--page.has-bg .lof-hero__title { font-size: clamp(2rem, 8.5vw, 2.5rem) !important; }
 }
+
+
+/* ===== 0.37.1: Footer back to ONE row (brand | Explore | Focus areas | Support) ===== */
+@media (min-width: 1101px) {
+	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: minmax(0, 3fr) minmax(0, 3.3fr) minmax(0, 3fr) minmax(0, 2.9fr) !important; grid-template-areas: none !important; column-gap: clamp(1.5rem, 3vw, 2.75rem) !important; row-gap: 0 !important; align-items: start; }
+	.lof-footer.lof-footer--v2 .lof-footer__brand, .lof-footer.lof-footer--v2 .lof-footer__col, .lof-footer.lof-footer--v2 .lof-footer__support { grid-area: auto !important; }
+}
+@media (min-width: 641px) and (max-width: 1100px) {
+	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; grid-template-areas: none !important; }
+	.lof-footer.lof-footer--v2 .lof-footer__brand, .lof-footer.lof-footer--v2 .lof-footer__col, .lof-footer.lof-footer--v2 .lof-footer__support { grid-area: auto !important; }
+}
+/* Support card: simple vertical stack, button on one line, link centred under it */
+.lof-footer.lof-footer--v2 .lof-footer__support { display: flex !important; flex-direction: column; padding: 1.4rem 1.35rem !important; }
+.lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__donate { width: 100% !important; white-space: nowrap; padding-inline: 1rem !important; font-size: max(.85rem, 14px) !important; }
+.lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__more { display: flex !important; justify-content: center !important; margin-top: .8rem !important; white-space: nowrap; }
+.lof-footer.lof-footer--v2 .lof-footer__support p { font-size: max(.95rem, 15px) !important; }
+/* Brand column: logo and text left-aligned, no extra gaps */
+.lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo img, .lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo svg { width: 130px !important; }
+.lof-footer.lof-footer--v2 .lof-footer__intro { max-width: none; }
+/* Headings of all four columns line up on the same baseline */
+.lof-footer.lof-footer--v2 .lof-footer__brand { padding-top: 0; }

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.37.1 - 3 Nov 2026
+
+- Footer: back to a single row of four columns on laptops (logo and description | Explore | Focus areas | Support our work). The support card is a neat vertical stack with the "Support the Future" button on one line and the volunteer link centred under it. Two columns on tablets, stacked on phones.
+
 ## 0.37.0 - 3 Nov 2026
 
 - Page heroes (About, Leadership, Programmes, Talent Development, Stories, Impact, Get Involved, Donate, Contact, FAQ): the foundation's photo now fills the whole banner behind the title with a dark brown overlay, white title, gold label and breadcrumb, and a thin gold line along the bottom. Banners are shorter (about 280-400px on laptops, 240px on phones), in the style of the Cistern of Hope site. Leadership keeps its "At a glance" card on top of the photo.

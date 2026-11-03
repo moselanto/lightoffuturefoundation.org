@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.37.0** and Core **0.37.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.37.1** and Core **0.37.1** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 23:45 EAT:** 0.37.1: footer main row back to ONE row of four columns (brand | Explore | Focus areas | Support card) at Agnes's request; support card stacked vertically with a one-line button. Do not stack the support card under the brand again.
 
 - **3 Nov 2026, 23:40 EAT:** 0.37.0: inner page heroes use the page photo as a full-width background (`.lof-hero--page.has-bg`, `.lof-hero__bg`) with a dark left-to-right overlay, white title, gold bottom line and shorter height (280-400px desktop, 240px phone). Leadership gets a background photo with the At a glance card on top.
 
