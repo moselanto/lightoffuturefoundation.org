@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.17.0 - 3 Nov 2026
+
+Home sections redesigned (Agnes): CSS and widget markup only, no "Apply latest design" needed.
+- Focus areas: cleaner cards (no stray symbol badge), 4:3 photos with soft shade, title underline on hover, three-line excerpt, "Lead" chip with person icon, link row with round arrow button.
+- Stories of change: magazine layout on desktop (first story large, the other two as side-by-side cards), place shown as a chip on the photo, gold quote mark.
+- Who we are: photo with gold outline frame and dot pattern, caption as an overlay on the photo, larger lead paragraph.
+- Give today: photo as a framed portrait card with a gold "KES" badge (no more cropped circle), giving panel as a light card on the brown band with dark selected chips and a full-width button, shield icon on the note.
+- Approach steps: numbered gold circles. Section headings slightly larger and tighter.
+
 ## 0.16.3 - 3 Nov 2026
 
 - Desktop slide 3 (portrait photo): photo starts at 52% width and the text column is narrower, leaving a clear gap.

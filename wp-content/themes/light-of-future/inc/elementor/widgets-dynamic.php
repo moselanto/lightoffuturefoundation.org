@@ -62,7 +62,7 @@ class LOF_Widget_Programmes extends LOF_Widget_Base {
 			$lead = function_exists( 'lof_programme_lead' ) ? lof_programme_lead( $p ) : '';
 			if ( $lead ) {
 				/* translators: %s: person's name */
-				printf( '<p class="lof-card__lead">%s</p>', esc_html( sprintf( __( 'Lead: %s', 'light-of-future' ), $lead ) ) );
+				printf( '<p class="lof-card__lead"><span class="lof-card__lead-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"/></svg></span>%s</p>', esc_html( sprintf( __( 'Lead: %s', 'light-of-future' ), $lead ) ) );
 			}
 			if ( ! empty( $s['more_label'] ) ) {
 				printf( '<a class="lof-card__link" href="%1$s">%2$s<span class="screen-reader-text"> %3$s</span></a>', esc_url( $link ), esc_html( $s['more_label'] ), esc_html( get_the_title( $p ) ) );
@@ -187,7 +187,7 @@ class LOF_Widget_Stories extends LOF_Widget_Base {
 			$place = (string) get_post_meta( $p->ID, 'lof_location', true );
 			echo '<article class="lof-card lof-card--story lof-reveal">';
 			if ( has_post_thumbnail( $p ) ) {
-				printf( '<a class="lof-card__media" href="%1$s" tabindex="-1" aria-hidden="true">%2$s</a>', esc_url( $link ), get_the_post_thumbnail( $p, 'lof-card', array( 'loading' => 'lazy' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				printf( '<a class="lof-card__media" href="%1$s" tabindex="-1" aria-hidden="true">%2$s%3$s</a>', esc_url( $link ), get_the_post_thumbnail( $p, 'large', array( 'loading' => 'lazy' ) ), $place ? '<span class="lof-card__place">' . esc_html( $place ) . '</span>' : '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			echo '<div class="lof-card__body">';
 			if ( $place ) {
