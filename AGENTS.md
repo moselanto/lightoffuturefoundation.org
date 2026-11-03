@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.37.1** and Core **0.37.1** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.38.0** and Core **0.38.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 23:50 EAT:** 0.38.0: home "Our story" (`.lof-feature--story`) rebalanced with grid areas (`.lof-feature__body` display: contents): letter left, portrait right, quote and milestone timeline card side by side below.
 
 - **3 Nov 2026, 23:45 EAT:** 0.37.1: footer main row back to ONE row of four columns (brand | Explore | Focus areas | Support card) at Agnes's request; support card stacked vertically with a one-line button. Do not stack the support card under the brand again.
 

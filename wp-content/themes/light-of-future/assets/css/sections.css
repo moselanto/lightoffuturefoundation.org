@@ -2150,3 +2150,39 @@ html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-section__title, html[data-the
 .lof-footer.lof-footer--v2 .lof-footer__intro { max-width: none; }
 /* Headings of all four columns line up on the same baseline */
 .lof-footer.lof-footer--v2 .lof-footer__brand { padding-top: 0; }
+
+
+/* ===== 0.38.0: Home "Our story" - balanced two-column layout ===== */
+/* Text column was much taller than the portrait. Now: heading + letter on the left, portrait on the right,
+   then the quote (left) and the milestone timeline (right, under the photo) on the same row. */
+@media (min-width: 1025px) {
+	.lof-feature--story .lof-feature__grid { display: grid !important; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); grid-template-areas: "eyebrow media" "title media" "prose media" "quote miles" "btn miles"; column-gap: clamp(2.5rem, 5vw, 4.5rem); row-gap: 0; align-items: start; }
+	.lof-feature--story .lof-feature__body { display: contents !important; }
+	.lof-feature--story .lof-feature__media { grid-area: media; align-self: stretch; margin: 0 !important; width: 100% !important; max-width: 480px; justify-self: end; }
+	.lof-feature--story .lof-feature__media img { height: 100% !important; min-height: 420px; max-height: 560px; object-fit: cover; object-position: center 25%; }
+	.lof-feature--story .lof-feature__body > .lof-eyebrow { grid-area: eyebrow; }
+	.lof-feature--story .lof-feature__body > .lof-section__title { grid-area: title; margin-bottom: 1.25rem; }
+	.lof-feature--story .lof-feature__body > .lof-prose { grid-area: prose; }
+	.lof-feature--story .lof-feature__body > .lof-quote { grid-area: quote; margin: 1.75rem 0 0 !important; align-self: start; }
+	.lof-feature--story .lof-feature__body > .lof-milestones { grid-area: miles; align-self: start; margin: 1.75rem 0 0 !important; max-width: 480px; justify-self: end; width: 100%; }
+	.lof-feature--story .lof-feature__body > .lof-btn-row { grid-area: btn; margin-top: 1.5rem; }
+}
+/* Milestones as a tidy card with three columns and a gold timeline */
+.lof-feature--story .lof-milestones { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 1.4rem 1.25rem 1.3rem; border-radius: 22px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 24px 48px -36px rgba(43, 29, 14, .6); position: relative; }
+.lof-feature--story .lof-milestones > div { position: relative; padding: 1.4rem .6rem 0; text-align: center; }
+.lof-feature--story .lof-milestones > div::before { content: ""; position: absolute; top: 0; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--lof-gold); box-shadow: 0 0 0 4px rgba(244, 175, 22, .2); }
+.lof-feature--story .lof-milestones > div:not(:last-child)::after { content: ""; position: absolute; top: 6px; left: calc(50% + 12px); right: calc(-50% + 12px); height: 2px; background: rgba(244, 175, 22, .45); }
+.lof-feature--story .lof-milestones dt { font: 800 clamp(1.5rem, 2.2vw, 1.9rem)/1 var(--lof-font-display); color: var(--lof-heading); margin: .35rem 0 .4rem; }
+.lof-feature--story .lof-milestones dd { margin: 0; font-size: max(.88rem, 14px); line-height: 1.45; color: var(--lof-muted); }
+/* Quote card fills its cell neatly */
+.lof-feature--story .lof-quote { border-radius: 22px; }
+/* Prose: comfortable reading width and spacing */
+.lof-feature--story .lof-prose p { margin: 0 0 1rem; }
+html[data-theme="dark"] .lof-feature--story .lof-milestones { border-color: rgba(244, 175, 22, .18); }
+@media (max-width: 1024px) {
+	.lof-feature--story .lof-milestones { margin-top: 1.5rem; }
+}
+@media (max-width: 520px) {
+	.lof-feature--story .lof-milestones { padding: 1.1rem .75rem 1rem; }
+	.lof-feature--story .lof-milestones > div { padding-inline: .3rem; }
+}
