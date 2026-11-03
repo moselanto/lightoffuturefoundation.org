@@ -1,6 +1,6 @@
 # HANDOVER - Light of Future Foundation website (read this first)
 
-Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.25.0**. Written so the next AI agent or developer can pick up without the chat history.
+Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.26.0**. Written so the next AI agent or developer can pick up without the chat history.
 
 ## 1. Where we are in one paragraph
 The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on WordPress + Elementor (free) + Hello Elementor parent theme, with our child theme `light-of-future` and plugin `light-of-future-core`. Design, content and mobile UX went through many rounds with Agnes (Pimofy Digital) between 30 Oct and 3 Nov 2026. Every page, the header, footer, phone bottom navigation and phone menu are finished to the current design standard. **Not done yet:** Paystack donations (no keys), WooCommerce crafts shop, real partner logos, focus-area photos, public email and WhatsApp number, approved legal wording, and launch (turning indexing on).
@@ -41,6 +41,7 @@ The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on Wo
 | `lof_upgrade_home_hero()` | `lof_hero_rev` = 2 | Old hero: registration pill + figures row (superseded). |
 | `lof_upgrade_home_slider()` | `lof_hero_rev` = 3 | Replaces the home hero with the full-width slider (`lof-slider`); backs up the old layout in `_lof_layout_backup`. |
 | `lof_upgrade_faq_more()` | `lof_faq_rev` = 1 | FAQ: hero intro line, section heading and questions 6-10 (only if the page still has the original 5). Backs up the layout in `_lof_layout_backup`. |
+| `lof_upgrade_talent_page()` | `lof_talent_rev` = 1 | Talent Development: inserts the "From discovery to the stage" steps section before the call to action. |
 | `lof_upgrade_legal_pages()` | `lof_legal_rev` = 1 | Creates **Privacy Policy** and **Terms of Use** with placeholder wording (meta `_lof_legal_placeholder`) and the "Footer legal links" menu in the `lof-legal` location. Never overwrites a published page. |
 To re-run one, delete its option (e.g. with WP-CLI `wp option delete lof_legal_rev`).
 
@@ -68,6 +69,7 @@ To re-run one, delete its option (e.g. with WP-CLI `wp option delete lof_legal_r
 6. Optional: remove the phone preview page (`lof_mobile_preview` in `inc/setup.php`) after launch, or keep it (noindex) for QA.
 
 ## 8. Known quirks
+- `inc/importer.php` loads **only in wp-admin**. Anything the front end needs (hero photo, at-a-glance figures, programme icons) lives in `inc/template-tags.php`. One-off upgrades in importer.php therefore run when someone opens wp-admin.
 - "Apply latest design" times out on this host (no notice). Use one-off upgrades.
 - Hello Elementor gives buttons a pink focus colour; our CSS overrides it for header, bottom-bar and accordion buttons - add the same override to any new `<button>`.
 - Impact figures animate from 0 when scrolled into view; full-page PDF captures can freeze them mid-count (looks like "71+" instead of "200+"). Not a bug.

@@ -505,6 +505,7 @@ function lof_setup_page_defs() {
 						),
 					)
 				),
+				lof_talent_steps_section(),
 				lof_el(
 					'lof-cta',
 					array(
@@ -1374,35 +1375,6 @@ add_action( 'init', 'lof_upgrade_legal_pages', 22 );
 
 
 /**
- * 0.24.0: photo shown beside the title in inner-page heroes that have no photo of their own.
- * Uses only the foundation's own consented photos.
- *
- * @return int Attachment ID or 0.
- */
-function lof_page_hero_side_photo() {
-	$post = get_queried_object();
-	if ( ! $post || empty( $post->post_name ) || ! function_exists( 'lof_photo' ) ) {
-		return 0;
-	}
-	$map = array(
-		'about-us'           => 'story-elijah-new-home',
-		'faq'                => 'story-philister-home',
-		'programmes'         => 'story-precious-school-shoes',
-		'talent-development' => 'story-precious-school-shoes',
-		'stories'            => 'story-philister-home',
-		'impact'             => 'story-elijah-new-home',
-		'get-involved'       => 'story-precious-school-shoes',
-		'contact'            => 'founder-francis-ouma-sikuku',
-	);
-	$map = apply_filters( 'lof_page_hero_side_photos', $map );
-	if ( empty( $map[ $post->post_name ] ) ) {
-		return 0;
-	}
-	$m = lof_photo( $map[ $post->post_name ] );
-	return ! empty( $m['id'] ) ? (int) $m['id'] : 0;
-}
-
-/**
  * 0.24.0: FAQ page - a section heading, an intro line in the hero and more answers,
  * all taken from facts already published on the site. Runs once; only touches the
  * original five-question FAQ so later edits in Elementor are kept.
@@ -1471,45 +1443,65 @@ add_action( 'init', 'lof_upgrade_faq_more', 23 );
 
 
 /**
- * 0.25.0: "At a glance" figures beside the Leadership hero, counted from the
- * approved Leadership entries (nothing typed in by hand).
+ * Talent page "How we nurture talent" section (facts from objective 04 and the founder's story).
  *
- * @return array[] Each item: array( number, label ).
+ * @return array Elementor section.
  */
-function lof_page_hero_facts() {
-	$post = get_queried_object();
-	if ( ! $post || empty( $post->post_name ) || 'leadership' !== $post->post_name ) {
-		return array();
-	}
-	$count = function ( $group ) {
-		return count(
-			get_posts(
-				array(
-					'post_type'      => 'lof_leader',
-					'post_status'    => 'publish',
-					'posts_per_page' => 50,
-					'fields'         => 'ids',
-					'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-						array( 'key' => 'lof_approved', 'value' => '1' ),
-						array( 'key' => 'lof_group', 'value' => $group ),
-					),
-				)
-			)
-		);
-	};
-	$board = $count( 'executive' ) + $count( 'board' );
-	$team  = $count( 'team' );
-	if ( ! $board && ! $team ) {
-		return array();
-	}
-	$out = array();
-	if ( $board ) {
-		$out[] = array( (string) $board, __( 'Board of Directors', 'light-of-future' ) );
-	}
-	if ( $team ) {
-		$out[] = array( (string) $team, __( 'Programme leads', 'light-of-future' ) );
-	}
-	$out[] = array( '10', __( 'Founding members', 'light-of-future' ) );
-	$out[] = array( '2025', __( 'Registered, NGO Board of Kenya', 'light-of-future' ) );
-	return $out;
+function lof_talent_steps_section() {
+	return lof_el(
+		'lof-cards',
+		array(
+			'eyebrow' => __( 'How we nurture talent', 'light-of-future' ),
+			'title'   => __( 'From discovery to the stage', 'light-of-future' ),
+			'intro'   => __( 'Talent development is one of the objectives set out when the foundation was registered.', 'light-of-future' ),
+			'style'   => 'steps',
+			'columns' => '3',
+			'tone'    => 'sand',
+			'items'   => array(
+				array( '_id' => 'ts1', 'kicker' => '01', 'title' => __( 'Talent searches', 'light-of-future' ), 'text' => __( 'We run talent searches in music, dance, drama, art and comedy to find young people with a gift to grow.', 'light-of-future' ) ),
+				array( '_id' => 'ts2', 'kicker' => '02', 'title' => __( 'Platforms to perform', 'light-of-future' ), 'text' => __( 'We create platforms where young people can perform, be seen and build confidence.', 'light-of-future' ) ),
+				array( '_id' => 'ts3', 'kicker' => '03', 'title' => __( 'Led from the heart', 'light-of-future' ), 'text' => __( 'Our founder is a musician and choir teacher, so music and the arts sit close to everything we do.', 'light-of-future' ) ),
+			),
+		)
+	);
 }
+
+/**
+ * 0.26.0: add the "How we nurture talent" section to the Talent Development page once,
+ * just before its call to action. Never runs again (option lof_talent_rev).
+ */
+function lof_upgrade_talent_page() {
+	if ( (int) get_option( 'lof_talent_rev', 0 ) >= 1 ) {
+		return;
+	}
+	update_option( 'lof_talent_rev', 1, false );
+	$page = get_page_by_path( 'talent-development', OBJECT, 'page' );
+	if ( ! $page ) {
+		return;
+	}
+	$raw  = get_post_meta( $page->ID, '_elementor_data', true );
+	$data = is_string( $raw ) ? json_decode( $raw, true ) : $raw;
+	if ( ! is_array( $data ) || false !== strpos( (string) wp_json_encode( $data ), 'From discovery to the stage' ) ) {
+		return;
+	}
+	$pos = count( $data );
+	foreach ( $data as $i => $sec ) {
+		if ( false !== strpos( (string) wp_json_encode( $sec ), '"widgetType":"lof-cta"' ) ) {
+			$pos = $i;
+			break;
+		}
+	}
+	array_splice( $data, $pos, 0, array( lof_talent_steps_section() ) );
+	update_post_meta( $page->ID, '_lof_layout_backup', wp_slash( is_string( $raw ) ? $raw : wp_json_encode( $raw ) ) );
+	update_post_meta( $page->ID, '_lof_layout_backup_date', current_time( 'mysql' ) );
+	update_post_meta( $page->ID, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	delete_post_meta( $page->ID, '_elementor_css' );
+	delete_post_meta( $page->ID, '_elementor_element_cache' );
+	if ( class_exists( '\\Elementor\\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	if ( has_action( 'litespeed_purge_all' ) ) {
+		do_action( 'litespeed_purge_all' );
+	}
+}
+add_action( 'init', 'lof_upgrade_talent_page', 24 );

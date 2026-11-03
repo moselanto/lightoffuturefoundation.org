@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.26.0 - 3 Nov 2026
+
+- Fix: the inner-page hero photo (0.24.0) and the Leadership "At a glance" card (0.25.0) now actually show on the live site (their helpers were only loaded in wp-admin).
+- Programmes: focus areas without a photo show a designed brand tile with an icon and "Photo coming soon" instead of a large number; all cards equal height with the same photo crop; the 11 cards end with a centred last row.
+- Talent Development: talent areas as icon cards (sports, music, creative arts) and a new "From discovery to the stage" section (talent searches, platforms to perform, led from the heart) using facts already on the site; hero photo beside the title.
+
 ## 0.25.0 - 3 Nov 2026
 
 - Leadership & Governance: hero "At a glance" card (Board of Directors and Programme leads counted from the approved Leadership entries, 10 founding members, registered 2025); founder shown as one wide spotlight card; the three other directors as equal portrait cards in one row (no lone card); board roles as pills; programme leads two per row on phones. The founder photo no longer repeats in the hero.

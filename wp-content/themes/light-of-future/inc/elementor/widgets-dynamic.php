@@ -51,7 +51,7 @@ class LOF_Widget_Programmes extends LOF_Widget_Base {
 			if ( has_post_thumbnail( $p ) ) {
 				echo get_the_post_thumbnail( $p, 'lof-card', array( 'loading' => 'lazy' ) );
 			} else {
-				printf( '<span class="lof-placeholder"><span class="lof-card__num">%02d</span></span>', (int) $i + 1 );
+				printf( '<span class="lof-placeholder lof-placeholder--prog"><span class="lof-placeholder__ico">%1$s</span><span class="lof-placeholder__tag">%2$s</span><span class="lof-card__index">%3$02d</span></span>', lof_programme_icon( $p->post_name ), esc_html__( 'Photo coming soon', 'light-of-future' ), (int) $i + 1 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
 			}
 			if ( has_post_thumbnail( $p ) ) {
 				printf( '<span class="lof-card__index" aria-hidden="true">%02d</span>', (int) $i + 1 );

@@ -1516,3 +1516,63 @@ html[data-theme="dark"] .lof-page-leadership .lof-leaders--executive .lof-person
 html[data-theme="dark"] .lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo, html[data-theme="dark"] .lof-page-leadership .lof-leaders--board .lof-person--row .lof-person__photo { background: linear-gradient(180deg, #3a2a17, #2a1d0f); }
 html[data-theme="dark"] .lof-page-leadership .lof-person__board { background: rgba(244, 175, 22, .18); color: var(--lof-cream); }
 html[data-theme="dark"] .lof-hero__facts { border: 1px solid rgba(244, 175, 22, .22); }
+
+
+/* ===== 0.26.0: Programmes and Talent Development ===== */
+/* Programme cards without a photo: designed brand tile with an icon, not a big number */
+.lof-placeholder--prog { position: relative; flex-direction: column; gap: .7rem; min-height: 0; height: 100%; background: radial-gradient(120% 90% at 85% 0%, rgba(244, 175, 22, .55), rgba(244, 175, 22, 0) 55%), radial-gradient(90% 80% at 0% 100%, rgba(220, 140, 19, .45), rgba(220, 140, 19, 0) 60%), linear-gradient(150deg, #5C3D1E, #3F2913); overflow: hidden; }
+.lof-placeholder--prog::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(252, 246, 225, .16) 1px, transparent 1.4px); background-size: 16px 16px; mask-image: linear-gradient(180deg, #000, transparent 85%); -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%); }
+.lof-placeholder__ico { position: relative; display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: rgba(252, 246, 225, .1); border: 1.5px solid rgba(244, 175, 22, .55); color: var(--lof-gold); box-shadow: 0 0 0 10px rgba(244, 175, 22, .08); transition: transform .35s ease; }
+.lof-card--programme:hover .lof-placeholder__ico { transform: scale(1.06); }
+.lof-placeholder__tag { position: relative; font: 700 .68rem/1 var(--lof-font-body); letter-spacing: .14em; text-transform: uppercase; color: rgba(252, 246, 225, .72); }
+.lof-placeholder--prog .lof-card__index { position: absolute; top: 14px; left: 14px; }
+
+/* Programme cards: equal heights, tidy body */
+.lof-page-programmes .lof-card--programme { display: flex; flex-direction: column; height: 100%; border-radius: 22px; overflow: hidden; }
+.lof-page-programmes .lof-card--programme .lof-card__media { aspect-ratio: 16 / 10; display: block; overflow: hidden; }
+.lof-page-programmes .lof-card--programme .lof-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.lof-page-programmes .lof-card--programme:hover .lof-card__media img { transform: scale(1.04); }
+.lof-page-programmes .lof-card--programme .lof-card__body { flex: 1; display: flex; flex-direction: column; }
+.lof-page-programmes .lof-card--programme .lof-card__link { margin-top: auto; }
+.lof-page-programmes .lof-card--programme .lof-card__title { font-size: 1.12rem; line-height: 1.3; }
+
+/* 11 cards: last row of two centred (no gap on the right) */
+@media (min-width: 1025px) {
+	.lof-grid--3:has(> .lof-card--programme:nth-child(11):last-child) { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+	.lof-grid--3:has(> .lof-card--programme:nth-child(11):last-child) > * { grid-column: span 2; }
+	.lof-grid--3:has(> .lof-card--programme:nth-child(11):last-child) > :nth-child(10) { grid-column: 2 / span 2; }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+	.lof-grid--3:has(> .lof-card--programme:nth-child(11):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	.lof-grid--3:has(> .lof-card--programme:nth-child(11):last-child) > * { grid-column: span 2; }
+	.lof-grid--3:has(> .lof-card--programme:nth-child(11):last-child) > :nth-child(11) { grid-column: 2 / span 2; }
+}
+
+/* Programmes: approach cards and giving section rhythm */
+.lof-page-programmes .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.lof-page-programmes .lof-give .lof-givepanel { max-width: 760px; margin-inline: auto; }
+
+/* Talent Development: three talent areas as icon cards */
+.lof-page-talent-development .lof-tone-white .lof-grid--3 { gap: clamp(1rem, 2.4vw, 1.75rem); }
+.lof-page-talent-development .lof-tone-white .lof-card--pillar { position: relative; padding: 2.2rem 1.8rem 2rem; border: 1px solid var(--lof-line); border-top: 0; border-radius: 24px; background: var(--lof-surface); box-shadow: 0 26px 50px -38px rgba(43, 29, 14, .6); text-align: left; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+.lof-page-talent-development .lof-tone-white .lof-card--pillar:hover { transform: translateY(-4px); box-shadow: 0 34px 60px -36px rgba(43, 29, 14, .65); }
+.lof-page-talent-development .lof-tone-white .lof-card--pillar::before { content: ""; display: block; width: 64px; height: 64px; margin-bottom: 1.25rem; border-radius: 20px; background-color: rgba(244, 175, 22, .16); background-repeat: no-repeat; background-position: center; background-size: 30px 30px; }
+.lof-page-talent-development .lof-tone-white .lof-card--pillar:nth-child(1)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC8C13'%3E%3Cpath d='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 3.1 2.6 1.9-1 3H11.4l-1-3L13 5.1zM5.6 9.4l2.6-.8 1 3.1-1.9 2.6-2.4-.3a8 8 0 0 1 .7-4.6zm3 9.2-.7-2.3 1.9-2.6h3.2l1.9 2.6-.7 2.3a8 8 0 0 1-5.6 0zm9.1-4.6-2.4.3-1.9-2.6 1-3.1 2.6.8a8 8 0 0 1 .7 4.6z'/%3E%3C/svg%3E"); }
+.lof-page-talent-development .lof-tone-white .lof-card--pillar:nth-child(2)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC8C13'%3E%3Cpath d='M9 3v10.6A4 4 0 1 0 11 17V8h6V3H9z'/%3E%3C/svg%3E"); }
+.lof-page-talent-development .lof-tone-white .lof-card--pillar:nth-child(3)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC8C13'%3E%3Cpath d='M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A5.6 5.6 0 0 0 22 9.8C22 5.5 17.5 2 12 2zM6.5 13a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/%3E%3C/svg%3E"); }
+.lof-page-talent-development .lof-tone-white .lof-card--pillar::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber)); }
+.lof-page-talent-development .lof-tone-white .lof-card__title { font-size: 1.35rem; margin-bottom: .4rem; }
+.lof-page-talent-development .lof-tone-white .lof-card--pillar p { font-size: 1rem; line-height: 1.65; color: var(--lof-muted); }
+.lof-page-talent-development .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
+/* "From discovery to the stage" steps panel */
+.lof-page-talent-development .lof-steps { gap: 0; border-radius: 24px; overflow: hidden; border: 1px solid var(--lof-line); background: var(--lof-surface); box-shadow: 0 26px 50px -40px rgba(43, 29, 14, .6); }
+.lof-page-talent-development .lof-steps .lof-card--pillar { border: 0; border-right: 1px solid var(--lof-line); border-radius: 0; background: transparent; padding: 2rem 1.8rem; }
+.lof-page-talent-development .lof-steps .lof-card--pillar:last-child { border-right: 0; }
+.lof-page-talent-development .lof-steps .lof-card__kicker { display: inline-grid; place-items: center; width: 46px; height: 46px; margin-bottom: .9rem; border-radius: 14px; background: var(--lof-gold); color: #2E1E0E; font: 800 .95rem/1 var(--lof-font-display); }
+.lof-page-talent-development .lof-steps .lof-card__title { font-size: 1.2rem; }
+@media (max-width: 1024px) { .lof-page-talent-development .lof-steps .lof-card--pillar { border-right: 0; border-bottom: 1px solid var(--lof-line); } .lof-page-talent-development .lof-steps .lof-card--pillar:last-child { border-bottom: 0; } }
+
+/* Dark mode */
+html[data-theme="dark"] .lof-page-talent-development .lof-tone-white .lof-card--pillar, html[data-theme="dark"] .lof-page-talent-development .lof-steps { border-color: rgba(244, 175, 22, .16); box-shadow: 0 26px 50px -34px rgba(0, 0, 0, .85); }
+html[data-theme="dark"] .lof-page-talent-development .lof-steps .lof-card--pillar { border-color: rgba(244, 175, 22, .14); }
+html[data-theme="dark"] .lof-placeholder--prog { background: radial-gradient(120% 90% at 85% 0%, rgba(244, 175, 22, .4), rgba(244, 175, 22, 0) 55%), linear-gradient(150deg, #3a2614, #22160a); }
