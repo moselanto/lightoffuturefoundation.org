@@ -1132,3 +1132,10 @@ h1, h2, h3, .lof-section__title, .lof-cine__title { hyphens: manual; -webkit-hyp
 	body { padding-bottom: calc(72px + env(safe-area-inset-bottom)) !important; }
 	.lof-wa { bottom: calc(82px + env(safe-area-inset-bottom)) !important; width: 52px; height: 52px; }
 }
+
+/* 0.19.1: bottom-bar Menu button never takes the parent theme's pink focus colour */
+.lof-tabbar button, .lof-tabbar button:hover, .lof-tabbar button:focus, .lof-tabbar button:active, .lof-tabbar button[aria-expanded="true"] { background: none !important; border: 0 !important; box-shadow: none !important; color: #7A644A; }
+html[data-theme="dark"] .lof-tabbar button, html[data-theme="dark"] .lof-tabbar button:hover, html[data-theme="dark"] .lof-tabbar button:focus, html[data-theme="dark"] .lof-tabbar button:active { color: rgba(252, 246, 225, .66); }
+.lof-tabbar button[aria-expanded="true"] { color: #3F2913; }
+.lof-tabbar button[aria-expanded="true"] .lof-tabbar__ico { background: rgba(244, 175, 22, .22); }
+html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--lof-gold); }

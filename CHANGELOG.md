@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.19.1 - 3 Nov 2026
+
+- Phone bottom bar: the Menu button no longer turns pink when tapped; open state uses the brand gold highlight.
+
 ## 0.19.0 - 3 Nov 2026
 
 - Give today (giving widget with a photo): one premium card on a light section. Left half is the photo with the heading, intro and three confirmed trust points (registered 23 May 2025; you choose where your gift goes; M-PESA and card through Paystack coming soon) over a dark gradient. Right half is a cream "Make your gift" form with dark selected amounts and a full-width button. Stacks on phones.
