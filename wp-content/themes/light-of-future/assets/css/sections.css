@@ -2186,3 +2186,50 @@ html[data-theme="dark"] .lof-feature--story .lof-milestones { border-color: rgba
 	.lof-feature--story .lof-milestones { padding: 1.1rem .75rem 1rem; }
 	.lof-feature--story .lof-milestones > div { padding-inline: .3rem; }
 }
+
+
+/* ===== 0.39.0: Home page - full balance pass ===== */
+/* Consistent vertical rhythm between sections */
+body.home .lof-main > .elementor > .elementor-section .lof-section { padding-block: clamp(3.5rem, 7vw, 5.75rem); }
+body.home .lof-section__head { max-width: 760px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
+
+/* "Why we exist": heading and statement aligned on one baseline, vision/mission equal height */
+body.home .lof-intro__grid { align-items: center; gap: clamp(2rem, 5vw, 4.5rem); }
+body.home .lof-intro__band { margin-top: clamp(2rem, 4vw, 3rem); align-items: stretch; }
+body.home .lof-intro__panel { height: 100%; }
+body.home .lof-intro__title { font-size: clamp(2.3rem, 4.2vw, 3.4rem) !important; }
+
+/* Stories of change: lead story and two side stories at the same height, side cards readable */
+@media (min-width: 1025px) {
+	body.home .lof-grid--3:has(> .lof-card--story:nth-child(3)) { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) !important; gap: 1.5rem !important; align-items: stretch; }
+	body.home .lof-grid--3 > .lof-card--story:first-child { min-height: 520px; }
+	body.home .lof-grid--3 > .lof-card--story:not(:first-child) { display: grid !important; grid-template-columns: 42% 1fr; min-height: 0; }
+	body.home .lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__media { height: 100%; min-height: 240px; }
+	body.home .lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__media img { width: 100%; height: 100% !important; object-fit: cover; }
+	body.home .lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__body { padding: 1.5rem 1.6rem !important; justify-content: center; }
+	body.home .lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__title { font-size: 1.3rem !important; }
+}
+body.home .lof-card--story .lof-card__link { font-weight: 800; }
+
+/* Give today card: heading on two lines, form column breathing room */
+body.home .lof-give--card .lof-give__overlay h2, body.home .lof-give--card .lof-section__title { font-size: clamp(1.9rem, 3vw, 2.5rem) !important; line-height: 1.12; }
+body.home .lof-give--card .lof-give__body { padding: clamp(1.75rem, 3vw, 2.5rem) !important; }
+
+/* "Who we are": text and photo vertically centred */
+body.home .lof-feature--about .lof-feature__grid { align-items: center; }
+
+/* Focus areas: card grid gaps match the rest of the page */
+body.home .lof-card--programme { display: flex; flex-direction: column; height: 100%; border-radius: 22px; overflow: hidden; }
+body.home .lof-card--programme .lof-card__media { aspect-ratio: 16 / 10; display: block; overflow: hidden; }
+body.home .lof-card--programme .lof-card__body { flex: 1; display: flex; flex-direction: column; }
+body.home .lof-card--programme .lof-card__link { margin-top: auto; }
+body.home .lof-grid--3:has(> .lof-card--programme) { gap: clamp(1.25rem, 2.4vw, 1.75rem) !important; }
+
+/* Section buttons below grids ("See all 11 focus areas", "More stories") */
+body.home .lof-btn-row--center { margin-top: clamp(1.75rem, 3.5vw, 2.5rem); }
+body.home .lof-btn-row--center .lof-btn { min-height: 52px; padding-inline: 1.9rem; border-radius: 999px; }
+
+@media (max-width: 640px) {
+	body.home .lof-main > .elementor > .elementor-section .lof-section { padding-block: clamp(2.75rem, 11vw, 3.5rem); }
+	body.home .lof-intro__title { font-size: clamp(2rem, 8vw, 2.4rem) !important; }
+}

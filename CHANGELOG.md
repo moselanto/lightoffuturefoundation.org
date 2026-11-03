@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.39.0 - 3 Nov 2026
+
+- Home page balance pass: even spacing between all sections; "Why we exist" heading and statement aligned with equal-height Vision and Mission cards; "Stories of change" lead story and the two side stories now share the same height, with side stories readable (photo 42%, larger title); "Give today" heading fits on two lines; focus-area cards equal height with the link at the bottom; "See all 11 focus areas" and "More stories" as rounded pill buttons.
+
 ## 0.38.0 - 3 Nov 2026
 
 - Home, "Our story": the founder's letter sits on the left and his portrait on the right at a matching height; underneath, the quote card (left) and a milestone timeline card with 20 / 2021 / 2025 joined by a gold line (right, under the photo) share one row, so the right side is no longer empty. Stacks as before on tablets and phones.
