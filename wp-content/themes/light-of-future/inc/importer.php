@@ -1386,7 +1386,6 @@ function lof_page_hero_side_photo() {
 	}
 	$map = array(
 		'about-us'           => 'story-elijah-new-home',
-		'leadership'         => 'founder-francis-ouma-sikuku',
 		'faq'                => 'story-philister-home',
 		'programmes'         => 'story-precious-school-shoes',
 		'talent-development' => 'story-precious-school-shoes',
@@ -1469,3 +1468,48 @@ function lof_upgrade_faq_more() {
 	}
 }
 add_action( 'init', 'lof_upgrade_faq_more', 23 );
+
+
+/**
+ * 0.25.0: "At a glance" figures beside the Leadership hero, counted from the
+ * approved Leadership entries (nothing typed in by hand).
+ *
+ * @return array[] Each item: array( number, label ).
+ */
+function lof_page_hero_facts() {
+	$post = get_queried_object();
+	if ( ! $post || empty( $post->post_name ) || 'leadership' !== $post->post_name ) {
+		return array();
+	}
+	$count = function ( $group ) {
+		return count(
+			get_posts(
+				array(
+					'post_type'      => 'lof_leader',
+					'post_status'    => 'publish',
+					'posts_per_page' => 50,
+					'fields'         => 'ids',
+					'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+						array( 'key' => 'lof_approved', 'value' => '1' ),
+						array( 'key' => 'lof_group', 'value' => $group ),
+					),
+				)
+			)
+		);
+	};
+	$board = $count( 'executive' ) + $count( 'board' );
+	$team  = $count( 'team' );
+	if ( ! $board && ! $team ) {
+		return array();
+	}
+	$out = array();
+	if ( $board ) {
+		$out[] = array( (string) $board, __( 'Board of Directors', 'light-of-future' ) );
+	}
+	if ( $team ) {
+		$out[] = array( (string) $team, __( 'Programme leads', 'light-of-future' ) );
+	}
+	$out[] = array( '10', __( 'Founding members', 'light-of-future' ) );
+	$out[] = array( '2025', __( 'Registered, NGO Board of Kenya', 'light-of-future' ) );
+	return $out;
+}

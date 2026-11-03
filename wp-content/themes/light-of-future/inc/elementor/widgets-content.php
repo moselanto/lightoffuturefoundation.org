@@ -115,7 +115,8 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 		}
 		$collage = 'home' === $variant && ! $has_img ? $collage : array();
 		$side    = ( 'page' === $variant && ! $has_img && function_exists( 'lof_page_hero_side_photo' ) ) ? lof_page_hero_side_photo() : 0;
-		printf( '<section class="lof-hero lof-hero--%1$s%2$s%3$s%4$s">', esc_attr( $variant ), $has_img ? ' has-photo' : '', $collage ? ' has-collage' : '', $side ? ' has-side' : '' );
+		$facts   = ( 'page' === $variant && ! $has_img && ! $side && function_exists( 'lof_page_hero_facts' ) ) ? lof_page_hero_facts() : array();
+		printf( '<section class="lof-hero lof-hero--%1$s%2$s%3$s%4$s">', esc_attr( $variant ), $has_img ? ' has-photo' : '', $collage ? ' has-collage' : '', ( $side || $facts ) ? ' has-side' : '' );
 		if ( $has_img ) {
 			echo '<div class="lof-hero__media">';
 			$this->render_media( $s['image'], 'lof-hero', 'lof-hero__img', 'home' === $variant );
@@ -160,6 +161,13 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 			echo '<figure class="lof-hero__side" aria-hidden="true"><span class="lof-hero__side-ring"></span>';
 			echo wp_get_attachment_image( $side, 'large', false, array( 'class' => 'lof-hero__side-img', 'alt' => '', 'loading' => 'eager', 'decoding' => 'async', 'sizes' => '(max-width: 900px) 90vw, 420px' ) );
 			echo '</figure>';
+		}
+		if ( $facts ) {
+			echo '<aside class="lof-hero__facts" aria-label="' . esc_attr__( 'At a glance', 'light-of-future' ) . '"><p class="lof-hero__facts-kicker">' . esc_html__( 'At a glance', 'light-of-future' ) . '</p><dl>';
+			foreach ( $facts as $f ) {
+				printf( '<div><dt>%1$s</dt><dd>%2$s</dd></div>', esc_html( $f[1] ), esc_html( $f[0] ) );
+			}
+			echo '</dl></aside>';
 		}
 		if ( $collage ) {
 			echo '<div class="lof-hero__collage" data-lof-slider>';

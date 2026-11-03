@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.0 - 3 Nov 2026
+
+- Leadership & Governance: hero "At a glance" card (Board of Directors and Programme leads counted from the approved Leadership entries, 10 founding members, registered 2025); founder shown as one wide spotlight card; the three other directors as equal portrait cards in one row (no lone card); board roles as pills; programme leads two per row on phones. The founder photo no longer repeats in the hero.
+
 ## 0.24.0 - 3 Nov 2026
 
 - Inner pages: hero now has a breadcrumb and an arch-framed photo of the foundation's own work beside the title (About, Leadership, FAQ, Programmes, Stories, Impact, Get Involved, Contact), replacing the empty right side.
