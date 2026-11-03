@@ -114,7 +114,8 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 			}
 		}
 		$collage = 'home' === $variant && ! $has_img ? $collage : array();
-		printf( '<section class="lof-hero lof-hero--%1$s%2$s%3$s">', esc_attr( $variant ), $has_img ? ' has-photo' : '', $collage ? ' has-collage' : '' );
+		$side    = ( 'page' === $variant && ! $has_img && function_exists( 'lof_page_hero_side_photo' ) ) ? lof_page_hero_side_photo() : 0;
+		printf( '<section class="lof-hero lof-hero--%1$s%2$s%3$s%4$s">', esc_attr( $variant ), $has_img ? ' has-photo' : '', $collage ? ' has-collage' : '', $side ? ' has-side' : '' );
 		if ( $has_img ) {
 			echo '<div class="lof-hero__media">';
 			$this->render_media( $s['image'], 'lof-hero', 'lof-hero__img', 'home' === $variant );
@@ -123,6 +124,9 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 			echo '<div class="lof-hero__art" aria-hidden="true"><span class="lof-hero__sun"></span><span class="lof-hero__rays"></span><span class="lof-hero__band lof-hero__band--1"></span><span class="lof-hero__band lof-hero__band--2"></span><span class="lof-hero__band lof-hero__band--3"></span></div>';
 		}
 		echo '<div class="lof-container lof-hero__inner"><div class="lof-hero__content">';
+		if ( 'page' === $variant && is_page() && ! is_front_page() ) {
+			printf( '<nav class="lof-crumbs" aria-label="%1$s"><a href="%2$s">%3$s</a><span aria-hidden="true">/</span><span aria-current="page">%4$s</span></nav>', esc_attr__( 'Breadcrumb', 'light-of-future' ), esc_url( home_url( '/' ) ), esc_html__( 'Home', 'light-of-future' ), esc_html( get_the_title( get_queried_object_id() ) ) );
+		}
 		if ( ! empty( $s['eyebrow'] ) ) {
 			printf( '<p class="lof-eyebrow lof-hero__eyebrow">%s</p>', esc_html( $s['eyebrow'] ) );
 		}
@@ -152,6 +156,11 @@ class LOF_Widget_Hero extends LOF_Widget_Base {
 			echo '</ul>';
 		}
 		echo '</div>';
+		if ( $side ) {
+			echo '<figure class="lof-hero__side" aria-hidden="true"><span class="lof-hero__side-ring"></span>';
+			echo wp_get_attachment_image( $side, 'large', false, array( 'class' => 'lof-hero__side-img', 'alt' => '', 'loading' => 'eager', 'decoding' => 'async', 'sizes' => '(max-width: 900px) 90vw, 420px' ) );
+			echo '</figure>';
+		}
 		if ( $collage ) {
 			echo '<div class="lof-hero__collage" data-lof-slider>';
 			echo '<figure class="lof-hero__shot lof-hero__shot--1 lof-hero__slider">';

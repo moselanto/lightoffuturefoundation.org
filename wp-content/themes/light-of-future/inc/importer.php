@@ -662,7 +662,7 @@ function lof_setup_page_defs() {
 			__( 'FAQ', 'light-of-future' ),
 			'publish',
 			array(
-				lof_page_hero( __( 'FAQ', 'light-of-future' ), __( 'Questions and answers', 'light-of-future' ) ),
+				lof_page_hero( __( 'FAQ', 'light-of-future' ), __( 'Questions and answers', 'light-of-future' ), __( 'Clear answers about who we are, where we work and how you can help.', 'light-of-future' ) ),
 				lof_el(
 					'lof-cards',
 					array(
@@ -1371,3 +1371,101 @@ function lof_upgrade_legal_pages() {
 	}
 }
 add_action( 'init', 'lof_upgrade_legal_pages', 22 );
+
+
+/**
+ * 0.24.0: photo shown beside the title in inner-page heroes that have no photo of their own.
+ * Uses only the foundation's own consented photos.
+ *
+ * @return int Attachment ID or 0.
+ */
+function lof_page_hero_side_photo() {
+	$post = get_queried_object();
+	if ( ! $post || empty( $post->post_name ) || ! function_exists( 'lof_photo' ) ) {
+		return 0;
+	}
+	$map = array(
+		'about-us'           => 'story-elijah-new-home',
+		'leadership'         => 'founder-francis-ouma-sikuku',
+		'faq'                => 'story-philister-home',
+		'programmes'         => 'story-precious-school-shoes',
+		'talent-development' => 'story-precious-school-shoes',
+		'stories'            => 'story-philister-home',
+		'impact'             => 'story-elijah-new-home',
+		'get-involved'       => 'story-precious-school-shoes',
+		'contact'            => 'founder-francis-ouma-sikuku',
+	);
+	$map = apply_filters( 'lof_page_hero_side_photos', $map );
+	if ( empty( $map[ $post->post_name ] ) ) {
+		return 0;
+	}
+	$m = lof_photo( $map[ $post->post_name ] );
+	return ! empty( $m['id'] ) ? (int) $m['id'] : 0;
+}
+
+/**
+ * 0.24.0: FAQ page - a section heading, an intro line in the hero and more answers,
+ * all taken from facts already published on the site. Runs once; only touches the
+ * original five-question FAQ so later edits in Elementor are kept.
+ */
+function lof_upgrade_faq_more() {
+	if ( (int) get_option( 'lof_faq_rev', 0 ) >= 1 ) {
+		return;
+	}
+	update_option( 'lof_faq_rev', 1, false );
+	$page = get_page_by_path( 'faq', OBJECT, 'page' );
+	if ( ! $page ) {
+		return;
+	}
+	$raw  = get_post_meta( $page->ID, '_elementor_data', true );
+	$data = is_string( $raw ) ? json_decode( $raw, true ) : $raw;
+	if ( ! is_array( $data ) ) {
+		return;
+	}
+	$phone   = function_exists( 'lof_setting' ) ? (string) lof_setting( 'phone' ) : '';
+	$more    = array(
+		array( '_id' => 'f6', 'title' => __( 'What programmes do you run?', 'light-of-future' ), 'text' => __( 'We work across 11 focus areas, including education support, clean water, health and medical support, food donations, decent houses for widows and hygiene kits for the girl child. The Programmes page lists them all.', 'light-of-future' ) ),
+		array( '_id' => 'f7', 'title' => __( 'How can I volunteer or partner with you?', 'light-of-future' ), 'text' => __( 'We work hand in hand with community members, grassroots groups, churches and other partners. Visit the Get Involved page or send us a message and we will be in touch.', 'light-of-future' ) ),
+		array( '_id' => 'f8', 'title' => __( 'How is the foundation governed?', 'light-of-future' ), 'text' => __( 'A Board of Directors (Chairman, Vice Chairperson, Secretary and Treasurer) provides oversight and direction, and the Executive Director leads strategy, partnerships and programme implementation. See Leadership & Governance.', 'light-of-future' ) ),
+		array( '_id' => 'f9', 'title' => __( 'How do you protect the people in your stories?', 'light-of-future' ), 'text' => __( 'Stories and photos are shared only with consent, protecting the dignity and privacy of the people we serve. Child protection and safeguarding are part of our education and skills programmes.', 'light-of-future' ) ),
+		array( '_id' => 'f10', 'title' => __( 'How do I contact you?', 'light-of-future' ), 'text' => trim( ( '' !== $phone ? sprintf( /* translators: %s phone */ __( 'Call us on %s or', 'light-of-future' ), $phone ) . ' ' : '' ) . __( 'send a message through the Contact page. Our postal address is P.O. Box 53-00520, Ruai, along Kangundo Road, Nairobi.', 'light-of-future' ) ) ),
+	);
+	$changed = false;
+	$walk    = function ( &$els ) use ( &$walk, &$changed, $more ) {
+		foreach ( $els as &$el ) {
+			$type = isset( $el['widgetType'] ) ? $el['widgetType'] : '';
+			if ( 'lof-hero' === $type && isset( $el['settings']['variant'] ) && 'page' === $el['settings']['variant'] && empty( $el['settings']['text'] ) ) {
+				$el['settings']['text'] = __( 'Clear answers about who we are, where we work and how you can help.', 'light-of-future' );
+				$changed                = true;
+			}
+			if ( 'lof-cards' === $type && isset( $el['settings']['style'] ) && 'faq' === $el['settings']['style'] && isset( $el['settings']['items'] ) && is_array( $el['settings']['items'] ) && 5 === count( $el['settings']['items'] ) ) {
+				$el['settings']['items'] = array_merge( $el['settings']['items'], $more );
+				if ( empty( $el['settings']['title'] ) ) {
+					$el['settings']['eyebrow'] = __( 'Common questions', 'light-of-future' );
+					$el['settings']['title']   = __( 'Everything you need to know', 'light-of-future' );
+				}
+				$changed = true;
+			}
+			if ( ! empty( $el['elements'] ) && is_array( $el['elements'] ) ) {
+				$walk( $el['elements'] );
+			}
+		}
+		unset( $el );
+	};
+	$walk( $data );
+	if ( ! $changed ) {
+		return;
+	}
+	update_post_meta( $page->ID, '_lof_layout_backup', wp_slash( is_string( $raw ) ? $raw : wp_json_encode( $raw ) ) );
+	update_post_meta( $page->ID, '_lof_layout_backup_date', current_time( 'mysql' ) );
+	update_post_meta( $page->ID, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	delete_post_meta( $page->ID, '_elementor_css' );
+	delete_post_meta( $page->ID, '_elementor_element_cache' );
+	if ( class_exists( '\\Elementor\\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	if ( has_action( 'litespeed_purge_all' ) ) {
+		do_action( 'litespeed_purge_all' );
+	}
+}
+add_action( 'init', 'lof_upgrade_faq_more', 23 );

@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.23.0** and Core **0.23.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.24.0** and Core **0.24.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 22:10 EAT:** 0.24.0: inner-page heroes get a breadcrumb and an arch-framed photo (`lof_page_hero_side_photo()`, foundation's own consented photos); About objectives as an editorial two-column list; FAQ gets a heading, hero intro and 5 more answers from published facts (one-off `lof_upgrade_faq_more`, option `lof_faq_rev`).
 
 - **3 Nov 2026, 21:30 EAT:** 0.23.0: About, Leadership and FAQ professional pass (balanced 7-card grids, numbered values, objective tiles, fact-sheet band, profile cards, governance panel, segmented tabs, two-column FAQ with help card, one closing CTA per page). Page slug body class `lof-page-{slug}`.
 

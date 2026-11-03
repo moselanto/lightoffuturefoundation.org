@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.24.0 - 3 Nov 2026
+
+- Inner pages: hero now has a breadcrumb and an arch-framed photo of the foundation's own work beside the title (About, Leadership, FAQ, Programmes, Stories, Impact, Get Involved, Contact), replacing the empty right side.
+- About: objectives as an editorial two-column list with the heading on the left; values and vision/mission text slightly larger.
+- FAQ: section heading, hero intro line and five more answers (programmes, volunteering and partners, governance, consent and safeguarding, contact), all from facts already on the site.
+
 ## 0.23.0 - 3 Nov 2026
 
 - About: values as numbered cards, objectives as numbered tiles, 7-card grids balanced 4 + 3 with the last row centred, "Registration and contacts" as a single fact sheet on a dark band, larger intro statement.
