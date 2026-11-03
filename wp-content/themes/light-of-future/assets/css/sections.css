@@ -1876,3 +1876,66 @@ html[data-theme="dark"] .lof-jump { background: rgba(24, 16, 8, .94); border-bot
 @media (min-width: 901px) {
 	.lof-page-contact .lof-formsec .lof-formsec__grid { grid-template-areas: "head form" "head form" "next next"; }
 }
+
+
+/* ===== 0.33.0: Footer - balanced, professional layout ===== */
+.lof-footer.lof-footer--v2 { padding-top: clamp(2.5rem, 5vw, 4rem); }
+
+/* Contact strip: one joined bar with dividers instead of three loose tiles */
+.lof-footer.lof-footer--v2 .lof-footer__reach { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 0; border-radius: 22px; overflow: hidden; border: 1px solid rgba(244, 175, 22, .22); background: rgba(255, 255, 255, .045); margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+.lof-footer.lof-footer--v2 .lof-footer__reach:has(> :nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lof-footer.lof-footer--v2 .lof-footer__tile { display: flex; align-items: center; gap: 1rem; min-height: 92px; padding: 1.25rem 1.6rem; border: 0; border-right: 1px solid rgba(244, 175, 22, .16); border-radius: 0; background: transparent; box-shadow: none; text-decoration: none; transition: background .2s; }
+.lof-footer.lof-footer--v2 .lof-footer__tile:last-child { border-right: 0; }
+.lof-footer.lof-footer--v2 a.lof-footer__tile:hover { background: rgba(244, 175, 22, .08); }
+.lof-footer.lof-footer--v2 .lof-footer__ico { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--lof-gold); color: #2E1E0E; }
+.lof-footer.lof-footer--v2 .lof-footer__tile small { display: block; margin-bottom: .25rem; font: 800 .68rem/1 var(--lof-font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--lof-gold); }
+.lof-footer.lof-footer--v2 .lof-footer__tile strong { display: block; font-size: 1rem; line-height: 1.4; font-weight: 700; color: var(--lof-cream); word-break: break-word; }
+
+/* Main grid: brand | explore | focus areas | support card */
+.lof-footer.lof-footer--v2 .lof-footer__main { display: grid; grid-template-columns: minmax(0, 3.2fr) minmax(0, 3fr) minmax(0, 2.8fr) minmax(0, 3fr); gap: clamp(1.75rem, 3.5vw, 3rem); align-items: start; padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+.lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo img, .lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo svg { width: 120px; height: auto; }
+.lof-footer.lof-footer--v2 .lof-footer__intro { margin: 1.1rem 0 1rem; max-width: 34ch; font-size: .98rem; line-height: 1.7; color: rgba(252, 246, 225, .8); }
+.lof-footer.lof-footer--v2 .lof-footer__title { margin: 0 0 1.15rem; padding-bottom: .7rem; font: 800 .78rem/1 var(--lof-font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--lof-cream); border-bottom: 1px solid rgba(244, 175, 22, .2); position: relative; }
+.lof-footer.lof-footer--v2 .lof-footer__title::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 36px; height: 2px; background: var(--lof-gold); }
+.lof-footer.lof-footer--v2 .lof-footer__links a { padding: .32rem 0; font-size: .95rem; white-space: nowrap; }
+.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type .lof-footer__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.25rem; }
+.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type .lof-footer__links a { white-space: normal; }
+.lof-footer.lof-footer--v2 .lof-footer__more { display: inline-flex; margin-top: .5rem; color: var(--lof-gold); font-weight: 700; font-size: .92rem; }
+
+/* Support column as a glass card with a full-width button */
+.lof-footer.lof-footer--v2 .lof-footer__support { padding: 1.6rem 1.5rem; border-radius: 22px; background: linear-gradient(160deg, rgba(244, 175, 22, .14), rgba(244, 175, 22, .04)); border: 1px solid rgba(244, 175, 22, .28); }
+.lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__title { border-bottom-color: rgba(244, 175, 22, .28); }
+.lof-footer.lof-footer--v2 .lof-footer__support p { margin: 0 0 1.25rem; font-size: .96rem; line-height: 1.65; color: rgba(252, 246, 225, .86); }
+.lof-footer.lof-footer--v2 .lof-footer__donate { display: flex; justify-content: center; width: 100%; min-height: 50px; border-radius: 999px; font-weight: 800; }
+.lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__more { display: flex; justify-content: center; margin-top: .85rem; }
+
+/* Base bar: copyright | legal | back to top, all on one line */
+.lof-footer.lof-footer--v2 .lof-footer__base { border-top: 1px solid rgba(244, 175, 22, .16); background: rgba(0, 0, 0, .18); }
+.lof-footer.lof-footer--v2 .lof-footer__bottom { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 1.5rem; padding-block: 1.15rem; }
+.lof-footer.lof-footer--v2 .lof-footer__copy { margin: 0; font-size: .84rem; color: rgba(252, 246, 225, .7); }
+.lof-footer.lof-footer--v2 .lof-footer__legal { display: flex; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+.lof-footer.lof-footer--v2 .lof-footer__legal a { font-size: .85rem; color: rgba(252, 246, 225, .82); text-decoration: none; }
+.lof-footer.lof-footer--v2 .lof-footer__legal a:hover { color: var(--lof-gold); text-decoration: underline; }
+
+/* Tablet */
+@media (max-width: 1100px) {
+	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.lof-footer.lof-footer--v2 .lof-footer__intro { max-width: 44ch; }
+}
+@media (max-width: 860px) {
+	.lof-footer.lof-footer--v2 .lof-footer__reach, .lof-footer.lof-footer--v2 .lof-footer__reach:has(> :nth-child(2):last-child) { grid-template-columns: 1fr; }
+	.lof-footer.lof-footer--v2 .lof-footer__tile { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .16); min-height: 76px; }
+	.lof-footer.lof-footer--v2 .lof-footer__tile:last-child { border-bottom: 0; }
+	.lof-footer.lof-footer--v2 .lof-footer__bottom { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: .85rem; }
+}
+/* Phone: brand and support full width, the two link lists side by side */
+@media (max-width: 640px) {
+	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: 1fr 1fr; gap: 2rem 1.25rem; }
+	.lof-footer.lof-footer--v2 .lof-footer__brand, .lof-footer.lof-footer--v2 .lof-footer__support { grid-column: 1 / -1; }
+	.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type .lof-footer__links { grid-template-columns: 1fr; }
+	.lof-footer.lof-footer--v2 .lof-footer__links a { white-space: normal; font-size: .93rem; }
+	.lof-footer.lof-footer--v2 .lof-footer__tile { padding: 1rem 1.15rem; }
+}
+
+/* Light mode keeps the dark footer; dark mode deepens it slightly */
+html[data-theme="dark"] .lof-footer.lof-footer--v2 .lof-footer__reach { background: rgba(255, 255, 255, .03); }

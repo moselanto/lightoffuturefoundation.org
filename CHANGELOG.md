@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.33.0 - 3 Nov 2026
+
+- Footer: Call / Email / Visit as one joined bar with dividers and larger gold icons; four balanced columns (brand with a larger logo, Explore in two even columns, Focus areas, and Support our work as a highlighted card with a full-width button); headings with a gold underline; bottom bar with copyright, Privacy Policy / Terms of Use and Back to top on one line. Tablet shows two columns; on phones the two link lists sit side by side and the support card spans the width.
+
 ## 0.32.0 - 3 Nov 2026
 
 - Form sections ("Ready to give?" on Donate, "Take the first step" on Get Involved, "Write to us" on Contact): the heading and contact details now sit beside the form at the same height, and "What happens next" runs full width underneath as three steps side by side, so the left column no longer hangs below the form.
