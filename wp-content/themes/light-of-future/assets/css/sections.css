@@ -824,3 +824,11 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 	.lof-cine__title { font-size: clamp(1.75rem, 7.6vw, 2.25rem); }
 	.lof-cine__media img { transform: none; }
 }
+
+/* ===== 0.16.3: slide 3 (portrait photo) clear gap between text and photo ===== */
+@media (min-width: 761px) {
+	.lof-cine__slide--top .lof-cine__media { left: 52%; }
+	.lof-cine__slide--top .lof-cine__content { max-width: min(520px, 40vw); }
+	.lof-cine__slide--top .lof-cine__text { max-width: 40ch; }
+	.lof-cine__slide--top .lof-cine__shade { background: linear-gradient(90deg, rgba(28, 18, 8, .96) 0%, rgba(28, 18, 8, .94) 50%, rgba(28, 18, 8, .4) 58%, rgba(28, 18, 8, 0) 70%), linear-gradient(0deg, rgba(28, 18, 8, .9) 0%, rgba(28, 18, 8, 0) 40%); }
+}

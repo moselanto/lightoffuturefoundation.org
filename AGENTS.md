@@ -27,7 +27,7 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 
 ## Current state (30 Oct 2026, evening)
 
-- Theme **0.16.2** and Core **0.16.2** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.16.3** and Core **0.16.3** on `main`. PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
 
@@ -43,6 +43,8 @@ Read this file, then `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 15:30 EAT:** 0.16.3: slide 3 text/photo gap.
 
 - **3 Nov 2026, 15:35 EAT:** 0.16.2: phone slider photo-above/text-below, slide 3 spacing.
 

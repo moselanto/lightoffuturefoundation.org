@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.3 - 3 Nov 2026
+
+- Desktop slide 3 (portrait photo): photo starts at 52% width and the text column is narrower, leaving a clear gap.
+
 ## 0.16.2 - 3 Nov 2026
 
 - Phone slider rebuilt as a photo card with the text on a dark panel underneath, so the pill and headline never sit over a face; pill stays on one line.
