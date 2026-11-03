@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.18.2 - 3 Nov 2026
+
+- Lead story: text block anchored to the bottom of the photo on its own dark gradient, so the white title and text are always readable.
+
 ## 0.18.1 - 3 Nov 2026
 
 - Give today: back to one column on tablets and phones (panel was cut off sideways).

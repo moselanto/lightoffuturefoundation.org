@@ -1034,3 +1034,9 @@ html[data-theme="dark"] .lof-give--photo.lof-tone-earth { background-color: #241
 }
 /* No mid-word breaks in headings on phones */
 h1, h2, h3, .lof-section__title, .lof-cine__title { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: break-word; word-break: normal; text-wrap: balance; }
+
+/* ===== 0.18.2: lead story text sits on the dark lower part of the photo ===== */
+@media (min-width: 900px) {
+	.lof-grid--3 > .lof-card--story:first-child { justify-content: flex-end; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__body { flex: 0 0 auto; margin-top: auto; justify-content: flex-end; background: linear-gradient(0deg, rgba(20, 13, 6, .92) 0%, rgba(20, 13, 6, .78) 70%, rgba(20, 13, 6, 0) 100%); padding-top: 4rem; }
+}
