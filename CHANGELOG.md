@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.40.0 - 3 Nov 2026
+
+- Home, "Our story": redesigned as one clean card. Francis's portrait fills the left panel from top to bottom with his name and title on a soft dark band; the heading, letter, quote, a simple 20 / 2021 / 2025 timeline and the "Read our story" button sit on the right. The arch frame, offset gold outline, floating name tag and separate timeline box are gone. On tablets and phones the photo sits on top of the card.
+
 ## 0.39.1 - 3 Nov 2026
 
 - Theme picture (Appearance > Themes): the preview image is now a real view of the live home page - top bar, menu with Donate button, the Philister slide and the 200+ / 30+ / 11 / 2025 figures card.

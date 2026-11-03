@@ -2233,3 +2233,46 @@ body.home .lof-btn-row--center .lof-btn { min-height: 52px; padding-inline: 1.9r
 	body.home .lof-main > .elementor > .elementor-section .lof-section { padding-block: clamp(2.75rem, 11vw, 3.5rem); }
 	body.home .lof-intro__title { font-size: clamp(2rem, 8vw, 2.4rem) !important; }
 }
+
+
+/* ===== 0.40.0: Home "Our story" - one editorial card (photo panel left, letter right) ===== */
+/* Replaces the arch portrait, offset gold frames and floating timeline card from 0.17-0.38. */
+section.lof-feature--story .lof-feature__grid { display: grid !important; grid-template-columns: 1fr; gap: 0 !important; overflow: hidden; border-radius: 32px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 50px 90px -60px rgba(43, 29, 14, .7); }
+section.lof-feature--story .lof-feature__media { position: relative !important; top: auto !important; margin: 0 !important; width: 100% !important; max-width: none !important; justify-self: stretch !important; overflow: hidden; }
+section.lof-feature--story .lof-feature__media::before, section.lof-feature--story .lof-feature__media::after { display: none !important; }
+section.lof-feature--story .lof-feature__media img { display: block; width: 100% !important; height: 100% !important; min-height: 0 !important; max-height: none !important; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 22%; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+section.lof-feature--story .lof-feature__media figcaption, section.lof-feature--story .lof-feature__name { position: absolute !important; left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important; margin: 0 !important; padding: 3.5rem 1.75rem 1.5rem !important; border: 0 !important; border-radius: 0 !important; background: linear-gradient(0deg, rgba(28, 18, 8, .92), rgba(28, 18, 8, 0)) !important; box-shadow: none !important; transform: none !important; color: var(--lof-cream) !important; text-align: left; }
+section.lof-feature--story .lof-feature__name strong { display: block; font: 800 1.3rem/1.2 var(--lof-font-display); color: #FFFDF6 !important; }
+section.lof-feature--story .lof-feature__name span { display: block; margin-top: .3rem; font-size: max(.85rem, 14px); font-style: normal; letter-spacing: .04em; color: var(--lof-gold) !important; }
+section.lof-feature--story .lof-feature__body { display: block !important; padding: clamp(1.75rem, 5vw, 3rem) clamp(1.35rem, 5vw, 3rem) !important; }
+section.lof-feature--story .lof-feature__body > .lof-eyebrow { background: none !important; }
+section.lof-feature--story .lof-feature__body > .lof-section__title { font-size: clamp(2rem, 3.4vw, 2.8rem) !important; margin: .4rem 0 1.25rem !important; max-width: 18ch; }
+section.lof-feature--story .lof-prose { max-width: none !important; }
+section.lof-feature--story .lof-prose > p { line-height: 1.75 !important; }
+section.lof-feature--story .lof-quote { margin: 1.75rem 0 0 !important; }
+/* Milestones: a clean three-step timeline inside the card (no separate box) */
+section.lof-feature--story .lof-milestones { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 1rem !important; margin: 2rem 0 0 !important; padding: 1.4rem 0 0 !important; border: 0 !important; border-top: 2px solid rgba(244, 175, 22, .5) !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; max-width: none !important; width: auto !important; justify-self: stretch !important; }
+section.lof-feature--story .lof-milestones > div { position: relative; padding: 0 !important; text-align: left !important; }
+section.lof-feature--story .lof-milestones > div::before { content: ""; position: absolute; left: 0 !important; top: calc(-1.4rem - 8px) !important; margin: 0 !important; width: 14px; height: 14px; border-radius: 50%; background: var(--lof-gold); box-shadow: 0 0 0 5px rgba(244, 175, 22, .22); }
+section.lof-feature--story .lof-milestones > div::after { display: none !important; }
+section.lof-feature--story .lof-milestones dt { margin: .2rem 0 .35rem !important; font: 800 clamp(1.6rem, 2.4vw, 2rem)/1 var(--lof-font-display) !important; color: var(--lof-heading); }
+section.lof-feature--story .lof-milestones dd { margin: 0 !important; font-size: max(.9rem, 14.5px) !important; line-height: 1.45; color: var(--lof-muted); }
+section.lof-feature--story .lof-btn-row { margin-top: 2rem !important; }
+
+@media (min-width: 1025px) {
+	section.lof-feature--story .lof-feature__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) !important; grid-template-areas: "media body" !important; align-items: stretch !important; }
+	section.lof-feature--story.lof-feature--img-left .lof-feature__grid, section.lof-feature--story .lof-feature__grid { grid-template-areas: "media body" !important; }
+	section.lof-feature--story .lof-feature__media { grid-area: media !important; align-self: stretch !important; order: 0 !important; }
+	section.lof-feature--story .lof-feature__media img { position: absolute; inset: 0; aspect-ratio: auto; }
+	section.lof-feature--story .lof-feature__body { grid-area: body !important; display: block !important; padding: clamp(2.5rem, 4vw, 3.75rem) clamp(2.5rem, 4.5vw, 4rem) !important; }
+}
+@media (max-width: 1024px) {
+	section.lof-feature--story .lof-feature__media { order: -1 !important; }
+}
+@media (max-width: 520px) {
+	section.lof-feature--story .lof-feature__grid { border-radius: 24px; }
+	section.lof-feature--story .lof-milestones { grid-template-columns: 1fr !important; gap: 1.3rem !important; border-top: 0 !important; padding-top: 0 !important; }
+	section.lof-feature--story .lof-milestones > div { padding-left: 1.6rem !important; }
+	section.lof-feature--story .lof-milestones > div::before { top: .35rem !important; }
+}
+html[data-theme="dark"] section.lof-feature--story .lof-feature__grid { border-color: rgba(244, 175, 22, .18); box-shadow: 0 50px 90px -50px rgba(0, 0, 0, .9); }
