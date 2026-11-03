@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.40.1** and Core **0.40.1** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.40.2** and Core **0.40.2** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 23:55 EAT:** 0.40.2: cross-check of 0.40.0/0.40.1 - whole sections.css parses with 0 errors (tinycss2), no nested :has(), braces balanced; Our story photo panel given a 520px minimum height on laptops. Note: the "Our story" card style also applies to the founder section on About (same widget, `.lof-feature--story`).
 
 - **3 Nov 2026, 23:55 EAT:** 0.40.1: home "Our impact" band compacted (heading and intro on one line, smaller figure cards, less padding) - about half the previous height.
 

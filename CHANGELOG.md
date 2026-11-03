@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.40.2 - 3 Nov 2026
+
+- Cross-check of the "Our story" and "Our impact" changes: stylesheet validated (no errors), and the Our story photo panel keeps a minimum height on laptops so the portrait never shrinks.
+
 ## 0.40.1 - 3 Nov 2026
 
 - Home, "Our impact": much shorter band. The heading sits on the left with its short intro on the right on one line, the four figure cards are slimmer with slightly smaller numbers, and the section padding is reduced. Two figures per row on phones.

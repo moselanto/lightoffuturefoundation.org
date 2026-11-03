@@ -2296,3 +2296,6 @@ body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__note, 
 	body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__intro { justify-self: start; text-align: left; margin-top: .5rem !important; }
 	body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__grid { grid-template-columns: 1fr 1fr !important; }
 }
+
+/* 0.40.2: cross-check fix - the Our story photo panel keeps a minimum height on laptops even if the text is short */
+@media (min-width: 1025px) { section.lof-feature--story .lof-feature__media { min-height: 520px; } }
