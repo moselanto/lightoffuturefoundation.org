@@ -1188,3 +1188,50 @@ html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--
 	.lof-nav .lof-menu .sub-menu .current-menu-item > a::before { background: var(--lof-gold); }
 	.lof-nav .lof-nav__cta { width: 100%; justify-content: center; min-height: 54px; margin-top: .5rem; border-radius: 14px; font-size: 1rem; }
 }
+
+/* ===== 0.21.0: landing polish and refined footer ===== */
+/* Why we exist: statement with gold rule, vision and mission as icon cards */
+.lof-intro__grid { align-items: start; }
+.lof-intro__title { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+.lof-intro__aside { border-left: 0 !important; padding-left: 0 !important; position: relative; }
+.lof-intro__aside::before { content: ""; display: block; width: 64px; height: 4px; margin-bottom: 1.25rem; border-radius: 4px; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber)); }
+.lof-intro__statement { font-size: clamp(1.25rem, 2vw, 1.55rem); line-height: 1.45; font-weight: 700; color: var(--lof-heading); letter-spacing: -.01em; }
+.lof-intro__band { gap: 1.25rem !important; background: none !important; padding: 0 !important; border: 0 !important; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+.lof-intro__panel { position: relative; padding: 1.75rem 1.75rem 1.6rem 5.25rem !important; border-radius: 22px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 24px 50px -36px rgba(43, 29, 14, .5); border-top: 4px solid var(--lof-gold); }
+.lof-intro__panel::before { content: ""; position: absolute; left: 1.5rem; top: 1.75rem; width: 46px; height: 46px; border-radius: 14px; background: var(--lof-gold) no-repeat center / 24px; }
+.lof-intro__panel:nth-child(1)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232E1E0E' d='M12 5C6.5 5 2.7 9.3 1.5 12c1.2 2.7 5 7 10.5 7s9.3-4.3 10.5-7C21.3 9.3 17.5 5 12 5zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E"); }
+.lof-intro__panel:nth-child(2)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232E1E0E' d='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm3.5 6.5-2 5-5 2 2-5zM12 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E"); }
+.lof-intro__panel h3 { font-size: 1.2rem; line-height: 1.3; margin: .3rem 0 .5rem; }
+.lof-intro__panel p:not(.lof-eyebrow) { color: var(--lof-muted); margin: 0; }
+@media (max-width: 560px) { .lof-intro__panel { padding: 4.6rem 1.25rem 1.35rem !important; } .lof-intro__panel::before { left: 1.25rem; top: 1.25rem; } }
+
+/* Impact band: figures as glass cards with a soft sun glow */
+.lof-impact.lof-tone-earth, .lof-tone-earth.lof-impact { position: relative; overflow: hidden; background: radial-gradient(60% 80% at 50% 120%, rgba(244, 175, 22, .3), rgba(244, 175, 22, 0) 70%), var(--lof-earth); }
+.lof-tone-earth .lof-impact__grid { gap: 1rem; }
+.lof-tone-earth .lof-impact__item { padding: 1.6rem 1.4rem !important; border: 1px solid rgba(252, 246, 225, .14) !important; border-radius: 20px; background: rgba(252, 246, 225, .05); backdrop-filter: blur(4px); text-align: center; display: flex; flex-direction: column; align-items: center; }
+.lof-tone-earth .lof-impact__value { order: -1; font-size: clamp(2.4rem, 4.4vw, 3.4rem); }
+.lof-tone-earth .lof-impact__label { margin-top: .4rem; letter-spacing: .1em; }
+@media (max-width: 640px) { .lof-tone-earth .lof-impact__item { padding: 1.1rem .8rem !important; border-bottom: 1px solid rgba(252, 246, 225, .14) !important; } }
+
+/* Closing call to action: rounded sun card instead of a flat strip */
+.lof-cta.lof-tone-sun { background: var(--lof-bg) !important; padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+.lof-cta.lof-tone-sun .lof-cta__box { position: relative; overflow: hidden; padding: clamp(2rem, 4.5vw, 3.5rem) clamp(1.5rem, 4.5vw, 3.75rem); border-radius: 30px; background: linear-gradient(120deg, var(--lof-gold) 0%, #F8C537 55%, var(--lof-yellow) 100%); color: #2E1E0E; box-shadow: 0 40px 80px -46px rgba(220, 140, 19, .9); }
+.lof-cta.lof-tone-sun .lof-cta__box::before { content: ""; position: absolute; right: -90px; top: -110px; width: 340px; height: 340px; border-radius: 50%; border: 2px solid rgba(63, 41, 19, .16); box-shadow: 0 0 0 46px rgba(63, 41, 19, .05), 0 0 0 92px rgba(63, 41, 19, .03); pointer-events: none; }
+.lof-cta.lof-tone-sun .lof-cta__box::after { content: ""; position: absolute; left: clamp(1.5rem, 4.5vw, 3.75rem); top: 0; width: 64px; height: 4px; border-radius: 0 0 4px 4px; background: #3F2913; }
+.lof-cta.lof-tone-sun .lof-cta__box > * { position: relative; }
+
+/* Footer: wordmark removed; cleaner base bar with logo, registration and links */
+.lof-footer__mark { display: none !important; }
+.lof-footer--v2 { border-top: 4px solid var(--lof-gold); }
+.lof-footer__main { padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+.lof-footer__base { margin-top: 0; background: rgba(0, 0, 0, .22); border-top: 1px solid rgba(252, 246, 225, .12); }
+.lof-footer--v2 .lof-footer__bottom { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 1.5rem; align-items: center; padding-block: 1.25rem; }
+.lof-footer__copy { margin: 0; font-size: .85rem; color: rgba(252, 246, 225, .78); }
+.lof-footer--v2 .lof-footer__legal { display: flex; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+.lof-footer--v2 .lof-footer__legal a { font-size: .85rem; color: rgba(252, 246, 225, .82); }
+.lof-footer__top { padding: .55rem 1rem; border-radius: 999px; border: 1px solid rgba(244, 175, 22, .5); text-decoration: none; transition: background .2s, color .2s; }
+.lof-footer__top:hover { background: var(--lof-gold); color: #2E1E0E !important; }
+.lof-footer__brand .lof-logo img { height: 104px; }
+.lof-footer__col .lof-footer__title { color: var(--lof-cream); }
+.lof-footer__col .lof-footer__title::after { width: 28px; height: 3px; border-radius: 3px; }
+@media (max-width: 760px) { .lof-footer--v2 .lof-footer__bottom { grid-template-columns: 1fr; gap: .9rem; justify-items: start; } }

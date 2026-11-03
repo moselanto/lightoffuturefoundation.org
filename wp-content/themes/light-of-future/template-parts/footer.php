@@ -107,10 +107,9 @@ $lof_show_cta = ! is_front_page() && ! is_page( 'donate' );
 			<a class="lof-footer__more" href="<?php echo esc_url( home_url( '/get-involved/' ) ); ?>"><?php esc_html_e( 'Volunteer or partner with us', 'light-of-future' ); ?></a>
 		</div>
 	</div>
-	<div class="lof-footer__mark" aria-hidden="true">Light of Future</div>
 	<div class="lof-footer__base">
 		<div class="lof-container lof-footer__bottom">
-			<p>&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?>. <?php echo esc_html( lof_setting( 'registration_line' ) ); ?></p>
+			<p class="lof-footer__copy">&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?>. <?php echo esc_html( lof_setting( 'registration_line' ) ); ?></p>
 			<?php
 			wp_nav_menu(
 				array(

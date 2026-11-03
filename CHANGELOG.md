@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.21.0 - 3 Nov 2026
+
+- Footer: removed the large outlined "Light of Future" wordmark (Agnes). Gold top edge, cleaner base bar (copyright and registration, legal links, Back to top pill), tidier column titles and logo size.
+- Why we exist: gold rule above a bolder statement; Vision and Mission as icon cards (eye and compass) with gold top edge.
+- Impact band: figures as glass cards with a soft sun glow.
+- Closing call to action: rounded sun card with ring motif instead of a flat full-width strip.
+
 ## 0.20.0 - 3 Nov 2026
 
 - Phone and tablet menu: sub-menus are now an accordion. Each parent (About, Programmes, Impact, Get Involved) has a round chevron button that opens its pages in a tinted card (one group open at a time; the group of the current page opens automatically). Larger brand-font top items with dividers and a gold marker for the current section; sub-items with dots, chevrons and a highlighted current page; full-width Donate button. Parent links still go to their pages. Without JavaScript all sub-pages stay visible.
