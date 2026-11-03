@@ -781,3 +781,30 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 .lof-card--programme:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -30px rgba(43, 29, 14, .6); }
 .lof-card--programme .lof-card__media img { transition: transform .6s ease; }
 .lof-card--programme:hover .lof-card__media img { transform: scale(1.05); }
+
+/* ===== 0.16.1: slider spacing, portrait photos, phone layout ===== */
+@media (min-width: 761px) {
+	/* keep progress bars and buttons clear of the figures card that overlaps the slider by 2.5rem */
+	.lof-cine__ui { padding-bottom: calc(2.5rem + clamp(1rem, 2.6vh, 1.6rem)); }
+	.lof-cine__inner { padding-bottom: calc(2.5rem + clamp(5.5rem, 12vh, 7.5rem)); }
+	.lof-cine__shade { background: linear-gradient(90deg, rgba(28, 18, 8, .92) 0%, rgba(28, 18, 8, .72) 38%, rgba(28, 18, 8, .18) 72%, rgba(28, 18, 8, .05) 100%), linear-gradient(0deg, rgba(28, 18, 8, .9) 0%, rgba(28, 18, 8, 0) 40%); }
+	/* portrait photos (focus "Top"): show the photo on the right so text never crosses a face */
+	.lof-cine__slide--top { background: radial-gradient(80% 90% at 20% 50%, #3A2612, #1C1208); }
+	.lof-cine__slide--top .lof-cine__media { left: 44%; }
+	.lof-cine__slide--top .lof-cine__media img { object-position: center 18%; }
+	.lof-cine__slide--top .lof-cine__shade { background: linear-gradient(90deg, rgba(28, 18, 8, .96) 0%, rgba(28, 18, 8, .9) 42%, rgba(28, 18, 8, .35) 52%, rgba(28, 18, 8, 0) 66%), linear-gradient(0deg, rgba(28, 18, 8, .9) 0%, rgba(28, 18, 8, 0) 40%); }
+}
+@media (max-width: 760px) {
+	/* phone: photo on top, text on a dark panel below, controls at the top so the fixed Donate bar never hides them */
+	.lof-cine { background: #1C1208; }
+	.lof-cine__media { bottom: auto; height: 56%; }
+	.lof-cine__slide--top .lof-cine__media img { object-position: center 15%; }
+	.lof-cine__shade { background: linear-gradient(0deg, #1C1208 0%, #1C1208 44%, rgba(28, 18, 8, .55) 56%, rgba(28, 18, 8, .1) 75%, rgba(28, 18, 8, .35) 100%); }
+	.lof-cine__inner { padding-top: 0; padding-bottom: 3.75rem; }
+	.lof-cine__content { padding-top: calc(56% - 2rem); }
+	.lof-cine__ui { top: .9rem; bottom: auto; padding-bottom: 0; }
+	.lof-cine__ui-inner { justify-content: flex-end; }
+	.lof-cine__count { padding: .35rem .7rem; border-radius: 999px; background: rgba(28, 18, 8, .55); backdrop-filter: blur(6px); }
+	.lof-cine__eyebrow { font-size: .68rem; }
+	.lof-cine__text { font-size: .98rem; }
+}

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.16.1 - 3 Nov 2026
+
+- Slider: progress bars and buttons now sit clear of the overlapping figures card on desktop.
+- Portrait photos (slide focus "Top", e.g. Precious) show on the right half on desktop so the headline never crosses a face.
+- Phone: photo on top, text on a dark panel below it, and the counter and buttons moved to the top of the slider so the fixed Donate bar no longer hides them.
+
 ## 0.16.0 - 3 Nov 2026
 
 - Home: new full-width slider (widget `lof-slider`) replacing the split hero. Three slides using the foundation's own photos and confirmed copy: mission (Elijah's new home), Philister's safe home at 85, Precious staying in school. Each slide has its own headline, text and two buttons; slow zoom, text rise-in, gold progress bars with labels, slide counter, previous/pause/next buttons, keyboard arrows, swipe on phones, pauses on hover/focus and when the tab is hidden, no motion for reduced-motion users. Fits the screen on laptops and up.
