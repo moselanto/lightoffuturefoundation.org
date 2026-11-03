@@ -1765,3 +1765,47 @@ html[data-theme="dark"] .lof-page-donate .lof-tone-white:has(.lof-grid--3:not(:h
 
 /* Get Involved: "Ways to help" section breathing room and heading */
 .lof-page-get-involved .lof-tone-white { padding-block: clamp(3.5rem, 7vw, 5.5rem); }
+
+
+/* ===== 0.30.0: Programmes, Stories, Talent and Impact - finishing pass ===== */
+/* Focus areas without photos: rich brand tile (overrides the pale 0.15 placeholder) */
+.lof-card.lof-card--programme .lof-card__media .lof-placeholder.lof-placeholder--prog { display: flex; align-items: center; justify-content: center; min-height: 0; height: 100%; background: radial-gradient(120% 90% at 85% 0%, rgba(244, 175, 22, .5), rgba(244, 175, 22, 0) 55%), radial-gradient(90% 80% at 0% 100%, rgba(220, 140, 19, .4), rgba(220, 140, 19, 0) 60%), linear-gradient(150deg, #5C3D1E, #3A2512) !important; }
+.lof-card.lof-card--programme .lof-placeholder--prog::after { content: ""; position: absolute; right: -40px; bottom: -40px; width: 170px; height: 170px; border: 0; border-radius: 0; background: url("../images/brand/symbol-dark.svg") center / contain no-repeat; opacity: .12; }
+.lof-card.lof-card--programme .lof-placeholder__ico { width: 88px; height: 88px; background: rgba(252, 246, 225, .08); color: var(--lof-gold); }
+.lof-card.lof-card--programme .lof-placeholder__ico svg { width: 40px; height: 40px; }
+html[data-theme="dark"] .lof-card.lof-card--programme .lof-card__media .lof-placeholder.lof-placeholder--prog { background: radial-gradient(120% 90% at 85% 0%, rgba(244, 175, 22, .38), rgba(244, 175, 22, 0) 55%), linear-gradient(150deg, #3a2614, #1f1409) !important; }
+
+/* Consistent row and column gaps in card grids */
+.lof-page-programmes .lof-grid--3, .lof-page-impact .lof-grid--3 { row-gap: clamp(1.25rem, 2.4vw, 1.75rem) !important; column-gap: clamp(1.25rem, 2.4vw, 1.75rem) !important; }
+.lof-card--programme.lof-reveal { margin: 0; }
+
+/* Third approach card gets its own icon (growth) */
+.lof-intro__panel:nth-child(3)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232E1E0E' d='M3 17l6-6 4 4 8-8v4h2V3h-8v2h4l-6 6-4-4-8 8z'/%3E%3C/svg%3E"); }
+
+/* Programmes: jump-to chips above the 11 focus areas */
+.lof-progjump { margin: 0 auto clamp(1.75rem, 3.5vw, 2.5rem); max-width: 1040px; }
+.lof-progjump ul { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.lof-progjump a { display: inline-flex; align-items: center; gap: .5rem; min-height: 40px; padding: .4rem .95rem .4rem .45rem; border-radius: 999px; background: var(--lof-surface); border: 1px solid var(--lof-line); color: var(--lof-heading); font: 700 .84rem/1.2 var(--lof-font-body); text-decoration: none; transition: background .2s, border-color .2s, transform .2s; }
+.lof-progjump a span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(244, 175, 22, .18); color: var(--lof-amber); font: 800 .72rem/1 var(--lof-font-display); }
+.lof-progjump a:hover { background: var(--lof-gold); border-color: var(--lof-gold); color: #2E1E0E; transform: translateY(-2px); }
+.lof-progjump a:hover span { background: rgba(46, 30, 14, .14); color: #2E1E0E; }
+.lof-card--programme[id] { scroll-margin-top: 110px; }
+.lof-card--programme:target { box-shadow: 0 0 0 3px var(--lof-gold), 0 30px 56px -34px rgba(220, 140, 19, .7); }
+@media (max-width: 640px) { .lof-progjump ul { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding-bottom: .4rem; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; } .lof-progjump li { flex: none; scroll-snap-align: start; } }
+html[data-theme="dark"] .lof-progjump a { border-color: rgba(244, 175, 22, .18); }
+
+/* Programme card body: lead pill and link row tidy */
+.lof-card--programme .lof-card__lead { align-self: flex-start; }
+.lof-card--programme .lof-card__body { padding: 1.4rem 1.45rem 1.3rem; }
+.lof-card--programme .lof-card__link { border-top: 1px solid var(--lof-line); padding-top: .9rem; }
+
+/* Stories: featured story card a touch taller and more cinematic on wide screens */
+@media (min-width: 1025px) { .lof-page-stories .lof-spot { min-height: 460px; } }
+.lof-page-stories .lof-more-head .lof-eyebrow, .lof-page-impact .lof-section__head .lof-eyebrow { color: var(--lof-link); }
+
+/* Impact: figures band - larger numbers and a soft gold glow */
+.lof-page-impact .lof-impact:not(.lof-impact--strip) { background: radial-gradient(60% 80% at 50% 0%, rgba(244, 175, 22, .22), rgba(244, 175, 22, 0) 70%), linear-gradient(160deg, #5C3D1E, #3F2913); }
+.lof-page-impact .lof-impact:not(.lof-impact--strip) .lof-impact__value { font-size: clamp(2.6rem, 5vw, 3.6rem); }
+
+/* Talent: talent area cards align with the steps panel width */
+.lof-page-talent-development .lof-tone-white .lof-grid--3, .lof-page-talent-development .lof-steps { max-width: 1120px; margin-inline: auto; }

@@ -43,10 +43,17 @@ class LOF_Widget_Programmes extends LOF_Widget_Base {
 		}
 		$this->open_section( $s );
 		$this->render_heading( $s, __( 'Our programmes', 'light-of-future' ) );
+		if ( count( $items ) >= 8 ) {
+			echo '<nav class="lof-progjump" aria-label="' . esc_attr__( 'Jump to a focus area', 'light-of-future' ) . '"><ul>';
+			foreach ( $items as $i => $p ) {
+				printf( '<li><a href="#lof-prog-%1$s"><span aria-hidden="true">%2$02d</span>%3$s</a></li>', esc_attr( $p->post_name ), (int) $i + 1, esc_html( get_the_title( $p ) ) );
+			}
+			echo '</ul></nav>';
+		}
 		echo '<div class="lof-grid lof-grid--3">';
 		foreach ( $items as $i => $p ) {
 			$link = get_permalink( $p );
-			echo '<article class="lof-card lof-card--programme lof-reveal">';
+			printf( '<article class="lof-card lof-card--programme lof-reveal" id="lof-prog-%s">', esc_attr( $p->post_name ) );
 			printf( '<a class="lof-card__media" href="%s" tabindex="-1" aria-hidden="true">', esc_url( $link ) );
 			if ( has_post_thumbnail( $p ) ) {
 				echo get_the_post_thumbnail( $p, 'lof-card', array( 'loading' => 'lazy' ) );

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.30.0 - 3 Nov 2026
+
+- Programmes: focus areas without photos now really show the brown and gold icon tile (an older style kept them pale beige); a row of "jump to" chips (01 Education ... 11 Prison Outreach) above the cards scrolls straight to each focus area and highlights it; even spacing between card rows; tidier card footer.
+- "From relief to self-reliance": the third card gets its own icon instead of an empty gold square.
+- Impact: larger figures on a warm gold-lit band; six focus-area tiles use the new design.
+- Stories and Talent Development: featured story height and section widths aligned.
+
 ## 0.29.0 - 3 Nov 2026
 
 - Forms (Contact, Get Involved, Donate): a dark "What happens next" card with a three-step timeline fills the left column; the form sits in one raised card with clearer labels and a gold pill submit button.
