@@ -559,7 +559,6 @@ html[data-theme="dark"] .lof-footer--v2 { background: radial-gradient(120% 80% a
 html, body { overflow-x: clip; }
 img, svg, video, iframe { max-width: 100%; }
 @media (max-width: 640px) {
-	.lof-container { padding-inline: 1.15rem; }
 	.lof-btn-row { gap: .6rem; }
 	.lof-heading__title, .lof-section h2 { overflow-wrap: anywhere; hyphens: auto; }
 	.lof-topbar__contacts { gap: .75rem; font-size: .75rem; flex-wrap: wrap; justify-content: center; width: 100%; }
@@ -1139,3 +1138,22 @@ html[data-theme="dark"] .lof-tabbar button, html[data-theme="dark"] .lof-tabbar 
 .lof-tabbar button[aria-expanded="true"] { color: #3F2913; }
 .lof-tabbar button[aria-expanded="true"] .lof-tabbar__ico { background: rgba(244, 175, 22, .22); }
 html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--lof-gold); }
+
+/* ===== 0.19.2: phone side margins (was a double gutter: width calc + extra padding, about 38px a side) ===== */
+@media (max-width: 640px) {
+	.lof-container, .lof-feature--about > .lof-container, .lof-hero.has-collage .lof-hero__inner { width: calc(100% - 2rem) !important; padding-inline: 0 !important; }
+	.lof-section { padding-block: clamp(2.75rem, 11vw, 3.75rem); }
+	.lof-card__body, .lof-card--programme .lof-card__body, .lof-card--story .lof-card__body { padding: 1.1rem 1.1rem 1.15rem; }
+	.lof-givepanel, .lof-tone-earth .lof-givepanel { padding: 1.1rem; }
+	.lof-give--card .lof-give__body { padding: 1.25rem 1.1rem 1.4rem; }
+	.lof-give__overlay { padding: 1.2rem 1.1rem; }
+	.lof-figbar__grid { padding: 1rem .75rem; }
+	.lof-figbar__grid > div { padding: .25rem .5rem; }
+	.lof-footer__cta { padding: 1.4rem 1.15rem; border-radius: 20px; }
+	.lof-footer__tile { padding: .9rem 1rem; }
+	.lof-faq__item summary { padding: 1rem 3.4rem 1rem 1.05rem; }
+	.lof-faq__answer { padding: 0 1.05rem 1.1rem; }
+	.lof-feature--about .lof-feature__media, .lof-feature--story .lof-feature__media { width: calc(100% - 14px); }
+	.lof-cine__inner { width: calc(100% - 2rem) !important; }
+	.lof-cine__ui-inner { width: calc(100% - 2rem) !important; }
+}

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.19.2 - 3 Nov 2026
+
+- Phones: side margins reduced from about 38px to 16px a side (removed a double gutter: container width calc plus extra padding). Tighter section, card, panel, FAQ and footer padding on small screens so content uses the width.
+
 ## 0.19.1 - 3 Nov 2026
 
 - Phone bottom bar: the Menu button no longer turns pink when tapped; open state uses the brand gold highlight.
