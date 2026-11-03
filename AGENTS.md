@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.33.0** and Core **0.33.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.34.0** and Core **0.34.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 23:30 EAT:** 0.34.0: About objectives redesigned as one white two-column panel (centred heading, gold number tiles, 8th cell = gold NGO registration note via `::after`), registration band labels forced visible (gold) on the dark band.
 
 - **3 Nov 2026, 23:25 EAT:** 0.33.0: footer redesign (CSS block `0.33.0`): contact strip as one joined bar, four balanced columns (brand, Explore in two columns, Focus areas, Support card), gold-underlined headings, base bar on one line; tablet two columns, phone link lists side by side.
 

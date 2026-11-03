@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.34.0 - 3 Nov 2026
+
+- About, "What we set out to do": heading centred above; the seven objectives sit in one white panel with two even columns, gold number tiles and thin dividers, and a gold "Registered with the NGO Board of Kenya on 23 May 2025" cell completes the last row so the panel ends square. One column on phones.
+- About, "Registration and contacts": the four labels (Registered, Charitable purpose, Leadership, Postal address) were invisible on the dark band and now show in gold.
+
 ## 0.33.0 - 3 Nov 2026
 
 - Footer: Call / Email / Visit as one joined bar with dividers and larger gold icons; four balanced columns (brand with a larger logo, Explore in two even columns, Focus areas, and Support our work as a highlighted card with a full-width button); headings with a gold underline; bottom bar with copyright, Privacy Policy / Terms of Use and Back to top on one line. Tablet shows two columns; on phones the two link lists sit side by side and the support card spans the width.
