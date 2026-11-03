@@ -2024,3 +2024,82 @@ body { font-size: 1rem; line-height: 1.7; }
 	.lof-hero--page .lof-hero__title { font-size: clamp(2.1rem, 9vw, 2.6rem) !important; }
 	.lof-tabbar__item a, .lof-tabbar__item button { font-size: 12px !important; }
 }
+
+
+/* ===== 0.35.1: Footer balance fixes ===== */
+/* Layout: brand on top-left with the support card under it (fills the old empty space);
+   Explore and Focus areas each take a full-height column. */
+@media (min-width: 1101px) {
+	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: minmax(0, 4fr) minmax(0, 4.2fr) minmax(0, 3.8fr); grid-template-areas: "brand explore focus" "support explore focus"; column-gap: clamp(2rem, 4vw, 3.75rem); row-gap: 1.75rem; }
+	.lof-footer.lof-footer--v2 .lof-footer__brand { grid-area: brand; }
+	.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type { grid-area: explore; }
+	.lof-footer.lof-footer--v2 .lof-footer__col:nth-of-type(2):not(.lof-footer__support) { grid-area: focus; }
+	.lof-footer.lof-footer--v2 .lof-footer__support { grid-area: support; align-self: start; }
+}
+@media (min-width: 641px) and (max-width: 1100px) {
+	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "brand support" "explore focus"; }
+	.lof-footer.lof-footer--v2 .lof-footer__brand { grid-area: brand; }
+	.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type { grid-area: explore; }
+	.lof-footer.lof-footer--v2 .lof-footer__col:nth-of-type(2):not(.lof-footer__support) { grid-area: focus; }
+	.lof-footer.lof-footer--v2 .lof-footer__support { grid-area: support; }
+}
+
+/* Long focus-area names wrap instead of running into the next column */
+.lof-footer.lof-footer--v2 .lof-footer__links a { white-space: normal !important; line-height: 1.45; }
+.lof-footer.lof-footer--v2 .lof-footer__links li { margin: 0; }
+.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type .lof-footer__links { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: .1rem; }
+
+/* Brand: larger logo, tidy intro and badge */
+.lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo img, .lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo svg { width: 150px !important; height: auto; }
+.lof-footer.lof-footer--v2 .lof-footer__intro { max-width: 38ch; }
+
+/* Support card: same heading style as the other columns, compact, button and link side by side on wide screens */
+.lof-footer.lof-footer--v2 .lof-footer__support { padding: 1.5rem 1.6rem; }
+.lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__title { margin-bottom: .9rem; }
+.lof-footer.lof-footer--v2 .lof-footer__support p { margin-bottom: 1.1rem; }
+@media (min-width: 1101px) {
+	.lof-footer.lof-footer--v2 .lof-footer__support { display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: 1.25rem; }
+	.lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__title, .lof-footer.lof-footer--v2 .lof-footer__support p { grid-column: 1 / -1; }
+	.lof-footer.lof-footer--v2 .lof-footer__donate { width: auto !important; padding-inline: 1.6rem; }
+	.lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__more { margin-top: 0 !important; justify-content: flex-start !important; }
+}
+
+/* Contact bar: equal columns, address text not squeezed */
+.lof-footer.lof-footer--v2 .lof-footer__reach { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1.25fr); }
+
+/* Phones */
+@media (max-width: 640px) {
+	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-areas: none; }
+	.lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo img, .lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo svg { width: 130px !important; }
+	.lof-footer.lof-footer--v2 .lof-footer__reach { grid-template-columns: 1fr; }
+}
+
+
+/* ===== 0.36.0: Closing call-to-action - donation panel on the right ===== */
+.lof-cta.lof-tone-sun .lof-cta__box { display: grid !important; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr); align-items: center; gap: clamp(1.75rem, 4vw, 3.5rem); }
+.lof-cta.lof-tone-sun .lof-section__head { max-width: none !important; }
+.lof-cta.lof-tone-sun .lof-section__title { font-size: clamp(2.1rem, 4vw, 3.2rem) !important; color: #2E1E0E !important; }
+.lof-cta.lof-tone-sun .lof-section__intro { margin-inline: 0 !important; color: rgba(46, 30, 14, .82) !important; font-size: 1.1rem !important; }
+/* Right side: a dark donation panel holding the two buttons and a trust line */
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row { display: flex !important; flex-direction: column; align-items: stretch; gap: .75rem; margin: 0 !important; padding: clamp(1.4rem, 2.6vw, 2rem); border-radius: 24px; background: linear-gradient(160deg, #3F2913, #2A1B0C); box-shadow: 0 30px 60px -30px rgba(43, 29, 14, .75); flex-wrap: nowrap !important; }
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row::before { content: "Make a difference today"; display: block; margin-bottom: .35rem; text-align: center; font: 800 max(.8rem, 13px)/1.2 var(--lof-font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--lof-gold); }
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row .lof-btn { display: flex; justify-content: center; align-items: center; gap: .6rem; width: 100%; min-height: 56px; border-radius: 999px; font-size: max(1rem, 16px) !important; font-weight: 800; letter-spacing: .02em; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row .lof-btn:first-child { background: var(--lof-gold) !important; color: #2E1E0E !important; border: 0 !important; box-shadow: 0 16px 30px -14px rgba(244, 175, 22, .8); }
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row .lof-btn:first-child::before { content: ""; width: 20px; height: 20px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232E1E0E' d='M12 21s-7.5-4.6-9.4-9.3C1.2 8 3.4 4 7.1 4c2 0 3.4 1.1 4.9 3 1.5-1.9 2.9-3 4.9-3 3.7 0 5.9 4 4.5 7.7C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center / contain no-repeat; }
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row .lof-btn:first-child:hover { background: #FBD62B !important; transform: translateY(-2px); }
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row .lof-btn:nth-child(2) { background: transparent !important; color: var(--lof-cream) !important; border: 1.5px solid rgba(252, 246, 225, .45) !important; }
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row .lof-btn:nth-child(2):hover { border-color: var(--lof-gold) !important; color: var(--lof-gold) !important; }
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row::after { content: "Registered NGO, Kenya \00B7  23 May 2025"; display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: .35rem; padding-top: .85rem; border-top: 1px solid rgba(244, 175, 22, .2); font-size: max(.82rem, 13.5px); color: rgba(252, 246, 225, .78); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23F4AF16' d='M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-1.5 15.5-4-4 1.4-1.4 2.6 2.6 6.1-6.1 1.4 1.4-7.5 7.5z'/%3E%3C/svg%3E") left calc(50% - 8.2rem) center / 16px 16px no-repeat; }
+@media (max-width: 860px) {
+	.lof-cta.lof-tone-sun .lof-cta__box { grid-template-columns: 1fr; }
+	.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row::after { background: none; }
+}
+html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row { border: 1px solid rgba(244, 175, 22, .25); }
+html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-section__title, html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-section__intro { color: #1A120A !important; }
+
+/* Footer CTA card (pages without their own CTA): same treatment for its buttons */
+.lof-footer__cta-actions { display: flex; flex-direction: column; gap: .7rem; min-width: 260px; padding: 1.25rem; border-radius: 22px; background: linear-gradient(160deg, #3F2913, #2A1B0C); }
+.lof-footer__cta-actions .lof-btn { display: flex; justify-content: center; min-height: 52px; border-radius: 999px; font-weight: 800; }
+.lof-footer__cta-actions .lof-btn--earth { background: var(--lof-gold) !important; color: #2E1E0E !important; border: 0 !important; }
+.lof-footer__cta-actions .lof-footer__cta-ghost { background: transparent !important; color: var(--lof-cream) !important; border: 1.5px solid rgba(252, 246, 225, .45) !important; }
+@media (max-width: 760px) { .lof-footer__cta-actions { min-width: 0; width: 100%; } }

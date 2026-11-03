@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.36.0 - 3 Nov 2026
+
+- Closing call to action ("Be the light in someone's future", on most pages): the small buttons on the right are now a dark donation panel with a "Make a difference today" label, a large gold Donate button with a heart icon, an outline Get involved button and a "Registered NGO, Kenya - 23 May 2025" trust line. Larger heading on the left. Stacks on phones. The footer's "Every gift lights a future" card uses the same button style.
+
+## 0.35.1 - 3 Nov 2026
+
+- Footer: "Decent Houses for Widows, Widowers and Vulnerable Families" no longer runs into the support card (long names wrap). New balanced layout: logo, description and badge top left with the "Support our work" card directly under it, then Explore and Focus areas as two full columns. Larger logo, compact support card with button and volunteer link side by side, wider address cell in the contact bar. Tablet: brand and support on top, the two link lists below.
+
 ## 0.35.0 - 3 Nov 2026
 
 - Typography: larger, easier-to-read text across every page, in line with the Cistern of Hope site. Base size 17px on phones, 17.5px on laptops and 18px on large screens; paragraphs at least 16px; small labels at least 13px; bigger section headings and page titles; larger menu, buttons and footer links. Phone headings capped so they never overflow.

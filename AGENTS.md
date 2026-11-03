@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.35.0** and Core **0.35.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.36.0** and Core **0.36.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,10 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 23:45 EAT:** 0.36.0: closing CTA ("Be the light in someone's future") right side becomes a dark donation panel (label, large gold Donate pill with heart, outline Get involved, registration trust line); footer CTA buttons match. Includes 0.35.1 footer balance.
+
+- **3 Nov 2026, 23:40 EAT:** 0.35.1: footer balance - grid areas (brand with support card under it | Explore | Focus areas), long focus-area names wrap (were overflowing into the support card), larger logo, compact support card, wider address cell.
 
 - **3 Nov 2026, 23:30 EAT:** 0.35.0: site-wide larger type (benchmark: cisternofhopefoundation.org). Root size 17px phones / 17.5px laptops / 18px large screens; body copy min 16px; labels min 13px; bigger section and hero titles; larger menu, buttons and footer links.
 
