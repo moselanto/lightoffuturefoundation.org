@@ -117,6 +117,7 @@ function lof_page_hero_side_photo() {
 		'impact'             => 'story-elijah-new-home',
 		'get-involved'       => 'story-precious-school-shoes',
 		'contact'            => 'founder-francis-ouma-sikuku',
+		'donate'             => 'story-elijah-new-home',
 	);
 	$map = apply_filters( 'lof_page_hero_side_photos', $map );
 	if ( empty( $map[ $post->post_name ] ) ) {

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.28.0 - 3 Nov 2026
+
+- Get Involved: Volunteer, Partner, Sponsor and Fundraise as icon cards with a gold top edge and the link aligned at the bottom.
+- Donate: photo beside the hero title; "Real needs, real change" and "Transparent and accountable" as icon cards; "Give in the way that suits you" as numbered cards.
+- Contact, Donate and Get Involved forms: phone, email and address beside the form as icon rows (call and email are tappable), intro column stays in view while scrolling.
+- Contact: "Other ways to reach us" as three icon tiles instead of a plain list.
+- Fix: a portrait photo in a page hero (Contact) no longer stretches the hero tall.
+
 ## 0.27.0 - 3 Nov 2026
 
 - Stories: a "More stories of change" divider under the featured story, and the remaining stories as equal photo cards side by side (no empty column, no mismatched card sizes); "With dignity and consent" as icon cards.
