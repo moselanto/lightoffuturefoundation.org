@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.35.0 - 3 Nov 2026
+
+- Typography: larger, easier-to-read text across every page, in line with the Cistern of Hope site. Base size 17px on phones, 17.5px on laptops and 18px on large screens; paragraphs at least 16px; small labels at least 13px; bigger section headings and page titles; larger menu, buttons and footer links. Phone headings capped so they never overflow.
+
 ## 0.34.1 - 3 Nov 2026
 
 - Fix: on Donate, "Transparent and accountable" showed pale text on a white background. The three cards (Registered, Accountable, Community-led) now sit on a dark brown panel with gold titles and cream text, readable in light and dark mode.

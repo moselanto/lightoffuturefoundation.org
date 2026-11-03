@@ -1984,3 +1984,43 @@ html[data-theme="dark"] .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar p { color: rgba(252, 246, 225, .9) !important; }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar::before { background-color: rgba(244, 175, 22, .2); }
 html[data-theme="dark"] .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { background: linear-gradient(160deg, #2A1B0C, #170F06) !important; }
+
+
+/* ===== 0.35.0: Larger, easier-to-read type across the whole site ===== */
+/* Base size: 17px on phones, 17.5px on laptops, 18px on large screens (rem-based sizes all scale with it) */
+html { font-size: 106.25%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@media (min-width: 900px) { html { font-size: 109.375%; } }
+@media (min-width: 1440px) { html { font-size: 112.5%; } }
+body { font-size: 1rem; line-height: 1.7; }
+
+/* Body copy never smaller than ~16-17px */
+.lof-prose, .lof-prose p, .lof-section__intro, .lof-hero__text, .lof-card p, .lof-card--pillar p, .lof-person__bio, .lof-faq__answer, .lof-feature__body p, .lof-intro__panel p, .page-content { font-size: max(1rem, 16px) !important; line-height: 1.72; }
+.lof-section__intro { font-size: 1.12rem !important; max-width: 62ch; margin-inline: auto; }
+.lof-hero__text { font-size: clamp(1.08rem, 1.5vw, 1.25rem) !important; }
+.lof-intro__statement { font-size: clamp(1.2rem, 1.8vw, 1.45rem) !important; line-height: 1.6; }
+
+/* Small labels: readable minimum (eyebrows, kickers, roles, footer labels) */
+.lof-eyebrow { font-size: max(.8rem, 13px) !important; letter-spacing: .12em; }
+.lof-person__role, .lof-card__kicker, .lof-footer__tile small, .lof-hero__facts-kicker, .lof-formsec__next-title, .lof-contact__list dt, .lof-placeholder__tag { font-size: max(.78rem, 13px) !important; }
+.lof-card__link, .lof-card__lead, .lof-person__board { font-size: max(.82rem, 13.5px) !important; }
+.lof-footer__copy, .lof-footer__legal a, .lof-crumbs { font-size: max(.85rem, 14px) !important; }
+
+/* Headings: stronger hierarchy */
+.lof-section__title { font-size: clamp(2rem, 3.8vw, 3.1rem) !important; line-height: 1.12; }
+.lof-hero--page .lof-hero__title { font-size: clamp(2.6rem, 5.4vw, 4.4rem) !important; }
+.lof-card__title, .lof-card--pillar .lof-card__title { font-size: clamp(1.15rem, 1.4vw, 1.3rem) !important; line-height: 1.3; }
+.lof-person__name { font-size: clamp(1.15rem, 1.5vw, 1.3rem) !important; }
+.lof-faq__item summary { font-size: clamp(1.02rem, 1.3vw, 1.12rem) !important; }
+
+/* Navigation and buttons */
+.lof-menu > li > a { font-size: max(.95rem, 15.5px); }
+.lof-btn { font-size: max(.9rem, 15px); }
+.lof-footer.lof-footer--v2 .lof-footer__links a { font-size: max(.95rem, 15.5px) !important; }
+.lof-footer.lof-footer--v2 .lof-footer__intro, .lof-footer.lof-footer--v2 .lof-footer__support p { font-size: max(1rem, 16px) !important; }
+
+/* Phones: keep headings big but never overflowing */
+@media (max-width: 640px) {
+	.lof-section__title { font-size: clamp(1.75rem, 7.5vw, 2.2rem) !important; }
+	.lof-hero--page .lof-hero__title { font-size: clamp(2.1rem, 9vw, 2.6rem) !important; }
+	.lof-tabbar__item a, .lof-tabbar__item button { font-size: 12px !important; }
+}
