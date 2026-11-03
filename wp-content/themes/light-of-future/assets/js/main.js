@@ -21,7 +21,7 @@
 			if (e.target.closest('a')) { setOpen(false); }
 		});
 		window.addEventListener('resize', function () {
-			if (window.innerWidth > 1024) { setOpen(false); }
+			if (window.innerWidth > 991) { setOpen(false); }
 		});
 	}
 
@@ -284,7 +284,7 @@
 	function initMobileSubmenus() {
 		var nav = document.querySelector('.lof-nav');
 		if (!nav) { return; }
-		var mq = window.matchMedia('(max-width: 1024px)');
+		var mq = window.matchMedia('(max-width: 991px)');
 		nav.querySelectorAll('.lof-menu > .menu-item-has-children').forEach(function (li, n) {
 			var sub = li.querySelector(':scope > .sub-menu');
 			var link = li.querySelector(':scope > a');

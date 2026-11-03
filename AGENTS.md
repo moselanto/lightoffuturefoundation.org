@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.42.0** and Core **0.42.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.43.0** and Core **0.43.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **4 Nov 2026, 00:10 EAT:** 0.43.0: (1) content audit against the foundation's content document - all text, 11 leaders + photos, values, objectives, focus areas present; added "registered as a charitable society" (one-off `lof_upgrade_charitable_society`, option `lof_charity_rev`). (2) Responsive: desktop breakpoint moved 1025px -> 992px (all CSS + main.js), no font step at 1440px, fixed 17.5px root from 900px and 1200px content width so 13.3in = MacBook = large monitors; compact header 992-1180px; mobile safety (no sideways scroll, wrapping, full-width buttons); portrait tablets two-column grids.
 
 - **4 Nov 2026, 00:00 EAT:** 0.42.0: page heroes branded dark everywhere - photo heroes get a warm brand-brown overlay with gold glow; heroes without a photo get the same dark brown band with gold glows and gold bottom line, so every inner page header matches (Cistern style).
 

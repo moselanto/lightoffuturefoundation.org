@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.43.0 - 4 Nov 2026
+
+- Content check against the foundation's content document: everything is on the site (history, vision, mission, 7 values, registration details, main and specific objectives, 11 focus areas, all 11 leaders with roles, bios and photos). Added the missing detail that the foundation is registered as a charitable society.
+- Same look on every desktop: the desktop layout now starts at 10-inch tablets held sideways (992px); text size and content width are fixed, so a 13.3in laptop, MacBooks and large monitors show the same design (larger screens only get wider side margins). Header compacts to fit on one line on small laptops and tablets.
+- Mobile pass: no sideways scrolling, long words and emails wrap, full-width buttons with larger tap areas, tighter spacing; portrait tablets show cards two per row.
+
 ## 0.42.0 - 4 Nov 2026
 
 - Page heroes: branded dark that pops, in the Cistern of Hope style. Photo banners use a warm brand-brown shade with a soft gold glow (instead of grey-black); any page without a photo gets the same dark brown banner with gold glows, so every inner page header matches. White title, gold label and breadcrumb, gold underline and a gold line along the bottom.

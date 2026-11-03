@@ -213,7 +213,7 @@ function lof_closing_cta() {
 function lof_copy( $key ) {
 	$copy = array(
 		'about'   => '<p>' . __( 'Light of Future Foundation is a charitable organisation dedicated to supporting vulnerable communities in Kenya. We focus on assisting widows, widowers, orphans and people living with disabilities through programmes that create opportunity and restore dignity.', 'light-of-future' ) . '</p><p>' . __( 'Our work includes education support, community empowerment, clean water access and youth development. By working directly with communities, we aim to create lasting and sustainable impact.', 'light-of-future' ) . '</p>',
-		'founder' => '<p>' . __( 'Francis Ouma Sikuku, from Inungo village, is a musician, plumber, choir teacher and counsellor with a deep passion for serving his community. From the age of 20 he engaged in charity work, visiting widows\' homes, helping with cleaning, fetching water and collecting firewood, which planted the seed for his lifelong commitment to helping others.', 'light-of-future' ) . '</p><p>' . __( 'In 2016 he began formal studies in Social Work and Community Development at Kisumu Institute of Management College. Financial challenges prevented him from completing his diploma, so he dedicated 20% of his earnings from music and plumbing to charitable work.', 'light-of-future' ) . '</p><p>' . __( 'In 2021 he began registering that work as a charitable organisation and, knowing he could not do it alone, brought together a team of 10 members. After four years of dedication and paperwork by the team, Light of Future Foundation was formally registered with the NGO Board on 23 May 2025.', 'light-of-future' ) . '</p>',
+		'founder' => '<p>' . __( 'Francis Ouma Sikuku, from Inungo village, is a musician, plumber, choir teacher and counsellor with a deep passion for serving his community. From the age of 20 he engaged in charity work, visiting widows\' homes, helping with cleaning, fetching water and collecting firewood, which planted the seed for his lifelong commitment to helping others.', 'light-of-future' ) . '</p><p>' . __( 'In 2016 he began formal studies in Social Work and Community Development at Kisumu Institute of Management College. Financial challenges prevented him from completing his diploma, so he dedicated 20% of his earnings from music and plumbing to charitable work.', 'light-of-future' ) . '</p><p>' . __( 'In 2021 he began registering that work as a charitable society and, knowing he could not do it alone, brought together a team of 10 members. After four years of dedication and paperwork by the team, Light of Future Foundation was formally registered with the NGO Board on 23 May 2025.', 'light-of-future' ) . '</p>',
 		'quote'   => __( 'Serving humanity is our passion and it brings us great joy. It has been a long journey, but with God\'s grace we are now able to make a long-lasting impact in different communities in Kenya.', 'light-of-future' ),
 	);
 	return isset( $copy[ $key ] ) ? $copy[ $key ] : '';
@@ -399,7 +399,7 @@ function lof_setup_page_defs() {
 						'columns' => '4',
 						'tone'    => 'white',
 						'items'   => array(
-							array( '_id' => 'r1', 'title' => __( 'Registered', 'light-of-future' ), 'text' => __( 'With the NGO Board of Kenya on 23 May 2025, as a charitable organisation.', 'light-of-future' ) ),
+							array( '_id' => 'r1', 'title' => __( 'Registered', 'light-of-future' ), 'text' => __( 'With the NGO Board of Kenya on 23 May 2025, as a charitable society.', 'light-of-future' ) ),
 							array( '_id' => 'r2', 'title' => __( 'Charitable purpose', 'light-of-future' ), 'text' => __( 'Social, educational, health, environmental and poverty-relief goals.', 'light-of-future' ) ),
 							array( '_id' => 'r3', 'title' => __( 'Leadership', 'light-of-future' ), 'text' => __( 'Founder and Executive Director: Francis Ouma Sikuku.', 'light-of-future' ), 'link_label' => __( 'Meet the team', 'light-of-future' ), 'link' => lof_link( '/leadership/' ) ),
 							array( '_id' => 'r4', 'title' => __( 'Postal address', 'light-of-future' ), 'text' => __( 'P.O. Box 53-00520, Ruai, along Kangundo Road, Nairobi, Kenya.', 'light-of-future' ) ),
@@ -422,7 +422,7 @@ function lof_setup_page_defs() {
 					array(
 						'eyebrow' => __( 'Governance', 'light-of-future' ),
 						'title'   => __( 'How the foundation is governed.', 'light-of-future' ),
-						'intro'   => __( 'Registered with the NGO Board of Kenya on 23 May 2025 as a charitable organisation.', 'light-of-future' ),
+						'intro'   => __( 'Registered with the NGO Board of Kenya on 23 May 2025 as a charitable society.', 'light-of-future' ),
 						'style'   => 'steps',
 						'columns' => '4',
 						'tone'    => 'sand',
@@ -602,7 +602,7 @@ function lof_setup_page_defs() {
 						'columns' => '3',
 						'tone'    => 'white',
 						'items'   => array(
-							array( '_id' => 't1', 'title' => __( 'Registered', 'light-of-future' ), 'text' => __( 'Registered with the NGO Board of Kenya on 23 May 2025 as a charitable organisation.', 'light-of-future' ) ),
+							array( '_id' => 't1', 'title' => __( 'Registered', 'light-of-future' ), 'text' => __( 'Registered with the NGO Board of Kenya on 23 May 2025 as a charitable society.', 'light-of-future' ) ),
 							array( '_id' => 't2', 'title' => __( 'Accountable', 'light-of-future' ), 'text' => __( 'Responsible stewardship of donor funds, with reports to donors within agreed timeframes.', 'light-of-future' ) ),
 							array( '_id' => 't3', 'title' => __( 'Community-led', 'light-of-future' ), 'text' => __( 'We work hand in hand with communities, churches and local groups, never in isolation.', 'light-of-future' ) ),
 						),
@@ -674,7 +674,7 @@ function lof_setup_page_defs() {
 						'style'   => 'faq',
 						'tone'    => 'white',
 						'items'   => array(
-							array( '_id' => 'f1', 'title' => __( 'Is Light of Future Foundation registered?', 'light-of-future' ), 'text' => __( 'Yes. Light of Future Foundation was formally registered with the NGO Board of Kenya on 23 May 2025 as a charitable organisation.', 'light-of-future' ) ),
+							array( '_id' => 'f1', 'title' => __( 'Is Light of Future Foundation registered?', 'light-of-future' ), 'text' => __( 'Yes. Light of Future Foundation was formally registered with the NGO Board of Kenya on 23 May 2025 as a charitable society.', 'light-of-future' ) ),
 							array( '_id' => 'f2', 'title' => __( 'Who do you support?', 'light-of-future' ), 'text' => __( 'Orphans, widows, widowers, vulnerable children and families, adolescent girls, the elderly and people living with disabilities.', 'light-of-future' ) ),
 							array( '_id' => 'f3', 'title' => __( 'Where do you work?', 'light-of-future' ), 'text' => __( 'Our office is in Ruai, along Kangundo Road, Nairobi. We work with communities in Nairobi and in Inungo village.', 'light-of-future' ) ),
 							array( '_id' => 'f4', 'title' => __( 'How can I donate?', 'light-of-future' ), 'text' => __( 'Secure online giving by M-PESA and card through Paystack is being set up. Until then, please contact us and we will guide you.', 'light-of-future' ) ),
@@ -1586,3 +1586,44 @@ function lof_upgrade_impact_page() {
 	}
 }
 add_action( 'init', 'lof_upgrade_impact_page', 25 );
+
+
+/**
+ * 0.43.0: the foundation is registered under charitable societies (content document,
+ * 24 Oct 2026). Updates the wording on pages created before this release. Runs once.
+ */
+function lof_upgrade_charitable_society() {
+	if ( (int) get_option( 'lof_charity_rev', 0 ) >= 1 ) {
+		return;
+	}
+	update_option( 'lof_charity_rev', 1, false );
+	foreach ( array( 'about-us', 'leadership', 'donate', 'faq', 'home' ) as $slug ) {
+		$page = get_page_by_path( $slug, OBJECT, 'page' );
+		if ( ! $page && 'home' === $slug ) {
+			$front = (int) get_option( 'page_on_front' );
+			$page  = $front ? get_post( $front ) : null;
+		}
+		if ( ! $page ) {
+			continue;
+		}
+		$raw = get_post_meta( $page->ID, '_elementor_data', true );
+		$raw = is_string( $raw ) ? $raw : wp_json_encode( $raw );
+		if ( ! $raw || false === strpos( $raw, 'as a charitable organisation' ) ) {
+			continue;
+		}
+		$new = str_replace( 'as a charitable organisation', 'as a charitable society', $raw );
+		if ( ! is_array( json_decode( $new, true ) ) ) {
+			continue;
+		}
+		update_post_meta( $page->ID, '_elementor_data', wp_slash( $new ) );
+		delete_post_meta( $page->ID, '_elementor_css' );
+		delete_post_meta( $page->ID, '_elementor_element_cache' );
+	}
+	if ( class_exists( '\\Elementor\\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	if ( has_action( 'litespeed_purge_all' ) ) {
+		do_action( 'litespeed_purge_all' );
+	}
+}
+add_action( 'init', 'lof_upgrade_charitable_society', 26 );

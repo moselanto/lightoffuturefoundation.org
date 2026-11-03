@@ -109,7 +109,7 @@ img { max-width: 100%; height: auto; }
 .lof-nav-toggle[aria-expanded="true"] .lof-nav-toggle__bars::before { transform: translateY(7px) rotate(45deg); }
 .lof-nav-toggle[aria-expanded="true"] .lof-nav-toggle__bars::after { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
 	.lof-nav-toggle { display: block; }
 	.lof-nav { position: fixed; inset: 84px 0 0 0; flex-direction: column; align-items: stretch; gap: 1rem; padding: 1.5rem 1.25rem 2rem; background: var(--lof-bg); overflow-y: auto; transform: translateX(100%); visibility: hidden; transition: transform .3s ease, visibility .3s; }
 	.lof-nav.is-open { transform: none; visibility: visible; }
@@ -180,7 +180,7 @@ html[data-theme="dark"] .lof-theme-toggle .lof-icon-moon { display: none; }
 .lof-header__inner > .lof-nav-toggle { order: 4; }
 html[data-theme="dark"] .lof-header { border-bottom-color: var(--lof-line); }
 @media (max-width: 1180px) { .lof-menu a { padding: .6rem .55rem; font-size: .9rem; } .lof-nav { gap: .75rem; } }
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
 	.lof-header__inner { min-height: 72px; }
 	.lof-nav { inset: 72px 0 0 0; background: var(--lof-bg); margin-left: 0; }
 	.lof-theme-toggle { margin-left: auto; }
