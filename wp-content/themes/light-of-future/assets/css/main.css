@@ -1,8 +1,10 @@
 /* Light of Future Foundation - design system v0.5.0
    Brand: Logo Kit v1.0 (October 2026). Proportion in use: 50% Earth Brown, 25% Cream, 25% sun tones. */
 
-@font-face { font-family: "Montserrat"; src: url("../fonts/montserrat-variable.woff2") format("woff2"); font-weight: 400 800; font-style: normal; font-display: swap; }
-@font-face { font-family: "Cinzel"; src: url("../fonts/cinzel-variable.woff2") format("woff2"); font-weight: 600 700; font-style: normal; font-display: swap; }
+/* Website type (Agnes, 3 Nov 2026): same pairing as the Smile Community Centre site.
+   Nunito for headings, Figtree for text (both SIL OFL). Cinzel stays in the logo artwork only. */
+@font-face { font-family: "Nunito"; src: url("../fonts/nunito-latin.woff2") format("woff2"); font-weight: 400 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("../fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; font-style: normal; font-display: swap; }
 
 :root {
 	--lof-earth: #5C3D1E;
@@ -14,8 +16,8 @@
 	--lof-amber: #DC8C13;
 	--lof-ink: #2B1D0E;
 	--lof-white: #FFFFFF;
-	--lof-font-display: "Cinzel", "Trajan Pro", Georgia, serif;
-	--lof-font-body: "Montserrat", "Segoe UI", Arial, sans-serif;
+	--lof-font-display: "Nunito", "Figtree", "Arial Rounded MT Bold", Verdana, system-ui, sans-serif;
+	--lof-font-body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 	--lof-radius: 14px;
 	--lof-radius-lg: 28px;
 	--lof-shadow: 0 18px 40px -22px rgba(63, 41, 19, .45);

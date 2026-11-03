@@ -42,7 +42,7 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 		);
 		$this->add_control( 'custom_label', array( 'label' => __( '"Other amount" label', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'default' => __( 'Other amount', 'light-of-future' ) ) );
 		$this->add_control( 'target', array( 'label' => __( 'Amounts link to', 'light-of-future' ), 'type' => Controls_Manager::URL, 'default' => array( 'url' => '/donate/' ), 'description' => __( 'The chosen amount is added as ?amount= so the donation form can pre-fill it.', 'light-of-future' ) ) );
-		$this->add_control( 'note', array( 'label' => __( 'Small print', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true, 'default' => __( 'Secure giving by M-PESA and card through Paystack.', 'light-of-future' ) ) );
+		$this->add_control( 'note', array( 'label' => __( 'Small print', 'light-of-future' ), 'type' => Controls_Manager::TEXT, 'label_block' => true, 'default' => __( 'Secure online giving by M-PESA and card through Paystack is being set up. Until then, we will guide you to complete your gift.', 'light-of-future' ) ) );
 		$this->add_control( 'image', array( 'label' => __( 'Photo (optional)', 'light-of-future' ), 'type' => Controls_Manager::MEDIA ) );
 		$this->add_layout_controls( 'earth' );
 		$this->end_controls_section();

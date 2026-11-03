@@ -685,3 +685,19 @@ html[data-theme="dark"] .lof-tab[aria-selected="true"] .lof-tab__count { backgro
 .lof-givepanel__submit { justify-self: start; min-height: 52px; padding-inline: 2rem; }
 @media (max-width: 640px) { .lof-givepanel .lof-give__amounts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lof-givepanel__submit { justify-self: stretch; justify-content: center; } .lof-givepanel__kes { max-width: none; } }
 .lof-tone-cream .lof-givepanel, .lof-tone-white .lof-givepanel, .lof-tone-sand .lof-givepanel { background: var(--lof-surface); border-color: var(--lof-line); }
+
+/* ===== 0.15.0: Nunito + Figtree typography (as on the Smile Community Centre site) ===== */
+body { font-size: 1.0625rem; line-height: 1.7; letter-spacing: .003em; }
+h1, h2, h3, .lof-display, .lof-hero__title, .lof-section__title, .lof-card__title, .lof-footer__cta-title { font-family: var(--lof-font-display); font-weight: 800; letter-spacing: -.015em; text-transform: none; }
+.lof-hero__title, .lof-hero--page .lof-hero__title { line-height: 1.06; letter-spacing: -.02em; }
+.lof-hero.has-collage .lof-hero__title { max-width: 19ch; }
+.lof-card__title { letter-spacing: -.01em; }
+.lof-impact__value, .lof-hero__stats dd, .lof-card__index, .lof-card__num, .lof-card__kicker, .lof-person__initials, .lof-hero__card strong { font-weight: 800; letter-spacing: -.01em; }
+.lof-hero__stamp { font-family: var(--lof-font-body); font-weight: 800; letter-spacing: .08em; }
+.lof-quote p { font-weight: 600; font-style: italic; }
+.lof-footer__mark { font-weight: 900; letter-spacing: -.01em; }
+.lof-btn, .lof-tab, .lof-menu a { font-family: var(--lof-font-body); }
+/* phone: fund dropdown and bottom Donate bar */
+.lof-givepanel select { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+@media (max-width: 640px) { .lof-givepanel select { font-size: .95rem; height: 54px; padding-left: .85rem; } }
+@media (max-width: 760px) { body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); } .lof-wa { bottom: calc(86px + env(safe-area-inset-bottom)) !important; } }

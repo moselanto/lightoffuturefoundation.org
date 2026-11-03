@@ -47,10 +47,10 @@ function lof_sync_elementor_kit() {
 	}
 	if ( empty( $settings['system_typography'] ) ) {
 		$settings['system_typography'] = array(
-			array( '_id' => 'primary', 'title' => 'Primary', 'typography_typography' => 'custom', 'typography_font_family' => 'Cinzel', 'typography_font_weight' => '700' ),
-			array( '_id' => 'secondary', 'title' => 'Secondary', 'typography_typography' => 'custom', 'typography_font_family' => 'Montserrat', 'typography_font_weight' => '700' ),
-			array( '_id' => 'text', 'title' => 'Text', 'typography_typography' => 'custom', 'typography_font_family' => 'Montserrat', 'typography_font_weight' => '400' ),
-			array( '_id' => 'accent', 'title' => 'Accent', 'typography_typography' => 'custom', 'typography_font_family' => 'Montserrat', 'typography_font_weight' => '600' ),
+			array( '_id' => 'primary', 'title' => 'Primary', 'typography_typography' => 'custom', 'typography_font_family' => 'Nunito', 'typography_font_weight' => '800' ),
+			array( '_id' => 'secondary', 'title' => 'Secondary', 'typography_typography' => 'custom', 'typography_font_family' => 'Figtree', 'typography_font_weight' => '700' ),
+			array( '_id' => 'text', 'title' => 'Text', 'typography_typography' => 'custom', 'typography_font_family' => 'Figtree', 'typography_font_weight' => '400' ),
+			array( '_id' => 'accent', 'title' => 'Accent', 'typography_typography' => 'custom', 'typography_font_family' => 'Figtree', 'typography_font_weight' => '600' ),
 		);
 	}
 	update_post_meta( $kit_id, '_elementor_page_settings', $settings );
@@ -67,14 +67,14 @@ add_action( 'admin_init', 'lof_sync_elementor_kit' );
 add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
 
 /**
- * Register Cinzel and Montserrat as custom fonts in Elementor's font list.
+ * Register Nunito and Figtree as custom fonts in Elementor's font list.
  *
  * @param array $fonts Fonts.
  * @return array
  */
 function lof_elementor_fonts( $fonts ) {
-	$fonts['Cinzel']     = 'system';
-	$fonts['Montserrat'] = 'system';
+	$fonts['Nunito']     = 'system';
+	$fonts['Figtree']    = 'system';
 	return $fonts;
 }
 add_filter( 'elementor/fonts/additional_fonts', 'lof_elementor_fonts' );

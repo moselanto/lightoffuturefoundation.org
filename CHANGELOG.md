@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.15.0 - 3 Nov 2026
+
+- Website typography switched to the Smile Community Centre pairing (Agnes): Nunito ExtraBold for headings and figures, Figtree for text, buttons and menus. Fonts are self-hosted from the Smile theme (SIL OFL) and preloaded. Cinzel stays in the logo artwork only and is no longer loaded.
+- Giving note made consistent everywhere: online giving through Paystack is being set up.
+- Phone: fund dropdown no longer cramped; page bottom padded so the fixed Donate bar does not cover content; WhatsApp button sits above the bar.
+
 ## 0.14.0 - 3 Nov 2026
 
 From Agnes's mock-up, using only confirmed facts and the foundation's own photos. No "Apply latest design" needed: all changes are in widget output, CSS and JS.

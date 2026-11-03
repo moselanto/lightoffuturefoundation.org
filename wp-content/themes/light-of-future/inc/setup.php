@@ -56,10 +56,10 @@ function lof_theme_mode_script() {
 add_action( 'wp_head', 'lof_theme_mode_script', 0 );
 
 /**
- * Preload the two self-hosted brand fonts (Cinzel and Montserrat, SIL OFL).
+ * Preload the two self-hosted website fonts (Nunito and Figtree, SIL OFL).
  */
 function lof_preload_fonts() {
-	foreach ( array( 'montserrat-variable', 'cinzel-variable' ) as $font ) {
+	foreach ( array( 'nunito-latin', 'figtree-latin' ) as $font ) {
 		printf(
 			'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
 			esc_url( LOF_THEME_URI . '/assets/fonts/' . $font . '.woff2' )
