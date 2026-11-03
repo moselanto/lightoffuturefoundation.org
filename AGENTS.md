@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.41.0** and Core **0.41.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.42.0** and Core **0.42.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **4 Nov 2026, 00:00 EAT:** 0.42.0: page heroes branded dark everywhere - photo heroes get a warm brand-brown overlay with gold glow; heroes without a photo get the same dark brown band with gold glows and gold bottom line, so every inner page header matches (Cistern style).
 
 - **4 Nov 2026, 00:00 EAT:** 0.41.0: calmer brand colours. Dark brown kept only for footer, figures band, photo banners and donation panel; FAQ help card, "What happens next", Donate trust panel, About registration band and Contact band turned into light cards with a gold top edge; softer sand; one eyebrow colour (#B9740F); flatter gold CTA.
 

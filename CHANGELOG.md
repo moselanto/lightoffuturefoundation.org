@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.42.0 - 4 Nov 2026
+
+- Page heroes: branded dark that pops, in the Cistern of Hope style. Photo banners use a warm brand-brown shade with a soft gold glow (instead of grey-black); any page without a photo gets the same dark brown banner with gold glows, so every inner page header matches. White title, gold label and breadcrumb, gold underline and a gold line along the bottom.
+
 ## 0.41.0 - 4 Nov 2026
 
 - Brand colours made calmer and consistent across the site. Dark brown is now used only for the footer, the figures band, the photo banners at the top of pages and the donation panel; the FAQ help card, "What happens next", Donate's "Transparent and accountable", About's "Registration and contacts" and Contact's "Other ways to reach us" are light cards with a gold top edge. Softer sand background, one consistent colour for small gold labels, and a slightly softer gold call-to-action box.

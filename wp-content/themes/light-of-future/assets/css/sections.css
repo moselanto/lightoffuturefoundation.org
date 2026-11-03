@@ -2354,3 +2354,28 @@ html[data-theme="dark"] .lof-faq-help, html[data-theme="dark"] .lof-formsec__nex
 
 /* Gold call-to-action box: a slightly softer, flatter gold */
 .lof-cta.lof-tone-sun .lof-cta__box { background: linear-gradient(120deg, #F4AF16 0%, #F7BF2E 60%, #F9CB45 100%) !important; }
+
+
+/* ===== 0.42.0: Page heroes - branded dark that pops (Cistern-style), on every inner page ===== */
+/* Photo heroes: warm brand-brown tint (not grey-black), gold glow, stronger contrast */
+.lof-hero.lof-hero--page.has-bg::before { background:
+	radial-gradient(70% 120% at 0% 100%, rgba(244, 175, 22, .22), rgba(244, 175, 22, 0) 60%),
+	linear-gradient(90deg, rgba(46, 28, 10, .95) 0%, rgba(63, 41, 19, .86) 40%, rgba(63, 41, 19, .5) 72%, rgba(63, 41, 19, .28) 100%) !important; }
+/* Heroes without a photo: same branded dark band so every page header matches */
+.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) { position: relative; display: flex; align-items: center; min-height: clamp(260px, 26vw, 360px); padding-block: clamp(2.5rem, 5vw, 3.75rem) !important; overflow: hidden; isolation: isolate;
+	background: radial-gradient(60% 140% at 100% 0%, rgba(244, 175, 22, .28), rgba(244, 175, 22, 0) 60%), radial-gradient(50% 120% at 0% 100%, rgba(220, 140, 19, .22), rgba(220, 140, 19, 0) 60%), linear-gradient(135deg, #3F2913, #2A1B0C) !important; }
+.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo)::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber), var(--lof-gold)); }
+.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) .lof-hero__art { opacity: .14; filter: brightness(1.6); }
+.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) .lof-hero__title { color: #FFFDF6 !important; font-size: clamp(2.3rem, 4.6vw, 3.6rem) !important; }
+.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) .lof-hero__text { color: rgba(252, 246, 225, .9) !important; }
+.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) .lof-crumbs, .lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) .lof-crumbs a { color: rgba(252, 246, 225, .78) !important; }
+.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) .lof-crumbs [aria-current] { color: var(--lof-gold) !important; }
+.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) .lof-hero__eyebrow { background: rgba(244, 175, 22, .18) !important; color: var(--lof-gold) !important; border: 1px solid rgba(244, 175, 22, .4); }
+/* Shared finishing: gold underline under the title, crisper label */
+.lof-hero.lof-hero--page .lof-hero__content::after { width: 64px !important; height: 4px !important; background: var(--lof-gold) !important; }
+.lof-hero.lof-hero--page .lof-hero__eyebrow { font-weight: 800; letter-spacing: .14em; }
+.lof-hero.lof-hero--page.has-bg .lof-hero__title .lof-hl, .lof-hero.lof-hero--page .lof-hero__title .lof-hl { color: var(--lof-gold); }
+@media (max-width: 640px) {
+	.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) { min-height: 220px; padding-block: 2.1rem !important; }
+	.lof-hero.lof-hero--page.has-bg::before { background: linear-gradient(0deg, rgba(46, 28, 10, .96) 0%, rgba(63, 41, 19, .85) 55%, rgba(63, 41, 19, .6) 100%) !important; }
+}
