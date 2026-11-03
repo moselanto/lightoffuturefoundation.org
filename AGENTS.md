@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.22.0** and Core **0.22.0** on `main`, deployed to the live site. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.23.0** and Core **0.23.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 21:30 EAT:** 0.23.0: About, Leadership and FAQ professional pass (balanced 7-card grids, numbered values, objective tiles, fact-sheet band, profile cards, governance panel, segmented tabs, two-column FAQ with help card, one closing CTA per page). Page slug body class `lof-page-{slug}`.
 
 - **3 Nov 2026, 18:15 EAT:** 0.22.0: Privacy Policy + Terms of Use placeholder pages and footer legal menu (one-off upgrade), inner pages (page hero, Stories featured card, single story/programme, forms, legal pages) to the home standard, audit fixes (meta description, theme colour, jQuery Migrate off, focus rings, link underline, target sizes), full `docs/HANDOVER.md`.
 

@@ -1294,3 +1294,117 @@ body.page:not(.elementor-page) .page-content h2 { font-size: 1.45rem; margin: 2r
 a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--lof-gold); outline-offset: 2px; }
 .lof-prose a, .page-content a { text-decoration: underline; text-underline-offset: 3px; }
 .lof-footer--v2 .lof-footer__legal a, .lof-footer--v2 .lof-footer__links a { min-height: 32px; display: inline-flex; align-items: center; }
+
+
+/* ===== 0.23.0: About, Leadership and FAQ - professional pass ===== */
+
+/* One closing call to action per page: hide the footer card when the page already ends with its own */
+body:has(.lof-main .lof-cta) .lof-footer__cta { display: none; }
+
+/* Balanced grids: 7 cards sit 4 + 3 with the last row centred (no orphan card) */
+@media (min-width: 1025px) {
+	.lof-grid--3:has(> :nth-child(7):last-child), .lof-grid--4:has(> :nth-child(7):last-child) { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+	.lof-grid--3:has(> :nth-child(7):last-child) > *, .lof-grid--4:has(> :nth-child(7):last-child) > * { grid-column: span 2; }
+	.lof-grid--3:has(> :nth-child(7):last-child) > :nth-child(5), .lof-grid--4:has(> :nth-child(7):last-child) > :nth-child(5) { grid-column: 2 / span 2; }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+	.lof-grid--3:has(> :nth-child(7):last-child), .lof-grid--4:has(> :nth-child(7):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	.lof-grid--3:has(> :nth-child(7):last-child) > *, .lof-grid--4:has(> :nth-child(7):last-child) > * { grid-column: span 2; }
+	.lof-grid--3:has(> :nth-child(7):last-child) > :nth-child(7), .lof-grid--4:has(> :nth-child(7):last-child) > :nth-child(7) { grid-column: 2 / span 2; }
+}
+
+/* Shared card polish on these pages */
+.lof-page-about-us .lof-card--pillar, .lof-page-leadership .lof-card--pillar { position: relative; border: 1px solid var(--lof-line); border-top: 0; border-radius: 20px; padding: 1.9rem 1.6rem 1.7rem; background: var(--lof-surface); box-shadow: 0 22px 44px -36px rgba(43, 29, 14, .55); transition: transform .25s ease, box-shadow .25s ease; overflow: hidden; }
+.lof-page-about-us .lof-card--pillar::before, .lof-page-leadership .lof-card--pillar::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber)); }
+.lof-page-about-us .lof-card--pillar:hover, .lof-page-leadership .lof-card--pillar:hover { transform: translateY(-4px); box-shadow: 0 30px 54px -34px rgba(43, 29, 14, .6); }
+.lof-page-about-us .lof-card__title, .lof-page-leadership .lof-card__title { font-size: 1.12rem; line-height: 1.3; margin: 0 0 .35rem; }
+.lof-page-about-us .lof-card--pillar p, .lof-page-leadership .lof-card--pillar p { font-size: .95rem; line-height: 1.65; color: var(--lof-muted); }
+.lof-page-about-us .lof-section__head, .lof-page-leadership .lof-section__head, .lof-page-faq .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
+
+/* About: values numbered with a gold medallion */
+.lof-page-about-us .lof-tone-sand .lof-grid--4 { counter-reset: lofval; }
+.lof-page-about-us .lof-tone-sand .lof-card--pillar { counter-increment: lofval; padding-top: 4.4rem; }
+.lof-page-about-us .lof-tone-sand .lof-card--pillar::after { content: counter(lofval, decimal-leading-zero); position: absolute; top: 1.5rem; left: 1.6rem; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(244, 175, 22, .18); color: var(--lof-amber); font: 800 .85rem/1 var(--lof-font-display); }
+
+/* About: objectives as clean numbered tiles */
+.lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card--pillar { display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; align-content: start; background: var(--lof-bg); }
+.lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card__kicker { grid-row: span 2; font: 800 2.2rem/1 var(--lof-font-display); color: var(--lof-gold); letter-spacing: -.02em; opacity: .9; }
+.lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card__title, .lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card--pillar p { grid-column: 2; }
+
+/* About: "Registration and contacts" becomes one fact sheet on a dark band */
+.lof-page-about-us .lof-section:has(.lof-card__link) { background: linear-gradient(160deg, #3F2913, #2A1B0C); }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-section__title { color: var(--lof-cream); }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-eyebrow { color: var(--lof-gold); }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid { gap: 0; border-radius: 24px; overflow: hidden; background: rgba(255, 255, 255, .05); border: 1px solid rgba(244, 175, 22, .25); }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar { background: transparent; border: 0; border-right: 1px solid rgba(244, 175, 22, .18); border-radius: 0; box-shadow: none; padding: 2rem 1.75rem; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:last-child { border-right: 0; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar::before { display: none; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:hover { transform: none; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card__title { color: var(--lof-gold); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar p { color: rgba(252, 246, 225, .9); font-size: 1rem; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card__link { color: var(--lof-gold); }
+@media (max-width: 1024px) { .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); } }
+
+/* About: vision and mission panels, intro statement */
+.lof-page-about-us .lof-intro__statement { font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.65; }
+
+/* Leadership: tabs as a refined segmented control */
+.lof-tabs-wrap { padding-top: clamp(2rem, 4vw, 3rem); }
+.lof-tabs { display: flex; width: max-content; max-width: 100%; margin: 0 auto; padding: 6px; gap: 4px; border-radius: 999px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 16px 34px -26px rgba(43, 29, 14, .55); }
+.lof-tab, .lof-tab:hover, .lof-tab:focus { border: 0 !important; box-shadow: none !important; }
+.lof-tab[aria-selected="true"], .lof-tab[aria-selected="true"]:hover, .lof-tab[aria-selected="true"]:focus { background: var(--lof-earth) !important; color: var(--lof-cream) !important; }
+.lof-tab:not([aria-selected="true"]):hover { background: rgba(244, 175, 22, .14) !important; color: var(--lof-heading) !important; }
+
+/* Leadership: people as consistent profile cards */
+.lof-page-leadership .lof-person:not(.lof-person--row) { display: flex; flex-direction: column; height: 100%; text-align: left; background: var(--lof-surface); border: 1px solid var(--lof-line); border-radius: 22px; overflow: hidden; box-shadow: 0 24px 46px -38px rgba(43, 29, 14, .6); transition: transform .25s ease, box-shadow .25s ease; }
+.lof-page-leadership .lof-person:not(.lof-person--row):hover { transform: translateY(-4px); box-shadow: 0 32px 56px -36px rgba(43, 29, 14, .65); }
+.lof-page-leadership .lof-person:not(.lof-person--row) .lof-person__photo { margin: 0; border-radius: 0; aspect-ratio: 4 / 4.4; overflow: hidden; background: linear-gradient(180deg, #F6E7C4, #EBD3A0); }
+.lof-page-leadership .lof-person:not(.lof-person--row) .lof-person__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; transition: transform .5s ease; }
+.lof-page-leadership .lof-person:not(.lof-person--row):hover .lof-person__photo img { transform: scale(1.03); }
+.lof-page-leadership .lof-person:not(.lof-person--row) .lof-person__info { position: relative; flex: 1; padding: 1.3rem 1.3rem 1.45rem; border-top: 3px solid var(--lof-gold); }
+.lof-page-leadership .lof-person__name { font-family: var(--lof-font-display); font-size: 1.15rem; line-height: 1.25; margin: 0 0 .3rem; }
+.lof-page-leadership .lof-person__role { min-height: 0; margin: 0 0 .7rem; font-size: .72rem; line-height: 1.45; letter-spacing: .08em; text-transform: uppercase; color: var(--lof-amber); font-weight: 800; }
+.lof-page-leadership .lof-person__bio { font-size: .9rem; line-height: 1.6; color: var(--lof-muted); }
+.lof-page-leadership .lof-person__bio p:last-child { margin-bottom: 0; }
+.lof-page-leadership .lof-leaders .lof-grid { align-items: stretch; }
+@media (min-width: 1025px) {
+	.lof-page-leadership .lof-leaders .lof-grid:has(> :nth-child(7):last-child) { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+	.lof-page-leadership .lof-leaders .lof-grid:has(> :nth-child(7):last-child) > * { grid-column: span 2; }
+	.lof-page-leadership .lof-leaders .lof-grid:has(> :nth-child(7):last-child) > :nth-child(5) { grid-column: 2 / span 2; }
+}
+
+/* Leadership: governance as a connected structure */
+.lof-page-leadership .lof-steps { position: relative; gap: 0; border-radius: 24px; overflow: hidden; border: 1px solid var(--lof-line); background: var(--lof-surface); box-shadow: 0 26px 50px -40px rgba(43, 29, 14, .6); }
+.lof-page-leadership .lof-steps .lof-card--pillar { border: 0; border-right: 1px solid var(--lof-line); border-radius: 0; box-shadow: none; background: transparent; }
+.lof-page-leadership .lof-steps .lof-card--pillar:last-child { border-right: 0; }
+.lof-page-leadership .lof-steps .lof-card--pillar:hover { transform: none; background: rgba(244, 175, 22, .06); }
+@media (max-width: 1024px) { .lof-page-leadership .lof-steps .lof-card--pillar { border-right: 0; border-bottom: 1px solid var(--lof-line); } }
+
+/* FAQ: two-column layout with a help card */
+.lof-faq-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; max-width: 1120px; margin-inline: auto; }
+.lof-faq-layout .lof-faq { max-width: none; margin: 0; gap: .85rem; }
+.lof-faq__item { border-radius: 18px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 16px 34px -30px rgba(43, 29, 14, .55); transition: border-color .2s, box-shadow .2s; }
+.lof-faq__item[open] { border-color: rgba(244, 175, 22, .55); box-shadow: 0 24px 46px -32px rgba(220, 140, 19, .55); }
+.lof-faq__item summary { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 3.6rem 1.2rem 1.3rem; font: 700 1.05rem/1.4 var(--lof-font-body); color: var(--lof-heading); }
+.lof-faq__num { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: rgba(244, 175, 22, .16); color: var(--lof-amber); font: 800 .8rem/1 var(--lof-font-display); transition: background .2s, color .2s; }
+.lof-faq__item[open] .lof-faq__num { background: var(--lof-gold); color: #2E1E0E; }
+.lof-faq__answer { padding: 0 1.4rem 1.35rem calc(1.3rem + 38px + 1rem); color: var(--lof-muted); line-height: 1.7; }
+.lof-faq-help { position: sticky; top: calc(var(--lof-header-h, 80px) + 1.5rem); padding: 2rem 1.75rem; border-radius: 24px; background: linear-gradient(160deg, #3F2913, #2A1B0C); color: rgba(252, 246, 225, .88); box-shadow: 0 30px 60px -40px rgba(43, 29, 14, .8); overflow: hidden; }
+.lof-faq-help::after { content: ""; position: absolute; right: -60px; top: -60px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(244, 175, 22, .35), transparent 70%); pointer-events: none; }
+.lof-faq-help .lof-eyebrow { color: var(--lof-gold); }
+.lof-faq-help__title { color: var(--lof-cream); font-size: 1.5rem; line-height: 1.25; margin: .4rem 0 .6rem; }
+.lof-faq-help p { margin: 0 0 1.25rem; font-size: .96rem; line-height: 1.6; }
+.lof-faq-help__actions { display: grid; gap: .6rem; }
+.lof-faq-help .lof-btn { width: 100%; justify-content: center; }
+.lof-faq-help .lof-btn--earth { background: var(--lof-gold); color: #2E1E0E; border-color: var(--lof-gold); }
+.lof-faq-help .lof-btn--outline { color: var(--lof-cream); border-color: rgba(252, 246, 225, .5); background: transparent; }
+@media (max-width: 900px) { .lof-faq-layout { grid-template-columns: 1fr; } .lof-faq-help { position: static; } }
+@media (max-width: 640px) { .lof-faq__item summary { padding: 1rem 3.2rem 1rem 1rem; gap: .75rem; font-size: 1rem; } .lof-faq__num { width: 32px; height: 32px; } .lof-faq__answer { padding: 0 1.05rem 1.1rem 1.05rem; } .lof-faq-help { padding: 1.5rem 1.25rem; } }
+
+/* Dark mode */
+html[data-theme="dark"] .lof-page-about-us .lof-card--pillar, html[data-theme="dark"] .lof-page-leadership .lof-card--pillar, html[data-theme="dark"] .lof-page-leadership .lof-person:not(.lof-person--row), html[data-theme="dark"] .lof-faq__item, html[data-theme="dark"] .lof-tabs, html[data-theme="dark"] .lof-page-leadership .lof-steps { border-color: rgba(244, 175, 22, .16); box-shadow: 0 24px 46px -34px rgba(0, 0, 0, .8); }
+html[data-theme="dark"] .lof-page-leadership .lof-steps .lof-card--pillar { background: transparent; border-color: rgba(244, 175, 22, .14); }
+html[data-theme="dark"] .lof-page-about-us .lof-section:has(.lof-card__link) { background: linear-gradient(160deg, #22160A, #170F06); }
+html[data-theme="dark"] .lof-page-leadership .lof-person:not(.lof-person--row) .lof-person__photo { background: linear-gradient(180deg, #3a2a17, #2a1d0f); }
+html[data-theme="dark"] .lof-faq-help { background: linear-gradient(160deg, #2A1B0C, #170F06); border: 1px solid rgba(244, 175, 22, .2); }
+html[data-theme="dark"] .lof-faq__item summary { color: var(--lof-heading); }

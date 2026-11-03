@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.23.0 - 3 Nov 2026
+
+- About: values as numbered cards, objectives as numbered tiles, 7-card grids balanced 4 + 3 with the last row centred, "Registration and contacts" as a single fact sheet on a dark band, larger intro statement.
+- Leadership: segmented Board / Programme leads switch, people as consistent profile cards (same photo crop, gold divider, role, bio), last row centred, governance shown as one connected panel, polished accountability cards.
+- FAQ: two-column layout with numbered questions, gold open state and a "Still have a question?" help card (call and message buttons).
+- Site-wide: only one closing call to action per page (the footer card hides when the page has its own); page slug body class for page-level styling.
+
 ## 0.22.0 - 3 Nov 2026
 
 - Legal: Privacy Policy and Terms of Use pages with placeholder wording that makes no claims about the foundation (visible "Placeholder" note), created by a one-off upgrade (`lof_legal_rev`) with a "Footer legal links" menu shown in the footer base bar. WordPress's draft privacy page is reused and set as the site privacy page.

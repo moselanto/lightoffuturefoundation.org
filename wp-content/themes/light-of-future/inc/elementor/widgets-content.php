@@ -367,11 +367,21 @@ class LOF_Widget_Cards extends LOF_Widget_Base {
 		$this->open_section( $s );
 		$this->render_heading( $s, isset( $s['style'] ) && 'faq' === $s['style'] ? __( 'Frequently asked questions', 'light-of-future' ) : __( 'More information', 'light-of-future' ) );
 		if ( isset( $s['style'] ) && 'faq' === $s['style'] ) {
-			echo '<div class="lof-faq">';
-			foreach ( $s['items'] as $item ) {
-				printf( '<details class="lof-faq__item"><summary>%1$s</summary><div class="lof-faq__answer"><p>%2$s</p></div></details>', esc_html( $item['title'] ), nl2br( esc_html( $item['text'] ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			$lof_phone = function_exists( 'lof_setting' ) ? (string) lof_setting( 'phone' ) : '';
+			echo '<div class="lof-faq-layout"><div class="lof-faq">';
+			foreach ( $s['items'] as $n => $item ) {
+				printf( '<details class="lof-faq__item"><summary><span class="lof-faq__num" aria-hidden="true">%3$s</span><span class="lof-faq__q">%1$s</span></summary><div class="lof-faq__answer"><p>%2$s</p></div></details>', esc_html( $item['title'] ), nl2br( esc_html( $item['text'] ) ), esc_html( sprintf( '%02d', $n + 1 ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
-			echo '</div>';
+			echo '</div><aside class="lof-faq-help" aria-label="' . esc_attr__( 'More help', 'light-of-future' ) . '">';
+			echo '<p class="lof-eyebrow">' . esc_html__( 'Still have a question?', 'light-of-future' ) . '</p>';
+			echo '<h3 class="lof-faq-help__title">' . esc_html__( 'We are happy to help.', 'light-of-future' ) . '</h3>';
+			echo '<p>' . esc_html__( 'Talk to our team about our work, giving, volunteering or partnering with us.', 'light-of-future' ) . '</p>';
+			echo '<div class="lof-faq-help__actions">';
+			if ( '' !== $lof_phone ) {
+				printf( '<a class="lof-btn lof-btn--earth" href="%1$s">%2$s</a>', esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $lof_phone ) ), esc_html( sprintf( /* translators: %s phone number */ __( 'Call %s', 'light-of-future' ), $lof_phone ) ) );
+			}
+			printf( '<a class="lof-btn lof-btn--outline" href="%1$s">%2$s</a>', esc_url( home_url( '/contact/' ) ), esc_html__( 'Send a message', 'light-of-future' ) );
+			echo '</div></aside></div>';
 		} else {
 			$cols = in_array( (string) $s['columns'], array( '2', '3', '4' ), true ) ? (int) $s['columns'] : 3;
 			printf( '<div class="lof-grid lof-grid--%1$d%2$s">', (int) $cols, isset( $s['style'] ) && 'steps' === $s['style'] ? ' lof-steps' : '' );

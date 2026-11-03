@@ -1,6 +1,6 @@
 # HANDOVER - Light of Future Foundation website (read this first)
 
-Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.22.0**. Written so the next AI agent or developer can pick up without the chat history.
+Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.23.0**. Written so the next AI agent or developer can pick up without the chat history.
 
 ## 1. Where we are in one paragraph
 The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on WordPress + Elementor (free) + Hello Elementor parent theme, with our child theme `light-of-future` and plugin `light-of-future-core`. Design, content and mobile UX went through many rounds with Agnes (Pimofy Digital) between 30 Oct and 3 Nov 2026. Every page, the header, footer, phone bottom navigation and phone menu are finished to the current design standard. **Not done yet:** Paystack donations (no keys), WooCommerce crafts shop, real partner logos, focus-area photos, public email and WhatsApp number, approved legal wording, and launch (turning indexing on).
@@ -50,6 +50,12 @@ To re-run one, delete its option (e.g. with WP-CLI `wp option delete lof_legal_r
 - **Single story / programme:** hero, framed image, quote card, sticky aside with facts and a gold Donate card.
 - **Footer:** gold top edge; gold CTA card (not on Home/Donate); Call / Email / Visit tiles; brand + badge, Explore (2 columns), Focus areas, Support our work; base bar with copyright + registration line, Privacy Policy / Terms of Use, Back to top. The big outlined wordmark was removed (3 Nov).
 - **Legal pages:** plain WordPress pages with placeholder text and a visible "Placeholder" note. Replace with board-approved wording, then delete the note paragraph.
+
+## 6b. Page-level styling (0.23.0)
+- Body class `lof-page-{slug}` (e.g. `lof-page-about-us`, `lof-page-leadership`, `lof-page-faq`) scopes page-specific design in `sections.css` (block `0.23.0`).
+- Any `lof-grid` with exactly 7 cards lays out 4 + 3 with the last row centred.
+- The footer CTA card hides automatically when the page already has its own `lof-cta` section (CSS `:has`).
+- FAQ widget (Cards widget, style FAQ) renders a two-column layout: numbered questions plus a dark "Still have a question?" card (Call button uses the phone setting).
 
 ## 7. Pending (in priority order)
 1. **Paystack:** keys go in `wp-config.php` as `LOF_PAYSTACK_PUBLIC_KEY` / `LOF_PAYSTACK_SECRET_KEY`; build donations (one-off + monthly), server-side verification, webhook signature check, receipts. Then switch the giving panel from the contact-form hand-off to Paystack checkout and update the "coming soon" wording.

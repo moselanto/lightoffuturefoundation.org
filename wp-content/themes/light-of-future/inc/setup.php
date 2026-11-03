@@ -109,3 +109,20 @@ function lof_mobile_preview() {
 	exit;
 }
 add_action( 'template_redirect', 'lof_mobile_preview', 0 );
+
+/**
+ * 0.23.0: page slug body class (lof-page-about-us, lof-page-faq...) for page-level design tuning.
+ *
+ * @param array $classes Body classes.
+ * @return array
+ */
+function lof_page_slug_body_class( $classes ) {
+	if ( is_page() ) {
+		$post = get_queried_object();
+		if ( $post && ! empty( $post->post_name ) ) {
+			$classes[] = 'lof-page-' . sanitize_html_class( $post->post_name );
+		}
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'lof_page_slug_body_class' );
