@@ -1,6 +1,6 @@
 # HANDOVER - Light of Future Foundation website (read this first)
 
-Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.40.2**. Written so the next AI agent or developer can pick up without the chat history.
+Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.41.0**. Written so the next AI agent or developer can pick up without the chat history.
 
 ## 1. Where we are in one paragraph
 The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on WordPress + Elementor (free) + Hello Elementor parent theme, with our child theme `light-of-future` and plugin `light-of-future-core`. Design, content and mobile UX went through many rounds with Agnes (Pimofy Digital) between 30 Oct and 3 Nov 2026. Every page, the header, footer, phone bottom navigation and phone menu are finished to the current design standard. **Not done yet:** Paystack donations (no keys), WooCommerce crafts shop, real partner logos, focus-area photos, public email and WhatsApp number, approved legal wording, and launch (turning indexing on).
@@ -68,6 +68,11 @@ To re-run one, delete its option (e.g. with WP-CLI `wp option delete lof_legal_r
 4. **Approved Privacy Policy and Terms** wording.
 5. **Launch:** turn off "Discourage search engines", submit sitemap, run Lighthouse at https://pagespeed.web.dev/ (the API quota failed from the build environment), set up GA4 and a cookie notice if analytics is added.
 6. Optional: remove the phone preview page (`lof_mobile_preview` in `inc/setup.php`) after launch, or keep it (noindex) for QA.
+
+## 7b. Colour rules (0.41.0)
+- Sections: cream or white (sand #FAF1DC sparingly).
+- Dark brown only for: footer, figures band, photo page banners, donation panel in the gold CTA, home slider.
+- Gold only for accents: labels (#B9740F on light), lines, icons, main buttons. Do not add new dark blocks.
 
 ## 8. Known quirks
 - Never nest `:has()` inside another `:has()` in CSS: browsers drop the whole rule (this hid the Donate trust text in 0.29-0.34).

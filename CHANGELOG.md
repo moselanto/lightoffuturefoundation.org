@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.41.0 - 4 Nov 2026
+
+- Brand colours made calmer and consistent across the site. Dark brown is now used only for the footer, the figures band, the photo banners at the top of pages and the donation panel; the FAQ help card, "What happens next", Donate's "Transparent and accountable", About's "Registration and contacts" and Contact's "Other ways to reach us" are light cards with a gold top edge. Softer sand background, one consistent colour for small gold labels, and a slightly softer gold call-to-action box.
+
 ## 0.40.2 - 3 Nov 2026
 
 - Cross-check of the "Our story" and "Our impact" changes: stylesheet validated (no errors), and the Our story photo panel keeps a minimum height on laptops so the portrait never shrinks.

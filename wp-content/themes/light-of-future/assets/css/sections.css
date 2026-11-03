@@ -2299,3 +2299,58 @@ body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__note, 
 
 /* 0.40.2: cross-check fix - the Our story photo panel keeps a minimum height on laptops even if the text is short */
 @media (min-width: 1025px) { section.lof-feature--story .lof-feature__media { min-height: 520px; } }
+
+
+/* ===== 0.41.0: Calmer, consistent brand colours across the site ===== */
+/* Rule of thumb now: cream and white for page sections; dark brown only for the footer, the figures band,
+   photo banners and the donation panel; gold only for accents (labels, lines, icons, main buttons). */
+:root { --lof-sand: #FAF1DC; --lof-accent-soft: rgba(244, 175, 22, .14); --lof-card-line: rgba(63, 41, 19, .1); }
+.lof-tone-sand { background: #FAF1DC !important; }
+html[data-theme="dark"] .lof-tone-sand { background: #1E150B !important; }
+.lof-eyebrow { color: #B9740F; }
+html[data-theme="dark"] .lof-eyebrow { color: var(--lof-gold); }
+.lof-section__title { color: var(--lof-heading); }
+
+/* Secondary panels: light cards with a gold edge instead of more dark brown blocks */
+.lof-faq-help, .lof-formsec__next { background: var(--lof-surface) !important; color: var(--lof-text) !important; border: 1px solid var(--lof-card-line) !important; border-top: 4px solid var(--lof-gold) !important; box-shadow: 0 26px 50px -40px rgba(43, 29, 14, .55) !important; }
+.lof-faq-help::after { display: none !important; }
+.lof-faq-help .lof-eyebrow, .lof-formsec__next-title { color: #B9740F !important; }
+.lof-faq-help__title, .lof-formsec__next strong { color: var(--lof-heading) !important; }
+.lof-faq-help p, .lof-formsec__next span { color: var(--lof-muted) !important; }
+.lof-faq-help .lof-btn--earth { background: var(--lof-gold) !important; color: #2E1E0E !important; border-color: var(--lof-gold) !important; }
+.lof-faq-help .lof-btn--outline { color: var(--lof-heading) !important; border-color: rgba(63, 41, 19, .35) !important; }
+.lof-formsec__next li:not(:last-child)::after { background: rgba(244, 175, 22, .45) !important; }
+
+/* Donate "Transparent and accountable": light panel, gold icons, dark text */
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { background: var(--lof-surface) !important; border: 1px solid var(--lof-card-line) !important; border-top: 4px solid var(--lof-gold) !important; box-shadow: 0 26px 50px -40px rgba(43, 29, 14, .55) !important; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { border-right-color: var(--lof-card-line) !important; border-bottom-color: var(--lof-card-line) !important; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) .lof-card__title { color: var(--lof-heading) !important; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar p { color: var(--lof-muted) !important; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar::before { background-color: var(--lof-accent-soft) !important; }
+html[data-theme="dark"] .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { background: var(--lof-surface) !important; }
+
+/* About "Registration and contacts": cream band, light fact sheet */
+.lof-page-about-us .lof-section:has(.lof-card__link) { background: var(--lof-bg) !important; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-section__title { color: var(--lof-heading) !important; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-eyebrow { color: #B9740F !important; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid { background: var(--lof-surface) !important; border: 1px solid var(--lof-card-line) !important; border-top: 4px solid var(--lof-gold) !important; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar { border-right-color: var(--lof-card-line) !important; border-bottom-color: var(--lof-card-line) !important; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar .lof-card__title { color: #B9740F !important; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar p { color: var(--lof-text) !important; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card__link { color: var(--lof-link) !important; }
+
+/* Contact "Other ways to reach us": cream band, light tiles with gold icons */
+.lof-page-contact .lof-contact { background: var(--lof-sand) !important; }
+html[data-theme="dark"] .lof-page-contact .lof-contact { background: #1E150B !important; }
+.lof-page-contact .lof-contact .lof-section__title { color: var(--lof-heading) !important; }
+.lof-page-contact .lof-contact .lof-contact__list { background: var(--lof-surface) !important; border: 1px solid var(--lof-card-line) !important; border-top: 4px solid var(--lof-gold) !important; }
+.lof-page-contact .lof-contact .lof-contact__list > div { border-right-color: var(--lof-card-line) !important; border-bottom-color: var(--lof-card-line) !important; }
+.lof-page-contact .lof-contact .lof-contact__list dt { color: #B9740F !important; }
+.lof-page-contact .lof-contact .lof-contact__list dd, .lof-page-contact .lof-contact .lof-contact__list dd a { color: var(--lof-heading) !important; }
+
+/* Cards: one consistent style - white, thin line, soft shadow, gold top edge only on feature cards */
+.lof-card--pillar { border-color: var(--lof-card-line); }
+html[data-theme="dark"] .lof-faq-help, html[data-theme="dark"] .lof-formsec__next, html[data-theme="dark"] .lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid, html[data-theme="dark"] .lof-page-contact .lof-contact .lof-contact__list { border-color: rgba(244, 175, 22, .18) !important; border-top-color: var(--lof-gold) !important; }
+
+/* Gold call-to-action box: a slightly softer, flatter gold */
+.lof-cta.lof-tone-sun .lof-cta__box { background: linear-gradient(120deg, #F4AF16 0%, #F7BF2E 60%, #F9CB45 100%) !important; }
