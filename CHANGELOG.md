@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.29.0 - 3 Nov 2026
+
+- Forms (Contact, Get Involved, Donate): a dark "What happens next" card with a three-step timeline fills the left column; the form sits in one raised card with clearer labels and a gold pill submit button.
+- Contact: details appear once, in a dark "Other ways to reach us" band with three columns and a "Get directions" button (opens Google Maps), instead of repeating beside the form.
+- Donate: "Transparent and accountable" becomes a dark trust band to break up the run of card grids; the repeated figures strip near the form is hidden so the page flows from the FAQ straight to "Talk to us".
+
 ## 0.28.0 - 3 Nov 2026
 
 - Get Involved: Volunteer, Partner, Sponsor and Fundraise as icon cards with a gold top edge and the link aligned at the bottom.

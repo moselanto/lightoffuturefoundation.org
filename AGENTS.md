@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.28.0** and Core **0.28.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.29.0** and Core **0.29.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **3 Nov 2026, 23:05 EAT:** 0.29.0: forms get a "What happens next" 3-step timeline under the contact details and a gold pill submit button; Contact details shown once (dark band with Get directions link, Google Maps search); Donate trust section as a dark band and the repeated figures strip hidden.
 
 - **3 Nov 2026, 23:10 EAT:** 0.28.0: Get Involved, Donate, Contact - icon cards for ways to help / where your gift goes / transparency, numbered ways-to-give cards, contact details as icon rows beside every form, Contact "Other ways to reach us" as icon tiles, Donate hero photo, fix for portrait hero photos stretching (Elementor `img{height:auto}`).
 

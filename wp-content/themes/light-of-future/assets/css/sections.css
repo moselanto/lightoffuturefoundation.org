@@ -1706,3 +1706,62 @@ html[data-theme="dark"] .lof-page-impact .lof-steps .lof-card--pillar { border-c
 
 /* Dark mode */
 html[data-theme="dark"] .lof-formsec__details li, html[data-theme="dark"] .lof-contact__list > div, html[data-theme="dark"] .lof-page-get-involved .lof-card--pillar, html[data-theme="dark"] .lof-page-donate .lof-card--pillar { border-color: rgba(244, 175, 22, .16); box-shadow: 0 24px 46px -32px rgba(0, 0, 0, .8); }
+
+
+/* ===== 0.29.0: Contact, Get Involved and Donate - finishing pass ===== */
+/* "What happens next" timeline under the contact details (fills the left column beside every form) */
+.lof-formsec__next { margin-top: 1.75rem; padding: 1.5rem 1.5rem 1.35rem; border-radius: 22px; background: linear-gradient(160deg, #3F2913, #2A1B0C); color: rgba(252, 246, 225, .86); box-shadow: 0 30px 56px -40px rgba(43, 29, 14, .8); }
+.lof-formsec__next-title { margin: 0 0 1.1rem; font: 800 .72rem/1 var(--lof-font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--lof-gold); }
+.lof-formsec__next ol { list-style: none; margin: 0; padding: 0; counter-reset: lofnext; display: grid; gap: 1.1rem; }
+.lof-formsec__next li { position: relative; counter-increment: lofnext; padding-left: 3.1rem; min-height: 36px; }
+.lof-formsec__next li::before { content: counter(lofnext); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--lof-gold); color: #2E1E0E; font: 800 .9rem/1 var(--lof-font-display); }
+.lof-formsec__next li:not(:last-child)::after { content: ""; position: absolute; left: 16px; top: 38px; bottom: -16px; width: 2px; background: rgba(244, 175, 22, .3); }
+.lof-formsec__next strong { display: block; color: var(--lof-cream); font-size: 1rem; margin-bottom: .15rem; }
+.lof-formsec__next span { display: block; font-size: .92rem; line-height: 1.55; }
+html[data-theme="dark"] .lof-formsec__next { border: 1px solid rgba(244, 175, 22, .2); }
+
+/* Form card: clearer fields and a confident button */
+.lof-formsec .lof-formsec__form { padding: clamp(1.25rem, 3vw, 2.25rem); border-radius: 26px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 40px 70px -48px rgba(43, 29, 14, .65); }
+.lof-formsec .lof-formsec__form .lof-form { padding: 0; border: 0; box-shadow: none; background: transparent; }
+.lof-formsec .lof-form label { font-weight: 700; font-size: .86rem; color: var(--lof-heading); }
+.lof-formsec .lof-form textarea { min-height: 150px; }
+.lof-formsec .lof-form button[type="submit"], .lof-formsec .lof-form .lof-btn { min-height: 54px; padding-inline: 2.25rem; border-radius: 999px; background: var(--lof-gold) !important; color: #2E1E0E !important; border: 0 !important; font-weight: 800; box-shadow: 0 16px 30px -16px rgba(220, 140, 19, .8); }
+.lof-formsec .lof-form button[type="submit"]:hover, .lof-formsec .lof-form .lof-btn:hover { background: var(--lof-amber) !important; }
+
+/* Contact page: details live in one place (the band below), not repeated beside the form */
+.lof-page-contact .lof-formsec__details { display: none; }
+.lof-page-contact .lof-formsec__next { margin-top: 1.5rem; }
+
+/* "Other ways to reach us": dark band with three columns and a directions link */
+.lof-page-contact .lof-contact { background: linear-gradient(160deg, #3F2913, #2A1B0C) !important; }
+.lof-page-contact .lof-contact .lof-section__title { color: var(--lof-cream); }
+.lof-page-contact .lof-contact__list { gap: 0; border-radius: 24px; overflow: hidden; border: 1px solid rgba(244, 175, 22, .25); background: rgba(255, 255, 255, .04); }
+.lof-page-contact .lof-contact__list > div { background: transparent; border: 0; border-right: 1px solid rgba(244, 175, 22, .18); border-radius: 0; box-shadow: none; padding: 2rem 1.9rem; }
+.lof-page-contact .lof-contact__list > div:last-child { border-right: 0; }
+.lof-page-contact .lof-contact__list dt { color: var(--lof-gold); }
+.lof-page-contact .lof-contact__list dd, .lof-page-contact .lof-contact__list dd a { color: var(--lof-cream); }
+.lof-contact__dir { display: inline-flex; align-items: center; margin-top: .85rem; padding: .5rem 1rem; border-radius: 999px; background: var(--lof-gold); color: #2E1E0E !important; font-size: .82rem; font-weight: 800; text-decoration: none !important; }
+.lof-contact__dir:hover { background: var(--lof-amber); }
+@media (max-width: 760px) { .lof-page-contact .lof-contact__list > div { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); } .lof-page-contact .lof-contact__list > div:last-child { border-bottom: 0; } }
+html[data-theme="dark"] .lof-page-contact .lof-contact { background: linear-gradient(160deg, #22160A, #170F06) !important; }
+
+/* Donate: "Transparent and accountable" as a dark trust band (varies the rhythm of card grids) */
+.lof-page-donate .lof-tone-white:has(.lof-grid--3:not(:has(> :nth-child(4)))) { background: linear-gradient(160deg, #3F2913, #2A1B0C); }
+.lof-page-donate .lof-tone-white:has(.lof-grid--3:not(:has(> :nth-child(4)))) .lof-section__title { color: var(--lof-cream); }
+.lof-page-donate .lof-tone-white:has(.lof-grid--3:not(:has(> :nth-child(4)))) .lof-eyebrow { color: var(--lof-gold); }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { gap: 0 !important; border-radius: 24px; overflow: hidden; border: 1px solid rgba(244, 175, 22, .25); background: rgba(255, 255, 255, .04); }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { background: transparent; border: 0; border-right: 1px solid rgba(244, 175, 22, .18); border-radius: 0; box-shadow: none; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar:last-child { border-right: 0; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar:hover { transform: none; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar::after { display: none; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar::before { background-color: rgba(244, 175, 22, .18); }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) .lof-card__title { color: var(--lof-cream); }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) p { color: rgba(252, 246, 225, .82); }
+@media (max-width: 1024px) { .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); } .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar:last-child { border-bottom: 0; } }
+html[data-theme="dark"] .lof-page-donate .lof-tone-white:has(.lof-grid--3:not(:has(> :nth-child(4)))) { background: linear-gradient(160deg, #22160A, #170F06); }
+
+/* Donate: the second figures strip near the form is a repeat - hide it so the page flows FAQ -> form */
+.lof-page-donate .elementor-section:has(.lof-impact--strip) { display: none; }
+
+/* Get Involved: "Ways to help" section breathing room and heading */
+.lof-page-get-involved .lof-tone-white { padding-block: clamp(3.5rem, 7vw, 5.5rem); }

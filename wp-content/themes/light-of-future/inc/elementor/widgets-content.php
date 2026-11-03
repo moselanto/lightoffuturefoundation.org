@@ -506,6 +506,8 @@ class LOF_Widget_Contact extends LOF_Widget_Base {
 				$html = '<a href="' . esc_url( 'https://wa.me/' . preg_replace( '/[^0-9]/', '', $value ) ) . '" rel="noopener" target="_blank">' . esc_html( $value ) . '</a>';
 			} elseif ( 'email' === $key ) {
 				$html = '<a href="' . esc_url( 'mailto:' . antispambot( $value ) ) . '">' . esc_html( antispambot( $value ) ) . '</a>';
+			} elseif ( 'address' === $key ) {
+				$html = esc_html( $value ) . ' <a class="lof-contact__dir" href="' . esc_url( 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( 'Ruai, Kangundo Road, Nairobi' ) ) . '" rel="noopener" target="_blank">' . esc_html__( 'Get directions', 'light-of-future' ) . '<span class="screen-reader-text"> ' . esc_html__( '(opens Google Maps in a new tab)', 'light-of-future' ) . '</span></a>';
 			} else {
 				$html = esc_html( $value );
 			}
