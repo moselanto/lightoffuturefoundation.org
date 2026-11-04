@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.44.0 - 5 Nov 2026
+
+Crafts shop, modelled on the Cistern of Hope Hope Market.
+- New `inc/shop.php`: WhatsApp chat card on the right (greeting, topic chips, page-aware "I would like to order" chip on product pages, message box, typing dot, one-per-visit teaser; replaces the plain `lof-wa` float). Number from the Core setting, else +254 715 394 295.
+- Order on WhatsApp: big button on product pages (adds design, quantity, price and link), small button on every shop card. Online checkout stays off until Paystack is live (`lof_shop_cart_enabled` filter); cart buttons hidden, cards say "View details". Random order on the shop page; intro band.
+- Home "Shop with purpose": shortcode `[lof_home_market]` (featured products first, topped up), added before the closing CTA by one-off `lof_upgrade_home_market` (option `lof_market_rev`).
+- New admin-only `inc/shop-setup.php`: one-off `lof_upgrade_shop_products` (option `lof_shop_rev`) creates the 8 catalogue products with cleaned photos (`assets/images/shop/`), confirmed prices, categories, featured flags (bags, basket, necklaces, sandals) and Design variations for price ranges; skips existing SKUs; sets currency to KES.
+- New `assets/css/shop.css`, `assets/js/shop.js`.
+
 ## 0.43.1 - 4 Nov 2026
 
 - Home page: fixed sections repeating / the brown impact band drawing over the focus cards. Cause: 0.43.0 set overflow-x: clip on the html and body elements, which changes how Chrome scrolls the page; it now sits on the main content and footer only.

@@ -45,6 +45,8 @@
 
 ## Work log
 
+- **5 Nov 2026, 03:00 EAT:** 0.44.0: crafts shop (see CHANGELOG): WhatsApp chat card, Order on WhatsApp, home Shop with purpose, 8 products seeded by one-off upgrades in `inc/shop-setup.php` (run on first wp-admin load). WhatsApp number +254 715 394 295.
+
 - **4 Nov 2026, 08:30 EAT:** 0.43.1: home stacking fix (overflow-x clip moved off html/body to main + footer). Audit (axe-core + Chromium, Home/Programmes/Stories/Donate, light+dark, 1366 desktop + 390 phone): fixed light-mode eyebrow/figure/jump-number contrast, dark-mode logo link name (aria-label), top bar now a labelled region. Perf: LCP 0.3-0.7s, CLS ~0, no sideways scroll. Do not put overflow on html/body again.
 
 - **4 Nov 2026, 00:10 EAT:** 0.43.0: (1) content audit against the foundation's content document - all text, 11 leaders + photos, values, objectives, focus areas present; added "registered as a charitable society" (one-off `lof_upgrade_charitable_society`, option `lof_charity_rev`). (2) Responsive: desktop breakpoint moved 1025px -> 992px (all CSS + main.js), no font step at 1440px, fixed 17.5px root from 900px and 1200px content width so 13.3in = MacBook = large monitors; compact header 992-1180px; mobile safety (no sideways scroll, wrapping, full-width buttons); portrait tablets two-column grids.

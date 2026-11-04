@@ -1,0 +1,93 @@
+/* Light of Future crafts shop + WhatsApp chat (0.44.0). Brand: Earth Brown #5C3D1E, Cream #FCF6E1, Sun Gold #F4AF16, Amber #DC8C13. */
+:root{--lof-wa:#25D366;--lof-wa-dark:#128C7E;--lof-brown:#5C3D1E;--lof-gold:#F4AF16;--lof-amber:#DC8C13;--lof-cream:#FCF6E1}
+
+/* ---------- Home: Shop with purpose ---------- */
+.lof-market{background:linear-gradient(180deg,#fff 0%,var(--lof-cream) 100%);padding:clamp(56px,7vw,96px) 16px;position:relative;overflow:hidden}
+.lof-market::before{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(244,175,22,.22),transparent 70%);pointer-events:none}
+.lof-market__inner{max-width:1200px;margin:0 auto;position:relative}
+.lof-market__head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.lof-market__eyebrow{color:#B9740F;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;margin:0 0 8px}
+.lof-market__title{font-family:Nunito,system-ui,sans-serif;font-weight:800;color:var(--lof-brown);font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.15;margin:0 0 10px;max-width:640px}
+.lof-market__intro{margin:0;max-width:600px;color:#5b4a3a}
+.lof-market__all{display:inline-flex;gap:8px;align-items:center;font-weight:800;color:var(--lof-brown);text-decoration:none;border:2px solid var(--lof-gold);border-radius:999px;padding:10px 22px;transition:background .2s}
+.lof-market__all:hover,.lof-market__all:focus-visible{background:var(--lof-gold);color:var(--lof-brown)}
+.lof-market__grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.lof-market__card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px -18px rgba(92,61,30,.45);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;border-top:3px solid var(--lof-gold)}
+.lof-market__card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -18px rgba(92,61,30,.55)}
+.lof-market__media{position:relative;display:block;aspect-ratio:1/1;overflow:hidden;background:var(--lof-cream)}
+.lof-market__media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.lof-market__card:hover .lof-market__media img{transform:scale(1.05)}
+.lof-market__badge{position:absolute;left:12px;top:12px;background:var(--lof-brown);color:var(--lof-cream);font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.lof-market__body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.lof-market__name{font-family:Nunito,system-ui,sans-serif;font-size:1.05rem;font-weight:800;margin:0;line-height:1.3}
+.lof-market__name a{color:var(--lof-brown);text-decoration:none}
+.lof-market__price{margin:0 0 8px;font-weight:800;color:var(--lof-amber)}
+.lof-market__actions{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+.lof-market__wa,.lof-wa-order__mini{display:inline-flex;align-items:center;gap:6px;background:var(--lof-wa);color:#fff!important;font-weight:800;font-size:.86rem;padding:9px 14px;border-radius:999px;text-decoration:none;flex:1;justify-content:center;transition:background .2s}
+.lof-market__wa:hover,.lof-wa-order__mini:hover{background:var(--lof-wa-dark)}
+.lof-market__view{display:inline-flex;align-items:center;justify-content:center;padding:9px 14px;border-radius:999px;border:1.5px solid #e4d6bd;color:var(--lof-brown);font-weight:700;font-size:.86rem;text-decoration:none}
+.lof-market__trust{margin:26px 0 0;text-align:center;color:#6b5a48;font-size:.95rem}
+@media (max-width:991px){.lof-market__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.lof-market__grid{gap:12px}.lof-market__body{padding:12px}.lof-market__actions{flex-direction:column}.lof-market__name{font-size:.95rem}}
+
+/* ---------- Shop pages ---------- */
+.lof-shop-intro{background:var(--lof-cream);border-left:4px solid var(--lof-gold);border-radius:14px;padding:16px 20px;margin:0 0 28px}
+.lof-shop-intro__eyebrow{margin:0 0 4px;color:#B9740F;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem}
+.lof-shop-intro__text{margin:0;color:var(--lof-brown)}
+.woocommerce ul.products li.product{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 28px -18px rgba(92,61,30,.45);padding-bottom:16px!important;border-top:3px solid var(--lof-gold);text-align:left}
+.woocommerce ul.products li.product a img{margin:0 0 12px!important;aspect-ratio:1/1;object-fit:cover}
+.woocommerce ul.products li.product .woocommerce-loop-product__title{padding:0 16px!important;color:var(--lof-brown);font-weight:800;font-size:1rem!important}
+.woocommerce ul.products li.product .price{padding:0 16px;color:var(--lof-amber)!important;font-weight:800}
+.woocommerce ul.products li.product .button.lof-shop-view{margin:10px 16px 0!important;background:transparent;border:1.5px solid #e4d6bd;color:var(--lof-brown);border-radius:999px;font-weight:700}
+.woocommerce ul.products li.product .lof-wa-order__mini{display:flex;margin:8px 16px 0}
+.woocommerce span.onsale{background:var(--lof-gold);color:var(--lof-brown)}
+.lof-wa-order{margin:18px 0 8px}
+.lof-wa-order__btn{display:inline-flex;align-items:center;gap:10px;background:var(--lof-wa);color:#fff!important;font-weight:800;font-size:1.05rem;padding:14px 26px;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px rgba(18,140,126,.8);transition:transform .2s,background .2s}
+.lof-wa-order__btn:hover{background:var(--lof-wa-dark);transform:translateY(-2px)}
+.lof-wa-order__note{margin:8px 0 0;font-size:.88rem;color:#6b5a48}
+/* While online checkout is off, WhatsApp is the order path. */
+body.lof-wa-orders .single_add_to_cart_button,body.lof-wa-orders .woocommerce-variation-add-to-cart .quantity+button{display:none!important}
+
+/* ---------- WhatsApp chat card ---------- */
+.lof-chat{position:fixed;right:18px;bottom:18px;z-index:9990;font-family:Figtree,system-ui,sans-serif}
+@media (max-width:991px){.lof-chat{bottom:calc(84px + env(safe-area-inset-bottom,0px));right:12px}}
+.lof-chat__fab{display:flex;align-items:center;gap:10px;background:var(--lof-wa);color:#fff!important;text-decoration:none;border-radius:999px;padding:10px 18px 10px 12px;box-shadow:0 14px 30px -10px rgba(0,0,0,.35);font-weight:800;position:relative;transition:transform .2s}
+.lof-chat__fab:hover{transform:translateY(-2px)}
+.lof-chat__fab-icon{display:grid;place-items:center;width:36px;height:36px}
+.lof-chat__fab::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(37,211,102,.55);animation:lofPulse 2.6s infinite}
+@keyframes lofPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@media (prefers-reduced-motion:reduce){.lof-chat__fab::after{animation:none}}
+@media (max-width:640px){.lof-chat__fab-label{display:none}.lof-chat__fab{padding:10px}}
+.lof-chat__dot{position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:#e5332a;border:2px solid #fff}
+.lof-chat__teaser{position:absolute;right:0;bottom:70px;width:280px;background:#fff;border-radius:16px;box-shadow:0 16px 40px -14px rgba(0,0,0,.35);padding:14px 14px 14px 12px}
+.lof-chat__teaser-open{all:unset;cursor:pointer;display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:#3b2a1a;line-height:1.4}
+.lof-chat__teaser-open img{border-radius:50%;background:var(--lof-brown);padding:4px;flex:none}
+.lof-chat__teaser-close{position:absolute;top:4px;right:8px;background:none;border:0;font-size:20px;color:#8a7a68;cursor:pointer}
+.lof-chat__panel{position:absolute;right:0;bottom:72px;width:min(370px,calc(100vw - 24px));background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -18px rgba(0,0,0,.45);display:flex;flex-direction:column;max-height:min(600px,calc(100vh - 140px))}
+.lof-chat__head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(135deg,var(--lof-brown),#3e2812);color:#fff}
+.lof-chat__avatar{position:relative;flex:none}
+.lof-chat__avatar img{border-radius:50%;background:rgba(255,255,255,.1);padding:4px}
+.lof-chat__avatar i{position:absolute;right:0;bottom:2px;width:11px;height:11px;border-radius:50%;background:var(--lof-wa);border:2px solid var(--lof-brown)}
+.lof-chat__who{display:flex;flex-direction:column;line-height:1.25;flex:1}
+.lof-chat__who strong{font-size:1rem}
+.lof-chat__who span{font-size:.8rem;opacity:.85}
+.lof-chat__close{background:rgba(255,255,255,.12)!important;border:0;color:#fff!important;width:32px;height:32px;border-radius:50%;font-size:20px;line-height:1;cursor:pointer}
+.lof-chat__body{padding:16px;background:#efe7da url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%23d9ccb6'/%3E%3C/svg%3E");overflow:auto;flex:1}
+.lof-chat__bubble{background:#fff;border-radius:4px 16px 16px 16px;padding:10px 14px;box-shadow:0 1px 1px rgba(0,0,0,.08);font-size:.93rem;color:#2d2016;max-width:92%}
+.lof-chat__bubble p{margin:0 0 6px}.lof-chat__bubble p:last-child{margin:0}
+.lof-chat__typing{display:inline-flex;gap:4px;background:#fff;padding:10px 12px;border-radius:14px;margin-bottom:8px}
+.lof-chat__typing i{width:7px;height:7px;border-radius:50%;background:#b8a88f;animation:lofDot 1s infinite}
+.lof-chat__typing i:nth-child(2){animation-delay:.15s}.lof-chat__typing i:nth-child(3){animation-delay:.3s}
+@keyframes lofDot{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.lof-chat__label{margin:14px 0 8px;font-size:.78rem;color:#6b5a48;font-weight:700}
+.lof-chat__chips{display:flex;flex-wrap:wrap;gap:6px}
+.lof-chat__chip{background:#fff!important;border:1.5px solid #d8c7a8!important;color:var(--lof-brown)!important;border-radius:999px;padding:7px 12px;font-size:.84rem;font-weight:700;cursor:pointer;text-align:left}
+.lof-chat__chip.is-page,.lof-chat__chip[aria-pressed="true"]{border-color:var(--lof-wa)!important;background:#e8f9ee!important}
+.lof-chat__chip:focus-visible,.lof-chat__close:focus-visible,.lof-chat__send:focus-visible{outline:3px solid var(--lof-gold);outline-offset:2px}
+.lof-chat__form{padding:10px 12px;border-top:1px solid #eee;background:#fff}
+.lof-chat__share{display:flex;align-items:center;gap:6px;font-size:.8rem;color:#6b5a48;margin-bottom:8px}
+.lof-chat__compose{display:flex;gap:8px;align-items:flex-end}
+.lof-chat__compose textarea{flex:1;resize:none;border:1.5px solid #e1d5c2;border-radius:18px;padding:9px 14px;font:inherit;font-size:.93rem;max-height:120px;min-height:40px}
+.lof-chat__send{background:var(--lof-wa)!important;color:#fff!important;border:0;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;flex:none}
+.lof-chat__note{margin:0;padding:0 14px 12px;font-size:.72rem;color:#8a7a68;background:#fff}
+.lof-chat [hidden]{display:none!important}
