@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.43.1 - 4 Nov 2026
+
+- Home page: fixed sections repeating / the brown impact band drawing over the focus cards. Cause: 0.43.0 set overflow-x: clip on the html and body elements, which changes how Chrome scrolls the page; it now sits on the main content and footer only.
+- Accessibility (axe-core audit of Home, Programmes, Stories, Donate in light and dark, desktop and phone): small gold labels, figure numbers and programme jump numbers darkened to pass WCAG AA contrast; the logo link has a name in dark mode; the top contact bar is a labelled region.
+
 ## 0.43.0 - 4 Nov 2026
 
 - Content check against the foundation's content document: everything is on the site (history, vision, mission, 7 values, registration details, main and specific objectives, 11 focus areas, all 11 leaders with roles, bios and photos). Added the missing detail that the foundation is registered as a charitable society.

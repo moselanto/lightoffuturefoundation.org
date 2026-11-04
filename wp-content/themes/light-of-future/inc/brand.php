@@ -47,7 +47,7 @@ function lof_logo_themed() {
 		return;
 	}
 	printf(
-		'<a class="lof-logo lof-logo--horizontal lof-logo--themed" href="%1$s" rel="home"><img class="lof-logo__light" src="%2$s" alt="%4$s" width="260" height="70" decoding="async"><img class="lof-logo__dark" src="%3$s" alt="" aria-hidden="true" width="260" height="70" decoding="async" loading="lazy"></a>',
+		'<a class="lof-logo lof-logo--horizontal lof-logo--themed" href="%1$s" rel="home" aria-label="%4$s"><img class="lof-logo__light" src="%2$s" alt="%4$s" width="260" height="70" decoding="async"><img class="lof-logo__dark" src="%3$s" alt="" aria-hidden="true" width="260" height="70" decoding="async" loading="lazy"></a>',
 		esc_url( home_url( '/' ) ),
 		esc_url( lof_brand_url( 'logo-horizontal-light.svg' ) ),
 		esc_url( lof_brand_url( 'logo-horizontal-dark.svg' ) ),

@@ -556,7 +556,7 @@ html[data-theme="dark"] .lof-footer--v2 { background: radial-gradient(120% 80% a
 }
 
 /* ===== 0.12.0: phone polish ===== */
-html, body { overflow-x: clip; }
+main, .lof-footer { overflow-x: clip; }
 img, svg, video, iframe { max-width: 100%; }
 @media (max-width: 640px) {
 	.lof-btn-row { gap: .6rem; }
@@ -2420,3 +2420,19 @@ h1, h2, h3, .lof-card__title, .lof-person__name { overflow-wrap: anywhere; word-
 	.lof-grid--3:not(.lof-stories-more), .lof-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 	.lof-grid--3 > *, .lof-grid--4 > * { grid-column: auto !important; }
 }
+
+
+/* ===== 0.43.1: Home stacking fix + accessibility audit fixes ===== */
+/* Stacking: 0.43.0 put overflow-x: clip on <html> and <body>; Chrome hands body overflow to the page scroller,
+   which broke full-page capture tools and some scroll handling (sections repeated / bands drawn over cards).
+   Moved to <main> and the footer only; the page scrolls as a normal document again. */
+html, body { overflow-x: visible !important; }
+/* WCAG AA text contrast in light mode (dark mode already passes) */
+html:not([data-theme="dark"]) .lof-eyebrow,
+html:not([data-theme="dark"]) .lof-faq-help .lof-eyebrow,
+html:not([data-theme="dark"]) .lof-formsec__next-title,
+html:not([data-theme="dark"]) .lof-page-about-us .lof-section:has(.lof-card__link) .lof-eyebrow,
+html:not([data-theme="dark"]) .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar .lof-card__title,
+html:not([data-theme="dark"]) .lof-page-contact .lof-contact .lof-contact__list dt { color: #93590A !important; }
+html:not([data-theme="dark"]) .lof-figbar__grid dd { color: #B26B0C; }
+html:not([data-theme="dark"]) .lof-jump a > span[aria-hidden="true"], html:not([data-theme="dark"]) a[href^="#lof-prog-"] > span[aria-hidden="true"] { color: #8F5709 !important; }

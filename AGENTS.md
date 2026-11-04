@@ -27,7 +27,7 @@
 
 ## Current state (3 Nov 2026, 18:15 EAT)
 
-- Theme **0.43.0** and Core **0.43.0** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
+- Theme **0.43.1** and Core **0.43.1** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
 - **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
 
 ## How to install / update
@@ -44,6 +44,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **4 Nov 2026, 08:30 EAT:** 0.43.1: home stacking fix (overflow-x clip moved off html/body to main + footer). Audit (axe-core + Chromium, Home/Programmes/Stories/Donate, light+dark, 1366 desktop + 390 phone): fixed light-mode eyebrow/figure/jump-number contrast, dark-mode logo link name (aria-label), top bar now a labelled region. Perf: LCP 0.3-0.7s, CLS ~0, no sideways scroll. Do not put overflow on html/body again.
 
 - **4 Nov 2026, 00:10 EAT:** 0.43.0: (1) content audit against the foundation's content document - all text, 11 leaders + photos, values, objectives, focus areas present; added "registered as a charitable society" (one-off `lof_upgrade_charitable_society`, option `lof_charity_rev`). (2) Responsive: desktop breakpoint moved 1025px -> 992px (all CSS + main.js), no font step at 1440px, fixed 17.5px root from 900px and 1200px content width so 13.3in = MacBook = large monitors; compact header 992-1180px; mobile safety (no sideways scroll, wrapping, full-width buttons); portrait tablets two-column grids.
 

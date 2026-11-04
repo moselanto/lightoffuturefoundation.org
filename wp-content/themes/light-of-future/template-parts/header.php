@@ -12,7 +12,7 @@ $lof_email = lof_setting( 'email' );
 ?>
 <a class="lof-skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'light-of-future' ); ?></a>
 <?php if ( $lof_phone || $lof_email ) : ?>
-<div class="lof-topbar">
+<div class="lof-topbar" role="region" aria-label="<?php esc_attr_e( 'Contact details', 'light-of-future' ); ?>">
 	<div class="lof-container lof-topbar__inner">
 		<p class="lof-topbar__tag"><?php echo esc_html( lof_setting( 'topbar_text', __( 'Bringing hope and opportunity to communities in Kenya', 'light-of-future' ) ) ); ?></p>
 		<ul class="lof-topbar__contacts">
