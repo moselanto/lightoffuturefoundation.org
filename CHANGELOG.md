@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.61.2 - 2026-11-06
+- Stories on desktop: the featured photo shows Margaret's face.
+
 ## 0.61.1 - 2026-11-06
 - WhatsApp greeting bubble retired (the button stays); it covered content on tablets and desktops.
 - Home on phones: all three featured stories show.

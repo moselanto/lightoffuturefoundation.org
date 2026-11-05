@@ -902,3 +902,7 @@ img,video,iframe,svg{max-width:100%}
 @media (max-width:991px){.lof-intro__band{grid-template-columns:1fr!important;gap:1rem!important}.lof-intro__panel{max-width:none}}
 /* Gallery (phone): a short last row of photos sits in the middle. */
 @media (max-width:600px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){display:flex!important;flex-wrap:wrap;justify-content:center;gap:8px!important}.lof-page-gallery .lofm .lofm__grid > .lofm__item{flex:0 0 calc((100% - 8px)/2);max-width:calc((100% - 8px)/2)}}
+
+/* ---------- 0.61.2 ---------- */
+/* Stories (desktop): wide featured card shows Margaret's face, not the doorway above her. */
+@media (min-width:992px){.lof-page-stories .lof-spot__media img{object-position:50% 32%!important}}
