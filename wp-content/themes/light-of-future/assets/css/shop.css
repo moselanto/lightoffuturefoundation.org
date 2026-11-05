@@ -596,3 +596,13 @@ html[data-theme="dark"] .lof-pd__chips .lof-pd__chip[aria-pressed="true"]{backgr
 .lof-pdinfo summary::after{content:"+";position:absolute;right:4px;top:10px;font-size:1.3rem;color:#8A5208}
 .lof-pdinfo details[open] summary::after{content:"\2212"}
 .lof-pdinfo p{margin:0 0 14px;color:var(--lof-muted,#5b4a3a);font-size:.92rem;line-height:1.6}
+
+/* 0.55.1 fixes */
+.lof-givepanel .lof-givepanel__how{display:block;color:inherit!important;opacity:.85;margin:0}
+.lof-tone-earth .lof-givepanel .lof-givepanel__how{color:#2E1E0E!important}
+.lof-givepanel,.lof-givepanel>*,.lof-givepanel fieldset{min-width:0;max-width:100%;box-sizing:border-box}
+.lof-givepanel select,.lof-givepanel__kes,.lof-givepanel__kes input{max-width:100%;box-sizing:border-box}
+@media (max-width:640px){.lof-givepanel{padding:1rem}.lof-givepanel__submit{width:100%}}
+.lofm-nav{position:relative}
+.lofm-nav.is-fixed{position:fixed;left:0;right:0;z-index:940;margin:0;padding:10px 16px;box-shadow:0 8px 20px -14px rgba(43,29,14,.5)}
+.lofm-nav.is-fixed ul{max-width:1200px;margin:0 auto}

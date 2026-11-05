@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.55.1 - 2026-11-05
+- Donate: the "how to give" line is visible on the cream panel; the panel no longer crowds the right edge on phones.
+- Gallery: section links stay pinned at the top while scrolling (fixed on scroll; sticky failed inside the page wrapper).
+- Leadership: no second set of jump links where the page already has its own "Jump to" row.
+
 ## 0.55.0 - 2026-11-05 (Core 0.44.0)
 - Donate: while online payment is not live, the button reads "Ask us how to give" with a one-line explanation; the trust line no longer says "coming soon".
 - Get Involved: enquiry form adds "Fundraising for the foundation" (Core plugin 0.44.0).

@@ -238,7 +238,8 @@
 				if (t) { list.push([sec.id, t]); }
 			});
 			var hero = document.querySelector('main .lof-hero');
-			if (list.length >= 3 && hero) {
+			var hasJump = Array.prototype.some.call(document.querySelectorAll('main nav, main [class*="jump"]'), function (n) { return /jump to/i.test(n.textContent || '') || (n.className && /jump/.test(String(n.className))); });
+			if (list.length >= 3 && hero && !hasJump) {
 				var nav = document.createElement('nav');
 				nav.className = 'lof-jump'; nav.setAttribute('aria-label', 'On this page');
 				var ul = document.createElement('ul');
@@ -264,4 +265,25 @@
 			bio.parentNode.insertBefore(more, bio.nextSibling);
 		});
 	});
+}());
+
+/* 0.55.1: Gallery section links stay at the top while scrolling */
+(function () {
+	'use strict';
+	var nav = document.querySelector('.lofm-nav');
+	if (!nav) { return; }
+	var ph = document.createElement('div'); ph.className = 'lofm-nav-ph'; nav.parentNode.insertBefore(ph, nav);
+	var head = function () { var h = document.querySelector('.lof-header'); if (!h || window.innerWidth < 992) { return 0; } var r = h.getBoundingClientRect(); return r.bottom > 0 ? r.bottom : 0; };
+	var tick = false;
+	var check = function () {
+		tick = false;
+		var top = head();
+		var fixed = ph.getBoundingClientRect().top < top;
+		if (fixed && !nav.classList.contains('is-fixed')) { ph.style.height = nav.offsetHeight + 'px'; nav.classList.add('is-fixed'); }
+		if (!fixed && nav.classList.contains('is-fixed')) { nav.classList.remove('is-fixed'); ph.style.height = '0px'; }
+		if (fixed) { nav.style.top = top + 'px'; }
+	};
+	window.addEventListener('scroll', function () { if (!tick) { tick = true; window.requestAnimationFrame(check); } }, { passive: true });
+	window.addEventListener('resize', check);
+	check();
 }());
