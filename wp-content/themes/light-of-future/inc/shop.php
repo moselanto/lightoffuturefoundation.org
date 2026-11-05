@@ -111,6 +111,19 @@ function lof_order_attrs( $product ) {
 			break;
 		}
 	}
+	if ( ! $designs ) {
+		$styles = apply_filters(
+			'lof_product_styles',
+			array(
+				'LOF-BAG'     => array( __( 'Tan satchel', 'light-of-future' ), __( 'Red tooled flap bag', 'light-of-future' ), __( 'Red barrel bag', 'light-of-future' ) ),
+				'LOF-SANDALS' => array( __( 'Leather thong, teardrop beadwork', 'light-of-future' ), __( 'Black leather, flower beadwork', 'light-of-future' ), __( 'Cork sole, flower beadwork', 'light-of-future' ), __( 'Cork sole, butterfly beadwork', 'light-of-future' ), __( 'Leather slide', 'light-of-future' ) ),
+			)
+		);
+		$sku = (string) $product->get_sku();
+		if ( isset( $styles[ $sku ] ) ) {
+			$designs = $styles[ $sku ];
+		}
+	}
 	$img = wp_get_attachment_image_url( $product->get_image_id(), 'woocommerce_thumbnail' );
 	return sprintf(
 		'data-lof-order data-name="%1$s" data-price="%2$s" data-url="%3$s" data-designs="%4$s" data-image="%5$s"',
@@ -266,7 +279,7 @@ function lof_whatsapp_chat() {
 	$quiet    = ( function_exists( 'is_cart' ) && is_cart() ) || ( function_exists( 'is_checkout' ) && is_checkout() ) || is_page( array( 'donate', 'contact' ) );
 	$fallback = lof_wa_link( __( 'Hello Light of Future Foundation, I would like to know more about your work.', 'light-of-future' ) );
 	?>
-	<div class="lof-chat" data-lof-chat data-number="<?php echo esc_attr( $number ); ?>" data-quiet="<?php echo $quiet ? '1' : '0'; ?>" data-page-title="<?php echo esc_attr( $title ); ?>" data-page-url="<?php echo esc_url( $url ); ?>">
+	<aside class="lof-chat" aria-label="<?php esc_attr_e( 'WhatsApp chat', 'light-of-future' ); ?>" data-lof-chat data-number="<?php echo esc_attr( $number ); ?>" data-quiet="<?php echo $quiet ? '1' : '0'; ?>" data-page-title="<?php echo esc_attr( $title ); ?>" data-page-url="<?php echo esc_url( $url ); ?>">
 		<div class="lof-chat__teaser" hidden>
 			<button type="button" class="lof-chat__teaser-close" aria-label="<?php esc_attr_e( 'Dismiss message', 'light-of-future' ); ?>">&times;</button>
 			<button type="button" class="lof-chat__teaser-open">
@@ -305,12 +318,12 @@ function lof_whatsapp_chat() {
 			</form>
 			<p class="lof-chat__note"><?php esc_html_e( 'Opens WhatsApp with your message ready to send. Please never share M-Pesa PINs or card details.', 'light-of-future' ); ?></p>
 		</div>
-		<a class="lof-chat__fab" href="<?php echo esc_url( $fallback ); ?>" target="_blank" rel="noopener noreferrer" aria-controls="lof-chat-panel" aria-expanded="false">
+		<a class="lof-chat__fab" href="<?php echo esc_url( $fallback ); ?>" target="_blank" rel="noopener noreferrer" aria-controls="lof-chat-panel" aria-expanded="false" aria-label="<?php esc_attr_e( 'Chat with us on WhatsApp', 'light-of-future' ); ?>">
 			<span class="lof-chat__fab-icon"><?php echo lof_wa_icon( 28 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span>
 			<span class="lof-chat__fab-label"><?php esc_html_e( 'Chat with us', 'light-of-future' ); ?></span>
 			<span class="lof-chat__dot" aria-hidden="true" hidden></span>
 		</a>
-	</div>
+	</aside>
 	<?php
 }
 add_action( 'wp_footer', 'lof_whatsapp_chat', 6 );
@@ -347,10 +360,10 @@ function lof_shop_loop_wa_button() {
 		return;
 	}
 	printf(
-		'<a class="lof-wa-order__mini lof-btn-order" href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s" ' . lof_order_attrs( $product ) . '>%3$s<span class="lof-wa-long">%4$s</span><span class="lof-wa-short" aria-hidden="true">%5$s</span></a>',
+		'<a class="lof-wa-order__mini lof-btn-order" href="%1$s" target="_blank" rel="noopener noreferrer" ' . lof_order_attrs( $product ) . '>%3$s<span class="lof-wa-long">%4$s</span><span class="lof-wa-short">%5$s</span><span class="screen-reader-text">: %2$s</span></a>',
 		esc_url( lof_wa_link( lof_shop_order_message( $product ) ) ),
 		/* translators: %s: product name. */
-		esc_attr( sprintf( __( 'Order %s on WhatsApp', 'light-of-future' ), wp_strip_all_tags( $product->get_name() ) ) ),
+		esc_html( wp_strip_all_tags( $product->get_name() ) ),
 		lof_wa_icon( 18 ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
 		esc_html__( 'Order on WhatsApp', 'light-of-future' ),
 		esc_html__( 'Order', 'light-of-future' )
@@ -460,7 +473,7 @@ function lof_home_market( $atts = array() ) {
 							<h3 class="lof-market__name"><a href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php echo esc_html( $p->get_name() ); ?></a></h3>
 							<p class="lof-market__price"><?php echo esc_html( lof_shop_price_text( $p ) ); ?></p>
 							<div class="lof-market__actions">
-								<a class="lof-market__wa lof-btn-order" href="<?php echo esc_url( lof_wa_link( lof_shop_order_message( $p ) ) ); ?>" target="_blank" rel="noopener noreferrer" <?php echo lof_order_attrs( $p ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?> aria-label="<?php echo esc_attr( sprintf( /* translators: %s: product name. */ __( 'Order %s on WhatsApp', 'light-of-future' ), wp_strip_all_tags( $p->get_name() ) ) ); ?>"><span class="lof-btn-order__ico"><?php echo lof_wa_icon( 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><span class="lof-wa-long"><?php esc_html_e( 'Order now', 'light-of-future' ); ?></span><span class="lof-wa-short" aria-hidden="true"><?php esc_html_e( 'Order', 'light-of-future' ); ?></span></a>
+								<a class="lof-market__wa lof-btn-order" href="<?php echo esc_url( lof_wa_link( lof_shop_order_message( $p ) ) ); ?>" target="_blank" rel="noopener noreferrer" <?php echo lof_order_attrs( $p ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>><span class="lof-btn-order__ico"><?php echo lof_wa_icon( 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><span class="lof-wa-long"><?php esc_html_e( 'Order now', 'light-of-future' ); ?></span><span class="lof-wa-short"><?php esc_html_e( 'Order', 'light-of-future' ); ?></span><span class="screen-reader-text">: <?php echo esc_html( wp_strip_all_tags( $p->get_name() ) ); ?></span></a>
 								<a class="lof-market__view" href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php esc_html_e( 'Details', 'light-of-future' ); ?> <span aria-hidden="true">&rarr;</span></a>
 							</div>
 						</div>

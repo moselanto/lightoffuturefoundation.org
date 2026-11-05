@@ -203,3 +203,22 @@ function lof_programme_icon( $slug ) {
 	}
 	return '<svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor" aria-hidden="true" focusable="false"><path d="' . esc_attr( $paths[ $key ] ) . '"/></svg>';
 }
+
+/**
+ * Short display name for a focus-area card, so cards stay even. The full
+ * title stays on the programme page.
+ *
+ * @param WP_Post $p Programme.
+ * @return string
+ */
+function lof_programme_card_title( $p ) {
+	$short = apply_filters(
+		'lof_programme_card_titles',
+		array(
+			'decent-houses' => __( 'Decent Houses', 'light-of-future' ),
+			'gbv-awareness' => __( 'GBV Awareness', 'light-of-future' ),
+			'hygiene-kits'  => __( 'Hygiene Kits for Girls', 'light-of-future' ),
+		)
+	);
+	return isset( $short[ $p->post_name ] ) ? $short[ $p->post_name ] : get_the_title( $p );
+}

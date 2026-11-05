@@ -208,3 +208,16 @@ html{scroll-padding-top:calc(var(--lof-head-h,76px) + 20px)}
  .lof-order__grid{grid-template-columns:1fr}
 }
 body.lof-order-open{overflow:hidden}
+
+/* 0.46.0 */
+.lof-card--programme .lof-card__title{min-height:2.5em}
+@media (max-width:640px){.lof-card--programme .lof-card__title{min-height:0}}
+
+/* 0.46.0 accessibility: contrast and link fixes (WCAG 2.1 AA). */
+.lof-card--pillar .lof-card__kicker{color:#3b2410!important}
+.woocommerce .woocommerce-breadcrumb,.woocommerce .woocommerce-breadcrumb a{color:#5b4a3a!important}
+.lof-shop-intro__eyebrow,.lof-market__eyebrow{color:#7a4a0a!important}
+.woocommerce ul.products li.product .price,.woocommerce ul.products li.product .price .amount,.woocommerce div.product p.price,.woocommerce div.product span.price,.woocommerce div.product .price .amount{color:var(--lof-brown)!important}
+.woocommerce div.product .product_meta a{text-decoration:underline;text-underline-offset:3px}
+.lof-wa-short{display:none}
+.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important}

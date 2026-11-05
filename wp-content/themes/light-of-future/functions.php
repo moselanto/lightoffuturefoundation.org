@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOF_THEME_VERSION', '0.45.0' );
+define( 'LOF_THEME_VERSION', '0.46.0' );
 define( 'LOF_THEME_DIR', get_stylesheet_directory() );
 define( 'LOF_THEME_URI', get_stylesheet_directory_uri() );
 

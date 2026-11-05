@@ -214,6 +214,7 @@ function lof_copy( $key ) {
 	$copy = array(
 		'about'   => '<p>' . __( 'Light of Future Foundation is a charitable organisation dedicated to supporting vulnerable communities in Kenya. We focus on assisting widows, widowers, orphans and people living with disabilities through programmes that create opportunity and restore dignity.', 'light-of-future' ) . '</p><p>' . __( 'Our work includes education support, community empowerment, clean water access and youth development. By working directly with communities, we aim to create lasting and sustainable impact.', 'light-of-future' ) . '</p>',
 		'founder' => '<p>' . __( 'Francis Ouma Sikuku, from Inungo village, is a musician, plumber, choir teacher and counsellor with a deep passion for serving his community. From the age of 20 he engaged in charity work, visiting widows\' homes, helping with cleaning, fetching water and collecting firewood, which planted the seed for his lifelong commitment to helping others.', 'light-of-future' ) . '</p><p>' . __( 'In 2016 he began formal studies in Social Work and Community Development at Kisumu Institute of Management College. Financial challenges prevented him from completing his diploma, so he dedicated 20% of his earnings from music and plumbing to charitable work.', 'light-of-future' ) . '</p><p>' . __( 'In 2021 he began registering that work as a charitable society and, knowing he could not do it alone, brought together a team of 10 members. After four years of dedication and paperwork by the team, Light of Future Foundation was formally registered with the NGO Board on 23 May 2025.', 'light-of-future' ) . '</p>',
+		'founder_short' => '<p>' . __( 'Francis Ouma Sikuku, from Inungo village, began serving widows in his community at the age of 20, helping with cleaning, fetching water and collecting firewood. Later he gave 20% of his earnings from music and plumbing to charitable work.', 'light-of-future' ) . '</p><p>' . __( 'In 2021 he brought together a team of 10 to formalise that work, and Light of Future Foundation was registered with the NGO Board on 23 May 2025.', 'light-of-future' ) . '</p>',
 		'quote'   => __( 'Serving humanity is our passion and it brings us great joy. It has been a long journey, but with God\'s grace we are now able to make a long-lasting impact in different communities in Kenya.', 'light-of-future' ),
 	);
 	return isset( $copy[ $key ] ) ? $copy[ $key ] : '';
@@ -280,7 +281,7 @@ function lof_setup_page_defs() {
 						),
 					)
 				),
-				lof_el( 'lof-feature', array_merge( $founder, array( 'eyebrow' => __( 'Our story', 'light-of-future' ), 'title' => __( 'From a local calling to a growing movement of hope.', 'light-of-future' ), 'btn1_label' => __( 'Read our story', 'light-of-future' ), 'btn1_url' => lof_link( '/about-us/' ) ) ) ),
+				lof_el( 'lof-feature', array_merge( $founder, array( 'eyebrow' => __( 'Our story', 'light-of-future' ), 'title' => __( 'From a local calling to a growing movement of hope.', 'light-of-future' ), 'body' => lof_copy( 'founder_short' ), 'quote' => '', 'quote_by' => '', 'btn1_label' => __( 'Read our story', 'light-of-future' ), 'btn1_url' => lof_link( '/about-us/' ) ) ) ),
 				lof_el(
 					'lof-programmes',
 					array(

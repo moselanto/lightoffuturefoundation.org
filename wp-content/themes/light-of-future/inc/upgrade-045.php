@@ -55,3 +55,61 @@ function lof_upgrade_programme_photos() {
 	}
 }
 add_action( 'admin_init', 'lof_upgrade_programme_photos', 30 );
+
+/**
+ * 0.46.0: shorter founder story on the homepage and a tighter page flow
+ * (the second "Who we are" block repeats the About text, so it is removed).
+ * Backs up the layout first. Runs once in wp-admin.
+ */
+function lof_upgrade_home_flow() {
+	if ( (int) get_option( 'lof_home_flow_rev', 0 ) >= 1 || ! current_user_can( 'manage_options' ) || ! function_exists( 'lof_copy' ) ) {
+		return;
+	}
+	$page = get_page_by_path( 'home', OBJECT, 'page' );
+	if ( ! $page ) {
+		$front = (int) get_option( 'page_on_front' );
+		$page  = $front ? get_post( $front ) : null;
+	}
+	if ( ! $page ) {
+		return;
+	}
+	$raw  = get_post_meta( $page->ID, '_elementor_data', true );
+	$data = is_string( $raw ) ? json_decode( $raw, true ) : $raw;
+	if ( ! is_array( $data ) ) {
+		return;
+	}
+	$out     = array();
+	$changed = false;
+	foreach ( $data as $sec ) {
+		$w = isset( $sec['elements'][0]['elements'][0] ) ? $sec['elements'][0]['elements'][0] : null;
+		if ( $w && isset( $w['widgetType'] ) && 'lof-feature' === $w['widgetType'] ) {
+			$title = isset( $w['settings']['title'] ) ? (string) $w['settings']['title'] : '';
+			if ( 0 === strpos( $title, 'Every person deserves dignity' ) ) {
+				$changed = true;
+				continue;
+			}
+			if ( 0 === strpos( $title, 'From a local calling' ) ) {
+				$sec['elements'][0]['elements'][0]['settings']['body'] = lof_copy( 'founder_short' );
+				unset( $sec['elements'][0]['elements'][0]['settings']['quote'], $sec['elements'][0]['elements'][0]['settings']['quote_by'] );
+				$changed = true;
+			}
+		}
+		$out[] = $sec;
+	}
+	update_option( 'lof_home_flow_rev', 1, false );
+	if ( ! $changed ) {
+		return;
+	}
+	update_post_meta( $page->ID, '_lof_layout_backup', wp_slash( is_string( $raw ) ? $raw : wp_json_encode( $raw ) ) );
+	update_post_meta( $page->ID, '_lof_layout_backup_date', current_time( 'mysql' ) );
+	update_post_meta( $page->ID, '_elementor_data', wp_slash( wp_json_encode( $out ) ) );
+	delete_post_meta( $page->ID, '_elementor_css' );
+	delete_post_meta( $page->ID, '_elementor_element_cache' );
+	if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	if ( has_action( 'litespeed_purge_all' ) ) {
+		do_action( 'litespeed_purge_all' );
+	}
+}
+add_action( 'admin_init', 'lof_upgrade_home_flow', 31 );

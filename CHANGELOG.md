@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.46.0 - 2026-11-05
+- Homepage flow: founder story shortened to two paragraphs (facts unchanged, quote removed from the homepage block); the second "Who we are" block, which repeated the About text, removed. Runs once in wp-admin (option lof_home_flow_rev), layout backed up in _lof_layout_backup.
+- Focus-area cards use short display names (Decent Houses, GBV Awareness, Hygiene Kits for Girls); full titles stay on programme pages. Card titles reserve two lines on desktop.
+- Order form: style picker for the Leather Bag (Tan satchel, Red tooled flap bag, Red barrel bag) and the Sandals (5 styles).
+- Accessibility (axe-core, WCAG 2.1 AA): kicker, breadcrumb, eyebrow and price contrast fixed; Order buttons' accessible names now include their visible text; chat in an aside landmark with a name on phones; product tag links underlined; one skip link with a real main#content target on WooCommerce pages.
+
 ## 0.45.0 - 2026-11-05
 - Focus areas: 8 new photos from the November content intake (food packs, Ugenya borehole handwashing point, sanitary pads bought in bulk, Elijah's finished house, Margaret's solar light, goats, mentorship hall, awareness session), set once in wp-admin (option lof_prog_photos_rev). Prison Outreach still has no photo.
 - Section h2 headings and heads now run full width (no max-width).
