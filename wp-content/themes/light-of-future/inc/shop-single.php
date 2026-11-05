@@ -78,11 +78,12 @@ function lof_single_order_card() {
 			<div class="lof-pd__designs">
 				<p class="lof-pd__label"><?php echo esc_html( sprintf( /* translators: %d: number of designs. */ _n( '%d design available', '%d designs available', count( $designs ), 'light-of-future' ), count( $designs ) ) ); ?></p>
 				<ul class="lof-pd__chips">
-					<?php foreach ( $designs as $d ) : ?>
-						<li><?php echo esc_html( $d ); ?></li>
+					<?php $lof_map = in_array( (string) $product->get_sku(), array( 'LOF-BAG', 'LOF-SANDALS' ), true ); ?>
+					<?php foreach ( array_values( $designs ) as $i => $d ) : ?>
+						<li><button type="button" class="lof-pd__chip" aria-pressed="false" data-design="<?php echo esc_attr( $d ); ?>"<?php echo $lof_map ? ' data-index="' . (int) $i . '"' : ''; ?>><?php echo esc_html( $d ); ?></button></li>
 					<?php endforeach; ?>
 				</ul>
-				<p class="lof-pd__hint"><?php esc_html_e( 'You choose your design in the order form.', 'light-of-future' ); ?></p>
+				<p class="lof-pd__hint"><?php esc_html_e( 'Tap a design to select it. It is filled in for you in the order form.', 'light-of-future' ); ?></p>
 			</div>
 		<?php endif; ?>
 		<div class="lof-wa-order">

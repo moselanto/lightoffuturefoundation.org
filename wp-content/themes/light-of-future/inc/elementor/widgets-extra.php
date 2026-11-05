@@ -63,7 +63,7 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 			foreach ( array(
 				__( 'Registered with the NGO Board of Kenya, 23 May 2025', 'light-of-future' ),
 				__( 'You choose where your gift goes', 'light-of-future' ),
-				__( 'M-PESA and card through Paystack, coming soon', 'light-of-future' ),
+				( 'live' === lof_setting( 'payment_mode', 'off' ) ? __( 'Secure M-PESA and card payments through Paystack', 'light-of-future' ) : __( 'Our team guides you to complete your gift', 'light-of-future' ) ),
 			) as $t ) {
 				printf( '<li><span class="lof-give__tick">%1$s</span>%2$s</li>', $tick, esc_html( $t ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
 			}
@@ -110,7 +110,11 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 			printf( '<option value="%1$s">%2$s</option>', esc_attr( $key ), esc_html( $label ) );
 		}
 		echo '</select></fieldset>';
-		printf( '<button type="submit" class="lof-btn lof-btn--sun lof-givepanel__submit">%s</button>', esc_html__( 'Continue to give', 'light-of-future' ) );
+		$lof_live = 'live' === lof_setting( 'payment_mode', 'off' );
+		printf( '<button type="submit" class="lof-btn lof-btn--sun lof-givepanel__submit">%s</button>', $lof_live ? esc_html__( 'Continue to give', 'light-of-future' ) : esc_html__( 'Ask us how to give', 'light-of-future' ) );
+		if ( ! $lof_live ) {
+			printf( '<p class="lof-givepanel__how">%s</p>', esc_html__( 'Online payment is not open yet. Choose an amount and where it goes, then send us a short message. Our team replies with how to complete your gift.', 'light-of-future' ) );
+		}
 		echo '</form>';
 		if ( ! empty( $s['note'] ) ) {
 			printf( '<p class="lof-give__note">%s</p>', esc_html( $s['note'] ) );

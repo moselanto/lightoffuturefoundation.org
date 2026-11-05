@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.55.0 - 2026-11-05 (Core 0.44.0)
+- Donate: while online payment is not live, the button reads "Ask us how to give" with a one-line explanation; the trust line no longer says "coming soon".
+- Get Involved: enquiry form adds "Fundraising for the foundation" (Core plugin 0.44.0).
+- About Us and Leadership: sticky "On this page" jump links; leader bios show four lines with Read more.
+- Phones: shorter page heroes (intro clamped to three lines) and tighter section spacing on every page.
+- Programmes: focus-area index is one compact scrolling row; cards without a photo no longer say "Photo coming soon".
+- Stories: stories come before the figures strip. Story and focus-area pages get an early Home / All stories (All programmes) link; stories show an "Updated" date.
+- Impact: one source note under the figures instead of the same sentence on every card.
+- Contact: Call / WhatsApp / Email choices right under the hero.
+- Gallery: added to the main menu under Impact (once, option lof_menu_gallery_rev); sticky scrolling section links; Gallery and Shop added to the phone preview.
+- Shop: "handmade products" wording; delivery card says cost and timing are confirmed before payment. Product pages: design chips are buttons (select the design, show its photo for bags and sandals, pre-fill the order form); Delivery, Care and Handmade notes.
+- Admin: WordPress admin email and the administrator login email become info@lightoffuturefoundation.org, with a test email and a Dashboard notice (option lof_admin_email_rev).
+- Speed: uploaded photos over 160 KB resized to 1600 px and re-saved at quality 74 in batches (originals kept as .orig, option lof_shrink_rev); theme photos over 110 KB recompressed (168 KB saved).
+
 ## 0.54.0 - 2026-11-05
 - Email: the foundation's address becomes info@lightoffuturefoundation.org (header, footer, contact details, enquiry form notifications, shop emails sender and order recipients), applied once on the first wp-admin load (option lof_email_rev). Core plugin default updated too.
 - Security: X-Powered-By and X-Pingback headers removed; HSTS (1 year) on HTTPS; pingbacks/trackbacks off; theme and plugin file editors disabled in wp-admin; one generic login error; login lock for 15 minutes after 5 failed attempts from one IP; reviews/comments get a hidden honeypot, a signed time stamp (min 4 s) and a 2-link limit.

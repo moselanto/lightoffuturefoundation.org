@@ -58,7 +58,7 @@ class LOF_Widget_Programmes extends LOF_Widget_Base {
 			if ( has_post_thumbnail( $p ) ) {
 				echo get_the_post_thumbnail( $p, 'lof-card', array( 'loading' => 'lazy' ) );
 			} else {
-				printf( '<span class="lof-placeholder lof-placeholder--prog"><span class="lof-placeholder__ico">%1$s</span><span class="lof-placeholder__tag">%2$s</span><span class="lof-card__index">%3$02d</span></span>', lof_programme_icon( $p->post_name ), esc_html__( 'Photo coming soon', 'light-of-future' ), (int) $i + 1 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
+				printf( '<span class="lof-placeholder lof-placeholder--prog"><span class="lof-placeholder__ico">%1$s</span><span class="screen-reader-text">%2$s</span><span class="lof-card__index">%3$02d</span></span>', lof_programme_icon( $p->post_name ), esc_html( get_the_title( $p ) ), (int) $i + 1 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
 			}
 			if ( has_post_thumbnail( $p ) ) {
 				printf( '<span class="lof-card__index" aria-hidden="true">%02d</span>', (int) $i + 1 );
@@ -115,18 +115,27 @@ class LOF_Widget_Impact extends LOF_Widget_Base {
 		}
 		$this->open_section( $s, 'lof-impact' . ( isset( $s['strip'] ) && 'yes' === $s['strip'] ? ' lof-impact--strip' : '' ) );
 		$this->render_heading( $s, __( 'Our impact in numbers', 'light-of-future' ) );
+		$lof_srcs = array();
+		foreach ( $metrics as $m ) {
+			$lof_srcs[] = trim( $m['period'] . ' ' . $m['source'] );
+		}
+		$lof_srcs = array_values( array_unique( array_filter( $lof_srcs ) ) );
+		$lof_one  = 1 === count( $lof_srcs );
 		echo '<dl class="lof-impact__grid">';
 		foreach ( $metrics as $m ) {
 			echo '<div class="lof-impact__item lof-reveal">';
 			printf( '<dt class="lof-impact__label">%s</dt>', esc_html( $m['label'] ) );
 			$num = preg_match( '/^\d+$/', $m['value'] ) && (int) $m['value'] < 1900 ? (int) $m['value'] : 0;
 			printf( '<dd class="lof-impact__value"><span class="lof-count"%1$s>%2$s</span><span>%3$s</span></dd>', $num ? ' data-count="' . esc_attr( $num ) . '"' : '', esc_html( $m['value'] ), esc_html( $m['suffix'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			if ( isset( $s['show_source'] ) && 'yes' === $s['show_source'] && ( $m['source'] || $m['period'] ) ) {
+			if ( ! $lof_one && isset( $s['show_source'] ) && 'yes' === $s['show_source'] && ( $m['source'] || $m['period'] ) ) {
 				printf( '<dd class="lof-impact__source">%s</dd>', esc_html( trim( $m['period'] . ' ' . $m['source'] ) ) );
 			}
 			echo '</div>';
 		}
 		echo '</dl>';
+		if ( $lof_one && isset( $s['show_source'] ) && 'yes' === $s['show_source'] ) {
+			printf( '<p class="lof-impact__note">%s</p>', esc_html( $lof_srcs[0] ) );
+		}
 		$this->close_section();
 	}
 }

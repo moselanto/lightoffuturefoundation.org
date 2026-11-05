@@ -100,6 +100,8 @@
 				dRow.hidden = false;
 			} else { dRow.hidden = true; }
 			qty.value = 1;
+			var pre = btn.getAttribute('data-design');
+			if (pre) { for (var k = 0; k < dSel.options.length; k++) { if (dSel.options[k].value === pre) { dSel.selectedIndex = k; } } }
 			if (btn.getAttribute('data-single')) {
 				var f = document.querySelector('form.cart');
 				if (f) {
@@ -200,4 +202,66 @@
 	if (document.readyState === 'complete') { level(); } else { window.addEventListener('load', level); }
 	window.addEventListener('resize', run);
 	if (document.fonts && document.fonts.ready) { document.fonts.ready.then(level); }
+}());
+
+/* 0.55.0: design chips, page jump links, leader bios */
+(function () {
+	'use strict';
+	var ready = function (fn) { if (document.readyState !== 'loading') { fn(); } else { document.addEventListener('DOMContentLoaded', fn); } };
+	ready(function () {
+		/* Product design chips: select design, show its photo, pre-fill the order form. */
+		var chips = document.querySelectorAll('.lof-pd__chip');
+		Array.prototype.forEach.call(chips, function (chip) {
+			chip.addEventListener('click', function () {
+				Array.prototype.forEach.call(chips, function (c) { c.setAttribute('aria-pressed', 'false'); });
+				chip.setAttribute('aria-pressed', 'true');
+				var btn = document.querySelector('.lof-pd__order .lof-btn-order');
+				if (btn) { btn.setAttribute('data-design', chip.getAttribute('data-design')); }
+				var idx = chip.getAttribute('data-index');
+				if (idx !== null) {
+					var th = document.querySelectorAll('.woocommerce-product-gallery .flex-control-thumbs img');
+					var n = parseInt(idx, 10);
+					if (th[n]) { th[n].click(); } else if (window.jQuery) { var $g = window.jQuery('.woocommerce-product-gallery'); if ($g.data('flexslider')) { $g.flexslider(n); } }
+				}
+			});
+		});
+		/* Jump links on long pages (About Us, Leadership). */
+		var b = document.body;
+		if (b.classList.contains('lof-page-about-us') || b.classList.contains('lof-page-leadership')) {
+			var heads = document.querySelectorAll('main .lof-section .lof-section__title');
+			var list = [];
+			Array.prototype.forEach.call(heads, function (h, i) {
+				var sec = h.closest('.lof-section');
+				if (!sec || sec.classList.contains('lof-cta') || sec.classList.contains('lof-impact')) { return; }
+				if (!sec.id) { sec.id = 'lof-s' + (i + 1); }
+				var t = (h.textContent || '').replace(/[.\s]+$/, '').trim();
+				if (t) { list.push([sec.id, t]); }
+			});
+			var hero = document.querySelector('main .lof-hero');
+			if (list.length >= 3 && hero) {
+				var nav = document.createElement('nav');
+				nav.className = 'lof-jump'; nav.setAttribute('aria-label', 'On this page');
+				var ul = document.createElement('ul');
+				list.forEach(function (it) { var li = document.createElement('li'); var a = document.createElement('a'); a.href = '#' + it[0]; a.textContent = it[1]; li.appendChild(a); ul.appendChild(li); });
+				nav.appendChild(ul);
+				var host = hero.closest('.elementor-top-section') || hero;
+				host.parentNode.insertBefore(nav, host.nextSibling);
+			}
+		}
+		/* Leader bios: show four lines with Read more. */
+		Array.prototype.forEach.call(document.querySelectorAll('.lof-person__bio'), function (bio, i) {
+			if (bio.scrollHeight <= 130) { return; }
+			bio.classList.add('is-clamped');
+			if (!bio.id) { bio.id = 'lof-bio-' + i; }
+			var more = document.createElement('button');
+			more.type = 'button'; more.className = 'lof-person__more'; more.textContent = 'Read more';
+			more.setAttribute('aria-expanded', 'false'); more.setAttribute('aria-controls', bio.id);
+			more.addEventListener('click', function () {
+				var open = bio.classList.toggle('is-clamped') === false;
+				more.textContent = open ? 'Show less' : 'Read more';
+				more.setAttribute('aria-expanded', open ? 'true' : 'false');
+			});
+			bio.parentNode.insertBefore(more, bio.nextSibling);
+		});
+	});
 }());

@@ -93,7 +93,7 @@ function lof_mobile_preview() {
 	}
 	$mode  = 'dark' === sanitize_key( wp_unslash( $_GET['lof_mobile_preview'] ) ) ? 'dark' : 'light'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$only  = isset( $_GET['page'] ) ? sanitize_title( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	$pages = array( '' => 'Home', 'about-us' => 'About', 'programmes' => 'Programmes', 'impact' => 'Impact', 'stories' => 'Stories', 'donate' => 'Donate', 'get-involved' => 'Get Involved', 'contact' => 'Contact', 'leadership' => 'Leadership' );
+	$pages = array( '' => 'Home', 'about-us' => 'About', 'programmes' => 'Programmes', 'impact' => 'Impact', 'stories' => 'Stories', 'donate' => 'Donate', 'get-involved' => 'Get Involved', 'contact' => 'Contact', 'leadership' => 'Leadership', 'gallery' => 'Gallery', 'shop' => 'Shop' );
 	header( 'X-Robots-Tag: noindex, nofollow' );
 	nocache_headers();
 	echo '<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Phone preview (' . esc_html( $mode ) . ')</title>';

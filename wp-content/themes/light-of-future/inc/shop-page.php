@@ -68,7 +68,7 @@ function lof_shop_hero() {
 			</div>
 			<ul class="lof-shophero__facts">
 				<?php if ( $count ) : ?>
-					<li><strong><?php echo esc_html( number_format_i18n( $count ) ); ?></strong><span><?php esc_html_e( 'handmade collections', 'light-of-future' ); ?></span></li>
+					<li><strong><?php echo esc_html( number_format_i18n( $count ) ); ?></strong><span><?php esc_html_e( 'handmade products', 'light-of-future' ); ?></span></li>
 				<?php endif; ?>
 				<li><strong><?php esc_html_e( '100%', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'made by hand', 'light-of-future' ); ?></span></li>
 				<li><strong><?php esc_html_e( 'KSh', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'prices in Kenyan shillings', 'light-of-future' ); ?></span></li>
@@ -84,7 +84,7 @@ function lof_shop_hero() {
 		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.4 5 5.6.8-4 3.9.9 5.5L12 14.6 7.1 17.2 8 11.7 4 7.8l5.6-.8z"/></svg></span><strong><?php esc_html_e( 'Handmade quality', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Beadwork and leather finished by hand. No two pieces are exactly alike.', 'light-of-future' ); ?></span></li>
 		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.4 1.1 4.4 2.5C12 6.1 13.4 5 15.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/></svg></span><strong><?php esc_html_e( 'Shopping that gives back', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Your order supports community makers and our programmes.', 'light-of-future' ); ?></span></li>
 		<li><span class="lof-shoptrust__ico" aria-hidden="true"><?php echo lof_wa_icon( 22 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><strong><?php esc_html_e( 'Easy WhatsApp ordering', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Pick a design, send a short form and our team confirms with you.', 'light-of-future' ); ?></span></li>
-		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 6h11v9H3zm11 3h4l3 3v3h-7zM6.5 19a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm11 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg></span><strong><?php esc_html_e( 'Delivery arranged with you', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'In Nairobi, across Kenya and abroad, agreed when you order.', 'light-of-future' ); ?></span></li>
+		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 6h11v9H3zm11 3h4l3 3v3h-7zM6.5 19a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm11 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg></span><strong><?php esc_html_e( 'Delivery arranged with you', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'In Nairobi, across Kenya and abroad. We confirm the cost and timing before you pay.', 'light-of-future' ); ?></span></li>
 	</ul>
 	<?php
 }

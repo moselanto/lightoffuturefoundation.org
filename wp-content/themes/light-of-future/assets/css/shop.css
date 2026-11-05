@@ -527,3 +527,72 @@ html[data-theme="dark"] .single-product .woocommerce-tabs ul.tabs li.active a{co
 .single-product .lof-shop-main{padding-top:14px}
 .single-product .lof-shop-main .woocommerce-breadcrumb{margin:0 0 14px!important}
 }
+
+/* ---------- 0.55.0 UX pass ---------- */
+/* Donate: honest next step while online giving is not live */
+.lof-givepanel__how{margin:.75rem 0 0;font-size:.88rem;line-height:1.5;opacity:.9}
+/* Impact: one source note */
+.lof-impact__note{margin:1.25rem auto 0;max-width:760px;text-align:center;font-size:.8rem;opacity:.75}
+/* Contact: quick choices under the hero */
+.lof-quick{padding:clamp(18px,3vw,28px) 0;background:var(--lof-surface,#fff);border-bottom:1px solid var(--lof-line,rgba(92,61,30,.12))}
+.lof-quick__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.lof-quick__item{display:flex;flex-direction:column;gap:2px;padding:16px 18px;border-radius:16px;border:1.5px solid var(--lof-line-strong,rgba(92,61,30,.28));text-decoration:none!important;color:var(--lof-heading,#5C3D1E);background:var(--lof-bg,#FCF6E1);transition:border-color .2s,transform .2s;min-height:64px}
+.lof-quick__item:hover,.lof-quick__item:focus-visible{border-color:#F4AF16;transform:translateY(-2px)}
+.lof-quick__k{font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8A5208}
+.lof-quick__v{font-weight:700;word-break:break-word}
+.lof-quick__item--wa{background:#075E54;border-color:#075E54;color:#fff!important}
+.lof-quick__item--wa .lof-quick__k{color:#d9fdd3}
+html[data-theme="dark"] .lof-quick__k{color:#F4AF16}
+@media (max-width:640px){.lof-quick__list{grid-template-columns:1fr}}
+/* Jump links on About Us and Leadership */
+.lof-jump{position:sticky;top:var(--lof-head-h,72px);z-index:20;background:var(--lof-header-bg,rgba(252,246,225,.94));backdrop-filter:blur(8px);border-bottom:1px solid var(--lof-line,rgba(92,61,30,.12))}
+.lof-jump ul{list-style:none;margin:0 auto;padding:10px 16px;max-width:1200px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.lof-jump ul::-webkit-scrollbar{display:none}
+.lof-jump a{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border-radius:999px;border:1.5px solid var(--lof-line-strong,rgba(92,61,30,.28));color:var(--lof-heading,#5C3D1E);font-weight:700;font-size:.86rem;white-space:nowrap;text-decoration:none}
+.lof-jump a:hover,.lof-jump a:focus-visible{border-color:#F4AF16;background:rgba(244,175,22,.14)}
+@media (max-width:991px){.lof-jump{top:0}}
+.lof-section[id]{scroll-margin-top:calc(var(--lof-head-h,72px) + 64px)}
+/* Leadership bios: four lines + Read more */
+.lof-person__bio.is-clamped{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.lof-person__more{margin:6px 0 0;padding:0;border:0!important;background:none!important;color:#8A5208!important;font-weight:800;font-size:.88rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;box-shadow:none!important}
+html[data-theme="dark"] .lof-person__more{color:#F4AF16!important}
+/* Programmes: focus-area index as one compact scrolling row */
+.lof-progjump ul{flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto;padding-bottom:.4rem;scrollbar-width:thin}
+.lof-progjump a{white-space:nowrap}
+/* Stories: the stories come first, figures after them */
+.lof-page-stories [data-elementor-type]{display:flex;flex-direction:column}
+.lof-page-stories [data-elementor-type]>*{order:1}
+.lof-page-stories [data-elementor-type]>:first-child{order:0}
+.lof-page-stories [data-elementor-type]>:has(.lof-impact){order:2}
+.lof-page-stories [data-elementor-type]>:has(.lof-cta){order:3}
+/* Story and focus-area pages: early way back + date */
+.lof-crumbs--single{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px;font-size:.86rem;font-weight:700}
+.lof-crumbs--single a{color:inherit;opacity:.9;text-decoration:underline;text-underline-offset:3px}
+.lof-hero__meta{margin:.25rem 0 .5rem;font-size:.86rem;opacity:.85}
+/* Gallery: section links stay in reach */
+.lofm-nav{position:sticky;top:var(--lof-head-h,72px);z-index:20;background:var(--lof-header-bg,rgba(252,246,225,.94));backdrop-filter:blur(8px);padding:10px 0;margin-bottom:18px}
+.lofm-nav ul{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;gap:8px;scrollbar-width:none}
+.lofm-nav a{white-space:nowrap}
+@media (max-width:991px){.lofm-nav{top:0}}
+/* Phones: shorter page heroes and tighter section rhythm so content comes sooner */
+@media (max-width:640px){
+.lof-hero--page{min-height:0!important}
+.lof-hero--page .lof-hero__inner{padding-top:1.5rem!important;padding-bottom:1.75rem!important}
+.lof-hero--page .lof-hero__text{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.lof-section{padding-top:2.75rem!important;padding-bottom:2.75rem!important}
+.lof-section__intro{font-size:.98rem}
+}
+/* Product: design chips are buttons */
+.lof-pd__chips .lof-pd__chip{padding:8px 14px;border-radius:999px;border:1.5px solid var(--lof-line-strong,rgba(92,61,30,.28))!important;background:var(--lof-bg,#FCF6E1)!important;color:var(--lof-heading,#5C3D1E)!important;font-weight:600;font-size:.88rem;cursor:pointer;box-shadow:none!important;min-height:40px}
+.lof-pd__chips li{padding:0!important;border:0!important;background:none!important}
+.lof-pd__chips .lof-pd__chip:hover{border-color:#F4AF16!important}
+.lof-pd__chips .lof-pd__chip[aria-pressed="true"]{background:#5C3D1E!important;border-color:#5C3D1E!important;color:#FCF6E1!important}
+html[data-theme="dark"] .lof-pd__chips .lof-pd__chip[aria-pressed="true"]{background:#F4AF16!important;border-color:#F4AF16!important;color:#2B1D0E!important}
+/* Product: delivery, care and handmade notes */
+.lof-pdinfo{margin:20px 0 0;border-top:1px solid var(--lof-line,rgba(92,61,30,.12))}
+.lof-pdinfo details{border-bottom:1px solid var(--lof-line,rgba(92,61,30,.12))}
+.lof-pdinfo summary{cursor:pointer;list-style:none;padding:14px 28px 14px 0;font-weight:800;color:var(--lof-heading,#5C3D1E);position:relative}
+.lof-pdinfo summary::-webkit-details-marker{display:none}
+.lof-pdinfo summary::after{content:"+";position:absolute;right:4px;top:10px;font-size:1.3rem;color:#8A5208}
+.lof-pdinfo details[open] summary::after{content:"\2212"}
+.lof-pdinfo p{margin:0 0 14px;color:var(--lof-muted,#5b4a3a);font-size:.92rem;line-height:1.6}

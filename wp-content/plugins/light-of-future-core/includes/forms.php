@@ -24,6 +24,7 @@ function lof_core_enquiry_types() {
 		'volunteer' => __( 'Volunteering', 'light-of-future-core' ),
 		'partner'   => __( 'Partnership', 'light-of-future-core' ),
 		'sponsor'   => __( 'Sponsorship', 'light-of-future-core' ),
+		'fundraise' => __( 'Fundraising for the foundation', 'light-of-future-core' ),
 		'donate'    => __( 'Giving / donations', 'light-of-future-core' ),
 		'shop'      => __( 'Shop / crafts', 'light-of-future-core' ),
 	);

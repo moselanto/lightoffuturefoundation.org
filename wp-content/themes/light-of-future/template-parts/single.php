@@ -31,8 +31,14 @@ while ( have_posts() ) :
 			<?php endif; ?>
 			<div class="lof-hero__art" aria-hidden="true"><span class="lof-hero__sun"></span><span class="lof-hero__rays"></span><span class="lof-hero__band lof-hero__band--1"></span><span class="lof-hero__band lof-hero__band--2"></span><span class="lof-hero__band lof-hero__band--3"></span></div>
 			<div class="lof-container lof-hero__inner"><div class="lof-hero__content">
+				<?php if ( isset( $lof_back[ $lof_type ] ) ) : ?>
+					<nav class="lof-crumbs lof-crumbs--single" aria-label="<?php esc_attr_e( 'Breadcrumb', 'light-of-future' ); ?>"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'light-of-future' ); ?></a><span aria-hidden="true">/</span><a href="<?php echo esc_url( home_url( $lof_back[ $lof_type ][0] ) ); ?>"><?php echo esc_html( $lof_back[ $lof_type ][1] ); ?></a></nav>
+				<?php endif; ?>
 				<p class="lof-eyebrow lof-hero__eyebrow"><?php echo esc_html( isset( $lof_labels[ $lof_type ] ) ? $lof_labels[ $lof_type ] : get_the_date() ); ?><?php echo $lof_location ? ' &middot; ' . esc_html( $lof_location ) : ''; ?></p>
 				<h1 class="lof-hero__title"><?php the_title(); ?></h1>
+				<?php if ( 'lof_story' === $lof_type ) : ?>
+					<p class="lof-hero__meta"><?php /* translators: %s: date. */ printf( esc_html__( 'Updated %s', 'light-of-future' ), esc_html( get_the_modified_date() ) ); ?></p>
+				<?php endif; ?>
 				<?php if ( has_excerpt() ) : ?>
 					<p class="lof-hero__text"><?php echo esc_html( get_the_excerpt() ); ?></p>
 				<?php endif; ?>
