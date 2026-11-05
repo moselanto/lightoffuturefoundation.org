@@ -826,3 +826,21 @@ body:not(.lof-page-gallery) .lofm:last-child{padding-bottom:clamp(44px,6vw,80px)
 .lof-page-gallery .lofm{padding-top:clamp(48px,6vw,80px)}
 .lof-page-gallery .lofm + .lofm{border-top:1px solid rgba(92,61,30,.12)!important}
 .lof-page-gallery .lofm__more,.lof-page-gallery [data-lof-more]{display:flex;margin:18px auto 0!important}
+
+/* ---------- 0.60.1 ---------- */
+/* Equal tile bottoms in every video row. */
+.lofm__videos{align-items:stretch!important}
+.lofm__video{display:flex;flex-direction:column}
+.lofm__video figcaption{flex:1 1 auto;height:auto!important;min-height:3.2em}
+/* Story pages, desktop: photos and videos use the full page width below the article, not just the left column. */
+@media (min-width:992px){
+ .lof-single .lof-single__aside{position:static!important}
+ .lof-single .lof-single__body .lofm{width:calc(100% + 320px + clamp(2rem,4vw,3.5rem));max-width:none}
+ .lof-single .lofm__video{flex-basis:calc((100% - 40px)/3);max-width:380px}
+ .lof-single .lofm__video.is-portrait{flex-basis:calc((100% - 60px)/4);max-width:270px}
+}
+/* Story pages, phone: one video per row at a comfortable width. */
+@media (max-width:600px){
+ .lof-single .lofm__video,.lof-single .lofm__video.is-portrait{flex:0 1 100%!important;max-width:340px!important}
+ .lof-page-gallery .lofm__video figcaption{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;-webkit-line-clamp:unset!important;display:block}
+}

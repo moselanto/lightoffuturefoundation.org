@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.60.1 - 2026-11-06
+- Video rows end level (captions share the row height).
+- Story pages: photos and videos span the full page width on desktop; one video per row on phones.
+- Gallery on phones: video captions show in full.
+
 ## 0.60.0 - 2026-11-05
 - Inner pages balanced: media blocks (Gallery, Talent and other programme pages, stories) have centred headings and centred rows of equal video and photo tiles; story pages use one centred reading layout with the side card alongside; section headings and card rows share the same centred width.
 
