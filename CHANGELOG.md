@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.60.3 - 2026-11-06
+- Home "Who we are" on phones: square crop centred on Francis.
+- Programmes on phones: long focus-area names wrap inside their pill.
+- Gallery: small photo groups use the same tile size, centred.
+
 ## 0.60.2 - 2026-11-06
 - Contact (desktop): heading column centred beside the form.
 - Programmes: note under the giving form aligned with the form; focus-area links wrap on phones.

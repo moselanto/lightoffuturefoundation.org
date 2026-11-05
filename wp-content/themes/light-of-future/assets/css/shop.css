@@ -866,3 +866,13 @@ body:not(.lof-page-gallery) .lofm:last-child{padding-bottom:clamp(44px,6vw,80px)
 /* Talent Development: tighter gap above the yellow banner. */
 .lof-page-talent-development .lofm:last-child{padding-bottom:clamp(12px,2vw,24px)!important}
 .lof-page-talent-development .lof-cta.lof-tone-sun{padding-top:clamp(1rem,2.5vw,2rem)!important}
+
+/* ---------- 0.60.3 ---------- */
+/* Home "Who we are" (phone): show Francis, not the studio screen behind him. */
+@media (max-width:991px){.lof-who__photo{aspect-ratio:1/1!important;max-width:460px!important;width:100%;justify-self:center!important;margin-inline:auto!important}.lof-who__photo img{object-position:50% 56%!important}}
+/* Programmes (phone): long focus-area names wrap inside their pill. */
+@media (max-width:760px){.lof-progjump li{max-width:100%}.lof-progjump a{white-space:normal!important;max-width:100%;text-align:left;line-height:1.25;height:auto;min-height:40px}}
+/* Gallery: groups with only a few photos use the same tile size, centred. */
+.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){grid-template-columns:repeat(auto-fit,calc((100% - 42px)/4))!important;justify-content:center!important}
+@media (max-width:900px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){grid-template-columns:repeat(auto-fit,calc((100% - 28px)/3))!important}}
+@media (max-width:600px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){grid-template-columns:repeat(auto-fit,calc((100% - 8px)/2))!important}}
