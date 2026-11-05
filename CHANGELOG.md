@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.60.0 - 2026-11-05
+- Inner pages balanced: media blocks (Gallery, Talent and other programme pages, stories) have centred headings and centred rows of equal video and photo tiles; story pages use one centred reading layout with the side card alongside; section headings and card rows share the same centred width.
+
 ## 0.59.0 - 2026-11-05
 - Search engines: the live site can no longer be hidden by the "Discourage search engines" setting (filter `lof_force_indexable`).
 - Leadership: the top photo is the sanitary pads group photo.
