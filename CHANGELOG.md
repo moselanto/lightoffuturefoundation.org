@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.46.4 - 2026-11-05
+- Contrast: Stories spotlight eyebrow on gold now dark brown (the light-mode eyebrow rule had higher specificity than the 0.46.3 fix).
+
 ## 0.46.3 - 2026-11-05
 - Contrast: leadership role labels, the Programmes give-section eyebrow (on dark brown) and the Stories spotlight eyebrow (on gold) now meet WCAG AA. Site-wide axe audit (33 pages, desktop and phone) otherwise clean once fade-in animations finish.
 

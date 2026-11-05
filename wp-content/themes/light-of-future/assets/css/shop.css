@@ -233,3 +233,6 @@ body.lof-order-open{overflow:hidden}
 .lof-person__role{color:#7a4a0a!important}
 .lof-give__body .lof-section__head .lof-eyebrow{color:#F4AF16!important}
 .lof-spot__body .lof-eyebrow{color:#3b2410!important}
+
+/* 0.46.4: beat the light-mode eyebrow rule (html:not([data-theme=dark]) .lof-eyebrow). */
+html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body .lof-eyebrow{color:#2E1E0E!important}

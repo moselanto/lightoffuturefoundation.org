@@ -180,3 +180,4 @@
 - 2026-11-05: 0.46.1 phone accessible names for Order buttons.
 - 2026-11-05: 0.46.2 remaining axe contrast fixes.
 - 2026-11-05: 0.46.3 site-wide contrast fixes from the full-site axe audit.
+- 2026-11-05: 0.46.4 Stories spotlight eyebrow contrast.
