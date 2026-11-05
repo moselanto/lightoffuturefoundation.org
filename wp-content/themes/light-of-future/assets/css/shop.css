@@ -91,3 +91,32 @@ body.lof-wa-orders .single_add_to_cart_button,body.lof-wa-orders .woocommerce-va
 .lof-chat__send{background:var(--lof-wa)!important;color:#fff!important;border:0;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;flex:none}
 .lof-chat__note{margin:0;padding:0 14px 12px;font-size:.72rem;color:#8a7a68;background:#fff}
 .lof-chat [hidden]{display:none!important}
+
+/* ---------- 0.44.1 phone fixes ---------- */
+.lof-wa-short{display:none}
+.lof-market__wa,.lof-wa-order__mini,.lof-market__view{white-space:nowrap;min-height:44px}
+.lof-market__name{min-height:2.6em}
+.lof-market__price{min-height:2.6em}
+/* Equal-height shop cards, actions pinned to the bottom. */
+.woocommerce ul.products li.product{display:flex!important;flex-direction:column}
+.woocommerce ul.products li.product .woocommerce-LoopProduct-link{flex:1 0 auto;display:flex;flex-direction:column}
+.woocommerce ul.products li.product .woocommerce-loop-product__title{min-height:2.6em}
+.woocommerce ul.products li.product .price{margin-top:auto!important}
+.woocommerce ul.products li.product .button.lof-shop-view,.woocommerce ul.products li.product .lof-wa-order__mini{text-align:center;justify-content:center;white-space:nowrap}
+.woocommerce ul.products li.product .lof-wa-order__mini{min-height:44px}
+@media (max-width:640px){
+ .lof-wa-long{display:none}.lof-wa-short{display:inline}
+ .lof-market__actions{flex-direction:row}
+ .lof-market__wa,.lof-wa-order__mini{padding:9px 10px;font-size:.84rem}
+ .lof-market__view{padding:9px 10px;font-size:.82rem}
+ .woocommerce ul.products li.product .woocommerce-loop-product__title{font-size:.92rem!important;padding:0 12px!important}
+ .woocommerce ul.products li.product .price{padding:0 12px;font-size:.88rem}
+ .woocommerce ul.products li.product .button.lof-shop-view{margin:10px 12px 0!important;padding:9px 10px!important;font-size:.82rem}
+ .woocommerce ul.products li.product .lof-wa-order__mini{margin:8px 12px 0}
+ .lof-wa-order__btn{display:flex;justify-content:center;width:100%;box-sizing:border-box}
+ .lof-chat__teaser{width:min(240px,calc(100vw - 90px));bottom:62px;padding:12px 10px}
+ .lof-chat__teaser-open{font-size:.84rem}
+ .lof-chat__fab{box-shadow:0 8px 18px -8px rgba(0,0,0,.4)}
+}
+/* Keep headings and the order button clear of the sticky header. */
+.single-product .product_title,.single-product form.cart,.lof-wa-order{scroll-margin-top:110px}

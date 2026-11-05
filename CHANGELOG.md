@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.44.1 - 2026-11-05
+- Phone fixes for the crafts shop: shop and homepage product cards are equal height with buttons pinned to the bottom; WhatsApp buttons no longer wrap (short "Order" label on phones, full label for screen readers); product-page Order on WhatsApp button is full width on phones.
+- WhatsApp chat: smaller teaser on phones and no automatic "Hello there" pop-up on phones (red dot only on larger screens); button still sits above the bottom tab bar.
+- Product title and order button keep clear of the sticky header (scroll-margin).
+- WooCommerce "Coming soon" switched off in wp-admin (Settings > Site visibility > Live); shop is public.
+
 ## 0.44.0 - 5 Nov 2026
 
 Crafts shop, modelled on the Cistern of Hope Hope Market.

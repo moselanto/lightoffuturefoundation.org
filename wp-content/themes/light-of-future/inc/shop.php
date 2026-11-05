@@ -262,12 +262,13 @@ function lof_shop_loop_wa_button() {
 		return;
 	}
 	printf(
-		'<a class="lof-wa-order__mini" href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s">%3$s<span>%4$s</span></a>',
+		'<a class="lof-wa-order__mini" href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s">%3$s<span class="lof-wa-long">%4$s</span><span class="lof-wa-short" aria-hidden="true">%5$s</span></a>',
 		esc_url( lof_wa_link( lof_shop_order_message( $product ) ) ),
 		/* translators: %s: product name. */
 		esc_attr( sprintf( __( 'Order %s on WhatsApp', 'light-of-future' ), wp_strip_all_tags( $product->get_name() ) ) ),
 		lof_wa_icon( 18 ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
-		esc_html__( 'Order on WhatsApp', 'light-of-future' )
+		esc_html__( 'Order on WhatsApp', 'light-of-future' ),
+		esc_html__( 'Order', 'light-of-future' )
 	);
 }
 add_action( 'woocommerce_after_shop_loop_item', 'lof_shop_loop_wa_button', 15 );
@@ -374,7 +375,7 @@ function lof_home_market( $atts = array() ) {
 							<h3 class="lof-market__name"><a href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php echo esc_html( $p->get_name() ); ?></a></h3>
 							<p class="lof-market__price"><?php echo esc_html( lof_shop_price_text( $p ) ); ?></p>
 							<div class="lof-market__actions">
-								<a class="lof-market__wa" href="<?php echo esc_url( lof_wa_link( lof_shop_order_message( $p ) ) ); ?>" target="_blank" rel="noopener noreferrer"><?php echo lof_wa_icon( 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><?php esc_html_e( 'Order on WhatsApp', 'light-of-future' ); ?></span></a>
+								<a class="lof-market__wa" href="<?php echo esc_url( lof_wa_link( lof_shop_order_message( $p ) ) ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: product name. */ __( 'Order %s on WhatsApp', 'light-of-future' ), wp_strip_all_tags( $p->get_name() ) ) ); ?>"><?php echo lof_wa_icon( 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span class="lof-wa-long"><?php esc_html_e( 'Order on WhatsApp', 'light-of-future' ); ?></span><span class="lof-wa-short" aria-hidden="true"><?php esc_html_e( 'Order', 'light-of-future' ); ?></span></a>
 								<a class="lof-market__view" href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php esc_html_e( 'Details', 'light-of-future' ); ?></a>
 							</div>
 						</div>
