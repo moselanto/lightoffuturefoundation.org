@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Light of Future Media
  * Description: Stories, photo galleries, video clips and impact figures from the November 2026 content intake. Adds [lof_media group="..."] and [lof_media_all], updates stories and focus areas once in wp-admin.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Light of Future Foundation
  * Text Domain: light-of-future
  *
@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOFM_VERSION', '1.0.1' );
+define( 'LOFM_VERSION', '1.0.2' );
 
 /**
  * Media groups: title, photos (slug => caption; prefix "!" marks a sensitive image), videos (slug => caption).
@@ -212,6 +212,25 @@ function lofm_url( $path ) {
 }
 
 /**
+ * Poster image size (width, height) for a video, from the installed video plugins.
+ *
+ * @param string $slug Video slug.
+ * @return int[]
+ */
+function lofm_poster_size( $slug ) {
+	for ( $i = 1; $i <= 12; $i++ ) {
+		$file = WP_PLUGIN_DIR . '/light-of-future-video-' . $i . '/video/' . $slug . '.jpg';
+		if ( file_exists( $file ) ) {
+			$s = @getimagesize( $file ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+			if ( $s && $s[0] && $s[1] ) {
+				return array( (int) $s[0], (int) $s[1] );
+			}
+		}
+	}
+	return array( 16, 9 );
+}
+
+/**
  * Render a group.
  *
  * @param string $key   Group key.
@@ -231,11 +250,15 @@ function lofm_render_group( $key, $title = false ) {
 	if ( ! empty( $g['videos'] ) ) {
 		$out .= '<div class="lofm__videos">';
 		foreach ( $g['videos'] as $slug => $cap ) {
+			$dims = lofm_poster_size( $slug );
 			$out .= sprintf(
-				'<figure class="lofm__video"><video controls playsinline preload="none" poster="%1$s"><source src="%2$s" type="video/mp4"></video><figcaption>%3$s</figcaption></figure>',
+				'<figure class="lofm__video%4$s"><div class="lofm__frame" style="aspect-ratio:%5$d/%6$d;background-image:url(%1$s)"><video controls playsinline preload="none" poster="%1$s" width="%5$d" height="%6$d"><source src="%2$s" type="video/mp4"></video></div><figcaption>%3$s</figcaption></figure>',
 				esc_url( lofm_url( 'video/' . $slug . '.jpg' ) ),
 				esc_url( lofm_url( 'video/' . $slug . '.mp4' ) ),
-				esc_html( $cap )
+				esc_html( $cap ),
+				$dims[1] > $dims[0] ? ' is-portrait' : '',
+				(int) $dims[0],
+				(int) $dims[1]
 			);
 		}
 		$out .= '</div>';
@@ -252,7 +275,7 @@ function lofm_render_group( $key, $title = false ) {
 				esc_attr( $cap )
 			);
 			if ( $sens ) {
-				$img = '<div class="lofm__sens"><div class="lofm__sens-media" aria-hidden="true">' . $img . '</div><button type="button" class="lofm__reveal" data-lofm-reveal>' . esc_html__( 'Sensitive image: tap to view', 'light-of-future' ) . '</button></div>';
+				$img = '<div class="lofm__sens"><div class="lofm__sens-media" aria-hidden="true">' . $img . '</div><button type="button" class="lofm__reveal" data-lofm-reveal><span class="lofm__reveal-k">' . esc_html__( 'Sensitive image', 'light-of-future' ) . '</span> <span>' . esc_html__( 'Tap to view', 'light-of-future' ) . '</span></button></div>';
 			}
 			$out .= '<li class="lofm__item"><figure>' . $img . '<figcaption>' . esc_html( $cap ) . '</figcaption></figure></li>';
 		}

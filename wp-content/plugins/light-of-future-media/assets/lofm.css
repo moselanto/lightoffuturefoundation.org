@@ -27,3 +27,14 @@
 @media (prefers-reduced-motion:reduce){.lofm__link img{transition:none}}
 .lofm__reveal{font-size:.8rem;line-height:1.2;padding:.4rem .5rem;white-space:normal}
 @media (max-width:600px){.lofm__reveal{inset:auto 6px 6px 6px;font-size:.72rem;min-height:40px}}
+
+/* 1.0.2: video boxes take the shape of their picture, so the preview fills the frame. */
+.lofm__videos{align-items:start}
+.lofm__video{background:#2b1d0e}
+.lofm__frame{position:relative;width:100%;max-height:70vh;margin:0 auto;background-size:cover;background-position:center;background-color:#2b1d0e}
+.lofm__video.is-portrait .lofm__frame{max-width:min(100%,380px)}
+.lofm__frame video{position:absolute;inset:0;width:100%!important;height:100%!important;max-height:none!important;aspect-ratio:auto!important;object-fit:cover!important;background:transparent!important}
+/* Sensitive-image button: two short lines that always fit the tile. */
+.lofm__reveal{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;white-space:normal!important;overflow-wrap:anywhere;text-align:center;letter-spacing:0!important;text-transform:none!important;padding:.45rem .5rem!important;font-size:.82rem!important;line-height:1.2!important}
+.lofm__reveal-k{font-weight:800}
+@media (max-width:600px){.lofm__reveal{font-size:.74rem!important;inset:auto 6px 6px 6px!important}}
