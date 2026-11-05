@@ -227,7 +227,7 @@
 		});
 		/* Jump links on long pages (About Us, Leadership). */
 		var b = document.body;
-		if (b.classList.contains('lof-page-about-us') || b.classList.contains('lof-page-leadership')) {
+		if (b.classList.contains('lof-page-about-us')) {
 			var heads = document.querySelectorAll('main .lof-section .lof-section__title');
 			var list = [];
 			Array.prototype.forEach.call(heads, function (h, i) {

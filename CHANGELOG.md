@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.55.2 - 2026-11-05
+- Leadership: the added "On this page" row is removed; the page keeps its own jump row (Our founder / Board members ...). About Us keeps the new jump links.
+
 ## 0.55.1 - 2026-11-05
 - Donate: the "how to give" line is visible on the cream panel; the panel no longer crowds the right edge on phones.
 - Gallery: section links stay pinned at the top while scrolling (fixed on scroll; sticky failed inside the page wrapper).
