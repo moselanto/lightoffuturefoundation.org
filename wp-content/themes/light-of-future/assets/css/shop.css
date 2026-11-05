@@ -120,3 +120,91 @@ body.lof-wa-orders .single_add_to_cart_button,body.lof-wa-orders .woocommerce-va
 }
 /* Keep headings and the order button clear of the sticky header. */
 .single-product .product_title,.single-product form.cart,.lof-wa-order{scroll-margin-top:110px}
+
+/* ================= 0.45.0 ================= */
+/* Headings run the full width of their container. */
+.lof-section__head,.lof-cta.lof-tone-sun .lof-section__head{max-width:none!important}
+.lof-section__title,section.lof-feature--story .lof-feature__body>.lof-section__title,.lof-market__title{max-width:none!important}
+.lof-section__intro,.lof-market__intro{max-width:72ch}
+
+/* Anchors and focus land below the sticky header. */
+html{scroll-padding-top:calc(var(--lof-head-h,76px) + 20px)}
+.single-product .product_title{scroll-margin-top:calc(var(--lof-head-h,76px) + 20px)}
+.single-product .lof-wa-order,.single-product form.cart{scroll-margin-top:calc(var(--lof-head-h,76px) + 200px)}
+@media (max-width:991px){.single-product .lof-wa-order,.single-product form.cart{scroll-margin-top:calc(var(--lof-head-h,64px) + 230px)}}
+
+/* Shop with purpose: refined section. */
+.lof-market{background:radial-gradient(1200px 400px at 100% 0,rgba(244,175,22,.14),transparent 60%),linear-gradient(180deg,#fffdf7 0%,var(--lof-cream) 100%)}
+.lof-market__head{align-items:flex-end;border-bottom:1px solid rgba(92,61,30,.12);padding-bottom:24px;margin-bottom:36px}
+.lof-market__head>div{flex:1 1 520px}
+.lof-market__eyebrow{display:inline-flex;align-items:center;gap:10px}
+.lof-market__eyebrow::before{content:"";width:28px;height:2px;background:var(--lof-gold);border-radius:2px}
+.lof-market__title{font-size:clamp(1.9rem,3.4vw,2.8rem);letter-spacing:-.01em}
+.lof-market__all{background:var(--lof-brown);border-color:var(--lof-brown);color:var(--lof-cream)!important;min-height:48px;padding:0 24px}
+.lof-market__all:hover,.lof-market__all:focus-visible{background:#3e2812;border-color:#3e2812;color:#fff!important}
+.lof-market__card{border-top:0;border:1px solid rgba(92,61,30,.10);border-radius:18px;box-shadow:0 1px 2px rgba(92,61,30,.06),0 12px 32px -20px rgba(92,61,30,.45)}
+.lof-market__media{aspect-ratio:4/5}
+.lof-market__badge{background:rgba(255,255,255,.92);color:var(--lof-brown);backdrop-filter:blur(6px);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.lof-market__body{padding:18px 18px 20px;gap:4px}
+.lof-market__name{font-size:1.06rem;min-height:0}
+.lof-market__price{font-size:1.05rem;color:var(--lof-brown);margin:2px 0 14px;min-height:0}
+.lof-market__actions{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px}
+.lof-btn-order,.lof-market__wa,.woocommerce ul.products li.product .lof-wa-order__mini{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 18px;border-radius:12px;background:#075E54!important;color:#fff!important;font-weight:800;font-size:.92rem;letter-spacing:.01em;text-decoration:none;white-space:nowrap;box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 8px 18px -10px rgba(7,94,84,.9);transition:background .2s,transform .2s,box-shadow .2s;flex:initial}
+.lof-btn-order:hover,.lof-market__wa:hover,.woocommerce ul.products li.product .lof-wa-order__mini:hover{background:#128C7E!important;transform:translateY(-1px);box-shadow:0 12px 22px -10px rgba(7,94,84,.9)}
+.lof-btn-order:focus-visible{outline:3px solid var(--lof-gold);outline-offset:2px}
+.lof-btn-order__ico{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.16)}
+.lof-market__view{border:0;min-height:46px;padding:0 4px;color:var(--lof-brown);font-weight:800;text-decoration:none;font-size:.9rem}
+.lof-market__view:hover{text-decoration:underline;text-underline-offset:4px}
+.lof-market__trust{list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left}
+.lof-market__trust li{background:#fff;border:1px solid rgba(92,61,30,.10);border-radius:14px;padding:16px 18px 16px 52px;position:relative;display:flex;flex-direction:column;gap:2px;font-size:.92rem;color:#6b5a48}
+.lof-market__trust li::before{content:"";position:absolute;left:16px;top:18px;width:22px;height:22px;border-radius:50%;background:var(--lof-gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%235C3D1E' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/14px no-repeat}
+.lof-market__trust strong{color:var(--lof-brown);font-size:.98rem}
+@media (max-width:900px){.lof-market__trust{grid-template-columns:1fr}}
+@media (max-width:640px){
+ .lof-market__actions{grid-template-columns:1fr;gap:4px}
+ .lof-market__view{min-height:36px;justify-content:center}
+ .lof-btn-order,.lof-market__wa{padding:0 12px;font-size:.86rem;min-height:44px}
+ .lof-market__media{aspect-ratio:1/1}
+}
+.woocommerce ul.products li.product{border-top:0!important;border:1px solid rgba(92,61,30,.10)}
+.woocommerce ul.products li.product .lof-wa-order__mini{margin:8px 16px 0;display:flex}
+.lof-wa-order__btn.lof-btn-order{min-height:54px;font-size:1.02rem;padding:0 28px;border-radius:14px}
+
+/* WhatsApp order form popup. */
+.lof-order{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:16px;font-family:Figtree,system-ui,sans-serif}
+.lof-order[hidden]{display:none!important}
+.lof-order__backdrop{position:absolute;inset:0;background:rgba(28,18,8,.55);backdrop-filter:blur(3px);animation:lofFade .2s ease}
+.lof-order__dialog{position:relative;width:min(480px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:22px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);animation:lofRise .25s ease;outline:0}
+@keyframes lofFade{from{opacity:0}to{opacity:1}}
+@keyframes lofRise{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.lof-order__backdrop,.lof-order__dialog{animation:none}}
+.lof-order__head{display:flex;gap:14px;align-items:center;padding:18px 18px 16px;background:linear-gradient(135deg,var(--lof-brown),#3e2812);color:#fff;border-radius:22px 22px 0 0}
+.lof-order__thumb img{display:block;width:64px;height:64px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,.3)}
+.lof-order__heading{flex:1;min-width:0}
+.lof-order__eyebrow{margin:0;font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--lof-gold)}
+.lof-order__title{margin:2px 0 0!important;font-family:Nunito,system-ui,sans-serif;font-size:1.15rem!important;line-height:1.25;color:#fff!important}
+.lof-order__price{margin:2px 0 0;font-weight:700;opacity:.9;font-size:.92rem}
+.lof-order__close{align-self:flex-start;background:rgba(255,255,255,.14)!important;border:0;color:#fff!important;width:36px;height:36px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer}
+.lof-order__form{padding:18px;display:flex;flex-direction:column;gap:14px}
+.lof-order__grid{display:grid;grid-template-columns:150px 1fr;gap:12px}
+.lof-order__row{display:flex;flex-direction:column;gap:6px}
+.lof-order__row[hidden]{display:none}
+.lof-order__row label{font-weight:700;font-size:.86rem;color:var(--lof-brown)}
+.lof-order__row label span{color:#B9740F}
+.lof-order__form input,.lof-order__form select,.lof-order__form textarea{width:100%;box-sizing:border-box;border:1.5px solid #e1d5c2;border-radius:12px;padding:11px 14px;font:inherit;font-size:16px;background:#fff;color:#2d2016}
+.lof-order__form input:focus,.lof-order__form select:focus,.lof-order__form textarea:focus{border-color:#128C7E;outline:3px solid rgba(18,140,126,.18)}
+.lof-order__qty{display:flex;align-items:center;border:1.5px solid #e1d5c2;border-radius:12px;overflow:hidden}
+.lof-order__qty input{border:0!important;text-align:center;padding:11px 4px;outline:0!important;-moz-appearance:textfield}
+.lof-order__qty input::-webkit-outer-spin-button,.lof-order__qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.lof-order__qty button{flex:none;width:42px;height:46px;border:0;background:var(--lof-cream)!important;color:var(--lof-brown)!important;font-size:20px;font-weight:800;cursor:pointer}
+.lof-order__error{margin:0;color:#b42318;font-weight:700;font-size:.88rem}
+.lof-order__submit{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border:0;border-radius:14px;background:#075E54!important;color:#fff!important;font-weight:800;font-size:1.02rem;cursor:pointer;box-shadow:0 12px 24px -12px rgba(7,94,84,.9)}
+.lof-order__submit:hover{background:#128C7E!important}
+.lof-order__assure{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:.78rem;color:#6b5a48}
+.lof-order__assure li::before{content:"\2713";color:#128C7E;font-weight:800;margin-right:5px}
+@media (max-width:640px){
+ .lof-order{align-items:flex-end;padding:0}
+ .lof-order__dialog{width:100%;border-radius:22px 22px 0 0;max-height:92vh;padding-bottom:env(safe-area-inset-bottom,0)}
+ .lof-order__grid{grid-template-columns:1fr}
+}
+body.lof-order-open{overflow:hidden}

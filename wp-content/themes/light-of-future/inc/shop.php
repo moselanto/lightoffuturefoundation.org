@@ -95,6 +95,95 @@ function lof_shop_order_message( $product ) {
 }
 
 /**
+ * Data attributes that open the WhatsApp order form for a product.
+ *
+ * @param WC_Product $product Product.
+ * @return string Escaped attribute string.
+ */
+function lof_order_attrs( $product ) {
+	$designs = array();
+	if ( $product->is_type( 'variable' ) ) {
+		foreach ( $product->get_variation_attributes() as $attr => $opts ) {
+			foreach ( (array) $opts as $opt ) {
+				$term      = taxonomy_exists( $attr ) ? get_term_by( 'slug', $opt, $attr ) : false;
+				$designs[] = $term ? $term->name : $opt;
+			}
+			break;
+		}
+	}
+	$img = wp_get_attachment_image_url( $product->get_image_id(), 'woocommerce_thumbnail' );
+	return sprintf(
+		'data-lof-order data-name="%1$s" data-price="%2$s" data-url="%3$s" data-designs="%4$s" data-image="%5$s"',
+		esc_attr( wp_strip_all_tags( $product->get_name() ) ),
+		esc_attr( lof_shop_price_text( $product ) ),
+		esc_url( get_permalink( $product->get_id() ) ),
+		esc_attr( wp_json_encode( array_values( array_unique( $designs ) ) ) ),
+		esc_url( $img ? $img : '' )
+	);
+}
+
+/**
+ * WhatsApp order form (popup). Printed once in the footer.
+ */
+function lof_order_form() {
+	if ( is_admin() || ! class_exists( 'WooCommerce' ) ) {
+		return;
+	}
+	?>
+	<div class="lof-order" data-lof-order-modal data-number="<?php echo esc_attr( lof_wa_number() ); ?>" hidden>
+		<div class="lof-order__backdrop" data-lof-order-close></div>
+		<div class="lof-order__dialog" role="dialog" aria-modal="true" aria-labelledby="lof-order-title" tabindex="-1">
+			<div class="lof-order__head">
+				<span class="lof-order__thumb"><img src="" alt="" width="64" height="64" hidden></span>
+				<div class="lof-order__heading">
+					<p class="lof-order__eyebrow"><?php esc_html_e( 'Order on WhatsApp', 'light-of-future' ); ?></p>
+					<h2 class="lof-order__title" id="lof-order-title"></h2>
+					<p class="lof-order__price"></p>
+				</div>
+				<button type="button" class="lof-order__close" data-lof-order-close aria-label="<?php esc_attr_e( 'Close order form', 'light-of-future' ); ?>">&times;</button>
+			</div>
+			<form class="lof-order__form" novalidate>
+				<div class="lof-order__row lof-order__row--design" hidden>
+					<label for="lof-order-design"><?php esc_html_e( 'Design', 'light-of-future' ); ?></label>
+					<select id="lof-order-design" name="design"></select>
+				</div>
+				<div class="lof-order__grid">
+					<div class="lof-order__row">
+						<label for="lof-order-qty"><?php esc_html_e( 'Quantity', 'light-of-future' ); ?></label>
+						<div class="lof-order__qty">
+							<button type="button" data-step="-1" aria-label="<?php esc_attr_e( 'Fewer', 'light-of-future' ); ?>">&minus;</button>
+							<input id="lof-order-qty" name="qty" type="number" min="1" max="500" value="1" inputmode="numeric">
+							<button type="button" data-step="1" aria-label="<?php esc_attr_e( 'More', 'light-of-future' ); ?>">+</button>
+						</div>
+					</div>
+					<div class="lof-order__row">
+						<label for="lof-order-name"><?php esc_html_e( 'Your name', 'light-of-future' ); ?> <span aria-hidden="true">*</span></label>
+						<input id="lof-order-name" name="name" type="text" autocomplete="name" required maxlength="80">
+					</div>
+				</div>
+				<div class="lof-order__row">
+					<label for="lof-order-place"><?php esc_html_e( 'Delivery town or country', 'light-of-future' ); ?> <span aria-hidden="true">*</span></label>
+					<input id="lof-order-place" name="place" type="text" autocomplete="address-level2" required maxlength="120" placeholder="<?php esc_attr_e( 'e.g. Nairobi, Kisumu, London', 'light-of-future' ); ?>">
+				</div>
+				<div class="lof-order__row">
+					<label for="lof-order-note"><?php esc_html_e( 'Anything else? (optional)', 'light-of-future' ); ?></label>
+					<textarea id="lof-order-note" name="note" rows="2" maxlength="500" placeholder="<?php esc_attr_e( 'Colours, sizes, a gift message...', 'light-of-future' ); ?>"></textarea>
+				</div>
+				<p class="lof-order__error" role="alert" hidden><?php esc_html_e( 'Please add your name and delivery town.', 'light-of-future' ); ?></p>
+				<button type="submit" class="lof-order__submit"><?php echo lof_wa_icon( 22 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><?php esc_html_e( 'Continue on WhatsApp', 'light-of-future' ); ?></span></button>
+				<ul class="lof-order__assure">
+					<li><?php esc_html_e( 'Handmade in Kenya', 'light-of-future' ); ?></li>
+					<li><?php esc_html_e( 'Price and delivery confirmed by our team', 'light-of-future' ); ?></li>
+					<li><?php esc_html_e( 'Nothing is charged here', 'light-of-future' ); ?></li>
+				</ul>
+			</form>
+		</div>
+	</div>
+	<?php
+}
+add_action( 'wp_footer', 'lof_order_form', 7 );
+
+/**
  * WhatsApp icon SVG.
  *
  * @param int $size Size in px.
@@ -238,17 +327,13 @@ function lof_shop_single_wa_button() {
 	if ( ! $product instanceof WC_Product ) {
 		return;
 	}
-	$name = wp_strip_all_tags( $product->get_name() );
 	printf(
-		'<div class="lof-wa-order"><a class="lof-wa-order__btn" href="%1$s" target="_blank" rel="noopener noreferrer" data-lof-wa-order data-number="%2$s" data-name="%3$s" data-price="%4$s" data-url="%5$s">%6$s<span>%7$s</span></a><p class="lof-wa-order__note">%8$s</p></div>',
+		'<div class="lof-wa-order"><a class="lof-wa-order__btn lof-btn-order" href="%1$s" target="_blank" rel="noopener noreferrer" %2$s data-single="1">%3$s<span>%4$s</span></a><p class="lof-wa-order__note">%5$s</p></div>',
 		esc_url( lof_wa_link( lof_shop_order_message( $product ) ) ),
-		esc_attr( lof_wa_number() ),
-		esc_attr( $name ),
-		esc_attr( lof_shop_price_text( $product ) ),
-		esc_url( get_permalink( $product->get_id() ) ),
+		lof_order_attrs( $product ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper.
 		lof_wa_icon( 22 ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
 		esc_html__( 'Order on WhatsApp', 'light-of-future' ),
-		esc_html__( 'Your design, quantity and the product link are added for you. Delivery is agreed on WhatsApp.', 'light-of-future' )
+		esc_html__( 'Choose your design and quantity, then send your order to our team on WhatsApp. Price and delivery are confirmed with you there.', 'light-of-future' )
 	);
 }
 add_action( 'woocommerce_single_product_summary', 'lof_shop_single_wa_button', 32 );
@@ -262,7 +347,7 @@ function lof_shop_loop_wa_button() {
 		return;
 	}
 	printf(
-		'<a class="lof-wa-order__mini" href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s">%3$s<span class="lof-wa-long">%4$s</span><span class="lof-wa-short" aria-hidden="true">%5$s</span></a>',
+		'<a class="lof-wa-order__mini lof-btn-order" href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s" ' . lof_order_attrs( $product ) . '>%3$s<span class="lof-wa-long">%4$s</span><span class="lof-wa-short" aria-hidden="true">%5$s</span></a>',
 		esc_url( lof_wa_link( lof_shop_order_message( $product ) ) ),
 		/* translators: %s: product name. */
 		esc_attr( sprintf( __( 'Order %s on WhatsApp', 'light-of-future' ), wp_strip_all_tags( $product->get_name() ) ) ),
@@ -375,14 +460,18 @@ function lof_home_market( $atts = array() ) {
 							<h3 class="lof-market__name"><a href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php echo esc_html( $p->get_name() ); ?></a></h3>
 							<p class="lof-market__price"><?php echo esc_html( lof_shop_price_text( $p ) ); ?></p>
 							<div class="lof-market__actions">
-								<a class="lof-market__wa" href="<?php echo esc_url( lof_wa_link( lof_shop_order_message( $p ) ) ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: product name. */ __( 'Order %s on WhatsApp', 'light-of-future' ), wp_strip_all_tags( $p->get_name() ) ) ); ?>"><?php echo lof_wa_icon( 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span class="lof-wa-long"><?php esc_html_e( 'Order on WhatsApp', 'light-of-future' ); ?></span><span class="lof-wa-short" aria-hidden="true"><?php esc_html_e( 'Order', 'light-of-future' ); ?></span></a>
-								<a class="lof-market__view" href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php esc_html_e( 'Details', 'light-of-future' ); ?></a>
+								<a class="lof-market__wa lof-btn-order" href="<?php echo esc_url( lof_wa_link( lof_shop_order_message( $p ) ) ); ?>" target="_blank" rel="noopener noreferrer" <?php echo lof_order_attrs( $p ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?> aria-label="<?php echo esc_attr( sprintf( /* translators: %s: product name. */ __( 'Order %s on WhatsApp', 'light-of-future' ), wp_strip_all_tags( $p->get_name() ) ) ); ?>"><span class="lof-btn-order__ico"><?php echo lof_wa_icon( 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><span class="lof-wa-long"><?php esc_html_e( 'Order now', 'light-of-future' ); ?></span><span class="lof-wa-short" aria-hidden="true"><?php esc_html_e( 'Order', 'light-of-future' ); ?></span></a>
+								<a class="lof-market__view" href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php esc_html_e( 'Details', 'light-of-future' ); ?> <span aria-hidden="true">&rarr;</span></a>
 							</div>
 						</div>
 					</li>
 				<?php endforeach; ?>
 			</ul>
-			<p class="lof-market__trust"><?php esc_html_e( 'Order on WhatsApp: tell us your design and we agree delivery anywhere in Kenya or abroad.', 'light-of-future' ); ?></p>
+			<ul class="lof-market__trust">
+				<li><strong><?php esc_html_e( 'Handmade in Kenya', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Beadwork and leather made by hand by community makers.', 'light-of-future' ); ?></span></li>
+				<li><strong><?php esc_html_e( 'Shopping that gives back', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Your order supports makers and our work with families.', 'light-of-future' ); ?></span></li>
+				<li><strong><?php esc_html_e( 'Easy WhatsApp ordering', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Fill a short form; our team confirms price and delivery.', 'light-of-future' ); ?></span></li>
+			</ul>
 		</div>
 	</section>
 	<?php

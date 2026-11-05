@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.45.0 - 2026-11-05
+- Focus areas: 8 new photos from the November content intake (food packs, Ugenya borehole handwashing point, sanitary pads bought in bulk, Elijah's finished house, Margaret's solar light, goats, mentorship hall, awareness session), set once in wp-admin (option lof_prog_photos_rev). Prison Outreach still has no photo.
+- Section h2 headings and heads now run full width (no max-width).
+- Shop with purpose redesigned: 4:5 product photos, refined deep-green Order now button, Details link, three value cards.
+- WhatsApp order form popup: every Order button (home, shop, product page) opens a form (design, quantity, name, delivery town, note) that sends a ready-made order on WhatsApp. Other WhatsApp links open the chat card first.
+- Sticky header: scroll-padding-top and larger scroll margin on product pages so the product name stays visible.
+
 ## 0.44.1 - 2026-11-05
 - Phone fixes for the crafts shop: shop and homepage product cards are equal height with buttons pinned to the bottom; WhatsApp buttons no longer wrap (short "Order" label on phones, full label for screen readers); product-page Order on WhatsApp button is full width on phones.
 - WhatsApp chat: smaller teaser on phones and no automatic "Hello there" pop-up on phones (red dot only on larger screens); button still sits above the bottom tab bar.
