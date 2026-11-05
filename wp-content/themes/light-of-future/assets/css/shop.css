@@ -281,3 +281,41 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
  .lof-cine__tab .lof-cine__bar{height:4px}
  .lof-cine__ctrl{background:none;border:0;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none}
 }
+
+/* ================= 0.48.0 homepage polish ================= */
+/* Phones: a shorter slider so its buttons sit clear of the bottom menu. */
+@media (max-width:760px){
+ .lof-cine__media{aspect-ratio:16/10!important}
+ .lof-cine__inner{padding-top:.25rem!important;padding-bottom:1.5rem!important}
+ .lof-cine__eyebrow{margin-bottom:.55rem!important}
+ .lof-cine__title{font-size:clamp(1.55rem,6.6vw,1.95rem)!important;margin-bottom:.5rem!important}
+ .lof-cine__text{font-size:.94rem!important;line-height:1.5;margin-bottom:.9rem!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+ .lof-cine .lof-btn-row{gap:.5rem!important}
+ .lof-cine .lof-btn-row .lof-btn{min-height:44px;padding-block:.65rem!important;font-size:.88rem}
+ .lof-cine__content{padding-left:0}
+ .lof-cine__content::before{display:none}
+}
+/* Consistent section rhythm and headings. */
+.lof-section{padding-block:clamp(4rem,7vw,6.25rem)}
+.lof-section.lof-impact{padding-block:clamp(3rem,5vw,4rem)}
+.lof-section__head{margin-bottom:clamp(2rem,3.5vw,2.75rem)}
+.lof-section__title{letter-spacing:-.015em}
+/* Eyebrows on dark sections. */
+.lof-tone-earth .lof-eyebrow,.lof-give .lof-eyebrow,html:not([data-theme="dark"]) .lof-tone-earth .lof-eyebrow,html:not([data-theme="dark"]) .lof-give .lof-eyebrow{color:#F4AF16!important}
+/* Approach steps: cleaner cards. */
+.lof-steps .lof-card--pillar{transition:transform .25s,box-shadow .25s}
+.lof-steps .lof-card--pillar:hover{transform:translateY(-3px)}
+@media (max-width:760px){.lof-steps .lof-card--pillar{padding:1.25rem 1.25rem 1.35rem!important}}
+/* Founder story photo: keep Francis in frame on small screens. */
+@media (max-width:860px){.lof-feature__img{object-position:22% 80%!important}.lof-feature__media{max-height:420px;overflow:hidden}}
+/* Focus-area cards: even photos, gentle hover, clearer titles. */
+.lof-card--programme{transition:transform .25s,box-shadow .25s;overflow:hidden}
+.lof-card--programme:hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(92,61,30,.55)}
+.lof-card--programme .lof-card__media{aspect-ratio:16/10;overflow:hidden;display:block}
+.lof-card--programme .lof-card__media img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.lof-card--programme:hover .lof-card__media img{transform:scale(1.04)}
+.lof-card--programme .lof-card__title{font-size:1.12rem}
+.lof-card--programme .lof-card__index{color:#F4AF16!important;font-weight:800}
+/* Impact strip tiles. */
+.lof-impact .lof-impact__item{transition:background .25s}
+@media (prefers-reduced-motion:reduce){.lof-card--programme,.lof-card--programme .lof-card__media img,.lof-steps .lof-card--pillar{transition:none}.lof-card--programme:hover,.lof-steps .lof-card--pillar:hover{transform:none}}

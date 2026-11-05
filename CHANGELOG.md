@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.48.0 - 2026-11-05
+- Phones: shorter home slider (16:10 photo, tighter type, 3-line text) so its buttons sit clear of the bottom menu.
+- Homepage polish: consistent section spacing and heading rhythm; gold eyebrows on dark sections (Our impact, Give today); approach cards hover; founder photo keeps Francis in frame on phones; focus-area cards with even 16:10 photos, hover lift and clearer titles.
+
 ## 0.47.0 - 2026-11-05
 - Home slider: four slides (adds "Shop with purpose" with the bags photo, linking to the shop), applied once in wp-admin (option lof_hero_rev 4, layout backed up). New look: glass tab dock with photo thumbnails and progress bars, glass controls, gold accent rule beside the text, refined title size and shading; tab dock on tablets; slim progress bars on phones.
 
