@@ -319,3 +319,6 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
 /* Impact strip tiles. */
 .lof-impact .lof-impact__item{transition:background .25s}
 @media (prefers-reduced-motion:reduce){.lof-card--programme,.lof-card--programme .lof-card__media img,.lof-steps .lof-card--pillar{transition:none}.lof-card--programme:hover,.lof-steps .lof-card--pillar:hover{transform:none}}
+
+/* 0.48.1: show the full slide sentence on phones (no mid-sentence cut). */
+@media (max-width:760px){.lof-cine__text{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;font-size:.9rem!important;line-height:1.45!important}}

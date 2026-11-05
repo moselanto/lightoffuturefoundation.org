@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.48.1 - 2026-11-05
+- Phones: slide text shows in full instead of being cut off with an ellipsis.
+
 ## 0.48.0 - 2026-11-05
 - Phones: shorter home slider (16:10 photo, tighter type, 3-line text) so its buttons sit clear of the bottom menu.
 - Homepage polish: consistent section spacing and heading rhythm; gold eyebrows on dark sections (Our impact, Give today); approach cards hover; founder photo keeps Francis in frame on phones; focus-area cards with even 16:10 photos, hover lift and clearer titles.
