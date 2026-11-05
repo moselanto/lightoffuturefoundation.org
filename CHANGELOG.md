@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.58.3 - 2026-11-05
+- Stories (phones): the featured story shows the photo on top and the label, title and button below it, so nothing sits on the photo.
+- WhatsApp button (phones): smaller, tucked into the corner, and stays out of the way while scrolling and for 1.6 seconds after.
+
 ## 0.58.2 - 2026-11-05
 - Donate: the selected "Give once" / "Monthly" option reads cream on dark brown.
 - Gallery: video captions take a fixed two-line height so tiles end level; the WhatsApp teaser bubble is hidden on the Gallery.

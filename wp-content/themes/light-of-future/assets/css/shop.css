@@ -771,3 +771,19 @@ a[href^="mailto:"]{overflow-wrap:normal;word-break:keep-all}
 .lof-give--paystack .lofpay__seg input:checked+span em{background:#F4AF16!important;color:#2B1D0E!important}
 .lof-page-gallery .lofm__video figcaption{height:3.4em;min-height:0}
 .lof-page-gallery .lof-chat__teaser{display:none!important}
+
+/* ---------- 0.58.3 ---------- */
+/* Stories featured card on phones: photo on top, words below, so the label never sits on the photo. */
+@media (max-width:760px){
+ .lof-spot{display:flex!important;flex-direction:column;min-height:0!important;background:#1C1208}
+ .lof-spot__media{position:relative!important;inset:auto!important;z-index:0!important;aspect-ratio:4/5!important;width:100%}
+ .lof-spot__media img{object-position:50% 18%!important}
+ .lof-spot__media::after{background:linear-gradient(0deg,rgba(28,18,8,1) 0%,rgba(28,18,8,0) 28%)!important}
+ .lof-spot__body{min-height:0!important;padding:.25rem 1.4rem 1.6rem!important;max-width:none}
+}
+/* WhatsApp button on phones: smaller, tucked into the corner, away while the visitor scrolls and for a moment after. */
+@media (max-width:991px){
+ .lof-chat{right:8px}
+ .lof-chat__fab{width:42px!important;height:42px!important;padding:0!important;justify-content:center;opacity:.92}
+ .lof-chat.is-scrolling .lof-chat__fab{transform:translateX(160%)}
+}

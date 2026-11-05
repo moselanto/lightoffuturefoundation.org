@@ -37,7 +37,7 @@
 			if (!panel.hidden || chat.contains(document.activeElement)) { return; }
 			chat.classList.add('is-scrolling');
 			clearTimeout(scrollTimer);
-			scrollTimer = setTimeout(function () { chat.classList.remove('is-scrolling'); }, 700);
+			scrollTimer = setTimeout(function () { chat.classList.remove('is-scrolling'); }, (phone && phone.matches) ? 1600 : 700);
 		}, { passive: true });
 		window.addEventListener('resize', tuck);
 		window.lofChat = { open: function (msg) { if (msg) { text.value = msg; } open(); if (msg) { setTimeout(function () { text.focus(); }, 60); } } };
