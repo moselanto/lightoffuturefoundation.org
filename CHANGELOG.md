@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.54.0 - 2026-11-05
+- Email: the foundation's address becomes info@lightoffuturefoundation.org (header, footer, contact details, enquiry form notifications, shop emails sender and order recipients), applied once on the first wp-admin load (option lof_email_rev). Core plugin default updated too.
+- Security: X-Powered-By and X-Pingback headers removed; HSTS (1 year) on HTTPS; pingbacks/trackbacks off; theme and plugin file editors disabled in wp-admin; one generic login error; login lock for 15 minutes after 5 failed attempts from one IP; reviews/comments get a hidden honeypot, a signed time stamp (min 4 s) and a 2-link limit.
+
 ## 0.53.0 - 2026-11-05
 - Phone bottom bar: Home, Shop, Donate (raised, centre), Stories, Menu. Focus areas move to the Menu (Programmes).
 - Beaded Leather Belt: its two designs from the product description (Kenya Flag, Red Wave) now show as design labels and in the order form.
