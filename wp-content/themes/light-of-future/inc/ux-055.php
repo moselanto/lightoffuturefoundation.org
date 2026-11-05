@@ -66,6 +66,35 @@ function lof_contact_reply_time( $content ) {
 add_filter( 'the_content', 'lof_contact_reply_time', 100 );
 
 /**
+ * Once Paystack giving is on, retire the "being set up" / "launching soon" lines.
+ *
+ * @param string $content Content.
+ * @return string
+ */
+function lof_paystack_copy( $content ) {
+	if ( is_admin() || ! function_exists( 'lof_pay_enabled' ) || ! lof_pay_enabled() ) {
+		return $content;
+	}
+	$donate = esc_url( home_url( '/donate/' ) );
+	return str_replace(
+		array(
+			'M-PESA and card through Paystack - launching soon.',
+			'Yes. M-PESA and card giving through Paystack is being set up. Until it goes live, contact us and we will guide you.',
+			'Secure online giving by M-PESA and card through Paystack is being set up. Until then, please contact us and we will guide you.',
+			'Secure online giving by M-PESA and card through Paystack is being set up. Until then, we will guide you to complete your gift.',
+		),
+		array(
+			'Give securely by M-PESA or card through Paystack on our Donate page.',
+			'Yes. You can give by M-PESA or card through Paystack on our Donate page, once or monthly.',
+			'Give securely online by M-PESA or card through Paystack on our Donate page, once or monthly.',
+			'Give securely online by M-PESA or card through Paystack, once or monthly.',
+		),
+		$content
+	);
+}
+add_filter( 'the_content', 'lof_paystack_copy', 101 );
+
+/**
  * Delivery and care details on product pages.
  */
 function lof_product_details_more() {

@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOF_THEME_VERSION', '0.55.3' );
+define( 'LOF_THEME_VERSION', '0.57.0' );
 define( 'LOF_THEME_DIR', get_stylesheet_directory() );
 define( 'LOF_THEME_URI', get_stylesheet_directory_uri() );
 
@@ -25,6 +25,7 @@ require_once LOF_THEME_DIR . '/inc/shop.php';
 require_once LOF_THEME_DIR . '/inc/shop-page.php';
 require_once LOF_THEME_DIR . '/inc/shop-single.php';
 require_once LOF_THEME_DIR . '/inc/ux-055.php';
+require_once LOF_THEME_DIR . '/inc/home-056.php';
 require_once LOF_THEME_DIR . '/inc/a11y.php';
 require_once LOF_THEME_DIR . '/inc/performance.php';
 

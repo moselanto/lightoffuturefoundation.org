@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.57.0 - 2026-11-05 (Core 0.45.1)
+- Gallery: editorial layout. Pill section links, gold-ruled section titles, 4/3/2-column square grid with a large lead photo per section, captions on a soft gradient over the photo, hover zoom, two-up video cards (one per row on phones).
+- Phones: page-top photos (Stories, Leadership and every other page hero) fill the full width of the band instead of a narrow photo between dark bars, with a soft fade into the title panel.
+- Homepage: the extra "See all focus areas" button is removed (the section keeps its own "See all 11 focus areas").
+- Paystack on: "being set up" / "launching soon" giving lines now point to online giving on the Donate page.
+- Core 0.45.1: online giving offers KES only until the Paystack account accepts USD (define LIGHT_PAYSTACK_CURRENCIES as 'KES,USD' to turn USD on); both test USD attempts were refused at initialisation.
+
+## 0.56.0 - 2026-11-05 (Core 0.45.0)
+- Homepage: "Why we exist" and "Our story" merged into one short "Who we are" block (founder photo, three facts, Read our story); the 4th slider slide (shop) and the closing "Be the light" banner removed (render-time, Elementor data untouched); "See all focus areas" button. Phones: approach steps 2x2, six focus areas, two stories, two shop products.
+- Donate (Core 0.45.0): Paystack online giving, ported from the Smile Community Centre module. Once or monthly, KES (500/1,000/2,500/5,000/10,000) or USD (10/25/50/100), optional fee cover, Paystack checkout (card, M-Pesa), server-side verification, receipts, staff notice to info@, Donations list with re-check and CSV export, manage-monthly-gift link, webhook at /wp-json/lof/v1/paystack (HMAC-SHA512 checked). Key from LIGHT_PAYSTACK_SECRET_KEY (or LOF_PAYSTACK_SECRET_KEY) in wp-config.php; sk_test_ keys run in test mode. Result pages are never cached.
+
 ## 0.55.3 - 2026-11-05
 - Contact: the reply promise reads "within 2 working days" (form intro, "What happens next" and any text saved in the page editor).
 

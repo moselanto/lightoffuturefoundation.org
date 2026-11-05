@@ -51,6 +51,15 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 	protected function render() {
 		$s      = $this->get_settings_for_display();
 		$target = ! empty( $s['target']['url'] ) ? $s['target']['url'] : lof_donate_url();
+		if ( function_exists( 'lof_pay_enabled' ) && lof_pay_enabled() && is_page( 'donate' ) ) {
+			$this->open_section( $s, 'lof-give lof-give--paystack' );
+			echo '<div class="lof-give__paystack">';
+			echo do_shortcode( '[lof_donate_form]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the shortcode.
+			echo do_shortcode( '[lof_manage_giving]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the shortcode.
+			echo '</div>';
+			$this->close_section();
+			return;
+		}
 		$has    = $this->has_media( isset( $s['image'] ) ? $s['image'] : array() );
 		$this->open_section( $s, 'lof-give' . ( $has ? ' lof-give--photo lof-give--card' : '' ) );
 		if ( $has ) {
@@ -63,7 +72,7 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 			foreach ( array(
 				__( 'Registered with the NGO Board of Kenya, 23 May 2025', 'light-of-future' ),
 				__( 'You choose where your gift goes', 'light-of-future' ),
-				( 'live' === lof_setting( 'payment_mode', 'off' ) ? __( 'Secure M-PESA and card payments through Paystack', 'light-of-future' ) : __( 'Our team guides you to complete your gift', 'light-of-future' ) ),
+				( ( 'live' === lof_setting( 'payment_mode', 'off' ) || ( function_exists( 'lof_pay_enabled' ) && lof_pay_enabled() ) ) ? __( 'Secure M-PESA and card payments through Paystack', 'light-of-future' ) : __( 'Our team guides you to complete your gift', 'light-of-future' ) ),
 			) as $t ) {
 				printf( '<li><span class="lof-give__tick">%1$s</span>%2$s</li>', $tick, esc_html( $t ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
 			}
@@ -110,7 +119,7 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 			printf( '<option value="%1$s">%2$s</option>', esc_attr( $key ), esc_html( $label ) );
 		}
 		echo '</select></fieldset>';
-		$lof_live = 'live' === lof_setting( 'payment_mode', 'off' );
+		$lof_live = 'live' === lof_setting( 'payment_mode', 'off' ) || ( function_exists( 'lof_pay_enabled' ) && lof_pay_enabled() );
 		printf( '<button type="submit" class="lof-btn lof-btn--sun lof-givepanel__submit">%s</button>', $lof_live ? esc_html__( 'Continue to give', 'light-of-future' ) : esc_html__( 'Ask us how to give', 'light-of-future' ) );
 		if ( ! $lof_live ) {
 			printf( '<p class="lof-givepanel__how">%s</p>', esc_html__( 'Online payment is not open yet. Choose an amount and where it goes, then send us a short message. Our team replies with how to complete your gift.', 'light-of-future' ) );
@@ -334,6 +343,9 @@ class LOF_Widget_Slider extends LOF_Widget_Base {
 		$slides = array();
 		foreach ( (array) ( isset( $s['slides'] ) ? $s['slides'] : array() ) as $sl ) {
 			if ( ! empty( $sl['title'] ) && $this->has_media( isset( $sl['image'] ) ? $sl['image'] : array() ) ) {
+				if ( apply_filters( 'lof_slider_skip_shop', true ) && false !== stripos( (string) $sl['title'], 'Handmade in Kenya' ) ) {
+					continue;
+				}
 				$slides[] = $sl;
 			}
 		}
