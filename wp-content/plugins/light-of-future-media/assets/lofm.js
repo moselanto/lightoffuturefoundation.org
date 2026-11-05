@@ -1,0 +1,1 @@
+(function(){document.addEventListener('click',function(e){var b=e.target.closest?e.target.closest('[data-lofm-reveal]'):null;if(!b){return;}var w=b.parentNode;w.classList.add('is-open');var m=w.querySelector('.lofm__sens-media');if(m){m.removeAttribute('aria-hidden');var a=m.querySelector('a');if(a){a.focus();}}});}());
