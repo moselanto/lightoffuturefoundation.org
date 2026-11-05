@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.46.6 - 2026-11-05
+- Screen readers: Details / View details links include the product name; order form announced as "Order on WhatsApp, <product>"; quantity buttons named Decrease/Increase quantity; empty required fields get aria-invalid and point to the error message; the rest of the page is inert while the order form is open.
+
 ## 0.46.5 - 2026-11-05
 - Phones: the floating WhatsApp button slides in once the visitor scrolls 160px, so it no longer covers hero content such as the Stories "2025 / Officially registered" tile on first load. Keyboard check (homepage, shop, product, order form, chat, Donate, Contact) passed with no code changes needed.
 

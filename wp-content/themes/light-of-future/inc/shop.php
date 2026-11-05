@@ -145,11 +145,11 @@ function lof_order_form() {
 	?>
 	<div class="lof-order" data-lof-order-modal data-number="<?php echo esc_attr( lof_wa_number() ); ?>" hidden>
 		<div class="lof-order__backdrop" data-lof-order-close></div>
-		<div class="lof-order__dialog" role="dialog" aria-modal="true" aria-labelledby="lof-order-title" tabindex="-1">
+		<div class="lof-order__dialog" role="dialog" aria-modal="true" aria-labelledby="lof-order-eyebrow lof-order-title" tabindex="-1">
 			<div class="lof-order__head">
 				<span class="lof-order__thumb"><img src="" alt="" width="64" height="64" hidden></span>
 				<div class="lof-order__heading">
-					<p class="lof-order__eyebrow"><?php esc_html_e( 'Order on WhatsApp', 'light-of-future' ); ?></p>
+					<p class="lof-order__eyebrow" id="lof-order-eyebrow"><?php esc_html_e( 'Order on WhatsApp', 'light-of-future' ); ?></p>
 					<h2 class="lof-order__title" id="lof-order-title"></h2>
 					<p class="lof-order__price"></p>
 				</div>
@@ -164,9 +164,9 @@ function lof_order_form() {
 					<div class="lof-order__row">
 						<label for="lof-order-qty"><?php esc_html_e( 'Quantity', 'light-of-future' ); ?></label>
 						<div class="lof-order__qty">
-							<button type="button" data-step="-1" aria-label="<?php esc_attr_e( 'Fewer', 'light-of-future' ); ?>">&minus;</button>
+							<button type="button" data-step="-1" aria-label="<?php esc_attr_e( 'Decrease quantity', 'light-of-future' ); ?>" aria-controls="lof-order-qty">&minus;</button>
 							<input id="lof-order-qty" name="qty" type="number" min="1" max="500" value="1" inputmode="numeric">
-							<button type="button" data-step="1" aria-label="<?php esc_attr_e( 'More', 'light-of-future' ); ?>">+</button>
+							<button type="button" data-step="1" aria-label="<?php esc_attr_e( 'Increase quantity', 'light-of-future' ); ?>" aria-controls="lof-order-qty">+</button>
 						</div>
 					</div>
 					<div class="lof-order__row">
@@ -182,7 +182,7 @@ function lof_order_form() {
 					<label for="lof-order-note"><?php esc_html_e( 'Anything else? (optional)', 'light-of-future' ); ?></label>
 					<textarea id="lof-order-note" name="note" rows="2" maxlength="500" placeholder="<?php esc_attr_e( 'Colours, sizes, a gift message...', 'light-of-future' ); ?>"></textarea>
 				</div>
-				<p class="lof-order__error" role="alert" hidden><?php esc_html_e( 'Please add your name and delivery town.', 'light-of-future' ); ?></p>
+				<p class="lof-order__error" id="lof-order-error" role="alert" hidden><?php esc_html_e( 'Please add your name and delivery town.', 'light-of-future' ); ?></p>
 				<button type="submit" class="lof-order__submit"><?php echo lof_wa_icon( 22 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><?php esc_html_e( 'Continue on WhatsApp', 'light-of-future' ); ?></span></button>
 				<ul class="lof-order__assure">
 					<li><?php esc_html_e( 'Handmade in Kenya', 'light-of-future' ); ?></li>
@@ -383,7 +383,7 @@ function lof_shop_loop_button( $html, $product ) {
 	if ( lof_shop_cart_enabled() ) {
 		return $html;
 	}
-	return sprintf( '<a class="button lof-shop-view" href="%1$s">%2$s</a>', esc_url( get_permalink( $product->get_id() ) ), esc_html__( 'View details', 'light-of-future' ) );
+	return sprintf( '<a class="button lof-shop-view" href="%1$s">%2$s<span class="screen-reader-text">: %3$s</span></a>', esc_url( get_permalink( $product->get_id() ) ), esc_html__( 'View details', 'light-of-future' ), esc_html( wp_strip_all_tags( $product->get_name() ) ) );
 }
 add_filter( 'woocommerce_loop_add_to_cart_link', 'lof_shop_loop_button', 20, 2 );
 
@@ -474,7 +474,7 @@ function lof_home_market( $atts = array() ) {
 							<p class="lof-market__price"><?php echo esc_html( lof_shop_price_text( $p ) ); ?></p>
 							<div class="lof-market__actions">
 								<a class="lof-market__wa lof-btn-order" href="<?php echo esc_url( lof_wa_link( lof_shop_order_message( $p ) ) ); ?>" target="_blank" rel="noopener noreferrer" <?php echo lof_order_attrs( $p ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>><span class="lof-btn-order__ico"><?php echo lof_wa_icon( 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><span class="lof-wa-long" aria-hidden="true"><?php esc_html_e( 'Order now', 'light-of-future' ); ?></span><span class="lof-wa-short" aria-hidden="true"><?php esc_html_e( 'Order', 'light-of-future' ); ?></span><span class="screen-reader-text"><?php esc_html_e( 'Order now', 'light-of-future' ); ?>: <?php echo esc_html( wp_strip_all_tags( $p->get_name() ) ); ?></span></a>
-								<a class="lof-market__view" href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php esc_html_e( 'Details', 'light-of-future' ); ?> <span aria-hidden="true">&rarr;</span></a>
+								<a class="lof-market__view" href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php esc_html_e( 'Details', 'light-of-future' ); ?><span class="screen-reader-text">: <?php echo esc_html( wp_strip_all_tags( $p->get_name() ) ); ?></span> <span aria-hidden="true">&rarr;</span></a>
 							</div>
 						</div>
 					</li>

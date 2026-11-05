@@ -103,10 +103,18 @@
 			}
 			nameIn.value = ss.get('lofOrderName'); place.value = ss.get('lofOrderPlace'); note.value = '';
 			err.hidden = true;
+			[nameIn, place].forEach(function (f) { f.removeAttribute('aria-invalid'); f.removeAttribute('aria-describedby'); });
+			setInert(true);
 			modal.hidden = false; document.body.classList.add('lof-order-open');
 			setTimeout(function () { (dRow.hidden ? (nameIn.value ? place : nameIn) : dSel).focus(); }, 60);
 		};
-		var closeOrder = function () { modal.hidden = true; document.body.classList.remove('lof-order-open'); if (lastBtn) { lastBtn.focus(); } };
+		var setInert = function (on) {
+			Array.prototype.forEach.call(document.body.children, function (el) {
+				if (el === modal || el.tagName === 'SCRIPT') { return; }
+				if (on) { if (!el.hasAttribute('inert')) { el.setAttribute('inert', ''); el.setAttribute('data-lof-inert', '1'); } } else if (el.getAttribute('data-lof-inert')) { el.removeAttribute('inert'); el.removeAttribute('data-lof-inert'); }
+			});
+		};
+		var closeOrder = function () { setInert(false); modal.hidden = true; document.body.classList.remove('lof-order-open'); if (lastBtn) { lastBtn.focus(); } };
 		modal.querySelectorAll('[data-lof-order-close]').forEach(function (el) { el.addEventListener('click', closeOrder); });
 		modal.querySelectorAll('.lof-order__qty button').forEach(function (b) {
 			b.addEventListener('click', function () { var v = (parseInt(qty.value, 10) || 1) + parseInt(b.getAttribute('data-step'), 10); qty.value = Math.max(1, Math.min(500, v)); });
@@ -124,6 +132,7 @@
 		mForm.addEventListener('submit', function (e) {
 			e.preventDefault();
 			var n = nameIn.value.trim(), p = place.value.trim();
+			[[nameIn, n], [place, p]].forEach(function (x) { if (!x[1]) { x[0].setAttribute('aria-invalid', 'true'); x[0].setAttribute('aria-describedby', 'lof-order-error'); } else { x[0].removeAttribute('aria-invalid'); x[0].removeAttribute('aria-describedby'); } });
 			if (!n || !p) { err.hidden = false; (n ? place : nameIn).focus(); return; }
 			ss.set('lofOrderName', n); ss.set('lofOrderPlace', p);
 			var lines = ['Hello Light of Future Foundation, I would like to order:', 'Product: ' + cur.name];
