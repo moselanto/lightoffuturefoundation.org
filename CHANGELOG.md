@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.50.1 - 2026-11-05
+- Leadership: role labels become a two-line slot (gold rule, no pill) so descriptions start level on every card; role text unchanged.
+- Phones: page-top photos show in full in a band above the title (no cropped faces), with the title on a solid dark panel.
+
 ## 0.50.0 - 2026-11-05
 - Impact figures sit in one row on desktop (3 per row on tablets, 2 on phones) as a single framed band with dividers, gold accents and even sizing, on every page that shows them.
 - Page heroes: a different photo from the November content on every page (needs light-of-future-media 1.0.4 to attach them); story and focus-area pages use their featured photo as the hero background.

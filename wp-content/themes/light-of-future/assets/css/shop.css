@@ -379,3 +379,17 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
 .lof-leaders--executive .lof-person--row .lof-person__info{padding:clamp(1.5rem,3vw,2.5rem)!important}
 .lof-leaders--executive .lof-person--row .lof-person__name{font-size:clamp(1.4rem,2.2vw,1.9rem)!important}
 @media (prefers-reduced-motion:reduce){.lof-leaders .lof-person,.lof-leaders .lof-person__photo img{transition:none}.lof-leaders .lof-person:hover{transform:none}.lof-leaders .lof-person:hover .lof-person__photo img{transform:none}}
+
+/* ================= 0.50.1 ================= */
+/* Leadership: role label is a clean two-line slot so every description starts level. */
+.lof-leaders .lof-person:not(.lof-person--row) .lof-person__role{display:block!important;align-self:stretch!important;background:none!important;border-left:3px solid var(--lof-gold);border-radius:0!important;padding:.05rem 0 .05rem .6rem!important;color:#6b420a!important;font-size:.72rem!important;line-height:1.4!important}
+@media (min-width:641px){.lof-leaders .lof-person:not(.lof-person--row) .lof-person__role{min-height:calc(2 * 1.4em + .1rem)}.lof-leaders .lof-person:not(.lof-person--row) .lof-person__name{min-height:1.25em}}
+/* Page heroes on phones: the whole photo sits in a band above the title, so no faces are cut off and the text sits on a solid dark panel. */
+@media (max-width:760px){
+ .lof-hero.lof-hero--page.has-bg{display:block!important;min-height:0!important;padding-top:0!important;background:#2A1B0C!important}
+ .lof-hero.lof-hero--page.has-bg .lof-hero__bg{position:relative!important;inset:auto!important;z-index:0!important;aspect-ratio:4/3;background:#1C1208;overflow:hidden}
+ .lof-hero.lof-hero--page.has-bg .lof-hero__bg::before{content:"";position:absolute;inset:-20px;background:inherit}
+ .lof-hero.lof-hero--page.has-bg .lof-hero__bg img.lof-hero__bg-img{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important}
+ .lof-hero.lof-hero--page.has-bg::before{display:none!important}
+ .lof-hero.lof-hero--page.has-bg .lof-hero__inner{padding-top:1.25rem}
+}
