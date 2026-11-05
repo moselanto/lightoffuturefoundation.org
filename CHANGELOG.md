@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.58.2 - 2026-11-05
+- Donate: the selected "Give once" / "Monthly" option reads cream on dark brown.
+- Gallery: video captions take a fixed two-line height so tiles end level; the WhatsApp teaser bubble is hidden on the Gallery.
+
 ## 0.58.1 - 2026-11-05
 - Donate: all text in the light giving section is dark and readable (it had inherited pale text from the old dark section); shorter amount tiles on phones.
 - Gallery: choosing a filter keeps the eight-photo start (Show all still expands); video captions clamp to two lines so tiles line up; the WhatsApp greeting no longer covers videos.

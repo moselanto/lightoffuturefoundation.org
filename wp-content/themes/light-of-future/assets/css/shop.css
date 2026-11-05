@@ -765,3 +765,9 @@ a[href^="mailto:"]{overflow-wrap:normal;word-break:keep-all}
 /* WhatsApp greeting bubble stays out of the content on the Gallery and on phones */
 .lof-page-gallery .lof-chat__greet,.lof-page-gallery .lof-chat__bubble{display:none!important}
 @media (max-width:640px){.lof-chat__greet,.lof-chat__bubble{display:none!important}}
+
+/* ---------- 0.58.2 ---------- */
+.lof-give--paystack .lofpay__seg input:checked+span,.lof-give--paystack .lofpay__seg input:checked+span *{background:#3F2913!important;color:#FCF6E1!important}
+.lof-give--paystack .lofpay__seg input:checked+span em{background:#F4AF16!important;color:#2B1D0E!important}
+.lof-page-gallery .lofm__video figcaption{height:3.4em;min-height:0}
+.lof-page-gallery .lof-chat__teaser{display:none!important}
