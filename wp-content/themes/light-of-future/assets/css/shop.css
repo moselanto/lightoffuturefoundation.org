@@ -733,3 +733,35 @@ html[data-theme="dark"] .lof-page-gallery .lofm-nav a{background:#1D1710;color:#
 .lofx__next{right:14px;top:50%;transform:translateY(-50%)}
 @media (max-width:640px){.lofx__prev,.lofx__next{top:auto;bottom:14px;transform:none}.lofx__img{max-height:calc(100vh - 190px)}}
 body.lofx-open{overflow:hidden}
+
+/* ---------- 0.58.1 review fixes ---------- */
+/* Donate: dark, readable text on the light giving section */
+.lof-give--paystack,.lof-give--paystack p,.lof-give--paystack li,.lof-give--paystack span,.lof-give--paystack label,.lof-give--paystack legend,.lof-give--paystack small{color:#2B1D0E!important;opacity:1!important}
+.lof-give--paystack .lof-pay2__lead{color:#4A3520!important}
+.lof-give--paystack .lof-eyebrow,.lof-give--paystack .lof-pay2__methods-k,.lof-give--paystack .lof-pay2__manage summary{color:#8A5208!important}
+.lof-give--paystack .lofpay__small,.lof-give--paystack .lofpay [class*="small"],.lof-give--paystack .lofpay__secure{color:#5b4a3a!important}
+.lof-give--paystack .lofpay__submit,.lof-give--paystack .lofpay__submit span{color:#2B1D0E!important}
+@media (max-width:640px){.lof-give--paystack .lofpay__tile,.lof-give--paystack [class*="lofpay__tile"]{min-height:0!important;padding-top:10px!important;padding-bottom:10px!important}}
+/* Phones: approach steps as compact full-width rows (2x2 wrapped too tightly) */
+@media (max-width:640px){
+.home .lof-steps{grid-template-columns:1fr!important;gap:10px!important}
+.home .lof-steps .lof-card--pillar{display:grid!important;grid-template-columns:auto 1fr;column-gap:14px;align-items:start;padding:14px 16px!important}
+.home .lof-steps .lof-card--pillar .lof-card__kicker{grid-row:span 2;margin:0!important}
+.home .lof-steps .lof-card--pillar .lof-card__title{margin:0 0 4px!important;font-size:1.02rem}
+.home .lof-steps .lof-card--pillar p{margin:0!important;font-size:.9rem;line-height:1.5}
+}
+/* Long email addresses never split mid-word on phones */
+a[href^="mailto:"]{overflow-wrap:normal;word-break:keep-all}
+@media (max-width:640px){a[href^="mailto:"]{font-size:.92em;white-space:nowrap}}
+/* Scrolling chip rows: no visible scrollbar, soft fade at the edge */
+.lof-progjump ul,.lofm-filter,.lof-jump ul{scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.lof-progjump ul::-webkit-scrollbar{display:none}
+/* People photos: keep faces in frame */
+.lof-card--story .lof-card__media img,.lof-feature--story img,.lof-card--story img{object-position:50% 22%!important}
+.lof-page-leadership .lof-hero__bg img.lof-hero__bg-img{object-position:50% 20%!important}
+.lof-page-stories .lof-hero__bg img.lof-hero__bg-img,.lof-page-impact .lof-hero__bg img.lof-hero__bg-img{object-position:50% 25%!important}
+/* Gallery: even video tiles (captions clamp to two lines) */
+.lof-page-gallery .lofm__video figcaption{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3.2em}
+/* WhatsApp greeting bubble stays out of the content on the Gallery and on phones */
+.lof-page-gallery .lof-chat__greet,.lof-page-gallery .lof-chat__bubble{display:none!important}
+@media (max-width:640px){.lof-chat__greet,.lof-chat__bubble{display:none!important}}

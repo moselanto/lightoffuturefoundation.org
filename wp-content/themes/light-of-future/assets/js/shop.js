@@ -315,7 +315,7 @@
 		var b = e.target.closest('button'); if (!b) { return; }
 		var tgt = b.getAttribute('data-target');
 		Array.prototype.forEach.call(bar.querySelectorAll('button'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-		secs.forEach(function (s) { s.classList.toggle('is-hidden', tgt !== 'all' && s.id !== tgt); if (tgt !== 'all' && s.id === tgt) { s.classList.add('is-expanded'); } });
+		secs.forEach(function (s) { s.classList.toggle('is-hidden', tgt !== 'all' && s.id !== tgt); });
 		var top = all.getBoundingClientRect().top + window.pageYOffset - 90; if (window.pageYOffset > top) { window.scrollTo(0, top); }
 	});
 	/* Show more: eight photos per section at first. */

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.58.1 - 2026-11-05
+- Donate: all text in the light giving section is dark and readable (it had inherited pale text from the old dark section); shorter amount tiles on phones.
+- Gallery: choosing a filter keeps the eight-photo start (Show all still expands); video captions clamp to two lines so tiles line up; the WhatsApp greeting no longer covers videos.
+- Phones: homepage approach steps become compact full-width rows; email addresses no longer split mid-address; scrolling chip rows have no visible scrollbar and fade at the edge; the WhatsApp greeting bubble is hidden.
+- Photos of people: story cards, the Leadership hero and the Stories/Impact heroes keep faces in frame.
+
 ## 0.58.0 - 2026-11-05
 - Donate: the Paystack form sits in a light two-column section. Left: "Make your gift today", four trust points, accepted methods (M-PESA, Visa, Mastercard) and a folded "Manage your monthly gift". Right: the gift form on a white card. Phones: form first. No dark slab or empty band.
 - Gallery: filter buttons with counts (All plus one per section) instead of the long link list; photo and video counts under each title; eight photos per section with "Show all N photos"; full-screen photo viewer with previous/next, keyboard and swipe; videos as even 4:5 tiles, three per row (two on tablets, one on phones).
