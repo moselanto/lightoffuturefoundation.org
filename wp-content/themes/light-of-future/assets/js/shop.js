@@ -349,3 +349,19 @@
 	var sx = null; box.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
 	box.addEventListener('touchend', function (e) { if (sx === null) { return; } var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) { show(idx + (dx < 0 ? 1 : -1)); } sx = null; });
 }());
+
+/* 0.59.0: Gallery video posters load only when near the screen */
+(function () {
+	var frames = document.querySelectorAll('[data-lof-poster]');
+	if (!frames.length) { return; }
+	function show(f) {
+		var p = f.getAttribute('data-lof-poster'); if (!p) { return; }
+		f.style.backgroundImage = 'url(' + p + ')';
+		var v = f.querySelector('video[data-poster]'); if (v) { v.setAttribute('poster', v.getAttribute('data-poster')); v.removeAttribute('data-poster'); }
+		f.removeAttribute('data-lof-poster');
+	}
+	if (!('IntersectionObserver' in window)) { frames.forEach(show); return; }
+	var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } }); }, { rootMargin: '400px 0px' });
+	frames.forEach(function (f) { io.observe(f); });
+	document.addEventListener('click', function () { setTimeout(function () { document.querySelectorAll('[data-lof-poster]').forEach(function (f) { if (f.offsetParent) { show(f); } }); }, 50); });
+})();

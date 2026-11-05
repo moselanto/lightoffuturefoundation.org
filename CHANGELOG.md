@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.59.0 - 2026-11-05
+- Search engines: the live site can no longer be hidden by the "Discourage search engines" setting (filter `lof_force_indexable`).
+- Leadership: the top photo is the sanitary pads group photo.
+- Speed: WooCommerce styles load only on shop, product, cart, checkout and account pages; block styles only on blog posts; small stylesheets are printed inline; main, sections and shop styles are minified; the page-hero photo is preloaded.
+- Images: Gallery thumbnails (400px) and video posters (small WebP, loaded near the screen), Shop artwork (320px copies) and the founder photo (420px) are served at the size shown; product photos ask for the size shown.
+
 ## 0.58.3 - 2026-11-05
 - Stories (phones): the featured story shows the photo on top and the label, title and button below it, so nothing sits on the photo.
 - WhatsApp button (phones): smaller, tucked into the corner, and stays out of the way while scrolling and for 1.6 seconds after.
