@@ -514,3 +514,16 @@ html[data-theme="dark"] .single-product .woocommerce-tabs ul.tabs li.active{back
 html[data-theme="dark"] .single-product .woocommerce-tabs ul.tabs li.active a{color:#2B1D0E!important}
 @media (max-width:860px){.single-product div.product{grid-template-columns:1fr}.single-product .woocommerce-product-gallery{position:static}.single-product .woocommerce-product-gallery .flex-control-thumbs{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:560px){.single-product .lof-shop-main .woocommerce-breadcrumb{border-radius:14px}.single-product div.product .summary{border-radius:20px;padding:20px 18px}.single-product .woocommerce-product-gallery__wrapper{border-radius:18px}.single-product .woocommerce-tabs ul.tabs{flex-wrap:wrap}}
+
+/* 0.52.1: phone product layout - stacked blocks, gallery sized by its own content (no overlap with the title) */
+.single-product .woocommerce-product-gallery__wrapper::after{content:"";display:table;clear:both}
+@media (max-width:860px){
+.single-product div.product{display:block!important}
+.single-product div.product>.woocommerce-product-gallery{position:relative!important;top:auto!important;width:100%!important;height:auto!important;margin:0 0 22px!important;float:none!important;display:block!important}
+.single-product .woocommerce-product-gallery .flex-viewport{height:auto!important}
+.single-product .woocommerce-product-gallery .flex-control-thumbs{position:static!important;transform:none!important;clear:both;margin:12px 0 0!important}
+.single-product div.product>.summary{position:relative;clear:both;width:100%!important;float:none!important;margin:0!important}
+.single-product div.product>.woocommerce-tabs,.single-product div.product>.lof-shopsteps,.single-product div.product>.related{clear:both}
+.single-product .lof-shop-main{padding-top:14px}
+.single-product .lof-shop-main .woocommerce-breadcrumb{margin:0 0 14px!important}
+}

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.52.1 - 2026-11-05
+- Phones: product pages stack the gallery, thumbnails and summary as plain blocks with the gallery sized by its own content, so thumbnails no longer overlap the title and the blank space above the gallery is gone.
+- Product tabs: the "Additional information" tab is removed (About this piece and Reviews remain).
+
 ## 0.52.0 - 2026-11-05
 - Phone bottom bar: Home, Focus areas, Donate (raised, centre), Shop, Menu. Shop opens /shop/ and is highlighted on shop, product and category pages; Stories stays in the Menu under Impact.
 - Product pages match the shop: two-column layout with a sticky photo gallery and thumbnail strip, summary card with category eyebrow, larger price without decimals (KSh 7,500), design chips, full-width Order on WhatsApp button, three trust points; "How ordering works" steps; pill tabs ("About this piece"); "You may also like" related products. SKU line and the hidden cart form removed while ordering is on WhatsApp.

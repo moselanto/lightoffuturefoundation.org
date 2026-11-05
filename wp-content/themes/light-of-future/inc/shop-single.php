@@ -124,6 +124,7 @@ add_action( 'woocommerce_after_single_product_summary', 'lof_single_steps', 12 )
  * @return array
  */
 function lof_single_tabs( $tabs ) {
+	unset( $tabs['additional_information'] );
 	if ( isset( $tabs['description'] ) ) {
 		$tabs['description']['title'] = __( 'About this piece', 'light-of-future' );
 	}
