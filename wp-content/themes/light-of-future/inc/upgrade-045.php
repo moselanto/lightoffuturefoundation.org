@@ -113,3 +113,56 @@ function lof_upgrade_home_flow() {
 	}
 }
 add_action( 'admin_init', 'lof_upgrade_home_flow', 31 );
+
+/**
+ * 0.47.0: four-slide home slider (adds "Shop with purpose"). Replaces only the
+ * slides of the slider widget Light of Future created; backs up the layout.
+ */
+function lof_upgrade_home_slider_four() {
+	if ( (int) get_option( 'lof_hero_rev', 0 ) >= 4 || ! current_user_can( 'manage_options' ) || ! function_exists( 'lof_home_slider_settings' ) ) {
+		return;
+	}
+	$ids = get_option( 'lof_shop_image_ids', array() );
+	if ( ! is_array( $ids ) || ( empty( $ids['bags-collection'] ) && empty( $ids['bag-tan-satchel'] ) ) ) {
+		return;
+	}
+	$page = get_page_by_path( 'home', OBJECT, 'page' );
+	if ( ! $page ) {
+		$front = (int) get_option( 'page_on_front' );
+		$page  = $front ? get_post( $front ) : null;
+	}
+	if ( ! $page ) {
+		return;
+	}
+	$raw  = get_post_meta( $page->ID, '_elementor_data', true );
+	$data = is_string( $raw ) ? json_decode( $raw, true ) : $raw;
+	if ( ! is_array( $data ) ) {
+		return;
+	}
+	$new     = lof_home_slider_settings();
+	$changed = false;
+	foreach ( $data as &$sec ) {
+		if ( isset( $sec['elements'][0]['elements'][0]['widgetType'] ) && 'lof-slider' === $sec['elements'][0]['elements'][0]['widgetType'] ) {
+			$sec['elements'][0]['elements'][0]['settings']['slides'] = $new['slides'];
+			$changed = true;
+			break;
+		}
+	}
+	unset( $sec );
+	update_option( 'lof_hero_rev', 4, false );
+	if ( ! $changed ) {
+		return;
+	}
+	update_post_meta( $page->ID, '_lof_layout_backup', wp_slash( is_string( $raw ) ? $raw : wp_json_encode( $raw ) ) );
+	update_post_meta( $page->ID, '_lof_layout_backup_date', current_time( 'mysql' ) );
+	update_post_meta( $page->ID, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	delete_post_meta( $page->ID, '_elementor_css' );
+	delete_post_meta( $page->ID, '_elementor_element_cache' );
+	if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	if ( has_action( 'litespeed_purge_all' ) ) {
+		do_action( 'litespeed_purge_all' );
+	}
+}
+add_action( 'admin_init', 'lof_upgrade_home_slider_four', 32 );

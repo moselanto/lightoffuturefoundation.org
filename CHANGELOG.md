@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.47.0 - 2026-11-05
+- Home slider: four slides (adds "Shop with purpose" with the bags photo, linking to the shop), applied once in wp-admin (option lof_hero_rev 4, layout backed up). New look: glass tab dock with photo thumbnails and progress bars, glass controls, gold accent rule beside the text, refined title size and shading; tab dock on tablets; slim progress bars on phones.
+
 ## 0.46.6 - 2026-11-05
 - Screen readers: Details / View details links include the product name; order form announced as "Order on WhatsApp, <product>"; quantity buttons named Decrease/Increase quantity; empty required fields get aria-invalid and point to the error message; the rest of the page is inert while the order form is open.
 

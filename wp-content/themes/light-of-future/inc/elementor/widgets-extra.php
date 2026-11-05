@@ -378,7 +378,8 @@ class LOF_Widget_Slider extends LOF_Widget_Base {
 			echo '<div class="lof-cine__tabs">';
 			foreach ( $slides as $i => $sl ) {
 				$label = ! empty( $sl['tab'] ) ? $sl['tab'] : wp_trim_words( $sl['title'], 4, '' );
-				printf( '<button type="button" class="lof-cine__tab%1$s" data-go="%2$d"%3$s><span class="lof-cine__bar"><span></span></span><span class="lof-cine__tab-n">%4$02d</span><span class="lof-cine__tab-l">%5$s</span></button>', 0 === $i ? ' is-active' : '', (int) $i, 0 === $i ? ' aria-current="true"' : '', (int) $i + 1, esc_html( $label ) );
+				$thumb = ( ! empty( $sl['image']['id'] ) ) ? wp_get_attachment_image_url( (int) $sl['image']['id'], 'thumbnail' ) : '';
+				printf( '<button type="button" class="lof-cine__tab%1$s" data-go="%2$d"%3$s><span class="lof-cine__bar"><span></span></span>%6$s<span class="lof-cine__tab-n">%4$02d</span><span class="lof-cine__tab-l">%5$s</span></button>', 0 === $i ? ' is-active' : '', (int) $i, 0 === $i ? ' aria-current="true"' : '', (int) $i + 1, esc_html( $label ), $thumb ? '<span class="lof-cine__thumb" aria-hidden="true"><img src="' . esc_url( $thumb ) . '" alt="" width="44" height="44" loading="lazy" decoding="async"></span>' : '' );
 			}
 			echo '</div><div class="lof-cine__ctrl">';
 			printf( '<span class="lof-cine__count" aria-live="polite"><strong>01</strong> / %02d</span>', (int) $total );

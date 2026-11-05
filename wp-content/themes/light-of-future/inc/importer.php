@@ -1180,6 +1180,24 @@ function lof_upgrade_home_hero() {
 add_action( 'init', 'lof_upgrade_home_hero', 20 );
 
 /**
+ * Media value for the shop slide (bags photo imported by the shop setup).
+ *
+ * @return array
+ */
+function lof_shop_slide_image() {
+	$ids = get_option( 'lof_shop_image_ids', array() );
+	$id  = is_array( $ids ) && ! empty( $ids['bags-collection'] ) ? (int) $ids['bags-collection'] : 0;
+	if ( ! $id && is_array( $ids ) && ! empty( $ids['bag-tan-satchel'] ) ) {
+		$id = (int) $ids['bag-tan-satchel'];
+	}
+	if ( ! $id || 'attachment' !== get_post_type( $id ) ) {
+		return array();
+	}
+	return array( 'id' => $id, 'url' => (string) wp_get_attachment_url( $id ) );
+}
+
+/**
+ * Home slider settings.
  * Home slider: the foundation's own photos and confirmed copy only.
  *
  * @return array
@@ -1232,6 +1250,20 @@ function lof_home_slider_settings() {
 				'btn1_label' => __( 'Read Precious\'s story', 'light-of-future' ),
 				'btn1_url'   => $story( 'precious', '/stories/' ),
 				'btn2_label' => __( 'Support education', 'light-of-future' ),
+				'btn2_url'   => lof_link( '/donate/' ),
+			),
+			array(
+				'_id'        => 'sl4',
+				'image'      => lof_shop_slide_image(),
+				'focus'      => 'center',
+				'tab'        => __( 'Shop with purpose', 'light-of-future' ),
+				'eyebrow'    => __( 'Handmade in Kenya · Crafts shop', 'light-of-future' ),
+				'title'      => __( 'Handmade in Kenya, made to give back.', 'light-of-future' ),
+				'highlight'  => __( 'made to give back', 'light-of-future' ),
+				'text'       => __( 'Beaded jewellery, leather bags and sandals made by hand. Each purchase supports community makers and our work with families in need.', 'light-of-future' ),
+				'btn1_label' => __( 'Visit the shop', 'light-of-future' ),
+				'btn1_url'   => lof_link( '/shop/' ),
+				'btn2_label' => __( 'Support the Future', 'light-of-future' ),
 				'btn2_url'   => lof_link( '/donate/' ),
 			),
 		),

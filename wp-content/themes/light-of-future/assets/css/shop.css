@@ -244,3 +244,40 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
  .lof-chat.is-tucked .lof-chat__fab{transform:translateY(160%);opacity:0;visibility:hidden;pointer-events:none}
 }
 @media (prefers-reduced-motion:reduce){.lof-chat__fab{transition:none}}
+
+/* ================= 0.47.0 home slider polish ================= */
+.lof-cine__shade{background:linear-gradient(90deg,rgba(24,15,6,.94) 0%,rgba(24,15,6,.78) 34%,rgba(24,15,6,.28) 64%,rgba(24,15,6,.08) 100%),linear-gradient(0deg,rgba(24,15,6,.92) 0%,rgba(24,15,6,0) 42%)}
+.lof-cine__content{position:relative;padding-left:clamp(0rem,1.6vw,1.4rem)}
+.lof-cine__content::before{content:"";position:absolute;left:0;top:.35rem;bottom:.35rem;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--lof-gold),rgba(244,175,22,0))}
+.lof-cine__title{font-size:clamp(2.2rem,min(4.2vw,6.8vh),4.2rem);letter-spacing:-.02em}
+.lof-cine__text{color:rgba(255,250,238,.92)}
+.lof-cine .lof-btn-row{gap:.75rem}
+/* Tab dock with thumbnails and progress. */
+.lof-cine__tabs{max-width:880px;gap:.6rem;padding:.6rem;border-radius:18px;background:rgba(24,15,6,.5);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lof-cine__tab{grid-template-columns:auto auto minmax(0,1fr)!important;align-items:center;column-gap:.6rem!important;row-gap:.55rem!important;padding:.5rem .55rem .55rem!important;border-radius:12px;transition:background .25s,color .25s}
+.lof-cine__tab:hover{background:rgba(255,255,255,.06)!important}
+.lof-cine__tab.is-active{background:rgba(255,255,255,.1)!important}
+.lof-cine__bar{grid-column:1/-1;order:-1}
+.lof-cine__thumb{display:block;width:44px;height:44px;border-radius:10px;overflow:hidden;flex:none;box-shadow:0 0 0 2px rgba(255,255,255,.18);transition:box-shadow .25s}
+.lof-cine__thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.lof-cine__tab.is-active .lof-cine__thumb{box-shadow:0 0 0 2px var(--lof-gold)}
+.lof-cine__tab-n{font-size:.8rem;opacity:.9}
+.lof-cine__tab-l{font-size:.86rem;line-height:1.25;white-space:normal!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.lof-cine__ctrl{padding:.45rem;border-radius:999px;background:rgba(24,15,6,.5);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lof-cine__count{margin:0 .4rem 0 .6rem}
+/* Tablets: show the tab dock without thumbnails. */
+@media (min-width:768px) and (max-width:991px){
+ .lof-cine__tabs{display:grid!important;max-width:none}
+ .lof-cine__thumb{display:none}
+ .lof-cine__tab{grid-template-columns:auto minmax(0,1fr)!important}
+ .lof-cine__ui-inner{flex-direction:column;align-items:stretch;gap:.75rem}
+ .lof-cine__ctrl{align-self:flex-end}
+}
+/* Phones: four slim progress bars instead of the tab dock. */
+@media (max-width:767px){
+ .lof-cine__tabs{display:grid!important;position:absolute;left:1rem;right:1rem;bottom:1rem;max-width:none;padding:0;gap:.4rem;background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+ .lof-cine__tab{display:block!important;padding:.6rem 0!important;background:none!important;min-height:24px}
+ .lof-cine__tab .lof-cine__thumb,.lof-cine__tab .lof-cine__tab-n,.lof-cine__tab .lof-cine__tab-l{display:none}
+ .lof-cine__tab .lof-cine__bar{height:4px}
+ .lof-cine__ctrl{background:none;border:0;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+}
