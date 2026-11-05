@@ -169,3 +169,35 @@
 		}
 	});
 }());
+
+/* 0.50.2 Leadership: in each row of cards, give the name/board/role block the
+   same height so every description starts level (no text is shortened). */
+(function () {
+	'use strict';
+	var lists = document.querySelectorAll('.lof-leaders--board, .lof-leaders--team');
+	if (!lists.length) { return; }
+	var level = function () {
+		lists.forEach(function (sec) {
+			var cards = [].slice.call(sec.querySelectorAll('.lof-person'));
+			cards.forEach(function (c) { var r = c.querySelector('.lof-person__role'); if (r) { r.style.minHeight = ''; } });
+			if (window.innerWidth < 641) { return; }
+			var rows = {};
+			cards.forEach(function (c) { var k = Math.round(c.getBoundingClientRect().top + window.scrollY); (rows[k] = rows[k] || []).push(c); });
+			Object.keys(rows).forEach(function (k) {
+				var row = rows[k];
+				if (row.length < 2) { return; }
+				var top = function (c) { var b = c.querySelector('.lof-person__bio'); return b ? b.getBoundingClientRect().top : 0; };
+				var max = Math.max.apply(null, row.map(top));
+				row.forEach(function (c) {
+					var r = c.querySelector('.lof-person__role');
+					if (r) { r.style.minHeight = (r.getBoundingClientRect().height + (max - top(c))) + 'px'; }
+				});
+			});
+		});
+	};
+	var t;
+	var run = function () { clearTimeout(t); t = setTimeout(level, 120); };
+	if (document.readyState === 'complete') { level(); } else { window.addEventListener('load', level); }
+	window.addEventListener('resize', run);
+	if (document.fonts && document.fonts.ready) { document.fonts.ready.then(level); }
+}());

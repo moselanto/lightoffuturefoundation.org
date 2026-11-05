@@ -189,3 +189,4 @@
 - 2026-11-05: 0.49.0 compact chat button that steps aside while scrolling.
 - 2026-11-05: 0.50.0 one-row impact figures, per-page hero photos, leadership cards.
 - 2026-11-05: 0.50.1 leadership role slot, full hero photos on phones.
+- 2026-11-05: 0.50.2 leadership row alignment.

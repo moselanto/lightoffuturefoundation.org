@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.50.2 - 2026-11-05
+- Leadership: descriptions start level in every row of board and programme-lead cards (role block heights matched per row on tablets and desktop; role text unchanged). 0.50.1's fixed two-line slot missed the board cards and three-line roles.
+
 ## 0.50.1 - 2026-11-05
 - Leadership: role labels become a two-line slot (gold rule, no pill) so descriptions start level on every card; role text unchanged.
 - Phones: page-top photos show in full in a band above the title (no cropped faces), with the title on a solid dark panel.
