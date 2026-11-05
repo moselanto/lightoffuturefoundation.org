@@ -287,3 +287,65 @@
 	window.addEventListener('resize', check);
 	check();
 }());
+
+/* 0.58.0 Gallery: filters, show more, lightbox */
+(function () {
+	'use strict';
+	var all = document.querySelector('.lof-page-gallery .lofm-all');
+	if (!all) { return; }
+	var secs = Array.prototype.slice.call(all.querySelectorAll('section.lofm'));
+	if (!secs.length) { return; }
+	/* Filters replace the long section links. */
+	var nav = all.querySelector('.lofm-nav');
+	var bar = document.createElement('div'); bar.className = 'lofm-filter'; bar.setAttribute('role', 'toolbar'); bar.setAttribute('aria-label', 'Filter the gallery');
+	var count = function (s) { return s.querySelectorAll('.lofm__item').length + s.querySelectorAll('.lofm__video').length; };
+	var mk = function (label, n, target) {
+		var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-pressed', target === 'all' ? 'true' : 'false'); b.setAttribute('data-target', target);
+		b.appendChild(document.createTextNode(label)); var c = document.createElement('span'); c.className = 'lofm-filter__n'; c.textContent = n; b.appendChild(c); return b;
+	};
+	var total = 0; secs.forEach(function (s) { total += count(s); });
+	bar.appendChild(mk('All', total, 'all'));
+	secs.forEach(function (s) {
+		var t = s.querySelector('.lofm__title'); var label = t ? t.textContent.split(':')[0].replace(/ and school materials| for girls| for boys and girls| in Ugenya|Community enterprise/g, function (m) { return m === 'Community enterprise' ? 'Enterprise' : ''; }).trim() : s.id;
+		bar.appendChild(mk(label, count(s), s.id));
+		if (t && !s.querySelector('.lofm__meta')) { var meta = document.createElement('p'); meta.className = 'lofm__meta'; var p = s.querySelectorAll('.lofm__item').length, v = s.querySelectorAll('.lofm__video').length; meta.textContent = [p ? p + (p === 1 ? ' photo' : ' photos') : '', v ? v + (v === 1 ? ' video' : ' videos') : ''].filter(Boolean).join(' \u00b7 '); t.parentNode.insertBefore(meta, t.nextSibling); }
+	});
+	if (nav) { var ul = nav.querySelector('ul'); if (ul) { nav.replaceChild(bar, ul); } else { nav.appendChild(bar); } } else { all.insertBefore(bar, all.firstChild); }
+	bar.addEventListener('click', function (e) {
+		var b = e.target.closest('button'); if (!b) { return; }
+		var tgt = b.getAttribute('data-target');
+		Array.prototype.forEach.call(bar.querySelectorAll('button'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+		secs.forEach(function (s) { s.classList.toggle('is-hidden', tgt !== 'all' && s.id !== tgt); if (tgt !== 'all' && s.id === tgt) { s.classList.add('is-expanded'); } });
+		var top = all.getBoundingClientRect().top + window.pageYOffset - 90; if (window.pageYOffset > top) { window.scrollTo(0, top); }
+	});
+	/* Show more: eight photos per section at first. */
+	secs.forEach(function (s) {
+		var items = s.querySelectorAll('.lofm__item'); if (items.length <= 8) { return; }
+		Array.prototype.forEach.call(items, function (it, i) { if (i >= 8) { it.classList.add('is-more'); } });
+		var more = document.createElement('button'); more.type = 'button'; more.className = 'lofm__more'; more.textContent = 'Show all ' + items.length + ' photos';
+		more.addEventListener('click', function () { var open = s.classList.toggle('is-expanded'); more.textContent = open ? 'Show fewer' : 'Show all ' + items.length + ' photos'; });
+		var grid = s.querySelector('.lofm__grid'); grid.parentNode.insertBefore(more, grid.nextSibling);
+	});
+	/* Lightbox for photos. */
+	var box = document.createElement('div'); box.className = 'lofx'; box.hidden = true; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', 'Photo viewer');
+	box.innerHTML = '<span class="lofx__count" aria-live="polite"></span><button type="button" class="lofx__close" aria-label="Close">\u00d7</button><button type="button" class="lofx__prev" aria-label="Previous photo">\u2039</button><img class="lofx__img" alt=""><p class="lofx__cap"></p><button type="button" class="lofx__next" aria-label="Next photo">\u203a</button>';
+	document.body.appendChild(box);
+	var img = box.querySelector('.lofx__img'), cap = box.querySelector('.lofx__cap'), cnt = box.querySelector('.lofx__count');
+	var list = [], idx = 0, last = null;
+	var usable = function (a) { var s = a.closest('.lofm__sens'); var sec = a.closest('section.lofm'); return (!s || s.classList.contains('is-open')) && sec && !sec.classList.contains('is-hidden') && a.offsetParent !== null; };
+	var show = function (i) { idx = (i + list.length) % list.length; var a = list[idx]; img.src = a.href; var im = a.querySelector('img'); img.alt = im ? im.alt : ''; var fc = a.closest('figure') && a.closest('figure').querySelector('figcaption'); cap.textContent = fc ? fc.textContent : (im ? im.alt : ''); cnt.textContent = (idx + 1) + ' / ' + list.length; };
+	var close = function () { box.hidden = true; document.body.classList.remove('lofx-open'); img.removeAttribute('src'); if (last) { last.focus(); } };
+	all.addEventListener('click', function (e) {
+		var a = e.target.closest('a.lofm__link'); if (!a || !usable(a)) { return; }
+		e.preventDefault(); last = a;
+		list = Array.prototype.filter.call(all.querySelectorAll('a.lofm__link'), usable);
+		box.hidden = false; document.body.classList.add('lofx-open'); show(list.indexOf(a)); box.querySelector('.lofx__close').focus();
+	});
+	box.querySelector('.lofx__close').addEventListener('click', close);
+	box.querySelector('.lofx__prev').addEventListener('click', function () { show(idx - 1); });
+	box.querySelector('.lofx__next').addEventListener('click', function () { show(idx + 1); });
+	box.addEventListener('click', function (e) { if (e.target === box) { close(); } });
+	document.addEventListener('keydown', function (e) { if (box.hidden) { return; } if (e.key === 'Escape') { close(); } else if (e.key === 'ArrowLeft') { show(idx - 1); } else if (e.key === 'ArrowRight') { show(idx + 1); } else if (e.key === 'Tab') { var f = box.querySelectorAll('button'); var first = f[0], lastB = f[f.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastB.focus(); } else if (!e.shiftKey && document.activeElement === lastB) { e.preventDefault(); first.focus(); } } });
+	var sx = null; box.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+	box.addEventListener('touchend', function (e) { if (sx === null) { return; } var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) { show(idx + (dx < 0 ? 1 : -1)); } sx = null; });
+}());

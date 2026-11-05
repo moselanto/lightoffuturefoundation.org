@@ -53,10 +53,29 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 		$target = ! empty( $s['target']['url'] ) ? $s['target']['url'] : lof_donate_url();
 		if ( function_exists( 'lof_pay_enabled' ) && lof_pay_enabled() && is_page( 'donate' ) ) {
 			$this->open_section( $s, 'lof-give lof-give--paystack' );
-			echo '<div class="lof-give__paystack">';
-			echo do_shortcode( '[lof_donate_form]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the shortcode.
+			$tick = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>';
+			echo '<div class="lof-pay2">';
+			echo '<div class="lof-pay2__info">';
+			printf( '<p class="lof-eyebrow">%s</p>', esc_html__( 'Give online', 'light-of-future' ) );
+			printf( '<h2 class="lof-pay2__title">%s</h2>', esc_html__( 'Make your gift today', 'light-of-future' ) );
+			printf( '<p class="lof-pay2__lead">%s</p>', esc_html__( 'Choose an amount, once or monthly. Your gift goes to school support, safe homes, food, health care and clean water for families who need it most.', 'light-of-future' ) );
+			echo '<ul class="lof-pay2__trust">';
+			foreach ( array(
+				__( 'Secure checkout by Paystack. Card details never touch our website.', 'light-of-future' ),
+				__( 'Registered with the NGO Board of Kenya on 23 May 2025.', 'light-of-future' ),
+				__( 'An email receipt for every gift.', 'light-of-future' ),
+				__( 'Change or cancel a monthly gift at any time.', 'light-of-future' ),
+			) as $t ) {
+				printf( '<li><span class="lof-pay2__tick">%1$s</span>%2$s</li>', $tick, esc_html( $t ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
+			}
+			echo '</ul>';
+			printf( '<p class="lof-pay2__methods-k">%s</p><ul class="lof-pay2__methods"><li>M-PESA</li><li>Visa</li><li>Mastercard</li></ul>', esc_html__( 'Pay with', 'light-of-future' ) );
+			printf( '<details class="lof-pay2__manage"><summary>%s</summary>', esc_html__( 'Already give monthly? Manage your gift', 'light-of-future' ) );
 			echo do_shortcode( '[lof_manage_giving]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the shortcode.
-			echo '</div>';
+			echo '</details>';
+			echo '</div><div class="lof-pay2__form">';
+			echo do_shortcode( '[lof_donate_form]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the shortcode.
+			echo '</div></div>';
 			$this->close_section();
 			return;
 		}

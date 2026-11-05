@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.58.0 - 2026-11-05
+- Donate: the Paystack form sits in a light two-column section. Left: "Make your gift today", four trust points, accepted methods (M-PESA, Visa, Mastercard) and a folded "Manage your monthly gift". Right: the gift form on a white card. Phones: form first. No dark slab or empty band.
+- Gallery: filter buttons with counts (All plus one per section) instead of the long link list; photo and video counts under each title; eight photos per section with "Show all N photos"; full-screen photo viewer with previous/next, keyboard and swipe; videos as even 4:5 tiles, three per row (two on tablets, one on phones).
+
 ## 0.57.0 - 2026-11-05 (Core 0.45.1)
 - Gallery: editorial layout. Pill section links, gold-ruled section titles, 4/3/2-column square grid with a large lead photo per section, captions on a soft gradient over the photo, hover zoom, two-up video cards (one per row on phones).
 - Phones: page-top photos (Stories, Leadership and every other page hero) fill the full width of the band instead of a narrow photo between dark bars, with a soft fade into the title panel.
