@@ -121,6 +121,26 @@ function lof_page_hero_side_photo() {
 		'donate'             => 'story-elijah-new-home',
 	);
 	$map = apply_filters( 'lof_page_hero_side_photos', $map );
+	// 0.50.0: a different photo from the November content for each page.
+	$fresh = array(
+		'about-us'           => 'eunice-after',
+		'leadership'         => 'edu-books-team',
+		'faq'                => 'philister-portrait',
+		'programmes'         => 'pads-community',
+		'talent-development' => 'ment-girls',
+		'stories'            => 'eunice-quilt',
+		'impact'             => 'edu-books',
+		'get-involved'       => 'elijah-builders',
+		'contact'            => 'margaret-food',
+		'donate'             => 'philister-finished',
+		'gallery'            => 'food-family',
+		'privacy-policy'     => 'water-boy',
+		'terms'              => 'goats-wide',
+	);
+	$att = get_option( 'lofm_attach_ids', array() );
+	if ( isset( $fresh[ $post->post_name ] ) && is_array( $att ) && ! empty( $att[ $fresh[ $post->post_name ] ] ) && 'attachment' === get_post_type( (int) $att[ $fresh[ $post->post_name ] ] ) ) {
+		return (int) $att[ $fresh[ $post->post_name ] ];
+	}
 	if ( empty( $map[ $post->post_name ] ) ) {
 		return 0;
 	}

@@ -341,3 +341,24 @@ function lofm_content_upgrade_2() {
 	update_option( 'lofm_content_report', $report, false );
 }
 add_action( 'admin_init', 'lofm_content_upgrade_2', 41 );
+
+/**
+ * Rev 3: attach the page-hero photos to the Media Library (used by the theme's
+ * page heroes, 0.50.0).
+ */
+function lofm_content_upgrade_3() {
+	if ( (int) get_option( 'lofm_content_rev', 0 ) !== 2 || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	update_option( 'lofm_content_rev', 3, false );
+	$n = 0;
+	foreach ( array( 'eunice-after', 'edu-books-team', 'philister-portrait', 'pads-community', 'ment-girls', 'eunice-quilt', 'edu-books', 'elijah-builders', 'margaret-food', 'philister-finished', 'food-family', 'water-boy', 'goats-wide' ) as $slug ) {
+		if ( lofm_attach( $slug, __( 'Light of Future Foundation at work in the community', 'light-of-future' ) ) ) {
+			++$n;
+		}
+	}
+	$report   = (array) get_option( 'lofm_content_report', array() );
+	$report[] = 'hero-photos:' . $n;
+	update_option( 'lofm_content_report', $report, false );
+}
+add_action( 'admin_init', 'lofm_content_upgrade_3', 42 );

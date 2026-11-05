@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Light of Future Media
  * Description: Stories, photo galleries, video clips and impact figures from the November 2026 content intake. Adds [lof_media group="..."] and [lof_media_all], updates stories and focus areas once in wp-admin.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Light of Future Foundation
  * Text Domain: light-of-future
  *
@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOFM_VERSION', '1.0.3' );
+define( 'LOFM_VERSION', '1.0.4' );
 
 /**
  * Media groups: title, photos (slug => caption; prefix "!" marks a sensitive image), videos (slug => caption).

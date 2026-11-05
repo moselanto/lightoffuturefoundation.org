@@ -336,3 +336,46 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
 .lof-chat__fab{transition:transform .3s ease,opacity .3s ease,visibility .3s}
 .lof-chat.is-scrolling .lof-chat__fab{transform:translateX(140%);opacity:0;visibility:hidden;pointer-events:none}
 @media (prefers-reduced-motion:reduce){.lof-chat.is-scrolling .lof-chat__fab{transform:none}}
+
+/* ================= 0.50.0 ================= */
+/* Impact figures: one row on desktop, refined tiles (home, About, Impact, any page). */
+@media (min-width:1100px){
+ .lof-impact .lof-impact__grid{grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0!important;border:1px solid rgba(252,246,225,.16);border-radius:22px;overflow:hidden;background:rgba(252,246,225,.04)}
+ .lof-impact .lof-impact__item{border:0!important;border-left:1px solid rgba(252,246,225,.14)!important;border-radius:0!important;background:none!important;padding:1.75rem 1rem 1.6rem!important;text-align:center;justify-content:flex-start}
+ .lof-impact .lof-impact__item:first-child{border-left:0!important}
+ .lof-tone-cream .lof-impact__grid,.lof-tone-white .lof-impact__grid,.lof-tone-sand .lof-impact__grid{border-color:var(--lof-line);background:#fff}
+ .lof-tone-cream .lof-impact__item,.lof-tone-white .lof-impact__item,.lof-tone-sand .lof-impact__item{border-left-color:var(--lof-line)!important}
+}
+@media (min-width:641px) and (max-width:1099px){.lof-impact .lof-impact__grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media (max-width:640px){.lof-impact .lof-impact__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.6rem!important}}
+.lof-impact .lof-impact__item{display:flex;flex-direction:column-reverse;align-items:center;gap:.45rem;transition:background .25s}
+.lof-impact .lof-impact__item:hover{background:rgba(244,175,22,.08)!important}
+.lof-impact .lof-impact__value{font-size:clamp(1.9rem,2.6vw,2.6rem)!important;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.lof-impact .lof-impact__label{font-size:.7rem!important;letter-spacing:.09em;line-height:1.45;max-width:16ch;margin-inline:auto;text-transform:uppercase}
+.lof-impact .lof-impact__item::after{content:"";display:block;width:28px;height:3px;border-radius:3px;background:var(--lof-gold);order:-1;margin-top:.35rem;opacity:.9}
+
+/* Page heroes with a photo: stronger shading so text stays readable on any picture. */
+.lof-hero.lof-hero--page.has-bg{min-height:clamp(300px,34vw,440px)}
+.lof-hero.lof-hero--page.has-bg .lof-hero__bg img.lof-hero__bg-img{object-position:center 40%}
+.lof-single .lof-hero.lof-hero--page.has-bg .lof-hero__title,.lof-single .lof-hero.lof-hero--page.has-bg .lof-hero__eyebrow{color:#FFFDF6!important}
+.lof-single .lof-hero.lof-hero--page.has-bg .lof-hero__text{color:rgba(252,246,225,.92)!important}
+.lof-single .lof-hero.lof-hero--page.has-bg .lof-hero__art{display:none}
+
+/* Leadership: cleaner portrait cards. */
+.lof-leaders .lof-person:not(.lof-person--row){display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid rgba(92,61,30,.1);border-radius:20px;overflow:hidden;box-shadow:0 14px 34px -26px rgba(92,61,30,.55);transition:transform .25s,box-shadow .25s}
+.lof-leaders .lof-person:not(.lof-person--row):hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(92,61,30,.6)}
+.lof-leaders .lof-person__photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:linear-gradient(160deg,#f6ead0,#e9d6b0)}
+.lof-leaders .lof-person__photo img{width:100%;height:100%;object-fit:cover;object-position:center 18%;transition:transform .5s}
+.lof-leaders .lof-person:hover .lof-person__photo img{transform:scale(1.04)}
+.lof-leaders .lof-person__photo::after{content:"";position:absolute;inset:auto 0 0 0;height:32%;background:linear-gradient(0deg,rgba(28,18,8,.35),rgba(28,18,8,0));pointer-events:none}
+.lof-leaders .lof-person:not(.lof-person--row) .lof-person__info{padding:1.1rem 1.15rem 1.3rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+.lof-leaders .lof-person__name{font-size:1.08rem!important;line-height:1.25;margin:0!important;color:var(--lof-heading)}
+.lof-leaders .lof-person__role{display:inline-block;align-self:flex-start;margin:0!important;padding:.25rem .6rem;border-radius:8px;background:rgba(244,175,22,.16);color:#5b3a0a!important;font-size:.72rem!important;font-weight:800;letter-spacing:.04em;text-transform:uppercase;line-height:1.35}
+.lof-leaders .lof-person__bio{font-size:.9rem;line-height:1.6;color:#5b4a3a;margin-top:.25rem}
+.lof-leaders .lof-person__bio p{margin:0}
+.lof-leaders .lof-grid,.lof-leaders .lof-people--grid{align-items:stretch}
+.lof-leaders .lof-person--row{background:#fff;border:1px solid rgba(92,61,30,.1);border-radius:24px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(92,61,30,.6)}
+.lof-leaders .lof-person--row .lof-person__photo{aspect-ratio:auto;min-height:100%}
+.lof-leaders--executive .lof-person--row .lof-person__info{padding:clamp(1.5rem,3vw,2.5rem)!important}
+.lof-leaders--executive .lof-person--row .lof-person__name{font-size:clamp(1.4rem,2.2vw,1.9rem)!important}
+@media (prefers-reduced-motion:reduce){.lof-leaders .lof-person,.lof-leaders .lof-person__photo img{transition:none}.lof-leaders .lof-person:hover{transform:none}.lof-leaders .lof-person:hover .lof-person__photo img{transform:none}}

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.50.0 - 2026-11-05
+- Impact figures sit in one row on desktop (3 per row on tablets, 2 on phones) as a single framed band with dividers, gold accents and even sizing, on every page that shows them.
+- Page heroes: a different photo from the November content on every page (needs light-of-future-media 1.0.4 to attach them); story and focus-area pages use their featured photo as the hero background.
+- Leadership: portrait cards with consistent 4:5 photos, role pills, hover lift and a stronger founder card.
+
 ## 0.49.0 - 2026-11-05
 - WhatsApp chat button: compact round button (52px desktop, 46px phone, label as hover/focus tooltip), no pulse ring; it steps aside while the visitor scrolls and returns 0.7s after scrolling stops, so it never sits on text being read. Still above the phone bottom menu.
 

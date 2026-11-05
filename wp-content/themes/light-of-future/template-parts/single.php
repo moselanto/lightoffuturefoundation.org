@@ -24,7 +24,11 @@ while ( have_posts() ) :
 	);
 	?>
 	<main id="content" <?php post_class( 'lof-single' ); ?>>
-		<section class="lof-hero lof-hero--page">
+		<?php $lof_bg = has_post_thumbnail() ? get_post_thumbnail_id() : 0; ?>
+		<section class="lof-hero lof-hero--page<?php echo $lof_bg ? ' has-bg' : ''; ?>">
+			<?php if ( $lof_bg ) : ?>
+				<div class="lof-hero__bg" aria-hidden="true"><?php echo wp_get_attachment_image( $lof_bg, 'full', false, array( 'class' => 'lof-hero__bg-img', 'alt' => '', 'loading' => 'eager', 'decoding' => 'async', 'fetchpriority' => 'high', 'sizes' => '100vw' ) ); ?></div>
+			<?php endif; ?>
 			<div class="lof-hero__art" aria-hidden="true"><span class="lof-hero__sun"></span><span class="lof-hero__rays"></span><span class="lof-hero__band lof-hero__band--1"></span><span class="lof-hero__band lof-hero__band--2"></span><span class="lof-hero__band lof-hero__band--3"></span></div>
 			<div class="lof-container lof-hero__inner"><div class="lof-hero__content">
 				<p class="lof-eyebrow lof-hero__eyebrow"><?php echo esc_html( isset( $lof_labels[ $lof_type ] ) ? $lof_labels[ $lof_type ] : get_the_date() ); ?><?php echo $lof_location ? ' &middot; ' . esc_html( $lof_location ) : ''; ?></p>
