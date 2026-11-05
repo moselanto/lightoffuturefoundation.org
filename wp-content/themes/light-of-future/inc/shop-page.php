@@ -103,7 +103,7 @@ function lof_shop_chips() {
 	}
 	$terms   = array_filter( $terms, function ( $t ) { return 'uncategorized' !== $t->slug; } );
 	$current = is_product_category() ? get_queried_object_id() : 0;
-	echo '<div class="lof-shopbar" id="lof-shop-collection"><div class="lof-shopbar__head"><h2 class="lof-shopbar__title">' . esc_html( is_shop() ? __( 'The collection', 'light-of-future' ) : single_term_title( '', false ) ) . '</h2>';
+	echo '<div class="lof-shopbar" id="lof-shop-collection"><div class="lof-shopbar__head"><h2 class="lof-shopbar__title">' . esc_html( is_shop() ? __( 'The collection', 'light-of-future' ) : __( 'Shop by category', 'light-of-future' ) ) . '</h2>';
 	if ( $terms ) {
 		echo '<nav class="lof-shopchips" aria-label="' . esc_attr__( 'Shop by category', 'light-of-future' ) . '"><ul>';
 		printf( '<li><a href="%1$s"%2$s>%3$s</a></li>', esc_url( wc_get_page_permalink( 'shop' ) ), $current ? '' : ' aria-current="page"', esc_html__( 'All', 'light-of-future' ) );
