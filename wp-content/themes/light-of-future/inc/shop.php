@@ -115,6 +115,7 @@ function lof_order_attrs( $product ) {
 		$styles = apply_filters(
 			'lof_product_styles',
 			array(
+				'LOF-BELT'    => array( __( 'Kenya Flag', 'light-of-future' ), __( 'Red Wave', 'light-of-future' ) ),
 				'LOF-BAG'     => array( __( 'Tan satchel', 'light-of-future' ), __( 'Red tooled flap bag', 'light-of-future' ), __( 'Red barrel bag', 'light-of-future' ) ),
 				'LOF-SANDALS' => array( __( 'Leather thong, teardrop beadwork', 'light-of-future' ), __( 'Black leather, flower beadwork', 'light-of-future' ), __( 'Cork sole, flower beadwork', 'light-of-future' ), __( 'Cork sole, butterfly beadwork', 'light-of-future' ), __( 'Leather slide', 'light-of-future' ) ),
 			)

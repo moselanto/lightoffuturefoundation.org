@@ -30,7 +30,7 @@ function lof_floating_actions() {
 add_action( 'wp_footer', 'lof_floating_actions', 5 );
 
 /**
- * Fixed bottom navigation on phones: Home, Focus areas, Donate (raised, centre), Shop, Menu. Stories stays in the Menu (Impact).
+ * Fixed bottom navigation on phones: Home, Shop, Donate (raised, centre), Stories, Menu. Focus areas are reached through the Menu (Programmes).
  */
 function lof_mobile_tabbar() {
 	$path  = trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/', PHP_URL_PATH ), '/' );
@@ -45,11 +45,12 @@ function lof_mobile_tabbar() {
 		'shop'   => '<path d="M7 7V6a5 5 0 0 1 10 0v1h3.2l-1 14H4.8l-1-14zm2 0h6V6a3 3 0 0 0-6 0zm-1.5 4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4z"/>',
 		'menu'   => '<path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/>',
 	);
-	$items = array(
+	$shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' );
+	$items    = array(
 		array( 'home', __( 'Home', 'light-of-future' ), home_url( '/' ), '' === $path || false === $first ),
-		array( 'areas', __( 'Focus areas', 'light-of-future' ), home_url( '/programmes/' ), in_array( $first, array( 'programmes', 'programme', 'talent-development' ), true ) ),
+		array( 'shop', __( 'Shop', 'light-of-future' ), $shop_url, in_array( $first, array( 'shop', 'product', 'product-category', 'product-tag' ), true ) ),
 		array( 'heart', __( 'Donate', 'light-of-future' ), lof_donate_url(), 'donate' === $first ),
-		array( 'shop', __( 'Shop', 'light-of-future' ), function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' ), in_array( $first, array( 'shop', 'product', 'product-category', 'product-tag' ), true ) ),
+		array( 'story', __( 'Stories', 'light-of-future' ), home_url( '/stories/' ), in_array( $first, array( 'stories', 'story', 'impact' ), true ) ),
 	);
 	echo '<nav class="lof-tabbar" aria-label="' . esc_attr__( 'Quick links', 'light-of-future' ) . '"><ul>';
 	foreach ( $items as $it ) {

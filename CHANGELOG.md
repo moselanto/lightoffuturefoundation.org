@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.53.0 - 2026-11-05
+- Phone bottom bar: Home, Shop, Donate (raised, centre), Stories, Menu. Focus areas move to the Menu (Programmes).
+- Beaded Leather Belt: its two designs from the product description (Kenya Flag, Red Wave) now show as design labels and in the order form.
+
 ## 0.52.1 - 2026-11-05
 - Phones: product pages stack the gallery, thumbnails and summary as plain blocks with the gallery sized by its own content, so thumbnails no longer overlap the title and the blank space above the gallery is gone.
 - Product tabs: the "Additional information" tab is removed (About this piece and Reviews remain).
