@@ -237,7 +237,7 @@ class LOF_Widget_Form extends LOF_Widget_Base {
 	}
 	protected function register_controls() {
 		$this->start_controls_section( 'content', array( 'label' => __( 'Content', 'light-of-future' ) ) );
-		$this->add_heading_controls( __( 'Write to us', 'light-of-future' ), __( 'Send us a message', 'light-of-future' ), __( 'We read every message and reply as soon as we can.', 'light-of-future' ) );
+		$this->add_heading_controls( __( 'Write to us', 'light-of-future' ), __( 'Send us a message', 'light-of-future' ), __( 'We read every message and reply within 2 working days.', 'light-of-future' ) );
 		$this->add_control(
 			'interest',
 			array(
@@ -281,7 +281,7 @@ class LOF_Widget_Form extends LOF_Widget_Base {
 			echo '</ul>';
 			echo '<div class="lof-formsec__next"><p class="lof-formsec__next-title">' . esc_html__( 'What happens next', 'light-of-future' ) . '</p><ol>';
 			printf( '<li><strong>%1$s</strong><span>%2$s</span></li>', esc_html__( 'You send a message', 'light-of-future' ), esc_html__( 'Tell us a little about yourself and what you have in mind.', 'light-of-future' ) );
-			printf( '<li><strong>%1$s</strong><span>%2$s</span></li>', esc_html__( 'We get back to you', 'light-of-future' ), esc_html__( 'We read every message and reply as soon as we can.', 'light-of-future' ) );
+			printf( '<li><strong>%1$s</strong><span>%2$s</span></li>', esc_html__( 'We get back to you', 'light-of-future' ), esc_html__( 'We read every message and reply within 2 working days.', 'light-of-future' ) );
 			printf( '<li><strong>%1$s</strong><span>%2$s</span></li>', esc_html__( 'We agree the next step', 'light-of-future' ), esc_html__( 'Together we find the best way for you to make a difference.', 'light-of-future' ) );
 			echo '</ol></div>';
 		}

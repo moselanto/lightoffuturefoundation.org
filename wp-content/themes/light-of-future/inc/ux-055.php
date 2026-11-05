@@ -51,6 +51,21 @@ function lof_contact_quick( $content ) {
 add_filter( 'the_content', 'lof_contact_quick', 99 );
 
 /**
+ * Contact page: the reply promise is "within 2 working days" (also where the
+ * text was saved in the page editor).
+ *
+ * @param string $content Page content.
+ * @return string
+ */
+function lof_contact_reply_time( $content ) {
+	if ( is_admin() || ! is_page( 'contact' ) ) {
+		return $content;
+	}
+	return str_replace( array( 'reply as soon as we can', 'get back to you as soon as we can', 'as soon as we can' ), array( 'reply within 2 working days', 'get back to you within 2 working days', 'within 2 working days' ), $content );
+}
+add_filter( 'the_content', 'lof_contact_reply_time', 100 );
+
+/**
  * Delivery and care details on product pages.
  */
 function lof_product_details_more() {

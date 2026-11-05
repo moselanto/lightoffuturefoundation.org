@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.55.3 - 2026-11-05
+- Contact: the reply promise reads "within 2 working days" (form intro, "What happens next" and any text saved in the page editor).
+
 ## 0.55.2 - 2026-11-05
 - Leadership: the added "On this page" row is removed; the page keeps its own jump row (Our founder / Board members ...). About Us keeps the new jump links.
 
