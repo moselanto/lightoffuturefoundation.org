@@ -228,3 +228,8 @@ body.lof-order-open{overflow:hidden}
 .lof-footer__donate,.lof-footer__donate:hover{color:#2b1d0e!important}
 .lof-chat__fab{background:#075E54!important}
 .lof-chat__fab:hover{background:#0a6b60!important}
+
+/* 0.46.3 site-wide contrast fixes (axe, final state after fade-in). */
+.lof-person__role{color:#7a4a0a!important}
+.lof-give__body .lof-section__head .lof-eyebrow{color:#F4AF16!important}
+.lof-spot__body .lof-eyebrow{color:#3b2410!important}

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.46.3 - 2026-11-05
+- Contrast: leadership role labels, the Programmes give-section eyebrow (on dark brown) and the Stories spotlight eyebrow (on gold) now meet WCAG AA. Site-wide axe audit (33 pages, desktop and phone) otherwise clean once fade-in animations finish.
+
 ## 0.46.2 - 2026-11-05
 - Contrast: section eyebrows, CTA earth button text, footer Donate text and the floating WhatsApp button (now deep WhatsApp green #075E54) meet WCAG AA.
 
