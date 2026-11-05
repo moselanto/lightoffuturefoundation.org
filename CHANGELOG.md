@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.60.4 - 2026-11-06
+- Home: slider, programme card and story photos served from small theme copies (480/720/800/1200px WebP) at the size shown; first slider photo preloaded.
+
 ## 0.60.3 - 2026-11-06
 - Home "Who we are" on phones: square crop centred on Francis.
 - Programmes on phones: long focus-area names wrap inside their pill.

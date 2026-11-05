@@ -200,8 +200,41 @@ function lof_speed_rewrite( $html ) {
 		'src="' . $uri . 'photos/founder-francis-ouma-sikuku-420.webp" srcset="' . $uri . 'photos/founder-francis-ouma-sikuku-420.webp 420w, ' . $uri . 'photos/founder-francis-ouma-sikuku.webp 720w" sizes="(max-width: 700px) 80vw, 420px"',
 		$html
 	);
+	// 0.60.4: Home photos (slider, cards, stories) from small theme copies.
+	if ( is_front_page() ) {
+		$html = preg_replace_callback(
+			'#<img ([^>]*?)src="https?://[^"]+/wp-content/uploads/\d{4}/\d{2}/([a-z0-9-]+?)(-(\d+)x\d+)?\.webp"([^>]*)>#',
+			function ( $m ) use ( $dir, $uri ) {
+				if ( ( ! empty( $m[4] ) && (int) $m[4] <= 300 ) || ! file_exists( $dir . 'home/' . $m[2] . '-480.webp' ) ) {
+					return $m[0];
+				}
+				$set = array();
+				foreach ( array( 480, 720, 800, 1200 ) as $w ) {
+					if ( file_exists( $dir . 'home/' . $m[2] . '-' . $w . '.webp' ) ) {
+						$set[] = $uri . 'home/' . $m[2] . '-' . $w . '.webp ' . $w . 'w';
+					}
+				}
+				$attrs = preg_replace( '/\s(srcset|sizes)="[^"]*"/', '', ' ' . $m[1] . ' ' . $m[5] );
+				$sizes = false !== strpos( $m[0], 'lof-cine__img' ) ? '100vw' : '(max-width: 700px) 92vw, 420px';
+				return '<img' . rtrim( $attrs, ' /' ) . ' src="' . esc_url( $uri . 'home/' . $m[2] . '-480.webp' ) . '" srcset="' . esc_attr( implode( ', ', $set ) ) . '" sizes="' . $sizes . '">';
+			},
+			$html
+		);
+	}
 	return $html;
 }
+
+/**
+ * Home: start the first slider photo before the stylesheets.
+ */
+function lof_preload_home_hero() {
+	if ( ! is_front_page() ) {
+		return;
+	}
+	$u = LOF_THEME_URI . '/assets/images/home/story-elijah-new-home-';
+	printf( '<link rel="preload" as="image" href="%1$s480.webp" imagesrcset="%1$s480.webp 480w, %1$s720.webp 720w, %1$s800.webp 800w, %1$s1200.webp 1200w" imagesizes="100vw" fetchpriority="high">' . "\n", esc_url( $u ) );
+}
+add_action( 'wp_head', 'lof_preload_home_hero', 1 );
 
 /**
  * Shop product photos: ask for the size actually shown.
