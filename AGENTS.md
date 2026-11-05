@@ -178,3 +178,4 @@
 - 2026-11-05: 0.45.0 focus-area photos, full-width h2, Shop with purpose redesign, WhatsApp order form popup, sticky header scroll offset.
 - 2026-11-05: 0.46.0 homepage flow (short founder story, duplicate About removed), short focus-area card titles, bag/sandal style picker, axe accessibility fixes.
 - 2026-11-05: 0.46.1 phone accessible names for Order buttons.
+- 2026-11-05: 0.46.2 remaining axe contrast fixes.

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.46.2 - 2026-11-05
+- Contrast: section eyebrows, CTA earth button text, footer Donate text and the floating WhatsApp button (now deep WhatsApp green #075E54) meet WCAG AA.
+
 ## 0.46.1 - 2026-11-05
 - Order buttons keep "Order" / "Order now" / "Order on WhatsApp" in their accessible name on phones (visible labels aria-hidden, full screen-reader label with product name).
 

@@ -221,3 +221,10 @@ body.lof-order-open{overflow:hidden}
 .woocommerce div.product .product_meta a{text-decoration:underline;text-underline-offset:3px}
 .lof-wa-short{display:none}
 .screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important}
+
+/* 0.46.2 remaining contrast fixes. */
+.lof-tone-cream .lof-section__head .lof-eyebrow,.lof-section__head .lof-eyebrow{color:#7a4a0a!important}
+.lof-cta__box .lof-btn--earth,.lof-cta__box .lof-btn--earth:hover{color:#2b1d0e!important}
+.lof-footer__donate,.lof-footer__donate:hover{color:#2b1d0e!important}
+.lof-chat__fab{background:#075E54!important}
+.lof-chat__fab:hover{background:#0a6b60!important}
