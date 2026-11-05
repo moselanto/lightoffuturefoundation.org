@@ -876,3 +876,17 @@ body:not(.lof-page-gallery) .lofm:last-child{padding-bottom:clamp(44px,6vw,80px)
 .lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){grid-template-columns:repeat(auto-fit,calc((100% - 42px)/4))!important;justify-content:center!important}
 @media (max-width:900px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){grid-template-columns:repeat(auto-fit,calc((100% - 28px)/3))!important}}
 @media (max-width:600px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){grid-template-columns:repeat(auto-fit,calc((100% - 8px)/2))!important}}
+
+/* ================= 0.61.0: every screen size ================= */
+/* Small screens: nothing may push the page sideways. */
+html,body{overflow-x:clip}
+img,video,iframe,svg{max-width:100%}
+.lof-main,.elementor-section,.elementor-container{min-width:0}
+@media (max-width:380px){.lof-container{width:min(100% - 1.75rem,var(--lof-container))}}
+/* Large screens: keep the proportions of a 13-inch laptop (about 1440px wide) instead of leaving the design small in the middle. */
+@media (min-width:1600px){html{zoom:1.1}}
+@media (min-width:1800px){html{zoom:1.22}}
+@media (min-width:2000px){html{zoom:1.36}}
+@media (min-width:2300px){html{zoom:1.55}}
+@media (min-width:2560px){html{zoom:1.75}}
+@media (min-width:3200px){html{zoom:2.15}}

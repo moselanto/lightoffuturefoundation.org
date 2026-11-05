@@ -97,13 +97,16 @@ function lof_mobile_preview() {
 	header( 'X-Robots-Tag: noindex, nofollow' );
 	nocache_headers();
 	echo '<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Phone preview (' . esc_html( $mode ) . ')</title>';
-	echo '<style>body{margin:0;padding:20px;background:#555;font:14px sans-serif;color:#fff}.w{display:flex;flex-wrap:wrap;gap:24px}.f{width:390px}.f h2{margin:0 0 6px;font-size:15px}.f h2 a{color:#fff}iframe{width:390px;height:844px;border:0;background:#fff;border-radius:18px}</style></head><body><div class="w">';
+	$pw = isset( $_GET['w'] ) ? max( 320, min( 3840, absint( $_GET['w'] ) ) ) : 390; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$ph = isset( $_GET['h'] ) ? max( 480, min( 2400, absint( $_GET['h'] ) ) ) : ( 390 === $pw ? 844 : 900 ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$sc = $pw > 1200 ? round( 1200 / $pw, 4 ) : 1;
+	echo '<style>body{margin:0;padding:20px;background:#555;font:14px sans-serif;color:#fff}.w{display:flex;flex-wrap:wrap;gap:24px}.f h2{margin:0 0 6px;font-size:15px}.f h2 a{color:#fff}.box{width:' . (int) round( $pw * $sc ) . 'px;height:' . (int) round( $ph * $sc ) . 'px;overflow:hidden;border-radius:18px;background:#fff}iframe{width:' . (int) $pw . 'px;height:' . (int) $ph . 'px;border:0;background:#fff;transform:scale(' . $sc . ');transform-origin:0 0}</style></head><body><div class="w">';
 	foreach ( $pages as $slug => $name ) {
 		if ( $only && $only !== ( $slug ? $slug : 'home' ) ) {
 			continue;
 		}
 		$url = add_query_arg( 'lof_theme', $mode, home_url( $slug ? '/' . $slug . '/' : '/' ) );
-		echo '<div class="f"><h2><a href="' . esc_url( add_query_arg( array( 'lof_mobile_preview' => $mode, 'page' => $slug ? $slug : 'home' ), home_url( '/' ) ) ) . '">' . esc_html( $name ) . '</a></h2><iframe loading="lazy" src="' . esc_url( $url ) . '" title="' . esc_attr( $name ) . '"></iframe></div>';
+		echo '<div class="f"><h2><a href="' . esc_url( add_query_arg( array( 'lof_mobile_preview' => $mode, 'page' => $slug ? $slug : 'home', 'w' => $pw ), home_url( '/' ) ) ) . '">' . esc_html( $name ) . '</a></h2><div class="box"><iframe loading="lazy" src="' . esc_url( $url ) . '" title="' . esc_attr( $name ) . '"></iframe></div></div>';
 	}
 	echo '</div></body></html>';
 	exit;

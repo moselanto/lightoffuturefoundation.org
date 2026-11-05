@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.61.0 - 2026-11-06
+- Large screens (1600px and wider): the design keeps the proportions of a 13-inch laptop instead of shrinking into the middle.
+- Small screens: nothing can push a page sideways; tighter side margins below 380px.
+- Sitemap: no author pages, blog categories or the default "Hello world" and "Sample page"; those pages are kept out of search results.
+- Phone preview tool takes any width (`&w=1920`) for checking layouts.
+
 ## 0.60.4 - 2026-11-06
 - Home: slider, programme card and story photos served from small theme copies (480/720/800/1200px WebP) at the size shown; first slider photo preloaded.
 
