@@ -236,3 +236,11 @@ body.lof-order-open{overflow:hidden}
 
 /* 0.46.4: beat the light-mode eyebrow rule (html:not([data-theme=dark]) .lof-eyebrow). */
 html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body .lof-eyebrow{color:#2E1E0E!important}
+
+/* 0.46.5: on phones the chat button waits until the visitor scrolls, so it
+   never covers hero content (e.g. the Stories impact tiles) on first load. */
+@media (max-width:991px){
+ .lof-chat__fab{transition:transform .3s ease,opacity .3s ease,visibility .3s}
+ .lof-chat.is-tucked .lof-chat__fab{transform:translateY(160%);opacity:0;visibility:hidden;pointer-events:none}
+}
+@media (prefers-reduced-motion:reduce){.lof-chat__fab{transition:none}}

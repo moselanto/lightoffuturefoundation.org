@@ -17,7 +17,7 @@
 		var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		var store = { get: function (k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} } };
 		var open = function () {
-			panel.hidden = false; teaser.hidden = true; dot.hidden = true;
+			panel.hidden = false; teaser.hidden = true; dot.hidden = true; chat.classList.remove('is-tucked');
 			fab.setAttribute('aria-expanded', 'true'); store.set('lofChatSeen', '1');
 			if (!reduce && !store.get('lofChatTyped')) {
 				bubble.hidden = true; typing.hidden = false;
@@ -25,6 +25,14 @@
 			} else { typing.hidden = true; }
 			setTimeout(function () { var c = panel.querySelector('.lof-chat__chip'); if (c) { c.focus(); } }, 50);
 		};
+		var phone = window.matchMedia ? window.matchMedia('(max-width: 991px)') : null;
+		var tuck = function () {
+			var t = phone && phone.matches && window.scrollY < 160 && panel.hidden;
+			chat.classList.toggle('is-tucked', !!t);
+		};
+		tuck();
+		window.addEventListener('scroll', tuck, { passive: true });
+		window.addEventListener('resize', tuck);
 		window.lofChat = { open: function (msg) { if (msg) { text.value = msg; } open(); if (msg) { setTimeout(function () { text.focus(); }, 60); } } };
 		var close = function () { panel.hidden = true; fab.setAttribute('aria-expanded', 'false'); fab.focus(); };
 		typing.hidden = true;

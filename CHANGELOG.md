@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.46.5 - 2026-11-05
+- Phones: the floating WhatsApp button slides in once the visitor scrolls 160px, so it no longer covers hero content such as the Stories "2025 / Officially registered" tile on first load. Keyboard check (homepage, shop, product, order form, chat, Donate, Contact) passed with no code changes needed.
+
 ## 0.46.4 - 2026-11-05
 - Contrast: Stories spotlight eyebrow on gold now dark brown (the light-mode eyebrow rule had higher specificity than the 0.46.3 fix).
 

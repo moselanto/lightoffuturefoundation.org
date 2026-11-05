@@ -181,3 +181,4 @@
 - 2026-11-05: 0.46.2 remaining axe contrast fixes.
 - 2026-11-05: 0.46.3 site-wide contrast fixes from the full-site axe audit.
 - 2026-11-05: 0.46.4 Stories spotlight eyebrow contrast.
+- 2026-11-05: 0.46.5 phone chat button waits for scroll; keyboard-only check passed.
