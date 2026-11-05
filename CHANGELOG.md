@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.60.2 - 2026-11-06
+- Contact (desktop): heading column centred beside the form.
+- Programmes: note under the giving form aligned with the form; focus-area links wrap on phones.
+- "On this page" links centred when they wrap (About Us and others).
+- Gallery: all photo tiles the same size (4 / 3 / 2 per row).
+- Talent Development: tighter gap above the yellow banner.
+
 ## 0.60.1 - 2026-11-06
 - Video rows end level (captions share the row height).
 - Story pages: photos and videos span the full page width on desktop; one video per row on phones.
