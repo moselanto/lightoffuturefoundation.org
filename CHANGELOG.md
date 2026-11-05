@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.61.1 - 2026-11-06
+- WhatsApp greeting bubble retired (the button stays); it covered content on tablets and desktops.
+- Home on phones: all three featured stories show.
+- Stories: the featured photo keeps the person's head in frame.
+- Programmes on tablets: "Our approach" panels stack into full-width rows.
+- Gallery on phones: a short last row of photos is centred.
+
 ## 0.61.0 - 2026-11-06
 - Large screens (1600px and wider): the design keeps the proportions of a 13-inch laptop instead of shrinking into the middle.
 - Small screens: nothing can push a page sideways; tighter side margins below 380px.

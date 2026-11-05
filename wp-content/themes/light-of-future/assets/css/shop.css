@@ -890,3 +890,15 @@ img,video,iframe,svg{max-width:100%}
 @media (min-width:2300px){html{zoom:1.55}}
 @media (min-width:2560px){html{zoom:1.75}}
 @media (min-width:3200px){html{zoom:2.15}}
+
+/* ---------- 0.61.1 ---------- */
+/* WhatsApp: the round button stays; the automatic greeting bubble is retired everywhere (it covered content). */
+.lof-chat__teaser{display:none!important}
+/* Home (phone): all three featured stories show. */
+@media (max-width:640px){.home .lof-card--story:nth-of-type(n+3){display:flex!important}}
+/* Stories: featured photo keeps the person's head in frame at every width. */
+.lof-page-stories .lof-spot__media img{object-position:50% 12%!important}
+/* Programmes (tablet): "Our approach" panels stack into full-width rows instead of three narrow columns. */
+@media (max-width:991px){.lof-intro__band{grid-template-columns:1fr!important;gap:1rem!important}.lof-intro__panel{max-width:none}}
+/* Gallery (phone): a short last row of photos sits in the middle. */
+@media (max-width:600px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){display:flex!important;flex-wrap:wrap;justify-content:center;gap:8px!important}.lof-page-gallery .lofm .lofm__grid > .lofm__item{flex:0 0 calc((100% - 8px)/2);max-width:calc((100% - 8px)/2)}}
