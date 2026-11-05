@@ -30,7 +30,7 @@ function lof_floating_actions() {
 add_action( 'wp_footer', 'lof_floating_actions', 5 );
 
 /**
- * Fixed bottom navigation on phones: Home, Focus areas, Donate (raised), Stories, Menu.
+ * Fixed bottom navigation on phones: Home, Focus areas, Donate (raised, centre), Shop, Menu. Stories stays in the Menu (Impact).
  */
 function lof_mobile_tabbar() {
 	$path  = trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/', PHP_URL_PATH ), '/' );
@@ -42,13 +42,14 @@ function lof_mobile_tabbar() {
 		'areas'  => '<path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/>',
 		'heart'  => '<path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.4 1.1 4.4 2.5C12 6.1 13.4 5 15.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/>',
 		'story'  => '<path d="M5 3h11l3 3v15H5zm2 5v2h10V8zm0 4v2h10v-2zm0 4v2h7v-2z"/>',
+		'shop'   => '<path d="M7 7V6a5 5 0 0 1 10 0v1h3.2l-1 14H4.8l-1-14zm2 0h6V6a3 3 0 0 0-6 0zm-1.5 4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4z"/>',
 		'menu'   => '<path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/>',
 	);
 	$items = array(
 		array( 'home', __( 'Home', 'light-of-future' ), home_url( '/' ), '' === $path || false === $first ),
 		array( 'areas', __( 'Focus areas', 'light-of-future' ), home_url( '/programmes/' ), in_array( $first, array( 'programmes', 'programme', 'talent-development' ), true ) ),
 		array( 'heart', __( 'Donate', 'light-of-future' ), lof_donate_url(), 'donate' === $first ),
-		array( 'story', __( 'Stories', 'light-of-future' ), home_url( '/stories/' ), in_array( $first, array( 'stories', 'story', 'impact' ), true ) ),
+		array( 'shop', __( 'Shop', 'light-of-future' ), function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' ), in_array( $first, array( 'shop', 'product', 'product-category', 'product-tag' ), true ) ),
 	);
 	echo '<nav class="lof-tabbar" aria-label="' . esc_attr__( 'Quick links', 'light-of-future' ) . '"><ul>';
 	foreach ( $items as $it ) {
