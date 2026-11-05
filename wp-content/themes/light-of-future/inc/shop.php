@@ -360,7 +360,7 @@ function lof_shop_loop_wa_button() {
 		return;
 	}
 	printf(
-		'<a class="lof-wa-order__mini lof-btn-order" href="%1$s" target="_blank" rel="noopener noreferrer" ' . lof_order_attrs( $product ) . '>%3$s<span class="lof-wa-long">%4$s</span><span class="lof-wa-short">%5$s</span><span class="screen-reader-text">: %2$s</span></a>',
+		'<a class="lof-wa-order__mini lof-btn-order" href="%1$s" target="_blank" rel="noopener noreferrer" ' . lof_order_attrs( $product ) . '>%3$s<span class="lof-wa-long" aria-hidden="true">%4$s</span><span class="lof-wa-short" aria-hidden="true">%5$s</span><span class="screen-reader-text">%4$s: %2$s</span></a>',
 		esc_url( lof_wa_link( lof_shop_order_message( $product ) ) ),
 		/* translators: %s: product name. */
 		esc_html( wp_strip_all_tags( $product->get_name() ) ),
@@ -473,7 +473,7 @@ function lof_home_market( $atts = array() ) {
 							<h3 class="lof-market__name"><a href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php echo esc_html( $p->get_name() ); ?></a></h3>
 							<p class="lof-market__price"><?php echo esc_html( lof_shop_price_text( $p ) ); ?></p>
 							<div class="lof-market__actions">
-								<a class="lof-market__wa lof-btn-order" href="<?php echo esc_url( lof_wa_link( lof_shop_order_message( $p ) ) ); ?>" target="_blank" rel="noopener noreferrer" <?php echo lof_order_attrs( $p ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>><span class="lof-btn-order__ico"><?php echo lof_wa_icon( 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><span class="lof-wa-long"><?php esc_html_e( 'Order now', 'light-of-future' ); ?></span><span class="lof-wa-short"><?php esc_html_e( 'Order', 'light-of-future' ); ?></span><span class="screen-reader-text">: <?php echo esc_html( wp_strip_all_tags( $p->get_name() ) ); ?></span></a>
+								<a class="lof-market__wa lof-btn-order" href="<?php echo esc_url( lof_wa_link( lof_shop_order_message( $p ) ) ); ?>" target="_blank" rel="noopener noreferrer" <?php echo lof_order_attrs( $p ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>><span class="lof-btn-order__ico"><?php echo lof_wa_icon( 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><span class="lof-wa-long" aria-hidden="true"><?php esc_html_e( 'Order now', 'light-of-future' ); ?></span><span class="lof-wa-short" aria-hidden="true"><?php esc_html_e( 'Order', 'light-of-future' ); ?></span><span class="screen-reader-text"><?php esc_html_e( 'Order now', 'light-of-future' ); ?>: <?php echo esc_html( wp_strip_all_tags( $p->get_name() ) ); ?></span></a>
 								<a class="lof-market__view" href="<?php echo esc_url( get_permalink( $p->get_id() ) ); ?>"><?php esc_html_e( 'Details', 'light-of-future' ); ?> <span aria-hidden="true">&rarr;</span></a>
 							</div>
 						</div>

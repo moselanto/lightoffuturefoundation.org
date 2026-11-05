@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.46.1 - 2026-11-05
+- Order buttons keep "Order" / "Order now" / "Order on WhatsApp" in their accessible name on phones (visible labels aria-hidden, full screen-reader label with product name).
+
 ## 0.46.0 - 2026-11-05
 - Homepage flow: founder story shortened to two paragraphs (facts unchanged, quote removed from the homepage block); the second "Who we are" block, which repeated the About text, removed. Runs once in wp-admin (option lof_home_flow_rev), layout backed up in _lof_layout_backup.
 - Focus-area cards use short display names (Decent Houses, GBV Awareness, Hygiene Kits for Girls); full titles stay on programme pages. Card titles reserve two lines on desktop.
