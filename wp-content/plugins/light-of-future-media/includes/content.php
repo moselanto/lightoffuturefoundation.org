@@ -292,3 +292,52 @@ add_action(
 		}
 	}
 );
+
+/**
+ * Rev 2: record the consent Francis confirmed (relayed by the site team on
+ * 5 November 2026) for the two new stories so they can publish, and put the
+ * full media gallery on the existing Gallery page.
+ */
+function lofm_content_upgrade_2() {
+	if ( (int) get_option( 'lofm_content_rev', 0 ) !== 1 || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	update_option( 'lofm_content_rev', 2, false );
+	$report = (array) get_option( 'lofm_content_report', array() );
+	foreach ( array( 'eunice', 'margaret' ) as $slug ) {
+		$posts = get_posts( array( 'post_type' => 'lof_story', 'name' => $slug, 'post_status' => 'any', 'numberposts' => 1 ) );
+		if ( ! $posts ) {
+			continue;
+		}
+		$id = $posts[0]->ID;
+		update_post_meta( $id, 'lof_consent', '1' );
+		update_post_meta( $id, 'lof_consent_date', '2026-11-05 (confirmed by Francis Ouma Sikuku, relayed by the site team)' );
+		wp_update_post( array( 'ID' => $id, 'post_status' => 'publish' ) );
+		$report[] = 'published:' . $slug . '=' . get_post_status( $id );
+	}
+	$g = get_page_by_path( 'gallery' );
+	if ( $g ) {
+		$raw  = get_post_meta( $g->ID, '_elementor_data', true );
+		$data = is_string( $raw ) ? json_decode( $raw, true ) : $raw;
+		if ( is_array( $data ) && $data && function_exists( 'lof_el' ) ) {
+			if ( false === strpos( (string) wp_json_encode( $data ), 'lof_media_all' ) ) {
+				$data[] = lof_el( 'shortcode', array( 'shortcode' => '<div class="lof-container" style="padding-block:clamp(2rem,4vw,3.5rem)">[lof_media_all]</div>' ) );
+				update_post_meta( $g->ID, '_lof_layout_backup', wp_slash( is_string( $raw ) ? $raw : wp_json_encode( $raw ) ) );
+				update_post_meta( $g->ID, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+				delete_post_meta( $g->ID, '_elementor_css' );
+				delete_post_meta( $g->ID, '_elementor_element_cache' );
+			}
+		} elseif ( false === strpos( $g->post_content, 'lof_media_all' ) ) {
+			wp_update_post( array( 'ID' => $g->ID, 'post_content' => $g->post_content . "\n[lof_media_all]" ) );
+		}
+		if ( 'publish' !== $g->post_status ) {
+			wp_update_post( array( 'ID' => $g->ID, 'post_status' => 'publish' ) );
+		}
+		$report[] = 'gallery-media';
+	}
+	if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	update_option( 'lofm_content_report', $report, false );
+}
+add_action( 'admin_init', 'lofm_content_upgrade_2', 41 );

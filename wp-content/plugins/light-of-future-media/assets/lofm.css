@@ -25,3 +25,5 @@
 .lofm-all .lofm{padding-top:1rem;border-top:1px solid rgba(92,61,30,.12)}
 @media (max-width:600px){.lofm__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.lofm__item figcaption{font-size:.8rem;padding:.5rem .6rem .6rem}}
 @media (prefers-reduced-motion:reduce){.lofm__link img{transition:none}}
+.lofm__reveal{font-size:.8rem;line-height:1.2;padding:.4rem .5rem;white-space:normal}
+@media (max-width:600px){.lofm__reveal{inset:auto 6px 6px 6px;font-size:.72rem;min-height:40px}}
