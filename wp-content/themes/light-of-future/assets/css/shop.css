@@ -322,3 +322,17 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
 
 /* 0.48.1: show the full slide sentence on phones (no mid-sentence cut). */
 @media (max-width:760px){.lof-cine__text{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;font-size:.9rem!important;line-height:1.45!important}}
+
+/* ================= 0.49.0 compact chat button ================= */
+/* Smaller round button on every screen; label appears as a tooltip on hover/focus. */
+.lof-chat__fab{width:52px;height:52px;padding:0!important;justify-content:center;gap:0;border-radius:50%!important}
+.lof-chat__fab-icon{width:28px;height:28px}
+.lof-chat__fab-label{position:absolute;right:calc(100% + 10px);top:50%;transform:translateY(-50%);white-space:nowrap;background:#2b1d0e;color:#fff;font-size:.82rem;font-weight:700;padding:.4rem .7rem;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s}
+.lof-chat__fab:hover .lof-chat__fab-label,.lof-chat__fab:focus-visible .lof-chat__fab-label{opacity:1}
+.lof-chat__fab::after{animation:none!important}
+.lof-chat{right:16px;bottom:16px}
+@media (max-width:991px){.lof-chat{right:10px;bottom:calc(88px + env(safe-area-inset-bottom,0px))}.lof-chat__fab{width:46px;height:46px}.lof-chat__fab-icon{width:24px;height:24px}.lof-chat__fab-label{display:none}}
+/* While the visitor scrolls, the button steps aside so it never sits on text they are reading. */
+.lof-chat__fab{transition:transform .3s ease,opacity .3s ease,visibility .3s}
+.lof-chat.is-scrolling .lof-chat__fab{transform:translateX(140%);opacity:0;visibility:hidden;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.lof-chat.is-scrolling .lof-chat__fab{transform:none}}

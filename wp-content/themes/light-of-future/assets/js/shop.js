@@ -31,7 +31,14 @@
 			chat.classList.toggle('is-tucked', !!t);
 		};
 		tuck();
-		window.addEventListener('scroll', tuck, { passive: true });
+		var scrollTimer = null;
+		window.addEventListener('scroll', function () {
+			tuck();
+			if (!panel.hidden || chat.contains(document.activeElement)) { return; }
+			chat.classList.add('is-scrolling');
+			clearTimeout(scrollTimer);
+			scrollTimer = setTimeout(function () { chat.classList.remove('is-scrolling'); }, 700);
+		}, { passive: true });
 		window.addEventListener('resize', tuck);
 		window.lofChat = { open: function (msg) { if (msg) { text.value = msg; } open(); if (msg) { setTimeout(function () { text.focus(); }, 60); } } };
 		var close = function () { panel.hidden = true; fab.setAttribute('aria-expanded', 'false'); fab.focus(); };

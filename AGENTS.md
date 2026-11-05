@@ -186,3 +186,4 @@
 - 2026-11-05: 0.47.0 four-slide home slider with thumbnail tab dock.
 - 2026-11-05: 0.48.0 phone slider height and homepage section polish.
 - 2026-11-05: 0.48.1 full slide text on phones.
+- 2026-11-05: 0.49.0 compact chat button that steps aside while scrolling.

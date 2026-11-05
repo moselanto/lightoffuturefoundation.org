@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.49.0 - 2026-11-05
+- WhatsApp chat button: compact round button (52px desktop, 46px phone, label as hover/focus tooltip), no pulse ring; it steps aside while the visitor scrolls and returns 0.7s after scrolling stops, so it never sits on text being read. Still above the phone bottom menu.
+
 ## 0.48.1 - 2026-11-05
 - Phones: slide text shows in full instead of being cut off with an ellipsis.
 
