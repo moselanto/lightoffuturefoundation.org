@@ -62,6 +62,7 @@ function lof_fallback_menu() {
 		'impact'       => __( 'Impact', 'light-of-future' ),
 		'stories'      => __( 'Stories', 'light-of-future' ),
 		'get-involved' => __( 'Get Involved', 'light-of-future' ),
+		'shop'         => __( 'Shop', 'light-of-future' ),
 		'contact'      => __( 'Contact', 'light-of-future' ),
 	);
 	echo '<ul class="lof-menu">';

@@ -1034,6 +1034,7 @@ function lof_primary_menu_tree() {
 		array( __( 'Programmes', 'light-of-future' ), 'programmes', array( 'programmes', 'talent-development' ) ),
 		array( __( 'Impact', 'light-of-future' ), 'impact', array( array( 'impact', __( 'Our impact', 'light-of-future' ) ), 'stories' ) ),
 		array( __( 'Get Involved', 'light-of-future' ), 'get-involved', array( 'get-involved', 'donate' ) ),
+		array( __( 'Shop', 'light-of-future' ), 'shop', array() ),
 		array( __( 'Contact', 'light-of-future' ), 'contact', array() ),
 	);
 }
@@ -1111,7 +1112,7 @@ function lof_rebuild_primary_menu() {
 	}
 	$locations['lof-primary'] = (int) $menu->term_id;
 	set_theme_mod( 'nav_menu_locations', $locations );
-	return array( __( 'Main menu rebuilt: Home, About, Programmes, Impact, Get Involved, Contact.', 'light-of-future' ) );
+	return array( __( 'Main menu rebuilt: Home, About, Programmes, Impact, Get Involved, Shop, Contact.', 'light-of-future' ) );
 }
 
 /**

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.51.0 - 2026-11-05
+- Shop in the main menu: added once (before Contact) to the menu in the Main menu location on the first wp-admin load (option lof_menu_shop_rev), without rebuilding hand-made menus; also in the setup menu tree and the fallback menu.
+- Shop page redesign: dark brand hero with product photo mosaic, page heading, two calls to action and key facts; four-card trust strip; "The collection" heading with category chips (All, Bags, Jewellery, ...); cleaner toolbar (no result count); product card hover; "How ordering works" in three steps; closing gift and bulk order call to action. Phone layout and dark mode included.
+
 ## 0.50.2 - 2026-11-05
 - Leadership: descriptions start level in every row of board and programme-lead cards (role block heights matched per row on tablets and desktop; role text unchanged). 0.50.1's fixed two-line slot missed the board cards and three-line roles.
 

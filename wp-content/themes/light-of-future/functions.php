@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOF_THEME_VERSION', '0.50.2' );
+define( 'LOF_THEME_VERSION', '0.51.0' );
 define( 'LOF_THEME_DIR', get_stylesheet_directory() );
 define( 'LOF_THEME_URI', get_stylesheet_directory_uri() );
 
@@ -22,6 +22,7 @@ require_once LOF_THEME_DIR . '/inc/security.php';
 require_once LOF_THEME_DIR . '/inc/elementor/widgets.php';
 require_once LOF_THEME_DIR . '/inc/floating.php';
 require_once LOF_THEME_DIR . '/inc/shop.php';
+require_once LOF_THEME_DIR . '/inc/shop-page.php';
 require_once LOF_THEME_DIR . '/inc/a11y.php';
 require_once LOF_THEME_DIR . '/inc/performance.php';
 
@@ -29,4 +30,5 @@ if ( is_admin() ) {
 	require_once LOF_THEME_DIR . '/inc/importer.php';
 	require_once LOF_THEME_DIR . '/inc/shop-setup.php';
 	require_once LOF_THEME_DIR . '/inc/upgrade-045.php';
+	require_once LOF_THEME_DIR . '/inc/upgrade-051.php';
 }
