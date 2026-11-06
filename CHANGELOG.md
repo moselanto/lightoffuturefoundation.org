@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.63.2 - 2026-11-06
+- Shop hero: truly full width on every screen (including large-screen scaling) and exactly fills the first screen below the header; no gap above it.
+
 ## 0.63.1 - 2026-11-06
 - Shop: new full-width hero with a photo mosaic, gold headline, stats and a floating trust bar; breadcrumb removed on the shop page.
 - Shop: Clear filters returns to all products.

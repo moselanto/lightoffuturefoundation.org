@@ -364,6 +364,7 @@ function lof_shop_hero63() {
 			</ul>
 		</div>
 	</section>
+	<script>(function(){var x=document.querySelector('.lof-shopx');if(!x){return;}function s(){document.documentElement.style.setProperty('--lof-shopx-top',Math.round(x.getBoundingClientRect().top+window.scrollY)+'px');}s();window.addEventListener('load',s);window.addEventListener('resize',s);}());</script>
 	<ul class="lof-shoptrust lof-shoptrust--x" aria-label="<?php esc_attr_e( 'Why shop with us', 'light-of-future' ); ?>">
 		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.4 5 5.6.8-4 3.9.9 5.5L12 14.6 7.1 17.2 8 11.7 4 7.8l5.6-.8z"/></svg></span><strong><?php esc_html_e( 'Handmade quality', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Finished by hand. No two pieces are exactly alike.', 'light-of-future' ); ?></span></li>
 		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.4 1.1 4.4 2.5C12 6.1 13.4 5 15.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/></svg></span><strong><?php esc_html_e( 'Shopping that gives back', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Every order supports makers and our programmes.', 'light-of-future' ); ?></span></li>
