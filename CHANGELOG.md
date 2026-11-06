@@ -1,5 +1,8 @@
 # Changelog
 
+## Core plugin 0.46.1 - 2026-11-07
+- Donation form shows up to 7 preset amounts (was 6), so the $1,000 tile appears.
+
 ## Core plugin 0.46.0 - 2026-11-06
 - Donation form: US dollars first with $10, $25, $50, $100, $250, $500 and $1,000 tiles plus Other amount (KES still available).
 - Gift frequency: One-time, Monthly or Yearly (yearly uses Paystack annual plans).

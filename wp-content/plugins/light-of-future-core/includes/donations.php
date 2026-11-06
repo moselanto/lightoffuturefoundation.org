@@ -164,7 +164,7 @@ function lof_pay_presets( $currency ) {
 			$list[] = array( $amount, isset( $parts[1] ) ? $parts[1] : '' );
 		}
 	}
-	return array_slice( $list, 0, 6 );
+	return array_slice( $list, 0, 8 ); // Up to 7 tiles plus "Other amount" (4 x 2 or 3 x 3 grid).
 }
 
 /**
