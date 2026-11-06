@@ -1103,3 +1103,61 @@ body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!import
 }
 @keyframes lofTeaseIn{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.lof-chat__teaser{animation:none}}
+
+/* ---------- 0.63.4 Product card buttons: clear gap, clear hierarchy ---------- */
+.lof-shop63 ul.products li.product .button.lof-shop-view{margin:0 1rem .6rem!important;background:#fff!important;border:1.5px solid rgba(92,61,30,.28)!important}
+.lof-shop63 ul.products li.product .button.lof-shop-view:hover{border-color:var(--lof-earth,#5C3D1E)!important}
+.lof-shop63 ul.products li.product .lof-btn-order{margin:0 1rem 0!important;background:#128C4B!important;border:0!important;color:#fff!important;box-shadow:0 10px 20px -14px rgba(18,140,75,.9)}
+.lof-shop63 ul.products li.product .lof-btn-order:hover{background:#0E7A40!important}
+@media (max-width:767px){.lof-shop63 ul.products li.product .button.lof-shop-view{margin:0 .7rem .5rem!important}.lof-shop63 ul.products li.product .lof-btn-order{margin:0 .7rem!important}}
+/* ---------- 0.63.4 How ordering works ---------- */
+.lof-shop63 .lof-shopsteps,.lof-shop63 .lof-shopcta{display:none!important}
+.lof-howx{max-width:var(--lof-container,1200px);margin:clamp(3rem,6vw,5rem) auto 0;padding:0 clamp(1rem,3vw,1.5rem);text-align:center}
+.lof-howx__eyebrow,.lof-giftx__eyebrow{margin:0 0 .5rem;font:800 .74rem/1 var(--lof-font-body);letter-spacing:.2em;text-transform:uppercase;color:var(--lof-amber,#DC8C13)}
+.lof-howx__title{margin:0 0 .6rem;font:900 clamp(1.7rem,3vw,2.4rem)/1.15 var(--lof-font-display);color:var(--lof-ink,#2B1D0E)}
+.lof-howx__lead{max-width:36rem;margin:0 auto 2.4rem;font:500 1rem/1.6 var(--lof-font-body);color:rgba(43,29,14,.7)}
+.lof-howx__steps{position:relative;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;counter-reset:none}
+.lof-howx__steps::before{content:"";position:absolute;top:36px;left:16.6%;right:16.6%;height:2px;background:repeating-linear-gradient(90deg,rgba(220,140,19,.55) 0 8px,transparent 8px 16px)}
+.lof-howx__steps li{position:relative;display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:0 1rem 1.6rem;margin:0}
+.lof-howx__ico{position:relative;z-index:1;width:72px;height:72px;display:grid;place-items:center;margin-bottom:.6rem;border-radius:50%;background:#fff;color:var(--lof-earth,#5C3D1E);border:1px solid rgba(92,61,30,.14);box-shadow:0 18px 34px -22px rgba(63,41,19,.7)}
+.lof-howx__ico b{position:absolute;top:-4px;right:-4px;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:var(--lof-gold,#F4AF16);color:#2B1D0E;font:900 .8rem/1 var(--lof-font-body);box-shadow:0 0 0 3px var(--lof-cream,#FCF6E1)}
+.lof-howx__steps strong{font:800 1.1rem/1.25 var(--lof-font-display);color:var(--lof-ink,#2B1D0E)}
+.lof-howx__steps span:not(.lof-howx__ico){max-width:18rem;font:500 .92rem/1.55 var(--lof-font-body);color:rgba(43,29,14,.7)}
+/* ---------- 0.63.4 Gift / larger order panel ---------- */
+.lof-giftx{position:relative;max-width:var(--lof-container,1200px);margin:clamp(2rem,4vw,3rem) auto clamp(3rem,6vw,5rem);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:2rem;padding:clamp(2rem,4vw,3.2rem);border-radius:28px;overflow:hidden;color:#FCF6E1;background:radial-gradient(circle at 100% 0,rgba(244,175,22,.28),rgba(244,175,22,0) 45%),linear-gradient(135deg,#3F2913,#2B1D0E 70%);box-shadow:0 40px 80px -46px rgba(43,29,14,.85)}
+.lof-giftx::after{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(244,175,22,.22);pointer-events:none}
+.lof-giftx__eyebrow{color:var(--lof-gold,#F4AF16)}
+.lof-giftx__title{margin:0 0 .8rem;font:900 clamp(1.7rem,3.2vw,2.5rem)/1.12 var(--lof-font-display);color:#FFFDF6!important}
+.lof-giftx__text{max-width:34rem;margin:0 0 1.2rem;font:500 1.02rem/1.65 var(--lof-font-body);color:rgba(252,246,225,.85)}
+.lof-giftx__points{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.8rem;padding:0}
+.lof-giftx__points li{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem .85rem;border-radius:999px;background:rgba(252,246,225,.08);border:1px solid rgba(252,246,225,.16);font:700 .82rem/1.2 var(--lof-font-body);color:#FCF6E1;margin:0}
+.lof-giftx__points li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lof-gold,#F4AF16)}
+.lof-giftx__actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1.2rem}
+.lof-giftx__btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:52px;padding:.85rem 1.5rem;border-radius:999px;font:800 .95rem/1 var(--lof-font-body);text-decoration:none!important;transition:transform .2s,background .2s,border-color .2s}
+.lof-giftx__btn--wa{background:#25D366;color:#0B3D20!important;box-shadow:0 16px 30px -18px rgba(37,211,102,.9)}
+.lof-giftx__btn--wa:hover{transform:translateY(-2px);background:#3BE07A}
+.lof-giftx__btn--ghost{border:1.5px solid rgba(252,246,225,.4);color:#FCF6E1!important}
+.lof-giftx__btn--ghost:hover{border-color:#FCF6E1;background:rgba(252,246,225,.08)}
+.lof-giftx__donate{font:700 .9rem/1.3 var(--lof-font-body);color:var(--lof-gold,#F4AF16)!important;text-decoration:none!important;border-bottom:1px solid rgba(244,175,22,.45)}
+.lof-giftx__donate:hover{border-bottom-color:var(--lof-gold,#F4AF16)}
+.lof-giftx__media{position:relative;height:100%;min-height:320px}
+.lof-giftx__ph{position:absolute;margin:0;overflow:hidden;border-radius:20px;border:4px solid rgba(252,246,225,.95);box-shadow:0 26px 50px -26px rgba(0,0,0,.7)}
+.lof-giftx__ph img{width:100%;height:100%;object-fit:cover;display:block}
+.lof-giftx__ph--1{width:58%;aspect-ratio:1;top:0;right:4%;transform:rotate(3deg)}
+.lof-giftx__ph--2{width:46%;aspect-ratio:1;bottom:0;left:2%;transform:rotate(-4deg)}
+.lof-giftx__ph--3{width:36%;aspect-ratio:1;bottom:6%;right:0;transform:rotate(5deg)}
+.lof-giftx__badge{position:absolute;left:8%;top:10%;display:flex;flex-direction:column;align-items:center;justify-content:center;width:104px;height:104px;border-radius:50%;background:var(--lof-gold,#F4AF16);color:#2B1D0E;text-align:center;font:700 .7rem/1.2 var(--lof-font-body);padding:.6rem;box-shadow:0 18px 30px -16px rgba(244,175,22,.8);transform:rotate(-8deg)}
+.lof-giftx__badge strong{font:900 1.45rem/1 var(--lof-font-display)}
+@media (max-width:991px){.lof-giftx{grid-template-columns:1fr;margin-left:1rem;margin-right:1rem}.lof-giftx__media{min-height:260px;max-width:440px;width:100%;margin:0 auto}}
+@media (max-width:767px){
+.lof-howx__steps{grid-template-columns:1fr;gap:0;max-width:420px;margin:0 auto;text-align:left}
+.lof-howx__steps::before{top:36px;bottom:60px;left:36px;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg,rgba(220,140,19,.55) 0 8px,transparent 8px 16px)}
+.lof-howx__steps li{display:grid;grid-template-columns:72px 1fr;grid-template-rows:auto auto;column-gap:1rem;align-items:start;padding:0 0 1.4rem}
+.lof-howx__ico{grid-row:1/3;margin:0}
+.lof-howx__steps strong{margin-top:.9rem}
+.lof-giftx{padding:1.8rem 1.3rem;border-radius:22px;gap:1.6rem}
+.lof-giftx__actions{flex-direction:column}
+.lof-giftx__btn{width:100%}
+.lof-giftx__media{min-height:230px}
+.lof-giftx__badge{width:88px;height:88px}
+}

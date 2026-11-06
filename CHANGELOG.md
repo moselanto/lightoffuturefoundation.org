@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.63.4 - 2026-11-06
+- Shop cards: clear gap between View details and Order on WhatsApp; green order button.
+- Shop: redesigned How ordering works (icon steps with a connecting line) and a new gift / larger order panel with photo collage, WhatsApp and email buttons.
+
 ## 0.63.3 - 2026-11-06
 - Phones: a floating WhatsApp greeting appears on the right above the WhatsApp button after 4 seconds, once per visit, and can be dismissed. Still hidden on larger screens and the Gallery.
 

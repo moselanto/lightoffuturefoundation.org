@@ -106,6 +106,8 @@ function lof_shop63_setup() {
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 		add_action( 'woocommerce_archive_description', 'lof_shop_hero63', 4 );
 	}
+	remove_action( 'woocommerce_after_shop_loop', 'lof_shop_after', 30 );
+	add_action( 'woocommerce_after_shop_loop', 'lof_shop_after63', 30 );
 }
 add_action( 'wp', 'lof_shop63_setup', 20 );
 
@@ -371,5 +373,51 @@ function lof_shop_hero63() {
 		<li><span class="lof-shoptrust__ico" aria-hidden="true"><?php echo lof_wa_icon( 22 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><strong><?php esc_html_e( 'Easy WhatsApp ordering', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Pick a design and our team confirms with you.', 'light-of-future' ); ?></span></li>
 		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 6h11v9H3zm11 3h4l3 3v3h-7zM6.5 19a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm11 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg></span><strong><?php esc_html_e( 'Delivery arranged with you', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Nairobi, across Kenya and abroad.', 'light-of-future' ); ?></span></li>
 	</ul>
+	<?php
+}
+
+/**
+ * 0.63.4: How ordering works and the gift / larger order panel.
+ */
+function lof_shop_after63() {
+	$wa    = lof_wa_link( __( 'Hello Light of Future Foundation, I am looking for a gift or a larger order from your shop.', 'light-of-future' ) );
+	$email = function_exists( 'lof_contact_email' ) ? lof_contact_email() : 'info@lightoffuturefoundation.org';
+	$img   = LOF_THEME_URI . '/assets/images/shop/';
+	?>
+	<section class="lof-howx" aria-labelledby="lof-howx-title">
+		<div class="lof-howx__head">
+			<p class="lof-howx__eyebrow"><?php esc_html_e( 'Simple and personal', 'light-of-future' ); ?></p>
+			<h2 class="lof-howx__title" id="lof-howx-title"><?php esc_html_e( 'How ordering works', 'light-of-future' ); ?></h2>
+			<p class="lof-howx__lead"><?php esc_html_e( 'No account or card needed. A real person on our team confirms every order with you.', 'light-of-future' ); ?></p>
+		</div>
+		<ol class="lof-howx__steps">
+			<li><span class="lof-howx__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg><b>1</b></span><strong><?php esc_html_e( 'Choose your piece', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Open a product to see its designs, photos and price.', 'light-of-future' ); ?></span></li>
+			<li><span class="lof-howx__ico" aria-hidden="true"><?php echo lof_wa_icon( 24 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><b>2</b></span><strong><?php esc_html_e( 'Order on WhatsApp', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Pick your design and quantity in the short form and send it to our team.', 'light-of-future' ); ?></span></li>
+			<li><span class="lof-howx__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 6h11v9H3zm11 3h4l3 3v3h-7zM6.5 19a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm11 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg><b>3</b></span><strong><?php esc_html_e( 'We confirm and deliver', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'We confirm the price, payment and delivery with you, then send your order.', 'light-of-future' ); ?></span></li>
+		</ol>
+	</section>
+	<section class="lof-giftx" aria-labelledby="lof-giftx-title">
+		<div class="lof-giftx__body">
+			<p class="lof-giftx__eyebrow"><?php esc_html_e( 'Gifts, events and bulk orders', 'light-of-future' ); ?></p>
+			<h2 class="lof-giftx__title" id="lof-giftx-title"><?php esc_html_e( 'Looking for a gift or a larger order?', 'light-of-future' ); ?></h2>
+			<p class="lof-giftx__text"><?php esc_html_e( 'Ask us about custom colours, sizes, gift sets, corporate gifts and event orders. Message our team and we will reply on WhatsApp.', 'light-of-future' ); ?></p>
+			<ul class="lof-giftx__points">
+				<li><?php esc_html_e( 'Custom colours and names', 'light-of-future' ); ?></li>
+				<li><?php esc_html_e( 'Gift sets and wrapping', 'light-of-future' ); ?></li>
+				<li><?php esc_html_e( 'Event and corporate orders', 'light-of-future' ); ?></li>
+			</ul>
+			<div class="lof-giftx__actions">
+				<a class="lof-giftx__btn lof-giftx__btn--wa" href="<?php echo esc_url( $wa ); ?>" target="_blank" rel="noopener noreferrer"><?php echo lof_wa_icon( 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><?php esc_html_e( 'Chat on WhatsApp', 'light-of-future' ); ?></span></a>
+				<a class="lof-giftx__btn lof-giftx__btn--ghost" href="<?php echo esc_url( 'mailto:' . antispambot( $email ) ); ?>"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5z"/></svg><span><?php esc_html_e( 'Email the shop team', 'light-of-future' ); ?></span></a>
+			</div>
+			<a class="lof-giftx__donate" href="<?php echo esc_url( lof_donate_url() ); ?>"><?php esc_html_e( 'Prefer to give directly? Make a donation', 'light-of-future' ); ?> <span aria-hidden="true">&rarr;</span></a>
+		</div>
+		<div class="lof-giftx__media" aria-hidden="true">
+			<figure class="lof-giftx__ph lof-giftx__ph--1"><img src="<?php echo esc_url( $img . 'sm/bags-collection.webp' ); ?>" alt="" width="320" height="320" loading="lazy" decoding="async"></figure>
+			<figure class="lof-giftx__ph lof-giftx__ph--2"><img src="<?php echo esc_url( $img . 'sm/earrings-hoop-multicolour.webp' ); ?>" alt="" width="320" height="320" loading="lazy" decoding="async"></figure>
+			<figure class="lof-giftx__ph lof-giftx__ph--3"><img src="<?php echo esc_url( $img . 'sm/keyholders-accessories.webp' ); ?>" alt="" width="320" height="320" loading="lazy" decoding="async"></figure>
+			<span class="lof-giftx__badge"><strong>100%</strong><?php esc_html_e( 'handmade in Kenya', 'light-of-future' ); ?></span>
+		</div>
+	</section>
 	<?php
 }
