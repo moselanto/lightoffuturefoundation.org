@@ -906,3 +906,17 @@ img,video,iframe,svg{max-width:100%}
 /* ---------- 0.61.2 ---------- */
 /* Stories (desktop): wide featured card shows Margaret's face, not the doorway above her. */
 @media (min-width:992px){.lof-page-stories .lof-spot__media img{object-position:50% 32%!important}}
+
+/* ---------- 0.62.1 ---------- */
+/* Footer contact tiles: the text column may shrink, so the full email address wraps instead of being clipped on phones. */
+.lof-footer__tile{min-width:0;max-width:100%}
+.lof-footer__tile>span:last-child{flex:1 1 auto;min-width:0}
+.lof-footer__tile strong{overflow-wrap:anywhere!important;word-break:break-word}
+@media (max-width:480px){.lof-footer__tile strong{font-size:.9rem}.lof-footer__tile{gap:.8rem}}
+/* Leadership hero: goat herd photo, framed on the herd rather than the sky. */
+.lof-page-leadership .lof-page-hero__side img,.page-leadership .lof-page-hero__side img{object-position:50% 62%}
+
+/* ---------- 0.62.2 ---------- */
+/* Footer contact tiles inherited white-space:nowrap and word-break:keep-all, so the email could not wrap. */
+.lof-footer__tile,.lof-footer__tile span,.lof-footer__tile strong{white-space:normal!important;word-break:normal!important}
+.lof-footer__tile strong{overflow-wrap:anywhere!important}

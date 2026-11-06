@@ -125,7 +125,7 @@ function lof_page_hero_side_photo() {
 	// 0.50.0: a different photo from the November content for each page.
 	$fresh = array(
 		'about-us'           => 'eunice-after',
-		'leadership'         => 'pads-community',
+		'leadership'         => 'goats-wide',
 		'faq'                => 'philister-portrait',
 		'programmes'         => 'pads-community',
 		'talent-development' => 'ment-girls',
