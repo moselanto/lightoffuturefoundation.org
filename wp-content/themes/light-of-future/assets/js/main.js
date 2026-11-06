@@ -371,3 +371,6 @@
 		initReveal();
 	});
 })();
+
+/* 0.63.5: footer link groups open and close on phones. */
+(function(){var f=document.getElementById('site-footer');if(!f){return;}f.classList.add('lof-footer--acc');f.querySelectorAll('.lof-footer__col:not(.lof-footer__support)').forEach(function(col,n){var t=col.querySelector('.lof-footer__title');var list=col.querySelector('.lof-footer__links');if(!t||!list){return;}list.id=list.id||('lof-footlinks-'+n);var c=document.createElement('span');c.className='lof-footacc__chev';c.setAttribute('aria-hidden','true');c.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></svg>';t.appendChild(c);var mq=window.matchMedia('(max-width: 767px)');function sync(){if(mq.matches){t.setAttribute('role','button');t.setAttribute('tabindex','0');t.setAttribute('aria-controls',list.id);t.setAttribute('aria-expanded',col.classList.contains('is-open')?'true':'false');}else{t.removeAttribute('role');t.removeAttribute('tabindex');t.removeAttribute('aria-expanded');}}function toggle(){if(!mq.matches){return;}col.classList.toggle('is-open');sync();}t.addEventListener('click',toggle);t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});if(mq.addEventListener){mq.addEventListener('change',sync);}sync();});}());

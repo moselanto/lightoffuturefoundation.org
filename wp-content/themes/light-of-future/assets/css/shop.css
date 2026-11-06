@@ -1161,3 +1161,31 @@ body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!import
 .lof-giftx__media{min-height:230px}
 .lof-giftx__badge{width:88px;height:88px}
 }
+
+
+/* ---------- 0.63.5 Footer: international-standard layout ---------- */
+.lof-footer__brand .lof-logo{display:inline-block;margin-bottom:1.1rem}
+.lof-footer__brand .lof-logo img{width:150px!important;height:auto!important}
+.lof-footer__links a{transition:color .2s,padding-left .2s}
+.lof-footer__links a:hover{color:var(--lof-gold,#F4AF16)!important;padding-left:4px}
+.lof-footer__title{cursor:default}
+.lof-footer__title .lof-footacc__chev{display:none}
+@media (max-width:767px){
+.lof-footer__main{display:block!important;padding-top:.5rem!important}
+.lof-footer__brand{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 0 1.6rem;margin-bottom:.4rem;border-bottom:1px solid rgba(244,175,22,.18)}
+.lof-footer__brand .lof-logo img{width:118px!important}
+.lof-footer__intro{max-width:30rem;font-size:.95rem!important;line-height:1.65!important;margin:0 auto 1rem!important}
+.lof-footer__badge{margin:0 auto!important}
+.lof-footer__col:not(.lof-footer__support){margin:0!important;padding:0!important;border-bottom:1px solid rgba(244,175,22,.18)}
+.lof-footer__col:not(.lof-footer__support) .lof-footer__title{display:flex!important;align-items:center;justify-content:space-between;width:100%;margin:0!important;padding:1.15rem 0!important;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lof-footer__col:not(.lof-footer__support) .lof-footer__title::after{display:none!important}
+.lof-footer__title .lof-footacc__chev{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:rgba(244,175,22,.14);color:var(--lof-gold,#F4AF16);transition:transform .25s}
+.lof-footer__col.is-open .lof-footacc__chev{transform:rotate(180deg)}
+.lof-footer--acc .lof-footer__col:not(.lof-footer__support):not(.is-open) .lof-footer__links{display:none!important}
+.lof-footer__col .lof-footer__links{display:grid!important;grid-template-columns:1fr;gap:0!important;margin:0!important;padding:0 0 1rem!important;columns:auto!important}
+.lof-footer__col:first-of-type .lof-footer__links,.lof-footer__col[aria-label="Explore"] .lof-footer__links{grid-template-columns:1fr 1fr}
+.lof-footer__col .lof-footer__links li{margin:0!important;padding:0!important}
+.lof-footer__col .lof-footer__links a{display:block;padding:.55rem 0!important;font-size:.95rem!important;line-height:1.35!important;word-break:normal;overflow-wrap:break-word}
+.lof-footer__support{margin-top:1.6rem!important;text-align:center}
+.lof-footer__support .lof-footer__title::after{margin-inline:auto}
+}

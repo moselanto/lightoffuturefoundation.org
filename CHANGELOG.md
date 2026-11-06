@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.63.5 - 2026-11-06
+- Footer: centred brand block on phones, Explore and Focus areas become tidy open/close sections with full-width rows (no more squeezed two-column text), smaller logo on desktop, link hover states.
+
 ## 0.63.4 - 2026-11-06
 - Shop cards: clear gap between View details and Order on WhatsApp; green order button.
 - Shop: redesigned How ordering works (icon steps with a connecting line) and a new gift / larger order panel with photo collage, WhatsApp and email buttons.
