@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.62.0 - 2026-11-06
+- Home speed: first-screen styles printed in the head; the full Elementor, sections and shop stylesheets load without blocking; jQuery and the scripts after it are deferred (new inc/speed-062.php, assets/css/critical/).
+
 ## 0.61.2 - 2026-11-06
 - Stories on desktop: the featured photo shows Margaret's face.
 
