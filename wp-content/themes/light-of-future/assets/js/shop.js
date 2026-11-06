@@ -27,7 +27,7 @@
 		};
 		var phone = window.matchMedia ? window.matchMedia('(max-width: 991px)') : null;
 		var tuck = function () {
-			var t = phone && phone.matches && window.scrollY < 160 && panel.hidden;
+			var t = phone && phone.matches && window.scrollY < 160 && panel.hidden && teaser.hidden;
 			chat.classList.toggle('is-tucked', !!t);
 		};
 		tuck();
@@ -46,7 +46,7 @@
 		fab.addEventListener('click', function (e) { e.preventDefault(); if (panel.hidden) { open(); } else { close(); } });
 		chat.querySelector('.lof-chat__close').addEventListener('click', close);
 		chat.querySelector('.lof-chat__teaser-open').addEventListener('click', open);
-		chat.querySelector('.lof-chat__teaser-close').addEventListener('click', function () { teaser.hidden = true; store.set('lofChatSeen', '1'); });
+		chat.querySelector('.lof-chat__teaser-close').addEventListener('click', function () { teaser.hidden = true; dot.hidden = true; store.set('lofChatSeen', '1'); tuck(); });
 		document.addEventListener('keydown', function (e) { if ('Escape' === e.key && !panel.hidden) { close(); } });
 		chat.querySelectorAll('.lof-chat__chip').forEach(function (chip) {
 			chip.addEventListener('click', function () {
@@ -61,8 +61,10 @@
 			if (share && share.checked && pageUrl) { msg += '\n' + pageUrl; }
 			window.open('https://wa.me/' + number + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
 		});
-		if ('1' !== chat.getAttribute('data-quiet') && !store.get('lofChatSeen') && !(window.matchMedia && window.matchMedia('(max-width: 640px)').matches)) {
-			setTimeout(function () { if (panel.hidden) { teaser.hidden = false; dot.hidden = false; } }, 6000);
+		/* 0.63.3: the greeting bubble is shown on phones only (on larger screens it covered page content). */
+		var small = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+		if ('1' !== chat.getAttribute('data-quiet') && !store.get('lofChatSeen') && small) {
+			setTimeout(function () { if (panel.hidden) { teaser.hidden = false; dot.hidden = false; tuck(); } }, 4000);
 		}
 	}
 

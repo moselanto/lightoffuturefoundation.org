@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.63.3 - 2026-11-06
+- Phones: a floating WhatsApp greeting appears on the right above the WhatsApp button after 4 seconds, once per visit, and can be dismissed. Still hidden on larger screens and the Gallery.
+
 ## 0.63.2 - 2026-11-06
 - Shop hero: truly full width on every screen (including large-screen scaling) and exactly fills the first screen below the header; no gap above it.
 
