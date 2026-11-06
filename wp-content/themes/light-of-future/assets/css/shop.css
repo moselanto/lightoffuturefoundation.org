@@ -996,3 +996,61 @@ img,video,iframe,svg{max-width:100%}
 .lof-filterbar__right{width:100%;justify-content:space-between;margin-left:0}
 }
 @media (max-width:380px){.lof-shop63 ul.products{gap:.6rem}.lof-cats__track{grid-auto-columns:48%}}
+
+/* ---------- 0.63.1 Shop hero (full width, photo mosaic) ---------- */
+.lof-shopx{position:relative;width:100vw;margin:0 0 0 calc(50% - 50vw);min-height:clamp(520px,62vh,640px);display:flex;align-items:center;overflow:hidden;background:#2B1D0E;color:#FCF6E1;isolation:isolate}
+.lof-shopx__mosaic{position:absolute;top:0;bottom:0;right:0;width:64%;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:6px;z-index:-2}
+.lof-shopx__tile{margin:0;overflow:hidden;background:#3F2913}
+.lof-shopx__tile img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);animation:lofx-zoom 18s ease-in-out infinite alternate}
+.lof-shopx__tile--2 img,.lof-shopx__tile--7 img{animation-delay:-6s}.lof-shopx__tile--4 img,.lof-shopx__tile--5 img{animation-delay:-12s}
+@keyframes lofx-zoom{to{transform:scale(1.1)}}
+.lof-shopx__shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#2B1D0E 0,#2B1D0E 34%,rgba(43,29,14,.86) 48%,rgba(43,29,14,.35) 72%,rgba(43,29,14,.15) 100%),linear-gradient(0deg,rgba(43,29,14,.55),rgba(43,29,14,0) 40%)}
+.lof-shopx__inner{position:relative;width:100%;max-width:var(--lof-container,1200px);margin:0 auto;padding:clamp(3.5rem,7vw,5.5rem) clamp(1.25rem,3vw,1.5rem) clamp(5.5rem,9vw,7rem)}
+.lof-shopx__eyebrow{display:inline-flex;align-items:center;gap:.7rem;margin:0 0 1.2rem;font:800 .76rem/1 var(--lof-font-body);letter-spacing:.2em;text-transform:uppercase;color:var(--lof-gold,#F4AF16)}
+.lof-shopx__eyebrow span{width:34px;height:2px;background:var(--lof-gold,#F4AF16)}
+.lof-shopx__title{max-width:12.5em;margin:0 0 1.2rem;font:900 clamp(2.4rem,5.2vw,4.3rem)/1.04 var(--lof-font-display);letter-spacing:-.02em;color:#FFFDF6!important}
+.lof-shopx__title em{display:block;font-style:normal;background:linear-gradient(90deg,#FBD62B,#F4AF16 60%,#DC8C13);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lof-shopx__lead{max-width:34rem;margin:0 0 2rem;font:500 clamp(1rem,1.3vw,1.15rem)/1.65 var(--lof-font-body);color:rgba(252,246,225,.86)}
+.lof-shopx__actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:2.4rem}
+.lof-shopx__btn{display:inline-flex;align-items:center;gap:.55rem;min-height:52px;padding:.9rem 1.6rem;border-radius:999px;font:800 .95rem/1 var(--lof-font-body);text-decoration:none!important;transition:transform .2s,background .2s,box-shadow .2s}
+.lof-shopx__btn--primary{background:var(--lof-gold,#F4AF16);color:#2B1D0E!important;box-shadow:0 16px 34px -16px rgba(244,175,22,.7)}
+.lof-shopx__btn--primary:hover{transform:translateY(-2px);background:#FBD62B}
+.lof-shopx__btn--ghost{border:1.5px solid rgba(252,246,225,.45);color:#FCF6E1!important;background:rgba(252,246,225,.06);backdrop-filter:blur(6px)}
+.lof-shopx__btn--ghost:hover{background:rgba(252,246,225,.14);border-color:#FCF6E1}
+.lof-shopx__facts{list-style:none;display:flex;flex-wrap:wrap;gap:0;margin:0;padding:0}
+.lof-shopx__facts li{display:flex;flex-direction:column;gap:.3rem;padding:0 1.6rem;border-left:1px solid rgba(244,175,22,.35)}
+.lof-shopx__facts li:first-child{padding-left:0;border-left:0}
+.lof-shopx__facts strong{font:900 1.7rem/1 var(--lof-font-display);color:#FFFDF6}
+.lof-shopx__facts span{font:600 .78rem/1.2 var(--lof-font-body);letter-spacing:.06em;text-transform:uppercase;color:rgba(252,246,225,.7)}
+.lof-shoptrust--x{position:relative;z-index:2;max-width:var(--lof-container,1200px);margin:-3.4rem auto 2.5rem!important;padding:1.1rem!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.4rem!important;background:#fff;border-radius:22px;box-shadow:0 30px 60px -34px rgba(43,29,14,.55);list-style:none}
+.lof-shoptrust--x li{display:grid!important;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:.8rem;align-items:center;padding:.6rem .8rem!important;margin:0!important;background:none!important;border:0!important;box-shadow:none!important;text-align:left}
+.lof-shoptrust--x .lof-shoptrust__ico{grid-row:1/3;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:rgba(244,175,22,.16);color:var(--lof-earth,#5C3D1E);margin:0!important}
+.lof-shoptrust--x strong{font:800 .92rem/1.25 var(--lof-font-display);color:var(--lof-ink,#2B1D0E)}
+.lof-shoptrust--x span:not(.lof-shoptrust__ico){font:500 .8rem/1.4 var(--lof-font-body);color:rgba(43,29,14,.68)}
+.lof-shop63 .woocommerce-products-header{margin:0!important;padding:0!important}
+@media (max-width:1024px){.lof-shopx__mosaic{width:72%}.lof-shoptrust--x{grid-template-columns:repeat(2,minmax(0,1fr));margin:-3rem 1rem 2rem!important}}
+@media (max-width:767px){
+.lof-shopx{flex-direction:column;align-items:stretch;min-height:0}
+.lof-shopx__mosaic{position:relative;order:2;width:100%;height:auto;grid-template-columns:repeat(4,1fr);grid-template-rows:none;gap:4px;z-index:0}
+.lof-shopx__tile{aspect-ratio:1/1}.lof-shopx__tile--5,.lof-shopx__tile--6,.lof-shopx__tile--7,.lof-shopx__tile--8{display:none}
+.lof-shopx__shade{display:none}
+.lof-shopx__inner{order:1;padding:2.4rem 1.25rem 2rem;background:radial-gradient(circle at 85% 0,rgba(244,175,22,.22),rgba(244,175,22,0) 55%),#2B1D0E}
+.lof-shopx__title{font-size:clamp(2.1rem,9.5vw,2.7rem)}
+.lof-shopx__lead{margin-bottom:1.5rem;font-size:1rem}
+.lof-shopx__actions{flex-direction:column;margin-bottom:1.8rem}
+.lof-shopx__btn{justify-content:center;width:100%}
+.lof-shopx__facts{display:grid;grid-template-columns:repeat(3,1fr)}
+.lof-shopx__facts li{padding:0 .7rem}.lof-shopx__facts strong{font-size:1.4rem}.lof-shopx__facts span{font-size:.66rem}
+.lof-shoptrust--x{margin:1rem!important;grid-template-columns:1fr 1fr;padding:.6rem!important}
+.lof-shoptrust--x li{grid-template-columns:1fr;grid-template-rows:auto;row-gap:.4rem;padding:.6rem!important}
+.lof-shoptrust--x .lof-shoptrust__ico{grid-row:auto;width:38px;height:38px}
+.lof-shoptrust--x span:not(.lof-shoptrust__ico){font-size:.74rem}
+}
+@media (prefers-reduced-motion:reduce){.lof-shopx__tile img{animation:none}}
+/* ---------- 0.63.1 About: founder photo on phones ---------- */
+@media (max-width:991px){
+section.lof-feature--story .lof-feature__media{max-width:440px!important;margin:0 auto 1.5rem!important;border-radius:24px;overflow:hidden;background:#2B1D0E;box-shadow:0 30px 60px -36px rgba(43,29,14,.7)}
+section.lof-feature--story .lof-feature__media::before,section.lof-feature--story .lof-feature__media::after{display:none!important}
+section.lof-feature--story .lof-feature__media img{display:block;width:100%!important;height:auto!important;aspect-ratio:4/5!important;object-fit:cover!important;object-position:30% 62%!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+section.lof-feature--story .lof-feature__media figcaption,section.lof-feature--story .lof-feature__name{position:relative!important;inset:auto!important;padding:1rem 1.3rem 1.15rem!important;background:#2B1D0E!important;border-top:3px solid var(--lof-gold,#F4AF16)!important}
+}

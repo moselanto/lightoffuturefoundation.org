@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.63.1 - 2026-11-06
+- Shop: new full-width hero with a photo mosaic, gold headline, stats and a floating trust bar; breadcrumb removed on the shop page.
+- Shop: Clear filters returns to all products.
+- About: founder photo on phones shows Francis in full with his name below the photo.
+
 ## 0.63.0 - 2026-11-06
 - Shop: search bar, category slider with photos, price filters, sorting and a uniform product grid (inc/shop-063.php).
 - Page loader: light rings around the foundation symbol, once per visit, removes itself within about a second even without scripts.

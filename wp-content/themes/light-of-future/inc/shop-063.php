@@ -100,6 +100,12 @@ function lof_shop63_setup() {
 	add_action( 'woocommerce_before_shop_loop', 'lof_shop_browse', 5 );
 	add_action( 'woocommerce_no_products_found', 'lof_shop_browse', 5 );
 	add_action( 'woocommerce_shop_loop_item_title', 'lof_shop_card_category', 5 );
+	if ( is_shop() ) {
+		remove_action( 'woocommerce_archive_description', 'lof_shop_hero', 4 );
+		remove_action( 'woocommerce_archive_description', 'lof_shop_intro', 5 );
+		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+		add_action( 'woocommerce_archive_description', 'lof_shop_hero63', 4 );
+	}
 }
 add_action( 'wp', 'lof_shop63_setup', 20 );
 
@@ -234,7 +240,7 @@ function lof_shop_browse() {
 				<?php if ( $s['q'] ) : ?>
 					<?php /* translators: %s search text */ echo esc_html( sprintf( __( 'Results for "%s"', 'light-of-future' ), $s['q'] ) ); ?>
 				<?php endif; ?>
-				<a href="<?php echo esc_url( lof_shop_url( array( 'q' => null, 'price' => null ) ) ); ?>"><?php esc_html_e( 'Clear filters', 'light-of-future' ); ?></a>
+				<a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) . '#lof-shop-collection' ); ?>"><?php esc_html_e( 'Clear filters', 'light-of-future' ); ?></a>
 			</p>
 		<?php endif; ?>
 	</div>
@@ -323,3 +329,46 @@ function lof_cine_still_css() {
 	echo '<style id="lof-cine-still">[data-lof-cine]:not(.has-moved) .lof-cine__slide.is-active .lof-cine__eyebrow,[data-lof-cine]:not(.has-moved) .lof-cine__slide.is-active .lof-cine__title,[data-lof-cine]:not(.has-moved) .lof-cine__slide.is-active .lof-cine__text,[data-lof-cine]:not(.has-moved) .lof-cine__slide.is-active .lof-btn-row{animation:none!important;opacity:1!important;transform:none!important}[data-lof-cine]:not(.is-ready) .lof-cine__bar span{animation:none!important;width:0!important}</style>' . "\n";
 }
 add_action( 'wp_head', 'lof_cine_still_css', 4 );
+
+/**
+ * 0.63.1: full-width shop hero with a photo mosaic of the makers' work.
+ */
+function lof_shop_hero63() {
+	$img   = LOF_THEME_URI . '/assets/images/shop/';
+	$tiles = array( 'bags-collection', 'earrings-hoop-multicolour', 'basket-bag-turquoise', 'bangles-gold', 'sandals-teardrop', 'necklace-bib-collection', 'earrings-display', 'bangles-turquoise' );
+	$count = wp_count_posts( 'product' );
+	$count = isset( $count->publish ) ? (int) $count->publish : 0;
+	$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => true, 'parent' => 0, 'fields' => 'ids', 'exclude' => array( (int) get_option( 'default_product_cat' ) ) ) );
+	$cats  = is_wp_error( $terms ) ? 0 : count( $terms );
+	$wa    = lof_wa_link( __( 'Hello Light of Future Foundation, I would like to ask about a custom or bulk order from your shop.', 'light-of-future' ) );
+	?>
+	<section class="lof-shopx" aria-labelledby="lof-shopx-title">
+		<div class="lof-shopx__mosaic" aria-hidden="true">
+			<?php foreach ( $tiles as $i => $t ) : ?>
+				<figure class="lof-shopx__tile lof-shopx__tile--<?php echo (int) $i + 1; ?>"><img src="<?php echo esc_url( $img . 'sm/' . $t . '.webp' ); ?>" srcset="<?php echo esc_url( $img . 'sm/' . $t . '.webp' ); ?> 320w, <?php echo esc_url( $img . $t . '.webp' ); ?> 900w" sizes="(max-width: 767px) 34vw, 22vw" alt="" width="900" height="900" <?php echo $i < 3 ? 'fetchpriority="high"' : 'loading="lazy"'; ?> decoding="async"></figure>
+			<?php endforeach; ?>
+		</div>
+		<div class="lof-shopx__shade" aria-hidden="true"></div>
+		<div class="lof-shopx__inner">
+			<p class="lof-shopx__eyebrow"><span aria-hidden="true"></span><?php esc_html_e( 'The Light of Future Shop', 'light-of-future' ); ?></p>
+			<h1 class="lof-shopx__title" id="lof-shopx-title"><?php esc_html_e( 'Handmade in Kenya,', 'light-of-future' ); ?> <em><?php esc_html_e( 'made to give back', 'light-of-future' ); ?></em></h1>
+			<p class="lof-shopx__lead"><?php esc_html_e( 'Beaded jewellery, leather bags and sandals, each made by hand by community makers. Every purchase supports the makers and our work with vulnerable children, widows and families.', 'light-of-future' ); ?></p>
+			<div class="lof-shopx__actions">
+				<a class="lof-shopx__btn lof-shopx__btn--primary" href="#lof-shop-collection"><?php esc_html_e( 'Shop the collection', 'light-of-future' ); ?> <span aria-hidden="true">&rarr;</span></a>
+				<a class="lof-shopx__btn lof-shopx__btn--ghost" href="<?php echo esc_url( $wa ); ?>" target="_blank" rel="noopener noreferrer"><?php echo lof_wa_icon( 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><?php esc_html_e( 'Custom and bulk orders', 'light-of-future' ); ?></span></a>
+			</div>
+			<ul class="lof-shopx__facts">
+				<?php if ( $count ) : ?><li><strong><?php echo esc_html( number_format_i18n( $count ) ); ?></strong><span><?php esc_html_e( 'handmade products', 'light-of-future' ); ?></span></li><?php endif; ?>
+				<?php if ( $cats ) : ?><li><strong><?php echo esc_html( number_format_i18n( $cats ) ); ?></strong><span><?php esc_html_e( 'collections', 'light-of-future' ); ?></span></li><?php endif; ?>
+				<li><strong>100%</strong><span><?php esc_html_e( 'made by hand', 'light-of-future' ); ?></span></li>
+			</ul>
+		</div>
+	</section>
+	<ul class="lof-shoptrust lof-shoptrust--x" aria-label="<?php esc_attr_e( 'Why shop with us', 'light-of-future' ); ?>">
+		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.4 5 5.6.8-4 3.9.9 5.5L12 14.6 7.1 17.2 8 11.7 4 7.8l5.6-.8z"/></svg></span><strong><?php esc_html_e( 'Handmade quality', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Finished by hand. No two pieces are exactly alike.', 'light-of-future' ); ?></span></li>
+		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.4 1.1 4.4 2.5C12 6.1 13.4 5 15.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/></svg></span><strong><?php esc_html_e( 'Shopping that gives back', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Every order supports makers and our programmes.', 'light-of-future' ); ?></span></li>
+		<li><span class="lof-shoptrust__ico" aria-hidden="true"><?php echo lof_wa_icon( 22 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><strong><?php esc_html_e( 'Easy WhatsApp ordering', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Pick a design and our team confirms with you.', 'light-of-future' ); ?></span></li>
+		<li><span class="lof-shoptrust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 6h11v9H3zm11 3h4l3 3v3h-7zM6.5 19a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm11 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg></span><strong><?php esc_html_e( 'Delivery arranged with you', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Nairobi, across Kenya and abroad.', 'light-of-future' ); ?></span></li>
+	</ul>
+	<?php
+}
