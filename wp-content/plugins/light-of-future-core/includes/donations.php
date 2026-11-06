@@ -1,6 +1,6 @@
 <?php
 /**
- * Online donations with Paystack: one-time and monthly recurring gifts.
+ * Online donations with Paystack: one-time, monthly and yearly gifts, optionally anonymous.
  *
  * How it works
  * ------------
@@ -69,6 +69,28 @@ function lof_pay_enabled() {
 }
 
 /**
+ * Gift frequencies: key => array( label, Paystack plan interval or '' for one-time ).
+ *
+ * @return array
+ */
+function lof_pay_freqs() {
+	return array(
+		'once'    => array( __( 'One-time', 'light-of-future-core' ), '' ),
+		'monthly' => array( __( 'Monthly', 'light-of-future-core' ), 'monthly' ),
+		'yearly'  => array( __( 'Yearly', 'light-of-future-core' ), 'annually' ),
+	);
+}
+
+/**
+ * Admins can preview the form before Paystack keys are added: add ?lof_pay_preview=1 to the Donate page.
+ *
+ * @return bool
+ */
+function lof_pay_preview() {
+	return ! lof_pay_enabled() && isset( $_GET['lof_pay_preview'] ) && is_user_logged_in() && current_user_can( 'manage_options' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+}
+
+/**
  * Settings for online giving (filterable; sensible defaults).
  *
  * @param string $key Key.
@@ -78,9 +100,9 @@ function lof_pay_get( $key ) {
 	$core = function_exists( 'lof_core_setting' );
 	$map  = array(
 		'paystack_enabled'      => '1',
-		'paystack_currencies'   => defined( 'LIGHT_PAYSTACK_CURRENCIES' ) ? (string) LIGHT_PAYSTACK_CURRENCIES : 'KES',
+		'paystack_currencies'   => defined( 'LIGHT_PAYSTACK_CURRENCIES' ) ? (string) LIGHT_PAYSTACK_CURRENCIES : 'USD,KES',
 		'paystack_amounts_kes'  => "500|\n1000|\n2500|\n5000|\n10000|",
-		'paystack_amounts_usd'  => "10|\n25|\n50|\n100|",
+		'paystack_amounts_usd'  => "10|\n25|\n50|\n100|\n250|\n500|\n1000|",
 		'paystack_fee_kes'      => '2.9',
 		'paystack_fee_usd'      => '3.8',
 		'paystack_notify_email' => '',
@@ -155,6 +177,9 @@ function lof_pay_presets( $currency ) {
 function lof_pay_format( $amount, $currency ) {
 	$amount   = (float) $amount;
 	$decimals = ( 'KES' === $currency || abs( $amount - round( $amount ) ) < 0.005 ) ? 0 : 2;
+	if ( 'USD' === $currency ) {
+		return '$' . number_format( $amount, $decimals );
+	}
 	return $currency . ' ' . number_format( $amount, $decimals );
 }
 
@@ -223,10 +248,12 @@ function lof_pay_api( $method, $path, $body = null ) {
  * @param string $currency Currency.
  * @return string|WP_Error
  */
-function lof_pay_plan_code( $subunits, $currency ) {
+function lof_pay_plan_code( $subunits, $currency, $frequency = 'monthly' ) {
+	$freqs    = lof_pay_freqs();
+	$interval = isset( $freqs[ $frequency ][1] ) && $freqs[ $frequency ][1] ? $freqs[ $frequency ][1] : 'monthly';
 	$plans = get_option( 'lof_paystack_plans', array() );
 	$plans = is_array( $plans ) ? $plans : array();
-	$key   = lof_pay_mode() . '_' . $currency . '_' . (int) $subunits;
+	$key   = lof_pay_mode() . '_' . $currency . '_' . (int) $subunits . ( 'monthly' === $interval ? '' : '_' . $interval );
 	if ( ! empty( $plans[ $key ] ) ) {
 		return $plans[ $key ];
 	}
@@ -234,8 +261,8 @@ function lof_pay_plan_code( $subunits, $currency ) {
 		'POST',
 		'/plan',
 		array(
-			'name'     => sprintf( 'Monthly gift %s', lof_pay_format( $subunits / 100, $currency ) ),
-			'interval' => 'monthly',
+			'name'     => sprintf( '%s gift %s', 'annually' === $interval ? 'Yearly' : 'Monthly', lof_pay_format( $subunits / 100, $currency ) ),
+			'interval' => $interval,
 			'amount'   => (int) $subunits,
 			'currency' => $currency,
 		)
@@ -346,7 +373,7 @@ function lof_pay_create( $d ) {
 		array(
 			'post_type'   => 'lof_donation',
 			'post_status' => 'private',
-			'post_title'  => trim( sprintf( '%s - %s %s', $d['name'] ? $d['name'] : $d['email'], lof_pay_format( $d['charged'] / 100, $d['currency'] ), 'monthly' === $d['frequency'] ? '(monthly)' : '' ) ),
+			'post_title'  => trim( sprintf( '%s - %s %s', $d['name'] ? $d['name'] : $d['email'], lof_pay_format( $d['charged'] / 100, $d['currency'] ), 'once' === $d['frequency'] ? '' : '(' . $d['frequency'] . ')' ) . ( ! empty( $d['anonymous'] ) ? ' [anonymous]' : '' ) ),
 		),
 		true
 	);
@@ -364,6 +391,7 @@ function lof_pay_create( $d ) {
 		'_sd_cover'     => $d['cover'] ? '1' : '0',
 		'_sd_status'    => $d['status'],
 		'_sd_mode'      => lof_pay_mode(),
+		'_sd_anonymous' => ! empty( $d['anonymous'] ) ? '1' : '0',
 	);
 	if ( ! empty( $d['parent'] ) ) {
 		$map['_sd_parent'] = (string) (int) $d['parent'];
@@ -409,7 +437,7 @@ function lof_pay_mark_paid( $id, $data ) {
  */
 function lof_pay_form_shortcode() {
 	static $rendered = false;
-	if ( ! lof_pay_enabled() || $rendered ) {
+	if ( ( ! lof_pay_enabled() && ! lof_pay_preview() ) || $rendered ) {
 		return ''; // One form per page: the Donate hero may already show it.
 	}
 	$rendered = true;
@@ -429,11 +457,11 @@ function lof_pay_form_shortcode() {
 		$id = lof_pay_find( $ref );
 		if ( $id && 'paid' === get_post_meta( $id, '_sd_status', true ) ) {
 			$amount  = lof_pay_format( (int) get_post_meta( $id, '_sd_charged', true ) / 100, get_post_meta( $id, '_sd_currency', true ) );
-			$monthly = 'monthly' === get_post_meta( $id, '_sd_frequency', true );
+			$freq    = get_post_meta( $id, '_sd_frequency', true );
 			echo '<div class="lofpay__done" role="status" tabindex="-1"><span class="lofpay__done-icon" aria-hidden="true">' . lof_pay_icon( 'check' ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<h2>' . esc_html__( 'Thank you for your gift', 'light-of-future-core' ) . '</h2>';
 			/* translators: %s: amount */
-			$line = $monthly ? __( 'Your monthly gift of %s is set up. A receipt is on its way to your email.', 'light-of-future-core' ) : __( 'We have received your gift of %s. A receipt is on its way to your email.', 'light-of-future-core' );
+			$line = 'monthly' === $freq ? __( 'Your monthly gift of %s is set up. A receipt is on its way to your email.', 'light-of-future-core' ) : ( 'yearly' === $freq ? __( 'Your yearly gift of %s is set up. A receipt is on its way to your email.', 'light-of-future-core' ) : __( 'We have received your gift of %s. A receipt is on its way to your email.', 'light-of-future-core' ) );
 			echo '<p>' . esc_html( sprintf( $line, $amount ) ) . '</p>';
 			/* translators: %s: reference */
 			echo '<p class="lofpay__small">' . esc_html( sprintf( __( 'Reference: %s', 'light-of-future-core' ), $ref ) ) . '</p></div>';
@@ -454,10 +482,16 @@ function lof_pay_form_shortcode() {
 
 	echo '<div class="lofpay__head"><h2 id="lofpay-title">' . esc_html__( 'Make your gift', 'light-of-future-core' ) . '</h2><p class="lofpay__secure">' . lof_pay_icon( 'lock' ) . esc_html__( 'Secure payment by Paystack', 'light-of-future-core' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-	// Frequency.
-	echo '<fieldset class="lofpay__seg"><legend class="lofpay__label">' . esc_html__( 'How often?', 'light-of-future-core' ) . '</legend>';
-	echo '<label><input type="radio" name="frequency" value="once" checked><span>' . esc_html__( 'Give once', 'light-of-future-core' ) . '</span></label>';
-	echo '<label><input type="radio" name="frequency" value="monthly"><span>' . esc_html__( 'Monthly', 'light-of-future-core' ) . ' <em>' . esc_html__( 'Most impact', 'light-of-future-core' ) . '</em></span></label></fieldset>';
+	if ( lof_pay_preview() ) {
+		echo '<div class="lofpay__notice" role="status">' . esc_html__( 'Preview for administrators: online payments switch on once the Paystack keys are added.', 'light-of-future-core' ) . '</div>';
+	}
+
+	// Frequency: one-time, monthly or yearly.
+	echo '<fieldset class="lofpay__seg lofpay__seg--freq"><legend class="lofpay__label">' . esc_html__( 'How often?', 'light-of-future-core' ) . '</legend>';
+	foreach ( lof_pay_freqs() as $fk => $fv ) {
+		echo '<label><input type="radio" name="frequency" value="' . esc_attr( $fk ) . '"' . checked( 'once', $fk, false ) . '><span>' . esc_html( $fv[0] ) . ( 'monthly' === $fk ? ' <em>' . esc_html__( 'Most impact', 'light-of-future-core' ) . '</em>' : '' ) . '</span></label>';
+	}
+	echo '</fieldset>';
 
 	// Currency.
 	if ( count( $currencies ) > 1 ) {
@@ -490,12 +524,15 @@ function lof_pay_form_shortcode() {
 
 	// Donor.
 	echo '<div class="lofpay__fields">';
-	echo '<p><label for="lofpay-name">' . esc_html__( 'Full name', 'light-of-future-core' ) . '</label><input id="lofpay-name" type="text" name="donor_name" autocomplete="name" required minlength="2" maxlength="100"></p>';
+	echo '<p class="lofpay__name"><label for="lofpay-name">' . esc_html__( 'Full name', 'light-of-future-core' ) . '</label><input id="lofpay-name" type="text" name="donor_name" autocomplete="name" required minlength="2" maxlength="100"></p>';
 	echo '<p><label for="lofpay-email">' . esc_html__( 'Email (for your receipt)', 'light-of-future-core' ) . '</label><input id="lofpay-email" type="email" name="donor_email" autocomplete="email" required maxlength="190"></p>';
 	echo '</div>';
 
+	// Anonymous gift: no name needed, never shown publicly. The receipt still goes to the email.
+	echo '<label class="lofpay__check lofpay__check--anon"><input type="checkbox" name="anonymous" value="1"><span><strong>' . esc_html__( 'Give anonymously.', 'light-of-future-core' ) . '</strong> ' . esc_html__( 'Your name is not needed and is never shown publicly. We only use your email to send your receipt.', 'light-of-future-core' ) . '</span></label>';
+
 	echo '<button type="submit" class="lof-btn lof-btn--sun lofpay__submit"><span class="lofpay__submit-text">' . esc_html__( 'Continue to secure payment', 'light-of-future-core' ) . '</span>' . lof_pay_icon( 'arrow' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo '<p class="lofpay__small">' . esc_html__( 'You pay on Paystack\'s secure page by card, M-Pesa or the other options available in your country. Monthly gifts renew automatically, and you can update or cancel them at any time.', 'light-of-future-core' ) . '</p>';
+	echo '<p class="lofpay__small">' . esc_html__( 'You pay on Paystack\'s secure page by card, M-Pesa or the other options available in your country. Monthly and yearly gifts renew automatically, and you can update or cancel them at any time.', 'light-of-future-core' ) . '</p>';
 	echo '</form></section>';
 	echo lof_pay_script(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static JS.
 	return (string) ob_get_clean();
@@ -533,7 +570,7 @@ function lof_pay_hero_shortcode( $atts ) {
 	$trust   = array(
 		array( 'lock', __( 'Secure payment by Paystack', 'light-of-future-core' ) ),
 		array( 'check', __( 'Card, M-Pesa and other local options', 'light-of-future-core' ) ),
-		array( 'check', __( 'Change or cancel a monthly gift at any time', 'light-of-future-core' ) ),
+		array( 'check', __( 'Give once, monthly or yearly, or anonymously', 'light-of-future-core' ) ),
 	);
 	if ( $paybill ) {
 		/* translators: 1: paybill 2: account */
@@ -657,10 +694,15 @@ function lof_pay_submit() {
 
 	$currencies = lof_pay_currencies();
 	$currency   = isset( $_POST['currency'] ) ? strtoupper( sanitize_key( wp_unslash( $_POST['currency'] ) ) ) : '';
-	$frequency  = ( isset( $_POST['frequency'] ) && 'monthly' === $_POST['frequency'] ) ? 'monthly' : 'once';
+	$frequency  = isset( $_POST['frequency'] ) ? sanitize_key( wp_unslash( $_POST['frequency'] ) ) : 'once';
+	$frequency  = array_key_exists( $frequency, lof_pay_freqs() ) ? $frequency : 'once';
+	$anonymous  = ! empty( $_POST['anonymous'] );
 	$cover      = ! empty( $_POST['cover_fee'] );
 	$name       = isset( $_POST['donor_name'] ) ? sanitize_text_field( wp_unslash( $_POST['donor_name'] ) ) : '';
 	$email      = isset( $_POST['donor_email'] ) ? sanitize_email( wp_unslash( $_POST['donor_email'] ) ) : '';
+	if ( $anonymous && strlen( $name ) < 2 ) {
+		$name = 'Anonymous';
+	}
 	if ( ! isset( $currencies[ $currency ] ) || ! is_email( $email ) || strlen( $name ) < 2 || strlen( $name ) > 100 ) {
 		lof_pay_back( $return, 'error' );
 	}
@@ -676,10 +718,10 @@ function lof_pay_submit() {
 	}
 
 	$charged   = lof_pay_charge_subunits( $amount, $cover, $c['fee'] );
-	$reference = 'SCC-' . strtoupper( wp_generate_password( 14, false, false ) );
+	$reference = 'LOF-' . strtoupper( wp_generate_password( 14, false, false ) );
 	$plan      = '';
-	if ( 'monthly' === $frequency ) {
-		$plan = lof_pay_plan_code( $charged, $currency );
+	if ( 'once' !== $frequency ) {
+		$plan = lof_pay_plan_code( $charged, $currency, $frequency );
 		if ( is_wp_error( $plan ) ) {
 			lof_pay_back( $return, 'error' );
 		}
@@ -696,12 +738,15 @@ function lof_pay_submit() {
 			'cover'     => $cover,
 			'status'    => 'pending',
 			'plan'      => $plan,
+			'anonymous' => $anonymous,
 		)
 	);
 	if ( ! $id ) {
 		lof_pay_back( $return, 'error' );
 	}
-	$body = array(
+	$freqs      = lof_pay_freqs();
+	$freq_label = $freqs[ $frequency ][0];
+	$body       = array(
 		'email'        => $email,
 		'amount'       => $charged,
 		'currency'     => $currency,
@@ -711,6 +756,7 @@ function lof_pay_submit() {
 			'donation_id'   => $id,
 			'frequency'     => $frequency,
 			'cover_fee'     => $cover ? 1 : 0,
+			'anonymous'     => $anonymous ? 1 : 0,
 			'cancel_action' => add_query_arg( 'lof_donation', 'failed', $return ),
 			'custom_fields' => array(
 				array(
@@ -721,7 +767,12 @@ function lof_pay_submit() {
 				array(
 					'display_name'  => 'Gift',
 					'variable_name' => 'gift',
-					'value'         => 'monthly' === $frequency ? 'Monthly' : 'One-time',
+					'value'         => $freq_label,
+				),
+				array(
+					'display_name'  => 'Anonymous',
+					'variable_name' => 'anonymous',
+					'value'         => $anonymous ? 'Yes' : 'No',
 				),
 			),
 		),
@@ -817,7 +868,7 @@ function lof_pay_handle_return() {
 	}
 	$reference = isset( $_GET['reference'] ) ? sanitize_text_field( wp_unslash( $_GET['reference'] ) ) : '';
 	// phpcs:enable
-	if ( ! preg_match( '/^SCC-[A-Z0-9]{14}$/', $reference ) ) {
+	if ( ! preg_match( '/^(SCC|LOF)-[A-Z0-9]{14}$/', $reference ) ) {
 		return;
 	}
 	$paid = lof_pay_verify( $reference );
@@ -913,7 +964,7 @@ function lof_pay_webhook( $request ) {
 					update_post_meta( $sid, '_sd_sub_status', $status );
 				}
 				if ( 'invoice.payment_failed' === $type ) {
-					lof_pay_notify_staff( sprintf( 'A monthly gift renewal failed (subscription %s). Paystack will retry and email the donor.', $code ) );
+					lof_pay_notify_staff( sprintf( 'A recurring gift renewal failed (subscription %s). Paystack will retry and email the donor.', $code ) );
 				}
 			}
 			break;
@@ -946,8 +997,9 @@ function lof_pay_record_renewal( $ref, $email, $plan ) {
 			'base'      => get_post_meta( $parent, '_sd_base', true ),
 			'charged'   => (int) $verify['amount'],
 			'currency'  => strtoupper( (string) $verify['currency'] ),
-			'frequency' => 'monthly',
+			'frequency' => 'yearly' === get_post_meta( $parent, '_sd_frequency', true ) ? 'yearly' : 'monthly',
 			'cover'     => '1' === get_post_meta( $parent, '_sd_cover', true ),
+			'anonymous' => '1' === get_post_meta( $parent, '_sd_anonymous', true ),
 			'status'    => 'pending',
 			'parent'    => $parent,
 			'plan'      => $plan,
@@ -1008,11 +1060,11 @@ function lof_pay_manage_shortcode() {
 		return '';
 	}
 	$sent = isset( $_GET['lof_manage'] ) && 'sent' === $_GET['lof_manage']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	$out  = lof_pay_styles() . '<section class="lofpay lofpay--manage" id="manage" aria-labelledby="lofpay-manage-title"><h2 id="lofpay-manage-title">' . esc_html__( 'Manage your monthly gift', 'light-of-future-core' ) . '</h2>';
+	$out  = lof_pay_styles() . '<section class="lofpay lofpay--manage" id="manage" aria-labelledby="lofpay-manage-title"><h2 id="lofpay-manage-title">' . esc_html__( 'Manage your monthly or yearly gift', 'light-of-future-core' ) . '</h2>';
 	if ( $sent ) {
-		$out .= '<div class="lofpay__notice" role="status">' . esc_html__( 'If we found a monthly gift for that email address, Paystack has sent it a secure link to update your card or cancel. Please check your inbox.', 'light-of-future-core' ) . '</div>';
+		$out .= '<div class="lofpay__notice" role="status">' . esc_html__( 'If we found a monthly or yearly gift for that email address, Paystack has sent it a secure link to update your card or cancel. Please check your inbox.', 'light-of-future-core' ) . '</div>';
 	}
-	$out .= '<p>' . esc_html__( 'Enter the email you used to give. Paystack will email you a secure link to change your card or cancel your monthly gift.', 'light-of-future-core' ) . '</p>';
+	$out .= '<p>' . esc_html__( 'Enter the email you used to give. Paystack will email you a secure link to change your card or cancel your monthly or yearly gift.', 'light-of-future-core' ) . '</p>';
 	$out .= '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="lofpay__inline"><input type="hidden" name="action" value="lof_manage_giving"><input type="hidden" name="return" value="' . esc_url( get_permalink() ) . '">' . wp_nonce_field( 'lof_manage_giving', 'lofpay_manage_nonce', false, false );
 	$out .= '<label class="screen-reader-text" for="lofpay-manage-email">' . esc_html__( 'Email address', 'light-of-future-core' ) . '</label><input id="lofpay-manage-email" type="email" name="email" required autocomplete="email" placeholder="' . esc_attr__( 'Your email address', 'light-of-future-core' ) . '"><button type="submit" class="smile-btn lofpay__ghost">' . esc_html__( 'Email me a link', 'light-of-future-core' ) . '</button></form></section>';
 	return $out;
@@ -1061,14 +1113,17 @@ function lof_pay_send_receipt( $id ) {
 	$email   = get_post_meta( $id, '_sd_email', true );
 	$name    = get_post_meta( $id, '_sd_name', true );
 	$amount  = lof_pay_format( (int) get_post_meta( $id, '_sd_charged', true ) / 100, get_post_meta( $id, '_sd_currency', true ) );
-	$monthly = 'monthly' === get_post_meta( $id, '_sd_frequency', true );
+	$freq    = get_post_meta( $id, '_sd_frequency', true );
+	$monthly = in_array( $freq, array( 'monthly', 'yearly' ), true );
+	$every   = 'yearly' === $freq ? 'yearly' : 'monthly';
+	$anon    = '1' === get_post_meta( $id, '_sd_anonymous', true );
 	$renewal = (bool) get_post_meta( $id, '_sd_parent', true );
 	$org     = lof_pay_get( 'org_name' );
 	$ref     = get_post_meta( $id, '_sd_reference', true );
 	$manage  = lof_pay_get( 'paystack_manage_url' );
-	$subject = $renewal ? sprintf( 'Your monthly gift to %s - thank you', $org ) : sprintf( 'Thank you for your gift to %s', $org );
+	$subject = $renewal ? sprintf( 'Your %s gift to %s - thank you', $every, $org ) : sprintf( 'Thank you for your gift to %s', $org );
 	$rows    = array(
-		'Amount'    => $amount . ( $monthly ? ' every month' : '' ),
+		'Amount'    => $amount . ( $monthly ? ( 'yearly' === $freq ? ' every year' : ' every month' ) : '' ),
 		'Date'      => wp_date( get_option( 'date_format' ) ),
 		'Reference' => $ref,
 	);
@@ -1078,18 +1133,18 @@ function lof_pay_send_receipt( $id ) {
 	}
 	$html  = '<div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;padding:24px;color:#1F2A26;line-height:1.6">';
 	$html .= '<p style="margin:0 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#146C3C">' . esc_html( $org ) . '</p>';
-	$html .= '<h1 style="font-size:22px;color:#0B4021;margin:0 0 12px">' . esc_html( sprintf( 'Thank you, %s', $name ? $name : 'friend' ) ) . '</h1>';
-	$html .= '<p>' . esc_html( $monthly ? 'Your monthly gift helps us plan ahead: school support, safe homes, food and care for vulnerable families in Kenya, month after month.' : 'Your gift helps provide daily meals, schooling and safe care for the children at Smile.' ) . '</p>';
+	$html .= '<h1 style="font-size:22px;color:#0B4021;margin:0 0 12px">' . esc_html( sprintf( 'Thank you, %s', ( $name && ! $anon ) ? $name : 'friend' ) ) . '</h1>';
+	$html .= '<p>' . esc_html( $monthly ? 'Your ' . $every . ' gift helps us plan ahead: school support, food, clean water and care for vulnerable children and families in Kenya.' : 'Your gift helps provide food, schooling, clean water and care for vulnerable children and families in Kenya.' ) . '</p>';
 	$html .= '<table style="border-collapse:collapse;margin:16px 0">' . $table . '</table>';
 	if ( $monthly && $manage ) {
-		$html .= '<p style="font-size:14px;color:#5D6A64">Need to update your card or cancel? <a href="' . esc_url( $manage ) . '" style="color:#146C3C">Manage your monthly gift</a>.</p>';
+		$html .= '<p style="font-size:14px;color:#5D6A64">Need to update your card or cancel? <a href="' . esc_url( $manage ) . '" style="color:#146C3C">Manage your gift</a>.</p>';
 	}
 	$html .= '<p style="font-size:13px;color:#5D6A64;border-top:1px solid #E4DCCB;padding-top:12px;margin-top:24px">' . esc_html( $org . ' | ' . lof_pay_get( 'postal_address' ) . ' | ' . lof_pay_get( 'email' ) ) . '</p></div>';
 	$sent  = wp_mail( $email, $subject, $html, array( 'Content-Type: text/html; charset=UTF-8' ) );
 	if ( $sent ) {
 		update_post_meta( $id, '_sd_receipt_sent', gmdate( 'c' ) );
 	}
-	$kind = $renewal ? 'monthly renewal' : ( $monthly ? 'new monthly' : 'one-time' );
+	$kind = ( $renewal ? $every . ' renewal' : ( $monthly ? 'new ' . $every : 'one-time' ) ) . ( $anon ? ' (anonymous)' : '' );
 	lof_pay_notify_staff( sprintf( "New %s donation: %s from %s <%s>.\nReference: %s\n%s", $kind, $amount, $name, $email, $ref, admin_url( 'post.php?post=' . $id . '&action=edit' ) ) );
 }
 
@@ -1143,7 +1198,8 @@ function lof_pay_column_values( $col, $post_id ) {
 			break;
 		case 'sd_frequency':
 			$f = get_post_meta( $post_id, '_sd_frequency', true );
-			echo esc_html( 'monthly' === $f ? ( get_post_meta( $post_id, '_sd_parent', true ) ? 'Monthly (renewal)' : 'Monthly' ) : 'One-time' );
+			$fl = 'yearly' === $f ? 'Yearly' : ( 'monthly' === $f ? 'Monthly' : 'One-time' );
+			echo esc_html( $fl . ( 'once' !== $f && get_post_meta( $post_id, '_sd_parent', true ) ? ' (renewal)' : '' ) . ( '1' === get_post_meta( $post_id, '_sd_anonymous', true ) ? ' - anonymous' : '' ) );
 			$s = get_post_meta( $post_id, '_sd_sub_status', true );
 			if ( $s ) {
 				echo '<br><small>' . esc_html( 'Subscription: ' . $s ) . '</small>';
@@ -1215,7 +1271,7 @@ function lof_pay_export() {
 			get_post_meta( $id, '_sd_email', true ),
 			number_format( (int) get_post_meta( $id, '_sd_charged', true ) / 100, 2, '.', '' ),
 			get_post_meta( $id, '_sd_currency', true ),
-			get_post_meta( $id, '_sd_parent', true ) ? 'monthly renewal' : get_post_meta( $id, '_sd_frequency', true ),
+			( get_post_meta( $id, '_sd_parent', true ) ? get_post_meta( $id, '_sd_frequency', true ) . ' renewal' : get_post_meta( $id, '_sd_frequency', true ) ) . ( '1' === get_post_meta( $id, '_sd_anonymous', true ) ? ' (anonymous)' : '' ),
 			'1' === get_post_meta( $id, '_sd_cover', true ) ? 'yes' : 'no',
 			get_post_meta( $id, '_sd_status', true ),
 			get_post_meta( $id, '_sd_sub_status', true ),

@@ -1,14 +1,15 @@
 (function(){var f=document.querySelector('.lofpay__form');if(!f)return;
 var txt=f.querySelector('.lofpay__submit-text'),fee=f.querySelector('.lofpay__fee-text'),feeBase=fee?fee.textContent:'';
 function cur(){var c=f.querySelector('input[name=currency]:checked')||f.querySelector('input[name=currency]');return c?c.value:'KES';}
-function fmt(a,c){var d=(c==='KES'||Math.abs(a-Math.round(a))<0.005)?0:2;return c+' '+a.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function fmt(a,c){var d=(c==='KES'||Math.abs(a-Math.round(a))<0.005)?0:2,n=a.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});return c==='USD'?'$'+n:c+' '+n;}
 function update(){var c=cur(),lc=c.toLowerCase(),g=f.querySelector('.lofpay__amounts[data-currency='+c+']');
 var r=f.querySelector('input[name=amount_'+lc+']:checked'),a=0;
 if(r){a=r.value==='other'?parseFloat((f.querySelector('input[name=custom_'+lc+']')||{}).value||'0'):parseFloat(r.value);}
 var rate=g?parseFloat(g.getAttribute('data-fee')||'0'):0,cover=f.querySelector('input[name=cover_fee]'),total=a;
 if(a>0&&rate>0&&rate<50){var extra=Math.ceil(a*100/(1-rate/100))/100-a;if(fee)fee.textContent=feeBase+' (+'+fmt(extra,c)+')';if(cover&&cover.checked)total=a+extra;}else if(fee){fee.textContent=feeBase;}
-var m=(f.querySelector('input[name=frequency]:checked')||{}).value==='monthly';
-if(txt)txt.textContent=a>0?('Donate '+fmt(total,c)+(m?' monthly':'')):'Continue to secure payment';}
+var fq=(f.querySelector('input[name=frequency]:checked')||{}).value;
+var an=f.querySelector('input[name=anonymous]'),nm=f.querySelector('.lofpay__name'),ni=f.querySelector('input[name=donor_name]');if(an&&nm&&ni){nm.hidden=an.checked;ni.required=!an.checked;}
+if(txt)txt.textContent=a>0?('Donate '+fmt(total,c)+(fq==='monthly'?' monthly':fq==='yearly'?' yearly':'')):'Continue to secure payment';}
 f.addEventListener('change',update);f.addEventListener('input',function(e){if(e.target&&/^custom_/.test(e.target.name)){var o=e.target.closest('.lofpay__tile');var r=o&&o.querySelector('input[type=radio]');if(r)r.checked=true;}update();});
 var popupOff=false;
 function busy(on){var b=f.querySelector('.lofpay__submit');if(b){if(on){b.setAttribute('aria-busy','true');}else{b.removeAttribute('aria-busy');}b.disabled=on;}}

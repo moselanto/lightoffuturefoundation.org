@@ -1,5 +1,12 @@
 # Changelog
 
+## Core plugin 0.46.0 - 2026-11-06
+- Donation form: US dollars first with $10, $25, $50, $100, $250, $500 and $1,000 tiles plus Other amount (KES still available).
+- Gift frequency: One-time, Monthly or Yearly (yearly uses Paystack annual plans).
+- Give anonymously option: name not required and never shown; receipts, admin list, CSV and staff notices mark the gift as anonymous.
+- Admin preview of the form before Paystack keys are added: /donate/?lof_pay_preview=1 (administrators only).
+- References now start with LOF- (old SCC- references still verified); receipt wording no longer mentions Smile.
+
 ## 0.63.5 - 2026-11-06
 - Footer: centred brand block on phones, Explore and Focus areas become tidy open/close sections with full-width rows (no more squeezed two-column text), smaller logo on desktop, link hover states.
 

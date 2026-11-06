@@ -101,3 +101,15 @@
 .lofpayhero .lofpay__submit{min-height:52px}
 .lofpayhero .lofpay__small{margin-top:.6rem;font-size:.76rem}
 @media (max-width:600px){.lofpayhero .lofpay__form{display:block}.lofpayhero .lofpay__grid{grid-template-columns:1fr 1fr}.lofpayhero .lofpay__tile--other{grid-column:1/-1}.lofpayhero .lofpay__tile--other .lofpay__custom{max-width:none}}
+
+/* 0.46.0: one-time / monthly / yearly, USD tiers, anonymous giving. */
+.lofpay__seg--freq{grid-template-columns:repeat(3,1fr)}
+.lofpay__seg--freq label span{padding:.5rem .6rem;white-space:nowrap}
+.lofpayhero .lofpay__form>.lofpay__seg--freq{grid-column:1/-1}
+@media (min-width:560px){.lofpay__tile--other{grid-column:span 2}}
+.lofpay__tile .lofpay__amt{font-variant-numeric:tabular-nums}
+.lofpay__check--anon{background:var(--g-soft);border-radius:12px;padding:.7rem .85rem;margin-bottom:1rem}
+.lofpay__check--anon strong{color:var(--g-ink)}
+.lofpay__name[hidden]{display:none}
+.lofpay__fields:has(.lofpay__name[hidden]){grid-template-columns:1fr}
+@media (max-width:600px){.lofpayhero .lofpay__tile--other{grid-column:auto;flex-direction:column;align-items:stretch}.lofpay__tile--other{grid-column:auto}.lofpay__seg--freq label span{font-size:.85rem;padding:.4rem .3rem}.lofpay__seg--freq em{display:none}}
