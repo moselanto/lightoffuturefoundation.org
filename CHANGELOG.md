@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.63.0 - 2026-11-06
+- Shop: search bar, category slider with photos, price filters, sorting and a uniform product grid (inc/shop-063.php).
+- Page loader: light rings around the foundation symbol, once per visit, removes itself within about a second even without scripts.
+- Home: the first slide stays still (no text animation or progress bar) until the page has finished loading.
+
 ## 0.62.2 - 2026-11-06
 - Footer: contact tiles no longer inherit no-wrap, so the full email address shows on phones.
 

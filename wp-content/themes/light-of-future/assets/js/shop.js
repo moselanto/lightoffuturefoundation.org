@@ -365,3 +365,30 @@
 	frames.forEach(function (f) { io.observe(f); });
 	document.addEventListener('click', function () { setTimeout(function () { document.querySelectorAll('[data-lof-poster]').forEach(function (f) { if (f.offsetParent) { show(f); } }); }, 50); });
 })();
+
+/* 0.63.0: shop category slider arrows. */
+(function () {
+	function init() {
+		document.querySelectorAll('[data-cats-track]').forEach(function (track) {
+			var box = track.closest('.lof-cats');
+			if (!box) { return; }
+			var prev = box.querySelector('[data-cats-prev]'), next = box.querySelector('[data-cats-next]');
+			function step() { var c = track.querySelector('li'); return c ? (c.getBoundingClientRect().width + 16) * 2 : 300; }
+			function sync() {
+				var max = track.scrollWidth - track.clientWidth - 2;
+				if (prev) { prev.disabled = track.scrollLeft <= 2; }
+				if (next) { next.disabled = track.scrollLeft >= max; }
+				box.classList.toggle('is-static', max <= 0);
+			}
+			if (prev) { prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); }); }
+			if (next) { next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); }); }
+			track.addEventListener('scroll', sync, { passive: true });
+			window.addEventListener('resize', sync);
+			sync();
+		});
+		document.querySelectorAll('.lof-shop63 .woocommerce-ordering select').forEach(function (s) {
+			s.addEventListener('change', function () { if (s.form) { s.form.submit(); } });
+		});
+	}
+	if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+}());
