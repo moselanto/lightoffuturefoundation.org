@@ -33,6 +33,10 @@ function lof_core_setting_fields() {
 		'social_tiktok'     => array( 'TikTok', 'url', '' ),
 		'social_x'          => array( 'X', 'url', '' ),
 		'social_linkedin'   => array( 'LinkedIn', 'url', '' ),
+		'mpesa_paybill'     => array( __( 'M-PESA Paybill (business no.)', 'light-of-future-core' ), 'text', __( 'Shown on the Donate page under Other ways to give.', 'light-of-future-core' ) ),
+		'mpesa_account'     => array( __( 'M-PESA Paybill account no.', 'light-of-future-core' ), 'text', '' ),
+		'bank_name'         => array( __( 'Bank name', 'light-of-future-core' ), 'text', '' ),
+		'bank_account'      => array( __( 'Bank account no.', 'light-of-future-core' ), 'text', __( 'Shown on the Donate page for bank transfers.', 'light-of-future-core' ) ),
 		'payment_mode'      => array( __( 'Payment mode', 'light-of-future-core' ), 'select', __( 'Gateway: Paystack (M-PESA and card). Stays on "Not set up" until the foundation\'s Paystack account is verified and tested. API keys go in wp-config.php (LOF_PAYSTACK_PUBLIC_KEY, LOF_PAYSTACK_SECRET_KEY), never here.', 'light-of-future-core' ) ),
 	);
 }
@@ -49,6 +53,10 @@ function lof_core_setting_defaults() {
 		'email'        => 'info@lightoffuturefoundation.org',
 		'address'      => 'Nairobi, Kenya',
 		'payment_mode' => 'off',
+		'mpesa_paybill' => '522522',
+		'mpesa_account' => '1354817087',
+		'bank_name'     => 'Kenya Commercial Bank (KCB)',
+		'bank_account'  => '1354817087',
 	);
 }
 

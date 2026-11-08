@@ -1,5 +1,8 @@
 # Changelog
 
+## Core plugin 0.46.3 - 2026-11-08
+- Settings: M-PESA Paybill, Paybill account, bank name and bank account fields (defaults 522522 / 1354817087 / KCB / 1354817087), so the Donate page's Other ways to give box appears and staff can edit the details.
+
 ## 0.63.9 - 2026-11-08
 - Donate page: 'Other ways to give' box with M-PESA Paybill 522522 (account 1354817087) and KCB bank transfer (account 1354817087); copy updated for one-time, monthly and yearly and anonymous giving.
 
