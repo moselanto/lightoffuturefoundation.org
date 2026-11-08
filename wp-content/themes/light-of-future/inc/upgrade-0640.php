@@ -78,15 +78,22 @@ add_action( 'admin_init', 'lof_upgrade_0640_videos', 42 );
  * @return string
  */
 function lof_story_video_player( $content ) {
-	if ( ! is_singular( 'lof_story' ) || ! in_the_loop() || ! is_main_query() ) {
+	$id = get_the_ID();
+	if ( ! $id || 'lof_story' !== get_post_type( $id ) || false !== strpos( $content, 'lof-story-video' ) ) {
 		return $content;
 	}
-	$id    = get_the_ID();
-	$video = get_post_meta( $id, 'lof_story_video', true );
-	if ( ! $video ) {
-		return $content;
-	}
+	$video  = get_post_meta( $id, 'lof_story_video', true );
 	$poster = get_post_meta( $id, 'lof_story_video_poster', true );
+	if ( ! $video ) {
+		$up   = wp_upload_dir();
+		$slug = get_post_field( 'post_name', $id );
+		$file = trailingslashit( $up['basedir'] ) . 'lof-videos/story-' . $slug . '.mp4';
+		if ( ! $slug || ! file_exists( $file ) ) {
+			return $content;
+		}
+		$video  = trailingslashit( $up['baseurl'] ) . 'lof-videos/story-' . $slug . '.mp4';
+		$poster = trailingslashit( $up['baseurl'] ) . 'lof-videos/story-' . $slug . '-poster.jpg';
+	}
 	$name   = get_post_meta( $id, 'lof_display_name', true );
 	$label  = $name ? sprintf( /* translators: %s: name */ __( 'Watch %s\'s story', 'light-of-future' ), $name ) : __( 'Watch the story', 'light-of-future' );
 	$player = '<figure class="lof-story-video"><video controls playsinline preload="none"'
@@ -100,4 +107,4 @@ function lof_story_video_player( $content ) {
 	}
 	return preg_replace( '#<p>\s*<a[^>]+drive\.google\.com[^>]*>.*?</a>\s*</p>#is', '', $content );
 }
-add_filter( 'the_content', 'lof_story_video_player', 20 );
+add_filter( 'the_content', 'lof_story_video_player', 99 );

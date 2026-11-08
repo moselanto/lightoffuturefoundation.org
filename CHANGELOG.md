@@ -1,5 +1,8 @@
 # Changelog
 
+## Theme 0.63.11 - 2026-11-08
+- Story video player: no longer depends on the loop/main-query checks, finds the hosted video by story slug if the meta is missing, and runs late, so Rosemary's and Hellen's videos replace the Google Drive buttons.
+
 ## Theme 0.63.10 - 2026-11-08
 - Rosemary's and Hellen's story videos now play on the story pages (on-page player with poster) instead of opening Google Drive. Videos are downloaded once by the server from the shared Drive files into uploads/lof-videos on first wp-admin load (retries until both succeed); posters ship with the theme.
 
