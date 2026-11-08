@@ -53,6 +53,7 @@ function lof_core_setting_defaults() {
 		'email'        => 'info@lightoffuturefoundation.org',
 		'address'      => 'Nairobi, Kenya',
 		'payment_mode' => 'off',
+		'social_facebook' => 'https://www.facebook.com/people/Light-of-future-foundation/100094073726098/',
 		'mpesa_paybill' => '522522',
 		'mpesa_account' => '1354817087',
 		'bank_name'     => 'Kenya Commercial Bank (KCB)',
@@ -190,3 +191,20 @@ function lof_core_settings_page() {
 	</div>
 	<?php
 }
+
+/**
+ * One-time: fill the foundation's Facebook page if the saved value is empty (0.46.4).
+ */
+function lof_core_upgrade_0464_facebook() {
+	if ( get_option( 'lof_core_up_0464_fb' ) ) {
+		return;
+	}
+	$saved = get_option( 'lof_core_settings', array() );
+	$saved = is_array( $saved ) ? $saved : array();
+	if ( empty( $saved['social_facebook'] ) ) {
+		$saved['social_facebook'] = 'https://www.facebook.com/people/Light-of-future-foundation/100094073726098/';
+		update_option( 'lof_core_settings', $saved );
+	}
+	update_option( 'lof_core_up_0464_fb', 1 );
+}
+add_action( 'init', 'lof_core_upgrade_0464_facebook', 5 );

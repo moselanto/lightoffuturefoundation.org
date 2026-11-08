@@ -1,5 +1,8 @@
 # Changelog
 
+## Core plugin 0.46.4 - 2026-11-08
+- Facebook link set to the foundation's page (Light of future foundation) by default and filled once if empty, so the footer and social links show it.
+
 ## Core plugin 0.46.3 - 2026-11-08
 - Settings: M-PESA Paybill, Paybill account, bank name and bank account fields (defaults 522522 / 1354817087 / KCB / 1354817087), so the Donate page's Other ways to give box appears and staff can edit the details.
 
