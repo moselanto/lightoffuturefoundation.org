@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.63.7 - 2026-11-08
+- Business empowerment stories now publish: Rosemary (fixed: was saved as a draft because consent was recorded after saving) and new story Hellen (fish business, Dandora) with photo (children cropped out) and video link.
+
 ## 0.63.6 - 2026-11-08
 - New impact story: Rosemary, the first beneficiary of the business empowerment programme (Dandora), with two photos (child cropped out) and a link to her video. Created once in wp-admin.
 
