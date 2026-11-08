@@ -1262,3 +1262,22 @@ body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!import
 .lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__body > p{color:var(--lof-muted)!important;font-size:1rem!important}
 .lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__link{align-self:auto!important;padding:.75rem 0 0!important;background:none!important;color:inherit!important;border-radius:0!important}
 }
+
+/* 0.63.13 impact figures everywhere (Home, About, Impact): balanced card grid */
+body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__grid{display:grid!important;grid-auto-flow:row!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-auto-columns:auto!important;gap:1.1rem!important;max-width:1180px;margin:0 auto!important;border:0!important;border-radius:0!important;background:none!important;overflow:visible!important}
+body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__item,body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__item:first-child{display:flex!important;flex-direction:column-reverse!important;align-items:center!important;justify-content:flex-end!important;gap:.55rem!important;text-align:center!important;min-width:0;padding:1.9rem 1.1rem 1.7rem!important;border:1px solid rgba(252,246,225,.16)!important;border-radius:20px!important;background:rgba(252,246,225,.06)!important;box-shadow:none}
+body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__item:hover{background:rgba(244,175,22,.10)!important}
+body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__value{font-size:clamp(2.2rem,3.4vw,3rem)!important;line-height:1!important;margin:0!important;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__label{font-size:.78rem!important;line-height:1.45!important;letter-spacing:.08em!important;text-transform:uppercase;max-width:20ch!important;margin:0 auto!important;opacity:.92}
+body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__source,body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__note{display:none!important}
+body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__item::after{order:-1;margin-top:.5rem!important}
+body .lof-section.lof-tone-cream.lof-impact.lof-impact .lof-impact__item,body .lof-section.lof-tone-white.lof-impact.lof-impact .lof-impact__item,body .lof-section.lof-tone-sand.lof-impact.lof-impact .lof-impact__item{background:#fff!important;border-color:var(--lof-line)!important;box-shadow:0 14px 34px -28px rgba(43,29,14,.45)!important}
+body .lof-section.lof-impact.lof-impact.lof-impact:not(.lof-impact--strip) .lof-container::after{content:"Figures supplied by the foundation (November 2026)";display:block;margin-top:1.4rem;text-align:center;font-size:.85rem;opacity:.72}
+@media (max-width:900px){body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.8rem!important}body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__item,body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__item:first-child{padding:1.35rem .8rem 1.2rem!important;border-radius:16px!important}body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__value{font-size:clamp(1.9rem,8vw,2.4rem)!important}body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__label{font-size:.7rem!important}}
+/* 0.63.13 story photos keep faces in frame; Margaret media stays inside the column */
+.lof-single.type-lof_story .lof-single__image img{object-position:50% 12%!important}
+.lof-card--story .lof-card__media img{object-position:50% 18%}
+.lof-single.type-lof_story .lofm{max-width:100%;overflow:hidden}
+.lof-single.type-lof_story .lofm__videos{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:620px!important;margin:0 auto 2.5rem!important}
+.lof-single.type-lof_story .lofm__video,.lof-single.type-lof_story .lofm__item{min-width:0!important}
+.lof-single.type-lof_story .lofm__item img,.lof-single.type-lof_story .lofm__video video{max-width:100%}

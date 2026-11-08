@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOF_THEME_VERSION', '0.63.12' );
+define( 'LOF_THEME_VERSION', '0.63.13' );
 define( 'LOF_THEME_DIR', get_stylesheet_directory() );
 define( 'LOF_THEME_URI', get_stylesheet_directory_uri() );
 
@@ -32,6 +32,7 @@ require_once LOF_THEME_DIR . '/inc/speed-059.php';
 require_once LOF_THEME_DIR . '/inc/site-061.php';
 require_once LOF_THEME_DIR . '/inc/speed-062.php';
 require_once LOF_THEME_DIR . '/inc/shop-063.php';
+require_once LOF_THEME_DIR . '/inc/story-0613.php';
 
 if ( is_admin() ) {
 	require_once LOF_THEME_DIR . '/inc/importer.php';

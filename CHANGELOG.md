@@ -1,5 +1,11 @@
 # Changelog
 
+## Theme 0.63.13 - 2026-11-09
+- Story video player moved to a front-end file (it was only loaded in wp-admin), so Rosemary's and Hellen's videos replace the Drive buttons.
+- Impact figures on Home, About and Impact: one consistent card grid, 4 x 2 on desktop and 2 columns on tablet/phone (the old one-row layout squeezed and overlapped numbers); one source note.
+- Story photos framed to keep faces in view; Margaret's videos and gallery stay inside the reading column.
+- CSS minifier keeps spaces inside quoted text.
+
 ## Theme 0.63.12 - 2026-11-09
 - Story pages: centred single reading column (820px), larger lead and body text, uniform 16:9 hero and 4:3 inline photos with centred captions, 2 x 2 photo gallery, balanced video row, Help us do more turned into a full-width call to action at the end.
 - Impact figures: balanced 4 x 2 grid (2 columns on phone) with one source note instead of a note on every figure.
