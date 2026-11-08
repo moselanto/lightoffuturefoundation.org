@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.63.6 - 2026-11-08
+- New impact story: Rosemary, the first beneficiary of the business empowerment programme (Dandora), with two photos (child cropped out) and a link to her video. Created once in wp-admin.
+
 ## Core plugin 0.46.1 - 2026-11-07
 - Donation form shows up to 7 preset amounts (was 6), so the $1,000 tile appears.
 
