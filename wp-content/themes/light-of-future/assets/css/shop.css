@@ -1197,3 +1197,9 @@ body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!import
 .lof-pay2__direct dt{font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
 .lof-pay2__direct dd{margin:.1rem 0 0;font-size:.98rem}
 .lof-pay2__direct strong{font-variant-numeric:tabular-nums;letter-spacing:.02em}
+
+/* 0.63.10 story video player */
+.lof-story-video{margin:2rem auto;max-width:420px;text-align:center}
+.lof-story-video video{display:block;width:100%;aspect-ratio:478/850;height:auto;background:#111;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.lof-story-video figcaption{margin-top:.6rem;font-weight:600;font-size:.95rem}
+@media (max-width:480px){.lof-story-video{max-width:100%}}

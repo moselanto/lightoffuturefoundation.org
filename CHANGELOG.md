@@ -1,5 +1,8 @@
 # Changelog
 
+## Theme 0.63.10 - 2026-11-08
+- Rosemary's and Hellen's story videos now play on the story pages (on-page player with poster) instead of opening Google Drive. Videos compressed for the web (Rosemary 28 MB, Hellen 11 MB), shipped once in assets/video and copied to uploads/lof-videos on first wp-admin load. The MP4s are not stored in git.
+
 ## Core plugin 0.46.4 - 2026-11-08
 - Facebook link set to the foundation's page (Light of future foundation) by default and filled once if empty, so the footer and social links show it.
 
