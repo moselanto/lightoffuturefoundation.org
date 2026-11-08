@@ -85,9 +85,9 @@ function lof_paystack_copy( $content ) {
 		),
 		array(
 			'Give securely by M-PESA or card through Paystack on our Donate page.',
-			'Yes. You can give by M-PESA or card through Paystack on our Donate page, once or monthly.',
-			'Give securely online by M-PESA or card through Paystack on our Donate page, once or monthly.',
-			'Give securely online by M-PESA or card through Paystack, once or monthly.',
+			'Yes. You can give by M-PESA or card through Paystack on our Donate page, once, monthly or yearly. You can also use M-PESA Paybill 522522, account 1354817087.',
+			'Give securely online by M-PESA or card through Paystack on our Donate page, once, monthly or yearly. You can also use M-PESA Paybill 522522, account 1354817087.',
+			'Give securely online by M-PESA or card through Paystack, once, monthly or yearly.',
 		),
 		$content
 	);
