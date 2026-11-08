@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.63.8 / Core 0.46.2 - 2026-11-08
+- Impact figures: 55 people supported since 2024 and the 2040 vision of 500,000 people; older 200+ / 30+ figures hidden.
+- Partners: Suivera and Grace International Foundation with logos.
+- Giving details: M-Pesa Paybill 522522, account 1354817087; bank transfer KCB account 1354817087 shown on the Donate page.
+
 ## 0.63.7 - 2026-11-08
 - Business empowerment stories now publish: Rosemary (fixed: was saved as a draft because consent was recorded after saving) and new story Hellen (fish business, Dandora) with photo (children cropped out) and video link.
 

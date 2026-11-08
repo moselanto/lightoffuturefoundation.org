@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOF_THEME_VERSION', '0.63.7' );
+define( 'LOF_THEME_VERSION', '0.63.8' );
 define( 'LOF_THEME_DIR', get_stylesheet_directory() );
 define( 'LOF_THEME_URI', get_stylesheet_directory_uri() );
 
@@ -42,4 +42,5 @@ if ( is_admin() ) {
 	require_once LOF_THEME_DIR . '/inc/upgrade-055.php';
 	require_once LOF_THEME_DIR . '/inc/upgrade-0636.php';
 	require_once LOF_THEME_DIR . '/inc/upgrade-0637.php';
+	require_once LOF_THEME_DIR . '/inc/upgrade-0638.php';
 }

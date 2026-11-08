@@ -576,6 +576,12 @@ function lof_pay_hero_shortcode( $atts ) {
 		/* translators: 1: paybill 2: account */
 		$trust[] = array( 'check', $account ? sprintf( __( 'Prefer M-Pesa? Paybill %1$s, account %2$s', 'light-of-future-core' ), $paybill, $account ) : sprintf( __( 'Prefer M-Pesa? Paybill %s', 'light-of-future-core' ), $paybill ) );
 	}
+	$bank_acc  = function_exists( 'lof_core_setting' ) ? (string) lof_core_setting( 'bank_account' ) : '';
+	$bank_name = function_exists( 'lof_core_setting' ) ? (string) lof_core_setting( 'bank_name' ) : '';
+	if ( $bank_acc ) {
+		/* translators: 1: bank 2: account number */
+		$trust[] = array( 'check', sprintf( __( 'Bank transfer: %1$s, account %2$s', 'light-of-future-core' ), $bank_name ? $bank_name : __( 'our bank', 'light-of-future-core' ), $bank_acc ) );
+	}
 	$out  = lof_pay_styles();
 	$out .= '<div class="lofpayhero' . ( $form ? '' : ' lofpayhero--noform' ) . '">';
 	$out .= '<div class="lofpayhero__intro">' . $crumbs;
