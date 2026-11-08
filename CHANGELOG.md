@@ -1,5 +1,11 @@
 # Changelog
 
+## Theme 0.63.12 - 2026-11-09
+- Story pages: centred single reading column (820px), larger lead and body text, uniform 16:9 hero and 4:3 inline photos with centred captions, 2 x 2 photo gallery, balanced video row, Help us do more turned into a full-width call to action at the end.
+- Impact figures: balanced 4 x 2 grid (2 columns on phone) with one source note instead of a note on every figure.
+- Impact page stories: three equal cards instead of one large and two squeezed cards.
+- Includes the 0.63.11 story video player fix.
+
 ## Theme 0.63.11 - 2026-11-08
 - Story video player: no longer depends on the loop/main-query checks, finds the hosted video by story slug if the meta is missing, and runs late, so Rosemary's and Hellen's videos replace the Google Drive buttons.
 
