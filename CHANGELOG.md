@@ -1,5 +1,9 @@
 # Changelog
 
+## Theme 0.63.14 - 2026-11-09
+- Rosemary's fruit-stall photo framed from the top so her whole head shows (story page, Impact, Stories and Home cards).
+- The figures note reads "Figures supplied by the foundation (November 2026)" on every page, About included.
+
 ## Theme 0.63.13 - 2026-11-09
 - Story video player moved to a front-end file (it was only loaded in wp-admin), so Rosemary's and Hellen's videos replace the Drive buttons.
 - Impact figures on Home, About and Impact: one consistent card grid, 4 x 2 on desktop and 2 columns on tablet/phone (the old one-row layout squeezed and overlapped numbers); one source note.

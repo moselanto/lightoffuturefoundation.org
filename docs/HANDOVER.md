@@ -4,7 +4,7 @@ Last updated: **9 Nov 2026, 20:30 EAT**, at theme **0.63.13** + Core **0.46.4** 
 
 ## 0. STATUS AS OF 9 NOV 2026 (read this first; sections 1-9 below are the 3 Nov / 0.43.1 snapshot and partly outdated)
 
-**Live versions:** theme `light-of-future` **0.63.13**, plugin `light-of-future-core` **0.46.4** (both installed on the live site and verified signed out on desktop and at 390px). Repo `moselanto/lightoffuturefoundation.org`, branch `main`. Every change is committed; `CHANGELOG.md` has one entry per release.
+**Live versions:** theme `light-of-future` **0.63.14**, plugin `light-of-future-core` **0.46.4** (both installed on the live site and verified signed out on desktop and at 390px). Repo `moselanto/lightoffuturefoundation.org`, branch `main`. Every change is committed; `CHANGELOG.md` has one entry per release.
 
 **The site is public and indexable.** The 3 Nov "keep noindex" rule is obsolete: theme 0.58 forces indexing on even if "Discourage search engines" gets ticked again. Do not turn noindex back on.
 
@@ -23,13 +23,13 @@ Last updated: **9 Nov 2026, 20:30 EAT**, at theme **0.63.13** + Core **0.46.4** 
 - **Story page layout** (0.63.12-0.63.13, CSS at the end of `assets/css/shop.css`): one centred column (820px), 16:9 top photo, 4:3 inline photos with centred captions, 2 x 2 gallery, full-width "Help us do more" band at the end. On the Impact page, "Real people, real change" is three equal cards.
 
 ### 0.2 Next steps (priority order)
-1. **Photo crops:** Rosemary's top photo still cuts off the top of her head, and her card on /impact/ crops her face. Use a per-story `object-position` or a better-cropped thumbnail. Also the Margaret crop on /stories/.
-2. **About page source note:** it still shows the 0.63.12 wording ("Figures supplied by the foundation, November 2026."). The About band is probably the `lof-impact--strip` variant, which the 0.63.13 rule excludes. Make them consistent.
+1. DONE 0.63.14: Rosemary crop (`img[src*="story-rosemary-fruit-stall"]{object-position:50% 0%}`) and one figures note everywhere. Still check the Margaret crop on /stories/.
+2. **CONSENT CONFIRMED (9 Nov 2026, by the owner Ngimu):** consent is held for the pending stories and photos in the foundation's content intake list (Precious's photos, Eunice's sons, sanitary-pad girls, school-materials children, food-donation and mentorship photos, the borehole boy, talent-development performers). They can now be published. Still do not publish private records (hospital cards, clinical notes, blood-donor forms), keep Elijah's graphic wound images blurred (media plugin `!` prefix), cut children's spoken full names from videos, and keep Precious's location as "Nairobi" only. Next: publish these from the Content Library collections `projects/Light of Future Foundation/*` (Education, Sanitary Pads, Food Donations, Mentorship, Clean Water, Talent Development, Education Materials), using the intake document's suggested photo picks.
 3. **Paystack USD:** a $10 test gave "We could not start the payment". USD must be enabled on the foundation's Paystack account, and a USD settlement bank account is needed (requirements PDF was sent to Francis on 6 Nov). Payment mode was reported as "Not set up" in settings on 8 Nov: confirm live keys and mode before telling anyone card giving works. **Open question to the owner:** should KES be the default currency until USD is approved?
 4. **Figures:** ask Francis whether the six older figures listed above are still accurate next to "55 people supported since 2024".
 5. **Leadership page top photo:** the owner disliked the sanitary-pads group photo on mobile; options D, E and F are awaiting a choice.
 6. **Partners:** website links for Suivera and Grace International Foundation.
-7. **Consent-pending stories:** Precious and other items from Francis's intake list stay unpublished until consent is confirmed (minors, guardians, named partners).
+7. Consent: confirmed 9 Nov (see item 2).
 8. Optional: a shorter Facebook URL if the foundation sets a username. Recheck the page loader, and confirm the first slide stays still before load.
 
 ### 0.3 How releases are done now
