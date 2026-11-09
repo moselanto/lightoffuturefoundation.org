@@ -8,6 +8,8 @@
 - Board-approved Privacy Policy and Terms of Use wording
 - Full text of specific objective (h)
 - Resolved 9 Nov: consent for the pending stories and photos (confirmed by the owner)
+- Done 9 Nov (theme 0.63.16-0.63.17): Precious's approved photos (uniform main photo, uniform and shoes gallery; location Nairobi only), Meshack and Silvester on Eunice's story and the education page, programme galleries for sanitary pads, school materials, food, mentorship, clean water and talent (signs, phone number and TECNO watermarks cropped or blurred). Videos checked: no child's full name spoken or shown.
+- Still needed: talent-development photos (the talent gallery has videos only)
 - Resolved since 3 Nov: partner logos (2 added), public email (info@lightoffuturefoundation.org), WhatsApp number (+254 715 394 295), Facebook link, Paybill and KCB details
 
 ## Open as of 3 Nov 2026 (historical)
@@ -29,7 +31,7 @@ Updated 30 Oct 2026 after Agnes confirmed: official name, impact figures, Precio
 |---|---|
 | Official name | **Light of Future Foundation** (not "Light of the Future"). |
 | Impact figures | 200+ children supported, 30+ widows assisted, 5 community programmes, registered 2025 - confirmed true; shown as verified (source: foundation records, Oct 2026). |
-| Precious's story | Guardian consent held. Published with first name only, location shown as "Nairobi" (no slum name), no photo until an approved one is supplied. |
+| Precious's story | Guardian consent held. Published with first name only, location shown as "Nairobi" (no slum name), approved photos published 9 Nov 2026 (uniform main photo, uniform and shoes gallery; guardian/home photo not shown). |
 | Payments | **Paystack** (M-PESA and card) for donations and the shop. Replaces the proposal's Daraja/Pesapal/Flutterwave/PayPal options. |
 | Live site | Built directly on https://lightoffuturefoundation.org/ (no separate staging). Search-engine visibility should stay off until launch. |
 | Logo and brand | Logo Kit v1.0 (Oct 2026). |
@@ -58,7 +60,7 @@ To confirm:
 | Programme details | Locations, numbers, start dates, photos for each of the 5 programmes. |
 | Projects | None supplied; Projects page is a draft. |
 | Talent Development | Schedules, mentors, achievements, sponsorship options. Card wording is short and generic - please confirm. |
-| Photos (30-50) | No photos yet: placeholders use the brand symbol. Gallery page is a draft. |
+| Photos (30-50) | DONE: programme galleries, Gallery page and stories use the foundation's photos (Nov 2026). Talent-development photos still needed. |
 | Shop catalogue | Products, prices, stock, photos, delivery fees/areas, pickup, returns, who handles orders. |
 | Partners / sponsors | Logos and permission (e.g. Kristen named in Elijah's story - logo/name use?). Section stays hidden until added. |
 | Paystack | Account verified in the foundation's name; public/secret keys (go in wp-config.php), settlement account, receipt email. |

@@ -27,8 +27,8 @@
 
 ## Current state (9 Nov 2026, 20:30 EAT)
 
-- Theme **0.63.17** and Core **0.46.4** are on `main` (0.63.14 installed 9 Nov, see work log). For what is done and what is next, see `docs/HANDOVER.md` section 0.
-- Consent for the pending intake-list stories/photos was confirmed by the owner on 9 Nov 2026: publishing them is the next content job (HANDOVER 0.2 item 2). Other open items: Paystack USD enablement and USD settlement account (USD test failed) and confirmation of live keys/mode; the owner's answer on KES as default; Francis to re-confirm the six older impact figures; Leadership top photo (options D/E/F); partner website links; consent for pending stories (Precious etc.).
+- Theme **0.63.17** and Core **0.46.4** are on `main` and installed live (0.63.17 installed and verified signed out 9 Nov, see work log). For what is done and what is next, see `docs/HANDOVER.md` section 0.
+- Consent for the intake-list stories/photos was confirmed on 9 Nov 2026 and they are now published (0.63.16-0.63.17: Precious, Eunice's sons, programme galleries). Open items: talent-development photos; Paystack USD enablement and USD settlement account (USD test failed) and confirmation of live keys/mode; the owner's answer on KES as default; Francis to re-confirm the six older impact figures; Leadership top photo (options D/E/F); partner website links.
 - **Do not use "Apply latest design"** (it times out on this host). Ship page or content changes as one-off upgrades on `admin_init`. PHP lint is available in the build sandbox (`php -l`).
 
 ## How to install / update
