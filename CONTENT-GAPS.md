@@ -1,6 +1,16 @@
 # Content gaps - what we still need from the foundation
 
-## Open as of 3 Nov 2026 (latest)
+## Open as of 9 Nov 2026 (latest)
+- Paystack: USD enabled on the account plus a USD settlement bank account; confirm live keys and mode
+- Re-confirm the older figures (6,000+ mentored, 4,500+ pads, 3,500+ families fed, 2,500+ school materials, 200 school fees, 30 homes) against "55 people supported since 2024"
+- Website links for partners Suivera and Grace International Foundation
+- Consent confirmations for pending stories (Precious, minors, guardians, named partners)
+- Owner choice: Leadership page top photo (options D/E/F); KES or USD as the default donation currency
+- Board-approved Privacy Policy and Terms of Use wording
+- Full text of specific objective (h)
+- Resolved since 3 Nov: partner logos (2 added), public email (info@lightoffuturefoundation.org), WhatsApp number (+254 715 394 295), Facebook link, Paybill and KCB details
+
+## Open as of 3 Nov 2026 (historical)
 - Partner logos (partners section hidden until added)
 - Photos for each of the 11 focus areas (5 cards still use numbered tiles)
 - Public email address for the site (never franksikuku3@gmail.com) and WhatsApp number

@@ -1,6 +1,6 @@
 # AGENTS.md: start here (for the next AI agent or developer)
 
-**Start with `docs/HANDOVER.md` (full status, code map, release steps, pending work, as of 0.22.0).** Then read this file, `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md` before changing anything. Append to the work log at the bottom when you finish.
+**Start with `docs/HANDOVER.md` section 0 (status as of 9 Nov 2026, theme 0.63.13 / Core 0.46.4: what is live, next steps in priority order, release steps, traps).** Then read this file, `ARCHITECTURE-ESSENTIALS.md`, `PRD.md` and `CONTENT-GAPS.md` before changing anything. Append to the work log at the bottom when you finish.
 
 ## The project
 
@@ -9,7 +9,7 @@
 - **New domain (ours):** https://lightoffuturefoundation.org/
 - **Legacy site (read-only content source):** https://lightoffuture.org/ - no access to its hosting or developer. Content captured in `docs/legacy-content.md`.
 - **Official name:** Light of Future Foundation. **Client contact:** Frank Omosh (+254 715 394 295), who is founder Francis Ouma Sikuku (same person; use the full name on the site).
-- **Hosting plan:** the site is built directly on the live domain (no staging). Keep "Discourage search engines" on until launch.
+- **Hosting plan:** built directly on the live domain (no staging). The site is now public and indexable (theme 0.58 keeps it indexable). Do not re-enable noindex.
 - **Brief:** "Light of the Future WordPress Theme Design Prompt" (premium WordPress + Elementor theme, companion core plugin, WooCommerce crafts shop, donations). Summary in `PRD.md`.
 - **Brand:** Logo Kit v1.0 (October 2026) from the client's Google Drive folder. Colours and fonts in `docs/brand.md`.
 - **Reference repos:** moselanto/smilecommunitycentre.org (primary pattern for Elementor-first editing), dckabeten.org, cisternofhopefoundation, soundcreationsltd.com, pimofyoriginaltheme, nurabeauty.co.ke.
@@ -25,10 +25,11 @@
 - Release flow: edit, bump version in `style.css` + `functions.php` (and the plugin header + `LOF_CORE_VERSION` if it changed), `bash scripts/build-zips.sh`, add a `CHANGELOG.md` entry, commit to `main`, upload zips.
 - Wrap every visitor-facing string in `__()` / `esc_html__()` with text domain `light-of-future` (theme) or `light-of-future-core` (plugin).
 
-## Current state (3 Nov 2026, 18:15 EAT)
+## Current state (9 Nov 2026, 20:30 EAT)
 
-- Theme **0.43.1** and Core **0.43.1** on `main`. All pages, footer, phone menu and phone bottom navigation finished to the current design. Pending: Paystack, shop, foundation content, approved legal wording, launch (see `docs/HANDOVER.md` section 7).
-- **Do not use "Apply latest design"** (times out on this host); ship page-structure changes as one-off `init` upgrades (`docs/HANDOVER.md` section 5). PHP lint not run here (no PHP in this environment); lint on the server or CI before relying on it.
+- Theme **0.63.13** and Core **0.46.4** are on `main` and installed live. For what is done and what is next, see `docs/HANDOVER.md` section 0.
+- Top open items: Rosemary photo crops; About figures note wording; Paystack USD enablement and USD settlement account (USD test failed) and confirmation of live keys/mode; the owner's answer on KES as default; Francis to re-confirm the six older impact figures; Leadership top photo (options D/E/F); partner website links; consent for pending stories (Precious etc.).
+- **Do not use "Apply latest design"** (it times out on this host). Ship page or content changes as one-off upgrades on `admin_init`. PHP lint is available in the build sandbox (`php -l`).
 
 ## How to install / update
 
@@ -190,3 +191,11 @@
 - 2026-11-05: 0.50.0 one-row impact figures, per-page hero photos, leadership cards.
 - 2026-11-05: 0.50.1 leadership role slot, full hero photos on phones.
 - 2026-11-05: 0.50.2 leadership row alignment.
+- 2026-11-05/06: 0.51-0.62 shop redesign, info@ email migration, security hardening, speed (PageSpeed phone 94-100), indexing forced on (0.58), Donate/Gallery redesign, inner-page balance.
+- 2026-11-07/08: 0.63.0-0.63.5 assorted polish and footer redesign; Paystack advisory PDF for Francis.
+- 2026-11-08: Core 0.46.0/0.46.1 USD-first donation tiers ($10-$1,000), once/monthly/yearly, anonymous giving. USD test payment failed (Paystack USD not enabled).
+- 2026-11-08: 0.63.6/0.63.7 Rosemary and Hellen stories published with consent recorded (posts 564, 568).
+- 2026-11-08: 0.63.8 + Core 0.46.2 new figures (55 / 500,000; 200+ and 30+ hidden), partners Suivera and Grace International Foundation, giving details.
+- 2026-11-08: 0.63.9 + Core 0.46.3 "Other ways to give" box (Paybill 522522 / KCB 1354817087) via settings fields with defaults.
+- 2026-11-08: Core 0.46.4 Facebook page link in the footer.
+- 2026-11-08/09: 0.63.10-0.63.13 on-page story videos (uploads/lof-videos, player in inc/story-0613.php), professional story layout, impact figures as a 4 x 2 card grid on Home/About/Impact, equal story cards on Impact. Next: see HANDOVER section 0.2.

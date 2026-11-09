@@ -1,6 +1,51 @@
 # HANDOVER - Light of Future Foundation website (read this first)
 
-Last updated: **3 Nov 2026, 18:15 EAT**, at theme + Core **0.43.1**. Written so the next AI agent or developer can pick up without the chat history.
+Last updated: **9 Nov 2026, 20:30 EAT**, at theme **0.63.13** + Core **0.46.4** (section 0). Sections 1-9 were written on 3 Nov at 0.43.1 and are kept for the code map and history. Where they disagree with section 0, section 0 wins.
+
+## 0. STATUS AS OF 9 NOV 2026 (read this first; sections 1-9 below are the 3 Nov / 0.43.1 snapshot and partly outdated)
+
+**Live versions:** theme `light-of-future` **0.63.13**, plugin `light-of-future-core` **0.46.4** (both installed on the live site and verified signed out on desktop and at 390px). Repo `moselanto/lightoffuturefoundation.org`, branch `main`. Every change is committed; `CHANGELOG.md` has one entry per release.
+
+**The site is public and indexable.** The 3 Nov "keep noindex" rule is obsolete: theme 0.58 forces indexing on even if "Discourage search engines" gets ticked again. Do not turn noindex back on.
+
+### 0.1 What changed since 0.43.1 (short version; details in CHANGELOG.md)
+- **Shop** (0.44-0.57): crafts shop with WhatsApp ordering, shop page in menu and phone bottom bar, redesigned product pages.
+- **Speed / security** (0.54-0.62): image compression, page cache, shop CSS only on shop pages; login lockout, HSTS, file editors off. Phone PageSpeed scores were 94-100.
+- **Email:** the public address is info@lightoffuturefoundation.org everywhere.
+- **Donations (Core 0.46.x):** Paystack form on /donate/. USD shown first ($10, $25, $50, $100, $250, $500, $1,000), KES second; once, monthly or yearly (yearly = Paystack `annually` plan); "Give anonymously" (hides the name, flagged in receipts, admin list, CSV and staff email). References start `LOF-` (old `SCC-` still accepted). Admin preview: `/donate/?lof_pay_preview=1`.
+- **Other ways to give** box on /donate/ (theme 0.63.9 + Core 0.46.3): M-PESA Paybill **522522**, account **1354817087**; bank transfer **Kenya Commercial Bank (KCB)**, account **1354817087**. Editable in wp-admin under Light of Future > Settings (fields `mpesa_paybill`, `mpesa_account`, `bank_name`, `bank_account`; defaults live in `lof_core_setting_defaults()`).
+- **Facebook** (Core 0.46.4): `social_facebook` = https://www.facebook.com/people/Light-of-future-foundation/100094073726098/ (shown as a footer icon on every page).
+- **Impact figures** (0.63.8): now "People supported since 2024: 55" and "People we aim to support by 2040: 500,000". "Children supported 200+" and "Widows assisted 30+" are hidden (unpublished, not deleted). Still shown and **not yet re-confirmed** against the new 55 figure: People mentored 6,000+, Girls given sanitary pads 4,500+, Families served with food 3,500+, Children given school materials 2,500+, Children's school fees paid 200, Homes built for widows and widowers 30.
+- **Impact figure layout** (0.63.13): one card grid on Home, About and Impact. 4 x 2 on desktop, 2 columns at 900px and below, one source note under the grid. The old 0.50 "one row" rule (shop.css block `0.50.0`) is overridden by selector `body .lof-section.lof-impact.lof-impact.lof-impact`. Do not go back to a single row: 8 figures overlap.
+- **Partners** (0.63.8): Suivera and Grace International Foundation logos on Home ("Our partners"). No website links yet.
+- **Stories:** 8 published stories, including Eunice, Margaret, Philister, Elijah, **Rosemary** (post 564) and **Hellen** (post 568), both added 8 Nov with topic "Business empowerment".
+- **Story videos** (0.63.10-0.63.13): Rosemary's and Hellen's videos play on the page (no Google Drive links). The server downloaded the MP4s once into `wp-content/uploads/lof-videos/story-{slug}.mp4`, with posters `story-{slug}-poster.jpg` (posters also in `assets/video/`). The MP4s are **not in git** (Rosemary about 62 MB, Hellen about 28 MB). The player is `inc/story-0613.php` (front end): a `the_content` filter swaps a Drive button for a `<video>` using post meta `lof_story_video` / `lof_story_video_poster`, or finds the file by story slug. To add a video to another story, put `story-{slug}.mp4` (+ poster) in `uploads/lof-videos/`. Margaret's videos use the separate `light-of-future-video-8` plugin.
+- **Story page layout** (0.63.12-0.63.13, CSS at the end of `assets/css/shop.css`): one centred column (820px), 16:9 top photo, 4:3 inline photos with centred captions, 2 x 2 gallery, full-width "Help us do more" band at the end. On the Impact page, "Real people, real change" is three equal cards.
+
+### 0.2 Next steps (priority order)
+1. **Photo crops:** Rosemary's top photo still cuts off the top of her head, and her card on /impact/ crops her face. Use a per-story `object-position` or a better-cropped thumbnail. Also the Margaret crop on /stories/.
+2. **About page source note:** it still shows the 0.63.12 wording ("Figures supplied by the foundation, November 2026."). The About band is probably the `lof-impact--strip` variant, which the 0.63.13 rule excludes. Make them consistent.
+3. **Paystack USD:** a $10 test gave "We could not start the payment". USD must be enabled on the foundation's Paystack account, and a USD settlement bank account is needed (requirements PDF was sent to Francis on 6 Nov). Payment mode was reported as "Not set up" in settings on 8 Nov: confirm live keys and mode before telling anyone card giving works. **Open question to the owner:** should KES be the default currency until USD is approved?
+4. **Figures:** ask Francis whether the six older figures listed above are still accurate next to "55 people supported since 2024".
+5. **Leadership page top photo:** the owner disliked the sanitary-pads group photo on mobile; options D, E and F are awaiting a choice.
+6. **Partners:** website links for Suivera and Grace International Foundation.
+7. **Consent-pending stories:** Precious and other items from Francis's intake list stay unpublished until consent is confirmed (minors, guardians, named partners).
+8. Optional: a shorter Facebook URL if the foundation sets a username. Recheck the page loader, and confirm the first slide stays still before load.
+
+### 0.3 How releases are done now
+1. Edit. Append new CSS to the end of `assets/css/shop.css` (later blocks win), then regenerate `shop.min.css`. Keep quoted strings intact when minifying: an earlier minifier removed the space after a comma inside a `content:` string.
+2. Bump `LOF_THEME_VERSION` (functions.php) and `Version:` (style.css). For the plugin, bump the header and `LOF_CORE_VERSION`.
+3. Prepend a `CHANGELOG.md` entry. Run `php -l` on changed files.
+4. Build one zip per product (`scripts/build-zips.sh`, or `zip -rq light-of-future-X.Y.Z.zip light-of-future`). Keep zips well under about 40 MB: large uploads failed. Never put videos in the theme zip.
+5. wp-admin: upload zip > "Replace current with uploaded" > open the Dashboard once (this runs the one-off upgrades) > LiteSpeed Cache > Toolbox > Purge All > sign out > check signed out. Phone check: `/?lof_mobile_preview=light&page=SLUG&w=390` (blank for single stories: use a narrow window or the Stories preview and follow links).
+
+### 0.4 Traps learned (add yours)
+- Everything inside `if ( is_admin() )` in functions.php (upgrade-*.php, importer.php, shop-setup.php) **never runs on the front end**. Front-end filters belong in an always-loaded file. This is why the video player failed in 0.63.10-0.63.11.
+- One-off upgrades (`inc/upgrade-06xx.php`) run on `admin_init`, guarded by an option (`lof_stories_0637_rev`, `lof_videos_0640_rev`, `lof_core_up_0464_fb` ...). Delete the option to re-run.
+- `lof_core_settings` passes through `lof_core_sanitize_settings()`, which **drops any key not in `lof_core_setting_fields()`**. A new setting must be added to the fields list (and to defaults). `lof_core_setting()` only falls back to a default when the key is *absent*: an empty saved value returns ''. Fill it with a one-off upgrade (see `lof_core_upgrade_0464_facebook`).
+- Stories without consent are forced to draft by `lof_core_require_story_consent`. Set `lof_consent=1` and `lof_consent_date` before publishing (see upgrade-0637.php).
+- The browser automation cannot type long numeric strings (for example the Facebook profile ID) into admin fields, because it treats them as card numbers. Set such values in code.
+- Never invent facts, figures, payment details or partner names. No new wording on the site without the foundation's approval. Francis Ouma Sikuku's personal Gmail is never published.
 
 ## 1. Where we are in one paragraph
 The site is live (still `noindex`) at https://lightoffuturefoundation.org/ on WordPress + Elementor (free) + Hello Elementor parent theme, with our child theme `light-of-future` and plugin `light-of-future-core`. Design, content and mobile UX went through many rounds with Agnes (Pimofy Digital) between 30 Oct and 3 Nov 2026. Every page, the header, footer, phone bottom navigation and phone menu are finished to the current design standard. **Not done yet:** Paystack donations (no keys), WooCommerce crafts shop, real partner logos, focus-area photos, public email and WhatsApp number, approved legal wording, and launch (turning indexing on).
