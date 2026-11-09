@@ -1288,3 +1288,7 @@ img[src*="story-rosemary-fruit-stall"]{object-position:50% 0%!important}
 
 /* 0.63.15 Rosemary portrait as main photo: keep her face centred in wide crops */
 img[src*="story-rosemary-portrait"]{object-position:50% 30%!important}
+
+/* 0.63.16 Precious: only the approved photos (guardian/home photo hidden); portrait figure for Meshack and Silvester */
+.lofm__item:has(img[src*="edu-precious-guardian"]){display:none!important}
+.lof-single.type-lof_story .lof-single__body figure.lof-fig-portrait img{aspect-ratio:auto!important;width:auto!important;max-width:100%;max-height:640px;margin:0 auto;object-fit:contain!important}

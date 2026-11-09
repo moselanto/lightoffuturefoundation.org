@@ -1,5 +1,12 @@
 # Changelog
 
+## Theme 0.63.16 - 2026-11-09
+- Consent for the intake-list photos confirmed by the owner (9 Nov). The programme galleries (sanitary pads, education and school materials, food donations, mentorship, clean water, talent development) were already live from the Light of Future Media plugin; this release cleans them up.
+- Cropped photos (shipped in `assets/lofm-fix/`, copied once over the media plugin's `assets/photos/` and its Media Library copies by `inc/upgrade-0642.php`, option `lof_media_0642_rev`): food-children (school sign and phone number), edu-books-team (school office sign), and the TECNO phone watermark removed from pads-school, pads-kits, pads-community, pads-thumbs, water-boy, ment-listening, food-family and edu-books.
+- Precious: uniform photo stays the main photo; gallery shows the uniform and shoes photos; the guardian/home photo is hidden by CSS. Location stays "Nairobi".
+- Eunice's story: Meshack and Silvester's school photo added above her gallery (it was already on the Education page).
+- Videos checked: the live books-kibera (32 s) and pads-thanks (72 s) clips no longer contain any child's full name.
+
 ## Theme 0.63.15 - 2026-11-09
 - Rosemary: the fruit-stall photo itself cuts off the top of her head, so no crop can fix it. Her portrait becomes the main story photo (story top, Impact, Stories, Home cards) and the stall photo moves into the story text. One-off `inc/upgrade-0641.php` (option `lof_rosemary_0641_rev`).
 
