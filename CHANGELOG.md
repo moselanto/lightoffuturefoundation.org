@@ -1,5 +1,8 @@
 # Changelog
 
+## Theme 0.63.15 - 2026-11-09
+- Rosemary: the fruit-stall photo itself cuts off the top of her head, so no crop can fix it. Her portrait becomes the main story photo (story top, Impact, Stories, Home cards) and the stall photo moves into the story text. One-off `inc/upgrade-0641.php` (option `lof_rosemary_0641_rev`).
+
 ## Theme 0.63.14 - 2026-11-09
 - Rosemary's fruit-stall photo framed from the top so her whole head shows (story page, Impact, Stories and Home cards).
 - The figures note reads "Figures supplied by the foundation (November 2026)" on every page, About included.

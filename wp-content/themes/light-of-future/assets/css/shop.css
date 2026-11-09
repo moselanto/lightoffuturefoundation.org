@@ -1285,3 +1285,6 @@ body .lof-section.lof-impact.lof-impact.lof-impact:not(.lof-impact--strip) .lof-
 /* 0.63.14 Rosemary photo keeps her whole head in frame; one figures note everywhere (About included) */
 img[src*="story-rosemary-fruit-stall"]{object-position:50% 0%!important}
 .lof-tone-earth.lof-impact .lof-container::after,body .lof-section.lof-impact.lof-impact.lof-impact .lof-container::after{content:"Figures supplied by the foundation (November 2026)";display:block;margin-top:1.4rem;text-align:center;font-size:.85rem;opacity:.72}
+
+/* 0.63.15 Rosemary portrait as main photo: keep her face centred in wide crops */
+img[src*="story-rosemary-portrait"]{object-position:50% 30%!important}
