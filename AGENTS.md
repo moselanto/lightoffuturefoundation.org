@@ -27,7 +27,7 @@
 
 ## Current state (9 Nov 2026, 20:30 EAT)
 
-- Theme **0.63.15** and Core **0.46.4** are on `main` (0.63.14 installed 9 Nov, see work log). For what is done and what is next, see `docs/HANDOVER.md` section 0.
+- Theme **0.63.17** and Core **0.46.4** are on `main` (0.63.14 installed 9 Nov, see work log). For what is done and what is next, see `docs/HANDOVER.md` section 0.
 - Consent for the pending intake-list stories/photos was confirmed by the owner on 9 Nov 2026: publishing them is the next content job (HANDOVER 0.2 item 2). Other open items: Paystack USD enablement and USD settlement account (USD test failed) and confirmation of live keys/mode; the owner's answer on KES as default; Francis to re-confirm the six older impact figures; Leadership top photo (options D/E/F); partner website links; consent for pending stories (Precious etc.).
 - **Do not use "Apply latest design"** (it times out on this host). Ship page or content changes as one-off upgrades on `admin_init`. PHP lint is available in the build sandbox (`php -l`).
 
@@ -201,3 +201,4 @@
 - 2026-11-08/09: 0.63.10-0.63.13 on-page story videos (uploads/lof-videos, player in inc/story-0613.php), professional story layout, impact figures as a 4 x 2 card grid on Home/About/Impact, equal story cards on Impact. Next: see HANDOVER section 0.2.
 - 2026-11-09: 0.63.14 Rosemary photo framing, one figures note on every page. Owner confirmed consent for the pending intake-list stories and photos.
 - 2026-11-09: 0.63.15 Rosemary's portrait becomes her main story photo (stall photo moved inline).
+- 2026-11-09: 0.63.16/0.63.17 cleaned programme gallery photos (theme assets/lofm-fix copied over the media plugin photos), Precious approved photos only, Meshack and Silvester on Eunice's story. Do not reinstall the media plugin from the repo (no photos in git).

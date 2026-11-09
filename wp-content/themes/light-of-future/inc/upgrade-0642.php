@@ -56,3 +56,30 @@ function lof_upgrade_0642_media() {
 	update_option( 'lof_media_0642_rev', 1, false );
 }
 add_action( 'admin_init', 'lof_upgrade_0642_media', 44 );
+
+/**
+ * 0.63.17: re-copy the books photo with the school office sign blurred.
+ */
+function lof_upgrade_0642_media_rev2() {
+	if ( get_option( 'lof_media_0642_rev2' ) || ! get_option( 'lof_media_0642_rev' ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$dst = WP_PLUGIN_DIR . '/light-of-future-media/assets/photos/';
+	if ( ! is_dir( $dst ) ) {
+		return;
+	}
+	foreach ( array( 'edu-books-team.webp', 'edu-books-team-sm.webp' ) as $name ) {
+		copy( LOF_THEME_DIR . '/assets/lofm-fix/' . $name, $dst . $name );
+	}
+	$attach = (array) get_option( 'lofm_attach_ids', array() );
+	if ( ! empty( $attach['edu-books-team'] ) ) {
+		$path = get_attached_file( (int) $attach['edu-books-team'] );
+		if ( $path && copy( LOF_THEME_DIR . '/assets/lofm-fix/edu-books-team.webp', $path ) ) {
+			require_once ABSPATH . 'wp-admin/includes/image.php';
+			wp_update_attachment_metadata( (int) $attach['edu-books-team'], wp_generate_attachment_metadata( (int) $attach['edu-books-team'], $path ) );
+		}
+	}
+	do_action( 'litespeed_purge_all' );
+	update_option( 'lof_media_0642_rev2', 1, false );
+}
+add_action( 'admin_init', 'lof_upgrade_0642_media_rev2', 45 );
