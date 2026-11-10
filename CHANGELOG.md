@@ -1,6 +1,9 @@
 # Changelog
 
 
+## Theme 0.69.2 - 10 Nov 2026
+- Gallery "Levelling the floor": on tablet and desktop (4:3 tiles, caption below) the thumbnail is framed at 50% 58% so the worker's head is no longer cut off; phones keep the 0.69.1 framing.
+
 ## Theme 0.69.1 - 10 Nov 2026
 - Phones (<=760px): WhatsApp button reduced from 54px to 46px and moved lower and closer to the edge (8px above the bottom bar, 10px from the right) so it stops covering Leadership board cards. Still always visible.
 - Gallery: the "Levelling the floor" thumbnail (philister-floor2.webp) is framed toward the bottom (object-position 50% 92%) so the person low in the photo is not hidden behind the caption.
