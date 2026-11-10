@@ -1596,3 +1596,11 @@ html body .lof-hero.lof-hero--page .lof-hero__title,html body .lof-hero.lof-hero
 }
 html[data-theme="dark"] body .lof-hero.lof-hero--page.has-bg::before{background:linear-gradient(180deg,rgba(10,7,3,.5) 0%,rgba(10,7,3,.86) 100%)}
 @media (prefers-reduced-motion:reduce){html body .lof-nav{transition:none!important}}
+
+/* 0.69.1 Phone WhatsApp button smaller and lower (was covering Leadership board cards); gallery "Levelling the floor" reframed so the person low in the photo is not hidden behind the caption */
+@media (max-width:760px){
+html body .lof-chat{right:max(10px,env(safe-area-inset-right,0px))!important;bottom:calc(64px + 8px + env(safe-area-inset-bottom,0px))!important}
+html body .lof-chat .lof-chat__fab{width:46px!important;height:46px!important}
+html body .lof-chat .lof-chat__fab-icon,html body .lof-chat .lof-chat__fab svg{width:22px!important;height:22px!important}
+}
+html body.lof-page-gallery .lofm-all .lofm__item .lofm__link img[src*="philister-floor2"],html body .lofm__item img[src*="philister-floor2"]{object-position:50% 92%!important}
