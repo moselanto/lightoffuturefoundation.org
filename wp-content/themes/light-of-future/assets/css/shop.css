@@ -1,45 +1,54 @@
 /* Light of Future crafts shop + WhatsApp chat (0.44.0). Brand: Earth Brown #5C3D1E, Cream #FCF6E1, Sun Gold #F4AF16, Amber #DC8C13. */
+/* 0.67.0 structure (release order kept: later blocks still win, so the order was NOT reshuffled).
+   Cleanup in 0.67.0: declarations overridden by a later rule with the identical selector, the same @media/@supports context
+   and equal or higher !important were removed, emptied rules dropped (checked by script: every final winning value unchanged).
+   Find a component by searching for its latest block:
+   - Home shop (Shop with purpose, .lof-market): 0.44.0, 0.45.0, 0.64.0, 0.65.2 (trust cards; the 0.64.0 span-hiding rule is scoped to non-v2 lists)
+   - WhatsApp chat: 0.44.0, 0.49.0, 0.58.3, 0.61.1, 0.63.3, 0.65.1
+   - Slider (.lof-cine): 0.47.0, 0.48.0, 0.64.0, 0.66.0      - Impact figures: 0.50.0, 0.63.12-13, 0.64.0
+   - Stories: 0.58.3, 0.61.x, 0.63.12-16, 0.64.0             - Give today (Home, .lof-give--compact): 0.64.0 + 0.67.0 cream card
+   - Programmes (.lof-progjump, .lof-card--programme): 0.55.0, 0.60.2-3, 0.67.0 (all 11 cards, no sideways scroll)
+   - Donate (.lof-pay2, .lofpay): 0.56.0, 0.58.0-1, 0.63.9, 0.67.0 (body.lof-page-donate)
+   - Shop pages / product: 0.51.0, 0.52.x, 0.63.0-4           - Gallery: 0.57.0, 0.58.0, 0.60.x
+   - Footer: 0.62.x, 0.63.5   - Partners: 0.64.0   - About + Leadership: 0.65.0, 0.65.1
+   New CSS: add it inside or straight after the latest block of its component, not as a new override layer at the end. */
 :root{--lof-wa:#25D366;--lof-wa-dark:#128C7E;--lof-brown:#5C3D1E;--lof-gold:#F4AF16;--lof-amber:#DC8C13;--lof-cream:#FCF6E1}
-
 /* ---------- Home: Shop with purpose ---------- */
-.lof-market{background:linear-gradient(180deg,#fff 0%,var(--lof-cream) 100%);padding:clamp(56px,7vw,96px) 16px;position:relative;overflow:hidden}
+.lof-market{padding:clamp(56px,7vw,96px) 16px;position:relative;overflow:hidden}
 .lof-market::before{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(244,175,22,.22),transparent 70%);pointer-events:none}
 .lof-market__inner{max-width:1200px;margin:0 auto;position:relative}
-.lof-market__head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.lof-market__head{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .lof-market__eyebrow{color:#B9740F;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;margin:0 0 8px}
-.lof-market__title{font-family:Nunito,system-ui,sans-serif;font-weight:800;color:var(--lof-brown);font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.15;margin:0 0 10px;max-width:640px}
+.lof-market__title{font-family:Nunito,system-ui,sans-serif;font-weight:800;color:var(--lof-brown);line-height:1.15;margin:0 0 10px;max-width:640px}
 .lof-market__intro{margin:0;max-width:600px;color:#5b4a3a}
-.lof-market__all{display:inline-flex;gap:8px;align-items:center;font-weight:800;color:var(--lof-brown);text-decoration:none;border:2px solid var(--lof-gold);border-radius:999px;padding:10px 22px;transition:background .2s}
-.lof-market__all:hover,.lof-market__all:focus-visible{background:var(--lof-gold);color:var(--lof-brown)}
+.lof-market__all{display:inline-flex;gap:8px;align-items:center;font-weight:800;text-decoration:none;border:2px solid var(--lof-gold);border-radius:999px;transition:background .2s}
 .lof-market__grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
-.lof-market__card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px -18px rgba(92,61,30,.45);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;border-top:3px solid var(--lof-gold)}
+.lof-market__card{background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
 .lof-market__card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -18px rgba(92,61,30,.55)}
-.lof-market__media{position:relative;display:block;aspect-ratio:1/1;overflow:hidden;background:var(--lof-cream)}
+.lof-market__media{position:relative;display:block;overflow:hidden;background:var(--lof-cream)}
 .lof-market__media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .lof-market__card:hover .lof-market__media img{transform:scale(1.05)}
-.lof-market__badge{position:absolute;left:12px;top:12px;background:var(--lof-brown);color:var(--lof-cream);font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
-.lof-market__body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
-.lof-market__name{font-family:Nunito,system-ui,sans-serif;font-size:1.05rem;font-weight:800;margin:0;line-height:1.3}
+.lof-market__badge{position:absolute;left:12px;top:12px;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.lof-market__body{display:flex;flex-direction:column;flex:1}
+.lof-market__name{font-family:Nunito,system-ui,sans-serif;font-weight:800;margin:0;line-height:1.3}
 .lof-market__name a{color:var(--lof-brown);text-decoration:none}
-.lof-market__price{margin:0 0 8px;font-weight:800;color:var(--lof-amber)}
-.lof-market__actions{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+.lof-market__price{font-weight:800}
+.lof-market__actions{margin-top:auto;flex-wrap:wrap}
 .lof-market__wa,.lof-wa-order__mini{display:inline-flex;align-items:center;gap:6px;background:var(--lof-wa);color:#fff!important;font-weight:800;font-size:.86rem;padding:9px 14px;border-radius:999px;text-decoration:none;flex:1;justify-content:center;transition:background .2s}
 .lof-market__wa:hover,.lof-wa-order__mini:hover{background:var(--lof-wa-dark)}
-.lof-market__view{display:inline-flex;align-items:center;justify-content:center;padding:9px 14px;border-radius:999px;border:1.5px solid #e4d6bd;color:var(--lof-brown);font-weight:700;font-size:.86rem;text-decoration:none}
-.lof-market__trust{margin:26px 0 0;text-align:center;color:#6b5a48;font-size:.95rem}
+.lof-market__view{display:inline-flex;align-items:center;justify-content:center;border-radius:999px}
+.lof-market__trust{color:#6b5a48;font-size:.95rem}
 @media (max-width:991px){.lof-market__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.lof-market__grid{gap:12px}.lof-market__body{padding:12px}.lof-market__actions{flex-direction:column}.lof-market__name{font-size:.95rem}}
-
+@media (max-width:640px){.lof-market__grid{gap:12px}.lof-market__body{padding:12px}.lof-market__name{font-size:.95rem}}
 /* ---------- Shop pages ---------- */
 .lof-shop-intro{background:var(--lof-cream);border-left:4px solid var(--lof-gold);border-radius:14px;padding:16px 20px;margin:0 0 28px}
 .lof-shop-intro__eyebrow{margin:0 0 4px;color:#B9740F;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem}
 .lof-shop-intro__text{margin:0;color:var(--lof-brown)}
-.woocommerce ul.products li.product{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 28px -18px rgba(92,61,30,.45);padding-bottom:16px!important;border-top:3px solid var(--lof-gold);text-align:left}
+.woocommerce ul.products li.product{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 28px -18px rgba(92,61,30,.45);padding-bottom:16px!important;text-align:left}
 .woocommerce ul.products li.product a img{margin:0 0 12px!important;aspect-ratio:1/1;object-fit:cover}
 .woocommerce ul.products li.product .woocommerce-loop-product__title{padding:0 16px!important;color:var(--lof-brown);font-weight:800;font-size:1rem!important}
 .woocommerce ul.products li.product .price{padding:0 16px;color:var(--lof-amber)!important;font-weight:800}
 .woocommerce ul.products li.product .button.lof-shop-view{margin:10px 16px 0!important;background:transparent;border:1.5px solid #e4d6bd;color:var(--lof-brown);border-radius:999px;font-weight:700}
-.woocommerce ul.products li.product .lof-wa-order__mini{display:flex;margin:8px 16px 0}
 .woocommerce span.onsale{background:var(--lof-gold);color:var(--lof-brown)}
 .lof-wa-order{margin:18px 0 8px}
 .lof-wa-order__btn{display:inline-flex;align-items:center;gap:10px;background:var(--lof-wa);color:#fff!important;font-weight:800;font-size:1.05rem;padding:14px 26px;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px rgba(18,140,126,.8);transition:transform .2s,background .2s}
@@ -47,14 +56,12 @@
 .lof-wa-order__note{margin:8px 0 0;font-size:.88rem;color:#6b5a48}
 /* While online checkout is off, WhatsApp is the order path. */
 body.lof-wa-orders .single_add_to_cart_button,body.lof-wa-orders .woocommerce-variation-add-to-cart .quantity+button{display:none!important}
-
 /* ---------- WhatsApp chat card ---------- */
-.lof-chat{position:fixed;right:18px;bottom:18px;z-index:9990;font-family:Figtree,system-ui,sans-serif}
-@media (max-width:991px){.lof-chat{bottom:calc(84px + env(safe-area-inset-bottom,0px));right:12px}}
-.lof-chat__fab{display:flex;align-items:center;gap:10px;background:var(--lof-wa);color:#fff!important;text-decoration:none;border-radius:999px;padding:10px 18px 10px 12px;box-shadow:0 14px 30px -10px rgba(0,0,0,.35);font-weight:800;position:relative;transition:transform .2s}
+.lof-chat{position:fixed;z-index:9990;font-family:Figtree,system-ui,sans-serif}
+.lof-chat__fab{display:flex;align-items:center;color:#fff!important;text-decoration:none;box-shadow:0 14px 30px -10px rgba(0,0,0,.35);font-weight:800;position:relative}
 .lof-chat__fab:hover{transform:translateY(-2px)}
-.lof-chat__fab-icon{display:grid;place-items:center;width:36px;height:36px}
-.lof-chat__fab::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(37,211,102,.55);animation:lofPulse 2.6s infinite}
+.lof-chat__fab-icon{display:grid;place-items:center}
+.lof-chat__fab::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(37,211,102,.55)}
 @keyframes lofPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
 @media (prefers-reduced-motion:reduce){.lof-chat__fab::after{animation:none}}
 @media (max-width:640px){.lof-chat__fab-label{display:none}.lof-chat__fab{padding:10px}}
@@ -74,10 +81,12 @@ body.lof-wa-orders .single_add_to_cart_button,body.lof-wa-orders .woocommerce-va
 .lof-chat__close{background:rgba(255,255,255,.12)!important;border:0;color:#fff!important;width:32px;height:32px;border-radius:50%;font-size:20px;line-height:1;cursor:pointer}
 .lof-chat__body{padding:16px;background:#efe7da url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%23d9ccb6'/%3E%3C/svg%3E");overflow:auto;flex:1}
 .lof-chat__bubble{background:#fff;border-radius:4px 16px 16px 16px;padding:10px 14px;box-shadow:0 1px 1px rgba(0,0,0,.08);font-size:.93rem;color:#2d2016;max-width:92%}
-.lof-chat__bubble p{margin:0 0 6px}.lof-chat__bubble p:last-child{margin:0}
+.lof-chat__bubble p{margin:0 0 6px}
+.lof-chat__bubble p:last-child{margin:0}
 .lof-chat__typing{display:inline-flex;gap:4px;background:#fff;padding:10px 12px;border-radius:14px;margin-bottom:8px}
 .lof-chat__typing i{width:7px;height:7px;border-radius:50%;background:#b8a88f;animation:lofDot 1s infinite}
-.lof-chat__typing i:nth-child(2){animation-delay:.15s}.lof-chat__typing i:nth-child(3){animation-delay:.3s}
+.lof-chat__typing i:nth-child(2){animation-delay:.15s}
+.lof-chat__typing i:nth-child(3){animation-delay:.3s}
 @keyframes lofDot{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
 .lof-chat__label{margin:14px 0 8px;font-size:.78rem;color:#6b5a48;font-weight:700}
 .lof-chat__chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -91,12 +100,8 @@ body.lof-wa-orders .single_add_to_cart_button,body.lof-wa-orders .woocommerce-va
 .lof-chat__send{background:var(--lof-wa)!important;color:#fff!important;border:0;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;flex:none}
 .lof-chat__note{margin:0;padding:0 14px 12px;font-size:.72rem;color:#8a7a68;background:#fff}
 .lof-chat [hidden]{display:none!important}
-
 /* ---------- 0.44.1 phone fixes ---------- */
-.lof-wa-short{display:none}
 .lof-market__wa,.lof-wa-order__mini,.lof-market__view{white-space:nowrap;min-height:44px}
-.lof-market__name{min-height:2.6em}
-.lof-market__price{min-height:2.6em}
 /* Equal-height shop cards, actions pinned to the bottom. */
 .woocommerce ul.products li.product{display:flex!important;flex-direction:column}
 .woocommerce ul.products li.product .woocommerce-LoopProduct-link{flex:1 0 auto;display:flex;flex-direction:column}
@@ -104,35 +109,19 @@ body.lof-wa-orders .single_add_to_cart_button,body.lof-wa-orders .woocommerce-va
 .woocommerce ul.products li.product .price{margin-top:auto!important}
 .woocommerce ul.products li.product .button.lof-shop-view,.woocommerce ul.products li.product .lof-wa-order__mini{text-align:center;justify-content:center;white-space:nowrap}
 .woocommerce ul.products li.product .lof-wa-order__mini{min-height:44px}
-@media (max-width:640px){
- .lof-wa-long{display:none}.lof-wa-short{display:inline}
- .lof-market__actions{flex-direction:row}
- .lof-market__wa,.lof-wa-order__mini{padding:9px 10px;font-size:.84rem}
- .lof-market__view{padding:9px 10px;font-size:.82rem}
- .woocommerce ul.products li.product .woocommerce-loop-product__title{font-size:.92rem!important;padding:0 12px!important}
- .woocommerce ul.products li.product .price{padding:0 12px;font-size:.88rem}
- .woocommerce ul.products li.product .button.lof-shop-view{margin:10px 12px 0!important;padding:9px 10px!important;font-size:.82rem}
- .woocommerce ul.products li.product .lof-wa-order__mini{margin:8px 12px 0}
- .lof-wa-order__btn{display:flex;justify-content:center;width:100%;box-sizing:border-box}
- .lof-chat__teaser{width:min(240px,calc(100vw - 90px));bottom:62px;padding:12px 10px}
- .lof-chat__teaser-open{font-size:.84rem}
- .lof-chat__fab{box-shadow:0 8px 18px -8px rgba(0,0,0,.4)}
-}
+@media (max-width:640px){.lof-wa-long{display:none}.lof-wa-short{display:inline}.lof-market__actions{flex-direction:row}.lof-market__wa,.lof-wa-order__mini{padding:9px 10px;font-size:.84rem}.lof-market__view{padding:9px 10px;font-size:.82rem}.woocommerce ul.products li.product .woocommerce-loop-product__title{font-size:.92rem!important;padding:0 12px!important}.woocommerce ul.products li.product .price{padding:0 12px;font-size:.88rem}.woocommerce ul.products li.product .button.lof-shop-view{margin:10px 12px 0!important;padding:9px 10px!important;font-size:.82rem}.woocommerce ul.products li.product .lof-wa-order__mini{margin:8px 12px 0}.lof-wa-order__btn{display:flex;justify-content:center;width:100%;box-sizing:border-box}.lof-chat__teaser{width:min(240px,calc(100vw - 90px));bottom:62px;padding:12px 10px}.lof-chat__teaser-open{font-size:.84rem}.lof-chat__fab{box-shadow:0 8px 18px -8px rgba(0,0,0,.4)}}
 /* Keep headings and the order button clear of the sticky header. */
 .single-product .product_title,.single-product form.cart,.lof-wa-order{scroll-margin-top:110px}
-
 /* ================= 0.45.0 ================= */
 /* Headings run the full width of their container. */
 .lof-section__head,.lof-cta.lof-tone-sun .lof-section__head{max-width:none!important}
 .lof-section__title,section.lof-feature--story .lof-feature__body>.lof-section__title,.lof-market__title{max-width:none!important}
 .lof-section__intro,.lof-market__intro{max-width:72ch}
-
 /* Anchors and focus land below the sticky header. */
 html{scroll-padding-top:calc(var(--lof-head-h,76px) + 20px)}
 .single-product .product_title{scroll-margin-top:calc(var(--lof-head-h,76px) + 20px)}
 .single-product .lof-wa-order,.single-product form.cart{scroll-margin-top:calc(var(--lof-head-h,76px) + 200px)}
 @media (max-width:991px){.single-product .lof-wa-order,.single-product form.cart{scroll-margin-top:calc(var(--lof-head-h,64px) + 230px)}}
-
 /* Shop with purpose: refined section. */
 .lof-market{background:radial-gradient(1200px 400px at 100% 0,rgba(244,175,22,.14),transparent 60%),linear-gradient(180deg,#fffdf7 0%,var(--lof-cream) 100%)}
 .lof-market__head{align-items:flex-end;border-bottom:1px solid rgba(92,61,30,.12);padding-bottom:24px;margin-bottom:36px}
@@ -160,16 +149,10 @@ html{scroll-padding-top:calc(var(--lof-head-h,76px) + 20px)}
 .lof-market__trust li::before{content:"";position:absolute;left:16px;top:18px;width:22px;height:22px;border-radius:50%;background:var(--lof-gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%235C3D1E' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/14px no-repeat}
 .lof-market__trust strong{color:var(--lof-brown);font-size:.98rem}
 @media (max-width:900px){.lof-market__trust{grid-template-columns:1fr}}
-@media (max-width:640px){
- .lof-market__actions{grid-template-columns:1fr;gap:4px}
- .lof-market__view{min-height:36px;justify-content:center}
- .lof-btn-order,.lof-market__wa{padding:0 12px;font-size:.86rem;min-height:44px}
- .lof-market__media{aspect-ratio:1/1}
-}
+@media (max-width:640px){.lof-market__actions{grid-template-columns:1fr;gap:4px}.lof-market__view{min-height:36px;justify-content:center}.lof-btn-order,.lof-market__wa{padding:0 12px;font-size:.86rem;min-height:44px}.lof-market__media{aspect-ratio:1/1}}
 .woocommerce ul.products li.product{border-top:0!important;border:1px solid rgba(92,61,30,.10)}
 .woocommerce ul.products li.product .lof-wa-order__mini{margin:8px 16px 0;display:flex}
 .lof-wa-order__btn.lof-btn-order{min-height:54px;font-size:1.02rem;padding:0 28px;border-radius:14px}
-
 /* WhatsApp order form popup. */
 .lof-order{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:16px;font-family:Figtree,system-ui,sans-serif}
 .lof-order[hidden]{display:none!important}
@@ -201,18 +184,12 @@ html{scroll-padding-top:calc(var(--lof-head-h,76px) + 20px)}
 .lof-order__submit{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border:0;border-radius:14px;background:#075E54!important;color:#fff!important;font-weight:800;font-size:1.02rem;cursor:pointer;box-shadow:0 12px 24px -12px rgba(7,94,84,.9)}
 .lof-order__submit:hover{background:#128C7E!important}
 .lof-order__assure{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:.78rem;color:#6b5a48}
-.lof-order__assure li::before{content:"\2713";color:#128C7E;font-weight:800;margin-right:5px}
-@media (max-width:640px){
- .lof-order{align-items:flex-end;padding:0}
- .lof-order__dialog{width:100%;border-radius:22px 22px 0 0;max-height:92vh;padding-bottom:env(safe-area-inset-bottom,0)}
- .lof-order__grid{grid-template-columns:1fr}
-}
+.lof-order__assure li::before{content:"✓";color:#128C7E;font-weight:800;margin-right:5px}
+@media (max-width:640px){.lof-order{align-items:flex-end;padding:0}.lof-order__dialog{width:100%;border-radius:22px 22px 0 0;max-height:92vh;padding-bottom:env(safe-area-inset-bottom,0)}.lof-order__grid{grid-template-columns:1fr}}
 body.lof-order-open{overflow:hidden}
-
 /* 0.46.0 */
 .lof-card--programme .lof-card__title{min-height:2.5em}
 @media (max-width:640px){.lof-card--programme .lof-card__title{min-height:0}}
-
 /* 0.46.0 accessibility: contrast and link fixes (WCAG 2.1 AA). */
 .lof-card--pillar .lof-card__kicker{color:#3b2410!important}
 .woocommerce .woocommerce-breadcrumb,.woocommerce .woocommerce-breadcrumb a{color:#5b4a3a!important}
@@ -221,80 +198,46 @@ body.lof-order-open{overflow:hidden}
 .woocommerce div.product .product_meta a{text-decoration:underline;text-underline-offset:3px}
 .lof-wa-short{display:none}
 .screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important}
-
 /* 0.46.2 remaining contrast fixes. */
 .lof-tone-cream .lof-section__head .lof-eyebrow,.lof-section__head .lof-eyebrow{color:#7a4a0a!important}
 .lof-cta__box .lof-btn--earth,.lof-cta__box .lof-btn--earth:hover{color:#2b1d0e!important}
 .lof-footer__donate,.lof-footer__donate:hover{color:#2b1d0e!important}
 .lof-chat__fab{background:#075E54!important}
 .lof-chat__fab:hover{background:#0a6b60!important}
-
 /* 0.46.3 site-wide contrast fixes (axe, final state after fade-in). */
 .lof-person__role{color:#7a4a0a!important}
 .lof-give__body .lof-section__head .lof-eyebrow{color:#F4AF16!important}
 .lof-spot__body .lof-eyebrow{color:#3b2410!important}
-
 /* 0.46.4: beat the light-mode eyebrow rule (html:not([data-theme=dark]) .lof-eyebrow). */
 html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body .lof-eyebrow{color:#2E1E0E!important}
-
 /* 0.46.5: on phones the chat button waits until the visitor scrolls, so it
    never covers hero content (e.g. the Stories impact tiles) on first load. */
-@media (max-width:991px){
- .lof-chat__fab{transition:transform .3s ease,opacity .3s ease,visibility .3s}
- .lof-chat.is-tucked .lof-chat__fab{transform:translateY(160%);opacity:0;visibility:hidden;pointer-events:none}
-}
+@media (max-width:991px){.lof-chat__fab{transition:transform .3s ease,opacity .3s ease,visibility .3s}.lof-chat.is-tucked .lof-chat__fab{transform:translateY(160%);opacity:0;visibility:hidden;pointer-events:none}}
 @media (prefers-reduced-motion:reduce){.lof-chat__fab{transition:none}}
-
 /* ================= 0.47.0 home slider polish ================= */
-.lof-cine__shade{background:linear-gradient(90deg,rgba(24,15,6,.94) 0%,rgba(24,15,6,.78) 34%,rgba(24,15,6,.28) 64%,rgba(24,15,6,.08) 100%),linear-gradient(0deg,rgba(24,15,6,.92) 0%,rgba(24,15,6,0) 42%)}
 .lof-cine__content{position:relative;padding-left:clamp(0rem,1.6vw,1.4rem)}
-.lof-cine__content::before{content:"";position:absolute;left:0;top:.35rem;bottom:.35rem;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--lof-gold),rgba(244,175,22,0))}
-.lof-cine__title{font-size:clamp(2.2rem,min(4.2vw,6.8vh),4.2rem);letter-spacing:-.02em}
-.lof-cine__text{color:rgba(255,250,238,.92)}
+.lof-cine__content::before{content:"";position:absolute;left:0;top:.35rem;bottom:.35rem;border-radius:3px}
+.lof-cine__title{font-size:clamp(2.2rem,min(4.2vw,6.8vh),4.2rem)}
 .lof-cine .lof-btn-row{gap:.75rem}
 /* Tab dock with thumbnails and progress. */
-.lof-cine__tabs{max-width:880px;gap:.6rem;padding:.6rem;border-radius:18px;background:rgba(24,15,6,.5);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.lof-cine__tab{grid-template-columns:auto auto minmax(0,1fr)!important;align-items:center;column-gap:.6rem!important;row-gap:.55rem!important;padding:.5rem .55rem .55rem!important;border-radius:12px;transition:background .25s,color .25s}
+.lof-cine__tabs{max-width:880px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lof-cine__tab{grid-template-columns:auto auto minmax(0,1fr)!important;align-items:center;column-gap:.6rem!important;row-gap:.55rem!important;padding:.5rem .55rem .55rem!important}
 .lof-cine__tab:hover{background:rgba(255,255,255,.06)!important}
-.lof-cine__tab.is-active{background:rgba(255,255,255,.1)!important}
 .lof-cine__bar{grid-column:1/-1;order:-1}
-.lof-cine__thumb{display:block;width:44px;height:44px;border-radius:10px;overflow:hidden;flex:none;box-shadow:0 0 0 2px rgba(255,255,255,.18);transition:box-shadow .25s}
+.lof-cine__thumb{display:block;overflow:hidden;flex:none;box-shadow:0 0 0 2px rgba(255,255,255,.18);transition:box-shadow .25s}
 .lof-cine__thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .lof-cine__tab.is-active .lof-cine__thumb{box-shadow:0 0 0 2px var(--lof-gold)}
-.lof-cine__tab-n{font-size:.8rem;opacity:.9}
+.lof-cine__tab-n{font-size:.8rem}
 .lof-cine__tab-l{font-size:.86rem;line-height:1.25;white-space:normal!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.lof-cine__ctrl{padding:.45rem;border-radius:999px;background:rgba(24,15,6,.5);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lof-cine__ctrl{border-radius:999px;border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .lof-cine__count{margin:0 .4rem 0 .6rem}
 /* Tablets: show the tab dock without thumbnails. */
-@media (min-width:768px) and (max-width:991px){
- .lof-cine__tabs{display:grid!important;max-width:none}
- .lof-cine__thumb{display:none}
- .lof-cine__tab{grid-template-columns:auto minmax(0,1fr)!important}
- .lof-cine__ui-inner{flex-direction:column;align-items:stretch;gap:.75rem}
- .lof-cine__ctrl{align-self:flex-end}
-}
+@media (min-width:768px) and (max-width:991px){.lof-cine__tabs{display:grid!important;max-width:none}.lof-cine__thumb{display:none}.lof-cine__tab{grid-template-columns:auto minmax(0,1fr)!important}.lof-cine__ui-inner{flex-direction:column;align-items:stretch;gap:.75rem}.lof-cine__ctrl{align-self:flex-end}}
 /* Phones: four slim progress bars instead of the tab dock. */
-@media (max-width:767px){
- .lof-cine__tabs{display:grid!important;position:absolute;left:1rem;right:1rem;bottom:1rem;max-width:none;padding:0;gap:.4rem;background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none}
- .lof-cine__tab{display:block!important;padding:.6rem 0!important;background:none!important;min-height:24px}
- .lof-cine__tab .lof-cine__thumb,.lof-cine__tab .lof-cine__tab-n,.lof-cine__tab .lof-cine__tab-l{display:none}
- .lof-cine__tab .lof-cine__bar{height:4px}
- .lof-cine__ctrl{background:none;border:0;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none}
-}
-
+@media (max-width:767px){.lof-cine__tabs{display:grid!important;position:absolute;left:1rem;right:1rem;bottom:1rem;max-width:none;padding:0;gap:.4rem;background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none}.lof-cine__tab{display:block!important;padding:.6rem 0!important;background:none!important;min-height:24px}.lof-cine__tab .lof-cine__thumb,.lof-cine__tab .lof-cine__tab-n,.lof-cine__tab .lof-cine__tab-l{display:none}.lof-cine__tab .lof-cine__bar{height:4px}.lof-cine__ctrl{background:none;border:0;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none}}
 /* ================= 0.48.0 homepage polish ================= */
 /* Phones: a shorter slider so its buttons sit clear of the bottom menu. */
-@media (max-width:760px){
- .lof-cine__media{aspect-ratio:16/10!important}
- .lof-cine__inner{padding-top:.25rem!important;padding-bottom:1.5rem!important}
- .lof-cine__eyebrow{margin-bottom:.55rem!important}
- .lof-cine__title{font-size:clamp(1.55rem,6.6vw,1.95rem)!important;margin-bottom:.5rem!important}
- .lof-cine__text{font-size:.94rem!important;line-height:1.5;margin-bottom:.9rem!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
- .lof-cine .lof-btn-row{gap:.5rem!important}
- .lof-cine .lof-btn-row .lof-btn{min-height:44px;padding-block:.65rem!important;font-size:.88rem}
- .lof-cine__content{padding-left:0}
- .lof-cine__content::before{display:none}
-}
+@media (max-width:760px){.lof-cine__media{aspect-ratio:16/10!important}.lof-cine__inner{padding-top:.25rem!important;padding-bottom:1.5rem!important}.lof-cine__eyebrow{margin-bottom:.55rem!important}.lof-cine__title{font-size:clamp(1.55rem,6.6vw,1.95rem)!important;margin-bottom:.5rem!important}.lof-cine__text{margin-bottom:.9rem!important;display:-webkit-box;-webkit-box-orient:vertical}.lof-cine .lof-btn-row{gap:.5rem!important}.lof-cine .lof-btn-row .lof-btn{min-height:44px;padding-block:.65rem!important;font-size:.88rem}.lof-cine__content{padding-left:0}.lof-cine__content::before{display:none}}
 /* Consistent section rhythm and headings. */
 .lof-section{padding-block:clamp(4rem,7vw,6.25rem)}
 .lof-section.lof-impact{padding-block:clamp(3rem,5vw,4rem)}
@@ -317,12 +260,9 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
 .lof-card--programme .lof-card__title{font-size:1.12rem}
 .lof-card--programme .lof-card__index{color:#F4AF16!important;font-weight:800}
 /* Impact strip tiles. */
-.lof-impact .lof-impact__item{transition:background .25s}
 @media (prefers-reduced-motion:reduce){.lof-card--programme,.lof-card--programme .lof-card__media img,.lof-steps .lof-card--pillar{transition:none}.lof-card--programme:hover,.lof-steps .lof-card--pillar:hover{transform:none}}
-
 /* 0.48.1: show the full slide sentence on phones (no mid-sentence cut). */
 @media (max-width:760px){.lof-cine__text{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;font-size:.9rem!important;line-height:1.45!important}}
-
 /* ================= 0.49.0 compact chat button ================= */
 /* Smaller round button on every screen; label appears as a tooltip on hover/focus. */
 .lof-chat__fab{width:52px;height:52px;padding:0!important;justify-content:center;gap:0;border-radius:50%!important}
@@ -331,21 +271,14 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
 .lof-chat__fab:hover .lof-chat__fab-label,.lof-chat__fab:focus-visible .lof-chat__fab-label{opacity:1}
 .lof-chat__fab::after{animation:none!important}
 .lof-chat{right:16px;bottom:16px}
-@media (max-width:991px){.lof-chat{right:10px;bottom:calc(88px + env(safe-area-inset-bottom,0px))}.lof-chat__fab{width:46px;height:46px}.lof-chat__fab-icon{width:24px;height:24px}.lof-chat__fab-label{display:none}}
+@media (max-width:991px){.lof-chat{bottom:calc(88px + env(safe-area-inset-bottom,0px))}.lof-chat__fab-icon{width:24px;height:24px}.lof-chat__fab-label{display:none}}
 /* While the visitor scrolls, the button steps aside so it never sits on text they are reading. */
 .lof-chat__fab{transition:transform .3s ease,opacity .3s ease,visibility .3s}
 .lof-chat.is-scrolling .lof-chat__fab{transform:translateX(140%);opacity:0;visibility:hidden;pointer-events:none}
 @media (prefers-reduced-motion:reduce){.lof-chat.is-scrolling .lof-chat__fab{transform:none}}
-
 /* ================= 0.50.0 ================= */
 /* Impact figures: one row on desktop, refined tiles (home, About, Impact, any page). */
-@media (min-width:1100px){
- .lof-impact .lof-impact__grid{grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0!important;border:1px solid rgba(252,246,225,.16);border-radius:22px;overflow:hidden;background:rgba(252,246,225,.04)}
- .lof-impact .lof-impact__item{border:0!important;border-left:1px solid rgba(252,246,225,.14)!important;border-radius:0!important;background:none!important;padding:1.75rem 1rem 1.6rem!important;text-align:center;justify-content:flex-start}
- .lof-impact .lof-impact__item:first-child{border-left:0!important}
- .lof-tone-cream .lof-impact__grid,.lof-tone-white .lof-impact__grid,.lof-tone-sand .lof-impact__grid{border-color:var(--lof-line);background:#fff}
- .lof-tone-cream .lof-impact__item,.lof-tone-white .lof-impact__item,.lof-tone-sand .lof-impact__item{border-left-color:var(--lof-line)!important}
-}
+@media (min-width:1100px){.lof-impact .lof-impact__grid{grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0!important;border:1px solid rgba(252,246,225,.16);border-radius:22px;overflow:hidden;background:rgba(252,246,225,.04)}.lof-impact .lof-impact__item{border:0!important;border-left:1px solid rgba(252,246,225,.14)!important;border-radius:0!important;background:none!important;padding:1.75rem 1rem 1.6rem!important;text-align:center;justify-content:flex-start}.lof-impact .lof-impact__item:first-child{border-left:0!important}.lof-tone-cream .lof-impact__grid,.lof-tone-white .lof-impact__grid,.lof-tone-sand .lof-impact__grid{border-color:var(--lof-line);background:#fff}.lof-tone-cream .lof-impact__item,.lof-tone-white .lof-impact__item,.lof-tone-sand .lof-impact__item{border-left-color:var(--lof-line)!important}}
 @media (min-width:641px) and (max-width:1099px){.lof-impact .lof-impact__grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media (max-width:640px){.lof-impact .lof-impact__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.6rem!important}}
 .lof-impact .lof-impact__item{display:flex;flex-direction:column-reverse;align-items:center;gap:.45rem;transition:background .25s}
@@ -353,14 +286,12 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
 .lof-impact .lof-impact__value{font-size:clamp(1.9rem,2.6vw,2.6rem)!important;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .lof-impact .lof-impact__label{font-size:.7rem!important;letter-spacing:.09em;line-height:1.45;max-width:16ch;margin-inline:auto;text-transform:uppercase}
 .lof-impact .lof-impact__item::after{content:"";display:block;width:28px;height:3px;border-radius:3px;background:var(--lof-gold);order:-1;margin-top:.35rem;opacity:.9}
-
 /* Page heroes with a photo: stronger shading so text stays readable on any picture. */
 .lof-hero.lof-hero--page.has-bg{min-height:clamp(300px,34vw,440px)}
 .lof-hero.lof-hero--page.has-bg .lof-hero__bg img.lof-hero__bg-img{object-position:center 40%}
 .lof-single .lof-hero.lof-hero--page.has-bg .lof-hero__title,.lof-single .lof-hero.lof-hero--page.has-bg .lof-hero__eyebrow{color:#FFFDF6!important}
 .lof-single .lof-hero.lof-hero--page.has-bg .lof-hero__text{color:rgba(252,246,225,.92)!important}
 .lof-single .lof-hero.lof-hero--page.has-bg .lof-hero__art{display:none}
-
 /* Leadership: cleaner portrait cards. */
 .lof-leaders .lof-person:not(.lof-person--row){display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid rgba(92,61,30,.1);border-radius:20px;overflow:hidden;box-shadow:0 14px 34px -26px rgba(92,61,30,.55);transition:transform .25s,box-shadow .25s}
 .lof-leaders .lof-person:not(.lof-person--row):hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(92,61,30,.6)}
@@ -379,21 +310,12 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
 .lof-leaders--executive .lof-person--row .lof-person__info{padding:clamp(1.5rem,3vw,2.5rem)!important}
 .lof-leaders--executive .lof-person--row .lof-person__name{font-size:clamp(1.4rem,2.2vw,1.9rem)!important}
 @media (prefers-reduced-motion:reduce){.lof-leaders .lof-person,.lof-leaders .lof-person__photo img{transition:none}.lof-leaders .lof-person:hover{transform:none}.lof-leaders .lof-person:hover .lof-person__photo img{transform:none}}
-
 /* ================= 0.50.1 ================= */
 /* Leadership: role label is a clean two-line slot so every description starts level. */
 .lof-leaders .lof-person:not(.lof-person--row) .lof-person__role{display:block!important;align-self:stretch!important;background:none!important;border-left:3px solid var(--lof-gold);border-radius:0!important;padding:.05rem 0 .05rem .6rem!important;color:#6b420a!important;font-size:.72rem!important;line-height:1.4!important}
 @media (min-width:641px){.lof-leaders .lof-person:not(.lof-person--row) .lof-person__role{min-height:calc(2 * 1.4em + .1rem)}.lof-leaders .lof-person:not(.lof-person--row) .lof-person__name{min-height:1.25em}}
 /* Page heroes on phones: the whole photo sits in a band above the title, so no faces are cut off and the text sits on a solid dark panel. */
-@media (max-width:760px){
- .lof-hero.lof-hero--page.has-bg{display:block!important;min-height:0!important;padding-top:0!important;background:#2A1B0C!important}
- .lof-hero.lof-hero--page.has-bg .lof-hero__bg{position:relative!important;inset:auto!important;z-index:0!important;aspect-ratio:4/3;background:#1C1208;overflow:hidden}
- .lof-hero.lof-hero--page.has-bg .lof-hero__bg::before{content:"";position:absolute;inset:-20px;background:inherit}
- .lof-hero.lof-hero--page.has-bg .lof-hero__bg img.lof-hero__bg-img{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 30%!important}
- .lof-hero.lof-hero--page.has-bg::before{display:none!important}
- .lof-hero.lof-hero--page.has-bg .lof-hero__inner{padding-top:1.25rem}
-}
-
+@media (max-width:760px){.lof-hero.lof-hero--page.has-bg{display:block!important;min-height:0!important;padding-top:0!important;background:#2A1B0C!important}.lof-hero.lof-hero--page.has-bg .lof-hero__bg{position:relative!important;inset:auto!important;z-index:0!important;overflow:hidden}.lof-hero.lof-hero--page.has-bg .lof-hero__bg::before{content:"";position:absolute;inset:-20px;background:inherit}.lof-hero.lof-hero--page.has-bg .lof-hero__bg img.lof-hero__bg-img{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 30%!important}.lof-hero.lof-hero--page.has-bg::before{display:none!important}}
 /* ---------- Shop page (0.51.0) ---------- */
 .lof-shop-main{max-width:1240px;margin:0 auto;padding:clamp(20px,3vw,36px) clamp(14px,3vw,24px) clamp(48px,6vw,80px)}
 .post-type-archive-product .woocommerce-products-header{margin:0;padding:0}
@@ -465,7 +387,6 @@ html[data-theme="dark"] .lof-shopchips a[aria-current="page"]{background:#F4AF16
 @media (max-width:860px){.lof-shophero{grid-template-columns:1fr}.lof-shophero__mosaic{order:-1;aspect-ratio:auto;grid-template-rows:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.lof-shophero__tile{aspect-ratio:1/1;border-radius:14px}.lof-shophero__tile--1,.lof-shophero__tile--4{transform:none}.lof-shopsteps__list{grid-template-columns:1fr}}
 @media (max-width:560px){.lof-shophero{border-radius:22px;padding:22px 18px 24px}.lof-shophero__btn{flex:1 1 100%;justify-content:center}.lof-shophero__facts{gap:16px}.lof-shophero__facts strong{font-size:1.3rem}.lof-shoptrust{grid-template-columns:1fr}.lof-shopbar__head{flex-direction:column;align-items:flex-start}.lof-shopchips ul{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;max-width:calc(100vw - 32px)}.lof-shopchips a{white-space:nowrap}.lof-shopcta__actions{width:100%}.lof-shopcta__actions .lof-btn-order{flex:1 1 100%}}
 @media (prefers-reduced-motion:reduce){.lof-shophero__tile img,.lof-shop-main ul.products li.product{transition:none}}
-
 /* ---------- Single product (0.52.0) ---------- */
 .single-product .lof-shop-main .woocommerce-breadcrumb{font-size:.86rem;margin:0 0 18px!important;padding:10px 16px;background:var(--lof-surface,#fff);border:1px solid var(--lof-line,rgba(92,61,30,.12));border-radius:999px;display:inline-block}
 .single-product div.product{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
@@ -490,7 +411,7 @@ html[data-theme="dark"] .lof-shopchips a[aria-current="page"]{background:#F4AF16
 .lof-pd__order{display:flex;flex-direction:column;gap:18px}
 .lof-pd__label{margin:0 0 10px;font-weight:800;color:var(--lof-heading,#5C3D1E);font-size:.92rem}
 .lof-pd__chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.lof-pd__chips li{padding:8px 14px;border-radius:999px;border:1.5px solid var(--lof-line-strong,rgba(92,61,30,.28));background:var(--lof-bg,#FCF6E1);color:var(--lof-heading,#5C3D1E);font-weight:600;font-size:.88rem}
+.lof-pd__chips li{border-radius:999px;color:var(--lof-heading,#5C3D1E);font-weight:600;font-size:.88rem}
 .lof-pd__hint{margin:8px 0 0;font-size:.84rem;color:var(--lof-muted,#5b4a3a)}
 .single-product .lof-pd__order .lof-wa-order{margin:0}
 .single-product .lof-pd__order .lof-wa-order__btn{width:100%;justify-content:center;min-height:56px;font-size:1.05rem;border-radius:14px}
@@ -514,20 +435,9 @@ html[data-theme="dark"] .single-product .woocommerce-tabs ul.tabs li.active{back
 html[data-theme="dark"] .single-product .woocommerce-tabs ul.tabs li.active a{color:#2B1D0E!important}
 @media (max-width:860px){.single-product div.product{grid-template-columns:1fr}.single-product .woocommerce-product-gallery{position:static}.single-product .woocommerce-product-gallery .flex-control-thumbs{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:560px){.single-product .lof-shop-main .woocommerce-breadcrumb{border-radius:14px}.single-product div.product .summary{border-radius:20px;padding:20px 18px}.single-product .woocommerce-product-gallery__wrapper{border-radius:18px}.single-product .woocommerce-tabs ul.tabs{flex-wrap:wrap}}
-
 /* 0.52.1: phone product layout - stacked blocks, gallery sized by its own content (no overlap with the title) */
 .single-product .woocommerce-product-gallery__wrapper::after{content:"";display:table;clear:both}
-@media (max-width:860px){
-.single-product div.product{display:block!important}
-.single-product div.product>.woocommerce-product-gallery{position:relative!important;top:auto!important;width:100%!important;height:auto!important;margin:0 0 22px!important;float:none!important;display:block!important}
-.single-product .woocommerce-product-gallery .flex-viewport{height:auto!important}
-.single-product .woocommerce-product-gallery .flex-control-thumbs{position:static!important;transform:none!important;clear:both;margin:12px 0 0!important}
-.single-product div.product>.summary{position:relative;clear:both;width:100%!important;float:none!important;margin:0!important}
-.single-product div.product>.woocommerce-tabs,.single-product div.product>.lof-shopsteps,.single-product div.product>.related{clear:both}
-.single-product .lof-shop-main{padding-top:14px}
-.single-product .lof-shop-main .woocommerce-breadcrumb{margin:0 0 14px!important}
-}
-
+@media (max-width:860px){.single-product div.product{display:block!important}.single-product div.product>.woocommerce-product-gallery{position:relative!important;top:auto!important;width:100%!important;height:auto!important;margin:0 0 22px!important;float:none!important;display:block!important}.single-product .woocommerce-product-gallery .flex-viewport{height:auto!important}.single-product .woocommerce-product-gallery .flex-control-thumbs{position:static!important;transform:none!important;clear:both;margin:12px 0 0!important}.single-product div.product>.summary{position:relative;clear:both;width:100%!important;float:none!important;margin:0!important}.single-product div.product>.woocommerce-tabs,.single-product div.product>.lof-shopsteps,.single-product div.product>.related{clear:both}.single-product .lof-shop-main{padding-top:14px}.single-product .lof-shop-main .woocommerce-breadcrumb{margin:0 0 14px!important}}
 /* ---------- 0.55.0 UX pass ---------- */
 /* Donate: honest next step while online giving is not live */
 .lof-givepanel__how{margin:.75rem 0 0;font-size:.88rem;line-height:1.5;opacity:.9}
@@ -570,18 +480,12 @@ html[data-theme="dark"] .lof-person__more{color:#F4AF16!important}
 .lof-crumbs--single a{color:inherit;opacity:.9;text-decoration:underline;text-underline-offset:3px}
 .lof-hero__meta{margin:.25rem 0 .5rem;font-size:.86rem;opacity:.85}
 /* Gallery: section links stay in reach */
-.lofm-nav{position:sticky;top:var(--lof-head-h,72px);z-index:20;background:var(--lof-header-bg,rgba(252,246,225,.94));backdrop-filter:blur(8px);padding:10px 0;margin-bottom:18px}
+.lofm-nav{top:var(--lof-head-h,72px);z-index:20;background:var(--lof-header-bg,rgba(252,246,225,.94));backdrop-filter:blur(8px);padding:10px 0;margin-bottom:18px}
 .lofm-nav ul{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;gap:8px;scrollbar-width:none}
 .lofm-nav a{white-space:nowrap}
 @media (max-width:991px){.lofm-nav{top:0}}
 /* Phones: shorter page heroes and tighter section rhythm so content comes sooner */
-@media (max-width:640px){
-.lof-hero--page{min-height:0!important}
-.lof-hero--page .lof-hero__inner{padding-top:1.5rem!important;padding-bottom:1.75rem!important}
-.lof-hero--page .lof-hero__text{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.lof-section{padding-top:2.75rem!important;padding-bottom:2.75rem!important}
-.lof-section__intro{font-size:.98rem}
-}
+@media (max-width:640px){.lof-hero--page{min-height:0!important}.lof-hero--page .lof-hero__inner{padding-top:1.5rem!important;padding-bottom:1.75rem!important}.lof-hero--page .lof-hero__text{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.lof-section{padding-top:2.75rem!important;padding-bottom:2.75rem!important}.lof-section__intro{font-size:.98rem}}
 /* Product: design chips are buttons */
 .lof-pd__chips .lof-pd__chip{padding:8px 14px;border-radius:999px;border:1.5px solid var(--lof-line-strong,rgba(92,61,30,.28))!important;background:var(--lof-bg,#FCF6E1)!important;color:var(--lof-heading,#5C3D1E)!important;font-weight:600;font-size:.88rem;cursor:pointer;box-shadow:none!important;min-height:40px}
 .lof-pd__chips li{padding:0!important;border:0!important;background:none!important}
@@ -594,9 +498,8 @@ html[data-theme="dark"] .lof-pd__chips .lof-pd__chip[aria-pressed="true"]{backgr
 .lof-pdinfo summary{cursor:pointer;list-style:none;padding:14px 28px 14px 0;font-weight:800;color:var(--lof-heading,#5C3D1E);position:relative}
 .lof-pdinfo summary::-webkit-details-marker{display:none}
 .lof-pdinfo summary::after{content:"+";position:absolute;right:4px;top:10px;font-size:1.3rem;color:#8A5208}
-.lof-pdinfo details[open] summary::after{content:"\2212"}
+.lof-pdinfo details[open] summary::after{content:"−"}
 .lof-pdinfo p{margin:0 0 14px;color:var(--lof-muted,#5b4a3a);font-size:.92rem;line-height:1.6}
-
 /* 0.55.1 fixes */
 .lof-givepanel .lof-givepanel__how{display:block;color:inherit!important;opacity:.85;margin:0}
 .lof-tone-earth .lof-givepanel .lof-givepanel__how{color:#2E1E0E!important}
@@ -606,7 +509,6 @@ html[data-theme="dark"] .lof-pd__chips .lof-pd__chip[aria-pressed="true"]{backgr
 .lofm-nav{position:relative}
 .lofm-nav.is-fixed{position:fixed;left:0;right:0;z-index:940;margin:0;padding:10px 16px;box-shadow:0 8px 20px -14px rgba(43,29,14,.5)}
 .lofm-nav.is-fixed ul{max-width:1200px;margin:0 auto}
-
 /* ---------- 0.56.0 homepage ---------- */
 .lof-who__grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,56px);align-items:center}
 .lof-who__lead{font-size:clamp(1.08rem,1.6vw,1.25rem);font-weight:600;color:var(--lof-heading,#5C3D1E)}
@@ -619,29 +521,13 @@ html[data-theme="dark"] .lof-who__facts strong{color:#F4AF16}
 .lof-who__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .lof-home-allprog{margin-top:1.75rem}
 @media (max-width:860px){.lof-who__grid{grid-template-columns:1fr}.lof-who__photo{justify-self:start;max-width:none;aspect-ratio:16/11;order:-1}}
-@media (max-width:640px){
-.home .lof-steps{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
-.home .lof-steps .lof-card--pillar{padding:16px!important}
-.home .lof-steps .lof-card--pillar p{font-size:.86rem}
-.home .lof-card--programme:nth-of-type(n+7){display:none}
-.home .lof-card--story:nth-of-type(n+3){display:none}
-.home .lof-market__card:nth-child(n+3){display:none}
-.lof-who__facts{gap:18px}.lof-who__facts strong{font-size:1.35rem}
-}
-
+@media (max-width:640px){.home .lof-card--programme:nth-of-type(n/**/+7){display:none}.home .lof-market__card:nth-child(n/**/+3){display:none}.lof-who__facts{gap:18px}.lof-who__facts strong{font-size:1.35rem}}
 /* 0.56.0 Donate page: Paystack form */
 .lof-give--paystack .lof-give__paystack{display:grid;gap:28px;justify-items:center}
 .lof-give--paystack .lofpay{background:#FCF6E1;color:#2B1D0E;border-radius:24px;padding:clamp(20px,3vw,36px);width:100%;box-shadow:0 34px 70px -40px rgba(0,0,0,.75)}
 .lof-give--paystack .lofpay--manage{background:rgba(252,246,225,.92)}
-
 /* ---------- 0.57.0 phone page heroes: full-width photo band, no dark side bars ---------- */
-@media (max-width:760px){
- .lof-hero.lof-hero--page.has-bg .lof-hero__bg{aspect-ratio:16/11!important;background:#2A1B0C!important}
- .lof-hero.lof-hero--page.has-bg .lof-hero__bg::before{display:none!important}
- .lof-hero.lof-hero--page.has-bg .lof-hero__bg::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(42,27,12,0) 0%,#2A1B0C 100%);pointer-events:none}
- .lof-hero.lof-hero--page.has-bg .lof-hero__inner{padding-top:.5rem!important}
-}
-
+@media (max-width:760px){.lof-hero.lof-hero--page.has-bg .lof-hero__bg{aspect-ratio:16/11!important;background:#2A1B0C!important}.lof-hero.lof-hero--page.has-bg .lof-hero__bg::before{display:none!important}.lof-hero.lof-hero--page.has-bg .lof-hero__bg::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(42,27,12,0) 0%,#2A1B0C 100%);pointer-events:none}.lof-hero.lof-hero--page.has-bg .lof-hero__inner{padding-top:.5rem!important}}
 /* ---------- 0.57.0 Gallery: editorial grid ---------- */
 .lof-page-gallery .lofm-all{max-width:1240px;margin:0 auto}
 .lof-page-gallery .lofm-nav{padding:12px 0;border-bottom:1px solid var(--lof-line,rgba(92,61,30,.12))}
@@ -651,33 +537,24 @@ html[data-theme="dark"] .lof-who__facts strong{color:#F4AF16}
 .lof-page-gallery .lofm{margin:0;padding:clamp(40px,6vw,72px) 0 0;border-top:0!important;scroll-margin-top:calc(var(--lof-head-h,72px) + 70px)}
 .lof-page-gallery .lofm__title{display:flex;align-items:center;gap:14px;font-size:clamp(1.35rem,2.4vw,1.9rem);font-weight:800;margin:0 0 18px;letter-spacing:-.01em}
 .lof-page-gallery .lofm__title::before{content:"";width:34px;height:3px;border-radius:3px;background:#F4AF16;flex:none}
-.lof-page-gallery .lofm__grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;grid-auto-flow:dense}
+.lof-page-gallery .lofm__grid{gap:12px;grid-auto-flow:dense}
 .lof-page-gallery .lofm__item figure{position:relative;border:0;border-radius:16px;background:#2A1B0C;box-shadow:0 14px 30px -22px rgba(43,29,14,.7)}
 .lof-page-gallery .lofm__link{aspect-ratio:1/1;background:#2A1B0C}
-.lof-page-gallery .lofm__item:first-child{grid-column:span 2;grid-row:span 2}
 .lof-page-gallery .lofm__item:first-child .lofm__link,.lof-page-gallery .lofm__item:first-child .lofm__sens{aspect-ratio:auto;height:100%}
-.lof-page-gallery .lofm__item:first-child figure{min-height:100%}
 .lof-page-gallery .lofm__link img{transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .3s}
 .lof-page-gallery .lofm__item:hover .lofm__link img{transform:scale(1.05)}
 .lof-page-gallery .lofm__item figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;background:linear-gradient(180deg,rgba(28,18,8,0) 0%,rgba(28,18,8,.85) 100%);color:#FCF6E1;font-size:.82rem;line-height:1.35;pointer-events:none;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .lof-page-gallery .lofm__item figcaption:empty{display:none}
 .lof-page-gallery .lofm__sens{aspect-ratio:1/1}
-.lof-page-gallery .lofm__videos{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0 0 16px}
+.lof-page-gallery .lofm__videos{gap:16px;margin:0 0 16px}
 .lof-page-gallery .lofm__video{border-radius:18px;box-shadow:0 18px 36px -24px rgba(0,0,0,.7)}
 .lof-page-gallery .lofm__video figcaption{padding:.8rem 1rem;font-size:.9rem}
 .lof-page-gallery .lofm-goal{gap:12px}
 .lof-page-gallery .lofm-goal div{border-radius:16px;background:var(--lof-surface,#fff)}
 html[data-theme="dark"] .lof-page-gallery .lofm-nav a{background:#1D1710;color:#FCF6E1}
 @media (max-width:1024px){.lof-page-gallery .lofm__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:760px){
- .lof-page-gallery .lofm__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
- .lof-page-gallery .lofm__item figure{border-radius:12px}
- .lof-page-gallery .lofm__item figcaption{font-size:.74rem;padding:22px 8px 7px;-webkit-line-clamp:2}
- .lof-page-gallery .lofm__videos{grid-template-columns:1fr}
- .lof-page-gallery .lofm{padding-top:36px}
-}
+@media (max-width:760px){.lof-page-gallery .lofm__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.lof-page-gallery .lofm__item figure{border-radius:12px}.lof-page-gallery .lofm__item figcaption{font-size:.74rem;padding:22px 8px 7px;-webkit-line-clamp:2}.lof-page-gallery .lofm__videos{grid-template-columns:1fr}.lof-page-gallery .lofm{padding-top:36px}}
 @media (prefers-reduced-motion:reduce){.lof-page-gallery .lofm__link img{transition:none}}
-
 /* ---------- 0.58.0 Donate: two-column giving section ---------- */
 .lof-give.lof-give--paystack{background:linear-gradient(180deg,#FCF6E1 0%,#F5EBCB 100%)!important;color:#2B1D0E!important}
 .lof-give--paystack::before,.lof-give--paystack::after{display:none!important}
@@ -695,14 +572,13 @@ html[data-theme="dark"] .lof-page-gallery .lofm-nav a{background:#1D1710;color:#
 .lof-pay2__manage{border-top:1px solid rgba(92,61,30,.16);padding-top:14px}
 .lof-pay2__manage summary{cursor:pointer;font-weight:700;color:#8A5208;list-style:none}
 .lof-pay2__manage summary::-webkit-details-marker{display:none}
-.lof-pay2__manage summary::after{content:" +";}
-.lof-pay2__manage[open] summary::after{content:" \2212"}
+.lof-pay2__manage summary::after{content:" +"}
+.lof-pay2__manage[open] summary::after{content:" −"}
 .lof-pay2__manage .lofpay{background:transparent!important;box-shadow:none!important;padding:12px 0 0!important;max-width:none}
 .lof-pay2__manage .lofpay h2{display:none}
 .lof-pay2__form .lofpay{background:#fff!important;border:1px solid rgba(92,61,30,.12);border-radius:24px;padding:clamp(20px,3vw,36px)!important;box-shadow:0 40px 80px -48px rgba(43,29,14,.55)!important;max-width:none;margin:0}
 .lof-pay2__form .lofpay__head h2{font-size:1.25rem!important}
 @media (max-width:900px){.lof-pay2{grid-template-columns:1fr}.lof-pay2__info{position:static;order:2}.lof-pay2__form{order:1}.lof-pay2__title{font-size:1.7rem}}
-
 /* ---------- 0.58.0 Gallery: filters, show more, lightbox, video tiles ---------- */
 .lof-page-gallery .lofm-filter{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px}
 .lof-page-gallery .lofm-filter::-webkit-scrollbar{display:none}
@@ -733,7 +609,6 @@ html[data-theme="dark"] .lof-page-gallery .lofm-nav a{background:#1D1710;color:#
 .lofx__next{right:14px;top:50%;transform:translateY(-50%)}
 @media (max-width:640px){.lofx__prev,.lofx__next{top:auto;bottom:14px;transform:none}.lofx__img{max-height:calc(100vh - 190px)}}
 body.lofx-open{overflow:hidden}
-
 /* ---------- 0.58.1 review fixes ---------- */
 /* Donate: dark, readable text on the light giving section */
 .lof-give--paystack,.lof-give--paystack p,.lof-give--paystack li,.lof-give--paystack span,.lof-give--paystack label,.lof-give--paystack legend,.lof-give--paystack small{color:#2B1D0E!important;opacity:1!important}
@@ -743,13 +618,7 @@ body.lofx-open{overflow:hidden}
 .lof-give--paystack .lofpay__submit,.lof-give--paystack .lofpay__submit span{color:#2B1D0E!important}
 @media (max-width:640px){.lof-give--paystack .lofpay__tile,.lof-give--paystack [class*="lofpay__tile"]{min-height:0!important;padding-top:10px!important;padding-bottom:10px!important}}
 /* Phones: approach steps as compact full-width rows (2x2 wrapped too tightly) */
-@media (max-width:640px){
-.home .lof-steps{grid-template-columns:1fr!important;gap:10px!important}
-.home .lof-steps .lof-card--pillar{display:grid!important;grid-template-columns:auto 1fr;column-gap:14px;align-items:start;padding:14px 16px!important}
-.home .lof-steps .lof-card--pillar .lof-card__kicker{grid-row:span 2;margin:0!important}
-.home .lof-steps .lof-card--pillar .lof-card__title{margin:0 0 4px!important;font-size:1.02rem}
-.home .lof-steps .lof-card--pillar p{margin:0!important;font-size:.9rem;line-height:1.5}
-}
+@media (max-width:640px){.home .lof-steps{grid-template-columns:1fr!important;gap:10px!important}.home .lof-steps .lof-card--pillar{display:grid!important;grid-template-columns:auto 1fr;column-gap:14px;align-items:start;padding:14px 16px!important}.home .lof-steps .lof-card--pillar .lof-card__kicker{grid-row:span 2;margin:0!important}.home .lof-steps .lof-card--pillar .lof-card__title{margin:0 0 4px!important;font-size:1.02rem}.home .lof-steps .lof-card--pillar p{margin:0!important;font-size:.9rem;line-height:1.5}}
 /* Long email addresses never split mid-word on phones */
 a[href^="mailto:"]{overflow-wrap:normal;word-break:keep-all}
 @media (max-width:640px){a[href^="mailto:"]{font-size:.92em;white-space:nowrap}}
@@ -761,33 +630,20 @@ a[href^="mailto:"]{overflow-wrap:normal;word-break:keep-all}
 .lof-page-leadership .lof-hero__bg img.lof-hero__bg-img{object-position:50% 20%!important}
 .lof-page-stories .lof-hero__bg img.lof-hero__bg-img,.lof-page-impact .lof-hero__bg img.lof-hero__bg-img{object-position:50% 25%!important}
 /* Gallery: even video tiles (captions clamp to two lines) */
-.lof-page-gallery .lofm__video figcaption{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3.2em}
+.lof-page-gallery .lofm__video figcaption{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 /* WhatsApp greeting bubble stays out of the content on the Gallery and on phones */
 .lof-page-gallery .lof-chat__greet,.lof-page-gallery .lof-chat__bubble{display:none!important}
 @media (max-width:640px){.lof-chat__greet,.lof-chat__bubble{display:none!important}}
-
 /* ---------- 0.58.2 ---------- */
 .lof-give--paystack .lofpay__seg input:checked+span,.lof-give--paystack .lofpay__seg input:checked+span *{background:#3F2913!important;color:#FCF6E1!important}
 .lof-give--paystack .lofpay__seg input:checked+span em{background:#F4AF16!important;color:#2B1D0E!important}
 .lof-page-gallery .lofm__video figcaption{height:3.4em;min-height:0}
 .lof-page-gallery .lof-chat__teaser{display:none!important}
-
 /* ---------- 0.58.3 ---------- */
 /* Stories featured card on phones: photo on top, words below, so the label never sits on the photo. */
-@media (max-width:760px){
- .lof-spot{display:flex!important;flex-direction:column;min-height:0!important;background:#1C1208}
- .lof-spot__media{position:relative!important;inset:auto!important;z-index:0!important;aspect-ratio:4/5!important;width:100%}
- .lof-spot__media img{object-position:50% 18%!important}
- .lof-spot__media::after{background:linear-gradient(0deg,rgba(28,18,8,1) 0%,rgba(28,18,8,0) 28%)!important}
- .lof-spot__body{min-height:0!important;padding:.25rem 1.4rem 1.6rem!important;max-width:none}
-}
+@media (max-width:760px){.lof-spot{display:flex!important;flex-direction:column;min-height:0!important;background:#1C1208}.lof-spot__media{position:relative!important;inset:auto!important;z-index:0!important;aspect-ratio:4/5!important;width:100%}.lof-spot__media img{object-position:50% 18%!important}.lof-spot__media::after{background:linear-gradient(0deg,rgba(28,18,8,1) 0%,rgba(28,18,8,0) 28%)!important}.lof-spot__body{min-height:0!important;padding:.25rem 1.4rem 1.6rem!important;max-width:none}}
 /* WhatsApp button on phones: smaller, tucked into the corner, away while the visitor scrolls and for a moment after. */
-@media (max-width:991px){
- .lof-chat{right:8px}
- .lof-chat__fab{width:42px!important;height:42px!important;padding:0!important;justify-content:center;opacity:.92}
- .lof-chat.is-scrolling .lof-chat__fab{transform:translateX(160%)}
-}
-
+@media (max-width:991px){.lof-chat{right:8px}.lof-chat__fab{width:42px!important;height:42px!important;padding:0!important;justify-content:center;opacity:.92}.lof-chat.is-scrolling .lof-chat__fab{transform:translateX(160%)}}
 /* ================= 0.60.0: balanced inner pages ================= */
 /* Media blocks (Gallery, Talent, Programmes, Stories): centred heading, centred rows, equal tiles. */
 .lofm{max-width:1200px;margin-inline:auto!important}
@@ -802,7 +658,6 @@ a[href^="mailto:"]{overflow-wrap:normal;word-break:keep-all}
 body:not(.lof-page-gallery) .lofm:last-child{padding-bottom:clamp(44px,6vw,80px)}
 @media (max-width:900px){.lofm__video{flex-basis:calc((100% - 20px)/2)}.lofm__video.is-portrait{flex-basis:calc((100% - 40px)/3)}}
 @media (max-width:600px){.lofm__videos{gap:14px!important}.lofm__video{flex-basis:100%;max-width:440px}.lofm__video.is-portrait{flex-basis:calc((100% - 14px)/2);max-width:none}.lofm__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}}
-
 /* Story pages: one centred reading layout, article and side card balanced. */
 .lof-single .lof-single__grid{max-width:1160px;margin-inline:auto;grid-template-columns:minmax(0,1fr) 320px!important;gap:clamp(2rem,4vw,3.5rem)!important;align-items:start}
 .lof-single .lof-single__body{max-width:none!important}
@@ -815,36 +670,24 @@ body:not(.lof-page-gallery) .lofm:last-child{padding-bottom:clamp(44px,6vw,80px)
 .lof-single .lofm__video{flex-basis:calc((100% - 20px)/2);max-width:none}
 .lof-single .lofm__video.is-portrait{flex-basis:calc((100% - 40px)/3);max-width:240px}
 @media (max-width:991px){.lof-single .lof-single__grid{grid-template-columns:1fr!important}.lof-single .lof-single__aside{position:static;max-width:640px;width:100%;margin-inline:auto}}
-
 /* Section headings and card rows: same centred measure on every inner page. */
 .lof-main .lof-section__head.lof-align-center{max-width:760px;margin-inline:auto}
 .lof-main .lof-section__head.lof-align-center p{margin-inline:auto}
 .lof-main .lof-grid--3:not(.lof-stories-more){max-width:1120px;margin-inline:auto}
 .lof-main .lof-grid--4{max-width:1200px;margin-inline:auto}
-
 /* Gallery: each section a calm, centred block. */
 .lof-page-gallery .lofm{padding-top:clamp(48px,6vw,80px)}
 .lof-page-gallery .lofm + .lofm{border-top:1px solid rgba(92,61,30,.12)!important}
 .lof-page-gallery .lofm__more,.lof-page-gallery [data-lof-more]{display:flex;margin:18px auto 0!important}
-
 /* ---------- 0.60.1 ---------- */
 /* Equal tile bottoms in every video row. */
 .lofm__videos{align-items:stretch!important}
 .lofm__video{display:flex;flex-direction:column}
 .lofm__video figcaption{flex:1 1 auto;height:auto!important;min-height:3.2em}
 /* Story pages, desktop: photos and videos use the full page width below the article, not just the left column. */
-@media (min-width:992px){
- .lof-single .lof-single__aside{position:static!important}
- .lof-single .lof-single__body .lofm{width:calc(100% + 320px + clamp(2rem,4vw,3.5rem));max-width:none}
- .lof-single .lofm__video{flex-basis:calc((100% - 40px)/3);max-width:380px}
- .lof-single .lofm__video.is-portrait{flex-basis:calc((100% - 60px)/4);max-width:270px}
-}
+@media (min-width:992px){.lof-single .lof-single__aside{position:static!important}.lof-single .lof-single__body .lofm{width:calc(100% + 320px + clamp(2rem,4vw,3.5rem));max-width:none}.lof-single .lofm__video{flex-basis:calc((100% - 40px)/3);max-width:380px}.lof-single .lofm__video.is-portrait{flex-basis:calc((100% - 60px)/4);max-width:270px}}
 /* Story pages, phone: one video per row at a comfortable width. */
-@media (max-width:600px){
- .lof-single .lofm__video,.lof-single .lofm__video.is-portrait{flex:0 1 100%!important;max-width:340px!important}
- .lof-page-gallery .lofm__video figcaption{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;-webkit-line-clamp:unset!important;display:block}
-}
-
+@media (max-width:600px){.lof-single .lofm__video,.lof-single .lofm__video.is-portrait{flex:0 1 100%!important;max-width:340px!important}.lof-page-gallery .lofm__video figcaption{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;-webkit-line-clamp:unset!important;display:block}}
 /* ---------- 0.60.2 ---------- */
 /* Contact (desktop): the heading column sits centred beside the taller form. */
 @media (min-width:901px){.lof-page-contact .lof-formsec .lof-formsec__intro > .lof-section__head{align-self:center;margin:0!important;padding-right:clamp(0rem,2vw,1.5rem)}}
@@ -866,17 +709,26 @@ body:not(.lof-page-gallery) .lofm:last-child{padding-bottom:clamp(44px,6vw,80px)
 /* Talent Development: tighter gap above the yellow banner. */
 .lof-page-talent-development .lofm:last-child{padding-bottom:clamp(12px,2vw,24px)!important}
 .lof-page-talent-development .lof-cta.lof-tone-sun{padding-top:clamp(1rem,2.5vw,2rem)!important}
-
 /* ---------- 0.60.3 ---------- */
 /* Home "Who we are" (phone): show Francis, not the studio screen behind him. */
 @media (max-width:991px){.lof-who__photo{aspect-ratio:1/1!important;max-width:460px!important;width:100%;justify-self:center!important;margin-inline:auto!important}.lof-who__photo img{object-position:50% 56%!important}}
 /* Programmes (phone): long focus-area names wrap inside their pill. */
 @media (max-width:760px){.lof-progjump li{max-width:100%}.lof-progjump a{white-space:normal!important;max-width:100%;text-align:left;line-height:1.25;height:auto;min-height:40px}}
+/* --- 0.67.0 Programmes page: all 11 focus areas visible. Focus-area links wrap onto centred rows (no sideways scrolling); cards in a grid of 3 / 2 / 1 per row with the last row centred, equal heights and one photo ratio. Home focus areas are unchanged. --- */
+html body.lof-page-programmes .lof-progjump ul{flex-wrap:wrap!important;justify-content:center!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important;scroll-snap-type:none;padding:0 .25rem!important}
+html body.lof-page-programmes .lof-progjump li{flex:0 1 auto;max-width:100%}
+html body.lof-page-programmes .lof-progjump a{white-space:normal!important;max-width:100%;line-height:1.25;height:auto}
+html body.lof-page-programmes .lof-grid--3:has(> .lof-card--programme){--lof-pg:clamp(1.25rem,2.4vw,1.75rem);display:flex!important;flex-wrap:wrap!important;justify-content:center;align-items:stretch;gap:var(--lof-pg)!important;overflow:visible!important;max-width:1180px;margin-inline:auto;grid-template-columns:none}
+html body.lof-page-programmes .lof-grid--3 > .lof-card--programme{flex:0 1 calc((100% - 2 * var(--lof-pg)) / 3);max-width:calc((100% - 2 * var(--lof-pg)) / 3);min-width:0;display:flex;flex-direction:column}
+html body.lof-page-programmes .lof-grid--3 > .lof-card--programme .lof-card__media{aspect-ratio:4/3!important;flex:none}
+html body.lof-page-programmes .lof-grid--3 > .lof-card--programme .lof-card__media img,html body.lof-page-programmes .lof-grid--3 > .lof-card--programme .lof-placeholder{width:100%;height:100%;object-fit:cover}
+html body.lof-page-programmes .lof-grid--3 > .lof-card--programme .lof-card__body{flex:1}
+@media (min-width:641px) and (max-width:991px){html body.lof-page-programmes .lof-grid--3 > .lof-card--programme{flex-basis:calc((100% - var(--lof-pg)) / 2);max-width:calc((100% - var(--lof-pg)) / 2)}}
+@media (max-width:640px){html body.lof-page-programmes .lof-grid--3 > .lof-card--programme{flex-basis:100%;max-width:520px}}
 /* Gallery: groups with only a few photos use the same tile size, centred. */
 .lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){grid-template-columns:repeat(auto-fit,calc((100% - 42px)/4))!important;justify-content:center!important}
 @media (max-width:900px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){grid-template-columns:repeat(auto-fit,calc((100% - 28px)/3))!important}}
 @media (max-width:600px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){grid-template-columns:repeat(auto-fit,calc((100% - 8px)/2))!important}}
-
 /* ================= 0.61.0: every screen size ================= */
 /* Small screens: nothing may push the page sideways. */
 html,body{overflow-x:clip}
@@ -890,37 +742,32 @@ img,video,iframe,svg{max-width:100%}
 @media (min-width:2300px){html{zoom:1.55}}
 @media (min-width:2560px){html{zoom:1.75}}
 @media (min-width:3200px){html{zoom:2.15}}
-
 /* ---------- 0.61.1 ---------- */
 /* WhatsApp: the round button stays; the automatic greeting bubble is retired everywhere (it covered content). */
 .lof-chat__teaser{display:none!important}
 /* Home (phone): all three featured stories show. */
-@media (max-width:640px){.home .lof-card--story:nth-of-type(n+3){display:flex!important}}
+@media (max-width:640px){.home .lof-card--story:nth-of-type(n/**/+3){display:flex!important}}
 /* Stories: featured photo keeps the person's head in frame at every width. */
 .lof-page-stories .lof-spot__media img{object-position:50% 12%!important}
 /* Programmes (tablet): "Our approach" panels stack into full-width rows instead of three narrow columns. */
 @media (max-width:991px){.lof-intro__band{grid-template-columns:1fr!important;gap:1rem!important}.lof-intro__panel{max-width:none}}
 /* Gallery (phone): a short last row of photos sits in the middle. */
 @media (max-width:600px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){display:flex!important;flex-wrap:wrap;justify-content:center;gap:8px!important}.lof-page-gallery .lofm .lofm__grid > .lofm__item{flex:0 0 calc((100% - 8px)/2);max-width:calc((100% - 8px)/2)}}
-
 /* ---------- 0.61.2 ---------- */
 /* Stories (desktop): wide featured card shows Margaret's face, not the doorway above her. */
 @media (min-width:992px){.lof-page-stories .lof-spot__media img{object-position:50% 32%!important}}
-
 /* ---------- 0.62.1 ---------- */
 /* Footer contact tiles: the text column may shrink, so the full email address wraps instead of being clipped on phones. */
 .lof-footer__tile{min-width:0;max-width:100%}
 .lof-footer__tile>span:last-child{flex:1 1 auto;min-width:0}
-.lof-footer__tile strong{overflow-wrap:anywhere!important;word-break:break-word}
+.lof-footer__tile strong{word-break:break-word}
 @media (max-width:480px){.lof-footer__tile strong{font-size:.9rem}.lof-footer__tile{gap:.8rem}}
 /* Leadership hero: goat herd photo, framed on the herd rather than the sky. */
 .lof-page-leadership .lof-page-hero__side img,.page-leadership .lof-page-hero__side img{object-position:50% 62%}
-
 /* ---------- 0.62.2 ---------- */
 /* Footer contact tiles inherited white-space:nowrap and word-break:keep-all, so the email could not wrap. */
 .lof-footer__tile,.lof-footer__tile span,.lof-footer__tile strong{white-space:normal!important;word-break:normal!important}
 .lof-footer__tile strong{overflow-wrap:anywhere!important}
-
 /* ---------- 0.63.0 Shop browsing ---------- */
 .lof-shop63 .lof-browse{max-width:var(--lof-container,1200px);margin:0 auto 1.5rem;padding:0 clamp(1rem,3vw,1.5rem)}
 .lof-browse__search{display:flex;align-items:center;gap:.6rem;max-width:720px;margin:0 auto 2.5rem;padding:.4rem .4rem .4rem 1.1rem;background:#fff;border:1px solid rgba(92,61,30,.16);border-radius:999px;box-shadow:0 14px 34px -24px rgba(63,41,19,.55);color:var(--lof-earth,#5C3D1E)}
@@ -979,30 +826,15 @@ img,video,iframe,svg{max-width:100%}
 .lof-shop63 ul.products li.product .lof-btn-order{margin-bottom:0!important}
 .lof-shop63 .woocommerce-info,.lof-shop63 .woocommerce-no-products-found .woocommerce-info{max-width:var(--lof-container,1200px);margin:1.5rem auto!important;border-radius:16px}
 @media (max-width:1100px){.lof-shop63 ul.products{grid-template-columns:repeat(3,minmax(0,1fr))}.lof-cats__track{grid-auto-columns:minmax(160px,calc((100% - 3*1rem)/4))}}
-@media (max-width:767px){
-.lof-shop63 ul.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
-.lof-shop63 ul.products li.product{border-radius:16px;padding-bottom:.75rem!important}
-.lof-card__cat{padding:0 .7rem;font-size:.62rem}
-.lof-shop63 ul.products li.product .woocommerce-loop-product__title{padding:0 .7rem!important;font-size:.92rem!important}
-.lof-shop63 ul.products li.product .price{padding:0 .7rem;font-size:.95rem!important}
-.lof-shop63 ul.products li.product .button,.lof-shop63 ul.products li.product .lof-btn-order{margin:0 .7rem .45rem!important;min-height:40px;font-size:.78rem!important;padding:.5rem .4rem!important}
-.lof-cats__track{grid-auto-columns:42%;gap:.75rem}
-.lof-cats__nav{display:none}
-.lof-browse__search{margin-bottom:1.8rem;padding-left:.9rem}
-.lof-browse__search button{padding:.75rem 1.05rem}
-.lof-filterbar{padding:.8rem}
-.lof-filterbar__prices{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:.2rem;scrollbar-width:none}
-.lof-filterbar__prices::-webkit-scrollbar{display:none}
-.lof-filterbar__right{width:100%;justify-content:space-between;margin-left:0}
-}
+@media (max-width:767px){.lof-shop63 ul.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}.lof-shop63 ul.products li.product{border-radius:16px;padding-bottom:.75rem!important}.lof-card__cat{padding:0 .7rem;font-size:.62rem}.lof-shop63 ul.products li.product .woocommerce-loop-product__title{padding:0 .7rem!important;font-size:.92rem!important}.lof-shop63 ul.products li.product .price{padding:0 .7rem;font-size:.95rem!important}.lof-shop63 ul.products li.product .button,.lof-shop63 ul.products li.product .lof-btn-order{margin:0 .7rem .45rem!important;min-height:40px;font-size:.78rem!important;padding:.5rem .4rem!important}.lof-cats__track{grid-auto-columns:42%;gap:.75rem}.lof-cats__nav{display:none}.lof-browse__search{margin-bottom:1.8rem;padding-left:.9rem}.lof-browse__search button{padding:.75rem 1.05rem}.lof-filterbar{padding:.8rem}.lof-filterbar__prices{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:.2rem;scrollbar-width:none}.lof-filterbar__prices::-webkit-scrollbar{display:none}.lof-filterbar__right{width:100%;justify-content:space-between;margin-left:0}}
 @media (max-width:380px){.lof-shop63 ul.products{gap:.6rem}.lof-cats__track{grid-auto-columns:48%}}
-
 /* ---------- 0.63.1 Shop hero (full width, photo mosaic) ---------- */
 .lof-shopx{position:relative;width:100vw;margin:0 0 0 calc(50% - 50vw);min-height:clamp(520px,62vh,640px);display:flex;align-items:center;overflow:hidden;background:#2B1D0E;color:#FCF6E1;isolation:isolate}
 .lof-shopx__mosaic{position:absolute;top:0;bottom:0;right:0;width:64%;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:6px;z-index:-2}
 .lof-shopx__tile{margin:0;overflow:hidden;background:#3F2913}
 .lof-shopx__tile img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);animation:lofx-zoom 18s ease-in-out infinite alternate}
-.lof-shopx__tile--2 img,.lof-shopx__tile--7 img{animation-delay:-6s}.lof-shopx__tile--4 img,.lof-shopx__tile--5 img{animation-delay:-12s}
+.lof-shopx__tile--2 img,.lof-shopx__tile--7 img{animation-delay:-6s}
+.lof-shopx__tile--4 img,.lof-shopx__tile--5 img{animation-delay:-12s}
 @keyframes lofx-zoom{to{transform:scale(1.1)}}
 .lof-shopx__shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#2B1D0E 0,#2B1D0E 34%,rgba(43,29,14,.86) 48%,rgba(43,29,14,.35) 72%,rgba(43,29,14,.15) 100%),linear-gradient(0deg,rgba(43,29,14,.55),rgba(43,29,14,0) 40%)}
 .lof-shopx__inner{position:relative;width:100%;max-width:var(--lof-container,1200px);margin:0 auto;padding:clamp(3.5rem,7vw,5.5rem) clamp(1.25rem,3vw,1.5rem) clamp(5.5rem,9vw,7rem)}
@@ -1011,7 +843,7 @@ img,video,iframe,svg{max-width:100%}
 .lof-shopx__title{max-width:12.5em;margin:0 0 1.2rem;font:900 clamp(2.4rem,5.2vw,4.3rem)/1.04 var(--lof-font-display);letter-spacing:-.02em;color:#FFFDF6!important}
 .lof-shopx__title em{display:block;font-style:normal;background:linear-gradient(90deg,#FBD62B,#F4AF16 60%,#DC8C13);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lof-shopx__lead{max-width:34rem;margin:0 0 2rem;font:500 clamp(1rem,1.3vw,1.15rem)/1.65 var(--lof-font-body);color:rgba(252,246,225,.86)}
-.lof-shopx__actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:2.4rem}
+.lof-shopx__actions{display:flex;flex-wrap:wrap;gap:.8rem}
 .lof-shopx__btn{display:inline-flex;align-items:center;gap:.55rem;min-height:52px;padding:.9rem 1.6rem;border-radius:999px;font:800 .95rem/1 var(--lof-font-body);text-decoration:none!important;transition:transform .2s,background .2s,box-shadow .2s}
 .lof-shopx__btn--primary{background:var(--lof-gold,#F4AF16);color:#2B1D0E!important;box-shadow:0 16px 34px -16px rgba(244,175,22,.7)}
 .lof-shopx__btn--primary:hover{transform:translateY(-2px);background:#FBD62B}
@@ -1029,81 +861,35 @@ img,video,iframe,svg{max-width:100%}
 .lof-shoptrust--x span:not(.lof-shoptrust__ico){font:500 .8rem/1.4 var(--lof-font-body);color:rgba(43,29,14,.68)}
 .lof-shop63 .woocommerce-products-header{margin:0!important;padding:0!important}
 @media (max-width:1024px){.lof-shopx__mosaic{width:72%}.lof-shoptrust--x{grid-template-columns:repeat(2,minmax(0,1fr));margin:-3rem 1rem 2rem!important}}
-@media (max-width:767px){
-.lof-shopx{flex-direction:column;align-items:stretch;min-height:0}
-.lof-shopx__mosaic{position:relative;order:2;width:100%;height:auto;grid-template-columns:repeat(4,1fr);grid-template-rows:none;gap:4px;z-index:0}
-.lof-shopx__tile{aspect-ratio:1/1}.lof-shopx__tile--5,.lof-shopx__tile--6,.lof-shopx__tile--7,.lof-shopx__tile--8{display:none}
-.lof-shopx__shade{display:none}
-.lof-shopx__inner{order:1;padding:2.4rem 1.25rem 2rem;background:radial-gradient(circle at 85% 0,rgba(244,175,22,.22),rgba(244,175,22,0) 55%),#2B1D0E}
-.lof-shopx__title{font-size:clamp(2.1rem,9.5vw,2.7rem)}
-.lof-shopx__lead{margin-bottom:1.5rem;font-size:1rem}
-.lof-shopx__actions{flex-direction:column;margin-bottom:1.8rem}
-.lof-shopx__btn{justify-content:center;width:100%}
-.lof-shopx__facts{display:grid;grid-template-columns:repeat(3,1fr)}
-.lof-shopx__facts li{padding:0 .7rem}.lof-shopx__facts strong{font-size:1.4rem}.lof-shopx__facts span{font-size:.66rem}
-.lof-shoptrust--x{margin:1rem!important;grid-template-columns:1fr 1fr;padding:.6rem!important}
-.lof-shoptrust--x li{grid-template-columns:1fr;grid-template-rows:auto;row-gap:.4rem;padding:.6rem!important}
-.lof-shoptrust--x .lof-shoptrust__ico{grid-row:auto;width:38px;height:38px}
-.lof-shoptrust--x span:not(.lof-shoptrust__ico){font-size:.74rem}
-}
+@media (max-width:767px){.lof-shopx{flex-direction:column;align-items:stretch;min-height:0}.lof-shopx__mosaic{width:100%;height:auto;gap:4px}.lof-shopx__tile--5,.lof-shopx__tile--6,.lof-shopx__tile--7,.lof-shopx__tile--8{display:none}.lof-shopx__inner{order:1}.lof-shopx__btn{justify-content:center}.lof-shopx__facts{display:grid;grid-template-columns:repeat(3,1fr)}.lof-shopx__facts li{padding:0 .7rem}.lof-shopx__facts strong{font-size:1.4rem}.lof-shopx__facts span{font-size:.66rem}.lof-shoptrust--x{grid-template-columns:1fr 1fr;padding:.6rem!important}.lof-shoptrust--x li{grid-template-columns:1fr;grid-template-rows:auto;row-gap:.4rem;padding:.6rem!important}.lof-shoptrust--x .lof-shoptrust__ico{grid-row:auto;width:38px;height:38px}.lof-shoptrust--x span:not(.lof-shoptrust__ico){font-size:.74rem}}
 @media (prefers-reduced-motion:reduce){.lof-shopx__tile img{animation:none}}
 /* ---------- 0.63.1 About: founder photo on phones ---------- */
-@media (max-width:991px){
-section.lof-feature--story .lof-feature__media{max-width:440px!important;margin:0 auto 1.5rem!important;border-radius:24px;overflow:hidden;background:#2B1D0E;box-shadow:0 30px 60px -36px rgba(43,29,14,.7)}
-section.lof-feature--story .lof-feature__media::before,section.lof-feature--story .lof-feature__media::after{display:none!important}
-section.lof-feature--story .lof-feature__media img{display:block;width:100%!important;height:auto!important;aspect-ratio:4/5!important;object-fit:cover!important;object-position:30% 62%!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-section.lof-feature--story .lof-feature__media figcaption,section.lof-feature--story .lof-feature__name{position:relative!important;inset:auto!important;padding:1rem 1.3rem 1.15rem!important;background:#2B1D0E!important;border-top:3px solid var(--lof-gold,#F4AF16)!important}
-}
-
+@media (max-width:991px){section.lof-feature--story .lof-feature__media{max-width:440px!important;margin:0 auto 1.5rem!important;border-radius:24px;overflow:hidden;background:#2B1D0E;box-shadow:0 30px 60px -36px rgba(43,29,14,.7)}section.lof-feature--story .lof-feature__media::before,section.lof-feature--story .lof-feature__media::after{display:none!important}section.lof-feature--story .lof-feature__media img{display:block;width:100%!important;height:auto!important;aspect-ratio:4/5!important;object-fit:cover!important;object-position:30% 62%!important;border:0!important;border-radius:0!important;box-shadow:none!important}section.lof-feature--story .lof-feature__media figcaption,section.lof-feature--story .lof-feature__name{position:relative!important;inset:auto!important;padding:1rem 1.3rem 1.15rem!important;background:#2B1D0E!important;border-top:3px solid var(--lof-gold,#F4AF16)!important}}
 /* ---------- 0.63.2 ---------- */
 /* Shop hero full width on desktop: the shop main column clipped anything outside its 1140px box. Clip sideways overflow on the page instead. */
 html:has(body.lof-shop63),body.lof-shop63{overflow-x:clip}
 .lof-shop63 .lof-shop-main,.lof-shop63 main.site-main{overflow:visible!important}
 /* ---------- 0.63.2 Shop hero fills the first screen ---------- */
-.lof-shopx{min-height:calc(100svh - var(--lof-head-h,124px));padding-bottom:5.5rem}
+.lof-shopx{min-height:calc(100svh - var(--lof-head-h,124px))}
 .lof-shopx__inner{padding-top:clamp(2rem,5vh,4rem);padding-bottom:clamp(2rem,5vh,3.5rem)}
 .lof-shopx__title{font-size:clamp(2.2rem,min(5.2vw,7.4vh),4.3rem);margin-bottom:clamp(.7rem,2vh,1.2rem)}
 .lof-shopx__lead{margin-bottom:clamp(1rem,3vh,2rem)}
 .lof-shopx__actions{margin-bottom:clamp(1.2rem,3.5vh,2.4rem)}
-.lof-shoptrust--x{margin-top:-5rem!important}
-@media (min-width:1600px){.lof-shopx{width:calc(100vw / 1.1);margin-left:calc(50% - 50vw / 1.1);min-height:calc(100vh / 1.1 - var(--lof-head-h,124px))}}
-@media (max-width:767px){
-.lof-shopx{min-height:calc(100svh - var(--lof-head-h,72px) - 76px);justify-content:flex-end;padding-bottom:0}
-.lof-shopx__mosaic{position:absolute;inset:0;order:0;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr);z-index:-2}
-.lof-shopx__tile{aspect-ratio:auto}.lof-shopx__tile--5,.lof-shopx__tile--6{display:block}
-.lof-shopx__shade{display:block;background:linear-gradient(180deg,rgba(43,29,14,.35) 0,rgba(43,29,14,.82) 38%,#2B1D0E 62%)}
-.lof-shopx__inner{background:none;padding:1.6rem 1.25rem 1.5rem}
-.lof-shopx__title{font-size:clamp(2rem,9vw,2.6rem)}
-.lof-shopx__lead{font-size:.95rem;line-height:1.55;margin-bottom:1.2rem}
-.lof-shopx__actions{flex-direction:row;gap:.6rem;margin-bottom:1.4rem}
-.lof-shopx__btn{flex:1 1 0;width:auto;min-height:48px;padding:.75rem .7rem;font-size:.84rem;text-align:center}
-.lof-shopx__btn svg{flex:none}
-.lof-shoptrust--x{margin:1rem!important}
-}
+@media (min-width:1600px){.lof-shopx{width:calc(100vw / 1.1);margin-left:calc(50% - 50vw / 1.1)}}
+@media (max-width:767px){.lof-shopx{min-height:calc(100svh - var(--lof-head-h,72px) - 76px);justify-content:flex-end;padding-bottom:0}.lof-shopx__mosaic{position:absolute;inset:0;order:0;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr);z-index:-2}.lof-shopx__tile{aspect-ratio:auto}.lof-shopx__tile--5,.lof-shopx__tile--6{display:block}.lof-shopx__shade{display:block;background:linear-gradient(180deg,rgba(43,29,14,.35) 0,rgba(43,29,14,.82) 38%,#2B1D0E 62%)}.lof-shopx__inner{background:none;padding:1.6rem 1.25rem 1.5rem}.lof-shopx__title{font-size:clamp(2rem,9vw,2.6rem)}.lof-shopx__lead{font-size:.95rem;line-height:1.55;margin-bottom:1.2rem}.lof-shopx__actions{flex-direction:row;gap:.6rem;margin-bottom:1.4rem}.lof-shopx__btn{flex:1 1 0;width:auto;min-height:48px;padding:.75rem .7rem;font-size:.84rem;text-align:center}.lof-shopx__btn svg{flex:none}.lof-shoptrust--x{margin:1rem!important}}
 @media (max-width:767px) and (max-height:700px){.lof-shopx__lead{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}}
-
 /* 0.63.2b: full-bleed measured against the page width (correct at every zoom level), hero fits the first screen exactly. */
 body.lof-shop63{container-type:inline-size;container-name:lofpage}
 .lof-shopx{width:100cqw!important;margin-left:calc(50% - 50cqw)!important;min-height:calc(100svh - var(--lof-shopx-top,161px))!important;padding-bottom:0}
 @media (min-width:1600px){.lof-shopx{min-height:calc(100vh / 1.1 - var(--lof-shopx-top,161px))!important}}
 .lof-shoptrust--x{margin-top:1.75rem!important}
 @media (max-width:767px){.lof-shopx{min-height:calc(100svh - var(--lof-shopx-top,128px) - 76px)!important}.lof-shoptrust--x{margin-top:1rem!important}}
-
 /* No cream strip between the header and the shop hero. */
 .lof-shop63.woocommerce-shop main.site-main{padding-top:0!important}
-
 /* ---------- 0.63.3 WhatsApp greeting bubble on phones ---------- */
-@media (max-width:767px){
-body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!important}
-.lof-chat__teaser{right:0;bottom:60px;width:min(250px,calc(100vw - 32px));padding:12px 30px 12px 12px;border-radius:18px 18px 4px 18px;border:1px solid rgba(37,211,102,.25);box-shadow:0 18px 40px -16px rgba(43,29,14,.45);animation:lofTeaseIn .4s cubic-bezier(.2,.8,.2,1) both}
-.lof-chat__teaser::after{content:"";position:absolute;right:18px;bottom:-7px;width:14px;height:14px;background:#fff;border-right:1px solid rgba(37,211,102,.25);border-bottom:1px solid rgba(37,211,102,.25);transform:rotate(45deg)}
-.lof-chat__teaser-open{font-size:.85rem;gap:9px}
-.lof-chat__teaser-open strong{display:block;color:#128C4B}
-.lof-chat__teaser-close{top:2px;right:6px;width:28px;height:28px;font-size:20px}
-}
+@media (max-width:767px){body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!important}.lof-chat__teaser{right:0;bottom:60px;width:min(250px,calc(100vw - 32px));padding:12px 30px 12px 12px;border-radius:18px 18px 4px 18px;border:1px solid rgba(37,211,102,.25);box-shadow:0 18px 40px -16px rgba(43,29,14,.45);animation:lofTeaseIn .4s cubic-bezier(.2,.8,.2,1) both}.lof-chat__teaser::after{content:"";position:absolute;right:18px;bottom:-7px;width:14px;height:14px;background:#fff;border-right:1px solid rgba(37,211,102,.25);border-bottom:1px solid rgba(37,211,102,.25);transform:rotate(45deg)}.lof-chat__teaser-open{font-size:.85rem;gap:9px}.lof-chat__teaser-open strong{display:block;color:#128C4B}.lof-chat__teaser-close{top:2px;right:6px;width:28px;height:28px;font-size:20px}}
 @keyframes lofTeaseIn{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.lof-chat__teaser{animation:none}}
-
 /* ---------- 0.63.4 Product card buttons: clear gap, clear hierarchy ---------- */
 .lof-shop63 ul.products li.product .button.lof-shop-view{margin:0 1rem .6rem!important;background:#fff!important;border:1.5px solid rgba(92,61,30,.28)!important}
 .lof-shop63 ul.products li.product .button.lof-shop-view:hover{border-color:var(--lof-earth,#5C3D1E)!important}
@@ -1149,20 +935,7 @@ body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!import
 .lof-giftx__badge{position:absolute;left:8%;top:10%;display:flex;flex-direction:column;align-items:center;justify-content:center;width:104px;height:104px;border-radius:50%;background:var(--lof-gold,#F4AF16);color:#2B1D0E;text-align:center;font:700 .7rem/1.2 var(--lof-font-body);padding:.6rem;box-shadow:0 18px 30px -16px rgba(244,175,22,.8);transform:rotate(-8deg)}
 .lof-giftx__badge strong{font:900 1.45rem/1 var(--lof-font-display)}
 @media (max-width:991px){.lof-giftx{grid-template-columns:1fr;margin-left:1rem;margin-right:1rem}.lof-giftx__media{min-height:260px;max-width:440px;width:100%;margin:0 auto}}
-@media (max-width:767px){
-.lof-howx__steps{grid-template-columns:1fr;gap:0;max-width:420px;margin:0 auto;text-align:left}
-.lof-howx__steps::before{top:36px;bottom:60px;left:36px;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg,rgba(220,140,19,.55) 0 8px,transparent 8px 16px)}
-.lof-howx__steps li{display:grid;grid-template-columns:72px 1fr;grid-template-rows:auto auto;column-gap:1rem;align-items:start;padding:0 0 1.4rem}
-.lof-howx__ico{grid-row:1/3;margin:0}
-.lof-howx__steps strong{margin-top:.9rem}
-.lof-giftx{padding:1.8rem 1.3rem;border-radius:22px;gap:1.6rem}
-.lof-giftx__actions{flex-direction:column}
-.lof-giftx__btn{width:100%}
-.lof-giftx__media{min-height:230px}
-.lof-giftx__badge{width:88px;height:88px}
-}
-
-
+@media (max-width:767px){.lof-howx__steps{grid-template-columns:1fr;gap:0;max-width:420px;margin:0 auto;text-align:left}.lof-howx__steps::before{top:36px;bottom:60px;left:36px;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg,rgba(220,140,19,.55) 0 8px,transparent 8px 16px)}.lof-howx__steps li{display:grid;grid-template-columns:72px 1fr;grid-template-rows:auto auto;column-gap:1rem;align-items:start;padding:0 0 1.4rem}.lof-howx__ico{grid-row:1/3;margin:0}.lof-howx__steps strong{margin-top:.9rem}.lof-giftx{padding:1.8rem 1.3rem;border-radius:22px;gap:1.6rem}.lof-giftx__actions{flex-direction:column}.lof-giftx__btn{width:100%}.lof-giftx__media{min-height:230px}.lof-giftx__badge{width:88px;height:88px}}
 /* ---------- 0.63.5 Footer: international-standard layout ---------- */
 .lof-footer__brand .lof-logo{display:inline-block;margin-bottom:1.1rem}
 .lof-footer__brand .lof-logo img{width:150px!important;height:auto!important}
@@ -1170,26 +943,7 @@ body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!import
 .lof-footer__links a:hover{color:var(--lof-gold,#F4AF16)!important;padding-left:4px}
 .lof-footer__title{cursor:default}
 .lof-footer__title .lof-footacc__chev{display:none}
-@media (max-width:767px){
-.lof-footer__main{display:block!important;padding-top:.5rem!important}
-.lof-footer__brand{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 0 1.6rem;margin-bottom:.4rem;border-bottom:1px solid rgba(244,175,22,.18)}
-.lof-footer__brand .lof-logo img{width:118px!important}
-.lof-footer__intro{max-width:30rem;font-size:.95rem!important;line-height:1.65!important;margin:0 auto 1rem!important}
-.lof-footer__badge{margin:0 auto!important}
-.lof-footer__col:not(.lof-footer__support){margin:0!important;padding:0!important;border-bottom:1px solid rgba(244,175,22,.18)}
-.lof-footer__col:not(.lof-footer__support) .lof-footer__title{display:flex!important;align-items:center;justify-content:space-between;width:100%;margin:0!important;padding:1.15rem 0!important;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.lof-footer__col:not(.lof-footer__support) .lof-footer__title::after{display:none!important}
-.lof-footer__title .lof-footacc__chev{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:rgba(244,175,22,.14);color:var(--lof-gold,#F4AF16);transition:transform .25s}
-.lof-footer__col.is-open .lof-footacc__chev{transform:rotate(180deg)}
-.lof-footer--acc .lof-footer__col:not(.lof-footer__support):not(.is-open) .lof-footer__links{display:none!important}
-.lof-footer__col .lof-footer__links{display:grid!important;grid-template-columns:1fr;gap:0!important;margin:0!important;padding:0 0 1rem!important;columns:auto!important}
-.lof-footer__col:first-of-type .lof-footer__links,.lof-footer__col[aria-label="Explore"] .lof-footer__links{grid-template-columns:1fr 1fr}
-.lof-footer__col .lof-footer__links li{margin:0!important;padding:0!important}
-.lof-footer__col .lof-footer__links a{display:block;padding:.55rem 0!important;font-size:.95rem!important;line-height:1.35!important;word-break:normal;overflow-wrap:break-word}
-.lof-footer__support{margin-top:1.6rem!important;text-align:center}
-.lof-footer__support .lof-footer__title::after{margin-inline:auto}
-}
-
+@media (max-width:767px){.lof-footer__main{display:block!important;padding-top:.5rem!important}.lof-footer__brand{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 0 1.6rem;margin-bottom:.4rem;border-bottom:1px solid rgba(244,175,22,.18)}.lof-footer__brand .lof-logo img{width:118px!important}.lof-footer__intro{max-width:30rem;font-size:.95rem!important;line-height:1.65!important;margin:0 auto 1rem!important}.lof-footer__badge{margin:0 auto!important}.lof-footer__col:not(.lof-footer__support){margin:0!important;padding:0!important;border-bottom:1px solid rgba(244,175,22,.18)}.lof-footer__col:not(.lof-footer__support) .lof-footer__title{display:flex!important;align-items:center;justify-content:space-between;width:100%;margin:0!important;padding:1.15rem 0!important;cursor:pointer;-webkit-tap-highlight-color:transparent}.lof-footer__col:not(.lof-footer__support) .lof-footer__title::after{display:none!important}.lof-footer__title .lof-footacc__chev{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:rgba(244,175,22,.14);color:var(--lof-gold,#F4AF16);transition:transform .25s}.lof-footer__col.is-open .lof-footacc__chev{transform:rotate(180deg)}.lof-footer--acc .lof-footer__col:not(.lof-footer__support):not(.is-open) .lof-footer__links{display:none!important}.lof-footer__col .lof-footer__links{display:grid!important;grid-template-columns:1fr;gap:0!important;margin:0!important;padding:0 0 1rem!important;columns:auto!important}.lof-footer__col:first-of-type .lof-footer__links,.lof-footer__col[aria-label="Explore"] .lof-footer__links{grid-template-columns:1fr 1fr}.lof-footer__col .lof-footer__links li{margin:0!important;padding:0!important}.lof-footer__col .lof-footer__links a{display:block;padding:.55rem 0!important;font-size:.95rem!important;line-height:1.35!important;word-break:normal;overflow-wrap:break-word}.lof-footer__support{margin-top:1.6rem!important;text-align:center}.lof-footer__support .lof-footer__title::after{margin-inline:auto}}
 /* 0.63.9: other ways to give on the Donate page */
 .lof-pay2__direct{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;background:rgba(244,175,22,.12);border:1px solid rgba(244,175,22,.35)}
 .lof-pay2__direct .lof-pay2__methods-k{margin:0 0 .5rem}
@@ -1197,26 +951,67 @@ body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!import
 .lof-pay2__direct dt{font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
 .lof-pay2__direct dd{margin:.1rem 0 0;font-size:.98rem}
 .lof-pay2__direct strong{font-variant-numeric:tabular-nums;letter-spacing:.02em}
-
+/* --- 0.67.0 Donate page: clear hierarchy. Intro and trust points on the left, the Paystack form as one polished card with numbered steps on the right, other ways to give as tidy cards. CSS only: fields, names, nonces and payment behaviour are unchanged. --- */
+html body.lof-page-donate .lof-section.lof-give--paystack{background:linear-gradient(180deg,#FCF6E1 0%,#fff 100%)!important;padding-block:clamp(2.75rem,5vw,4.5rem)!important}
+html body.lof-page-donate .lof-pay2{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(1.75rem,4.5vw,4rem);max-width:1160px}
+html body.lof-page-donate .lof-pay2__title{margin:.35rem 0 .8rem;font-size:clamp(1.75rem,3vw,2.4rem);letter-spacing:-.01em;text-wrap:balance}
+html body.lof-page-donate .lof-pay2__lead{margin-bottom:1.35rem;font-size:1.02rem}
+html body.lof-page-donate .lof-pay2__trust{gap:0;margin:0 0 1.35rem;padding:.35rem 1.1rem;background:#fff;border:1px solid rgba(92,61,30,.12);border-radius:18px;box-shadow:0 20px 44px -38px rgba(43,29,14,.5)}
+html body.lof-page-donate .lof-pay2__trust li{padding:.8rem 0;font-size:.93rem}
+html body.lof-page-donate .lof-pay2__trust li + li{border-top:1px solid rgba(92,61,30,.1)}
+html body.lof-page-donate .lof-pay2__tick{width:26px;height:26px;background:rgba(244,175,22,.2);color:#8A5208}
+html body.lof-page-donate .lof-pay2__methods{margin-bottom:1.35rem}
+html body.lof-page-donate .lof-pay2__direct{margin-top:0;padding:0;background:none;border:0;border-radius:0}
+html body.lof-page-donate .lof-pay2__direct dl{grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+html body.lof-page-donate .lof-pay2__direct dl > div{padding:.9rem 1rem;background:#fff;border:1px solid rgba(92,61,30,.12);border-left:4px solid #F4AF16;border-radius:14px}
+html body.lof-page-donate .lof-pay2__direct dt{color:#8A5208;opacity:1;font-size:.74rem}
+html body.lof-page-donate .lof-pay2__direct dd{margin-top:.3rem;color:#2B1D0E;font-size:.93rem;line-height:1.5}
+html body.lof-page-donate .lof-pay2__direct strong{color:#3F2913;font-size:1.02rem}
+html body.lof-page-donate .lof-pay2__manage{margin-top:1.25rem}
+html body.lof-page-donate .lof-pay2__form .lofpay{counter-reset:lofstep;padding:clamp(1.25rem,2.6vw,2rem)!important;border-radius:24px;border-top:4px solid #F4AF16}
+html body.lof-page-donate .lof-pay2__form .lofpay__head{margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(92,61,30,.12)}
+html body.lof-page-donate .lof-pay2__form .lofpay__secure{color:#5b4a3a}
+html body.lof-page-donate .lof-pay2__form .lofpay fieldset{margin-bottom:1.35rem}
+html body.lof-page-donate .lof-pay2__form .lofpay__label{display:flex;align-items:center;gap:.5rem;color:#5C3D1E;font-size:.76rem;letter-spacing:.08em}
+html body.lof-page-donate .lof-pay2__form fieldset > .lofpay__label::before{counter-increment:lofstep;content:counter(lofstep);display:inline-grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:#F4AF16;color:#2B1D0E;font-size:.72rem;font-weight:800;letter-spacing:0}
+html body.lof-page-donate .lof-pay2__form .lofpay__seg{background:#FCF6E1}
+html body.lof-page-donate .lof-pay2__form .lofpay__seg .lofpay__label{background:#fff}
+html body.lof-page-donate .lof-pay2__form .lofpay__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+html body.lof-page-donate .lof-pay2__form .lofpay__tile{min-height:76px;padding:.75rem .9rem;border-radius:14px;border-color:rgba(92,61,30,.16)}
+html body.lof-page-donate .lof-pay2__form .lofpay__tile:hover{border-color:#DC8C13}
+html body.lof-page-donate .lof-pay2__form .lofpay__tile:has(input:checked){border-color:#DC8C13;background:#FFF8E6;box-shadow:0 0 0 3px rgba(244,175,22,.28)}
+html body.lof-page-donate .lof-pay2__form .lofpay__amt{color:#3F2913}
+html body.lof-page-donate .lof-pay2__form .lofpay__impact,html body.lof-page-donate .lof-pay2__form .lofpay__custom{color:#5b4a3a}
+html body.lof-page-donate .lof-pay2__form .lofpay input[type=number],html body.lof-page-donate .lof-pay2__form .lofpay input[type=text],html body.lof-page-donate .lof-pay2__form .lofpay input[type=email]{border-color:rgba(92,61,30,.2);border-radius:12px}
+html body.lof-page-donate .lof-pay2__form .lofpay input:focus{border-color:#DC8C13;box-shadow:0 0 0 3px rgba(244,175,22,.3)}
+html body.lof-page-donate .lof-pay2__form .lofpay__check{background:#FCF6E1;border-radius:14px}
+html body.lof-page-donate .lof-pay2__form .lofpay__check::before{border-color:#8A5208}
+html body.lof-page-donate .lof-pay2__form .lofpay__fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+html body.lof-page-donate .lof-pay2__form .lofpay__fields:has(.lofpay__name[hidden]){grid-template-columns:1fr}
+html body.lof-page-donate .lof-pay2__form .lofpay__fields label{color:#3F2913}
+html body.lof-page-donate .lof-pay2__form .lofpay__submit{min-height:56px;border-radius:999px;box-shadow:0 14px 28px -14px rgba(220,140,19,.7)}
+html body.lof-page-donate .lof-pay2__form .lofpay__small{color:#5b4a3a}
+@media (min-width:641px) and (max-width:991px){html body.lof-page-donate .lof-pay2{grid-template-columns:1fr;max-width:720px}html body.lof-page-donate .lof-pay2__info{position:static;order:2}html body.lof-page-donate .lof-pay2__form{order:1}}
+@media (max-width:640px){html body.lof-page-donate .lof-pay2{grid-template-columns:1fr;gap:1.75rem}html body.lof-page-donate .lof-pay2__info{position:static;order:2}html body.lof-page-donate .lof-pay2__form{order:1}html body.lof-page-donate .lof-pay2__form .lofpay{padding:1.1rem!important;border-radius:20px}html body.lof-page-donate .lof-pay2__form .lofpay__grid{grid-template-columns:repeat(2,minmax(0,1fr))}html body.lof-page-donate .lof-pay2__form .lofpay__tile--other{grid-column:1/-1}html body.lof-page-donate .lof-pay2__form .lofpay__fields{grid-template-columns:1fr}html body.lof-page-donate .lof-pay2__direct dl{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html body.lof-page-donate .lof-pay2__form .lofpay__tile{transition:none}html body.lof-page-donate .lof-pay2__form .lofpay__tile:hover{transform:none}}
 /* 0.63.10 story video player */
 .lof-story-video{margin:2rem auto;max-width:420px;text-align:center}
 .lof-story-video video{display:block;width:100%;aspect-ratio:478/850;height:auto;background:#111;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
 .lof-story-video figcaption{margin-top:.6rem;font-weight:600;font-size:.95rem}
 @media (max-width:480px){.lof-story-video{max-width:100%}}
-
 /* 0.63.12 story pages: centred, balanced editorial layout */
 .lof-single.type-lof_story .lof-single__grid{grid-template-columns:minmax(0,1fr)!important;max-width:820px;margin-inline:auto;gap:3rem}
 .lof-single.type-lof_story .lof-single__body{max-width:none!important;width:100%}
 .lof-single.type-lof_story .lof-single__body>p{max-width:none!important;font-size:1.125rem;line-height:1.85;margin:0 0 1.4rem;color:#3d3024}
 .lof-single.type-lof_story .lof-single__body>p:first-of-type{font-size:1.3rem;line-height:1.7;font-weight:500;color:var(--lof-heading,#5C3D1E);margin-bottom:1.75rem}
 .lof-single.type-lof_story .lof-single__image{margin:0 0 2.75rem}
-.lof-single.type-lof_story .lof-single__image img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:50% 30%;border-radius:24px}
+.lof-single.type-lof_story .lof-single__image img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 .lof-single.type-lof_story .lof-single__body figure.wp-block-image{margin:2.75rem 0;text-align:center}
 .lof-single.type-lof_story .lof-single__body figure.wp-block-image img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:50% 25%;border-radius:20px;box-shadow:0 26px 60px -38px rgba(43,29,14,.6)}
 .lof-single.type-lof_story .lof-single__body figcaption{margin-top:.8rem;text-align:center;font-size:.92rem;line-height:1.5;color:#7a6650;font-style:normal}
 .lof-single.type-lof_story .lof-story-video{margin:3rem auto;max-width:400px}
 .lof-single.type-lof_story .lofm{margin:3.25rem 0 1rem}
-.lof-single.type-lof_story .lofm__videos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;max-width:620px;margin:0 auto 2.5rem}
+.lof-single.type-lof_story .lofm__videos{display:grid;gap:1.5rem}
 .lof-single.type-lof_story .lofm__video{border-radius:18px}
 .lof-single.type-lof_story .lofm__grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:1.5rem!important;list-style:none;margin:0;padding:0}
 .lof-single.type-lof_story .lofm__item figure{border-radius:18px}
@@ -1227,20 +1022,8 @@ body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!import
 .lof-single.type-lof_story .lof-aside-cta p{grid-column:1;margin:0}
 .lof-single.type-lof_story .lof-aside-cta .lof-btn{grid-column:2;grid-row:1/span 2;width:auto;min-width:180px;justify-content:center;padding-inline:2rem}
 .lof-single.type-lof_story .lof-single__aside>p{margin:0;text-align:center}
-@media (max-width:640px){
-.lof-single.type-lof_story .lof-single__grid{gap:2rem}
-.lof-single.type-lof_story .lof-single__body>p{font-size:1.05rem;line-height:1.8}
-.lof-single.type-lof_story .lof-single__body>p:first-of-type{font-size:1.15rem}
-.lof-single.type-lof_story .lof-single__image img{aspect-ratio:4/3;border-radius:18px}
-.lof-single.type-lof_story .lof-single__body figure.wp-block-image{margin:2rem 0}
-.lof-single.type-lof_story .lofm__videos{gap:.9rem}
-.lof-single.type-lof_story .lofm__grid{gap:.9rem!important}
-.lof-single.type-lof_story .lofm__item figcaption{font-size:.82rem;padding:.55rem .6rem .7rem}
-.lof-single.type-lof_story .lof-aside-cta{grid-template-columns:minmax(0,1fr);text-align:center;padding:1.6rem 1.4rem!important}
-.lof-single.type-lof_story .lof-aside-cta .lof-btn{grid-column:1;grid-row:auto;width:100%;margin-top:1.1rem}
-}
+@media (max-width:640px){.lof-single.type-lof_story .lof-single__grid{gap:2rem}.lof-single.type-lof_story .lof-single__body>p{font-size:1.05rem;line-height:1.8}.lof-single.type-lof_story .lof-single__body>p:first-of-type{font-size:1.15rem}.lof-single.type-lof_story .lof-single__image img{aspect-ratio:4/3;border-radius:18px}.lof-single.type-lof_story .lof-single__body figure.wp-block-image{margin:2rem 0}.lof-single.type-lof_story .lofm__videos{gap:.9rem}.lof-single.type-lof_story .lofm__grid{gap:.9rem!important}.lof-single.type-lof_story .lofm__item figcaption{font-size:.82rem;padding:.55rem .6rem .7rem}.lof-single.type-lof_story .lof-aside-cta{grid-template-columns:minmax(0,1fr);text-align:center;padding:1.6rem 1.4rem!important}.lof-single.type-lof_story .lof-aside-cta .lof-btn{grid-column:1;grid-row:auto;width:100%;margin-top:1.1rem}}
 @media (min-width:1600px){.lof-single.type-lof_story .lof-single__grid{max-width:900px}}
-
 /* 0.63.12 impact figures: balanced 4 x 2 grid, one source note */
 .lof-tone-earth .lof-impact__grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:1.25rem!important;max-width:1180px;margin-inline:auto}
 .lof-tone-earth .lof-impact__item,.lof-tone-earth .lof-impact__item:first-child{display:flex;flex-direction:column-reverse;justify-content:flex-end;text-align:center;padding:1.75rem 1.25rem!important;border:1px solid rgba(252,246,225,.16)!important;border-radius:20px!important;background:rgba(252,246,225,.05)!important}
@@ -1250,19 +1033,7 @@ body:not(.lof-page-gallery) .lof-chat__teaser:not([hidden]){display:block!import
 .lof-tone-earth.lof-impact .lof-container::after{content:"Figures supplied by the foundation, November 2026.";display:block;margin-top:1.5rem;text-align:center;font-size:.85rem;opacity:.7}
 @media (max-width:900px){.lof-tone-earth .lof-impact__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.9rem!important}.lof-tone-earth .lof-impact__item,.lof-tone-earth .lof-impact__item:first-child{padding:1.25rem .9rem!important;border-bottom:1px solid rgba(252,246,225,.16)!important}.lof-tone-earth .lof-impact__label{font-size:.72rem!important}}
 /* 0.63.12 impact page stories: three equal cards */
-@media (min-width:861px){
-.lof-page-impact .lof-grid--3:has(> .lof-card--story){grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:auto!important;gap:1.75rem!important;align-items:stretch}
-.lof-page-impact .lof-grid--3 > .lof-card--story,.lof-page-impact .lof-grid--3 > .lof-card--story:first-child,.lof-page-impact .lof-grid--3 > .lof-card--story:not(:first-child){grid-row:auto!important;flex-direction:column!important;min-height:0!important;color:inherit!important;border:1px solid var(--lof-line)!important;overflow:hidden}
-.lof-page-impact .lof-grid--3 > .lof-card--story .lof-card__media,.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__media,.lof-page-impact .lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__media{position:relative!important;inset:auto!important;z-index:auto!important;flex:none!important;aspect-ratio:4/3!important;min-height:0!important}
-.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__media::after{display:none!important}
-.lof-page-impact .lof-grid--3 > .lof-card--story .lof-card__media img{width:100%;height:100%!important;object-fit:cover;object-position:50% 30%}
-.lof-page-impact .lof-grid--3 > .lof-card--story .lof-card__body,.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__body{flex:1;display:flex;flex-direction:column;margin-top:0!important;padding:1.4rem 1.5rem 1.4rem!important;background:var(--lof-surface)!important}
-.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__title{font-size:1.25rem!important}
-.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__title a{color:var(--lof-heading)!important}
-.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__body > p{color:var(--lof-muted)!important;font-size:1rem!important}
-.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__link{align-self:auto!important;padding:.75rem 0 0!important;background:none!important;color:inherit!important;border-radius:0!important}
-}
-
+@media (min-width:861px){.lof-page-impact .lof-grid--3:has(> .lof-card--story){grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:auto!important;gap:1.75rem!important;align-items:stretch}.lof-page-impact .lof-grid--3 > .lof-card--story,.lof-page-impact .lof-grid--3 > .lof-card--story:first-child,.lof-page-impact .lof-grid--3 > .lof-card--story:not(:first-child){grid-row:auto!important;flex-direction:column!important;min-height:0!important;color:inherit!important;border:1px solid var(--lof-line)!important;overflow:hidden}.lof-page-impact .lof-grid--3 > .lof-card--story .lof-card__media,.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__media,.lof-page-impact .lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__media{position:relative!important;inset:auto!important;z-index:auto!important;flex:none!important;aspect-ratio:4/3!important;min-height:0!important}.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__media::after{display:none!important}.lof-page-impact .lof-grid--3 > .lof-card--story .lof-card__media img{width:100%;height:100%!important;object-fit:cover;object-position:50% 30%}.lof-page-impact .lof-grid--3 > .lof-card--story .lof-card__body,.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__body{flex:1;display:flex;flex-direction:column;margin-top:0!important;padding:1.4rem 1.5rem 1.4rem!important;background:var(--lof-surface)!important}.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__title{font-size:1.25rem!important}.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__title a{color:var(--lof-heading)!important}.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__body > p{color:var(--lof-muted)!important;font-size:1rem!important}.lof-page-impact .lof-grid--3 > .lof-card--story:first-child .lof-card__link{align-self:auto!important;padding:.75rem 0 0!important;background:none!important;color:inherit!important;border-radius:0!important}}
 /* 0.63.13 impact figures everywhere (Home, About, Impact): balanced card grid */
 body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__grid{display:grid!important;grid-auto-flow:row!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-auto-columns:auto!important;gap:1.1rem!important;max-width:1180px;margin:0 auto!important;border:0!important;border-radius:0!important;background:none!important;overflow:visible!important}
 body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__item,body .lof-section.lof-impact.lof-impact.lof-impact .lof-impact__item:first-child{display:flex!important;flex-direction:column-reverse!important;align-items:center!important;justify-content:flex-end!important;gap:.55rem!important;text-align:center!important;min-width:0;padding:1.9rem 1.1rem 1.7rem!important;border:1px solid rgba(252,246,225,.16)!important;border-radius:20px!important;background:rgba(252,246,225,.06)!important;box-shadow:none}
@@ -1281,18 +1052,14 @@ body .lof-section.lof-impact.lof-impact.lof-impact:not(.lof-impact--strip) .lof-
 .lof-single.type-lof_story .lofm__videos{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:620px!important;margin:0 auto 2.5rem!important}
 .lof-single.type-lof_story .lofm__video,.lof-single.type-lof_story .lofm__item{min-width:0!important}
 .lof-single.type-lof_story .lofm__item img,.lof-single.type-lof_story .lofm__video video{max-width:100%}
-
 /* 0.63.14 Rosemary photo keeps her whole head in frame; one figures note everywhere (About included) */
 img[src*="story-rosemary-fruit-stall"]{object-position:50% 0%!important}
 .lof-tone-earth.lof-impact .lof-container::after,body .lof-section.lof-impact.lof-impact.lof-impact .lof-container::after{content:"Figures supplied by the foundation (November 2026)";display:block;margin-top:1.4rem;text-align:center;font-size:.85rem;opacity:.72}
-
 /* 0.63.15 Rosemary portrait as main photo: keep her face centred in wide crops */
 img[src*="story-rosemary-portrait"]{object-position:50% 30%!important}
-
 /* 0.63.16 Precious: only the approved photos (guardian/home photo hidden); portrait figure for Meshack and Silvester */
 .lofm__item:has(img[src*="edu-precious-guardian"]){display:none!important}
 .lof-single.type-lof_story .lof-single__body figure.lof-fig-portrait img{aspect-ratio:auto!important;width:auto!important;max-width:100%;max-height:640px;margin:0 auto;object-fit:contain!important}
-
 /* ===================== 0.64.0 home redesign (slider, impact, stories, give, partners, shop) ===================== */
 /* --- 0.64.0 slider: cinematic, refined type, smooth crossfade, polished dock --- */
 .lof-cine__slide{transition:opacity 1.1s cubic-bezier(.4,0,.2,1),visibility 1.1s!important}
@@ -1326,21 +1093,12 @@ img[src*="story-rosemary-portrait"]{object-position:50% 30%!important}
 .lof-cine__btn:focus,.lof-cine__tab:focus{outline:none;box-shadow:none;background-color:transparent}
 .lof-cine__btn:focus-visible,.lof-cine__tab:focus-visible{outline:2px solid #FBD62B!important;outline-offset:2px;box-shadow:none!important}
 .lof-cine__btn:focus:not(:hover),.lof-cine__btn:active{color:#fff!important}
-@media (max-width:640px){
- .lof-cine__eyebrow{font-size:.7rem!important;letter-spacing:.16em!important}
- .lof-cine__eyebrow::before{width:18px}
- .lof-cine__title{font-size:clamp(1.6rem,7vw,2rem)!important;line-height:1.1!important}
- .lof-cine__text{font-size:.92rem!important}
- .lof-cine .lof-btn-row .lof-btn{min-height:46px;padding-inline:1.1rem;font-size:.9rem}
- .lof-cine__tab .lof-cine__bar{height:3px!important}
- .lof-cine__btn{width:36px;height:36px}
-}
+@media (max-width:640px){.lof-cine__eyebrow{font-size:.7rem!important;letter-spacing:.16em!important}.lof-cine__eyebrow::before{width:18px}.lof-cine__title{font-size:clamp(1.6rem,7vw,2rem)!important;line-height:1.1!important}.lof-cine__text{font-size:.92rem!important}.lof-cine .lof-btn-row .lof-btn{min-height:46px;padding-inline:1.1rem;font-size:.9rem}.lof-cine__tab .lof-cine__bar{height:3px!important}.lof-cine__btn{width:36px;height:36px}}
 @media (prefers-reduced-motion:reduce){.lof-cine__slide{transition:none!important}.lof-cine__media img,.lof-cine__slide.is-active .lof-cine__media img{transform:none!important;transition:none!important}.lof-cine .lof-btn-row .lof-btn:hover{transform:none}}
 /* Figures card under the slider: crisp, balanced */
 .lof-figbar__grid{border-radius:20px!important;box-shadow:0 24px 50px -32px rgba(43,29,14,.5)!important;border:1px solid var(--lof-line)}
 .lof-figbar__grid dd{letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .lof-figbar__grid dt{letter-spacing:.12em!important;font-size:.72rem!important}
-
 /* --- 0.64.0 impact figures: professional numerals, hairline dividers, gold accent (Home, About, Impact, strips) --- */
 html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:1px!important;max-width:1180px;margin:0 auto!important;padding:0!important;border:1px solid rgba(252,246,225,.14)!important;border-radius:22px!important;background:rgba(252,246,225,.14)!important;overflow:hidden!important}
 html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item,html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item:first-child{position:relative;display:flex!important;flex-direction:column-reverse!important;align-items:flex-start!important;justify-content:flex-end!important;gap:.7rem!important;min-height:168px;text-align:left!important;padding:2rem 1.6rem 1.8rem!important;border:0!important;border-radius:0!important;background:#4A3017!important;box-shadow:none!important;transition:background .3s}
@@ -1363,7 +1121,6 @@ html body .lof-section.lof-impact.lof-impact--strip.lof-impact.lof-impact .lof-i
 html body .lof-section.lof-impact.lof-impact--strip.lof-impact.lof-impact .lof-impact__value{font-size:clamp(2rem,2.8vw,2.6rem)!important}
 @media (max-width:991px){html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;border-radius:18px!important}html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item,html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item:first-child{min-height:136px;padding:1.5rem 1.2rem 1.35rem!important}}
 @media (max-width:640px){html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item,html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item:first-child{min-height:124px;padding:1.3rem .95rem 1.15rem!important;gap:.55rem!important}html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item::before{left:.95rem;width:26px}html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__value{font-size:clamp(1.75rem,8vw,2.2rem)!important}html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__label{font-size:.68rem!important;letter-spacing:.04em!important}}
-
 /* --- 0.64.0 stories: balanced editorial cards (Home, Impact, Stories archive) --- */
 html body .lof-section.lof-stories.lof-stories .lof-grid.lof-grid--3{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:auto!important;gap:1.6rem!important;align-items:stretch!important}
 html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:first-child,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:not(:first-child){position:relative!important;grid-row:auto!important;grid-column:auto!important;display:flex!important;flex-direction:column!important;min-height:0!important;height:100%;margin:0!important;padding:0!important;color:inherit!important;background:#fff!important;border:1px solid var(--lof-line)!important;border-radius:20px!important;overflow:hidden!important;box-shadow:0 18px 40px -34px rgba(43,29,14,.55)!important;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
@@ -1405,7 +1162,6 @@ html body .lof-section.lof-stories.lof-stories .lof-btn-row--center .lof-btn{bor
 @media (prefers-reduced-motion:reduce){html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__media img{transition:none!important}html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:hover,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:hover .lof-card__media img{transform:none!important}}
 /* Single story: refined top meta and calmer end band (cheap polish) */
 .lof-single.type-lof_story .lof-single__image img{border-radius:20px}
-
 /* --- 0.64.0 Give today on Home: compact, elegant band --- */
 html body .lof-section.lof-give.lof-give--compact{padding-block:clamp(2.5rem,4.5vw,3.5rem)!important}
 .lof-give--compact .lof-give__band{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.2fr);align-items:center;gap:clamp(1.25rem,2.6vw,2.25rem);max-width:1180px;margin:0 auto;padding:clamp(1.1rem,2vw,1.5rem);border-radius:22px;background:rgba(252,246,225,.05);border:1px solid rgba(252,246,225,.14)}
@@ -1416,7 +1172,7 @@ html body .lof-section.lof-give.lof-give--compact{padding-block:clamp(2.5rem,4.5
 .lof-give--compact .lof-section__title{margin:0 0 .4rem!important;font-size:clamp(1.35rem,2.2vw,1.8rem)!important;line-height:1.2!important}
 .lof-give--compact .lof-section__intro{margin:0!important;max-width:46ch;font-size:.95rem!important;line-height:1.55!important;opacity:.88}
 .lof-give__trustline{margin:.6rem 0 0;font-size:.78rem;letter-spacing:.04em;opacity:.7}
-.lof-give__trustline::before{content:"\2713\00a0";color:#F4AF16;font-weight:800}
+.lof-give__trustline::before{content:"✓ ";color:#F4AF16;font-weight:800}
 .lof-give--compact .lof-give__body{margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
 .lof-give--compact .lof-givepanel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.65rem .75rem;align-items:end;margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
 .lof-give--compact .lof-givepanel__step{margin:0!important;padding:0!important;border:0!important;min-width:0}
@@ -1434,7 +1190,38 @@ html body .lof-section.lof-give.lof-give--compact{padding-block:clamp(2.5rem,4.5
 .lof-give--compact .lof-givepanel__submit:focus-visible{outline:2px solid #FBD62B;outline-offset:3px}
 @media (min-width:641px) and (max-width:991px){.lof-give--compact .lof-give__band{grid-template-columns:auto minmax(0,1fr)}.lof-give--compact .lof-give__body{grid-column:1/-1}}
 @media (max-width:640px){.lof-give--compact .lof-give__band{grid-template-columns:1fr;padding:1.1rem;gap:1rem}.lof-give--compact .lof-give__thumb{display:none}.lof-give--compact .lof-givepanel{grid-template-columns:1fr}.lof-give--compact .lof-givepanel__submit{width:100%}}
-
+/* --- 0.67.0 Give today on Home: compact cream card (no dark band). Same form, fields and action; readable labels (WCAG AA); amounts in one even row. --- */
+html body .lof-section.lof-give.lof-give--compact{background:#FCF6E1!important;color:#2B1D0E!important;padding-block:clamp(2.75rem,5vw,4rem)!important}
+html body .lof-give--compact .lof-give__band{grid-template-columns:auto minmax(0,1fr) minmax(0,1.25fr);gap:clamp(1.25rem,2.8vw,2.5rem);max-width:1160px;padding:clamp(1.25rem,2.4vw,2rem);background:#fff;border:1px solid rgba(92,61,30,.12);border-radius:24px;box-shadow:0 30px 60px -44px rgba(43,29,14,.55)}
+html body .lof-give--compact .lof-give__thumb{width:clamp(104px,10vw,140px);border-radius:18px;box-shadow:0 0 0 4px #FCF6E1,0 0 0 5px rgba(244,175,22,.55)}
+html body .lof-give--compact .lof-eyebrow{display:inline-flex;align-items:center;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;color:#8A5208!important;font-size:.76rem!important;letter-spacing:.16em}
+html body .lof-give--compact .lof-section__title{color:#3F2913!important}
+html body .lof-give--compact .lof-section__intro{color:#4A3520!important;opacity:1}
+html body .lof-give--compact .lof-give__trustline{color:#5b4a3a;opacity:1;font-weight:600}
+html body .lof-give--compact .lof-givepanel{grid-template-columns:minmax(0,1fr) auto;gap:.9rem .75rem;padding:clamp(1rem,1.8vw,1.35rem)!important;background:#FCF6E1!important;border:1px solid rgba(92,61,30,.1)!important;border-radius:18px;color:#2B1D0E}
+html body .lof-give--compact .lof-givepanel__step legend{display:flex;align-items:center;gap:.5rem;color:#6E4508!important;opacity:1;font-size:.74rem!important}
+html body .lof-give--compact .lof-givepanel__step legend span{display:inline-grid!important;place-items:center;width:20px;height:20px;border-radius:50%;background:#F4AF16;color:#2B1D0E;font-size:.7rem;letter-spacing:0}
+html body .lof-give--compact .lof-givepanel__step + .lof-givepanel__step{padding-top:0!important;border-top:0!important}
+html body .lof-give--compact .lof-give__amounts{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:.5rem!important}
+html body .lof-give--compact .lof-givepanel .lof-chip{display:flex;align-items:center;justify-content:center;min-width:0;min-height:46px!important;padding:.4rem .5rem!important;border-radius:12px!important;background:#fff;border:1.5px solid rgba(63,41,19,.22);color:#2E1E0E;text-align:center;white-space:nowrap;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+html body .lof-give--compact .lof-givepanel .lof-chip strong{font-family:var(--lof-font-display);font-size:.9rem!important;font-weight:800}
+html body .lof-give--compact .lof-givepanel .lof-chip > span{display:none}
+html body .lof-give--compact .lof-givepanel .lof-chip:hover{border-color:#DC8C13}
+html body .lof-give--compact .lof-givepanel .lof-chip:has(input:checked){background:#3F2913;border-color:#3F2913;color:#FCF6E1}
+html body .lof-give--compact .lof-givepanel .lof-chip:has(input:focus-visible){outline:2px solid #DC8C13;outline-offset:2px}
+html body .lof-give--compact .lof-givepanel .lof-chip--other{border-style:dashed}
+html body .lof-give--compact .lof-givepanel__other label{color:#5C3B1C;font-weight:700;font-size:.85rem}
+html body .lof-give--compact .lof-givepanel select,html body .lof-give--compact .lof-givepanel__kes{width:100%;background-color:#fff;border:1.5px solid rgba(63,41,19,.22);color:#2B1D0E}
+html body .lof-give--compact .lof-givepanel__submit{align-self:end;min-height:48px}
+html[data-theme="dark"] body .lof-section.lof-give.lof-give--compact{background:var(--lof-bg)!important;color:var(--lof-text,#FCF6E1)!important}
+html[data-theme="dark"] body .lof-give--compact .lof-give__band{background:var(--lof-surface,#2a1d10);border-color:rgba(252,246,225,.12)}
+html[data-theme="dark"] body .lof-give--compact .lof-give__thumb{box-shadow:0 0 0 4px var(--lof-surface,#2a1d10),0 0 0 5px rgba(244,175,22,.55)}
+html[data-theme="dark"] body .lof-give--compact .lof-section__title{color:#FCF6E1!important}
+html[data-theme="dark"] body .lof-give--compact .lof-section__intro,html[data-theme="dark"] body .lof-give--compact .lof-give__trustline{color:rgba(252,246,225,.82)!important}
+html[data-theme="dark"] body .lof-give--compact .lof-eyebrow{color:#F4AF16!important}
+@media (min-width:641px) and (max-width:991px){html body .lof-give--compact .lof-give__band{grid-template-columns:auto minmax(0,1fr)}html body .lof-give--compact .lof-give__body{grid-column:1/-1}}
+@media (max-width:640px){html body .lof-give--compact .lof-give__band{grid-template-columns:1fr;padding:1.1rem;gap:1rem;border-radius:20px}html body .lof-give--compact .lof-givepanel{grid-template-columns:1fr;padding:.9rem!important}html body .lof-give--compact .lof-give__amounts{grid-template-columns:repeat(3,minmax(0,1fr))!important}html body .lof-give--compact .lof-givepanel .lof-chip strong{font-size:.86rem!important}html body .lof-give--compact .lof-givepanel__submit{width:100%}}
+@media (prefers-reduced-motion:reduce){html body .lof-give--compact .lof-givepanel .lof-chip{transition:none}}
 /* --- 0.64.0 partners: full-colour logos on balanced white tiles --- */
 html body .lof-section.lof-partners-sec{padding-block:clamp(3rem,5vw,4.25rem)!important}
 html body .lof-partners-sec .lof-partners.lof-partners--tiles{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(220px,280px));justify-content:center;gap:1.25rem!important;max-width:1180px;margin:0 auto!important;padding:0!important;list-style:none}
@@ -1445,7 +1232,6 @@ html body .lof-partners-sec .lof-partners img,html body .lof-partners-sec .lof-p
 html body .lof-partners-sec .lof-section__head{margin-bottom:1.75rem!important}
 @media (max-width:640px){html body .lof-partners-sec .lof-partners.lof-partners--tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem!important}html body .lof-partners-sec .lof-partners__tile{min-height:112px;padding:1rem}html body .lof-partners-sec .lof-partners img{max-height:68px!important}}
 @media (prefers-reduced-motion:reduce){html body .lof-partners-sec .lof-partners__tile{transition:none}html body .lof-partners-sec .lof-partners__tile:hover{transform:none}}
-
 /* --- 0.64.0 Shop with purpose: placed straight after the slider (Cistern of Hope pattern), cream band, one row of four --- */
 html body .lof-market{padding-block:clamp(3.25rem,6vw,5rem)!important;background:var(--lof-cream,#FCF6E1)!important}
 html[data-theme="dark"] body .lof-market{background:var(--lof-bg)!important}
@@ -1456,7 +1242,7 @@ html body .lof-market .lof-market__eyebrow{display:inline-flex;align-items:cente
 html body .lof-market .lof-market__eyebrow::before{content:"";width:28px;height:2px;border-radius:2px;background:#F4AF16}
 html body .lof-market .lof-market__title{margin:0 0 .55rem!important;font-size:clamp(1.65rem,3vw,2.4rem)!important;line-height:1.15!important;letter-spacing:-.015em;text-wrap:balance}
 html body .lof-market .lof-market__intro{margin:0!important;color:var(--lof-muted)!important;font-size:1rem!important;line-height:1.6}
-html body .lof-market .lof-market__all{display:inline-flex;align-items:center;gap:.45rem;flex:none;padding:.7rem 1.2rem;border-radius:999px;border:1.5px solid #5C3D1E;color:#5C3D1E!important;font-weight:800;font-size:.92rem;text-decoration:none;transition:background .25s,color .25s}
+html body .lof-market .lof-market__all{display:inline-flex;align-items:center;gap:.45rem;flex:none;padding:.7rem 1.2rem;border-radius:999px;border:1.5px solid #5C3D1E;font-weight:800;font-size:.92rem;text-decoration:none;transition:background .25s,color .25s}
 html body .lof-market .lof-market__all:hover{background:#5C3D1E;color:#fff!important}
 html body .lof-market .lof-market__grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:1.25rem!important;margin:0!important;padding:0!important;list-style:none}
 html body .lof-market .lof-market__card,html body .lof-market .lof-market__card.is-lead{grid-column:auto!important;grid-row:auto!important;display:flex!important;flex-direction:column!important;background:#fff!important;border:1px solid var(--lof-line)!important;border-radius:18px!important;overflow:hidden!important;box-shadow:0 16px 36px -30px rgba(43,29,14,.5)!important;transition:transform .3s,box-shadow .3s}
@@ -1469,20 +1255,17 @@ html body .lof-market .lof-market__price{margin:0!important;font-weight:800;colo
 html body .lof-market .lof-market__actions{margin-top:auto!important;padding-top:.5rem}
 html body .lof-market .lof-market__trust{display:flex!important;flex-wrap:wrap;justify-content:center;gap:.6rem 2rem;margin:clamp(1.5rem,3vw,2rem) 0 0!important;padding:1rem 1.25rem!important;list-style:none;border-top:1px solid var(--lof-line);background:none!important}
 html body .lof-market .lof-market__trust li{display:flex!important;align-items:center;gap:.5rem;padding:0!important;margin:0!important;background:none!important;border:0!important;box-shadow:none!important}
-html body .lof-market .lof-market__trust li::before{content:"\2713";color:#DC8C13;font-weight:800}
+html body .lof-market .lof-market__trust li::before{content:"✓";color:#DC8C13;font-weight:800}
 html body .lof-market .lof-market__trust strong{font-size:.88rem!important}
-html body .lof-market .lof-market__trust span{display:none!important}
+html body .lof-market .lof-market__trust:not(.lof-market__trust--v2) span{display:none!important}
 @media (min-width:641px) and (max-width:991px){html body .lof-market .lof-market__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media (max-width:640px){html body .lof-market .lof-market__head{flex-direction:column;align-items:flex-start!important}html body .lof-market .lof-market__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.75rem!important}html body .lof-market .lof-market__body{padding:.8rem .8rem .9rem!important}html body .lof-market .lof-market__name{font-size:.92rem!important}html body .lof-market .lof-market__trust{justify-content:flex-start;flex-direction:column;gap:.45rem}}
 @media (prefers-reduced-motion:reduce){html body .lof-market .lof-market__card{transition:none}html body .lof-market .lof-market__card:hover{transform:none}}
-
-
 /* 0.65.0 About + Leadership */
 /* --- No sticky in-page chip bars: the generated "On this page" (About) and "Jump to" (Leadership) bars are no longer built; hide any cached copy and never let them stick. --- */
 html body.lof-page-about-us .lof-jump,html body.lof-page-leadership .lof-jump{display:none!important;position:static!important}
 html body.lof-page-about-us .lof-feature__media,html body.lof-page-about-us .lof-section__head{position:relative!important;top:auto!important}
 html body.lof-page-about-us .lof-section .lof-section__head{position:static!important}
-
 /* --- Shared rhythm and type hierarchy (consistent with the 0.64.0 home) --- */
 html body.lof-page-about-us main .lof-section:not(.lof-impact):not(.lof-hero):not(.lof-cta),html body.lof-page-leadership main .lof-section:not(.lof-impact):not(.lof-hero):not(.lof-cta){padding-block:clamp(3.25rem,6.5vw,5.5rem)!important}
 html body.lof-page-about-us .lof-section .lof-section__head,html body.lof-page-leadership .lof-section .lof-section__head{max-width:720px!important;margin:0 auto clamp(1.9rem,3.6vw,2.75rem)!important;padding-bottom:0!important;border-bottom:0!important}
@@ -1490,7 +1273,6 @@ html body.lof-page-about-us .lof-section .lof-section__title,html body.lof-page-
 html body.lof-page-about-us .lof-section .lof-section__intro,html body.lof-page-leadership .lof-section .lof-section__intro{max-width:60ch;margin-inline:auto!important;color:var(--lof-muted)!important;font-size:1.02rem!important;line-height:1.65!important}
 html body.lof-page-about-us .lof-section .lof-eyebrow,html body.lof-page-leadership .lof-section .lof-eyebrow{font-size:.76rem!important;letter-spacing:.18em!important}
 html body.lof-page-about-us .lof-section > .lof-container > hr,html body.lof-page-leadership .lof-section > .lof-container > hr{display:none}
-
 /* ===== ABOUT US ===== */
 /* Our story: balanced two columns, framed portrait photo, readable measure */
 html body.lof-page-about-us section.lof-feature--about .lof-feature__grid{display:grid!important;grid-template-columns:minmax(0,5fr) minmax(0,6fr)!important;gap:clamp(2rem,5vw,4.5rem)!important;align-items:center!important;max-width:1140px;margin-inline:auto}
@@ -1501,7 +1283,6 @@ html body.lof-page-about-us section.lof-feature--about .lof-feature__media figca
 html body.lof-page-about-us section.lof-feature--about .lof-feature__body{max-width:60ch}
 html body.lof-page-about-us section.lof-feature--about .lof-prose > p{font-size:1.02rem;line-height:1.75;margin:0 0 1rem!important;padding-left:0!important;border-left:0!important}
 html body.lof-page-about-us section.lof-feature--about .lof-prose > p::before{display:none!important}
-
 /* What guides us: heading and statement side by side, vision/mission as two equal cards */
 html body.lof-page-about-us .lof-intro .lof-intro__grid{display:grid!important;grid-template-columns:minmax(0,5fr) minmax(0,7fr)!important;gap:clamp(1.5rem,4vw,4rem)!important;align-items:start!important;max-width:1140px;margin:0 auto clamp(2rem,4vw,2.75rem)!important}
 html body.lof-page-about-us .lof-intro .lof-intro__title{margin:0!important}
@@ -1512,33 +1293,28 @@ html body.lof-page-about-us .lof-intro .lof-intro__band{display:grid!important;g
 html body.lof-page-about-us .lof-intro .lof-intro__panel{position:relative;height:100%;max-width:none!important;margin:0!important;padding:clamp(1.5rem,3vw,2.1rem)!important;border:1px solid var(--lof-line)!important;border-top:3px solid #F4AF16!important;border-radius:20px!important;background:var(--lof-surface,#fff)!important;box-shadow:0 18px 40px -32px rgba(43,29,14,.5)!important}
 html body.lof-page-about-us .lof-intro .lof-intro__panel h3{margin:.35rem 0 .6rem!important;font-size:clamp(1.12rem,1.5vw,1.3rem)!important;line-height:1.3}
 html body.lof-page-about-us .lof-intro .lof-intro__panel p:not(.lof-eyebrow){margin:0!important;font-size:1rem!important;line-height:1.7!important;color:var(--lof-muted)}
-
 /* Our values: 4 per row, the last row centred (no orphan gap), equal-height numbered cards */
 html body.lof-page-about-us .lof-tone-sand .lof-grid--4{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:clamp(1rem,2vw,1.5rem)!important;max-width:1180px;margin-inline:auto}
 html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex:0 0 calc((100% - 3 * clamp(1rem,2vw,1.5rem)) / 4);max-width:calc((100% - 3 * clamp(1rem,2vw,1.5rem)) / 4);margin:0!important;padding:4.25rem 1.5rem 1.6rem!important;border-radius:20px!important;border:1px solid var(--lof-line)!important;background:var(--lof-surface,#fff)!important;box-shadow:0 18px 40px -32px rgba(43,29,14,.5)!important}
 html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar::after{top:1.4rem!important;left:1.5rem!important;width:40px!important;height:40px!important}
 html body.lof-page-about-us .lof-tone-sand .lof-grid--4 .lof-card__title{font-size:1.08rem!important;line-height:1.3!important;margin:0 0 .5rem!important;text-wrap:balance}
 html body.lof-page-about-us .lof-tone-sand .lof-grid--4 .lof-card--pillar p{margin:0!important;font-size:.95rem!important;line-height:1.65!important}
-
 /* Our objectives: one clean list card, centred, gold number tiles */
 html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3{max-width:1040px!important;border-radius:24px!important;box-shadow:0 26px 56px -40px rgba(43,29,14,.55)!important}
 html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 > .lof-card--pillar{min-height:0!important;padding:1.5rem 1.75rem!important}
 html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 .lof-card__kicker{width:48px!important;height:48px!important;border-radius:14px!important;font-size:.98rem!important}
 html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 .lof-card__title{font-size:1.1rem!important;margin:.15rem 0 .3rem!important}
 html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 > .lof-card--pillar p{font-size:.97rem!important}
-
 /* Founder: card stays in place while scrolling (no sticky photo), photo and text balanced */
 html body.lof-page-about-us section.lof-feature--story .lof-feature__grid{max-width:1140px;margin-inline:auto;border-radius:28px!important;box-shadow:0 34px 70px -46px rgba(43,29,14,.6)!important}
 html body.lof-page-about-us section.lof-feature--story .lof-feature__media{position:relative!important;top:auto!important}
 html body.lof-page-about-us section.lof-feature--story .lof-quote{border-radius:16px!important}
-
 /* Registration and contacts: one clean card of four equal columns */
 html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;max-width:1140px;margin-inline:auto;border-radius:22px!important;overflow:hidden;box-shadow:0 22px 48px -38px rgba(43,29,14,.5)!important}
 html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar{padding:1.6rem 1.5rem!important;border-right:1px solid var(--lof-card-line,var(--lof-line))!important;border-bottom:0!important}
 html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:last-child{border-right:0!important}
 html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar p{font-size:.97rem!important;line-height:1.6!important;margin:0!important}
 html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card__link{display:inline-flex;margin-top:.75rem;font-size:.82rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-
 /* ===== LEADERSHIP ===== */
 /* Founder profile card: balanced photo + text */
 html body.lof-page-leadership .lof-leaders--executive .lof-people--row{max-width:1000px!important;margin-inline:auto!important}
@@ -1547,7 +1323,6 @@ html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-pers
 html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo img{width:100%!important;height:100%!important;min-height:0!important;object-fit:cover!important;object-position:center 20%!important}
 html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__info{display:flex!important;flex-direction:column;justify-content:center;gap:.5rem;padding:clamp(1.75rem,4vw,3rem)!important}
 html body.lof-page-leadership .lof-leaders--executive .lof-person__bio{font-size:1rem!important;line-height:1.7!important}
-
 /* Board and programme leads: one card size; 4 / 3 / 2 / 1 per row by width, shorter rows centred */
 html body.lof-page-leadership .lof-leaders--board .lof-grid,html body.lof-page-leadership .lof-leaders--team .lof-grid{--lof-pg:clamp(1rem,2vw,1.5rem);display:flex!important;flex-wrap:wrap!important;justify-content:center!important;align-items:stretch!important;gap:var(--lof-pg)!important;max-width:1180px!important;margin-inline:auto!important;grid-template-columns:none!important}
 html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex:0 0 calc((100% - 3 * var(--lof-pg)) / 4)!important;max-width:calc((100% - 3 * var(--lof-pg)) / 4)!important;width:auto!important;margin:0!important;display:flex!important;flex-direction:column!important;border-radius:20px!important;border:1px solid var(--lof-line)!important;background:var(--lof-surface,#fff)!important;overflow:hidden!important;box-shadow:0 16px 36px -30px rgba(43,29,14,.5)!important}
@@ -1560,55 +1335,19 @@ html body.lof-page-leadership .lof-leaders--board .lof-person__role,html body.lo
 html body.lof-page-leadership .lof-leaders--board .lof-person__bio,html body.lof-page-leadership .lof-leaders--team .lof-person__bio{margin-top:.15rem!important;font-size:.9rem!important;line-height:1.6!important;color:var(--lof-muted)!important}
 html body.lof-page-leadership .lof-leaders .lof-person__more{align-self:flex-start;margin-top:auto!important;padding-top:.4rem!important}
 html[data-theme="dark"] body.lof-page-leadership .lof-leaders .lof-person__board{color:#F4AF16!important}
-
 /* Governance steps and accountability cards */
 html body.lof-page-leadership .lof-steps{max-width:1140px;margin-inline:auto;border-radius:22px!important;overflow:hidden}
 html body.lof-page-leadership .lof-tone-white .lof-grid--3:not(.lof-people--grid):not(.lof-people--row){max-width:1080px;margin-inline:auto;gap:clamp(1rem,2vw,1.5rem)!important;align-items:stretch}
 html body.lof-page-leadership .lof-tone-white .lof-grid--3 > .lof-card--pillar{height:100%;padding:1.6rem 1.5rem!important;border-radius:20px!important}
-
 /* ===== Breakpoints ===== */
-@media (min-width:992px) and (max-width:1199px){
-html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex-basis:calc((100% - 2 * var(--lof-pg)) / 3)!important;max-width:calc((100% - 2 * var(--lof-pg)) / 3)!important}
-html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex-basis:calc((100% - 2 * clamp(1rem,2vw,1.5rem)) / 3);max-width:calc((100% - 2 * clamp(1rem,2vw,1.5rem)) / 3)}
-}
-@media (max-width:991px){
-html body.lof-page-about-us section.lof-feature--about .lof-feature__grid,html body.lof-page-about-us .lof-intro .lof-intro__grid{grid-template-columns:1fr!important}
-html body.lof-page-about-us section.lof-feature--about .lof-feature__media{max-width:560px!important;margin-inline:auto!important}
-html body.lof-page-about-us section.lof-feature--about .lof-feature__media img{aspect-ratio:4/3!important;max-height:none}
-html body.lof-page-about-us section.lof-feature--about .lof-feature__body{max-width:none}
-html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex-basis:calc((100% - clamp(1rem,2vw,1.5rem)) / 2);max-width:calc((100% - clamp(1rem,2vw,1.5rem)) / 2)}
-html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar{border-right:0!important;border-bottom:1px solid var(--lof-card-line,var(--lof-line))!important}
-html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:nth-child(odd){border-right:1px solid var(--lof-card-line,var(--lof-line))!important}
-html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:nth-last-child(-n+2){border-bottom:0!important}
-html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex-basis:calc((100% - var(--lof-pg)) / 2)!important;max-width:calc((100% - var(--lof-pg)) / 2)!important}
-html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:minmax(0,2fr) minmax(0,3fr)!important}
-}
-@media (max-width:760px){
-html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:1fr!important}
-html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo{aspect-ratio:4/3.6!important}
-}
-@media (max-width:640px){
-html body.lof-page-about-us .lof-intro .lof-intro__band{grid-template-columns:1fr!important}
-html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex-basis:100%;max-width:100%}
-html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid{grid-template-columns:1fr!important}
-html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar,html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:nth-child(odd){border-right:0!important;border-bottom:1px solid var(--lof-card-line,var(--lof-line))!important}
-html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:last-child{border-bottom:0!important}
-html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex-basis:100%!important;max-width:360px!important}
-html body.lof-page-leadership .lof-leaders--board .lof-grid,html body.lof-page-leadership .lof-leaders--team .lof-grid{flex-direction:column!important;align-items:center!important}
-html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{width:100%!important}
-}
+@media (min-width:992px) and (max-width:1199px){html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex-basis:calc((100% - 2 * var(--lof-pg)) / 3)!important;max-width:calc((100% - 2 * var(--lof-pg)) / 3)!important}html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex-basis:calc((100% - 2 * clamp(1rem,2vw,1.5rem)) / 3);max-width:calc((100% - 2 * clamp(1rem,2vw,1.5rem)) / 3)}}
+@media (max-width:991px){html body.lof-page-about-us section.lof-feature--about .lof-feature__grid,html body.lof-page-about-us .lof-intro .lof-intro__grid{grid-template-columns:1fr!important}html body.lof-page-about-us section.lof-feature--about .lof-feature__media{max-width:560px!important;margin-inline:auto!important}html body.lof-page-about-us section.lof-feature--about .lof-feature__media img{aspect-ratio:4/3!important;max-height:none}html body.lof-page-about-us section.lof-feature--about .lof-feature__body{max-width:none}html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex-basis:calc((100% - clamp(1rem,2vw,1.5rem)) / 2);max-width:calc((100% - clamp(1rem,2vw,1.5rem)) / 2)}html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar{border-right:0!important;border-bottom:1px solid var(--lof-card-line,var(--lof-line))!important}html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:nth-child(odd){border-right:1px solid var(--lof-card-line,var(--lof-line))!important}html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:nth-last-child(-n/**/+2){border-bottom:0!important}html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex-basis:calc((100% - var(--lof-pg)) / 2)!important;max-width:calc((100% - var(--lof-pg)) / 2)!important}html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:minmax(0,2fr) minmax(0,3fr)!important}}
+@media (max-width:760px){html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:1fr!important}html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo{aspect-ratio:4/3.6!important}}
+@media (max-width:640px){html body.lof-page-about-us .lof-intro .lof-intro__band{grid-template-columns:1fr!important}html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex-basis:100%;max-width:100%}html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid{grid-template-columns:1fr!important}html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar,html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:nth-child(odd){border-right:0!important;border-bottom:1px solid var(--lof-card-line,var(--lof-line))!important}html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:last-child{border-bottom:0!important}html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex-basis:100%!important;max-width:360px!important}html body.lof-page-leadership .lof-leaders--board .lof-grid,html body.lof-page-leadership .lof-leaders--team .lof-grid{flex-direction:column!important;align-items:center!important}html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{width:100%!important}}
 @media (max-width:991px) and (min-width:641px){html body.lof-page-about-us .lof-intro .lof-intro__band{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media (prefers-reduced-motion:reduce){html body.lof-page-leadership .lof-leaders .lof-person,html body.lof-page-about-us .lof-card--pillar{transition:none!important}html body.lof-page-leadership .lof-leaders .lof-person:hover,html body.lof-page-about-us .lof-card--pillar:hover{transform:none!important}}
-
 /* 0.65.1 Phone polish: shorter leader portraits, WhatsApp teaser kept clear of content */
-@media (max-width:640px){
-html body.lof-page-leadership .lof-leaders--board .lof-person__photo,html body.lof-page-leadership .lof-leaders--team .lof-person__photo{aspect-ratio:1/1!important;max-height:300px!important}
-html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:1fr!important}
-html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo{aspect-ratio:4/3!important;max-height:320px!important}
-html body .lof-chat__teaser{max-width:min(240px,calc(100vw - 96px))!important;font-size:.86rem!important}
-}
-
+@media (max-width:640px){html body.lof-page-leadership .lof-leaders--board .lof-person__photo,html body.lof-page-leadership .lof-leaders--team .lof-person__photo{aspect-ratio:1/1!important;max-height:300px!important}html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:1fr!important}html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo{aspect-ratio:4/3!important;max-height:320px!important}html body .lof-chat__teaser{max-width:min(240px,calc(100vw - 96px))!important;font-size:.86rem!important}}
 /* 0.65.2 Shop trust points: three balanced cards with icons (Handmade in Kenya, Shopping that gives back, Easy WhatsApp ordering); Visit the shop label always visible */
 html body .lof-market .lof-market__trust.lof-market__trust--v2{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.75rem,1.6vw,1.25rem);margin:clamp(1.75rem,3.4vw,2.5rem) 0 0!important;padding:0!important;border:0!important;list-style:none;background:none!important}
 html body .lof-market .lof-market__trust--v2 li{display:flex!important;align-items:flex-start;gap:.9rem;padding:1.15rem 1.25rem!important;margin:0!important;background:#fff!important;border:1px solid rgba(92,61,30,.10)!important;border-radius:18px!important;box-shadow:0 14px 32px -28px rgba(43,29,14,.55)!important;text-align:left;transition:transform .25s ease,box-shadow .25s ease}
@@ -1628,12 +1367,6 @@ html[data-theme="dark"] body .lof-market .lof-market__trust--v2 strong{color:#FC
 html[data-theme="dark"] body .lof-market .lof-market__trust--v2 .lof-market__txt > span{color:rgba(252,246,225,.75)}
 @media (max-width:991px){html body .lof-market .lof-market__trust.lof-market__trust--v2{grid-template-columns:1fr;max-width:560px;margin-inline:auto!important}}
 @media (prefers-reduced-motion:reduce){html body .lof-market .lof-market__trust--v2 li{transition:none}html body .lof-market .lof-market__trust--v2 li:hover{transform:none}}
-
-/* 0.65.3 Fix: the 0.64.0 rule ".lof-market__trust span{display:none!important}" hid the 0.65.2 icon and text wrappers (both are spans), leaving empty cards */
-html body .lof-market .lof-market__trust.lof-market__trust--v2 li > span.lof-market__ico{display:inline-flex!important}
-html body .lof-market .lof-market__trust.lof-market__trust--v2 li > span.lof-market__txt{display:flex!important;flex-direction:column}
-html body .lof-market .lof-market__trust.lof-market__trust--v2 li > span.lof-market__txt > span{display:block!important}
-
 /* 0.66.0 Home: no figures card under the slider (the full "Our impact" section shows the figures). The slider no longer reserves space for the floating card, and an emptied strip wrapper takes no room, so the slider runs straight into Shop with purpose. */
 @media (min-width:761px){html body.home .lof-cine.lof-cine--nofig .lof-cine__ui{padding-bottom:clamp(1.1rem,3vh,1.8rem)!important}html body.home .lof-cine.lof-cine--nofig .lof-cine__inner{padding-bottom:clamp(5.5rem,13vh,8rem)!important}}
 html body.home .lof-figbar{display:none!important}

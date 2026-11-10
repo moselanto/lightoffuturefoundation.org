@@ -1,9 +1,10 @@
 # HANDOVER - Light of Future Foundation website (single source of truth)
 
-**Status as of 10 Nov 2026, theme `light-of-future` 0.66.0 + plugin `light-of-future-core` 0.46.5 (both on `main`).** This is the one current document. History is in `CHANGELOG.md` (one entry per release), not here. When you release, update section 1 ("Status") and section 9 ("Pending") and prepend a CHANGELOG entry.
+**Status as of 10 Nov 2026, theme `light-of-future` 0.67.0 + plugin `light-of-future-core` 0.46.5 (both on `main`).** This is the one current document. History is in `CHANGELOG.md` (one entry per release), not here. When you release, update section 1 ("Status") and section 9 ("Pending") and prepend a CHANGELOG entry.
 
 ## 1. Status
-- **On `main`, to be installed:** theme 0.66.0 (includes 0.64.0-0.65.3) and Core 0.46.5.
+- **On `main`, to be installed:** theme 0.67.0 (includes 0.64.0-0.66.0) and Core 0.46.5.
+- **What 0.67.0 adds:** stylesheet cleanup with no intended visual change (dead overridden declarations removed, verified by script); Home Give today as a cream card; Programmes shows all 11 focus areas with no sideways scrolling; Donate page form card, trust card and other-ways-to-give cards. CSS only. Details in `CHANGELOG.md`.
 - **Live (last verified):** theme 0.63.17 and Core 0.46.4, verified signed out on desktop and at 390px (9 Nov). Theme 0.64.0-0.65.3 were built on 10 Nov; check whether the parent session installed them before assuming what is live.
 - **What 0.66.0 / 0.46.5 add:** KES is the default donation currency (listed first, preselected); the duplicate figures card under the home slider is gone; JSON-LD structured data; Light of Future > Media backup (zip + manifest + 48-hour token links for the server-only media); a guarded one-off that points Rosemary's story at a web-sized video once it is uploaded, and the player prefers `story-{slug}-web.mp4`. Details in `CHANGELOG.md`.
 - **The site is public and indexable.** Theme 0.58 forces indexing on even if "Discourage search engines" is ticked. Never turn noindex back on.
@@ -46,7 +47,7 @@ WordPress + Elementor (free) + Hello Elementor (parent) + child theme `light-of-
 | `inc/story-0613.php` | Front-end story video player (see section 7). |
 | `inc/floating.php` | WhatsApp float, phone bottom navigation. |
 | `inc/performance.php`, `speed-059.php`, `speed-062.php`, `security.php` | Caching/compression, critical CSS, security headers, login lockout, HSTS. |
-| `assets/css/shop.css` (+ `shop.min.css`) | Loads on every front-end page; new CSS is appended here in version blocks (later blocks win). `assets/css/critical/home-*.css` = Home first-paint CSS. `sections.css` = older layered blocks. |
+| `assets/css/shop.css` (+ `shop.min.css`) | Loads on every front-end page. Version blocks in release order (later blocks win); the comment at the top is a component index. Since 0.67.0 put new CSS inside or right after the latest block of its component, not as a new override layer. `sections.css` = older layered blocks. `main`, `sections`, `shop` are served as `.min.css` (speed-059.php) unless SCRIPT_DEBUG: always regenerate the .min file from the source (keep quoted strings intact). `assets/css/critical/home-*.css` = Home first-paint CSS, inlined as is (no .min copies). |
 | `assets/js/main.js`, `shop.js` | Slider, menus, FAQ, giving panel; shop/WhatsApp UI. |
 | `assets/lofm-fix/` | Cleaned gallery photos copied over the media plugin by `upgrade-0642.php`. |
 | `plugins/light-of-future-core/includes/settings.php` | Light of Future > Organisation details (`lof_core_setting()`). |
@@ -89,10 +90,12 @@ One `<script type="application/ld+json" id="lof-schema">` in `wp_head` (priority
 7. **Open the Dashboard once** (runs the one-off upgrades on `admin_init`).
 8. LiteSpeed Cache > Toolbox > **Purge All**. Sign out and check signed out on desktop and at 390px (`/?lof_mobile_preview=light&page=SLUG&w=390`; blank for single stories, use a narrow window).
 
+**0.67.0 checks:** Home Give today card (desktop, 800px tablet, 390px): labels readable, chips in one row, button aligned; Shop with purpose trust cards still show icons and text; /programmes/ all 11 cards, no sideways scroll, focus-area links wrap; /donate/ form card, steps 1-3, KES first, other ways to give cards, a test click on amounts and the anonymous option. Spot-check About, Leadership, Stories, Shop, Gallery and a story page look unchanged after the CSS cleanup.
+
 **0.66.0 / 0.46.5 checks:** Home goes slider > Shop with purpose with no figures card and no gap; inner-page figure strips still show; /donate/ shows KES first and preselected with KES tiers; view source on Home, /donate/ and a story for `lof-schema`; Light of Future > Media backup loads.
 
 ## 9. Pending (priority order)
-1. **Install 0.66.0 + Core 0.46.5** (if 0.64-0.65 were not installed yet, this covers them; the Dashboard visit runs `lof_upgrade_0640_home_order`).
+1. **Install 0.67.0 + Core 0.46.5** (covers 0.64-0.66 if not installed yet; the Dashboard visit runs `lof_upgrade_0640_home_order`). Then do the 0.67.0 checks in section 8.
 2. **Owner to confirm KES as the default donation currency** (done in code, pending confirmation).
 3. **Paystack USD:** a $10 test gave "We could not start the payment". USD must be enabled on the foundation's Paystack account with a USD settlement bank account (requirements PDF sent to Francis on 6 Nov). Payment mode was reported "Not set up" on 8 Nov: confirm live keys and mode before telling anyone card giving works.
 4. **Rosemary web video:** upload `story-rosemary-web.mp4` via the Media Library, open the Dashboard, check her story plays.
@@ -131,7 +134,10 @@ All run on `admin_init` (or `init` in the oldest ones) from files loaded only in
 - The browser automation cannot type long numeric strings into admin fields (treated as card numbers): set such values in code.
 - Never nest `:has()` inside `:has()` in CSS (browsers drop the whole rule).
 - Specificity: 0.64.0 figure rules use `html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact`, stories `.lof-section.lof-stories.lof-stories`; 0.65.0 Leadership/About grids use `html body.lof-page-leadership ...` with `!important`. Override with the same or higher specificity.
-- **The 0.64.0 block hides every `span` inside `.lof-market__trust`** (`display:none!important`); 0.65.3 re-shows the 0.65.2 icon/text spans. Any new span there needs a higher-specificity rule.
+- (0.67.0) The old 0.64.0 span-hiding rule now only applies to non-v2 trust lists (`.lof-market__trust:not(.lof-market__trust--v2) span`); the 0.65.3 workaround is gone.
+- Donate steps are numbered with a CSS counter on `fieldset > .lofpay__label` (scoped to `body.lof-page-donate .lof-pay2__form`); a hidden amounts fieldset does not count. If Core adds a fieldset with a legend, the numbers shift.
+- Programmes grid on /programmes/ is flex (`.lof-grid--3:has(> .lof-card--programme)`, single-level :has) so the last row centres.
+- Home Give today: the section is cream even if the Elementor widget tone is earth (forced in CSS).
 - Home Give today is a compact variant (`lof-give--compact`, filter `lof_give_compact`); /donate/ is unaffected. Home figures card under the slider is hidden by `lof_home_hide_impact_strip` (default true).
 - "Apply latest design" times out silently. Use one-off upgrades.
 - **Never reinstall `light-of-future-media` from the repo** (no photos in git).

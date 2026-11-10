@@ -1,34 +1,32 @@
 /* Light of Future Foundation - section and widget styles v0.5.0 */
-
 /* Section tones */
 .lof-section { padding-block: var(--lof-section); position: relative; overflow: hidden; }
 .lof-section--compact { padding-block: clamp(2.5rem, 5vw, 4rem); }
 .lof-tone-cream { background: var(--lof-bg); }
 .lof-tone-white { background: var(--lof-surface); }
-.lof-tone-sand { background: var(--lof-surface-2); }
 .lof-tone-earth { background: var(--lof-earth); color: var(--lof-cream); }
 .lof-tone-earth .lof-section__title, .lof-tone-earth h3 { color: var(--lof-cream); }
 .lof-tone-earth .lof-eyebrow { color: var(--lof-gold); }
 .lof-tone-earth p { color: rgba(252, 246, 225, .88); }
 .lof-tone-sun { background: linear-gradient(135deg, var(--lof-yellow) 0%, var(--lof-gold) 60%, #E6A01A 100%); }
 .lof-tone-sun .lof-eyebrow { color: var(--lof-heading); }
-
 /* Headings */
-.lof-section__head { max-width: 760px; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.lof-section__head { margin-bottom: clamp(2rem, 4vw, 3rem); }
 .lof-align-center { margin-inline: auto; text-align: center; }
-.lof-section__title { font-size: clamp(1.8rem, 3.6vw, 2.8rem); margin: .35rem 0 .75rem; }
-.lof-section__intro { font-size: 1.08rem; color: var(--lof-muted); margin: 0; }
-
+.lof-section__title { margin: .35rem 0 .75rem; }
+.lof-section__intro { color: var(--lof-muted); margin: 0; }
 /* Grid and cards */
 .lof-grid { display: grid; gap: var(--lof-gap); }
 .lof-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .lof-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .lof-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-@media (max-width: 991px) { .lof-grid--3, .lof-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .lof-grid--2, .lof-grid--3, .lof-grid--4 { grid-template-columns: 1fr; } }
-
-.lof-card { display: flex; flex-direction: column; background: var(--lof-surface); border-radius: var(--lof-radius-lg); overflow: hidden; box-shadow: var(--lof-shadow); transition: transform .3s ease, box-shadow .3s ease; }
-.lof-card:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -24px rgba(63, 41, 19, .55); }
+@media (max-width: 991px) {
+	.lof-grid--3, .lof-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+	.lof-grid--2, .lof-grid--3, .lof-grid--4 { grid-template-columns: 1fr; }
+}
+.lof-card { display: flex; flex-direction: column; background: var(--lof-surface); border-radius: var(--lof-radius-lg); overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; }
 .lof-tone-white .lof-card { background: var(--lof-bg); border: 1px solid var(--lof-line); }
 .lof-card__media { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--lof-earth); }
 .lof-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
@@ -38,43 +36,35 @@
 .lof-card__title { font-family: var(--lof-font-body); font-size: 1.2rem; font-weight: 700; margin: 0; color: var(--lof-heading); }
 .lof-card__title a { color: inherit; text-decoration: none; }
 .lof-card__link { margin-top: auto; padding-top: .5rem; font-weight: 700; color: var(--lof-link); text-decoration: none; }
-.lof-card__link::after { content: " \2192"; }
+.lof-card__link::after { content: " →"; }
 .lof-card--pillar { padding: 2rem 1.75rem; gap: .6rem; border-top: 4px solid var(--lof-gold); }
 .lof-card--pillar p { margin: 0; }
 .lof-card__kicker { font-family: var(--lof-font-display); font-size: 1.6rem; color: var(--lof-link); }
 .lof-tone-earth .lof-card { background: rgba(252, 246, 225, .06); box-shadow: none; border: 1px solid rgba(252, 246, 225, .12); }
-
 /* Placeholders (brand symbol on a sunrise panel until real photos arrive) */
 .lof-placeholder { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 220px; background: radial-gradient(circle at 50% 110%, rgba(244, 175, 22, .55), rgba(244, 175, 22, 0) 60%), var(--lof-earth); }
 .lof-placeholder img { width: 38%; max-width: 160px; opacity: .9; }
 .lof-card__num { font-family: var(--lof-font-display); font-size: 3.2rem; color: var(--lof-gold); }
 .lof-editor-notice { padding: 1.25rem; border: 2px dashed var(--lof-amber); border-radius: var(--lof-radius); background: var(--lof-bg); color: var(--lof-heading); text-align: center; font-weight: 600; }
-
 /* Hero */
 .lof-hero { position: relative; display: flex; align-items: center; min-height: min(86vh, 820px); background: var(--lof-earth); color: var(--lof-cream); overflow: hidden; isolation: isolate; }
-.lof-hero--page { min-height: 380px; }
 .lof-hero__inner { position: relative; z-index: 2; padding-block: clamp(4rem, 9vw, 7rem); }
 .lof-hero__content { max-width: 720px; }
 .lof-hero__eyebrow { color: var(--lof-gold); }
-.lof-hero__title { font-size: clamp(2.3rem, 6vw, 4.4rem); color: var(--lof-cream); margin: .5rem 0 1.25rem; }
-.lof-hero--page .lof-hero__title { font-size: clamp(2rem, 4.5vw, 3.3rem); }
+.lof-hero__title { color: var(--lof-cream); margin: .5rem 0 1.25rem; }
 .lof-hl { color: var(--lof-gold); }
-.lof-hero__text { font-size: clamp(1.05rem, 1.6vw, 1.25rem); max-width: 600px; color: rgba(252, 246, 225, .9); }
+.lof-hero__text { max-width: 600px; color: rgba(252, 246, 225, .9); }
 .lof-hero__media, .lof-hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
 .lof-hero__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(63, 41, 19, .95), rgba(63, 41, 19, .35)); opacity: .55; }
-
 /* Sunrise artwork drawn from the Logo Kit: rising sun, rays and stepped horizon bands */
 .lof-hero__art { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
 .lof-hero__sun { position: absolute; right: 8%; bottom: 22%; width: clamp(220px, 34vw, 480px); aspect-ratio: 2 / 1; border-radius: 999px 999px 0 0; background: radial-gradient(circle at 50% 100%, var(--lof-yellow), var(--lof-gold) 55%, var(--lof-amber)); box-shadow: 0 0 120px 40px rgba(244, 175, 22, .28); animation: lof-rise 1.6s ease-out both; }
 .lof-hero__rays { position: absolute; right: calc(8% - 12vw); bottom: 22%; width: calc(clamp(220px, 34vw, 480px) + 24vw); aspect-ratio: 2 / 1; border-radius: 999px 999px 0 0; background: repeating-conic-gradient(from 270deg at 50% 100%, rgba(251, 214, 43, .16) 0deg 4deg, transparent 4deg 12deg); mask-image: radial-gradient(circle at 50% 100%, #000 30%, transparent 72%); -webkit-mask-image: radial-gradient(circle at 50% 100%, #000 30%, transparent 72%); }
 .lof-hero__band { position: absolute; left: 0; right: 0; }
-.lof-hero__band--1 { bottom: 14%; height: 8%; background: var(--lof-gold); opacity: .9; }
-.lof-hero__band--2 { bottom: 6%; height: 8%; background: var(--lof-amber); opacity: .85; }
-.lof-hero__band--3 { bottom: 0; height: 6%; background: var(--lof-earth-deep); }
-.lof-hero--page .lof-hero__sun { width: clamp(160px, 22vw, 300px); bottom: 26%; }
-.lof-hero--page .lof-hero__band--1 { bottom: 18%; height: 8%; }
-.lof-hero--page .lof-hero__band--2 { bottom: 8%; height: 10%; }
-.lof-hero--page .lof-hero__band--3 { height: 8%; }
+.lof-hero__band--1 { background: var(--lof-gold); }
+.lof-hero__band--2 { background: var(--lof-amber); opacity: .85; }
+.lof-hero__band--3 { background: var(--lof-earth-deep); }
+.lof-hero--page .lof-hero__sun { width: clamp(160px, 22vw, 300px); }
 @keyframes lof-rise { from { transform: translateY(40%); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (max-width: 760px) {
 	.lof-hero { min-height: 620px; align-items: flex-start; }
@@ -82,7 +72,6 @@
 	.lof-hero__sun { right: -10%; bottom: 20%; opacity: .55; }
 	.lof-hero__rays { opacity: .5; }
 }
-
 /* Buttons used in sections */
 .lof-btn-row { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 1.75rem; }
 .lof-btn-row:empty { display: none; }
@@ -91,21 +80,23 @@
 .lof-btn--outline:hover, .lof-btn--outline:focus { background: var(--lof-earth); color: var(--lof-cream); }
 .lof-tone-earth .lof-btn--outline { border-color: var(--lof-cream); color: var(--lof-cream); }
 .lof-btn--ghost:hover, .lof-btn--ghost:focus { background: var(--lof-bg); color: var(--lof-heading); }
-
 /* Feature */
 .lof-feature__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
 .lof-feature--img-right .lof-feature__media { order: 2; }
 .lof-feature__media { margin: 0; position: relative; }
 .lof-feature__media img, .lof-feature__media .lof-placeholder { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--lof-radius-lg); box-shadow: var(--lof-shadow); }
-.lof-feature__media::before { content: ""; position: absolute; inset: auto -18px -18px auto; width: 60%; height: 60%; border-radius: var(--lof-radius-lg); background: var(--lof-gold); z-index: -1; opacity: .35; }
-.lof-feature__media figcaption { font-size: .85rem; margin-top: .75rem; opacity: .75; }
+.lof-feature__media::before { content: ""; position: absolute; z-index: -1; }
+.lof-feature__media figcaption { margin-top: .75rem; }
 .lof-prose p { margin: 0 0 1rem; }
 .lof-quote { margin: 1.5rem 0 0; padding: 1.25rem 1.5rem; border-left: 4px solid var(--lof-gold); background: rgba(244, 175, 22, .1); border-radius: 0 var(--lof-radius) var(--lof-radius) 0; }
 .lof-quote p { font-family: var(--lof-font-display); font-size: 1.15rem; line-height: 1.5; margin: 0; color: var(--lof-heading); }
 .lof-quote cite { display: block; margin-top: .6rem; font-style: normal; font-weight: 700; font-size: .85rem; color: var(--lof-link); }
 .lof-tone-earth .lof-quote p { color: var(--lof-cream); }
-@media (max-width: 860px) { .lof-feature__grid { grid-template-columns: 1fr; } .lof-feature--img-right .lof-feature__media { order: 0; } .lof-feature__media img, .lof-feature__media .lof-placeholder { aspect-ratio: 16 / 11; } }
-
+@media (max-width: 860px) {
+	.lof-feature__grid { grid-template-columns: 1fr; }
+	.lof-feature--img-right .lof-feature__media { order: 0; }
+	.lof-feature__media img, .lof-feature__media .lof-placeholder { aspect-ratio: 16 / 11; }
+}
 /* Impact */
 .lof-impact__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--lof-gap); margin: 0; }
 .lof-impact__item { display: flex; flex-direction: column-reverse; padding: 1.75rem 1.5rem; border-radius: var(--lof-radius-lg); background: rgba(252, 246, 225, .06); border: 1px solid rgba(252, 246, 225, .14); text-align: center; }
@@ -115,65 +106,48 @@
 .lof-impact__source { order: -1; margin: .75rem 0 0; font-size: .78rem; opacity: .7; }
 .lof-tone-cream .lof-impact__item, .lof-tone-white .lof-impact__item, .lof-tone-sand .lof-impact__item { background: var(--lof-surface); border-color: var(--lof-line); }
 .lof-tone-cream .lof-impact__value, .lof-tone-white .lof-impact__value, .lof-tone-sand .lof-impact__value { color: var(--lof-link); }
-
 /* People */
 .lof-person { text-align: center; }
 .lof-person__photo { aspect-ratio: 4 / 5; border-radius: var(--lof-radius-lg); overflow: hidden; background: radial-gradient(circle at 50% 120%, rgba(244, 175, 22, .6), rgba(244, 175, 22, 0) 60%), var(--lof-earth); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
 .lof-person__photo img { width: 100%; height: 100%; object-fit: cover; }
 .lof-person__initials { font-family: var(--lof-font-display); font-size: 3rem; color: var(--lof-gold); }
-.lof-person__name { font-family: var(--lof-font-body); font-size: 1.1rem; margin: 0; }
+.lof-person__name { font-family: var(--lof-font-body); margin: 0; }
 .lof-person__role { margin: .2rem 0 .5rem; font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--lof-link); }
 .lof-person__bio { font-size: .92rem; }
-
 /* Partners */
 .lof-partners { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2rem 3rem; margin: 0; padding: 0; list-style: none; }
 .lof-partners img { max-height: 70px; width: auto; filter: grayscale(1); opacity: .75; transition: filter .3s, opacity .3s; }
 .lof-partners a:hover img { filter: none; opacity: 1; }
-
 /* CTA */
 .lof-cta__box { max-width: 860px; margin-inline: auto; }
 .lof-cta .lof-section__head { margin-bottom: 0; }
 .lof-tone-sun .lof-section__title { color: var(--lof-earth-deep); }
-
 /* FAQ */
-.lof-faq { max-width: 820px; margin-inline: auto; display: grid; gap: .75rem; }
-.lof-faq__item { background: var(--lof-bg); border-radius: var(--lof-radius); padding: 0 1.25rem; border: 1px solid var(--lof-line); }
-.lof-faq__item summary { cursor: pointer; padding: 1.1rem 0; font-weight: 700; color: var(--lof-heading); list-style: none; position: relative; padding-right: 2rem; }
+.lof-faq { max-width: 820px; margin-inline: auto; display: grid; }
+.lof-faq__item summary { cursor: pointer; font-weight: 700; list-style: none; position: relative; }
 .lof-faq__item summary::-webkit-details-marker { display: none; }
-.lof-faq__item summary::after { content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 1.4rem; color: var(--lof-amber); }
-.lof-faq__item[open] summary::after { content: "\2212"; }
-.lof-faq__answer p { margin: 0 0 1.1rem; }
-
+.lof-faq__item summary::after { position: absolute; top: 50%; transform: translateY(-50%); font-size: 1.4rem; color: var(--lof-amber); }
 /* Contact */
-.lof-contact__grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--lof-gap); align-items: start; }
-.lof-contact__list { display: grid; gap: 1rem; margin: 0; }
+.lof-contact__grid { grid-template-columns: 1fr 1.2fr; gap: var(--lof-gap); align-items: start; }
 .lof-contact__list div { padding: 1.1rem 1.25rem; border-radius: var(--lof-radius); background: var(--lof-bg); }
-.lof-contact__list dt { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--lof-link); }
-.lof-contact__list dd { margin: .25rem 0 0; font-size: 1.05rem; font-weight: 600; }
+.lof-contact__list dt { font-size: .75rem; font-weight: 700; }
 .lof-contact__list a { color: var(--lof-heading); text-decoration: none; }
-.lof-contact__map { width: 100%; min-height: 360px; border: 0; border-radius: var(--lof-radius-lg); }
-@media (max-width: 860px) { .lof-contact__grid { grid-template-columns: 1fr; } }
-
+@media (max-width: 860px) {
+	.lof-contact__grid { grid-template-columns: 1fr; }
+}
 /* Single items */
-.lof-single__grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); gap: clamp(2rem, 5vw, 4rem); }
-.lof-single__image { margin: 0 0 1.5rem; }
-.lof-single__image img { border-radius: var(--lof-radius-lg); }
-.lof-single__aside { display: grid; gap: 1.25rem; align-content: start; }
+.lof-single__grid { display: grid; }
+.lof-single__aside { align-content: start; }
 .lof-facts { margin: 0; display: grid; gap: .75rem; }
 .lof-facts dt { font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--lof-link); }
 .lof-facts dd { margin: 0; font-weight: 600; }
-.lof-aside-cta { padding: 1.75rem; border-radius: var(--lof-radius-lg); background: var(--lof-earth); color: var(--lof-cream); }
 .lof-aside-cta h2 { color: var(--lof-cream); font-size: 1.4rem; margin-top: 0; }
-@media (max-width: 860px) { .lof-single__grid { grid-template-columns: 1fr; } }
-
 /* Elementor full-width sections: let our widgets own spacing */
 .elementor-widget[class*="elementor-widget-lof-"] > .elementor-widget-container { margin: 0; padding: 0; }
-
 /* ===== v0.3.0 ===== */
-
 /* Hero collage + badges */
 .lof-hero.has-collage .lof-hero__inner { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-.lof-hero.has-collage .lof-hero__sun { right: auto; left: 52%; bottom: 14%; opacity: .55; }
+.lof-hero.has-collage .lof-hero__sun { right: auto; left: 52%; opacity: .55; }
 .lof-hero__collage { position: relative; min-height: 520px; }
 .lof-hero__shot { position: absolute; margin: 0; border-radius: 26px; overflow: hidden; box-shadow: 0 30px 60px -25px rgba(0, 0, 0, .6); border: 6px solid var(--lof-cream); background: var(--lof-earth-deep); }
 .lof-hero__shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -184,15 +158,17 @@
 .lof-hero__seal img { width: 72%; }
 @keyframes lof-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .lof-hero__badges { display: flex; flex-wrap: wrap; gap: .6rem; margin: 2rem 0 0; padding: 0; list-style: none; }
-.lof-hero__badges li { padding: .5rem .9rem; border-radius: 999px; background: rgba(252, 246, 225, .1); border: 1px solid rgba(252, 246, 225, .25); font-size: .82rem; font-weight: 600; color: var(--lof-cream); }
+.lof-hero__badges li { padding: .5rem .9rem; background: rgba(252, 246, 225, .1); border: 1px solid rgba(252, 246, 225, .25); font-size: .82rem; font-weight: 600; color: var(--lof-cream); }
 .lof-hero__badges li::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: .5rem; border-radius: 50%; background: var(--lof-gold); vertical-align: middle; }
 @media (max-width: 991px) {
 	.lof-hero.has-collage .lof-hero__inner { grid-template-columns: 1fr; }
 	.lof-hero__collage { min-height: 380px; max-width: 560px; }
 	.lof-hero__seal { left: auto; right: -6px; bottom: -10px; width: 84px; height: 84px; }
 }
-@media (max-width: 560px) { .lof-hero__collage { min-height: 300px; } .lof-hero__shot { border-width: 4px; border-radius: 18px; } }
-
+@media (max-width: 560px) {
+	.lof-hero__collage { min-height: 300px; }
+	.lof-hero__shot { border-width: 4px; border-radius: 18px; }
+}
 /* Ribbon */
 .lof-ribbon { overflow: hidden; padding: 1.1rem 0; }
 .lof-ribbon__track { display: flex; width: max-content; animation: lof-marquee 38s linear infinite; }
@@ -203,16 +179,16 @@
 .lof-ribbon.lof-tone-earth span { color: var(--lof-cream); }
 .lof-ribbon.lof-tone-earth i { background: var(--lof-gold); }
 @keyframes lof-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) { .lof-ribbon__track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .lof-ribbon__set + .lof-ribbon__set { display: none; } }
-
+@media (prefers-reduced-motion: reduce) {
+	.lof-ribbon__track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+	.lof-ribbon__set + .lof-ribbon__set { display: none; }
+}
 /* Count-up keeps width steady */
 .lof-count { font-variant-numeric: tabular-nums; }
-
 /* Giving band */
 .lof-give__grid { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-.lof-give--photo .lof-give__grid { grid-template-columns: .9fr 1.1fr; }
 .lof-give__media { margin: 0; }
-.lof-give__media img, .lof-give__media .lof-placeholder { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50% 50% var(--lof-radius-lg) var(--lof-radius-lg); border: 6px solid var(--lof-gold); }
+.lof-give__media img, .lof-give__media .lof-placeholder { width: 100%; object-fit: cover; }
 .lof-give__amounts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .85rem; margin: 0; padding: 0; list-style: none; }
 .lof-give:not(.lof-give--photo) .lof-give__amounts { max-width: 820px; margin-inline: auto; }
 .lof-chip { display: flex; flex-direction: column; gap: .2rem; height: 100%; padding: 1.1rem 1rem; border-radius: var(--lof-radius); border: 2px solid rgba(252, 246, 225, .3); background: rgba(252, 246, 225, .06); color: var(--lof-cream); text-decoration: none; text-align: center; transition: background .2s, border-color .2s, transform .2s, color .2s; }
@@ -223,8 +199,6 @@
 .lof-tone-cream .lof-chip, .lof-tone-white .lof-chip, .lof-tone-sand .lof-chip { color: var(--lof-heading); border-color: var(--lof-line-strong); background: var(--lof-surface); }
 .lof-give__note { margin: 1.25rem 0 0; font-size: .85rem; opacity: .8; }
 .lof-give:not(.lof-give--photo) .lof-give__note { text-align: center; }
-@media (max-width: 860px) { .lof-give--photo .lof-give__grid { grid-template-columns: 1fr; } .lof-give__media { max-width: 360px; margin-inline: auto; } }
-
 /* Gallery mosaic */
 .lof-mosaic { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: .9rem; margin: 0; padding: 0; list-style: none; }
 .lof-mosaic__item:nth-child(5n + 1) { grid-column: span 2; grid-row: span 2; }
@@ -232,12 +206,13 @@
 .lof-mosaic__item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .lof-mosaic__item a:hover img { transform: scale(1.05); }
 .lof-mosaic__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.5rem .9rem .7rem; font-size: .82rem; color: var(--lof-cream); background: linear-gradient(transparent, rgba(43, 29, 14, .85)); }
-@media (max-width: 860px) { .lof-mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; } }
-
+@media (max-width: 860px) {
+	.lof-mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
+}
 /* Enquiry form */
-.lof-formsec__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+.lof-formsec__grid { display: grid; grid-template-columns: .8fr 1.2fr; }
 .lof-formsec:not(.lof-formsec--side) .lof-formsec__grid { grid-template-columns: 1fr; max-width: 760px; margin-inline: auto; }
-.lof-formsec__details { margin: 1.5rem 0 0; padding: 0; list-style: none; display: grid; gap: .6rem; font-weight: 600; }
+.lof-formsec__details { font-weight: 600; }
 .lof-formsec__details a { color: var(--lof-heading); text-decoration: none; }
 .lof-formsec__form { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: var(--lof-radius-lg); background: var(--lof-bg); box-shadow: var(--lof-shadow); }
 .lof-tone-cream .lof-formsec__form { background: var(--lof-surface); }
@@ -252,22 +227,19 @@
 .lof-form-msg { padding: 1rem 1.2rem; border-radius: 12px; margin-bottom: 1.25rem; font-weight: 600; }
 .lof-form-msg--success { background: #E7F4E4; color: #24561B; }
 .lof-form-msg--error { background: #FBE6DF; color: #7A2A12; }
-@media (max-width: 860px) { .lof-formsec__grid, .lof-form__row { grid-template-columns: 1fr; } }
-
+@media (max-width: 860px) {
+	.lof-formsec__grid, .lof-form__row { grid-template-columns: 1fr; }
+}
 /* Floating WhatsApp + mobile donate bar */
 .lof-wa { position: fixed; right: 18px; bottom: 18px; z-index: 950; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #25D366; color: #fff; box-shadow: 0 12px 26px -10px rgba(0, 0, 0, .5); transition: transform .2s; }
 .lof-wa:hover, .lof-wa:focus { transform: scale(1.08); color: #fff; }
 .lof-mbar { display: none; }
 @media (max-width: 760px) {
-	.lof-mbar { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 940; padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom)); background: rgba(63, 41, 19, .96); }
+	.lof-mbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 940; padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom)); background: rgba(63, 41, 19, .96); }
 	.lof-mbar .lof-btn { width: 100%; }
-	.lof-wa { bottom: 84px; }
-	body { padding-bottom: 72px; }
 }
-
 /* ===== v0.5.0 polish ===== */
 .lof-hero__title { font-size: clamp(2.2rem, 4.3vw, 3.6rem); line-height: 1.12; letter-spacing: .005em; max-width: 16ch; }
-.lof-hero--page .lof-hero__title { font-size: clamp(1.9rem, 3.6vw, 2.9rem); max-width: 22ch; }
 .lof-hero__inner { padding-bottom: clamp(5.5rem, 10vw, 8rem); }
 .lof-hero__band--1 { bottom: 34px; height: 16px; opacity: .95; }
 .lof-hero__band--2 { bottom: 14px; height: 20px; }
@@ -280,7 +252,6 @@
 .lof-hero__text { line-height: 1.7; }
 .lof-hero__badges li { backdrop-filter: blur(4px); }
 html[data-theme="dark"] .lof-hero { background: #2A1C0E; }
-.lof-section__title { letter-spacing: .005em; }
 .lof-card--pillar { background: var(--lof-surface); }
 .lof-tone-sand .lof-card--pillar { background: var(--lof-surface); }
 html[data-theme="dark"] .lof-tone-sun { background: linear-gradient(135deg, #D9961A 0%, #C98A10 55%, #C27D10 100%); }
@@ -295,7 +266,6 @@ html[data-theme="dark"] .lof-form-msg--error { background: #4A1F12; color: #F6D2
 html[data-theme="dark"] .lof-btn--outline { border-color: var(--lof-cream); color: var(--lof-cream); }
 html[data-theme="dark"] .lof-editor-notice { background: var(--lof-surface); }
 html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
-
 /* ===== v0.6.0 accessibility ===== */
 .lof-main:focus { outline: none; }
 .lof-tone-sun :focus-visible, .lof-btn--sun:focus-visible, .lof-ribbon :focus-visible, .lof-mbar :focus-visible { outline-color: #2B1D0E; }
@@ -310,27 +280,28 @@ html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
 .lof-ribbon__pause span { width: 10px; height: 12px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
 .lof-ribbon.is-paused .lof-ribbon__track { animation-play-state: paused; }
 .lof-ribbon.is-paused .lof-ribbon__pause span { width: 0; height: 0; border: 0; border-left: 11px solid currentColor; border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
-@media (prefers-reduced-motion: reduce) { .lof-ribbon__pause { display: none; } }
-
+@media (prefers-reduced-motion: reduce) {
+	.lof-ribbon__pause { display: none; }
+}
 /* ===== v0.6.0 inner pages ===== */
-.lof-spot { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; margin-bottom: clamp(2rem, 5vw, 3.5rem); padding: clamp(1rem, 2vw, 1.5rem); border-radius: var(--lof-radius-lg); background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: var(--lof-shadow); }
-.lof-spot__media { display: block; border-radius: calc(var(--lof-radius-lg) - 8px); overflow: hidden; aspect-ratio: 4 / 3; }
+.lof-spot { grid-template-columns: 1.1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.lof-spot__media { display: block; overflow: hidden; }
 .lof-spot__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
 .lof-spot:hover .lof-spot__media img { transform: scale(1.03); }
-.lof-spot__title { font-size: clamp(1.6rem, 3vw, 2.3rem); margin: .35rem 0 .75rem; }
-.lof-spot__title a { color: var(--lof-heading); text-decoration: none; }
-.lof-spot__text { font-size: 1.08rem; color: var(--lof-muted); margin: 0 0 1.5rem; }
+.lof-spot__title { margin: .35rem 0 .75rem; }
+.lof-spot__title a { text-decoration: none; }
+.lof-spot__text { margin: 0 0 1.5rem; }
 .lof-spot__body { padding-right: clamp(0rem, 2vw, 1.5rem); }
-@media (max-width: 860px) { .lof-spot { grid-template-columns: 1fr; } .lof-spot__body { padding: 0 .5rem .75rem; } }
+@media (max-width: 860px) {
+	.lof-spot { grid-template-columns: 1fr; }
+	.lof-spot__body { padding: 0 .5rem .75rem; }
+}
 /* Programme cards without a photo: brand panel with number and symbol watermark */
-.lof-card--programme .lof-placeholder { position: relative; overflow: hidden; background: radial-gradient(circle at 80% 120%, rgba(244, 175, 22, .55), rgba(244, 175, 22, 0) 55%), linear-gradient(160deg, #5C3D1E, #3F2913); }
-.lof-card--programme .lof-placeholder::after { content: ""; position: absolute; right: -30px; bottom: -30px; width: 160px; height: 160px; background: url("../images/brand/symbol-dark.svg") center / contain no-repeat; opacity: .18; }
+.lof-card--programme .lof-placeholder { position: relative; overflow: hidden; }
+.lof-card--programme .lof-placeholder::after { background: url("../images/brand/symbol-dark.svg") center / contain no-repeat; opacity: .18; }
 .lof-card--programme .lof-card__num { position: relative; z-index: 1; font-size: 3.6rem; }
-.lof-card--programme .lof-card__body { gap: .6rem; }
 .lof-tone-sand .lof-card--pillar { border-top-color: var(--lof-amber); }
-
 .lof-person__board { display: inline-block; margin: .1rem 0 .35rem; padding: .25rem .7rem; border-radius: 999px; font-size: .74rem; font-weight: 700; background: var(--lof-surface-2); color: var(--lof-heading); }
-
 /* ===== v0.7.0 benchmark-grade leadership and story ===== */
 .lof-eyebrow--numbered { display: inline-flex; align-items: center; gap: .75rem; }
 .lof-eyebrow__num { color: var(--lof-heading); }
@@ -352,8 +323,13 @@ html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
 .lof-people--single .lof-person--row { grid-template-columns: minmax(200px, 36%) 1fr; }
 .lof-people--single .lof-person__bio { font-size: 1.02rem; }
 .lof-person:not(.lof-person--row) .lof-person__info { padding-top: .25rem; }
-@media (max-width: 991px) { .lof-people--row { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .lof-person--row, .lof-people--single .lof-person--row { grid-template-columns: 1fr; } .lof-person--row .lof-person__photo img { min-height: 0; aspect-ratio: 4 / 4; } }
+@media (max-width: 991px) {
+	.lof-people--row { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+	.lof-person--row, .lof-people--single .lof-person--row { grid-template-columns: 1fr; }
+	.lof-person--row .lof-person__photo img { min-height: 0; aspect-ratio: 4 / 4; }
+}
 /* Milestones under a story feature */
 .lof-milestones { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: .75rem; margin: 1.5rem 0 0; }
 .lof-milestones div { padding: 1rem 1.1rem; border-radius: var(--lof-radius); border: 1px solid var(--lof-line-strong); background: var(--lof-surface); }
@@ -367,31 +343,33 @@ html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
 .lof-steps .lof-card { border-radius: 0; box-shadow: none; border: 0; border-top: 0; background: transparent; }
 .lof-steps .lof-card + .lof-card { border-left: 1px solid var(--lof-line); }
 .lof-steps .lof-card:hover { transform: none; box-shadow: none; }
-@media (max-width: 991px) { .lof-steps .lof-card:nth-child(odd) { border-left: 0; } .lof-steps .lof-card:nth-child(n+3) { border-top: 1px solid var(--lof-line); } }
-@media (max-width: 640px) { .lof-steps .lof-card + .lof-card { border-left: 0; border-top: 1px solid var(--lof-line); } }
+@media (max-width: 991px) {
+	.lof-steps .lof-card:nth-child(odd) { border-left: 0; }
+	.lof-steps .lof-card:nth-child(n/**/+3) { border-top: 1px solid var(--lof-line); }
+}
+@media (max-width: 640px) {
+	.lof-steps .lof-card + .lof-card { border-left: 0; border-top: 1px solid var(--lof-line); }
+}
 /* Purpose cards: kicker as a label */
 .lof-card--pillar .lof-card__kicker:not(:empty) { font-family: var(--lof-font-body); font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--lof-link); }
 .lof-steps .lof-card__kicker, .lof-card--pillar .lof-card__kicker[data-num] { font-family: var(--lof-font-display); }
-
 /* ===== v0.8.0 prototype refinement (our brand colours retained) ===== */
 :root { --lof-radius: 6px; --lof-radius-lg: 10px; }
 .lof-eyebrow:not(.lof-eyebrow--numbered)::before { content: ""; display: inline-block; width: 26px; height: 1px; margin-right: .7rem; background: currentColor; vertical-align: middle; }
-.lof-section__title { letter-spacing: -.01em; line-height: 1.12; }
 /* Buttons: crisp, editorial */
-.lof-btn { border-radius: 4px; text-transform: uppercase; font-size: .8rem; letter-spacing: .07em; padding: .85rem 1.4rem; }
-.lof-btn-row .lof-btn::after { content: "\2192"; display: inline-block; transition: transform .2s ease; }
+.lof-btn { border-radius: 4px; text-transform: uppercase; letter-spacing: .07em; padding: .85rem 1.4rem; }
+.lof-btn-row .lof-btn::after { content: "→"; display: inline-block; transition: transform .2s ease; }
 .lof-btn-row .lof-btn:hover::after { transform: translateX(4px); }
 /* Cards */
 .lof-card { box-shadow: none; border: 1px solid var(--lof-line); }
 .lof-card:hover { box-shadow: var(--lof-shadow); border-color: var(--lof-line-strong); transform: translateY(-5px); }
-.lof-card--programme .lof-card__media { aspect-ratio: 16 / 10; }
-.lof-card--programme .lof-card__body { position: relative; padding: 2.1rem 1.5rem 1.5rem; }
+.lof-card--programme .lof-card__body { position: relative; }
 .lof-card--programme .lof-card__body::before { content: ""; position: absolute; top: -24px; left: 1.5rem; width: 46px; height: 46px; border-radius: 50%; background: var(--lof-earth) url("../images/brand/symbol-dark.svg") center / 62% no-repeat; border: 4px solid var(--lof-surface); }
-.lof-card--programme .lof-card__title { font-family: var(--lof-font-display); font-size: 1.2rem; line-height: 1.25; }
+.lof-card--programme .lof-card__title { font-family: var(--lof-font-display); }
 .lof-card--programme .lof-card__body p { font-size: .92rem; color: var(--lof-muted); }
 .lof-card__link, .lof-text-link { font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--lof-link); text-decoration: none; }
 .lof-text-link { display: inline-flex; align-items: center; gap: .5rem; min-height: 28px; }
-.lof-text-link::after { content: "\2192"; transition: transform .2s ease; }
+.lof-text-link::after { content: "→"; transition: transform .2s ease; }
 .lof-text-link:hover::after, .lof-card__link:hover::after { transform: translateX(4px); }
 .lof-card__link::after { display: inline-block; transition: transform .2s ease; }
 /* Hero: arched photo, sun stamp, floating card */
@@ -399,31 +377,41 @@ html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
 .lof-hero.has-collage .lof-hero__collage::before, .lof-hero.has-collage .lof-hero__collage::after { content: ""; position: absolute; border: 1px solid rgba(244, 175, 22, .55); border-radius: 50%; pointer-events: none; }
 .lof-hero.has-collage .lof-hero__collage::before { width: 240px; height: 240px; top: -28px; right: -8px; }
 .lof-hero.has-collage .lof-hero__collage::after { width: 160px; height: 160px; bottom: -26px; left: -6px; }
-.lof-hero.has-collage .lof-hero__shot--1 { inset: 0 12% 0 8%; transform: none; border: 0; border-radius: 46% 46% 6px 6px; z-index: 1; }
+.lof-hero.has-collage .lof-hero__shot--1 { border: 0; border-radius: 46% 46% 6px 6px; z-index: 1; }
 .lof-hero.has-collage .lof-hero__shot--2 { width: 34%; height: 30%; right: 0; bottom: 14%; transform: none; border: 5px solid var(--lof-cream); border-radius: 6px; z-index: 2; }
 .lof-hero.has-collage .lof-hero__shot--3 { display: none; }
-.lof-hero__stamp { position: absolute; z-index: 4; top: 18px; left: 0; width: 112px; height: 112px; border-radius: 50%; background: var(--lof-gold); color: var(--lof-earth-deep); display: grid; place-items: center; text-align: center; padding: 18px; transform: rotate(-12deg); font: 700 .74rem/1.3 var(--lof-font-display); letter-spacing: .1em; text-transform: uppercase; box-shadow: 0 16px 30px -14px rgba(0, 0, 0, .55); }
+.lof-hero__stamp { position: absolute; z-index: 4; top: 18px; left: 0; width: 112px; height: 112px; border-radius: 50%; background: var(--lof-gold); color: var(--lof-earth-deep); display: grid; place-items: center; text-align: center; padding: 18px; transform: rotate(-12deg); font: 700 .74rem/1.3 var(--lof-font-display); text-transform: uppercase; box-shadow: 0 16px 30px -14px rgba(0, 0, 0, .55); }
 .lof-hero__card { position: absolute; z-index: 3; left: -18px; bottom: 40px; max-width: 230px; margin: 0; padding: 1.1rem 1.25rem; background: var(--lof-cream); color: var(--lof-ink); border-radius: 4px; box-shadow: 0 22px 50px -20px rgba(0, 0, 0, .6); }
 .lof-hero__card strong { display: block; font-family: var(--lof-font-display); font-size: 1.35rem; color: var(--lof-earth); }
 .lof-hero__card span { font-size: .78rem; line-height: 1.45; color: rgba(43, 29, 14, .8); }
 .lof-hero__badges li { border-radius: 4px; }
-@media (max-width: 991px) { .lof-hero.has-collage .lof-hero__collage { min-height: 440px; max-width: 520px; } }
-@media (max-width: 560px) { .lof-hero.has-collage .lof-hero__collage { min-height: 360px; } .lof-hero__stamp { width: 86px; height: 86px; font-size: .62rem; padding: 12px; } .lof-hero__card { left: 0; bottom: 14px; max-width: 200px; } .lof-hero.has-collage .lof-hero__shot--2 { display: none; } .lof-hero.has-collage .lof-hero__shot--1 { inset: 0 4%; } }
+@media (max-width: 560px) {
+	.lof-hero.has-collage .lof-hero__collage { min-height: 360px; }
+	.lof-hero__stamp { width: 86px; height: 86px; font-size: .62rem; padding: 12px; }
+	.lof-hero__card { left: 0; bottom: 14px; max-width: 200px; }
+	.lof-hero.has-collage .lof-hero__shot--2 { display: none; }
+	.lof-hero.has-collage .lof-hero__shot--1 { inset: 0 4%; }
+}
 /* Impact on earth: trust strip */
-.lof-tone-earth .lof-impact__grid { gap: 0; }
-.lof-tone-earth .lof-impact__item { background: none; border: 0; border-left: 1px solid rgba(252, 246, 225, .2); border-radius: 0; text-align: left; padding: .5rem 1.75rem; }
+.lof-tone-earth .lof-impact__item { border-left: 1px solid rgba(252, 246, 225, .2); }
 .lof-tone-earth .lof-impact__item:first-child { border-left: 0; padding-left: 0; }
-@media (max-width: 640px) { .lof-tone-earth .lof-impact__grid { grid-template-columns: 1fr 1fr; } .lof-tone-earth .lof-impact__item { padding: 1rem .9rem; border-left: 0; border-bottom: 1px solid rgba(252, 246, 225, .2); } }
+@media (max-width: 640px) {
+	.lof-tone-earth .lof-impact__grid { grid-template-columns: 1fr 1fr; }
+	.lof-tone-earth .lof-impact__item { border-left: 0; }
+}
 /* Intro statement */
-.lof-intro__grid { display: grid; grid-template-columns: .85fr 1fr; gap: clamp(2rem, 8vw, 7rem); align-items: start; }
-.lof-intro__title { font-size: clamp(2rem, 4.4vw, 3.3rem); margin-top: .75rem; }
-.lof-intro__aside { border-left: 1px solid var(--lof-line-strong); padding: 1.5rem 0 0 2.5rem; }
-.lof-intro__statement { font-family: var(--lof-font-display); font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.5; color: var(--lof-heading); margin: 0 0 1.25rem; }
+.lof-intro__grid { display: grid; grid-template-columns: .85fr 1fr; gap: clamp(2rem, 8vw, 7rem); }
+.lof-intro__title { margin-top: .75rem; }
+.lof-intro__aside { padding: 1.5rem 0 0 2.5rem; }
+.lof-intro__statement { font-family: var(--lof-font-display); margin: 0 0 1.25rem; }
 .lof-intro__text { color: var(--lof-muted); margin: 0 0 1.25rem; }
-.lof-intro__band { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); margin-top: clamp(2.5rem, 6vw, 4rem); padding: clamp(1.5rem, 4vw, 2.75rem); background: var(--lof-surface-2); border-radius: var(--lof-radius); }
+.lof-intro__band { display: grid; border-radius: var(--lof-radius); }
 .lof-intro__band h3 { font-size: clamp(1.15rem, 2vw, 1.45rem); margin: .6rem 0; color: var(--lof-heading); }
 .lof-intro__band p:last-child { margin: 0; color: var(--lof-muted); }
-@media (max-width: 860px) { .lof-intro__grid, .lof-intro__band { grid-template-columns: 1fr; } .lof-intro__aside { padding: 1.25rem 0 0 1.25rem; } }
+@media (max-width: 860px) {
+	.lof-intro__grid, .lof-intro__band { grid-template-columns: 1fr; }
+	.lof-intro__aside { padding: 1.25rem 0 0 1.25rem; }
+}
 /* Closing call to action: split band */
 .lof-cta .lof-section__head { border-bottom: 0; padding-bottom: 0; }
 @media (min-width: 900px) {
@@ -431,50 +419,45 @@ html[data-theme="dark"] .lof-feature__media::before { opacity: .2; }
 	.lof-cta.lof-tone-sun .lof-section__head { text-align: left; margin: 0; max-width: 680px; }
 	.lof-cta.lof-tone-sun .lof-btn-row { margin-top: 0; flex-wrap: nowrap; justify-content: flex-end; }
 }
-
 /* 0.8.1: readable image captions in both modes */
-.lof-feature__media figcaption { opacity: 1; color: var(--lof-muted); }
+.lof-feature__media figcaption { opacity: 1; }
 .lof-tone-earth .lof-feature__media figcaption { color: rgba(252, 246, 225, .82); }
 html[data-theme="dark"] .lof-feature__media figcaption { color: var(--lof-text); }
-
 /* ===== v0.9.0 inner pages: cream page heroes, trust strip, intro band ===== */
-.lof-hero--page { min-height: 0; background: var(--lof-cream); color: var(--lof-text); border-bottom: 1px solid var(--lof-line); }
-.lof-hero--page .lof-hero__art { display: none; }
+.lof-hero--page { color: var(--lof-text); }
 .lof-hero--page::after { content: ""; position: absolute; z-index: 0; right: 5%; top: 50%; width: clamp(200px, 26vw, 360px); aspect-ratio: 1; transform: translateY(-50%) rotate(-8deg); background: url("../images/brand/symbol-light.svg") center / contain no-repeat; opacity: .09; pointer-events: none; }
-.lof-hero--page .lof-hero__inner { padding-block: clamp(3.5rem, 7vw, 5.5rem); }
 .lof-hero--page .lof-hero__content { max-width: 820px; }
-.lof-hero--page .lof-hero__eyebrow { color: var(--lof-link); }
-.lof-hero--page .lof-hero__title { color: var(--lof-heading); font-size: clamp(2.5rem, 5.4vw, 4.2rem); line-height: 1.06; letter-spacing: -.015em; max-width: 18ch; margin: .9rem 0 1rem; }
-.lof-hero--page .lof-hero__text { color: var(--lof-muted); font-size: clamp(1rem, 1.4vw, 1.15rem); max-width: 620px; }
+.lof-hero--page .lof-hero__title { color: var(--lof-heading); line-height: 1.06; letter-spacing: -.015em; max-width: 18ch; }
 .lof-hero--page .lof-hero__title::after { content: ""; display: block; width: 64px; height: 3px; margin-top: 1.1rem; background: var(--lof-gold); border-radius: 2px; }
-html[data-theme="dark"] .lof-hero--page { background: var(--lof-surface); }
 html[data-theme="dark"] .lof-hero--page::after { background-image: url("../images/brand/symbol-dark.svg"); opacity: .12; }
-@media (max-width: 640px) { .lof-hero--page::after { right: -60px; opacity: .06; } .lof-hero--page .lof-hero__title { font-size: 2.3rem; } }
+@media (max-width: 640px) {
+	.lof-hero--page::after { right: -60px; opacity: .06; }
+}
 .lof-section.lof-impact--strip { padding-block: clamp(1.75rem, 3.5vw, 2.5rem); }
 .lof-impact--strip .lof-impact__value { font-size: clamp(1.9rem, 3vw, 2.5rem); }
 .lof-impact--strip .lof-impact__label { font-size: .74rem; }
 .lof-impact--strip .lof-reveal { opacity: 1; transform: none; }
 .lof-intro__band { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-
 /* 0.11.0: people grids centre an incomplete last row; uniform studio portraits */
 .lof-grid.lof-people--grid { display: flex; flex-wrap: wrap; justify-content: center; }
 .lof-people--grid > .lof-person { flex: 0 1 calc((100% - 3 * var(--lof-gap)) / 4); min-width: 210px; }
 .lof-people--grid .lof-person__photo { aspect-ratio: 1; background: #F2E6C9; }
 .lof-people--grid .lof-person__photo img { object-position: center top; }
-@media (max-width: 560px) { .lof-people--grid > .lof-person { flex-basis: 100%; } }
-
+@media (max-width: 560px) {
+	.lof-people--grid > .lof-person { flex-basis: 100%; }
+}
 /* ===== 0.12.0: home hero fits the screen (13.3in laptops and up), photo slider ===== */
 :root { --lof-head-h: 122px; }
 @media (min-width: 992px) {
 	.lof-hero.has-collage { height: calc(100vh - var(--lof-head-h)); height: calc(100svh - var(--lof-head-h)); min-height: 520px; max-height: 940px; align-items: center; }
-	.lof-hero.has-collage .lof-hero__inner { width: 100%; padding-block: clamp(1.25rem, 4.5vh, 3.5rem) clamp(4.25rem, 9vh, 6rem); grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+	.lof-hero.has-collage .lof-hero__inner { padding-block: clamp(1.25rem, 4.5vh, 3.5rem) clamp(4.25rem, 9vh, 6rem); grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
 	.lof-hero.has-collage .lof-hero__eyebrow { margin-bottom: 0; font-size: clamp(.7rem, 1.6vh, .82rem); }
 	.lof-hero.has-collage .lof-hero__title { font-size: clamp(2rem, min(3.6vw, 6.3vh), 4.1rem); line-height: 1.08; max-width: 18ch; margin: clamp(.35rem, 1.2vh, .75rem) 0 clamp(.6rem, 2vh, 1.2rem); }
 	.lof-hero.has-collage .lof-hero__text { font-size: clamp(.95rem, min(1.25vw, 2.3vh), 1.15rem); line-height: 1.6; max-width: 50ch; margin-bottom: clamp(.75rem, 2.6vh, 1.6rem); }
 	.lof-hero.has-collage .lof-btn-row .lof-btn { min-height: clamp(42px, 6vh, 52px); }
 	.lof-hero.has-collage .lof-hero__badges { margin-top: clamp(.75rem, 2.8vh, 1.75rem); gap: .5rem; }
 	.lof-hero.has-collage .lof-hero__badges li { padding: clamp(.3rem, .8vh, .5rem) .85rem; font-size: clamp(.72rem, 1.5vh, .82rem); }
-	.lof-hero.has-collage .lof-hero__collage { min-height: 0; height: calc(100vh - var(--lof-head-h) - 10.5rem); height: calc(100svh - var(--lof-head-h) - 10.5rem); max-height: 600px; min-height: 330px; width: 100%; max-width: 560px; justify-self: end; }
+	.lof-hero.has-collage .lof-hero__collage { height: calc(100vh - var(--lof-head-h) - 10.5rem); height: calc(100svh - var(--lof-head-h) - 10.5rem); max-height: 600px; min-height: 330px; width: 100%; max-width: 560px; justify-self: end; }
 	.lof-hero.has-collage .lof-hero__stamp { width: clamp(84px, 14vh, 112px); height: clamp(84px, 14vh, 112px); }
 }
 @media (min-width: 992px) and (max-height: 760px) {
@@ -505,8 +488,9 @@ html[data-theme="dark"] .lof-hero--page::after { background-image: url("../image
 	.lof-hero.has-collage .lof-btn-row { flex-direction: column; align-items: stretch; }
 	.lof-hero.has-collage .lof-btn-row .lof-btn { justify-content: center; }
 }
-@media (prefers-reduced-motion: reduce) { .lof-hero__slide { transition: none; transform: none; } }
-
+@media (prefers-reduced-motion: reduce) {
+	.lof-hero__slide { transition: none; transform: none; }
+}
 /* ===== 0.12.0: footer ===== */
 .lof-footer--v2 { padding-top: clamp(3rem, 6vw, 5rem); background: radial-gradient(120% 80% at 85% 0%, #6B4520 0%, var(--lof-earth) 45%, #2E1E0E 100%); }
 html[data-theme="dark"] .lof-footer--v2 { background: radial-gradient(120% 80% at 85% 0%, #3A2612 0%, #1A120A 50%, #0E0A06 100%); }
@@ -517,12 +501,12 @@ html[data-theme="dark"] .lof-footer--v2 { background: radial-gradient(120% 80% a
 .lof-footer__kicker { margin: 0 0 .4rem; font-size: .76rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #5C3B1C; }
 .lof-footer__cta-title { margin: 0 0 .5rem; color: #2E1E0E; font-size: clamp(1.6rem, 3vw, 2.4rem); }
 .lof-footer__cta p { margin: 0; color: #3F2913; max-width: 52ch; }
-.lof-footer__cta-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: .75rem; }
+.lof-footer__cta-actions { position: relative; z-index: 1; flex-wrap: wrap; }
 .lof-footer .lof-footer__cta a.lof-btn--earth { color: var(--lof-cream); }
 .lof-footer .lof-footer__cta a.lof-footer__cta-ghost { color: #2E1E0E; border: 2px solid #2E1E0E; background: transparent; }
 .lof-footer .lof-footer__cta a.lof-footer__cta-ghost:hover { background: #2E1E0E; color: var(--lof-cream); }
-.lof-footer__main { position: relative; display: grid; grid-template-columns: 1.5fr 1fr 1.2fr 1.3fr; gap: clamp(2rem, 4vw, 3.5rem); padding-bottom: 2.5rem; }
-.lof-footer__brand .lof-logo img { height: 120px; max-width: 200px; margin-bottom: 1.1rem; }
+.lof-footer__main { position: relative; display: grid; gap: clamp(2rem, 4vw, 3.5rem); }
+.lof-footer__brand .lof-logo img { max-width: 200px; margin-bottom: 1.1rem; }
 .lof-footer__intro { color: rgba(252, 246, 225, .82); line-height: 1.7; max-width: 36ch; margin: 0 0 1.4rem; }
 .lof-footer__social { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0; padding: 0; list-style: none; }
 .lof-footer__social a { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(252, 246, 225, .28); color: var(--lof-cream); transition: background .2s, color .2s, border-color .2s, transform .2s; }
@@ -534,40 +518,37 @@ html[data-theme="dark"] .lof-footer--v2 { background: radial-gradient(120% 80% a
 .lof-footer--v2 .lof-footer__links a:hover, .lof-footer--v2 .lof-menu a:hover { color: var(--lof-yellow); transform: translateX(4px); background: none; }
 .lof-footer--v2 .lof-menu .sub-menu { display: none; }
 .lof-footer__more { color: var(--lof-gold) !important; font-weight: 700 !important; }
-.lof-footer__more::after { content: "\2192"; margin-left: .4rem; }
+.lof-footer__more::after { content: "→"; margin-left: .4rem; }
 .lof-footer--v2 .lof-footer__contact { display: grid; gap: .9rem; margin: 0 0 1.4rem; }
 .lof-footer--v2 .lof-footer__contact li { display: flex; gap: .75rem; align-items: flex-start; margin: 0; color: rgba(252, 246, 225, .86); line-height: 1.55; word-break: break-word; }
 .lof-footer__ico { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 10px; background: rgba(244, 175, 22, .14); color: var(--lof-gold); }
 .lof-footer__donate { min-height: 46px; }
-.lof-footer__mark { position: relative; overflow: hidden; white-space: nowrap; text-align: center; font-family: var(--lof-font-display); font-weight: 700; text-transform: uppercase; font-size: clamp(2.6rem, 10.5vw, 9.5rem); line-height: .9; letter-spacing: .02em; color: transparent; -webkit-text-stroke: 1px rgba(244, 175, 22, .32); background: linear-gradient(180deg, rgba(244, 175, 22, .16), rgba(244, 175, 22, 0) 85%); -webkit-background-clip: text; background-clip: text; padding: 0 1rem .2rem; user-select: none; }
-.lof-footer__base { position: relative; border-top: 1px solid rgba(252, 246, 225, .14); background: rgba(0, 0, 0, .18); }
-.lof-footer--v2 .lof-footer__bottom { border-top: 0; align-items: center; padding-block: 1.1rem; }
+.lof-footer__mark { position: relative; overflow: hidden; white-space: nowrap; text-align: center; font-family: var(--lof-font-display); text-transform: uppercase; line-height: .9; color: transparent; -webkit-text-stroke: 1px rgba(244, 175, 22, .32); background: linear-gradient(180deg, rgba(244, 175, 22, .16), rgba(244, 175, 22, 0) 85%); -webkit-background-clip: text; background-clip: text; padding: 0 1rem .2rem; user-select: none; }
+.lof-footer__base { position: relative; }
+.lof-footer--v2 .lof-footer__bottom { border-top: 0; }
 .lof-footer--v2 .lof-footer__bottom p { max-width: 70ch; }
 .lof-footer__top { display: inline-flex; align-items: center; gap: .4rem; font-weight: 600; font-size: .85rem; color: var(--lof-gold) !important; }
-@media (max-width: 991px) { .lof-footer__main { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 760px) {
 	.lof-footer__cta { grid-template-columns: 1fr; text-align: left; }
 	.lof-footer__cta-actions .lof-btn { flex: 1 1 auto; justify-content: center; }
 }
 @media (max-width: 560px) {
-	.lof-footer__main { grid-template-columns: 1fr; gap: 2rem; }
+	.lof-footer__main { gap: 2rem; }
 	.lof-footer__brand .lof-logo img { height: 96px; }
 	.lof-footer--v2 .lof-footer__bottom { flex-direction: column; align-items: flex-start; }
 }
-
 /* ===== 0.12.0: phone polish ===== */
 main, .lof-footer { overflow-x: clip; }
-img, svg, video, iframe { max-width: 100%; }
 @media (max-width: 640px) {
-	.lof-btn-row { gap: .6rem; }
 	.lof-heading__title, .lof-section h2 { overflow-wrap: anywhere; hyphens: auto; }
 	.lof-topbar__contacts { gap: .75rem; font-size: .75rem; flex-wrap: wrap; justify-content: center; width: 100%; }
 	.lof-topbar__inner { justify-content: center; }
 	.lof-header__inner { min-height: 64px; gap: .6rem; }
 	.lof-logo img, .lof-header__brand .custom-logo { height: 40px; }
 }
-@media (max-width: 991px) { .lof-nav, .admin-bar .lof-nav { top: var(--lof-nav-top, 72px) !important; bottom: 0; } }
-
+@media (max-width: 991px) {
+	.lof-nav, .admin-bar .lof-nav { top: var(--lof-nav-top, 72px) !important; }
+}
 /* ===== 0.12.1: hero alignment fix, footer refinement ===== */
 @media (min-width: 992px) {
 	.lof-hero.has-collage .lof-hero__inner { width: min(100% - 4rem, var(--lof-container)); }
@@ -576,12 +557,12 @@ img, svg, video, iframe { max-width: 100%; }
 	.lof-hero.has-collage .lof-hero__card strong { font-size: 1.15rem; }
 	.lof-hero.has-collage .lof-hero__stamp { top: 6%; left: -4px; }
 }
-.lof-footer__reach { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding-bottom: clamp(2rem, 4vw, 3rem); margin-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 1px solid rgba(252, 246, 225, .14); }
+.lof-footer__reach { position: relative; display: grid; gap: 1rem; padding-bottom: clamp(2rem, 4vw, 3rem); margin-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 1px solid rgba(252, 246, 225, .14); }
 .lof-footer__tile { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.25rem; border-radius: 18px; background: rgba(252, 246, 225, .05); border: 1px solid rgba(252, 246, 225, .12); color: var(--lof-cream) !important; text-decoration: none; transition: background .2s, border-color .2s, transform .2s; min-width: 0; }
 a.lof-footer__tile:hover { background: rgba(244, 175, 22, .12); border-color: rgba(244, 175, 22, .45); transform: translateY(-2px); }
 .lof-footer__tile .lof-footer__ico { width: 46px; height: 46px; border-radius: 14px; background: var(--lof-gold); color: #2E1E0E; }
 .lof-footer__tile small { display: block; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--lof-gold); font-weight: 700; margin-bottom: .15rem; }
-.lof-footer__tile strong { display: block; font-weight: 600; font-size: .98rem; line-height: 1.4; overflow-wrap: anywhere; }
+.lof-footer__tile strong { display: block; font-weight: 600; line-height: 1.4; }
 .lof-footer__main { grid-template-columns: 1.35fr 1.15fr 1.2fr 1.1fr; align-items: start; }
 .lof-footer--v2 .lof-footer__col:first-of-type .lof-footer__links { display: grid; grid-template-columns: repeat(2, minmax(0, auto)); column-gap: 1.75rem; }
 .lof-footer__badge { display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 1.25rem; padding: .45rem .9rem; border-radius: 999px; border: 1px solid rgba(244, 175, 22, .45); color: var(--lof-gold); font-size: .78rem; font-weight: 700; letter-spacing: .06em; }
@@ -589,10 +570,13 @@ a.lof-footer__tile:hover { background: rgba(244, 175, 22, .12); border-color: rg
 .lof-footer__support p { color: rgba(252, 246, 225, .82); line-height: 1.65; margin: 0 0 1.25rem; }
 .lof-footer__support .lof-footer__donate { display: inline-flex; margin-bottom: 1rem; }
 .lof-footer__support .lof-footer__more { display: block; font-size: .92rem; text-decoration: none; }
-.lof-footer__mark { font-size: clamp(2.2rem, 7.4vw, 7.25rem); letter-spacing: .04em; padding-top: .5rem; }
-@media (max-width: 991px) { .lof-footer__main { grid-template-columns: 1fr 1fr; } .lof-footer__reach { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .lof-footer__main { grid-template-columns: 1fr; } .lof-footer__mark { font-size: 10vw; } }
-
+.lof-footer__mark { font-size: clamp(2.2rem, 7.4vw, 7.25rem); padding-top: .5rem; }
+@media (max-width: 991px) {
+	.lof-footer__main { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+	.lof-footer__main { grid-template-columns: 1fr; }
+}
 /* ===== 0.12.2: phone fixes from the 390px review ===== */
 @media (max-width: 991px) {
 	/* backdrop-filter made the header the containing block of the fixed menu, so the menu opened as a thin strip */
@@ -611,9 +595,12 @@ html[data-theme="dark"] .lof-nav-toggle[aria-expanded="true"] .lof-nav-toggle__b
 .lof-contact__list dd, .lof-contact__list a { overflow-wrap: anywhere; }
 .lof-footer__reach { grid-template-columns: minmax(0, .85fr) minmax(0, 1.25fr) minmax(0, 1.25fr); }
 .lof-footer__tile strong { overflow-wrap: break-word; word-break: normal; font-size: .93rem; }
-@media (max-width: 991px) { .lof-footer__reach { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .lof-footer__mark { font-size: 6.6vw; letter-spacing: .02em; padding-inline: .5rem; } }
-
+@media (max-width: 991px) {
+	.lof-footer__reach { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+	.lof-footer__mark { font-size: 6.6vw; letter-spacing: .02em; padding-inline: .5rem; }
+}
 /* ===== 0.13.0: hero figures row, programme leads, focus colour ===== */
 .lof-hero__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: clamp(1rem, 3.2vh, 2rem) 0 0; padding: clamp(.7rem, 1.8vh, 1rem) 0 0; border-top: 1px solid rgba(252, 246, 225, .2); max-width: 560px; }
 .lof-hero__stats > div { padding: 0 .9rem; border-left: 1px solid rgba(252, 246, 225, .16); }
@@ -628,16 +615,15 @@ html[data-theme="dark"] .lof-nav-toggle[aria-expanded="true"] .lof-nav-toggle__b
 	.lof-hero__stats > div:nth-child(3) { padding-left: 0; border-left: 0; }
 }
 .lof-card--programme .lof-card__media { position: relative; }
-.lof-card__index { position: absolute; left: 14px; top: 14px; display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; padding: 0 .5rem; border-radius: 12px; background: rgba(46, 30, 14, .82); color: var(--lof-gold); font-family: var(--lof-font-display); font-weight: 700; font-size: 1rem; backdrop-filter: blur(4px); }
-.lof-card__lead { margin: .25rem 0 .75rem; padding-top: .65rem; border-top: 1px dashed var(--lof-line); font-size: .8rem; font-weight: 700; letter-spacing: .04em; color: var(--lof-link); }
+.lof-card__index { position: absolute; left: 14px; top: 14px; display: inline-flex; align-items: center; justify-content: center; padding: 0 .5rem; color: var(--lof-gold); font-family: var(--lof-font-display); font-weight: 700; backdrop-filter: blur(4px); }
+.lof-card__lead { padding-top: .65rem; border-top: 1px dashed var(--lof-line); }
 .lof-nav-toggle:hover, .lof-nav-toggle:focus, .lof-nav-toggle:active { background: var(--lof-earth); color: var(--lof-bg); border-color: transparent; }
 html[data-theme="dark"] .lof-nav-toggle:hover, html[data-theme="dark"] .lof-nav-toggle:focus, html[data-theme="dark"] .lof-nav-toggle:active { background: var(--lof-gold); }
 .lof-theme-toggle:focus, .lof-theme-toggle:active { background: var(--lof-surface-2); color: var(--lof-heading); border-color: var(--lof-line-strong); }
 .lof-nav-toggle:focus-visible, .lof-theme-toggle:focus-visible { outline: 2px solid var(--lof-gold); outline-offset: 3px; }
-
 /* ===== 0.14.0: leadership tabs, FAQ accordion, giving panel ===== */
-.lof-tabs-wrap { padding-top: clamp(2rem, 4vw, 3rem); background: var(--lof-bg); }
-.lof-tabs { display: inline-flex; flex-wrap: wrap; gap: .4rem; padding: .4rem; border-radius: 999px; background: var(--lof-surface-2); border: 1px solid var(--lof-line); }
+.lof-tabs-wrap { background: var(--lof-bg); }
+.lof-tabs { flex-wrap: wrap; }
 .lof-tabs-wrap .lof-container { display: flex; justify-content: center; }
 .lof-tab { display: inline-flex; align-items: center; gap: .6rem; min-height: 46px; padding: .55rem 1.25rem; border: 0; border-radius: 999px; background: transparent; color: var(--lof-heading); font: 700 .92rem/1.2 var(--lof-font-body); cursor: pointer; transition: background .2s, color .2s; }
 .lof-tab:hover, .lof-tab:focus { background: var(--lof-surface); color: var(--lof-heading); }
@@ -647,21 +633,20 @@ html[data-theme="dark"] .lof-tab[aria-selected="true"] { background: var(--lof-g
 .lof-tab[aria-selected="true"] .lof-tab__count { background: var(--lof-gold); color: #2E1E0E; }
 html[data-theme="dark"] .lof-tab[aria-selected="true"] .lof-tab__count { background: #2E1E0E; color: var(--lof-gold); }
 .lof-tab:focus-visible { outline: 2px solid var(--lof-gold); outline-offset: 2px; }
-.lof-leaders[hidden] { display: none !important; }
 .lof-tabs-wrap + .lof-leaders, .lof-tabs-wrap ~ .lof-leaders { padding-top: clamp(2rem, 4vw, 3rem); }
-@media (max-width: 560px) { .lof-tabs { width: 100%; border-radius: 18px; } .lof-tab { flex: 1 1 100%; justify-content: center; border-radius: 14px; } }
-
+@media (max-width: 560px) {
+	.lof-tabs { width: 100%; border-radius: 18px; }
+	.lof-tab { flex: 1 1 100%; justify-content: center; border-radius: 14px; }
+}
 .lof-faq { gap: .9rem; }
-.lof-faq__item { padding: 0; border-radius: 18px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 12px 30px -24px rgba(43, 29, 14, .45); transition: border-color .2s, box-shadow .2s; overflow: hidden; }
-.lof-faq__item[open] { border-color: rgba(244, 175, 22, .6); box-shadow: 0 18px 40px -26px rgba(43, 29, 14, .55); }
-.lof-faq__item summary { display: flex; align-items: center; gap: 1rem; padding: 1.15rem 1.35rem; padding-right: 4rem; font-size: 1.02rem; line-height: 1.45; }
+.lof-faq__item { padding: 0; overflow: hidden; }
+.lof-faq__item summary { padding-right: 4rem; line-height: 1.45; }
 .lof-faq__item summary:hover { color: var(--lof-link); }
 .lof-faq__item summary:focus-visible { outline: 2px solid var(--lof-gold); outline-offset: -2px; border-radius: 18px; }
 .lof-faq__item summary::after { content: ""; right: 1.25rem; width: 32px; height: 32px; border-radius: 50%; background: var(--lof-surface-2) no-repeat center / 14px 14px; background-image: linear-gradient(var(--lof-amber), var(--lof-amber)), linear-gradient(var(--lof-amber), var(--lof-amber)); background-size: 14px 2px, 2px 14px; transition: transform .25s ease, background-color .2s; }
 .lof-faq__item[open] summary::after { content: ""; transform: translateY(-50%) rotate(45deg); background-color: var(--lof-gold); background-image: linear-gradient(#2E1E0E, #2E1E0E), linear-gradient(#2E1E0E, #2E1E0E); }
-.lof-faq__answer { padding: 0 1.35rem 1.25rem; border-top: 1px solid var(--lof-line); }
+.lof-faq__answer { border-top: 1px solid var(--lof-line); }
 .lof-faq__answer p { margin: 1rem 0 0; color: var(--lof-text); line-height: 1.7; }
-
 .lof-givepanel { display: grid; gap: 1.25rem; padding: clamp(1.25rem, 3vw, 2rem); border-radius: 24px; background: rgba(252, 246, 225, .06); border: 1px solid rgba(252, 246, 225, .18); box-shadow: 0 30px 60px -40px rgba(0, 0, 0, .6); }
 .lof-give:not(.lof-give--photo) .lof-givepanel { max-width: 820px; margin-inline: auto; }
 .lof-givepanel__step { margin: 0; padding: 0; border: 0; min-width: 0; }
@@ -682,11 +667,14 @@ html[data-theme="dark"] .lof-tab[aria-selected="true"] .lof-tab__count { backgro
 .lof-givepanel select { width: 100%; height: 52px; padding: 0 2.75rem 0 1rem; border-radius: 14px; border: 0; background: var(--lof-cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235C3B1C' d='M6 8 0 0h12z'/%3E%3C/svg%3E") no-repeat right 1rem center; color: #2E1E0E; font: 600 1rem var(--lof-font-body); appearance: none; -webkit-appearance: none; }
 .lof-givepanel select:focus-visible, .lof-givepanel__kes input:focus-visible { outline: 2px solid var(--lof-yellow); outline-offset: 2px; }
 .lof-givepanel__submit { justify-self: start; min-height: 52px; padding-inline: 2rem; }
-@media (max-width: 640px) { .lof-givepanel .lof-give__amounts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lof-givepanel__submit { justify-self: stretch; justify-content: center; } .lof-givepanel__kes { max-width: none; } }
+@media (max-width: 640px) {
+	.lof-givepanel .lof-give__amounts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.lof-givepanel__submit { justify-self: stretch; justify-content: center; }
+	.lof-givepanel__kes { max-width: none; }
+}
 .lof-tone-cream .lof-givepanel, .lof-tone-white .lof-givepanel, .lof-tone-sand .lof-givepanel { background: var(--lof-surface); border-color: var(--lof-line); }
-
 /* ===== 0.15.0: Nunito + Figtree typography (as on the Smile Community Centre site) ===== */
-body { font-size: 1.0625rem; line-height: 1.7; letter-spacing: .003em; }
+body { letter-spacing: .003em; }
 h1, h2, h3, .lof-display, .lof-hero__title, .lof-section__title, .lof-card__title, .lof-footer__cta-title { font-family: var(--lof-font-display); font-weight: 800; letter-spacing: -.015em; text-transform: none; }
 .lof-hero__title, .lof-hero--page .lof-hero__title { line-height: 1.06; letter-spacing: -.02em; }
 .lof-hero.has-collage .lof-hero__title { max-width: 19ch; }
@@ -698,9 +686,9 @@ h1, h2, h3, .lof-display, .lof-hero__title, .lof-section__title, .lof-card__titl
 .lof-btn, .lof-tab, .lof-menu a { font-family: var(--lof-font-body); }
 /* phone: fund dropdown and bottom Donate bar */
 .lof-givepanel select { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
-@media (max-width: 640px) { .lof-givepanel select { font-size: .95rem; height: 54px; padding-left: .85rem; } }
-@media (max-width: 760px) { body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); } .lof-wa { bottom: calc(86px + env(safe-area-inset-bottom)) !important; } }
-
+@media (max-width: 640px) {
+	.lof-givepanel select { font-size: .95rem; height: 54px; padding-left: .85rem; }
+}
 /* ===== 0.16.0: full-width home slider, figures bar, balanced home ===== */
 .lof-cine { position: relative; isolation: isolate; overflow: hidden; background: #24170B; color: var(--lof-cream); height: calc(100vh - var(--lof-head-h)); height: calc(100svh - var(--lof-head-h)); min-height: 560px; max-height: 920px; }
 .lof-cine__track, .lof-cine__slide { position: absolute; inset: 0; }
@@ -748,18 +736,21 @@ h1, h2, h3, .lof-display, .lof-hero__title, .lof-section__title, .lof-card__titl
 .lof-cine__pause .lof-i-play { display: none; }
 .lof-cine__pause[aria-pressed="true"] .lof-i-pause { display: none; }
 .lof-cine__pause[aria-pressed="true"] .lof-i-play { display: block; }
-@media (prefers-reduced-motion: reduce) { .lof-cine__media img, .lof-cine__slide.is-active .lof-cine__media img { transform: none; transition: none; } .lof-cine__slide * { animation: none !important; } .lof-cine__slide { transition: none; } }
-@media (max-width: 991px) { .lof-cine__tabs { display: none; } .lof-cine__ui-inner { justify-content: flex-end; } }
+@media (prefers-reduced-motion: reduce) {
+	.lof-cine__media img, .lof-cine__slide.is-active .lof-cine__media img { transform: none; transition: none; }
+	.lof-cine__slide * { animation: none !important; }
+	.lof-cine__slide { transition: none; }
+}
+@media (max-width: 991px) {
+	.lof-cine__tabs { display: none; }
+	.lof-cine__ui-inner { justify-content: flex-end; }
+}
 @media (max-width: 760px) {
 	.lof-cine { height: auto; min-height: calc(100svh - var(--lof-head-h) - 76px); max-height: none; }
 	.lof-cine__track { position: relative; min-height: inherit; display: grid; }
 	.lof-cine__slide { position: relative; grid-area: 1 / 1; min-height: inherit; }
-	.lof-cine__inner { align-items: flex-end; padding-top: 6rem; padding-bottom: 6.5rem; min-height: inherit; }
-	.lof-cine__shade { background: linear-gradient(0deg, rgba(28, 18, 8, .96) 0%, rgba(28, 18, 8, .8) 45%, rgba(28, 18, 8, .25) 100%); }
-	.lof-cine__title { font-size: clamp(2rem, 9vw, 2.6rem); }
 	.lof-cine .lof-btn-row { flex-direction: column; align-items: stretch; }
 	.lof-cine .lof-btn-row .lof-btn { justify-content: center; }
-	.lof-cine__ui-inner { justify-content: space-between; }
 	.lof-cine__btn { width: 42px; height: 42px; }
 }
 /* figures bar: white card overlapping the slider's lower edge */
@@ -770,7 +761,11 @@ h1, h2, h3, .lof-display, .lof-hero__title, .lof-section__title, .lof-card__titl
 .lof-figbar__grid dd { order: -1; margin: 0; font-family: var(--lof-font-display); font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1; color: var(--lof-amber); letter-spacing: -.02em; }
 .lof-figbar__grid dt { margin-top: .4rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--lof-muted); }
 html[data-theme="dark"] .lof-figbar__grid dd { color: var(--lof-gold); }
-@media (max-width: 640px) { .lof-figbar { margin-top: -1.5rem; background: linear-gradient(180deg, transparent 1.5rem, var(--lof-bg) 1.5rem); } .lof-figbar__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.1rem; } .lof-figbar__grid > div:nth-child(3) { border-left: 0; } }
+@media (max-width: 640px) {
+	.lof-figbar { margin-top: -1.5rem; background: linear-gradient(180deg, transparent 1.5rem, var(--lof-bg) 1.5rem); }
+	.lof-figbar__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.1rem; }
+	.lof-figbar__grid > div:nth-child(3) { border-left: 0; }
+}
 /* balance: programme cards without a photo get a light, branded tile instead of a heavy brown block */
 .lof-card--programme .lof-placeholder { background: radial-gradient(120% 120% at 100% 0%, rgba(244, 175, 22, .28), transparent 55%), linear-gradient(160deg, var(--lof-surface-2), var(--lof-bg)); }
 .lof-card--programme .lof-placeholder::after { content: ""; position: absolute; right: -18px; bottom: -18px; width: 120px; height: 120px; border-radius: 50%; border: 18px solid rgba(220, 140, 19, .14); }
@@ -780,7 +775,6 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 .lof-card--programme:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -30px rgba(43, 29, 14, .6); }
 .lof-card--programme .lof-card__media img { transition: transform .6s ease; }
 .lof-card--programme:hover .lof-card__media img { transform: scale(1.05); }
-
 /* ===== 0.16.1: slider spacing, portrait photos, phone layout ===== */
 @media (min-width: 761px) {
 	/* keep progress bars and buttons clear of the figures card that overlaps the slider by 2.5rem */
@@ -789,27 +783,20 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 	.lof-cine__shade { background: linear-gradient(90deg, rgba(28, 18, 8, .92) 0%, rgba(28, 18, 8, .72) 38%, rgba(28, 18, 8, .18) 72%, rgba(28, 18, 8, .05) 100%), linear-gradient(0deg, rgba(28, 18, 8, .9) 0%, rgba(28, 18, 8, 0) 40%); }
 	/* portrait photos (focus "Top"): show the photo on the right so text never crosses a face */
 	.lof-cine__slide--top { background: radial-gradient(80% 90% at 20% 50%, #3A2612, #1C1208); }
-	.lof-cine__slide--top .lof-cine__media { left: 44%; }
 	.lof-cine__slide--top .lof-cine__media img { object-position: center 18%; }
-	.lof-cine__slide--top .lof-cine__shade { background: linear-gradient(90deg, rgba(28, 18, 8, .96) 0%, rgba(28, 18, 8, .9) 42%, rgba(28, 18, 8, .35) 52%, rgba(28, 18, 8, 0) 66%), linear-gradient(0deg, rgba(28, 18, 8, .9) 0%, rgba(28, 18, 8, 0) 40%); }
 }
 @media (max-width: 760px) {
 	/* phone: photo on top, text on a dark panel below, controls at the top so the fixed Donate bar never hides them */
 	.lof-cine { background: #1C1208; }
-	.lof-cine__media { bottom: auto; height: 56%; }
+	.lof-cine__media { bottom: auto; }
 	.lof-cine__slide--top .lof-cine__media img { object-position: center 15%; }
 	.lof-cine__shade { background: linear-gradient(0deg, #1C1208 0%, #1C1208 44%, rgba(28, 18, 8, .55) 56%, rgba(28, 18, 8, .1) 75%, rgba(28, 18, 8, .35) 100%); }
-	.lof-cine__inner { padding-top: 0; padding-bottom: 3.75rem; }
-	.lof-cine__content { padding-top: calc(56% - 2rem); }
 	.lof-cine__ui { top: .9rem; bottom: auto; padding-bottom: 0; }
 	.lof-cine__ui-inner { justify-content: flex-end; }
 	.lof-cine__count { padding: .35rem .7rem; border-radius: 999px; background: rgba(28, 18, 8, .55); backdrop-filter: blur(6px); }
-	.lof-cine__eyebrow { font-size: .68rem; }
 	.lof-cine__text { font-size: .98rem; }
 }
-
 /* ===== 0.16.2: phone slider as photo card + text panel; slide 3 spacing ===== */
-@media (min-width: 761px) { .lof-cine__slide--top .lof-cine__content { max-width: min(560px, 38vw); } }
 @media (max-width: 760px) {
 	.lof-cine, .lof-cine__track, .lof-cine__slide { min-height: 0; }
 	.lof-cine__slide { display: flex; flex-direction: column; }
@@ -823,7 +810,6 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 	.lof-cine__title { font-size: clamp(1.75rem, 7.6vw, 2.25rem); }
 	.lof-cine__media img { transform: none; }
 }
-
 /* ===== 0.16.3: slide 3 (portrait photo) clear gap between text and photo ===== */
 @media (min-width: 761px) {
 	.lof-cine__slide--top .lof-cine__media { left: 52%; }
@@ -831,31 +817,28 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 	.lof-cine__slide--top .lof-cine__text { max-width: 40ch; }
 	.lof-cine__slide--top .lof-cine__shade { background: linear-gradient(90deg, rgba(28, 18, 8, .96) 0%, rgba(28, 18, 8, .94) 50%, rgba(28, 18, 8, .4) 58%, rgba(28, 18, 8, 0) 70%), linear-gradient(0deg, rgba(28, 18, 8, .9) 0%, rgba(28, 18, 8, 0) 40%); }
 }
-
 /* ===== 0.17.0: focus areas, stories of change, who we are, give today ===== */
 /* Section headings: tighter, more editorial */
 .lof-section__head { max-width: 760px; }
-.lof-section__title { font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.08; letter-spacing: -.02em; }
-.lof-section__intro { font-size: 1.08rem; line-height: 1.7; }
-
+.lof-section__title { letter-spacing: -.02em; }
+.lof-section__intro { line-height: 1.7; }
 /* --- Our focus areas --- */
 .lof-card--programme .lof-card__body::before { display: none; }
 .lof-card--programme { border-radius: 22px; }
 .lof-card--programme .lof-card__media { aspect-ratio: 4 / 3; }
 .lof-card--programme .lof-card__media::after { content: ""; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(0deg, rgba(28, 18, 8, .35), transparent); pointer-events: none; }
-.lof-card--programme .lof-card__body { display: flex; flex-direction: column; gap: .55rem; padding: 1.35rem 1.4rem 1.25rem; flex: 1; }
+.lof-card--programme .lof-card__body { display: flex; flex-direction: column; gap: .55rem; flex: 1; }
 .lof-card--programme .lof-card__title { font-size: 1.22rem; line-height: 1.25; margin: 0; }
 .lof-card--programme .lof-card__title a { color: var(--lof-heading); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size .3s ease; }
 .lof-card--programme:hover .lof-card__title a { background-size: 100% 2px; }
 .lof-card--programme .lof-card__body > p:not(.lof-card__lead) { margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .lof-card__lead { display: inline-flex; align-items: center; gap: .45rem; align-self: flex-start; margin: .35rem 0 0; padding: .3rem .7rem .3rem .35rem; border: 0; border-radius: 999px; background: rgba(244, 175, 22, .14); color: var(--lof-heading); font-size: .78rem; font-weight: 700; letter-spacing: .01em; }
 .lof-card__lead-ico { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--lof-gold); color: #2E1E0E; }
-.lof-card--programme .lof-card__link { margin-top: auto; padding-top: .9rem; border-top: 1px solid var(--lof-line); display: flex; justify-content: space-between; align-items: center; }
+.lof-card--programme .lof-card__link { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
 .lof-card--programme .lof-card__link::after { content: ""; width: 34px; height: 34px; border-radius: 50%; background: var(--lof-surface-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23DC8C13' d='M13.2 5.3 11.8 6.7 16.1 11H4v2h12.1l-4.3 4.3 1.4 1.4L20 12z'/%3E%3C/svg%3E") center / 16px no-repeat; transition: transform .25s ease, background-color .25s ease; }
 .lof-card--programme:hover .lof-card__link::after { transform: translateX(4px); background-color: var(--lof-gold); }
 .lof-card__index { border-radius: 10px; min-width: 40px; height: 40px; font-size: .95rem; background: rgba(28, 18, 8, .72); }
 .lof-grid--3:has(> .lof-card--programme) { gap: clamp(1.25rem, 2.4vw, 1.75rem); }
-
 /* --- Stories of change: magazine layout (one large, two side by side) --- */
 .lof-card--story { position: relative; border-radius: 22px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 18px 40px -32px rgba(43, 29, 14, .5); }
 .lof-card--story .lof-card__media { position: relative; }
@@ -869,16 +852,14 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 @media (min-width: 900px) {
 	.lof-grid--3:has(> .lof-card--story:nth-child(3)) { grid-template-columns: 1.3fr 1fr; grid-template-rows: auto auto; gap: 1.5rem; }
 	.lof-grid--3 > .lof-card--story:first-child { grid-row: span 2; }
-	.lof-grid--3 > .lof-card--story:first-child .lof-card__media { aspect-ratio: auto; flex: 1; min-height: 320px; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__media { aspect-ratio: auto; flex: 1; }
 	.lof-grid--3 > .lof-card--story:first-child .lof-card__title { font-size: clamp(1.5rem, 2.2vw, 2rem); }
-	.lof-grid--3 > .lof-card--story:first-child .lof-card__body { padding: 1.6rem 1.75rem 1.6rem; }
 	.lof-grid--3 > .lof-card--story:first-child .lof-card__body > p { font-size: 1.05rem; }
 	.lof-grid--3 > .lof-card--story:not(:first-child) { flex-direction: row; }
 	.lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__media { flex: 0 0 44%; aspect-ratio: auto; min-height: 220px; }
 	.lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__body { flex: 1; }
 }
-.lof-card--story .lof-card__body::before { content: "\201C"; font-family: var(--lof-font-display); font-weight: 900; font-size: 3rem; line-height: .6; color: var(--lof-gold); height: .9rem; }
-
+.lof-card--story .lof-card__body::before { content: "“"; font-family: var(--lof-font-display); font-weight: 900; font-size: 3rem; line-height: .6; color: var(--lof-gold); height: .9rem; }
 /* --- Who we are (photo feature) --- */
 .lof-feature__media { isolation: isolate; }
 .lof-feature__media img { border-radius: 26px; box-shadow: 0 30px 60px -34px rgba(43, 29, 14, .6); }
@@ -891,13 +872,12 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 .lof-feature__body .lof-prose > p:first-child { font-size: 1.14rem; line-height: 1.7; color: var(--lof-heading); }
 .lof-feature__body .lof-prose { color: var(--lof-muted); }
 .lof-feature__body .lof-btn-row { margin-top: 1.5rem; }
-
 /* --- Give today --- */
-.lof-give--photo .lof-give__grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; }
+.lof-give--photo .lof-give__grid { align-items: center; }
 .lof-give__media { position: relative; isolation: isolate; }
-.lof-give__media img, .lof-give__media .lof-placeholder { aspect-ratio: 4 / 5; border-radius: 26px; border: 0; box-shadow: 0 34px 70px -34px rgba(0, 0, 0, .7); }
-.lof-give__media::before { content: ""; position: absolute; z-index: -1; inset: 18px -18px -18px 18px; border-radius: 26px; border: 2px solid var(--lof-gold); opacity: .7; }
-.lof-give__media::after { content: "KES"; position: absolute; left: -14px; top: 22px; display: grid; place-items: center; width: 74px; height: 74px; border-radius: 50%; background: var(--lof-gold); color: #2E1E0E; font: 900 .9rem/1 var(--lof-font-display); letter-spacing: .04em; box-shadow: 0 16px 30px -14px rgba(0, 0, 0, .6); transform: rotate(-10deg); }
+.lof-give__media img, .lof-give__media .lof-placeholder { aspect-ratio: 4 / 5; box-shadow: 0 34px 70px -34px rgba(0, 0, 0, .7); }
+.lof-give__media::before { content: ""; position: absolute; z-index: -1; border: 2px solid var(--lof-gold); opacity: .7; }
+.lof-give__media::after { content: "KES"; position: absolute; display: grid; place-items: center; border-radius: 50%; background: var(--lof-gold); color: #2E1E0E; font: 900 .9rem/1 var(--lof-font-display); letter-spacing: .04em; box-shadow: 0 16px 30px -14px rgba(0, 0, 0, .6); transform: rotate(-10deg); }
 .lof-tone-earth .lof-givepanel { background: #FCF6E1; border: 0; color: #2E1E0E; box-shadow: 0 34px 70px -40px rgba(0, 0, 0, .75); }
 .lof-tone-earth .lof-givepanel__step legend { color: #8A5A12; }
 .lof-tone-earth .lof-givepanel .lof-chip { background: #fff; border: 1.5px solid rgba(63, 41, 19, .18); color: #2E1E0E; }
@@ -910,14 +890,14 @@ html[data-theme="dark"] .lof-card--programme .lof-placeholder { background: radi
 .lof-tone-earth .lof-givepanel__submit { width: 100%; justify-content: center; }
 .lof-give__note { display: flex; align-items: center; gap: .5rem; }
 .lof-give__note::before { content: ""; flex: none; width: 16px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23F4AF16' d='M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5z'/%3E%3C/svg%3E") center / contain no-repeat; }
-@media (max-width: 860px) { .lof-give--photo .lof-give__grid { grid-template-columns: 1fr; } .lof-give__media { max-width: 320px; } .lof-give__media::after { left: -6px; } }
+@media (max-width: 860px) {
+	.lof-give__media::after { left: -6px; }
+}
 html[data-theme="dark"] .lof-tone-earth .lof-givepanel { background: #FCF6E1; }
-
 /* approach steps: numbered gold circles and a connecting line */
 .lof-steps { position: relative; }
 .lof-steps .lof-card__kicker { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--lof-gold); color: #2E1E0E; font-size: 1rem; font-weight: 800; box-shadow: 0 0 0 6px rgba(244, 175, 22, .18); margin-bottom: .4rem; }
 .lof-steps .lof-card__title { font-size: 1.12rem; }
-
 /* ===== 0.18.0: Our story, Stories of change, Who we are, Give today (creative pass) ===== */
 /* --- Our story: founder letter with arch portrait, drop cap, pull-quote card, timeline --- */
 .lof-feature--story { position: relative; overflow: hidden; }
@@ -935,32 +915,34 @@ html[data-theme="dark"] .lof-tone-earth .lof-givepanel { background: #FCF6E1; }
 .lof-feature--story .lof-prose > p { margin: 0 0 1rem; line-height: 1.8; }
 .lof-feature--story .lof-prose > p:first-child { font-size: 1.12rem; color: var(--lof-heading); }
 .lof-feature--story .lof-prose > p:first-child::first-letter { float: left; margin: .35rem .65rem 0 0; font-family: var(--lof-font-display); font-weight: 900; font-size: 4.4rem; line-height: .78; color: var(--lof-amber); }
-.lof-feature--story .lof-quote { position: relative; margin: 1.75rem 0; padding: 1.5rem 1.6rem 1.4rem 1.6rem; border: 0; border-radius: 20px; background: var(--lof-earth); color: var(--lof-cream); box-shadow: 0 30px 60px -36px rgba(43, 29, 14, .7); overflow: hidden; }
-.lof-feature--story .lof-quote::before { content: "\201C"; position: absolute; right: 1rem; top: -.6rem; font-family: var(--lof-font-display); font-weight: 900; font-size: 7rem; line-height: 1; color: rgba(244, 175, 22, .35); }
+.lof-feature--story .lof-quote { position: relative; margin: 1.75rem 0; padding: 1.5rem 1.6rem 1.4rem 1.6rem; border: 0; background: var(--lof-earth); color: var(--lof-cream); box-shadow: 0 30px 60px -36px rgba(43, 29, 14, .7); overflow: hidden; }
+.lof-feature--story .lof-quote::before { content: "“"; position: absolute; right: 1rem; top: -.6rem; font-family: var(--lof-font-display); font-weight: 900; font-size: 7rem; line-height: 1; color: rgba(244, 175, 22, .35); }
 .lof-feature--story .lof-quote p { position: relative; color: var(--lof-cream); font-size: 1.12rem; font-style: normal; font-weight: 600; line-height: 1.6; }
 .lof-feature--story .lof-quote cite { display: block; margin-top: .8rem; color: var(--lof-gold); font-style: normal; font-weight: 700; font-size: .82rem; letter-spacing: .04em; }
 html[data-theme="dark"] .lof-feature--story .lof-quote { background: #2A1C0E; border: 1px solid rgba(244, 175, 22, .25); }
-.lof-feature--story .lof-milestones { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.75rem 0 0; padding-top: 1.4rem; }
+.lof-feature--story .lof-milestones { margin: 1.75rem 0 0; padding-top: 1.4rem; }
 .lof-feature--story .lof-milestones::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, var(--lof-gold), rgba(244, 175, 22, .15)); }
-.lof-feature--story .lof-milestones > div { position: relative; padding: 0; border: 0; background: none; box-shadow: none; }
-.lof-feature--story .lof-milestones > div::before { content: ""; position: absolute; left: 0; top: calc(-1.4rem - 6px); width: 14px; height: 14px; border-radius: 50%; background: var(--lof-gold); box-shadow: 0 0 0 5px rgba(244, 175, 22, .22); }
-.lof-feature--story .lof-milestones dt { font-family: var(--lof-font-display); font-weight: 900; font-size: 1.9rem; line-height: 1; color: var(--lof-heading); }
-.lof-feature--story .lof-milestones dd { margin: .4rem 0 0; font-size: .85rem; line-height: 1.45; color: var(--lof-muted); }
+.lof-feature--story .lof-milestones > div { border: 0; background: none; box-shadow: none; }
+.lof-feature--story .lof-milestones dt { font-family: var(--lof-font-display); font-weight: 900; font-size: 1.9rem; line-height: 1; }
 @media (max-width: 860px) {
 	.lof-feature--story .lof-feature__grid, .lof-feature--story.lof-feature--img-left .lof-feature__grid { grid-template-columns: 1fr; }
 	.lof-feature--story .lof-feature__media { position: relative; top: 0; max-width: 420px; margin-inline: auto; }
 	.lof-feature--story .lof-feature__media img { aspect-ratio: 4 / 5; }
 	.lof-feature__name { left: 0; }
 }
-@media (max-width: 560px) { .lof-feature--story .lof-milestones { grid-template-columns: 1fr; gap: 1.4rem; } .lof-feature--story .lof-milestones::before { display: none; } .lof-feature--story .lof-milestones > div { padding-left: 1.6rem; } .lof-feature--story .lof-milestones > div::before { top: .3rem; } }
-
+@media (max-width: 560px) {
+	.lof-feature--story .lof-milestones { grid-template-columns: 1fr; gap: 1.4rem; }
+	.lof-feature--story .lof-milestones::before { display: none; }
+	.lof-feature--story .lof-milestones > div { padding-left: 1.6rem; }
+	.lof-feature--story .lof-milestones > div::before { top: .3rem; }
+}
 /* --- Stories of change: cinematic lead story --- */
 @media (min-width: 900px) {
 	.lof-grid--3 > .lof-card--story:first-child { position: relative; min-height: 540px; border: 0; color: #fff; isolation: isolate; }
 	.lof-grid--3 > .lof-card--story:first-child .lof-card__media { position: absolute; inset: 0; min-height: 0; z-index: -1; }
 	.lof-grid--3 > .lof-card--story:first-child .lof-card__media img { height: 100%; }
-	.lof-grid--3 > .lof-card--story:first-child .lof-card__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20, 13, 6, .94) 0%, rgba(20, 13, 6, .6) 38%, rgba(20, 13, 6, 0) 68%); }
-	.lof-grid--3 > .lof-card--story:first-child .lof-card__body { margin-top: auto; background: none; padding: 2rem 2rem 1.9rem; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__media::after { content: ""; position: absolute; inset: 0; }
+	.lof-grid--3 > .lof-card--story:first-child .lof-card__body { padding: 2rem 2rem 1.9rem; }
 	.lof-grid--3 > .lof-card--story:first-child .lof-card__title a { color: #fff; }
 	.lof-grid--3 > .lof-card--story:first-child .lof-card__body > p { color: rgba(255, 250, 238, .88); max-width: 48ch; }
 	.lof-grid--3 > .lof-card--story:first-child .lof-card__link { align-self: flex-start; padding: .7rem 1.2rem; border-radius: 999px; background: var(--lof-gold); color: #2E1E0E; }
@@ -972,30 +954,18 @@ html[data-theme="dark"] .lof-feature--story .lof-quote { background: #2A1C0E; bo
 .lof-card--story:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -34px rgba(43, 29, 14, .6); }
 .lof-card--story .lof-card__media img { transition: transform .8s ease; }
 .lof-card--story:hover .lof-card__media img { transform: scale(1.05); }
-
 /* --- Who we are: full-bleed split panel --- */
-.lof-feature--about { padding-block: 0 !important; overflow: hidden; }
-.lof-feature--about > .lof-container { width: 100%; max-width: none; padding: 0; }
-.lof-feature--about .lof-feature__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; align-items: stretch; min-height: min(680px, 82vh); }
-.lof-feature--about .lof-feature__media { margin: 0; min-height: 420px; }
-.lof-feature--about .lof-feature__media img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 0; box-shadow: none; }
-.lof-feature--about .lof-feature__media::before { inset: auto auto 28px 28px; width: 120px; height: 120px; border-radius: 50%; border: 2px solid rgba(244, 175, 22, .9); background: none; z-index: 2; opacity: 1; }
-.lof-feature--about.lof-feature--img-right .lof-feature__media::before { inset: auto 28px 28px auto; }
-.lof-feature--about .lof-feature__media::after { display: none; }
-.lof-feature--about .lof-feature__media figcaption { left: 28px; right: auto; bottom: 28px; max-width: 70%; z-index: 3; }
+.lof-feature--about .lof-feature__grid { align-items: stretch; }
+.lof-feature--about .lof-feature__media { margin: 0; }
 .lof-feature--about.lof-feature--img-right .lof-feature__media figcaption { left: auto; right: 28px; }
-.lof-feature--about .lof-feature__body { position: relative; display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 7vw, 6.5rem) clamp(1.5rem, 6vw, 6rem); background: var(--lof-surface-2); }
+.lof-feature--about .lof-feature__body { position: relative; flex-direction: column; justify-content: center; }
 .lof-feature--about .lof-feature__body::before { content: ""; position: absolute; left: clamp(1.5rem, 6vw, 6rem); top: clamp(1.75rem, 4vw, 3.5rem); width: 64px; height: 64px; background: url("../images/brand/symbol-dark.svg") center / contain no-repeat; opacity: .14; }
-.lof-feature--about .lof-feature__body > * { max-width: 560px; }
 .lof-feature--about .lof-section__title { font-size: clamp(2rem, 3.4vw, 2.9rem); }
-.lof-feature--about .lof-prose > p:first-child { font-size: 1.16rem; }
-.lof-feature--about .lof-prose > p:first-child::after { content: ""; display: block; width: 56px; height: 3px; margin-top: 1.1rem; border-radius: 3px; background: var(--lof-gold); }
 @media (max-width: 860px) {
-	.lof-feature--about .lof-feature__grid { grid-template-columns: 1fr; min-height: 0; }
-	.lof-feature--about .lof-feature__media { min-height: 0; aspect-ratio: 4 / 3.4; order: 0 !important; }
+	.lof-feature--about .lof-feature__grid { min-height: 0; }
+	.lof-feature--about .lof-feature__media { min-height: 0; order: 0 !important; }
 	.lof-feature--about .lof-section__title { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; }
 }
-
 /* --- Give today: sun-lit band, arch portrait, impact-style panel --- */
 .lof-give--photo.lof-tone-earth { position: relative; overflow: hidden; background: radial-gradient(70% 90% at 0% 100%, rgba(244, 175, 22, .28), rgba(244, 175, 22, 0) 60%), radial-gradient(50% 60% at 100% 0%, rgba(220, 140, 19, .18), rgba(220, 140, 19, 0) 70%), var(--lof-earth); }
 .lof-give--photo.lof-tone-earth::before { content: ""; position: absolute; left: -10%; bottom: -55%; width: 70%; aspect-ratio: 1; background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(251, 214, 43, .08) 0deg 4deg, transparent 4deg 12deg); mask-image: radial-gradient(circle, #000 25%, transparent 70%); -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 70%); pointer-events: none; }
@@ -1010,11 +980,9 @@ html[data-theme="dark"] .lof-give--photo.lof-tone-earth { background-color: #241
 .lof-tone-earth .lof-givepanel__step + .lof-givepanel__step { padding-top: 1.1rem; border-top: 1px dashed rgba(63, 41, 19, .2); }
 .lof-tone-earth .lof-givepanel .lof-chip strong { font-size: 1.1rem; font-family: var(--lof-font-display); font-weight: 800; }
 .lof-tone-earth .lof-givepanel__submit { min-height: 56px; font-size: 1rem; }
-.lof-tone-earth .lof-givepanel__submit::after { content: "\2192"; margin-left: .5rem; transition: transform .2s; }
+.lof-tone-earth .lof-givepanel__submit::after { content: "→"; margin-left: .5rem; transition: transform .2s; }
 .lof-tone-earth .lof-givepanel__submit:hover::after { transform: translateX(4px); }
 .lof-give--photo .lof-give__note { color: rgba(252, 246, 225, .85); opacity: 1; }
-@media (max-width: 860px) { .lof-give__media { max-width: 300px; margin-inline: auto; } }
-
 /* ===== 0.18.1: fixes from the 0.18.0 review ===== */
 /* Give today: one column on tablets and phones (0.18.0 two-column rule had overridden it) */
 @media (max-width: 860px) {
@@ -1033,13 +1001,11 @@ html[data-theme="dark"] .lof-give--photo.lof-tone-earth { background-color: #241
 }
 /* No mid-word breaks in headings on phones */
 h1, h2, h3, .lof-section__title, .lof-cine__title { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: break-word; word-break: normal; text-wrap: balance; }
-
 /* ===== 0.18.2: lead story text sits on the dark lower part of the photo ===== */
 @media (min-width: 900px) {
 	.lof-grid--3 > .lof-card--story:first-child { justify-content: flex-end; }
 	.lof-grid--3 > .lof-card--story:first-child .lof-card__body { flex: 0 0 auto; margin-top: auto; justify-content: flex-end; background: linear-gradient(0deg, rgba(20, 13, 6, .92) 0%, rgba(20, 13, 6, .78) 70%, rgba(20, 13, 6, 0) 100%); padding-top: 4rem; }
 }
-
 /* ===== 0.19.0: Give today card, Who we are, phone bottom navigation ===== */
 /* --- Give today: one premium card on a light section --- */
 .lof-give--card, .lof-give--card.lof-tone-earth { background: linear-gradient(180deg, var(--lof-bg) 0%, var(--lof-surface-2) 100%) !important; color: var(--lof-text); }
@@ -1069,14 +1035,16 @@ h1, h2, h3, .lof-section__title, .lof-cine__title { hyphens: manual; -webkit-hyp
 .lof-give--card .lof-givepanel select, .lof-give--card .lof-givepanel__kes { background-color: #fff; border: 1.5px solid rgba(63, 41, 19, .16); }
 .lof-give--card .lof-givepanel__other label { color: #5C3B1C; }
 .lof-give--card .lof-givepanel__submit { width: 100%; justify-content: center; min-height: 56px; font-size: 1rem; }
-.lof-give--card .lof-givepanel__submit::after { content: "\2192"; margin-left: .5rem; }
+.lof-give--card .lof-givepanel__submit::after { content: "→"; margin-left: .5rem; }
 .lof-give--card .lof-give__note { margin-top: 1rem; color: #6B4E2E; font-size: .82rem; }
 @media (max-width: 900px) {
 	.lof-give__card { grid-template-columns: 1fr; border-radius: 24px; }
 	.lof-give__visual { min-height: 440px; }
 }
-@media (max-width: 560px) { .lof-give__visual { min-height: 480px; } .lof-give__overlay { padding: 1.4rem; } }
-
+@media (max-width: 560px) {
+	.lof-give__visual { min-height: 480px; }
+	.lof-give__overlay { padding: 1.4rem; }
+}
 /* --- Who we are: editorial two-column with framed photo and registration badge (replaces 0.18 full-bleed) --- */
 .lof-feature--about { padding-block: var(--lof-section) !important; overflow: visible; position: relative; }
 .lof-feature--about > .lof-container { width: min(100% - 2.5rem, var(--lof-container)); max-width: none; padding: 0; }
@@ -1105,7 +1073,6 @@ h1, h2, h3, .lof-section__title, .lof-cine__title { hyphens: manual; -webkit-hyp
 	.lof-feature--img-left .lof-feature__badge { right: -10px; }
 	.lof-feature--about .lof-feature__media::after { right: -12px; bottom: -14px; }
 }
-
 /* --- Phone bottom navigation --- */
 .lof-tabbar { display: none; }
 @media (max-width: 760px) {
@@ -1131,14 +1098,12 @@ h1, h2, h3, .lof-section__title, .lof-cine__title { hyphens: manual; -webkit-hyp
 	body { padding-bottom: calc(72px + env(safe-area-inset-bottom)) !important; }
 	.lof-wa { bottom: calc(82px + env(safe-area-inset-bottom)) !important; width: 52px; height: 52px; }
 }
-
 /* 0.19.1: bottom-bar Menu button never takes the parent theme's pink focus colour */
 .lof-tabbar button, .lof-tabbar button:hover, .lof-tabbar button:focus, .lof-tabbar button:active, .lof-tabbar button[aria-expanded="true"] { background: none !important; border: 0 !important; box-shadow: none !important; color: #7A644A; }
 html[data-theme="dark"] .lof-tabbar button, html[data-theme="dark"] .lof-tabbar button:hover, html[data-theme="dark"] .lof-tabbar button:focus, html[data-theme="dark"] .lof-tabbar button:active { color: rgba(252, 246, 225, .66); }
 .lof-tabbar button[aria-expanded="true"] { color: #3F2913; }
 .lof-tabbar button[aria-expanded="true"] .lof-tabbar__ico { background: rgba(244, 175, 22, .22); }
 html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--lof-gold); }
-
 /* ===== 0.19.2: phone side margins (was a double gutter: width calc + extra padding, about 38px a side) ===== */
 @media (max-width: 640px) {
 	.lof-container, .lof-feature--about > .lof-container, .lof-hero.has-collage .lof-hero__inner { width: calc(100% - 2rem) !important; padding-inline: 0 !important; }
@@ -1151,13 +1116,10 @@ html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--
 	.lof-figbar__grid > div { padding: .25rem .5rem; }
 	.lof-footer__cta { padding: 1.4rem 1.15rem; border-radius: 20px; }
 	.lof-footer__tile { padding: .9rem 1rem; }
-	.lof-faq__item summary { padding: 1rem 3.4rem 1rem 1.05rem; }
-	.lof-faq__answer { padding: 0 1.05rem 1.1rem; }
 	.lof-feature--about .lof-feature__media, .lof-feature--story .lof-feature__media { width: calc(100% - 14px); }
 	.lof-cine__inner { width: calc(100% - 2rem) !important; }
 	.lof-cine__ui-inner { width: calc(100% - 2rem) !important; }
 }
-
 /* ===== 0.20.0: phone and tablet menu - accordion sub-menus ===== */
 .lof-sub-toggle { display: none; }
 @media (max-width: 991px) {
@@ -1182,20 +1144,19 @@ html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--
 	.lof-nav .lof-menu .sub-menu li { border: 0; }
 	.lof-nav .lof-menu .sub-menu a { display: flex; align-items: center; gap: .75rem; min-height: 48px; padding: .65rem .9rem; border: 0; border-radius: 12px; font-family: var(--lof-font-body); font-size: 1rem; font-weight: 600; color: var(--lof-text); background: none; }
 	.lof-nav .lof-menu .sub-menu a::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: rgba(220, 140, 19, .45); }
-	.lof-nav .lof-menu .sub-menu a::after { content: "\203A"; margin-left: auto; font-size: 1.3rem; line-height: 1; color: var(--lof-muted); display: inline !important; position: static; background: none; transform: none; }
+	.lof-nav .lof-menu .sub-menu a::after { content: "›"; margin-left: auto; font-size: 1.3rem; line-height: 1; color: var(--lof-muted); display: inline !important; position: static; background: none; transform: none; }
 	.lof-nav .lof-menu .sub-menu a:hover, .lof-nav .lof-menu .sub-menu a:focus-visible { background: var(--lof-surface); color: var(--lof-heading); }
 	.lof-nav .lof-menu .sub-menu .current-menu-item > a { background: var(--lof-surface); color: var(--lof-heading); box-shadow: inset 3px 0 0 var(--lof-gold); }
 	.lof-nav .lof-menu .sub-menu .current-menu-item > a::before { background: var(--lof-gold); }
 	.lof-nav .lof-nav__cta { width: 100%; justify-content: center; min-height: 54px; margin-top: .5rem; border-radius: 14px; font-size: 1rem; }
 }
-
 /* ===== 0.21.0: landing polish and refined footer ===== */
 /* Why we exist: statement with gold rule, vision and mission as icon cards */
 .lof-intro__grid { align-items: start; }
 .lof-intro__title { font-size: clamp(2.2rem, 4vw, 3.4rem); }
 .lof-intro__aside { border-left: 0 !important; padding-left: 0 !important; position: relative; }
 .lof-intro__aside::before { content: ""; display: block; width: 64px; height: 4px; margin-bottom: 1.25rem; border-radius: 4px; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber)); }
-.lof-intro__statement { font-size: clamp(1.25rem, 2vw, 1.55rem); line-height: 1.45; font-weight: 700; color: var(--lof-heading); letter-spacing: -.01em; }
+.lof-intro__statement { font-weight: 700; color: var(--lof-heading); letter-spacing: -.01em; }
 .lof-intro__band { gap: 1.25rem !important; background: none !important; padding: 0 !important; border: 0 !important; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
 .lof-intro__panel { position: relative; padding: 1.75rem 1.75rem 1.6rem 5.25rem !important; border-radius: 22px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 24px 50px -36px rgba(43, 29, 14, .5); border-top: 4px solid var(--lof-gold); }
 .lof-intro__panel::before { content: ""; position: absolute; left: 1.5rem; top: 1.75rem; width: 46px; height: 46px; border-radius: 14px; background: var(--lof-gold) no-repeat center / 24px; }
@@ -1203,23 +1164,25 @@ html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--
 .lof-intro__panel:nth-child(2)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232E1E0E' d='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm3.5 6.5-2 5-5 2 2-5zM12 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E"); }
 .lof-intro__panel h3 { font-size: 1.2rem; line-height: 1.3; margin: .3rem 0 .5rem; }
 .lof-intro__panel p:not(.lof-eyebrow) { color: var(--lof-muted); margin: 0; }
-@media (max-width: 560px) { .lof-intro__panel { padding: 4.6rem 1.25rem 1.35rem !important; } .lof-intro__panel::before { left: 1.25rem; top: 1.25rem; } }
-
+@media (max-width: 560px) {
+	.lof-intro__panel { padding: 4.6rem 1.25rem 1.35rem !important; }
+	.lof-intro__panel::before { left: 1.25rem; top: 1.25rem; }
+}
 /* Impact band: figures as glass cards with a soft sun glow */
 .lof-impact.lof-tone-earth, .lof-tone-earth.lof-impact { position: relative; overflow: hidden; background: radial-gradient(60% 80% at 50% 120%, rgba(244, 175, 22, .3), rgba(244, 175, 22, 0) 70%), var(--lof-earth); }
 .lof-tone-earth .lof-impact__grid { gap: 1rem; }
 .lof-tone-earth .lof-impact__item { padding: 1.6rem 1.4rem !important; border: 1px solid rgba(252, 246, 225, .14) !important; border-radius: 20px; background: rgba(252, 246, 225, .05); backdrop-filter: blur(4px); text-align: center; display: flex; flex-direction: column; align-items: center; }
 .lof-tone-earth .lof-impact__value { order: -1; font-size: clamp(2.4rem, 4.4vw, 3.4rem); }
 .lof-tone-earth .lof-impact__label { margin-top: .4rem; letter-spacing: .1em; }
-@media (max-width: 640px) { .lof-tone-earth .lof-impact__item { padding: 1.1rem .8rem !important; border-bottom: 1px solid rgba(252, 246, 225, .14) !important; } }
-
+@media (max-width: 640px) {
+	.lof-tone-earth .lof-impact__item { padding: 1.1rem .8rem !important; border-bottom: 1px solid rgba(252, 246, 225, .14) !important; }
+}
 /* Closing call to action: rounded sun card instead of a flat strip */
 .lof-cta.lof-tone-sun { background: var(--lof-bg) !important; padding-block: clamp(2.5rem, 6vw, 4.5rem); }
-.lof-cta.lof-tone-sun .lof-cta__box { position: relative; overflow: hidden; padding: clamp(2rem, 4.5vw, 3.5rem) clamp(1.5rem, 4.5vw, 3.75rem); border-radius: 30px; background: linear-gradient(120deg, var(--lof-gold) 0%, #F8C537 55%, var(--lof-yellow) 100%); color: #2E1E0E; box-shadow: 0 40px 80px -46px rgba(220, 140, 19, .9); }
+.lof-cta.lof-tone-sun .lof-cta__box { position: relative; overflow: hidden; padding: clamp(2rem, 4.5vw, 3.5rem) clamp(1.5rem, 4.5vw, 3.75rem); border-radius: 30px; color: #2E1E0E; box-shadow: 0 40px 80px -46px rgba(220, 140, 19, .9); }
 .lof-cta.lof-tone-sun .lof-cta__box::before { content: ""; position: absolute; right: -90px; top: -110px; width: 340px; height: 340px; border-radius: 50%; border: 2px solid rgba(63, 41, 19, .16); box-shadow: 0 0 0 46px rgba(63, 41, 19, .05), 0 0 0 92px rgba(63, 41, 19, .03); pointer-events: none; }
 .lof-cta.lof-tone-sun .lof-cta__box::after { content: ""; position: absolute; left: clamp(1.5rem, 4.5vw, 3.75rem); top: 0; width: 64px; height: 4px; border-radius: 0 0 4px 4px; background: #3F2913; }
 .lof-cta.lof-tone-sun .lof-cta__box > * { position: relative; }
-
 /* Footer: wordmark removed; cleaner base bar with logo, registration and links */
 .lof-footer__mark { display: none !important; }
 .lof-footer--v2 { border-top: 4px solid var(--lof-gold); }
@@ -1234,8 +1197,9 @@ html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--
 .lof-footer__brand .lof-logo img { height: 104px; }
 .lof-footer__col .lof-footer__title { color: var(--lof-cream); }
 .lof-footer__col .lof-footer__title::after { width: 28px; height: 3px; border-radius: 3px; }
-@media (max-width: 760px) { .lof-footer--v2 .lof-footer__bottom { grid-template-columns: 1fr; gap: .9rem; justify-items: start; } }
-
+@media (max-width: 760px) {
+	.lof-footer--v2 .lof-footer__bottom { grid-template-columns: 1fr; gap: .9rem; justify-items: start; }
+}
 /* ===== 0.22.0: inner pages (Programmes, Stories, Donate, single stories/programmes, legal) ===== */
 /* Page hero: warmer, more depth, gold rule, balanced height */
 .lof-hero--page { min-height: 0; padding-block: clamp(3.5rem, 8vw, 6rem) clamp(3rem, 6vw, 4.5rem); background: radial-gradient(70% 120% at 100% 0%, rgba(244, 175, 22, .22), rgba(244, 175, 22, 0) 60%), radial-gradient(50% 90% at 0% 100%, rgba(220, 140, 19, .12), rgba(220, 140, 19, 0) 70%), var(--lof-surface-2) !important; border-bottom: 1px solid var(--lof-line); }
@@ -1246,7 +1210,6 @@ html[data-theme="dark"] .lof-tabbar button[aria-expanded="true"] { color: var(--
 .lof-hero--page .lof-hero__text { color: var(--lof-muted); font-size: clamp(1.02rem, 1.4vw, 1.18rem); max-width: 58ch; }
 .lof-hero--page .lof-hero__content::after { content: ""; display: block; width: 72px; height: 4px; margin-top: 1.4rem; border-radius: 4px; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber)); }
 html[data-theme="dark"] .lof-hero--page { background: radial-gradient(70% 120% at 100% 0%, rgba(244, 175, 22, .14), rgba(244, 175, 22, 0) 60%), #1F150B !important; }
-
 /* Stories page featured story: cinematic card like the home lead story */
 .lof-spot { position: relative; isolation: isolate; display: block; min-height: clamp(420px, 52vw, 560px); padding: 0; overflow: hidden; border-radius: 28px; border: 0; background: #1C1208; box-shadow: 0 40px 80px -44px rgba(43, 29, 14, .7); }
 .lof-spot__media { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; z-index: -1; }
@@ -1257,8 +1220,10 @@ html[data-theme="dark"] .lof-hero--page { background: radial-gradient(70% 120% a
 .lof-spot__title a { color: #fff; }
 .lof-spot__text { color: rgba(255, 250, 238, .9); font-size: 1.1rem; }
 .lof-spot .lof-btn--earth { align-self: flex-start; background: var(--lof-gold); color: #2E1E0E; }
-@media (max-width: 760px) { .lof-spot__media::after { background: linear-gradient(0deg, rgba(20, 13, 6, .96) 0%, rgba(20, 13, 6, .75) 55%, rgba(20, 13, 6, .15) 100%); } .lof-spot { min-height: 520px; } }
-
+@media (max-width: 760px) {
+	.lof-spot__media::after { background: linear-gradient(0deg, rgba(20, 13, 6, .96) 0%, rgba(20, 13, 6, .75) 55%, rgba(20, 13, 6, .15) 100%); }
+	.lof-spot { min-height: 520px; }
+}
 /* Single story / programme */
 .lof-single__grid { grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
 .lof-single__body { max-width: 70ch; }
@@ -1274,33 +1239,31 @@ html[data-theme="dark"] .lof-hero--page { background: radial-gradient(70% 120% a
 .lof-aside-cta { padding: 1.5rem; border-radius: 22px; background: linear-gradient(135deg, var(--lof-gold), #F8C537); color: #2E1E0E; box-shadow: 0 24px 50px -30px rgba(220, 140, 19, .8); }
 .lof-aside-cta h2, .lof-aside-cta h3, .lof-aside-cta p { color: #2E1E0E; }
 .lof-aside-cta .lof-btn--sun { width: 100%; justify-content: center; background: #3F2913; color: #FCF6E1; }
-@media (max-width: 860px) { .lof-single__grid { grid-template-columns: 1fr; } .lof-single__aside { position: static; } }
-
+@media (max-width: 860px) {
+	.lof-single__grid { grid-template-columns: 1fr; }
+	.lof-single__aside { position: static; }
+}
 /* Enquiry form sections (Donate, Contact, Get Involved) */
 .lof-formsec .lof-form { padding: clamp(1.25rem, 3vw, 2rem); border-radius: 24px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 30px 60px -42px rgba(43, 29, 14, .55); }
 .lof-form input[type="text"], .lof-form input[type="email"], .lof-form input[type="tel"], .lof-form select, .lof-form textarea { border-radius: 12px; border: 1.5px solid var(--lof-line-strong, rgba(63, 41, 19, .2)); min-height: 48px; }
 .lof-form input:focus-visible, .lof-form select:focus-visible, .lof-form textarea:focus-visible { outline: 2px solid var(--lof-gold); outline-offset: 1px; border-color: var(--lof-gold); }
 .lof-form .lof-btn { min-height: 52px; padding-inline: 2rem; }
-
 /* Plain WordPress pages (Privacy Policy, Terms of Use) */
 body.page:not(.elementor-page) .site-main { width: min(100% - 2.5rem, 780px); margin: 0 auto; padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 7vw, 5rem); }
 body.page:not(.elementor-page) .page-header .entry-title { font-size: clamp(2.2rem, 4.4vw, 3.3rem); margin: 0 0 1.25rem; }
 body.page:not(.elementor-page) .page-content { font-size: 1.06rem; line-height: 1.8; color: var(--lof-text); }
 body.page:not(.elementor-page) .page-content h2 { font-size: 1.45rem; margin: 2rem 0 .6rem; }
 .lof-legal__note { padding: .9rem 1.1rem; border-radius: 14px; background: rgba(244, 175, 22, .14); border-left: 4px solid var(--lof-gold); font-size: .92rem; color: var(--lof-heading); }
-@media (max-width: 640px) { body.page:not(.elementor-page) .site-main { width: calc(100% - 2rem); } }
-
+@media (max-width: 640px) {
+	body.page:not(.elementor-page) .site-main { width: calc(100% - 2rem); }
+}
 /* Audit: visible keyboard focus everywhere; links in prose underlined; minimum target size on small links */
 a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--lof-gold); outline-offset: 2px; }
 .lof-prose a, .page-content a { text-decoration: underline; text-underline-offset: 3px; }
 .lof-footer--v2 .lof-footer__legal a, .lof-footer--v2 .lof-footer__links a { min-height: 32px; display: inline-flex; align-items: center; }
-
-
 /* ===== 0.23.0: About, Leadership and FAQ - professional pass ===== */
-
 /* One closing call to action per page: hide the footer card when the page already ends with its own */
 body:has(.lof-main .lof-cta) .lof-footer__cta { display: none; }
-
 /* Balanced grids: 7 cards sit 4 + 3 with the last row centred (no orphan card) */
 @media (min-width: 992px) {
 	.lof-grid--3:has(> :nth-child(7):last-child), .lof-grid--4:has(> :nth-child(7):last-child) { grid-template-columns: repeat(8, minmax(0, 1fr)); }
@@ -1312,7 +1275,6 @@ body:has(.lof-main .lof-cta) .lof-footer__cta { display: none; }
 	.lof-grid--3:has(> :nth-child(7):last-child) > *, .lof-grid--4:has(> :nth-child(7):last-child) > * { grid-column: span 2; }
 	.lof-grid--3:has(> :nth-child(7):last-child) > :nth-child(7), .lof-grid--4:has(> :nth-child(7):last-child) > :nth-child(7) { grid-column: 2 / span 2; }
 }
-
 /* Shared card polish on these pages */
 .lof-page-about-us .lof-card--pillar, .lof-page-leadership .lof-card--pillar { position: relative; border: 1px solid var(--lof-line); border-top: 0; border-radius: 20px; padding: 1.9rem 1.6rem 1.7rem; background: var(--lof-surface); box-shadow: 0 22px 44px -36px rgba(43, 29, 14, .55); transition: transform .25s ease, box-shadow .25s ease; overflow: hidden; }
 .lof-page-about-us .lof-card--pillar::before, .lof-page-leadership .lof-card--pillar::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber)); }
@@ -1320,41 +1282,32 @@ body:has(.lof-main .lof-cta) .lof-footer__cta { display: none; }
 .lof-page-about-us .lof-card__title, .lof-page-leadership .lof-card__title { font-size: 1.12rem; line-height: 1.3; margin: 0 0 .35rem; }
 .lof-page-about-us .lof-card--pillar p, .lof-page-leadership .lof-card--pillar p { font-size: .95rem; line-height: 1.65; color: var(--lof-muted); }
 .lof-page-about-us .lof-section__head, .lof-page-leadership .lof-section__head, .lof-page-faq .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
-
 /* About: values numbered with a gold medallion */
 .lof-page-about-us .lof-tone-sand .lof-grid--4 { counter-reset: lofval; }
 .lof-page-about-us .lof-tone-sand .lof-card--pillar { counter-increment: lofval; padding-top: 4.4rem; }
 .lof-page-about-us .lof-tone-sand .lof-card--pillar::after { content: counter(lofval, decimal-leading-zero); position: absolute; top: 1.5rem; left: 1.6rem; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(244, 175, 22, .18); color: var(--lof-amber); font: 800 .85rem/1 var(--lof-font-display); }
-
 /* About: objectives as clean numbered tiles */
-.lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card--pillar { display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; align-content: start; background: var(--lof-bg); }
-.lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card__kicker { grid-row: span 2; font: 800 2.2rem/1 var(--lof-font-display); color: var(--lof-gold); letter-spacing: -.02em; opacity: .9; }
+.lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card--pillar { display: grid; grid-template-columns: auto 1fr; align-content: start; }
+.lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card__kicker { grid-row: span 2; font: 800 2.2rem/1 var(--lof-font-display); letter-spacing: -.02em; }
 .lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card__title, .lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card--pillar p { grid-column: 2; }
-
 /* About: "Registration and contacts" becomes one fact sheet on a dark band */
-.lof-page-about-us .lof-section:has(.lof-card__link) { background: linear-gradient(160deg, #3F2913, #2A1B0C); }
-.lof-page-about-us .lof-section:has(.lof-card__link) .lof-section__title { color: var(--lof-cream); }
-.lof-page-about-us .lof-section:has(.lof-card__link) .lof-eyebrow { color: var(--lof-gold); }
-.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid { gap: 0; border-radius: 24px; overflow: hidden; background: rgba(255, 255, 255, .05); border: 1px solid rgba(244, 175, 22, .25); }
-.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar { background: transparent; border: 0; border-right: 1px solid rgba(244, 175, 22, .18); border-radius: 0; box-shadow: none; padding: 2rem 1.75rem; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid { gap: 0; border-radius: 24px; overflow: hidden; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar { background: transparent; border: 0; border-right: 1px solid rgba(244, 175, 22, .18); border-radius: 0; box-shadow: none; }
 .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:last-child { border-right: 0; }
-.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar::before { display: none; }
 .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:hover { transform: none; }
 .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card__title { color: var(--lof-gold); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; }
-.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar p { color: rgba(252, 246, 225, .9); font-size: 1rem; }
-.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card__link { color: var(--lof-gold); }
-@media (max-width: 991px) { .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); } }
-
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar p { font-size: 1rem; }
+@media (max-width: 991px) {
+	.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); }
+}
 /* About: vision and mission panels, intro statement */
 .lof-page-about-us .lof-intro__statement { font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.65; }
-
 /* Leadership: tabs as a refined segmented control */
 .lof-tabs-wrap { padding-top: clamp(2rem, 4vw, 3rem); }
 .lof-tabs { display: flex; width: max-content; max-width: 100%; margin: 0 auto; padding: 6px; gap: 4px; border-radius: 999px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 16px 34px -26px rgba(43, 29, 14, .55); }
 .lof-tab, .lof-tab:hover, .lof-tab:focus { border: 0 !important; box-shadow: none !important; }
 .lof-tab[aria-selected="true"], .lof-tab[aria-selected="true"]:hover, .lof-tab[aria-selected="true"]:focus { background: var(--lof-earth) !important; color: var(--lof-cream) !important; }
 .lof-tab:not([aria-selected="true"]):hover { background: rgba(244, 175, 22, .14) !important; color: var(--lof-heading) !important; }
-
 /* Leadership: people as consistent profile cards */
 .lof-page-leadership .lof-person:not(.lof-person--row) { display: flex; flex-direction: column; height: 100%; text-align: left; background: var(--lof-surface); border: 1px solid var(--lof-line); border-radius: 22px; overflow: hidden; box-shadow: 0 24px 46px -38px rgba(43, 29, 14, .6); transition: transform .25s ease, box-shadow .25s ease; }
 .lof-page-leadership .lof-person:not(.lof-person--row):hover { transform: translateY(-4px); box-shadow: 0 32px 56px -36px rgba(43, 29, 14, .65); }
@@ -1372,14 +1325,14 @@ body:has(.lof-main .lof-cta) .lof-footer__cta { display: none; }
 	.lof-page-leadership .lof-leaders .lof-grid:has(> :nth-child(7):last-child) > * { grid-column: span 2; }
 	.lof-page-leadership .lof-leaders .lof-grid:has(> :nth-child(7):last-child) > :nth-child(5) { grid-column: 2 / span 2; }
 }
-
 /* Leadership: governance as a connected structure */
 .lof-page-leadership .lof-steps { position: relative; gap: 0; border-radius: 24px; overflow: hidden; border: 1px solid var(--lof-line); background: var(--lof-surface); box-shadow: 0 26px 50px -40px rgba(43, 29, 14, .6); }
 .lof-page-leadership .lof-steps .lof-card--pillar { border: 0; border-right: 1px solid var(--lof-line); border-radius: 0; box-shadow: none; background: transparent; }
 .lof-page-leadership .lof-steps .lof-card--pillar:last-child { border-right: 0; }
 .lof-page-leadership .lof-steps .lof-card--pillar:hover { transform: none; background: rgba(244, 175, 22, .06); }
-@media (max-width: 991px) { .lof-page-leadership .lof-steps .lof-card--pillar { border-right: 0; border-bottom: 1px solid var(--lof-line); } }
-
+@media (max-width: 991px) {
+	.lof-page-leadership .lof-steps .lof-card--pillar { border-right: 0; border-bottom: 1px solid var(--lof-line); }
+}
 /* FAQ: two-column layout with a help card */
 .lof-faq-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; max-width: 1120px; margin-inline: auto; }
 .lof-faq-layout .lof-faq { max-width: none; margin: 0; gap: .85rem; }
@@ -1396,11 +1349,17 @@ body:has(.lof-main .lof-cta) .lof-footer__cta { display: none; }
 .lof-faq-help p { margin: 0 0 1.25rem; font-size: .96rem; line-height: 1.6; }
 .lof-faq-help__actions { display: grid; gap: .6rem; }
 .lof-faq-help .lof-btn { width: 100%; justify-content: center; }
-.lof-faq-help .lof-btn--earth { background: var(--lof-gold); color: #2E1E0E; border-color: var(--lof-gold); }
-.lof-faq-help .lof-btn--outline { color: var(--lof-cream); border-color: rgba(252, 246, 225, .5); background: transparent; }
-@media (max-width: 900px) { .lof-faq-layout { grid-template-columns: 1fr; } .lof-faq-help { position: static; } }
-@media (max-width: 640px) { .lof-faq__item summary { padding: 1rem 3.2rem 1rem 1rem; gap: .75rem; font-size: 1rem; } .lof-faq__num { width: 32px; height: 32px; } .lof-faq__answer { padding: 0 1.05rem 1.1rem 1.05rem; } .lof-faq-help { padding: 1.5rem 1.25rem; } }
-
+.lof-faq-help .lof-btn--outline { background: transparent; }
+@media (max-width: 900px) {
+	.lof-faq-layout { grid-template-columns: 1fr; }
+	.lof-faq-help { position: static; }
+}
+@media (max-width: 640px) {
+	.lof-faq__item summary { padding: 1rem 3.2rem 1rem 1rem; gap: .75rem; font-size: 1rem; }
+	.lof-faq__num { width: 32px; height: 32px; }
+	.lof-faq__answer { padding: 0 1.05rem 1.1rem 1.05rem; }
+	.lof-faq-help { padding: 1.5rem 1.25rem; }
+}
 /* Dark mode */
 html[data-theme="dark"] .lof-page-about-us .lof-card--pillar, html[data-theme="dark"] .lof-page-leadership .lof-card--pillar, html[data-theme="dark"] .lof-page-leadership .lof-person:not(.lof-person--row), html[data-theme="dark"] .lof-faq__item, html[data-theme="dark"] .lof-tabs, html[data-theme="dark"] .lof-page-leadership .lof-steps { border-color: rgba(244, 175, 22, .16); box-shadow: 0 24px 46px -34px rgba(0, 0, 0, .8); }
 html[data-theme="dark"] .lof-page-leadership .lof-steps .lof-card--pillar { background: transparent; border-color: rgba(244, 175, 22, .14); }
@@ -1408,8 +1367,6 @@ html[data-theme="dark"] .lof-page-about-us .lof-section:has(.lof-card__link) { b
 html[data-theme="dark"] .lof-page-leadership .lof-person:not(.lof-person--row) .lof-person__photo { background: linear-gradient(180deg, #3a2a17, #2a1d0f); }
 html[data-theme="dark"] .lof-faq-help { background: linear-gradient(160deg, #2A1B0C, #170F06); border: 1px solid rgba(244, 175, 22, .2); }
 html[data-theme="dark"] .lof-faq__item summary { color: var(--lof-heading); }
-
-
 /* ===== 0.24.0: inner-page hero with photo, breadcrumb; About objectives editorial; FAQ heading ===== */
 .lof-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: 0 0 1.1rem; font: 600 .82rem/1.3 var(--lof-font-body); color: var(--lof-muted); }
 .lof-crumbs a { color: var(--lof-muted); text-decoration: none; }
@@ -1429,8 +1386,9 @@ html[data-theme="dark"] .lof-hero__side-img { box-shadow: 0 34px 60px -30px rgba
 	.lof-hero__side-img, .lof-hero__side-ring { border-radius: 24px; }
 	.lof-hero__side::before { width: 48px; height: 48px; left: auto; right: 18px; bottom: -14px; }
 }
-@media (max-width: 640px) { .lof-hero__side-ring { inset: 10px -8px -10px 10px; } }
-
+@media (max-width: 640px) {
+	.lof-hero__side-ring { inset: 10px -8px -10px 10px; }
+}
 /* About: objectives as an editorial two-column list (heading left, numbered list right) */
 @media (min-width: 992px) {
 	.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) > .lof-container { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
@@ -1446,20 +1404,18 @@ html[data-theme="dark"] .lof-hero__side-img { box-shadow: 0 34px 60px -30px rgba
 .lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card__kicker { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: rgba(244, 175, 22, .15); color: var(--lof-amber); font-size: 1.05rem; opacity: 1; }
 .lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card__title { font-size: 1.15rem; margin-top: .2rem; }
 .lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card--pillar p { font-size: 1rem; }
-@media (max-width: 760px) { .lof-page-about-us .lof-tone-white .lof-grid--3:has(.lof-card__kicker) { grid-template-columns: 1fr !important; } .lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card__kicker { width: 44px; height: 44px; } }
-
+@media (max-width: 760px) {
+	.lof-page-about-us .lof-tone-white .lof-grid--3:has(.lof-card__kicker) { grid-template-columns: 1fr !important; }
+	.lof-page-about-us .lof-tone-white .lof-grid--3 .lof-card__kicker { width: 44px; height: 44px; }
+}
 /* About: values a touch larger and evenly sized */
 .lof-page-about-us .lof-tone-sand .lof-grid--4 { align-items: stretch; }
-.lof-page-about-us .lof-tone-sand .lof-card--pillar p { font-size: .98rem; }
 .lof-page-about-us .lof-intro__panel h3 { font-size: clamp(1.15rem, 1.6vw, 1.35rem); }
 .lof-page-about-us .lof-intro__panel p { font-size: 1rem; line-height: 1.7; }
-
 /* FAQ: heading above the two columns, wider rhythm */
 .lof-page-faq .lof-section__head { text-align: center; }
 .lof-page-faq .lof-faq-layout { margin-top: .5rem; }
 .lof-page-faq .lof-faq__q { flex: 1; }
-
-
 /* ===== 0.25.0: Leadership & Governance - spotlight, balanced board, at-a-glance hero ===== */
 /* Hero "At a glance" card */
 .lof-hero__facts { justify-self: end; width: min(100%, 420px); padding: 1.6rem 1.6rem 1.4rem; border-radius: 26px; background: linear-gradient(160deg, #3F2913, #2A1B0C); color: var(--lof-cream); box-shadow: 0 34px 60px -36px rgba(43, 29, 14, .75); position: relative; overflow: hidden; }
@@ -1471,11 +1427,11 @@ html[data-theme="dark"] .lof-hero__side-img { box-shadow: 0 34px 60px -30px rgba
 .lof-hero__facts dl > div:nth-child(even) { padding-left: 1rem; }
 .lof-hero__facts dd { margin: 0; font: 800 clamp(1.8rem, 3vw, 2.3rem)/1 var(--lof-font-display); color: var(--lof-gold); }
 .lof-hero__facts dt { margin-top: .35rem; font-size: .84rem; line-height: 1.35; color: rgba(252, 246, 225, .82); }
-@media (max-width: 900px) { .lof-hero__facts { justify-self: stretch; width: 100%; } }
-
+@media (max-width: 900px) {
+	.lof-hero__facts { justify-self: stretch; width: 100%; }
+}
 /* Section heads: consistent rhythm */
 .lof-page-leadership .lof-leaders .lof-section__head { margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem); }
-
 /* Executive leadership: one wide spotlight card */
 .lof-page-leadership .lof-leaders--executive .lof-people--single { max-width: 1000px; margin-inline: auto; grid-template-columns: 1fr !important; }
 .lof-page-leadership .lof-leaders--executive .lof-person--row { grid-template-columns: minmax(240px, 40%) 1fr; border-radius: 28px; border: 1px solid var(--lof-line); background: var(--lof-surface); box-shadow: 0 36px 70px -46px rgba(43, 29, 14, .7); }
@@ -1485,10 +1441,8 @@ html[data-theme="dark"] .lof-hero__side-img { box-shadow: 0 34px 60px -30px rgba
 .lof-page-leadership .lof-leaders--executive .lof-person__name { font-size: clamp(1.6rem, 2.6vw, 2.1rem); margin-bottom: .5rem; }
 .lof-page-leadership .lof-leaders--executive .lof-person__role { font-size: .78rem; margin-bottom: 1rem; }
 .lof-page-leadership .lof-leaders--executive .lof-person__bio { font-size: 1.02rem; line-height: 1.75; }
-
 /* Board pill */
 .lof-page-leadership .lof-person__board { display: inline-flex; align-self: flex-start; width: max-content; max-width: 100%; margin: 0 0 .55rem; padding: .3rem .75rem; border-radius: 999px; background: rgba(244, 175, 22, .16); color: var(--lof-heading); font: 700 .74rem/1.3 var(--lof-font-body); }
-
 /* Board of Directors: three equal portrait cards in one row (no orphan) */
 .lof-page-leadership .lof-leaders--board .lof-people--row { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; max-width: 1080px; margin-inline: auto; gap: clamp(1rem, 2.2vw, 1.75rem); }
 .lof-page-leadership .lof-leaders--board .lof-people--row:has(> :nth-child(4)) { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; max-width: none; }
@@ -1497,7 +1451,10 @@ html[data-theme="dark"] .lof-hero__side-img { box-shadow: 0 34px 60px -30px rgba
 .lof-page-leadership .lof-leaders--board .lof-person--row .lof-person__photo img { width: 100%; height: 100%; min-height: 0; object-fit: cover; object-position: center 20%; }
 .lof-page-leadership .lof-leaders--board .lof-person--row .lof-person__info { flex: 1; justify-content: flex-start; padding: 1.35rem 1.4rem 1.5rem; border-top: 3px solid var(--lof-gold); }
 .lof-page-leadership .lof-leaders--board .lof-person__name { font-size: 1.2rem; }
-@media (max-width: 991px) { .lof-page-leadership .lof-leaders--board .lof-people--row, .lof-page-leadership .lof-leaders--board .lof-people--row:has(> :nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .lof-page-leadership .lof-leaders--board .lof-people--row > :nth-child(3):last-child { grid-column: 1 / -1; max-width: calc(50% - .9rem); justify-self: center; } }
+@media (max-width: 991px) {
+	.lof-page-leadership .lof-leaders--board .lof-people--row, .lof-page-leadership .lof-leaders--board .lof-people--row:has(> :nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+	.lof-page-leadership .lof-leaders--board .lof-people--row > :nth-child(3):last-child { grid-column: 1 / -1; max-width: calc(50% - .9rem); justify-self: center; }
+}
 @media (max-width: 760px) {
 	.lof-page-leadership .lof-leaders--executive .lof-person--row { grid-template-columns: 1fr; }
 	.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo { aspect-ratio: 4 / 3.6; }
@@ -1510,14 +1467,11 @@ html[data-theme="dark"] .lof-hero__side-img { box-shadow: 0 34px 60px -30px rgba
 	.lof-page-leadership .lof-leaders--team .lof-person__info { padding: .95rem .9rem 1.05rem; }
 	.lof-page-leadership .lof-leaders--team .lof-person__bio { display: none; }
 }
-
 /* Dark mode */
 html[data-theme="dark"] .lof-page-leadership .lof-leaders--executive .lof-person--row, html[data-theme="dark"] .lof-page-leadership .lof-leaders--board .lof-person--row { border-color: rgba(244, 175, 22, .16); box-shadow: 0 30px 56px -36px rgba(0, 0, 0, .85); }
 html[data-theme="dark"] .lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo, html[data-theme="dark"] .lof-page-leadership .lof-leaders--board .lof-person--row .lof-person__photo { background: linear-gradient(180deg, #3a2a17, #2a1d0f); }
 html[data-theme="dark"] .lof-page-leadership .lof-person__board { background: rgba(244, 175, 22, .18); color: var(--lof-cream); }
 html[data-theme="dark"] .lof-hero__facts { border: 1px solid rgba(244, 175, 22, .22); }
-
-
 /* ===== 0.26.0: Programmes and Talent Development ===== */
 /* Programme cards without a photo: designed brand tile with an icon, not a big number */
 .lof-placeholder--prog { position: relative; flex-direction: column; gap: .7rem; min-height: 0; height: 100%; background: radial-gradient(120% 90% at 85% 0%, rgba(244, 175, 22, .55), rgba(244, 175, 22, 0) 55%), radial-gradient(90% 80% at 0% 100%, rgba(220, 140, 19, .45), rgba(220, 140, 19, 0) 60%), linear-gradient(150deg, #5C3D1E, #3F2913); overflow: hidden; }
@@ -1526,7 +1480,6 @@ html[data-theme="dark"] .lof-hero__facts { border: 1px solid rgba(244, 175, 22, 
 .lof-card--programme:hover .lof-placeholder__ico { transform: scale(1.06); }
 .lof-placeholder__tag { position: relative; font: 700 .68rem/1 var(--lof-font-body); letter-spacing: .14em; text-transform: uppercase; color: rgba(252, 246, 225, .72); }
 .lof-placeholder--prog .lof-card__index { position: absolute; top: 14px; left: 14px; }
-
 /* Programme cards: equal heights, tidy body */
 .lof-page-programmes .lof-card--programme { display: flex; flex-direction: column; height: 100%; border-radius: 22px; overflow: hidden; }
 .lof-page-programmes .lof-card--programme .lof-card__media { aspect-ratio: 16 / 10; display: block; overflow: hidden; }
@@ -1535,7 +1488,6 @@ html[data-theme="dark"] .lof-hero__facts { border: 1px solid rgba(244, 175, 22, 
 .lof-page-programmes .lof-card--programme .lof-card__body { flex: 1; display: flex; flex-direction: column; }
 .lof-page-programmes .lof-card--programme .lof-card__link { margin-top: auto; }
 .lof-page-programmes .lof-card--programme .lof-card__title { font-size: 1.12rem; line-height: 1.3; }
-
 /* 11 cards: last row of two centred (no gap on the right) */
 @media (min-width: 992px) {
 	.lof-grid--3:has(> .lof-card--programme:nth-child(11):last-child) { grid-template-columns: repeat(6, minmax(0, 1fr)); }
@@ -1547,11 +1499,9 @@ html[data-theme="dark"] .lof-hero__facts { border: 1px solid rgba(244, 175, 22, 
 	.lof-grid--3:has(> .lof-card--programme:nth-child(11):last-child) > * { grid-column: span 2; }
 	.lof-grid--3:has(> .lof-card--programme:nth-child(11):last-child) > :nth-child(11) { grid-column: 2 / span 2; }
 }
-
 /* Programmes: approach cards and giving section rhythm */
 .lof-page-programmes .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
 .lof-page-programmes .lof-give .lof-givepanel { max-width: 760px; margin-inline: auto; }
-
 /* Talent Development: three talent areas as icon cards */
 .lof-page-talent-development .lof-tone-white .lof-grid--3 { gap: clamp(1rem, 2.4vw, 1.75rem); }
 .lof-page-talent-development .lof-tone-white .lof-card--pillar { position: relative; padding: 2.2rem 1.8rem 2rem; border: 1px solid var(--lof-line); border-top: 0; border-radius: 24px; background: var(--lof-surface); box-shadow: 0 26px 50px -38px rgba(43, 29, 14, .6); text-align: left; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
@@ -1570,20 +1520,19 @@ html[data-theme="dark"] .lof-hero__facts { border: 1px solid rgba(244, 175, 22, 
 .lof-page-talent-development .lof-steps .lof-card--pillar:last-child { border-right: 0; }
 .lof-page-talent-development .lof-steps .lof-card__kicker { display: inline-grid; place-items: center; width: 46px; height: 46px; margin-bottom: .9rem; border-radius: 14px; background: var(--lof-gold); color: #2E1E0E; font: 800 .95rem/1 var(--lof-font-display); }
 .lof-page-talent-development .lof-steps .lof-card__title { font-size: 1.2rem; }
-@media (max-width: 991px) { .lof-page-talent-development .lof-steps .lof-card--pillar { border-right: 0; border-bottom: 1px solid var(--lof-line); } .lof-page-talent-development .lof-steps .lof-card--pillar:last-child { border-bottom: 0; } }
-
+@media (max-width: 991px) {
+	.lof-page-talent-development .lof-steps .lof-card--pillar { border-right: 0; border-bottom: 1px solid var(--lof-line); }
+	.lof-page-talent-development .lof-steps .lof-card--pillar:last-child { border-bottom: 0; }
+}
 /* Dark mode */
 html[data-theme="dark"] .lof-page-talent-development .lof-tone-white .lof-card--pillar, html[data-theme="dark"] .lof-page-talent-development .lof-steps { border-color: rgba(244, 175, 22, .16); box-shadow: 0 26px 50px -34px rgba(0, 0, 0, .85); }
 html[data-theme="dark"] .lof-page-talent-development .lof-steps .lof-card--pillar { border-color: rgba(244, 175, 22, .14); }
 html[data-theme="dark"] .lof-placeholder--prog { background: radial-gradient(120% 90% at 85% 0%, rgba(244, 175, 22, .4), rgba(244, 175, 22, 0) 55%), linear-gradient(150deg, #3a2614, #22160a); }
-
-
 /* ===== 0.27.0: Stories and Impact ===== */
 /* "More stories" divider under the featured story */
 .lof-more-head { display: flex; align-items: center; gap: 1rem; margin: clamp(2.25rem, 5vw, 3.5rem) 0 1.5rem; }
 .lof-more-head .lof-eyebrow { margin: 0; white-space: nowrap; }
 .lof-more-head__rule { flex: 1; height: 1px; background: var(--lof-line); }
-
 /* Stories after the featured one: equal, balanced cards (no cinematic lead, no empty column) */
 .lof-grid.lof-stories-more { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; grid-template-rows: none !important; gap: clamp(1rem, 2.4vw, 1.75rem) !important; }
 .lof-grid.lof-stories-more:not(:has(> :nth-child(3))) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
@@ -1598,9 +1547,10 @@ html[data-theme="dark"] .lof-placeholder--prog { background: radial-gradient(120
 .lof-grid.lof-stories-more > .lof-card--story .lof-card__link { margin-top: auto; align-self: flex-start; padding: .65rem 1.15rem !important; border-radius: 999px; background: rgba(244, 175, 22, .16) !important; color: var(--lof-heading) !important; }
 .lof-grid.lof-stories-more > .lof-card--story:hover .lof-card__link { background: var(--lof-gold) !important; color: #2E1E0E !important; }
 .lof-grid.lof-stories-more > .lof-card--story .lof-card__place { position: absolute; top: 14px; left: 14px; background: var(--lof-gold) !important; color: #2E1E0E !important; }
-@media (max-width: 760px) { .lof-grid.lof-stories-more, .lof-grid.lof-stories-more:not(:has(> :nth-child(3))) { grid-template-columns: 1fr !important; } }
+@media (max-width: 760px) {
+	.lof-grid.lof-stories-more, .lof-grid.lof-stories-more:not(:has(> :nth-child(3))) { grid-template-columns: 1fr !important; }
+}
 html[data-theme="dark"] .lof-grid.lof-stories-more > .lof-card--story { border-color: rgba(244, 175, 22, .16) !important; }
-
 /* Stories: "With dignity and consent" as icon cards */
 .lof-page-stories .lof-tone-white .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
 .lof-page-stories .lof-tone-white .lof-card--pillar { position: relative; padding: 2.2rem 1.8rem 2rem; border: 1px solid var(--lof-line); border-top: 0; border-radius: 24px; background: var(--lof-surface); box-shadow: 0 26px 50px -38px rgba(43, 29, 14, .6); overflow: hidden; transition: transform .25s ease; }
@@ -1613,7 +1563,6 @@ html[data-theme="dark"] .lof-grid.lof-stories-more > .lof-card--story { border-c
 .lof-page-stories .lof-tone-white .lof-card__title { font-size: 1.3rem; margin-bottom: .4rem; }
 .lof-page-stories .lof-tone-white .lof-card--pillar p { font-size: 1rem; line-height: 1.65; color: var(--lof-muted); }
 html[data-theme="dark"] .lof-page-stories .lof-tone-white .lof-card--pillar { border-color: rgba(244, 175, 22, .16); }
-
 /* Impact: figures band, steps panel and section rhythm */
 .lof-page-impact .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
 .lof-page-impact .lof-impact:not(.lof-impact--strip) .lof-impact__item { padding: 2rem 1.25rem; }
@@ -1627,11 +1576,12 @@ html[data-theme="dark"] .lof-page-stories .lof-tone-white .lof-card--pillar { bo
 .lof-page-impact .lof-card--programme .lof-card__media img { width: 100%; height: 100%; object-fit: cover; }
 .lof-page-impact .lof-card--programme .lof-card__body { flex: 1; display: flex; flex-direction: column; }
 .lof-page-impact .lof-card--programme .lof-card__link { margin-top: auto; }
-@media (max-width: 991px) { .lof-page-impact .lof-steps .lof-card--pillar { border-right: 0; border-bottom: 1px solid var(--lof-line); } .lof-page-impact .lof-steps .lof-card--pillar:last-child { border-bottom: 0; } }
+@media (max-width: 991px) {
+	.lof-page-impact .lof-steps .lof-card--pillar { border-right: 0; border-bottom: 1px solid var(--lof-line); }
+	.lof-page-impact .lof-steps .lof-card--pillar:last-child { border-bottom: 0; }
+}
 html[data-theme="dark"] .lof-page-impact .lof-steps { border-color: rgba(244, 175, 22, .16); }
 html[data-theme="dark"] .lof-page-impact .lof-steps .lof-card--pillar { border-color: rgba(244, 175, 22, .14); }
-
-
 /* ===== 0.28.0: Get Involved, Donate and Contact ===== */
 /* Hero side photo keeps its frame even when Elementor sets img height:auto */
 .lof-hero .lof-hero__side { overflow: visible; }
@@ -1671,23 +1621,22 @@ html[data-theme="dark"] .lof-page-impact .lof-steps .lof-card--pillar { border-c
 .lof-page-donate .lof-tone-sand .lof-grid--4 > .lof-card--pillar p { font-size: .98rem; line-height: 1.65; color: var(--lof-muted); }
 .lof-page-donate .lof-tone-sand .lof-grid--4 > .lof-card--pillar .lof-card__link { margin-top: auto; padding-top: 1rem; }
 .lof-page-donate .lof-tone-sand .lof-grid--4 > .lof-card--pillar .lof-card__kicker { display: inline-grid; place-items: center; width: 46px; height: 46px; margin-bottom: 1rem; border-radius: 14px; background: var(--lof-gold); color: #2E1E0E; font: 800 .95rem/1 var(--lof-font-display); }
-
 .lof-page-get-involved .lof-section__head, .lof-page-donate .lof-section__head, .lof-page-contact .lof-section__head { max-width: 720px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
 .lof-page-get-involved .lof-grid--4, .lof-page-donate .lof-grid--4, .lof-page-donate .lof-grid--3 { align-items: stretch; gap: clamp(1rem, 2.2vw, 1.6rem); }
-
 /* Form sections: contact details as icon rows, balanced two columns */
 .lof-formsec__grid { align-items: start; gap: clamp(2rem, 5vw, 4.5rem); }
 .lof-formsec__intro { position: sticky; top: 7rem; }
 .lof-formsec__details { list-style: none; margin: 1.75rem 0 0; padding: 0; display: grid; gap: .75rem; }
-.lof-formsec__details li { position: relative; display: flex; align-items: center; min-height: 64px; padding: .85rem 1.1rem .85rem 4.1rem; border-radius: 16px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 16px 34px -30px rgba(43, 29, 14, .55); font-size: .98rem; line-height: 1.45; color: var(--lof-heading); }
+.lof-formsec__details li { position: relative; display: flex; align-items: center; padding: .85rem 1.1rem .85rem 4.1rem; border-radius: 16px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 16px 34px -30px rgba(43, 29, 14, .55); line-height: 1.45; color: var(--lof-heading); }
 .lof-formsec__details li a { color: var(--lof-heading); font-weight: 700; text-decoration: none; }
 .lof-formsec__details li a:hover { color: var(--lof-link); text-decoration: underline; }
 .lof-formsec__details li::before { content: ""; position: absolute; left: 1rem; top: 50%; width: 40px; height: 40px; margin-top: -20px; border-radius: 12px; background: rgba(244, 175, 22, .16) no-repeat center / 20px 20px; }
 .lof-formsec__details li:has(a[href^="tel:"])::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC8C13'%3E%3Cpath d='M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.6a1 1 0 0 1-.3 1z'/%3E%3C/svg%3E"); }
 .lof-formsec__details li:has(a[href^="mailto:"])::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC8C13'%3E%3Cpath d='M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.5L4 7.3V17h16V7.3l-8 5.2z'/%3E%3C/svg%3E"); }
 .lof-formsec__details li:not(:has(a))::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC8C13'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E"); }
-@media (max-width: 860px) { .lof-formsec__intro { position: static; } }
-
+@media (max-width: 860px) {
+	.lof-formsec__intro { position: static; }
+}
 /* Contact: "Other ways to reach us" as three icon tiles */
 .lof-contact__grid { display: block; }
 .lof-contact__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: clamp(1rem, 2.2vw, 1.5rem); margin: 0; }
@@ -1703,38 +1652,29 @@ html[data-theme="dark"] .lof-page-impact .lof-steps .lof-card--pillar { border-c
 .lof-contact__list dd a:hover { color: var(--lof-link); text-decoration: underline; }
 .lof-page-contact .lof-contact .lof-section__head { text-align: center; }
 .lof-contact__map { margin-top: 1.5rem; width: 100%; min-height: 320px; border: 0; border-radius: 22px; }
-
 /* Dark mode */
 html[data-theme="dark"] .lof-formsec__details li, html[data-theme="dark"] .lof-contact__list > div, html[data-theme="dark"] .lof-page-get-involved .lof-card--pillar, html[data-theme="dark"] .lof-page-donate .lof-card--pillar { border-color: rgba(244, 175, 22, .16); box-shadow: 0 24px 46px -32px rgba(0, 0, 0, .8); }
-
-
 /* ===== 0.29.0: Contact, Get Involved and Donate - finishing pass ===== */
 /* "What happens next" timeline under the contact details (fills the left column beside every form) */
-.lof-formsec__next { margin-top: 1.75rem; padding: 1.5rem 1.5rem 1.35rem; border-radius: 22px; background: linear-gradient(160deg, #3F2913, #2A1B0C); color: rgba(252, 246, 225, .86); box-shadow: 0 30px 56px -40px rgba(43, 29, 14, .8); }
+.lof-formsec__next { margin-top: 1.75rem; background: linear-gradient(160deg, #3F2913, #2A1B0C); color: rgba(252, 246, 225, .86); box-shadow: 0 30px 56px -40px rgba(43, 29, 14, .8); }
 .lof-formsec__next-title { margin: 0 0 1.1rem; font: 800 .72rem/1 var(--lof-font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--lof-gold); }
 .lof-formsec__next ol { list-style: none; margin: 0; padding: 0; counter-reset: lofnext; display: grid; gap: 1.1rem; }
 .lof-formsec__next li { position: relative; counter-increment: lofnext; padding-left: 3.1rem; min-height: 36px; }
 .lof-formsec__next li::before { content: counter(lofnext); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--lof-gold); color: #2E1E0E; font: 800 .9rem/1 var(--lof-font-display); }
-.lof-formsec__next li:not(:last-child)::after { content: ""; position: absolute; left: 16px; top: 38px; bottom: -16px; width: 2px; background: rgba(244, 175, 22, .3); }
+.lof-formsec__next li:not(:last-child)::after { content: ""; position: absolute; left: 16px; top: 38px; bottom: -16px; width: 2px; }
 .lof-formsec__next strong { display: block; color: var(--lof-cream); font-size: 1rem; margin-bottom: .15rem; }
 .lof-formsec__next span { display: block; font-size: .92rem; line-height: 1.55; }
 html[data-theme="dark"] .lof-formsec__next { border: 1px solid rgba(244, 175, 22, .2); }
-
 /* Form card: clearer fields and a confident button */
 .lof-formsec .lof-formsec__form { padding: clamp(1.25rem, 3vw, 2.25rem); border-radius: 26px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 40px 70px -48px rgba(43, 29, 14, .65); }
 .lof-formsec .lof-formsec__form .lof-form { padding: 0; border: 0; box-shadow: none; background: transparent; }
 .lof-formsec .lof-form label { font-weight: 700; font-size: .86rem; color: var(--lof-heading); }
-.lof-formsec .lof-form textarea { min-height: 150px; }
 .lof-formsec .lof-form button[type="submit"], .lof-formsec .lof-form .lof-btn { min-height: 54px; padding-inline: 2.25rem; border-radius: 999px; background: var(--lof-gold) !important; color: #2E1E0E !important; border: 0 !important; font-weight: 800; box-shadow: 0 16px 30px -16px rgba(220, 140, 19, .8); }
 .lof-formsec .lof-form button[type="submit"]:hover, .lof-formsec .lof-form .lof-btn:hover { background: var(--lof-amber) !important; }
-
 /* Contact page: details live in one place (the band below), not repeated beside the form */
 .lof-page-contact .lof-formsec__details { display: none; }
 .lof-page-contact .lof-formsec__next { margin-top: 1.5rem; }
-
 /* "Other ways to reach us": dark band with three columns and a directions link */
-.lof-page-contact .lof-contact { background: linear-gradient(160deg, #3F2913, #2A1B0C) !important; }
-.lof-page-contact .lof-contact .lof-section__title { color: var(--lof-cream); }
 .lof-page-contact .lof-contact__list { gap: 0; border-radius: 24px; overflow: hidden; border: 1px solid rgba(244, 175, 22, .25); background: rgba(255, 255, 255, .04); }
 .lof-page-contact .lof-contact__list > div { background: transparent; border: 0; border-right: 1px solid rgba(244, 175, 22, .18); border-radius: 0; box-shadow: none; padding: 2rem 1.9rem; }
 .lof-page-contact .lof-contact__list > div:last-child { border-right: 0; }
@@ -1742,27 +1682,25 @@ html[data-theme="dark"] .lof-formsec__next { border: 1px solid rgba(244, 175, 22
 .lof-page-contact .lof-contact__list dd, .lof-page-contact .lof-contact__list dd a { color: var(--lof-cream); }
 .lof-contact__dir { display: inline-flex; align-items: center; margin-top: .85rem; padding: .5rem 1rem; border-radius: 999px; background: var(--lof-gold); color: #2E1E0E !important; font-size: .82rem; font-weight: 800; text-decoration: none !important; }
 .lof-contact__dir:hover { background: var(--lof-amber); }
-@media (max-width: 760px) { .lof-page-contact .lof-contact__list > div { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); } .lof-page-contact .lof-contact__list > div:last-child { border-bottom: 0; } }
-html[data-theme="dark"] .lof-page-contact .lof-contact { background: linear-gradient(160deg, #22160A, #170F06) !important; }
-
+@media (max-width: 760px) {
+	.lof-page-contact .lof-contact__list > div { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); }
+	.lof-page-contact .lof-contact__list > div:last-child { border-bottom: 0; }
+}
 /* Donate: "Transparent and accountable" as a dark trust band (varies the rhythm of card grids) */
-.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { gap: 0 !important; border-radius: 24px; overflow: hidden; border: 1px solid rgba(244, 175, 22, .25); background: rgba(255, 255, 255, .04); }
-.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { background: transparent; border: 0; border-right: 1px solid rgba(244, 175, 22, .18); border-radius: 0; box-shadow: none; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { gap: 0 !important; border-radius: 24px; overflow: hidden; }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { border: 0; border-right: 1px solid rgba(244, 175, 22, .18); border-radius: 0; box-shadow: none; }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar:last-child { border-right: 0; }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar:hover { transform: none; }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar::after { display: none; }
-.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar::before { background-color: rgba(244, 175, 22, .18); }
-.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) .lof-card__title { color: var(--lof-cream); }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) p { color: rgba(252, 246, 225, .82); }
-@media (max-width: 991px) { .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); } .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar:last-child { border-bottom: 0; } }
-
+@media (max-width: 991px) {
+	.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { border-right: 0; border-bottom: 1px solid rgba(244, 175, 22, .18); }
+	.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar:last-child { border-bottom: 0; }
+}
 /* Donate: the second figures strip near the form is a repeat - hide it so the page flows FAQ -> form */
 .lof-page-donate .elementor-section:has(.lof-impact--strip) { display: none; }
-
 /* Get Involved: "Ways to help" section breathing room and heading */
 .lof-page-get-involved .lof-tone-white { padding-block: clamp(3.5rem, 7vw, 5.5rem); }
-
-
 /* ===== 0.30.0: Programmes, Stories, Talent and Impact - finishing pass ===== */
 /* Focus areas without photos: rich brand tile (overrides the pale 0.15 placeholder) */
 .lof-card.lof-card--programme .lof-card__media .lof-placeholder.lof-placeholder--prog { display: flex; align-items: center; justify-content: center; min-height: 0; height: 100%; background: radial-gradient(120% 90% at 85% 0%, rgba(244, 175, 22, .5), rgba(244, 175, 22, 0) 55%), radial-gradient(90% 80% at 0% 100%, rgba(220, 140, 19, .4), rgba(220, 140, 19, 0) 60%), linear-gradient(150deg, #5C3D1E, #3A2512) !important; }
@@ -1770,14 +1708,11 @@ html[data-theme="dark"] .lof-page-contact .lof-contact { background: linear-grad
 .lof-card.lof-card--programme .lof-placeholder__ico { width: 88px; height: 88px; background: rgba(252, 246, 225, .08); color: var(--lof-gold); }
 .lof-card.lof-card--programme .lof-placeholder__ico svg { width: 40px; height: 40px; }
 html[data-theme="dark"] .lof-card.lof-card--programme .lof-card__media .lof-placeholder.lof-placeholder--prog { background: radial-gradient(120% 90% at 85% 0%, rgba(244, 175, 22, .38), rgba(244, 175, 22, 0) 55%), linear-gradient(150deg, #3a2614, #1f1409) !important; }
-
 /* Consistent row and column gaps in card grids */
 .lof-page-programmes .lof-grid--3, .lof-page-impact .lof-grid--3 { row-gap: clamp(1.25rem, 2.4vw, 1.75rem) !important; column-gap: clamp(1.25rem, 2.4vw, 1.75rem) !important; }
 .lof-card--programme.lof-reveal { margin: 0; }
-
 /* Third approach card gets its own icon (growth) */
 .lof-intro__panel:nth-child(3)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232E1E0E' d='M3 17l6-6 4 4 8-8v4h2V3h-8v2h4l-6 6-4-4-8 8z'/%3E%3C/svg%3E"); }
-
 /* Programmes: jump-to chips above the 11 focus areas */
 .lof-progjump { margin: 0 auto clamp(1.75rem, 3.5vw, 2.5rem); max-width: 1040px; }
 .lof-progjump ul { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: 0; padding: 0; list-style: none; }
@@ -1787,26 +1722,25 @@ html[data-theme="dark"] .lof-card.lof-card--programme .lof-card__media .lof-plac
 .lof-progjump a:hover span { background: rgba(46, 30, 14, .14); color: #2E1E0E; }
 .lof-card--programme[id] { scroll-margin-top: 110px; }
 .lof-card--programme:target { box-shadow: 0 0 0 3px var(--lof-gold), 0 30px 56px -34px rgba(220, 140, 19, .7); }
-@media (max-width: 640px) { .lof-progjump ul { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding-bottom: .4rem; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; } .lof-progjump li { flex: none; scroll-snap-align: start; } }
+@media (max-width: 640px) {
+	.lof-progjump ul { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding-bottom: .4rem; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+	.lof-progjump li { flex: none; scroll-snap-align: start; }
+}
 html[data-theme="dark"] .lof-progjump a { border-color: rgba(244, 175, 22, .18); }
-
 /* Programme card body: lead pill and link row tidy */
 .lof-card--programme .lof-card__lead { align-self: flex-start; }
 .lof-card--programme .lof-card__body { padding: 1.4rem 1.45rem 1.3rem; }
 .lof-card--programme .lof-card__link { border-top: 1px solid var(--lof-line); padding-top: .9rem; }
-
 /* Stories: featured story card a touch taller and more cinematic on wide screens */
-@media (min-width: 992px) { .lof-page-stories .lof-spot { min-height: 460px; } }
+@media (min-width: 992px) {
+	.lof-page-stories .lof-spot { min-height: 460px; }
+}
 .lof-page-stories .lof-more-head .lof-eyebrow, .lof-page-impact .lof-section__head .lof-eyebrow { color: var(--lof-link); }
-
 /* Impact: figures band - larger numbers and a soft gold glow */
 .lof-page-impact .lof-impact:not(.lof-impact--strip) { background: radial-gradient(60% 80% at 50% 0%, rgba(244, 175, 22, .22), rgba(244, 175, 22, 0) 70%), linear-gradient(160deg, #5C3D1E, #3F2913); }
 .lof-page-impact .lof-impact:not(.lof-impact--strip) .lof-impact__value { font-size: clamp(2.6rem, 5vw, 3.6rem); }
-
 /* Talent: talent area cards align with the steps panel width */
 .lof-page-talent-development .lof-tone-white .lof-grid--3, .lof-page-talent-development .lof-steps { max-width: 1120px; margin-inline: auto; }
-
-
 /* ===== 0.31.0: Leadership without tabs (simple "Jump to" bar), About polish ===== */
 .lof-tabs-wrap { display: none !important; }
 .lof-leaders[hidden] { display: block !important; }
@@ -1829,13 +1763,10 @@ html[data-theme="dark"] .lof-jump { background: rgba(24, 16, 8, .94); border-bot
 /* Each leadership group gets a clear, plain section heading rhythm */
 .lof-page-leadership .lof-leaders--board { border-top: 1px solid var(--lof-line); }
 .lof-page-leadership .lof-leaders--team .lof-section__head { margin-top: .5rem; }
-
 /* About: values text easier to read, cards evenly sized */
 .lof-page-about-us .lof-tone-sand .lof-card--pillar .lof-card__title { font-size: 1.15rem; }
 .lof-page-about-us .lof-tone-sand .lof-card--pillar p { font-size: 1rem; line-height: 1.65; }
 .lof-page-about-us .lof-intro__panel h3 { margin-top: .25rem; }
-
-
 /* ===== 0.32.0: balanced form sections ("Ready to give?", "Take the first step", "Write to us") ===== */
 /* Heading + contact details sit beside the form at equal height; "What happens next" runs full width underneath */
 @media (min-width: 901px) {
@@ -1847,7 +1778,6 @@ html[data-theme="dark"] .lof-jump { background: rgba(24, 16, 8, .94); border-bot
 	.lof-formsec .lof-formsec__next { grid-area: next; margin-top: clamp(2rem, 4vw, 3rem); }
 }
 .lof-formsec .lof-formsec__intro > .lof-section__head .lof-section__title { font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.12; }
-
 /* "What happens next" as a horizontal three-step band */
 .lof-formsec__next { padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3vw, 2.5rem); border-radius: 26px; }
 .lof-formsec__next-title { text-align: center; margin-bottom: 1.5rem; }
@@ -1859,26 +1789,20 @@ html[data-theme="dark"] .lof-jump { background: rgba(24, 16, 8, .94); border-bot
 	.lof-formsec__next strong { font-size: 1.08rem; margin-bottom: .3rem; }
 	.lof-formsec__next span { max-width: 30ch; margin-inline: auto; }
 }
-
 /* Contact rows: same width as the heading, comfortable height */
 .lof-formsec__details li { min-height: 68px; font-size: 1rem; }
-
 /* Form card fills its column and the button sits at the bottom edge */
 .lof-formsec .lof-formsec__form { display: flex; flex-direction: column; }
 .lof-formsec .lof-formsec__form .lof-form { flex: 1; display: flex; flex-direction: column; }
 .lof-formsec .lof-form textarea { min-height: 170px; }
-
 /* Contact page: details are shown in the band below, so the heading spans both rows */
 @media (min-width: 901px) {
 	.lof-page-contact .lof-formsec .lof-formsec__grid { grid-template-areas: "head form" "head form" "next next"; }
 }
-
-
 /* ===== 0.33.0: Footer - balanced, professional layout ===== */
 .lof-footer.lof-footer--v2 { padding-top: clamp(2.5rem, 5vw, 4rem); }
-
 /* Contact strip: one joined bar with dividers instead of three loose tiles */
-.lof-footer.lof-footer--v2 .lof-footer__reach { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 0; border-radius: 22px; overflow: hidden; border: 1px solid rgba(244, 175, 22, .22); background: rgba(255, 255, 255, .045); margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+.lof-footer.lof-footer--v2 .lof-footer__reach { display: grid; gap: 0; padding: 0; border-radius: 22px; overflow: hidden; border: 1px solid rgba(244, 175, 22, .22); background: rgba(255, 255, 255, .045); margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
 .lof-footer.lof-footer--v2 .lof-footer__reach:has(> :nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .lof-footer.lof-footer--v2 .lof-footer__tile { display: flex; align-items: center; gap: 1rem; min-height: 92px; padding: 1.25rem 1.6rem; border: 0; border-right: 1px solid rgba(244, 175, 22, .16); border-radius: 0; background: transparent; box-shadow: none; text-decoration: none; transition: background .2s; }
 .lof-footer.lof-footer--v2 .lof-footer__tile:last-child { border-right: 0; }
@@ -1886,25 +1810,20 @@ html[data-theme="dark"] .lof-jump { background: rgba(24, 16, 8, .94); border-bot
 .lof-footer.lof-footer--v2 .lof-footer__ico { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--lof-gold); color: #2E1E0E; }
 .lof-footer.lof-footer--v2 .lof-footer__tile small { display: block; margin-bottom: .25rem; font: 800 .68rem/1 var(--lof-font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--lof-gold); }
 .lof-footer.lof-footer--v2 .lof-footer__tile strong { display: block; font-size: 1rem; line-height: 1.4; font-weight: 700; color: var(--lof-cream); word-break: break-word; }
-
 /* Main grid: brand | explore | focus areas | support card */
 .lof-footer.lof-footer--v2 .lof-footer__main { display: grid; grid-template-columns: minmax(0, 3.2fr) minmax(0, 3fr) minmax(0, 2.8fr) minmax(0, 3fr); gap: clamp(1.75rem, 3.5vw, 3rem); align-items: start; padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
-.lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo img, .lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo svg { width: 120px; height: auto; }
-.lof-footer.lof-footer--v2 .lof-footer__intro { margin: 1.1rem 0 1rem; max-width: 34ch; font-size: .98rem; line-height: 1.7; color: rgba(252, 246, 225, .8); }
+.lof-footer.lof-footer--v2 .lof-footer__intro { margin: 1.1rem 0 1rem; font-size: .98rem; line-height: 1.7; color: rgba(252, 246, 225, .8); }
 .lof-footer.lof-footer--v2 .lof-footer__title { margin: 0 0 1.15rem; padding-bottom: .7rem; font: 800 .78rem/1 var(--lof-font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--lof-cream); border-bottom: 1px solid rgba(244, 175, 22, .2); position: relative; }
 .lof-footer.lof-footer--v2 .lof-footer__title::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 36px; height: 2px; background: var(--lof-gold); }
-.lof-footer.lof-footer--v2 .lof-footer__links a { padding: .32rem 0; font-size: .95rem; white-space: nowrap; }
-.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type .lof-footer__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.25rem; }
+.lof-footer.lof-footer--v2 .lof-footer__links a { padding: .32rem 0; }
+.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type .lof-footer__links { display: grid; }
 .lof-footer.lof-footer--v2 .lof-footer__col:first-of-type .lof-footer__links a { white-space: normal; }
 .lof-footer.lof-footer--v2 .lof-footer__more { display: inline-flex; margin-top: .5rem; color: var(--lof-gold); font-weight: 700; font-size: .92rem; }
-
 /* Support column as a glass card with a full-width button */
-.lof-footer.lof-footer--v2 .lof-footer__support { padding: 1.6rem 1.5rem; border-radius: 22px; background: linear-gradient(160deg, rgba(244, 175, 22, .14), rgba(244, 175, 22, .04)); border: 1px solid rgba(244, 175, 22, .28); }
+.lof-footer.lof-footer--v2 .lof-footer__support { border-radius: 22px; background: linear-gradient(160deg, rgba(244, 175, 22, .14), rgba(244, 175, 22, .04)); border: 1px solid rgba(244, 175, 22, .28); }
 .lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__title { border-bottom-color: rgba(244, 175, 22, .28); }
-.lof-footer.lof-footer--v2 .lof-footer__support p { margin: 0 0 1.25rem; font-size: .96rem; line-height: 1.65; color: rgba(252, 246, 225, .86); }
+.lof-footer.lof-footer--v2 .lof-footer__support p { margin: 0 0 1.25rem; line-height: 1.65; color: rgba(252, 246, 225, .86); }
 .lof-footer.lof-footer--v2 .lof-footer__donate { display: flex; justify-content: center; width: 100%; min-height: 50px; border-radius: 999px; font-weight: 800; }
-.lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__more { display: flex; justify-content: center; margin-top: .85rem; }
-
 /* Base bar: copyright | legal | back to top, all on one line */
 .lof-footer.lof-footer--v2 .lof-footer__base { border-top: 1px solid rgba(244, 175, 22, .16); background: rgba(0, 0, 0, .18); }
 .lof-footer.lof-footer--v2 .lof-footer__bottom { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 1.5rem; padding-block: 1.15rem; }
@@ -1912,7 +1831,6 @@ html[data-theme="dark"] .lof-jump { background: rgba(24, 16, 8, .94); border-bot
 .lof-footer.lof-footer--v2 .lof-footer__legal { display: flex; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
 .lof-footer.lof-footer--v2 .lof-footer__legal a { font-size: .85rem; color: rgba(252, 246, 225, .82); text-decoration: none; }
 .lof-footer.lof-footer--v2 .lof-footer__legal a:hover { color: var(--lof-gold); text-decoration: underline; }
-
 /* Tablet */
 @media (max-width: 991px) {
 	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1932,18 +1850,14 @@ html[data-theme="dark"] .lof-jump { background: rgba(24, 16, 8, .94); border-bot
 	.lof-footer.lof-footer--v2 .lof-footer__links a { white-space: normal; font-size: .93rem; }
 	.lof-footer.lof-footer--v2 .lof-footer__tile { padding: 1rem 1.15rem; }
 }
-
 /* Light mode keeps the dark footer; dark mode deepens it slightly */
 html[data-theme="dark"] .lof-footer.lof-footer--v2 .lof-footer__reach { background: rgba(255, 255, 255, .03); }
-
-
 /* ===== 0.34.0: About - objectives as one balanced panel, registration titles visible ===== */
 /* Heading centred on top (undo the 0.24 side-by-side layout) */
 .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) > .lof-container { display: block !important; }
 .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-section__head { position: static !important; text-align: center !important; max-width: 720px; margin: 0 auto clamp(2rem, 4vw, 3rem) !important; }
 .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-section__head .lof-eyebrow { justify-content: center !important; }
 .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-section__head::after { content: "Seven commitments set out in our registration, guiding every programme we run." !important; display: block; margin: .85rem auto 0; max-width: 52ch; color: var(--lof-muted); font-size: 1.05rem; line-height: 1.65; }
-
 /* One white panel, two even columns, eight cells (7 objectives + a registration note) */
 .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 0 !important; max-width: 1080px; margin-inline: auto; border-radius: 28px; overflow: hidden; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 34px 64px -46px rgba(43, 29, 14, .6); }
 .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 > .lof-card--pillar { grid-column: auto !important; display: grid !important; grid-template-columns: 56px 1fr; column-gap: 1.25rem; align-content: start; min-height: 132px; padding: 1.75rem 2rem !important; background: transparent !important; border: 0 !important; border-bottom: 1px solid var(--lof-line) !important; border-radius: 0 !important; box-shadow: none !important; }
@@ -1965,96 +1879,72 @@ html[data-theme="dark"] .lof-footer.lof-footer--v2 .lof-footer__reach { backgrou
 }
 html[data-theme="dark"] .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 { border-color: rgba(244, 175, 22, .18); }
 html[data-theme="dark"] .lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 > .lof-card--pillar { border-color: rgba(244, 175, 22, .14) !important; }
-
 /* Registration and contacts band: the four labels were invisible on dark - force gold */
-.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar .lof-card__title { display: block !important; color: var(--lof-gold) !important; font-size: .82rem !important; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 .6rem !important; }
+.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar .lof-card__title { display: block !important; font-size: .82rem !important; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 .6rem !important; }
 .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar::before { display: none !important; }
 .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar { padding: 2rem 1.75rem !important; }
-
 /* Values: equal card heights and centred last row stay; tighten heading spacing */
 .lof-page-about-us .lof-tone-sand .lof-section__head { margin-bottom: clamp(2rem, 4vw, 3rem); }
-
-
 /* ===== 0.34.1: Donate "Transparent and accountable" - text was invisible ===== */
 /* The section-level rule used a nested :has(), which browsers ignore, so cream text sat on a white background.
    The dark panel is now applied to the cards' own container, so the text always has a dark background. */
-.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { background: linear-gradient(160deg, #3F2913, #2A1B0C) !important; border-color: rgba(244, 175, 22, .3) !important; box-shadow: 0 34px 64px -42px rgba(43, 29, 14, .75); }
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { border-color: rgba(244, 175, 22, .3) !important; }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { background: transparent !important; }
-.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) .lof-card__title { color: var(--lof-gold) !important; font-size: 1.15rem; }
-.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar p { color: rgba(252, 246, 225, .9) !important; }
-.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar::before { background-color: rgba(244, 175, 22, .2); }
-html[data-theme="dark"] .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { background: linear-gradient(160deg, #2A1B0C, #170F06) !important; }
-
-
+.lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) .lof-card__title { font-size: 1.15rem; }
 /* ===== 0.35.0: Larger, easier-to-read type across the whole site ===== */
 /* Base size: 17px on phones, 17.5px on laptops, 18px on large screens (rem-based sizes all scale with it) */
 html { font-size: 106.25%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-@media (min-width: 900px) { html { font-size: 109.375%; } }
 /* 0.43.0: no extra size step on large screens - MacBooks and big monitors show the same as a 13.3in laptop */
 body { font-size: 1rem; line-height: 1.7; }
-
 /* Body copy never smaller than ~16-17px */
 .lof-prose, .lof-prose p, .lof-section__intro, .lof-hero__text, .lof-card p, .lof-card--pillar p, .lof-person__bio, .lof-faq__answer, .lof-feature__body p, .lof-intro__panel p, .page-content { font-size: max(1rem, 16px) !important; line-height: 1.72; }
 .lof-section__intro { font-size: 1.12rem !important; max-width: 62ch; margin-inline: auto; }
 .lof-hero__text { font-size: clamp(1.08rem, 1.5vw, 1.25rem) !important; }
 .lof-intro__statement { font-size: clamp(1.2rem, 1.8vw, 1.45rem) !important; line-height: 1.6; }
-
 /* Small labels: readable minimum (eyebrows, kickers, roles, footer labels) */
 .lof-eyebrow { font-size: max(.8rem, 13px) !important; letter-spacing: .12em; }
 .lof-person__role, .lof-card__kicker, .lof-footer__tile small, .lof-hero__facts-kicker, .lof-formsec__next-title, .lof-contact__list dt, .lof-placeholder__tag { font-size: max(.78rem, 13px) !important; }
 .lof-card__link, .lof-card__lead, .lof-person__board { font-size: max(.82rem, 13.5px) !important; }
 .lof-footer__copy, .lof-footer__legal a, .lof-crumbs { font-size: max(.85rem, 14px) !important; }
-
 /* Headings: stronger hierarchy */
 .lof-section__title { font-size: clamp(2rem, 3.8vw, 3.1rem) !important; line-height: 1.12; }
 .lof-hero--page .lof-hero__title { font-size: clamp(2.6rem, 5.4vw, 4.4rem) !important; }
 .lof-card__title, .lof-card--pillar .lof-card__title { font-size: clamp(1.15rem, 1.4vw, 1.3rem) !important; line-height: 1.3; }
 .lof-person__name { font-size: clamp(1.15rem, 1.5vw, 1.3rem) !important; }
 .lof-faq__item summary { font-size: clamp(1.02rem, 1.3vw, 1.12rem) !important; }
-
 /* Navigation and buttons */
 .lof-menu > li > a { font-size: max(.95rem, 15.5px); }
 .lof-btn { font-size: max(.9rem, 15px); }
 .lof-footer.lof-footer--v2 .lof-footer__links a { font-size: max(.95rem, 15.5px) !important; }
 .lof-footer.lof-footer--v2 .lof-footer__intro, .lof-footer.lof-footer--v2 .lof-footer__support p { font-size: max(1rem, 16px) !important; }
-
 /* Phones: keep headings big but never overflowing */
 @media (max-width: 640px) {
 	.lof-section__title { font-size: clamp(1.75rem, 7.5vw, 2.2rem) !important; }
 	.lof-hero--page .lof-hero__title { font-size: clamp(2.1rem, 9vw, 2.6rem) !important; }
 	.lof-tabbar__item a, .lof-tabbar__item button { font-size: 12px !important; }
 }
-
-
 /* ===== 0.35.1: Footer balance fixes ===== */
 /* Layout: brand on top-left with the support card under it (fills the old empty space);
    Explore and Focus areas each take a full-height column. */
 @media (min-width: 992px) {
-	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: minmax(0, 4fr) minmax(0, 4.2fr) minmax(0, 3.8fr); grid-template-areas: "brand explore focus" "support explore focus"; column-gap: clamp(2rem, 4vw, 3.75rem); row-gap: 1.75rem; }
 	.lof-footer.lof-footer--v2 .lof-footer__brand { grid-area: brand; }
 	.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type { grid-area: explore; }
 	.lof-footer.lof-footer--v2 .lof-footer__col:nth-of-type(2):not(.lof-footer__support) { grid-area: focus; }
 	.lof-footer.lof-footer--v2 .lof-footer__support { grid-area: support; align-self: start; }
 }
 @media (min-width: 641px) and (max-width: 991px) {
-	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "brand support" "explore focus"; }
 	.lof-footer.lof-footer--v2 .lof-footer__brand { grid-area: brand; }
 	.lof-footer.lof-footer--v2 .lof-footer__col:first-of-type { grid-area: explore; }
 	.lof-footer.lof-footer--v2 .lof-footer__col:nth-of-type(2):not(.lof-footer__support) { grid-area: focus; }
 	.lof-footer.lof-footer--v2 .lof-footer__support { grid-area: support; }
 }
-
 /* Long focus-area names wrap instead of running into the next column */
 .lof-footer.lof-footer--v2 .lof-footer__links a { white-space: normal !important; line-height: 1.45; }
 .lof-footer.lof-footer--v2 .lof-footer__links li { margin: 0; }
 .lof-footer.lof-footer--v2 .lof-footer__col:first-of-type .lof-footer__links { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: .1rem; }
-
 /* Brand: larger logo, tidy intro and badge */
-.lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo img, .lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo svg { width: 150px !important; height: auto; }
-.lof-footer.lof-footer--v2 .lof-footer__intro { max-width: 38ch; }
-
+.lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo img, .lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo svg { height: auto; }
 /* Support card: same heading style as the other columns, compact, button and link side by side on wide screens */
-.lof-footer.lof-footer--v2 .lof-footer__support { padding: 1.5rem 1.6rem; }
 .lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__title { margin-bottom: .9rem; }
 .lof-footer.lof-footer--v2 .lof-footer__support p { margin-bottom: 1.1rem; }
 @media (min-width: 992px) {
@@ -2063,18 +1953,14 @@ body { font-size: 1rem; line-height: 1.7; }
 	.lof-footer.lof-footer--v2 .lof-footer__donate { width: auto !important; padding-inline: 1.6rem; }
 	.lof-footer.lof-footer--v2 .lof-footer__support .lof-footer__more { margin-top: 0 !important; justify-content: flex-start !important; }
 }
-
 /* Contact bar: equal columns, address text not squeezed */
 .lof-footer.lof-footer--v2 .lof-footer__reach { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1.25fr); }
-
 /* Phones */
 @media (max-width: 640px) {
 	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-areas: none; }
 	.lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo img, .lof-footer.lof-footer--v2 .lof-footer__brand .lof-logo svg { width: 130px !important; }
 	.lof-footer.lof-footer--v2 .lof-footer__reach { grid-template-columns: 1fr; }
 }
-
-
 /* ===== 0.36.0: Closing call-to-action - donation panel on the right ===== */
 .lof-cta.lof-tone-sun .lof-cta__box { display: grid !important; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr); align-items: center; gap: clamp(1.75rem, 4vw, 3.5rem); }
 .lof-cta.lof-tone-sun .lof-section__head { max-width: none !important; }
@@ -2089,28 +1975,27 @@ body { font-size: 1rem; line-height: 1.7; }
 .lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row .lof-btn:first-child:hover { background: #FBD62B !important; transform: translateY(-2px); }
 .lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row .lof-btn:nth-child(2) { background: transparent !important; color: var(--lof-cream) !important; border: 1.5px solid rgba(252, 246, 225, .45) !important; }
 .lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row .lof-btn:nth-child(2):hover { border-color: var(--lof-gold) !important; color: var(--lof-gold) !important; }
-.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row::after { content: "Registered NGO, Kenya \00B7  23 May 2025"; display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: .35rem; padding-top: .85rem; border-top: 1px solid rgba(244, 175, 22, .2); font-size: max(.82rem, 13.5px); color: rgba(252, 246, 225, .78); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23F4AF16' d='M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-1.5 15.5-4-4 1.4-1.4 2.6 2.6 6.1-6.1 1.4 1.4-7.5 7.5z'/%3E%3C/svg%3E") left calc(50% - 8.2rem) center / 16px 16px no-repeat; }
+.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row::after { content: "Registered NGO, Kenya · 23 May 2025"; display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: .35rem; padding-top: .85rem; border-top: 1px solid rgba(244, 175, 22, .2); font-size: max(.82rem, 13.5px); color: rgba(252, 246, 225, .78); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23F4AF16' d='M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-1.5 15.5-4-4 1.4-1.4 2.6 2.6 6.1-6.1 1.4 1.4-7.5 7.5z'/%3E%3C/svg%3E") left calc(50% - 8.2rem) center / 16px 16px no-repeat; }
 @media (max-width: 860px) {
 	.lof-cta.lof-tone-sun .lof-cta__box { grid-template-columns: 1fr; }
 	.lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row::after { background: none; }
 }
 html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-cta__box > .lof-btn-row { border: 1px solid rgba(244, 175, 22, .25); }
 html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-section__title, html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-section__intro { color: #1A120A !important; }
-
 /* Footer CTA card (pages without their own CTA): same treatment for its buttons */
 .lof-footer__cta-actions { display: flex; flex-direction: column; gap: .7rem; min-width: 260px; padding: 1.25rem; border-radius: 22px; background: linear-gradient(160deg, #3F2913, #2A1B0C); }
 .lof-footer__cta-actions .lof-btn { display: flex; justify-content: center; min-height: 52px; border-radius: 999px; font-weight: 800; }
 .lof-footer__cta-actions .lof-btn--earth { background: var(--lof-gold) !important; color: #2E1E0E !important; border: 0 !important; }
 .lof-footer__cta-actions .lof-footer__cta-ghost { background: transparent !important; color: var(--lof-cream) !important; border: 1.5px solid rgba(252, 246, 225, .45) !important; }
-@media (max-width: 760px) { .lof-footer__cta-actions { min-width: 0; width: 100%; } }
-
-
+@media (max-width: 760px) {
+	.lof-footer__cta-actions { min-width: 0; width: 100%; }
+}
 /* ===== 0.37.0: Page hero - full-width background photo, shorter height (benchmark: Cistern of Hope) ===== */
 .lof-hero.lof-hero--page.has-bg { position: relative; display: flex; align-items: center; min-height: clamp(280px, 30vw, 400px); padding-block: clamp(2.75rem, 5vw, 4rem) !important; background: #2A1B0C !important; overflow: hidden; isolation: isolate; }
 .lof-hero.lof-hero--page.has-bg .lof-hero__art, .lof-hero.lof-hero--page.has-bg .lof-hero__side { display: none !important; }
 .lof-hero.lof-hero--page.has-bg .lof-hero__bg { position: absolute; inset: 0; z-index: -2; }
 .lof-hero.lof-hero--page.has-bg .lof-hero__bg img.lof-hero__bg-img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; max-width: none; object-fit: cover; object-position: center 35%; }
-.lof-hero.lof-hero--page.has-bg::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(28, 18, 8, .94) 0%, rgba(28, 18, 8, .82) 38%, rgba(28, 18, 8, .45) 70%, rgba(28, 18, 8, .25) 100%), linear-gradient(0deg, rgba(28, 18, 8, .55), rgba(28, 18, 8, 0) 45%); }
+.lof-hero.lof-hero--page.has-bg::before { content: ""; position: absolute; inset: 0; z-index: -1; }
 .lof-hero.lof-hero--page.has-bg::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; z-index: 1; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber), var(--lof-gold)); }
 .lof-hero.lof-hero--page.has-bg .lof-hero__inner { position: relative; width: 100%; }
 .lof-hero.lof-hero--page.has-bg .lof-hero__content { max-width: 680px; }
@@ -2123,14 +2008,13 @@ html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-section__title, html[data-the
 /* Leadership: "At a glance" card sits on the photo */
 .lof-hero.lof-hero--page.has-bg.has-side .lof-hero__inner { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
 .lof-hero.lof-hero--page.has-bg .lof-hero__facts { background: rgba(28, 18, 8, .72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(244, 175, 22, .3); }
-@media (max-width: 900px) { .lof-hero.lof-hero--page.has-bg.has-side .lof-hero__inner { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+	.lof-hero.lof-hero--page.has-bg.has-side .lof-hero__inner { grid-template-columns: 1fr; }
+}
 @media (max-width: 640px) {
 	.lof-hero.lof-hero--page.has-bg { min-height: 240px; padding-block: 2.25rem !important; }
-	.lof-hero.lof-hero--page.has-bg::before { background: linear-gradient(0deg, rgba(28, 18, 8, .95) 0%, rgba(28, 18, 8, .8) 55%, rgba(28, 18, 8, .55) 100%); }
 	.lof-hero.lof-hero--page.has-bg .lof-hero__title { font-size: clamp(2rem, 8.5vw, 2.5rem) !important; }
 }
-
-
 /* ===== 0.37.1: Footer back to ONE row (brand | Explore | Focus areas | Support) ===== */
 @media (min-width: 992px) {
 	.lof-footer.lof-footer--v2 .lof-footer__main { grid-template-columns: minmax(0, 3fr) minmax(0, 3.3fr) minmax(0, 3fr) minmax(0, 2.9fr) !important; grid-template-areas: none !important; column-gap: clamp(1.5rem, 3vw, 2.75rem) !important; row-gap: 0 !important; align-items: start; }
@@ -2150,8 +2034,6 @@ html[data-theme="dark"] .lof-cta.lof-tone-sun .lof-section__title, html[data-the
 .lof-footer.lof-footer--v2 .lof-footer__intro { max-width: none; }
 /* Headings of all four columns line up on the same baseline */
 .lof-footer.lof-footer--v2 .lof-footer__brand { padding-top: 0; }
-
-
 /* ===== 0.38.0: Home "Our story" - balanced two-column layout ===== */
 /* Text column was much taller than the portrait. Now: heading + letter on the left, portrait on the right,
    then the quote (left) and the milestone timeline (right, under the photo) on the same row. */
@@ -2186,19 +2068,15 @@ html[data-theme="dark"] .lof-feature--story .lof-milestones { border-color: rgba
 	.lof-feature--story .lof-milestones { padding: 1.1rem .75rem 1rem; }
 	.lof-feature--story .lof-milestones > div { padding-inline: .3rem; }
 }
-
-
 /* ===== 0.39.0: Home page - full balance pass ===== */
 /* Consistent vertical rhythm between sections */
 body.home .lof-main > .elementor > .elementor-section .lof-section { padding-block: clamp(3.5rem, 7vw, 5.75rem); }
 body.home .lof-section__head { max-width: 760px; margin-inline: auto; margin-bottom: clamp(2rem, 4vw, 3rem); }
-
 /* "Why we exist": heading and statement aligned on one baseline, vision/mission equal height */
 body.home .lof-intro__grid { align-items: center; gap: clamp(2rem, 5vw, 4.5rem); }
 body.home .lof-intro__band { margin-top: clamp(2rem, 4vw, 3rem); align-items: stretch; }
 body.home .lof-intro__panel { height: 100%; }
 body.home .lof-intro__title { font-size: clamp(2.3rem, 4.2vw, 3.4rem) !important; }
-
 /* Stories of change: lead story and two side stories at the same height, side cards readable */
 @media (min-width: 992px) {
 	body.home .lof-grid--3:has(> .lof-card--story:nth-child(3)) { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) !important; gap: 1.5rem !important; align-items: stretch; }
@@ -2210,31 +2088,24 @@ body.home .lof-intro__title { font-size: clamp(2.3rem, 4.2vw, 3.4rem) !important
 	body.home .lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__title { font-size: 1.3rem !important; }
 }
 body.home .lof-card--story .lof-card__link { font-weight: 800; }
-
 /* Give today card: heading on two lines, form column breathing room */
 body.home .lof-give--card .lof-give__overlay h2, body.home .lof-give--card .lof-section__title { font-size: clamp(1.9rem, 3vw, 2.5rem) !important; line-height: 1.12; }
 body.home .lof-give--card .lof-give__body { padding: clamp(1.75rem, 3vw, 2.5rem) !important; }
-
 /* "Who we are": text and photo vertically centred */
 body.home .lof-feature--about .lof-feature__grid { align-items: center; }
-
 /* Focus areas: card grid gaps match the rest of the page */
 body.home .lof-card--programme { display: flex; flex-direction: column; height: 100%; border-radius: 22px; overflow: hidden; }
 body.home .lof-card--programme .lof-card__media { aspect-ratio: 16 / 10; display: block; overflow: hidden; }
 body.home .lof-card--programme .lof-card__body { flex: 1; display: flex; flex-direction: column; }
 body.home .lof-card--programme .lof-card__link { margin-top: auto; }
 body.home .lof-grid--3:has(> .lof-card--programme) { gap: clamp(1.25rem, 2.4vw, 1.75rem) !important; }
-
 /* Section buttons below grids ("See all 11 focus areas", "More stories") */
 body.home .lof-btn-row--center { margin-top: clamp(1.75rem, 3.5vw, 2.5rem); }
 body.home .lof-btn-row--center .lof-btn { min-height: 52px; padding-inline: 1.9rem; border-radius: 999px; }
-
 @media (max-width: 640px) {
 	body.home .lof-main > .elementor > .elementor-section .lof-section { padding-block: clamp(2.75rem, 11vw, 3.5rem); }
 	body.home .lof-intro__title { font-size: clamp(2rem, 8vw, 2.4rem) !important; }
 }
-
-
 /* ===== 0.40.0: Home "Our story" - one editorial card (photo panel left, letter right) ===== */
 /* Replaces the arch portrait, offset gold frames and floating timeline card from 0.17-0.38. */
 section.lof-feature--story .lof-feature__grid { display: grid !important; grid-template-columns: 1fr; gap: 0 !important; overflow: hidden; border-radius: 32px; background: var(--lof-surface); border: 1px solid var(--lof-line); box-shadow: 0 50px 90px -60px rgba(43, 29, 14, .7); }
@@ -2258,7 +2129,6 @@ section.lof-feature--story .lof-milestones > div::after { display: none !importa
 section.lof-feature--story .lof-milestones dt { margin: .2rem 0 .35rem !important; font: 800 clamp(1.6rem, 2.4vw, 2rem)/1 var(--lof-font-display) !important; color: var(--lof-heading); }
 section.lof-feature--story .lof-milestones dd { margin: 0 !important; font-size: max(.9rem, 14.5px) !important; line-height: 1.45; color: var(--lof-muted); }
 section.lof-feature--story .lof-btn-row { margin-top: 2rem !important; }
-
 @media (min-width: 992px) {
 	section.lof-feature--story .lof-feature__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) !important; grid-template-areas: "media body" !important; align-items: stretch !important; }
 	section.lof-feature--story.lof-feature--img-left .lof-feature__grid, section.lof-feature--story .lof-feature__grid { grid-template-areas: "media body" !important; }
@@ -2276,8 +2146,6 @@ section.lof-feature--story .lof-btn-row { margin-top: 2rem !important; }
 	section.lof-feature--story .lof-milestones > div::before { top: .35rem !important; }
 }
 html[data-theme="dark"] section.lof-feature--story .lof-feature__grid { border-color: rgba(244, 175, 22, .18); box-shadow: 0 50px 90px -50px rgba(0, 0, 0, .9); }
-
-
 /* ===== 0.40.1: Home "Our impact" band - compact height ===== */
 body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) { padding-block: clamp(2.5rem, 4.5vw, 3.5rem) !important; }
 body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__head { display: grid; grid-template-columns: auto 1fr; align-items: end; column-gap: 2rem; max-width: none !important; margin: 0 0 1.5rem !important; text-align: left !important; }
@@ -2296,11 +2164,10 @@ body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__note, 
 	body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-section__intro { justify-self: start; text-align: left; margin-top: .5rem !important; }
 	body.home .lof-impact.lof-tone-earth:not(.lof-impact--strip) .lof-impact__grid { grid-template-columns: 1fr 1fr !important; }
 }
-
 /* 0.40.2: cross-check fix - the Our story photo panel keeps a minimum height on laptops even if the text is short */
-@media (min-width: 992px) { section.lof-feature--story .lof-feature__media { min-height: 520px; } }
-
-
+@media (min-width: 992px) {
+	section.lof-feature--story .lof-feature__media { min-height: 520px; }
+}
 /* ===== 0.41.0: Calmer, consistent brand colours across the site ===== */
 /* Rule of thumb now: cream and white for page sections; dark brown only for the footer, the figures band,
    photo banners and the donation panel; gold only for accents (labels, lines, icons, main buttons). */
@@ -2310,7 +2177,6 @@ html[data-theme="dark"] .lof-tone-sand { background: #1E150B !important; }
 .lof-eyebrow { color: #B9740F; }
 html[data-theme="dark"] .lof-eyebrow { color: var(--lof-gold); }
 .lof-section__title { color: var(--lof-heading); }
-
 /* Secondary panels: light cards with a gold edge instead of more dark brown blocks */
 .lof-faq-help, .lof-formsec__next { background: var(--lof-surface) !important; color: var(--lof-text) !important; border: 1px solid var(--lof-card-line) !important; border-top: 4px solid var(--lof-gold) !important; box-shadow: 0 26px 50px -40px rgba(43, 29, 14, .55) !important; }
 .lof-faq-help::after { display: none !important; }
@@ -2320,7 +2186,6 @@ html[data-theme="dark"] .lof-eyebrow { color: var(--lof-gold); }
 .lof-faq-help .lof-btn--earth { background: var(--lof-gold) !important; color: #2E1E0E !important; border-color: var(--lof-gold) !important; }
 .lof-faq-help .lof-btn--outline { color: var(--lof-heading) !important; border-color: rgba(63, 41, 19, .35) !important; }
 .lof-formsec__next li:not(:last-child)::after { background: rgba(244, 175, 22, .45) !important; }
-
 /* Donate "Transparent and accountable": light panel, gold icons, dark text */
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { background: var(--lof-surface) !important; border: 1px solid var(--lof-card-line) !important; border-top: 4px solid var(--lof-gold) !important; box-shadow: 0 26px 50px -40px rgba(43, 29, 14, .55) !important; }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar { border-right-color: var(--lof-card-line) !important; border-bottom-color: var(--lof-card-line) !important; }
@@ -2328,7 +2193,6 @@ html[data-theme="dark"] .lof-eyebrow { color: var(--lof-gold); }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar p { color: var(--lof-muted) !important; }
 .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) > .lof-card--pillar::before { background-color: var(--lof-accent-soft) !important; }
 html[data-theme="dark"] .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(> :nth-child(4))) { background: var(--lof-surface) !important; }
-
 /* About "Registration and contacts": cream band, light fact sheet */
 .lof-page-about-us .lof-section:has(.lof-card__link) { background: var(--lof-bg) !important; }
 .lof-page-about-us .lof-section:has(.lof-card__link) .lof-section__title { color: var(--lof-heading) !important; }
@@ -2338,7 +2202,6 @@ html[data-theme="dark"] .lof-page-donate .lof-tone-white .lof-grid--3:not(:has(>
 .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar .lof-card__title { color: #B9740F !important; }
 .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar p { color: var(--lof-text) !important; }
 .lof-page-about-us .lof-section:has(.lof-card__link) .lof-card__link { color: var(--lof-link) !important; }
-
 /* Contact "Other ways to reach us": cream band, light tiles with gold icons */
 .lof-page-contact .lof-contact { background: var(--lof-sand) !important; }
 html[data-theme="dark"] .lof-page-contact .lof-contact { background: #1E150B !important; }
@@ -2347,23 +2210,17 @@ html[data-theme="dark"] .lof-page-contact .lof-contact { background: #1E150B !im
 .lof-page-contact .lof-contact .lof-contact__list > div { border-right-color: var(--lof-card-line) !important; border-bottom-color: var(--lof-card-line) !important; }
 .lof-page-contact .lof-contact .lof-contact__list dt { color: #B9740F !important; }
 .lof-page-contact .lof-contact .lof-contact__list dd, .lof-page-contact .lof-contact .lof-contact__list dd a { color: var(--lof-heading) !important; }
-
 /* Cards: one consistent style - white, thin line, soft shadow, gold top edge only on feature cards */
 .lof-card--pillar { border-color: var(--lof-card-line); }
 html[data-theme="dark"] .lof-faq-help, html[data-theme="dark"] .lof-formsec__next, html[data-theme="dark"] .lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid, html[data-theme="dark"] .lof-page-contact .lof-contact .lof-contact__list { border-color: rgba(244, 175, 22, .18) !important; border-top-color: var(--lof-gold) !important; }
-
 /* Gold call-to-action box: a slightly softer, flatter gold */
 .lof-cta.lof-tone-sun .lof-cta__box { background: linear-gradient(120deg, #F4AF16 0%, #F7BF2E 60%, #F9CB45 100%) !important; }
-
-
 /* ===== 0.42.0: Page heroes - branded dark that pops (Cistern-style), on every inner page ===== */
 /* Photo heroes: warm brand-brown tint (not grey-black), gold glow, stronger contrast */
-.lof-hero.lof-hero--page.has-bg::before { background:
-	radial-gradient(70% 120% at 0% 100%, rgba(244, 175, 22, .22), rgba(244, 175, 22, 0) 60%),
+.lof-hero.lof-hero--page.has-bg::before { background: radial-gradient(70% 120% at 0% 100%, rgba(244, 175, 22, .22), rgba(244, 175, 22, 0) 60%),
 	linear-gradient(90deg, rgba(46, 28, 10, .95) 0%, rgba(63, 41, 19, .86) 40%, rgba(63, 41, 19, .5) 72%, rgba(63, 41, 19, .28) 100%) !important; }
 /* Heroes without a photo: same branded dark band so every page header matches */
-.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) { position: relative; display: flex; align-items: center; min-height: clamp(260px, 26vw, 360px); padding-block: clamp(2.5rem, 5vw, 3.75rem) !important; overflow: hidden; isolation: isolate;
-	background: radial-gradient(60% 140% at 100% 0%, rgba(244, 175, 22, .28), rgba(244, 175, 22, 0) 60%), radial-gradient(50% 120% at 0% 100%, rgba(220, 140, 19, .22), rgba(220, 140, 19, 0) 60%), linear-gradient(135deg, #3F2913, #2A1B0C) !important; }
+.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) { position: relative; display: flex; align-items: center; min-height: clamp(260px, 26vw, 360px); padding-block: clamp(2.5rem, 5vw, 3.75rem) !important; overflow: hidden; isolation: isolate; background: radial-gradient(60% 140% at 100% 0%, rgba(244, 175, 22, .28), rgba(244, 175, 22, 0) 60%), radial-gradient(50% 120% at 0% 100%, rgba(220, 140, 19, .22), rgba(220, 140, 19, 0) 60%), linear-gradient(135deg, #3F2913, #2A1B0C) !important; }
 .lof-hero.lof-hero--page:not(.has-bg):not(.has-photo)::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: linear-gradient(90deg, var(--lof-gold), var(--lof-amber), var(--lof-gold)); }
 .lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) .lof-hero__art { opacity: .14; filter: brightness(1.6); }
 .lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) .lof-hero__title { color: #FFFDF6 !important; font-size: clamp(2.3rem, 4.6vw, 3.6rem) !important; }
@@ -2379,13 +2236,13 @@ html[data-theme="dark"] .lof-faq-help, html[data-theme="dark"] .lof-formsec__nex
 	.lof-hero.lof-hero--page:not(.has-bg):not(.has-photo) { min-height: 220px; padding-block: 2.1rem !important; }
 	.lof-hero.lof-hero--page.has-bg::before { background: linear-gradient(0deg, rgba(46, 28, 10, .96) 0%, rgba(63, 41, 19, .85) 55%, rgba(63, 41, 19, .6) 100%) !important; }
 }
-
-
 /* ===== 0.43.0: Same desktop look from 10-inch tablets (landscape) up to MacBooks and large monitors ===== */
 /* Desktop layouts now start at 992px (10-inch tablets held sideways, small laptops); type stays 17.5px on every
    screen from 900px up, and the content width is fixed at 1200px, so a 13.3in laptop, a MacBook and a 27in
    monitor show the same design (bigger screens only add side margin). */
-@media (min-width: 900px) { html { font-size: 109.375% !important; } }
+@media (min-width: 900px) {
+	html { font-size: 109.375% !important; }
+}
 :root { --lof-container: 1200px; }
 .lof-container { max-width: var(--lof-container); }
 /* Header fits on one line between 992px and 1180px (10-inch tablets, small laptops) */
@@ -2401,9 +2258,7 @@ html[data-theme="dark"] .lof-faq-help, html[data-theme="dark"] .lof-formsec__nex
 	.lof-section__title { font-size: 3.1rem !important; }
 	.lof-hero--page .lof-hero__title, .lof-hero.lof-hero--page.has-bg .lof-hero__title { font-size: 3.6rem !important; }
 }
-
 /* ===== Mobile safety pass ===== */
-html, body { overflow-x: clip; }
 img, svg, video, iframe { max-width: 100%; }
 h1, h2, h3, .lof-card__title, .lof-person__name { overflow-wrap: anywhere; word-break: normal; hyphens: manual; }
 .lof-contact__list dd a, .lof-footer__tile strong, .lof-formsec__details li a { overflow-wrap: anywhere; }
@@ -2420,8 +2275,6 @@ h1, h2, h3, .lof-card__title, .lof-person__name { overflow-wrap: anywhere; word-
 	.lof-grid--3:not(.lof-stories-more), .lof-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 	.lof-grid--3 > *, .lof-grid--4 > * { grid-column: auto !important; }
 }
-
-
 /* ===== 0.43.1: Home stacking fix + accessibility audit fixes ===== */
 /* Stacking: 0.43.0 put overflow-x: clip on <html> and <body>; Chrome hands body overflow to the page scroller,
    which broke full-page capture tools and some scroll handling (sections repeated / bands drawn over cards).
