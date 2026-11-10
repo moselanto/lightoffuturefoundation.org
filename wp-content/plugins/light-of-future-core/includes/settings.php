@@ -37,6 +37,7 @@ function lof_core_setting_fields() {
 		'mpesa_account'     => array( __( 'M-PESA Paybill account no.', 'light-of-future-core' ), 'text', '' ),
 		'bank_name'         => array( __( 'Bank name', 'light-of-future-core' ), 'text', '' ),
 		'bank_account'      => array( __( 'Bank account no.', 'light-of-future-core' ), 'text', __( 'Shown on the Donate page for bank transfers.', 'light-of-future-core' ) ),
+		'default_currency'  => array( __( 'Default donation currency', 'light-of-future-core' ), 'currency', __( 'Listed first and preselected on the Donate form. KES works now; switch to USD only after Paystack has approved USD payments.', 'light-of-future-core' ) ),
 		'payment_mode'      => array( __( 'Payment mode', 'light-of-future-core' ), 'select', __( 'Gateway: Paystack (M-PESA and card). Stays on "Not set up" until the foundation\'s Paystack account is verified and tested. API keys go in wp-config.php (LOF_PAYSTACK_PUBLIC_KEY, LOF_PAYSTACK_SECRET_KEY), never here.', 'light-of-future-core' ) ),
 	);
 }
@@ -58,6 +59,7 @@ function lof_core_setting_defaults() {
 		'mpesa_account' => '1354817087',
 		'bank_name'     => 'Kenya Commercial Bank (KCB)',
 		'bank_account'  => '1354817087',
+		'default_currency' => 'KES',
 	);
 }
 
@@ -135,6 +137,10 @@ function lof_core_sanitize_settings( $input ) {
 			case 'textarea':
 				$clean[ $key ] = sanitize_textarea_field( $value );
 				break;
+			case 'currency':
+				$value         = strtoupper( (string) $value );
+				$clean[ $key ] = in_array( $value, array( 'KES', 'USD' ), true ) ? $value : 'KES';
+				break;
 			case 'select':
 				$clean[ $key ] = in_array( $value, array( 'off', 'sandbox', 'live' ), true ) ? $value : 'off';
 				break;
@@ -170,6 +176,11 @@ function lof_core_settings_page() {
 						<td>
 							<?php if ( 'textarea' === $field[1] ) : ?>
 								<textarea class="large-text" rows="3" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>"><?php echo esc_textarea( $value ); ?></textarea>
+							<?php elseif ( 'currency' === $field[1] ) : ?>
+								<select id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>">
+									<option value="KES" <?php selected( $value ? $value : 'KES', 'KES' ); ?>><?php esc_html_e( 'KES (Kenyan shilling)', 'light-of-future-core' ); ?></option>
+									<option value="USD" <?php selected( $value, 'USD' ); ?>><?php esc_html_e( 'USD (US dollar)', 'light-of-future-core' ); ?></option>
+								</select>
 							<?php elseif ( 'select' === $field[1] ) : ?>
 								<select id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>">
 									<option value="off" <?php selected( $value, 'off' ); ?>><?php esc_html_e( 'Not set up', 'light-of-future-core' ); ?></option>

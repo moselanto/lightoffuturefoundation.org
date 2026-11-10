@@ -100,7 +100,7 @@ function lof_pay_get( $key ) {
 	$core = function_exists( 'lof_core_setting' );
 	$map  = array(
 		'paystack_enabled'      => '1',
-		'paystack_currencies'   => defined( 'LIGHT_PAYSTACK_CURRENCIES' ) ? (string) LIGHT_PAYSTACK_CURRENCIES : 'USD,KES',
+		'paystack_currencies'   => defined( 'LIGHT_PAYSTACK_CURRENCIES' ) ? (string) LIGHT_PAYSTACK_CURRENCIES : 'KES,USD',
 		'paystack_amounts_kes'  => "500|\n1000|\n2500|\n5000|\n10000|",
 		'paystack_amounts_usd'  => "10|\n25|\n50|\n100|\n250|\n500|\n1000|",
 		'paystack_fee_kes'      => '2.9',
@@ -145,7 +145,28 @@ function lof_pay_currencies() {
 			$out[ $code ] = $all[ $code ];
 		}
 	}
-	return $out ? $out : array( 'KES' => $all['KES'] );
+	if ( ! $out ) {
+		return array( 'KES' => $all['KES'] );
+	}
+	// 0.46.5: the default currency is listed first and preselected (KES unless changed).
+	$default = lof_pay_default_currency();
+	if ( isset( $out[ $default ] ) ) {
+		$out = array( $default => $out[ $default ] ) + $out;
+	}
+	return $out;
+}
+
+/**
+ * Default donation currency (0.46.5): listed first and preselected on the form.
+ * Light of Future > Organisation details > Default donation currency (KES or USD),
+ * or the filter lof_pay_default_currency. Display order only: payment logic is unchanged.
+ *
+ * @return string KES or USD.
+ */
+function lof_pay_default_currency() {
+	$code = function_exists( 'lof_core_setting' ) ? lof_core_setting( 'default_currency', 'KES' ) : 'KES';
+	$code = strtoupper( (string) apply_filters( 'lof_pay_default_currency', $code ) );
+	return in_array( $code, array( 'KES', 'USD' ), true ) ? $code : 'KES';
 }
 
 /**
