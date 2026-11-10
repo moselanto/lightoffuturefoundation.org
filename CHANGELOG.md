@@ -1,6 +1,9 @@
 # Changelog
 
 
+## Theme 0.70.5 - 10 Nov 2026
+- Gallery (owner): the two agriculture videos also show on /gallery/, first in the "Community enterprise: the goat feedlot vision" section (`#lofm-goats .lofm__videos`), same card style as the goat videos. `inc/agri-0702.php` filter now runs on the Gallery page too; the regex allows the section heading before the video row; on the Gallery it never appends elsewhere if the section is missing. Media plugin untouched.
+
 ## Theme 0.70.4 - 10 Nov 2026
 - WhatsApp on the official number (owner): one-off `lof_upgrade_0704_whatsapp` sets the Core setting `whatsapp` to +254 716 385 485 (guard `lof_whatsapp_0704`), and the fallback in `lof_wa_number()` (`inc/shop.php`) is now 254716385485. Covers the WhatsApp button and chat card, footer and Contact WhatsApp links, and every "Order on WhatsApp" link and order form (wa.me/254716385485).
 

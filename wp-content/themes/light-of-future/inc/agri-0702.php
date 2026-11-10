@@ -1,7 +1,8 @@
 <?php
 /**
  * Community Development agriculture videos on the public site (0.70.2, loaded front end since 0.70.3).
- * Puts the two agriculture videos first in the goat video row (#lofm-goats .lofm__videos).
+ * Puts the two agriculture videos first in the goat video row (#lofm-goats .lofm__videos)
+ * on Community Development and, since 0.70.5, in the same section on the Gallery page.
  * URLs come from option lof_agri_video_urls (set by inc/upgrade-0700.php).
  *
  * @package LightOfFuture
@@ -45,7 +46,12 @@ function lof_0702_agri_figures() {
  * @return string
  */
 function lof_0702_agri_in_goat_row( $content ) {
-	if ( is_admin() || ! is_singular( 'lof_programme' ) || 'community-development' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
+	if ( is_admin() ) {
+		return $content;
+	}
+	$is_prog    = is_singular( 'lof_programme' ) && 'community-development' === get_post_field( 'post_name', get_queried_object_id() );
+	$is_gallery = is_page( 'gallery' );
+	if ( ! $is_prog && ! $is_gallery ) {
 		return $content;
 	}
 	if ( false !== strpos( $content, 'lof-agri-video' ) ) {
@@ -55,9 +61,12 @@ function lof_0702_agri_in_goat_row( $content ) {
 	if ( '' === $figs ) {
 		return $content;
 	}
-	$out = preg_replace( '#(id="lofm-goats"[^>]*>\s*<div class="lofm__videos">)#', '$1' . str_replace( '$', '\$', $figs ), $content, 1, $count );
+	$out = preg_replace( '#(id="lofm-goats"[^>]*>(?:\s*<h2 class="lofm__title">.*?</h2>)?\s*<div class="lofm__videos">)#s', '$1' . str_replace( '$', '\$', $figs ), $content, 1, $count );
 	if ( $count && is_string( $out ) ) {
 		return $out;
+	}
+	if ( $is_gallery ) {
+		return $content; // Gallery: only inside the goat section, never appended.
 	}
 	return $content . '<section class="lofm"><div class="lofm__videos">' . $figs . '</div></section>';
 }
