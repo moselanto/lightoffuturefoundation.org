@@ -1,6 +1,9 @@
 # Changelog
 
 
+## Theme 0.70.4 - 10 Nov 2026
+- WhatsApp on the official number (owner): one-off `lof_upgrade_0704_whatsapp` sets the Core setting `whatsapp` to +254 716 385 485 (guard `lof_whatsapp_0704`), and the fallback in `lof_wa_number()` (`inc/shop.php`) is now 254716385485. Covers the WhatsApp button and chat card, footer and Contact WhatsApp links, and every "Order on WhatsApp" link and order form (wa.me/254716385485).
+
 ## Theme 0.70.3 - 10 Nov 2026
 - Fix: the 0.70.2 front-end filter lived in `inc/upgrade-0700.php`, which only loads in wp-admin, so the agriculture videos did not show. The filter and figure markup moved to `inc/agri-0702.php`, loaded on every request; filter priority raised to 999 so it runs after the media plugin builds the goat row.
 

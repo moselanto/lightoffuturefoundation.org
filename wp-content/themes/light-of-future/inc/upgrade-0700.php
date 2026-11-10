@@ -170,3 +170,24 @@ function lof_upgrade_0702_agri_move() {
 }
 add_action( 'admin_init', 'lof_upgrade_0702_agri_move', 48 );
 
+
+/**
+ * 0.70.4 (owner): WhatsApp moves to the official number too. Sets the Core setting "whatsapp"
+ * to +254 716 385 485 (WhatsApp button, chat card, footer, Contact and "Order on WhatsApp").
+ * Guard option: lof_whatsapp_0704.
+ */
+function lof_upgrade_0704_whatsapp() {
+	if ( get_option( 'lof_whatsapp_0704' ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$set             = get_option( 'lof_core_settings', array() );
+	$set             = is_array( $set ) ? $set : array();
+	$set['whatsapp'] = '+254 716 385 485';
+	update_option( 'lof_core_settings', $set );
+	if ( function_exists( 'litespeed_purge_all' ) ) {
+		litespeed_purge_all();
+	}
+	do_action( 'litespeed_purge_all' );
+	update_option( 'lof_whatsapp_0704', 1, false );
+}
+add_action( 'admin_init', 'lof_upgrade_0704_whatsapp', 49 );

@@ -9,7 +9,7 @@
  *   featured products (random featured first, topped up with others).
  *
  * WhatsApp number: the Core plugin setting "WhatsApp number" when set, else
- * the foundation's number (+254 715 394 295, confirmed by the founder).
+ * the foundation's official number (+254 716 385 485, set by the owner on 10 Nov 2026).
  * Online checkout stays off until Paystack is verified (filter
  * 'lof_shop_cart_enabled'); until then orders go through WhatsApp.
  *
@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || exit;
 function lof_wa_number() {
 	$num = preg_replace( '/[^0-9]/', '', (string) lof_setting( 'whatsapp' ) );
 	if ( '' === $num ) {
-		$num = '254715394295';
+		$num = '254716385485';
 	}
 	return (string) apply_filters( 'lof_wa_number', $num );
 }
