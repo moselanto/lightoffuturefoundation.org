@@ -27,7 +27,7 @@
 
 ## Current state (9 Nov 2026, 20:30 EAT)
 
-- Theme **0.64.0** is on `main` (to install; 0.63.17 is live) and Core **0.46.4** is on `main` and installed live (0.63.17 installed and verified signed out 9 Nov, see work log). For what is done and what is next, see `docs/HANDOVER.md` section 0.
+- Theme **0.65.0** is on `main` (to install, includes 0.64.0; 0.63.17 is live) and Core **0.46.4** is on `main` and installed live (0.63.17 installed and verified signed out 9 Nov, see work log). For what is done and what is next, see `docs/HANDOVER.md` section 0.
 - Consent for the intake-list stories/photos was confirmed on 9 Nov 2026 and they are now published (0.63.16-0.63.17: Precious, Eunice's sons, programme galleries). Open items: talent-development photos; Paystack USD enablement and USD settlement account (USD test failed) and confirmation of live keys/mode; the owner's answer on KES as default; Francis to re-confirm the six older impact figures; Leadership top photo (options D/E/F); partner website links.
 - **Do not use "Apply latest design"** (it times out on this host). Ship page or content changes as one-off upgrades on `admin_init`. PHP lint is available in the build sandbox (`php -l`).
 
@@ -204,3 +204,5 @@
 - 2026-11-09: 0.63.14 Rosemary photo framing, one figures note on every page. Owner confirmed consent for the pending intake-list stories and photos.
 - 2026-11-09: 0.63.15 Rosemary's portrait becomes her main story photo (stall photo moved inline).
 - 2026-11-09: 0.63.16/0.63.17 cleaned programme gallery photos (theme assets/lofm-fix copied over the media plugin photos), Precious approved photos only, Meshack and Silvester on Eunice's story. Do not reinstall the media plugin from the repo (no photos in git).
+- 2026-11-10: 0.64.0 home redesign (slider, figures, story cards, compact Give, partner tiles, shop after slider).
+- 2026-11-10: 0.65.0 About Us and Leadership redesign; removed the sticky chip bars (About "On this page" from shop.js, Leadership "Jump to" from main.js). CSS block `0.65.0 About + Leadership` at the end of shop.css. No content or Elementor data changed.

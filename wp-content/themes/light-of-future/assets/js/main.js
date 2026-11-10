@@ -155,30 +155,10 @@
 	}
 
 	function initLeaderTabs() {
-		// 0.31.0: no hidden tabs. Every group stays visible on one page; a simple
-		// "Jump to" bar of plain buttons scrolls to each group (easier for everyone).
+		// 0.65.0: the sticky "Jump to" bar is gone (it floated over the page while scrolling).
+		// Every group stays visible on one page; only make the leader cards visible at once.
 		var secs = Array.prototype.slice.call(document.querySelectorAll('.lof-leaders'));
 		if (!secs.length) { return; }
-		var steps = document.querySelector('.lof-steps');
-		var stepsSec = steps ? steps.closest('section') : null;
-		var items = [
-			{ id: 'founder', label: 'Our founder', el: secs.filter(function (s) { return /lof-leaders--executive\b/.test(s.className); })[0] },
-			{ id: 'board', label: 'Board members', el: secs.filter(function (s) { return /lof-leaders--board\b/.test(s.className); })[0] },
-			{ id: 'programme-leads', label: 'Programme leads', el: secs.filter(function (s) { return /lof-leaders--team\b/.test(s.className); })[0] },
-			{ id: 'how-we-are-run', label: 'How we are run', el: stepsSec }
-		].filter(function (g) { return g.el; });
-		if (items.length < 2) { return; }
-		var bar = document.createElement('nav');
-		bar.className = 'lof-jump';
-		bar.setAttribute('aria-label', 'Jump to a section');
-		var html = '<div class="lof-container"><span class="lof-jump__label">Jump to:</span><ul>';
-		items.forEach(function (g) {
-			g.el.id = g.el.id || g.id;
-			g.el.hidden = false;
-			html += '<li><a href="#' + g.el.id + '">' + g.label + '</a></li>';
-		});
-		bar.innerHTML = html + '</ul></div>';
-		secs[0].parentNode.insertBefore(bar, secs[0]);
 		secs.forEach(function (el) { el.querySelectorAll('.lof-reveal').forEach(function (r) { r.classList.add('is-visible'); }); });
 	}
 

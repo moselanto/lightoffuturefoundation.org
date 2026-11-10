@@ -1475,3 +1475,128 @@ html body .lof-market .lof-market__trust span{display:none!important}
 @media (min-width:641px) and (max-width:991px){html body .lof-market .lof-market__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media (max-width:640px){html body .lof-market .lof-market__head{flex-direction:column;align-items:flex-start!important}html body .lof-market .lof-market__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.75rem!important}html body .lof-market .lof-market__body{padding:.8rem .8rem .9rem!important}html body .lof-market .lof-market__name{font-size:.92rem!important}html body .lof-market .lof-market__trust{justify-content:flex-start;flex-direction:column;gap:.45rem}}
 @media (prefers-reduced-motion:reduce){html body .lof-market .lof-market__card{transition:none}html body .lof-market .lof-market__card:hover{transform:none}}
+
+
+/* 0.65.0 About + Leadership */
+/* --- No sticky in-page chip bars: the generated "On this page" (About) and "Jump to" (Leadership) bars are no longer built; hide any cached copy and never let them stick. --- */
+html body.lof-page-about-us .lof-jump,html body.lof-page-leadership .lof-jump{display:none!important;position:static!important}
+html body.lof-page-about-us .lof-feature__media,html body.lof-page-about-us .lof-section__head{position:relative!important;top:auto!important}
+html body.lof-page-about-us .lof-section .lof-section__head{position:static!important}
+
+/* --- Shared rhythm and type hierarchy (consistent with the 0.64.0 home) --- */
+html body.lof-page-about-us main .lof-section:not(.lof-impact):not(.lof-hero):not(.lof-cta),html body.lof-page-leadership main .lof-section:not(.lof-impact):not(.lof-hero):not(.lof-cta){padding-block:clamp(3.25rem,6.5vw,5.5rem)!important}
+html body.lof-page-about-us .lof-section .lof-section__head,html body.lof-page-leadership .lof-section .lof-section__head{max-width:720px!important;margin:0 auto clamp(1.9rem,3.6vw,2.75rem)!important;padding-bottom:0!important;border-bottom:0!important}
+html body.lof-page-about-us .lof-section .lof-section__title,html body.lof-page-leadership .lof-section .lof-section__title{font-size:clamp(1.75rem,3.2vw,2.5rem)!important;line-height:1.15!important;letter-spacing:-.015em;text-wrap:balance;margin-bottom:.6rem!important}
+html body.lof-page-about-us .lof-section .lof-section__intro,html body.lof-page-leadership .lof-section .lof-section__intro{max-width:60ch;margin-inline:auto!important;color:var(--lof-muted)!important;font-size:1.02rem!important;line-height:1.65!important}
+html body.lof-page-about-us .lof-section .lof-eyebrow,html body.lof-page-leadership .lof-section .lof-eyebrow{font-size:.76rem!important;letter-spacing:.18em!important}
+html body.lof-page-about-us .lof-section > .lof-container > hr,html body.lof-page-leadership .lof-section > .lof-container > hr{display:none}
+
+/* ===== ABOUT US ===== */
+/* Our story: balanced two columns, framed portrait photo, readable measure */
+html body.lof-page-about-us section.lof-feature--about .lof-feature__grid{display:grid!important;grid-template-columns:minmax(0,5fr) minmax(0,6fr)!important;gap:clamp(2rem,5vw,4.5rem)!important;align-items:center!important;max-width:1140px;margin-inline:auto}
+html body.lof-page-about-us section.lof-feature--about .lof-feature__media{margin:0!important;width:100%!important;max-width:none!important;border-radius:24px!important;overflow:hidden!important;box-shadow:0 30px 60px -38px rgba(43,29,14,.6)!important;background:#F6EEDA}
+html body.lof-page-about-us section.lof-feature--about .lof-feature__media::before,html body.lof-page-about-us section.lof-feature--about .lof-feature__media::after{display:none!important}
+html body.lof-page-about-us section.lof-feature--about .lof-feature__media img{display:block;width:100%!important;height:auto!important;max-height:560px;aspect-ratio:4/5!important;object-fit:cover!important;border-radius:0!important}
+html body.lof-page-about-us section.lof-feature--about .lof-feature__media figcaption{position:absolute!important;left:1rem!important;bottom:1rem!important;right:auto!important;top:auto!important;max-width:calc(100% - 2rem);padding:.45rem .85rem!important;border-radius:999px!important;background:rgba(43,29,14,.82)!important;color:#FFFDF6!important;font-size:.82rem!important;line-height:1.3;backdrop-filter:blur(6px)}
+html body.lof-page-about-us section.lof-feature--about .lof-feature__body{max-width:60ch}
+html body.lof-page-about-us section.lof-feature--about .lof-prose > p{font-size:1.02rem;line-height:1.75;margin:0 0 1rem!important;padding-left:0!important;border-left:0!important}
+html body.lof-page-about-us section.lof-feature--about .lof-prose > p::before{display:none!important}
+
+/* What guides us: heading and statement side by side, vision/mission as two equal cards */
+html body.lof-page-about-us .lof-intro .lof-intro__grid{display:grid!important;grid-template-columns:minmax(0,5fr) minmax(0,7fr)!important;gap:clamp(1.5rem,4vw,4rem)!important;align-items:start!important;max-width:1140px;margin:0 auto clamp(2rem,4vw,2.75rem)!important}
+html body.lof-page-about-us .lof-intro .lof-intro__title{margin:0!important}
+html body.lof-page-about-us .lof-intro .lof-intro__aside{padding-top:.4rem;border-top:0!important}
+html body.lof-page-about-us .lof-intro .lof-intro__aside::before{display:none!important}
+html body.lof-page-about-us .lof-intro .lof-intro__statement{margin:0!important;padding-left:1.25rem!important;border-left:3px solid #F4AF16!important;font-size:clamp(1.08rem,1.5vw,1.25rem)!important;line-height:1.65!important;color:var(--lof-heading)}
+html body.lof-page-about-us .lof-intro .lof-intro__band{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:clamp(1rem,2.5vw,1.75rem)!important;max-width:1140px;margin:0 auto!important;align-items:stretch!important}
+html body.lof-page-about-us .lof-intro .lof-intro__panel{position:relative;height:100%;max-width:none!important;margin:0!important;padding:clamp(1.5rem,3vw,2.1rem)!important;border:1px solid var(--lof-line)!important;border-top:3px solid #F4AF16!important;border-radius:20px!important;background:var(--lof-surface,#fff)!important;box-shadow:0 18px 40px -32px rgba(43,29,14,.5)!important}
+html body.lof-page-about-us .lof-intro .lof-intro__panel h3{margin:.35rem 0 .6rem!important;font-size:clamp(1.12rem,1.5vw,1.3rem)!important;line-height:1.3}
+html body.lof-page-about-us .lof-intro .lof-intro__panel p:not(.lof-eyebrow){margin:0!important;font-size:1rem!important;line-height:1.7!important;color:var(--lof-muted)}
+
+/* Our values: 4 per row, the last row centred (no orphan gap), equal-height numbered cards */
+html body.lof-page-about-us .lof-tone-sand .lof-grid--4{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:clamp(1rem,2vw,1.5rem)!important;max-width:1180px;margin-inline:auto}
+html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex:0 0 calc((100% - 3 * clamp(1rem,2vw,1.5rem)) / 4);max-width:calc((100% - 3 * clamp(1rem,2vw,1.5rem)) / 4);margin:0!important;padding:4.25rem 1.5rem 1.6rem!important;border-radius:20px!important;border:1px solid var(--lof-line)!important;background:var(--lof-surface,#fff)!important;box-shadow:0 18px 40px -32px rgba(43,29,14,.5)!important}
+html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar::after{top:1.4rem!important;left:1.5rem!important;width:40px!important;height:40px!important}
+html body.lof-page-about-us .lof-tone-sand .lof-grid--4 .lof-card__title{font-size:1.08rem!important;line-height:1.3!important;margin:0 0 .5rem!important;text-wrap:balance}
+html body.lof-page-about-us .lof-tone-sand .lof-grid--4 .lof-card--pillar p{margin:0!important;font-size:.95rem!important;line-height:1.65!important}
+
+/* Our objectives: one clean list card, centred, gold number tiles */
+html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3{max-width:1040px!important;border-radius:24px!important;box-shadow:0 26px 56px -40px rgba(43,29,14,.55)!important}
+html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 > .lof-card--pillar{min-height:0!important;padding:1.5rem 1.75rem!important}
+html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 .lof-card__kicker{width:48px!important;height:48px!important;border-radius:14px!important;font-size:.98rem!important}
+html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 .lof-card__title{font-size:1.1rem!important;margin:.15rem 0 .3rem!important}
+html body.lof-page-about-us .lof-tone-white:has(.lof-grid--3 .lof-card__kicker) .lof-grid--3 > .lof-card--pillar p{font-size:.97rem!important}
+
+/* Founder: card stays in place while scrolling (no sticky photo), photo and text balanced */
+html body.lof-page-about-us section.lof-feature--story .lof-feature__grid{max-width:1140px;margin-inline:auto;border-radius:28px!important;box-shadow:0 34px 70px -46px rgba(43,29,14,.6)!important}
+html body.lof-page-about-us section.lof-feature--story .lof-feature__media{position:relative!important;top:auto!important}
+html body.lof-page-about-us section.lof-feature--story .lof-quote{border-radius:16px!important}
+
+/* Registration and contacts: one clean card of four equal columns */
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;max-width:1140px;margin-inline:auto;border-radius:22px!important;overflow:hidden;box-shadow:0 22px 48px -38px rgba(43,29,14,.5)!important}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar{padding:1.6rem 1.5rem!important;border-right:1px solid var(--lof-card-line,var(--lof-line))!important;border-bottom:0!important}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:last-child{border-right:0!important}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar p{font-size:.97rem!important;line-height:1.6!important;margin:0!important}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card__link{display:inline-flex;margin-top:.75rem;font-size:.82rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+
+/* ===== LEADERSHIP ===== */
+/* Founder profile card: balanced photo + text */
+html body.lof-page-leadership .lof-leaders--executive .lof-people--row{max-width:1000px!important;margin-inline:auto!important}
+html body.lof-page-leadership .lof-leaders--executive .lof-person--row{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(0,3fr)!important;border-radius:24px!important;box-shadow:0 30px 64px -44px rgba(43,29,14,.6)!important}
+html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo{aspect-ratio:4/5!important;min-height:0!important}
+html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo img{width:100%!important;height:100%!important;min-height:0!important;object-fit:cover!important;object-position:center 20%!important}
+html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__info{display:flex!important;flex-direction:column;justify-content:center;gap:.5rem;padding:clamp(1.75rem,4vw,3rem)!important}
+html body.lof-page-leadership .lof-leaders--executive .lof-person__bio{font-size:1rem!important;line-height:1.7!important}
+
+/* Board and programme leads: one card size; 4 / 3 / 2 / 1 per row by width, shorter rows centred */
+html body.lof-page-leadership .lof-leaders--board .lof-grid,html body.lof-page-leadership .lof-leaders--team .lof-grid{--lof-pg:clamp(1rem,2vw,1.5rem);display:flex!important;flex-wrap:wrap!important;justify-content:center!important;align-items:stretch!important;gap:var(--lof-pg)!important;max-width:1180px!important;margin-inline:auto!important;grid-template-columns:none!important}
+html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex:0 0 calc((100% - 3 * var(--lof-pg)) / 4)!important;max-width:calc((100% - 3 * var(--lof-pg)) / 4)!important;width:auto!important;margin:0!important;display:flex!important;flex-direction:column!important;border-radius:20px!important;border:1px solid var(--lof-line)!important;background:var(--lof-surface,#fff)!important;overflow:hidden!important;box-shadow:0 16px 36px -30px rgba(43,29,14,.5)!important}
+html body.lof-page-leadership .lof-leaders--board .lof-person__photo,html body.lof-page-leadership .lof-leaders--team .lof-person__photo{aspect-ratio:4/5!important;min-height:0!important;margin:0!important;border-radius:0!important}
+html body.lof-page-leadership .lof-leaders--board .lof-person__photo img,html body.lof-page-leadership .lof-leaders--team .lof-person__photo img{width:100%!important;height:100%!important;min-height:0!important;object-fit:cover!important;object-position:center 20%!important}
+html body.lof-page-leadership .lof-leaders--board .lof-person__info,html body.lof-page-leadership .lof-leaders--team .lof-person__info{flex:1!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:.4rem!important;padding:1.1rem 1.15rem 1.25rem!important;border-top:3px solid #F4AF16!important;text-align:left!important}
+html body.lof-page-leadership .lof-leaders .lof-person__name{font-size:1.06rem!important;line-height:1.25!important;margin:0!important;min-height:0!important}
+html body.lof-page-leadership .lof-leaders .lof-person__board{margin:0!important;padding:.2rem .55rem!important;border-radius:999px!important;background:rgba(244,175,22,.16)!important;color:#5b3a0a!important;font-size:.72rem!important;font-weight:700;line-height:1.35}
+html body.lof-page-leadership .lof-leaders--board .lof-person__role,html body.lof-page-leadership .lof-leaders--team .lof-person__role{display:block!important;align-self:stretch!important;min-height:0!important;margin:0!important;padding:.05rem 0 .05rem .6rem!important;border-left:3px solid #F4AF16!important;border-radius:0!important;background:none!important;font-size:.7rem!important;font-weight:800;letter-spacing:.05em;line-height:1.4!important;text-transform:uppercase}
+html body.lof-page-leadership .lof-leaders--board .lof-person__bio,html body.lof-page-leadership .lof-leaders--team .lof-person__bio{margin-top:.15rem!important;font-size:.9rem!important;line-height:1.6!important;color:var(--lof-muted)!important}
+html body.lof-page-leadership .lof-leaders .lof-person__more{align-self:flex-start;margin-top:auto!important;padding-top:.4rem!important}
+html[data-theme="dark"] body.lof-page-leadership .lof-leaders .lof-person__board{color:#F4AF16!important}
+
+/* Governance steps and accountability cards */
+html body.lof-page-leadership .lof-steps{max-width:1140px;margin-inline:auto;border-radius:22px!important;overflow:hidden}
+html body.lof-page-leadership .lof-tone-white .lof-grid--3:not(.lof-people--grid):not(.lof-people--row){max-width:1080px;margin-inline:auto;gap:clamp(1rem,2vw,1.5rem)!important;align-items:stretch}
+html body.lof-page-leadership .lof-tone-white .lof-grid--3 > .lof-card--pillar{height:100%;padding:1.6rem 1.5rem!important;border-radius:20px!important}
+
+/* ===== Breakpoints ===== */
+@media (min-width:992px) and (max-width:1199px){
+html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex-basis:calc((100% - 2 * var(--lof-pg)) / 3)!important;max-width:calc((100% - 2 * var(--lof-pg)) / 3)!important}
+html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex-basis:calc((100% - 2 * clamp(1rem,2vw,1.5rem)) / 3);max-width:calc((100% - 2 * clamp(1rem,2vw,1.5rem)) / 3)}
+}
+@media (max-width:991px){
+html body.lof-page-about-us section.lof-feature--about .lof-feature__grid,html body.lof-page-about-us .lof-intro .lof-intro__grid{grid-template-columns:1fr!important}
+html body.lof-page-about-us section.lof-feature--about .lof-feature__media{max-width:560px!important;margin-inline:auto!important}
+html body.lof-page-about-us section.lof-feature--about .lof-feature__media img{aspect-ratio:4/3!important;max-height:none}
+html body.lof-page-about-us section.lof-feature--about .lof-feature__body{max-width:none}
+html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex-basis:calc((100% - clamp(1rem,2vw,1.5rem)) / 2);max-width:calc((100% - clamp(1rem,2vw,1.5rem)) / 2)}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar{border-right:0!important;border-bottom:1px solid var(--lof-card-line,var(--lof-line))!important}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:nth-child(odd){border-right:1px solid var(--lof-card-line,var(--lof-line))!important}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:nth-last-child(-n+2){border-bottom:0!important}
+html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex-basis:calc((100% - var(--lof-pg)) / 2)!important;max-width:calc((100% - var(--lof-pg)) / 2)!important}
+html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:minmax(0,2fr) minmax(0,3fr)!important}
+}
+@media (max-width:760px){
+html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:1fr!important}
+html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo{aspect-ratio:4/3.6!important}
+}
+@media (max-width:640px){
+html body.lof-page-about-us .lof-intro .lof-intro__band{grid-template-columns:1fr!important}
+html body.lof-page-about-us .lof-tone-sand .lof-grid--4 > .lof-card--pillar{flex-basis:100%;max-width:100%}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-grid{grid-template-columns:1fr!important}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar,html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:nth-child(odd){border-right:0!important;border-bottom:1px solid var(--lof-card-line,var(--lof-line))!important}
+html body.lof-page-about-us .lof-section:has(.lof-card__link) .lof-card--pillar:last-child{border-bottom:0!important}
+html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{flex-basis:100%!important;max-width:360px!important}
+html body.lof-page-leadership .lof-leaders--board .lof-grid,html body.lof-page-leadership .lof-leaders--team .lof-grid{flex-direction:column!important;align-items:center!important}
+html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html body.lof-page-leadership .lof-leaders--team .lof-grid > .lof-person{width:100%!important}
+}
+@media (max-width:991px) and (min-width:641px){html body.lof-page-about-us .lof-intro .lof-intro__band{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (prefers-reduced-motion:reduce){html body.lof-page-leadership .lof-leaders .lof-person,html body.lof-page-about-us .lof-card--pillar{transition:none!important}html body.lof-page-leadership .lof-leaders .lof-person:hover,html body.lof-page-about-us .lof-card--pillar:hover{transform:none!important}}

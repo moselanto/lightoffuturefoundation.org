@@ -227,30 +227,7 @@
 				}
 			});
 		});
-		/* Jump links on long pages (About Us, Leadership). */
-		var b = document.body;
-		if (b.classList.contains('lof-page-about-us')) {
-			var heads = document.querySelectorAll('main .lof-section .lof-section__title');
-			var list = [];
-			Array.prototype.forEach.call(heads, function (h, i) {
-				var sec = h.closest('.lof-section');
-				if (!sec || sec.classList.contains('lof-cta') || sec.classList.contains('lof-impact')) { return; }
-				if (!sec.id) { sec.id = 'lof-s' + (i + 1); }
-				var t = (h.textContent || '').replace(/[.\s]+$/, '').trim();
-				if (t) { list.push([sec.id, t]); }
-			});
-			var hero = document.querySelector('main .lof-hero');
-			var hasJump = Array.prototype.some.call(document.querySelectorAll('main nav, main [class*="jump"]'), function (n) { return /jump to/i.test(n.textContent || '') || (n.className && /jump/.test(String(n.className))); });
-			if (list.length >= 3 && hero && !hasJump) {
-				var nav = document.createElement('nav');
-				nav.className = 'lof-jump'; nav.setAttribute('aria-label', 'On this page');
-				var ul = document.createElement('ul');
-				list.forEach(function (it) { var li = document.createElement('li'); var a = document.createElement('a'); a.href = '#' + it[0]; a.textContent = it[1]; li.appendChild(a); ul.appendChild(li); });
-				nav.appendChild(ul);
-				var host = hero.closest('.elementor-top-section') || hero;
-				host.parentNode.insertBefore(nav, host.nextSibling);
-			}
-		}
+		/* 0.65.0: no generated "On this page" chip bar on About Us (it stuck under the header and covered content). */
 		/* Leader bios: show four lines with Read more. */
 		Array.prototype.forEach.call(document.querySelectorAll('.lof-person__bio'), function (bio, i) {
 			if (bio.scrollHeight <= 130) { return; }
