@@ -481,10 +481,10 @@ function lof_home_market( $atts = array() ) {
 					</li>
 				<?php endforeach; ?>
 			</ul>
-			<ul class="lof-market__trust">
-				<li><strong><?php esc_html_e( 'Handmade in Kenya', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Beadwork and leather made by hand by community makers.', 'light-of-future' ); ?></span></li>
-				<li><strong><?php esc_html_e( 'Shopping that gives back', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Your order supports makers and our work with families.', 'light-of-future' ); ?></span></li>
-				<li><strong><?php esc_html_e( 'Easy WhatsApp ordering', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Fill a short form; our team confirms price and delivery.', 'light-of-future' ); ?></span></li>
+			<ul class="lof-market__trust lof-market__trust--v2">
+				<li><span class="lof-market__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.9 4.6 4.9.4-3.7 3.2 1.1 4.8L12 13.5 7.8 16l1.1-4.8L5.2 8l4.9-.4z"/><path d="M5 20h14"/></svg></span><span class="lof-market__txt"><strong><?php esc_html_e( 'Handmade in Kenya', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Beadwork and leather made by hand by community makers.', 'light-of-future' ); ?></span></span></li>
+				<li><span class="lof-market__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.8 8.6a5 5 0 0 0-8.8-3.2 5 5 0 0 0-8.8 3.2c0 5.6 8.8 10.9 8.8 10.9s8.8-5.3 8.8-10.9z"/></svg></span><span class="lof-market__txt"><strong><?php esc_html_e( 'Shopping that gives back', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Your order supports makers and our work with families.', 'light-of-future' ); ?></span></span></li>
+				<li><span class="lof-market__ico lof-market__ico--wa" aria-hidden="true"><?php echo lof_wa_icon( 24 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><span class="lof-market__txt"><strong><?php esc_html_e( 'Easy WhatsApp ordering', 'light-of-future' ); ?></strong><span><?php esc_html_e( 'Fill a short form; our team confirms price and delivery.', 'light-of-future' ); ?></span></span></li>
 			</ul>
 		</div>
 	</section>

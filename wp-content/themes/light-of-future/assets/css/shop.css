@@ -1608,3 +1608,23 @@ html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-temp
 html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo{aspect-ratio:4/3!important;max-height:320px!important}
 html body .lof-chat__teaser{max-width:min(240px,calc(100vw - 96px))!important;font-size:.86rem!important}
 }
+
+/* 0.65.2 Shop trust points: three balanced cards with icons (Handmade in Kenya, Shopping that gives back, Easy WhatsApp ordering); Visit the shop label always visible */
+html body .lof-market .lof-market__trust.lof-market__trust--v2{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.75rem,1.6vw,1.25rem);margin:clamp(1.75rem,3.4vw,2.5rem) 0 0!important;padding:0!important;border:0!important;list-style:none;background:none!important}
+html body .lof-market .lof-market__trust--v2 li{display:flex!important;align-items:flex-start;gap:.9rem;padding:1.15rem 1.25rem!important;margin:0!important;background:#fff!important;border:1px solid rgba(92,61,30,.10)!important;border-radius:18px!important;box-shadow:0 14px 32px -28px rgba(43,29,14,.55)!important;text-align:left;transition:transform .25s ease,box-shadow .25s ease}
+html body .lof-market .lof-market__trust--v2 li::before{content:none!important;display:none!important}
+html body .lof-market .lof-market__trust--v2 li:hover{transform:translateY(-2px);box-shadow:0 20px 38px -28px rgba(43,29,14,.6)!important}
+html body .lof-market .lof-market__ico{flex:none;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#FBD62B,#F4AF16);color:#5C3D1E}
+html body .lof-market .lof-market__ico svg{width:22px;height:22px;display:block}
+html body .lof-market .lof-market__ico--wa{background:#E7F6EE;color:#128C4A}
+html body .lof-market .lof-market__ico--wa svg{fill:currentColor}
+html body .lof-market .lof-market__txt{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+html body .lof-market .lof-market__trust--v2 strong{display:block;color:#5C3D1E!important;font-size:.98rem!important;line-height:1.3}
+html body .lof-market .lof-market__trust--v2 .lof-market__txt > span{display:block!important;color:#6b5a48;font-size:.88rem;line-height:1.5}
+html body .lof-market .lof-market__all{background:#5C3D1E!important;color:#FCF6E1!important;border-color:#5C3D1E!important}
+html body .lof-market .lof-market__all:hover,html body .lof-market .lof-market__all:focus-visible{background:#3e2812!important;color:#fff!important}
+html[data-theme="dark"] body .lof-market .lof-market__trust--v2 li{background:var(--lof-surface,#2a1d10)!important;border-color:rgba(252,246,225,.12)!important}
+html[data-theme="dark"] body .lof-market .lof-market__trust--v2 strong{color:#FCF6E1!important}
+html[data-theme="dark"] body .lof-market .lof-market__trust--v2 .lof-market__txt > span{color:rgba(252,246,225,.75)}
+@media (max-width:991px){html body .lof-market .lof-market__trust.lof-market__trust--v2{grid-template-columns:1fr;max-width:560px;margin-inline:auto!important}}
+@media (prefers-reduced-motion:reduce){html body .lof-market .lof-market__trust--v2 li{transition:none}html body .lof-market .lof-market__trust--v2 li:hover{transform:none}}

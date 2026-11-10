@@ -1,6 +1,10 @@
 # Changelog
 
 
+## 0.65.2 - 10 Nov 2026
+- Home "Shop with purpose" trust points (Handmade in Kenya, Shopping that gives back, Easy WhatsApp ordering) redesigned as three balanced white cards with icons: gold star-maker icon, gold heart icon, green WhatsApp icon (lof_wa_icon). The existing one-line descriptions are shown again. 3 across on desktop, stacked (max 560px) below 992px. Markup in inc/shop.php (class lof-market__trust--v2); CSS block 0.65.2 appended to shop.css, shop.min.css and critical/home-shop.css.
+- Fixed the "Visit the shop" pill on Home rendering as an empty dark pill (label colour now forced to cream).
+
 ## 0.65.1 - 10 Nov 2026
 - Phone polish after a desktop + 390px review of Home, About Us and Leadership.
 - WhatsApp greeting teaser (phones only) now hides itself 6 seconds after it appears and is marked seen for the session, so it no longer sits over content such as Leadership portraits. The chat icon stays.
