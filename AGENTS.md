@@ -208,3 +208,4 @@
 - 2026-11-10: 0.65.0 About Us and Leadership redesign; removed the sticky chip bars (About "On this page" from shop.js, Leadership "Jump to" from main.js). CSS block `0.65.0 About + Leadership` at the end of shop.css. No content or Elementor data changed.
 - 2026-11-10: 0.65.1 phone polish: WhatsApp teaser auto-hides after 6s (was covering Leadership portraits at 390px), shorter leader portraits on phones. Reviewed Home/About/Leadership at desktop and 390px; no other overlaps found.
 - 2026-11-10: 0.65.2 shop trust points as icon cards (inc/shop.php lof-market__trust--v2) and fixed the empty-looking Visit the shop pill.
+- 2026-11-10: 0.65.3 fixed empty shop trust cards (0.64.0 span-hiding rule). Trap: the 0.64.0 block hides every span inside .lof-market__trust.

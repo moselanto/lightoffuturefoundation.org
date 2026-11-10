@@ -1,6 +1,9 @@
 # Changelog
 
 
+## 0.65.3 - 10 Nov 2026
+- Fix: the shop trust cards from 0.65.2 rendered empty because the 0.64.0 rule `.lof-market__trust span{display:none!important}` also hid the new icon and text wrappers (both spans). Higher-specificity !important rules now show them.
+
 ## 0.65.2 - 10 Nov 2026
 - Home "Shop with purpose" trust points (Handmade in Kenya, Shopping that gives back, Easy WhatsApp ordering) redesigned as three balanced white cards with icons: gold star-maker icon, gold heart icon, green WhatsApp icon (lof_wa_icon). The existing one-line descriptions are shown again. 3 across on desktop, stacked (max 560px) below 992px. Markup in inc/shop.php (class lof-market__trust--v2); CSS block 0.65.2 appended to shop.css, shop.min.css and critical/home-shop.css.
 - Fixed the "Visit the shop" pill on Home rendering as an empty dark pill (label colour now forced to cream).

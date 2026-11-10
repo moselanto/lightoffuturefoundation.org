@@ -1628,3 +1628,8 @@ html[data-theme="dark"] body .lof-market .lof-market__trust--v2 strong{color:#FC
 html[data-theme="dark"] body .lof-market .lof-market__trust--v2 .lof-market__txt > span{color:rgba(252,246,225,.75)}
 @media (max-width:991px){html body .lof-market .lof-market__trust.lof-market__trust--v2{grid-template-columns:1fr;max-width:560px;margin-inline:auto!important}}
 @media (prefers-reduced-motion:reduce){html body .lof-market .lof-market__trust--v2 li{transition:none}html body .lof-market .lof-market__trust--v2 li:hover{transform:none}}
+
+/* 0.65.3 Fix: the 0.64.0 rule ".lof-market__trust span{display:none!important}" hid the 0.65.2 icon and text wrappers (both are spans), leaving empty cards */
+html body .lof-market .lof-market__trust.lof-market__trust--v2 li > span.lof-market__ico{display:inline-flex!important}
+html body .lof-market .lof-market__trust.lof-market__trust--v2 li > span.lof-market__txt{display:flex!important;flex-direction:column}
+html body .lof-market .lof-market__trust.lof-market__trust--v2 li > span.lof-market__txt > span{display:block!important}
