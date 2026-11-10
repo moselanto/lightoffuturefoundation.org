@@ -251,6 +251,8 @@
 	'use strict';
 	var nav = document.querySelector('.lofm-nav');
 	if (!nav) { return; }
+	/* 0.68.0: on the Gallery the filter panel wraps and stays in place (no fixed bar). */
+	if (document.body.classList.contains('lof-page-gallery')) { return; }
 	var ph = document.createElement('div'); ph.className = 'lofm-nav-ph'; nav.parentNode.insertBefore(ph, nav);
 	var head = function () { var h = document.querySelector('.lof-header'); if (!h || window.innerWidth < 992) { return 0; } var r = h.getBoundingClientRect(); return r.bottom > 0 ? r.bottom : 0; };
 	var tick = false;
@@ -290,11 +292,13 @@
 		if (t && !s.querySelector('.lofm__meta')) { var meta = document.createElement('p'); meta.className = 'lofm__meta'; var p = s.querySelectorAll('.lofm__item').length, v = s.querySelectorAll('.lofm__video').length; meta.textContent = [p ? p + (p === 1 ? ' photo' : ' photos') : '', v ? v + (v === 1 ? ' video' : ' videos') : ''].filter(Boolean).join(' \u00b7 '); t.parentNode.insertBefore(meta, t.nextSibling); }
 	});
 	if (nav) { var ul = nav.querySelector('ul'); if (ul) { nav.replaceChild(bar, ul); } else { nav.appendChild(bar); } } else { all.insertBefore(bar, all.firstChild); }
+	all.setAttribute('data-filter', 'all');
 	bar.addEventListener('click', function (e) {
 		var b = e.target.closest('button'); if (!b) { return; }
 		var tgt = b.getAttribute('data-target');
 		Array.prototype.forEach.call(bar.querySelectorAll('button'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
 		secs.forEach(function (s) { s.classList.toggle('is-hidden', tgt !== 'all' && s.id !== tgt); });
+		all.setAttribute('data-filter', tgt);
 		var top = all.getBoundingClientRect().top + window.pageYOffset - 90; if (window.pageYOffset > top) { window.scrollTo(0, top); }
 	});
 	/* Show more: eight photos per section at first. */
@@ -344,6 +348,39 @@
 	frames.forEach(function (f) { io.observe(f); });
 	document.addEventListener('click', function () { setTimeout(function () { document.querySelectorAll('[data-lof-poster]').forEach(function (f) { if (f.offsetParent) { show(f); } }); }, 50); });
 })();
+
+/* 0.68.0 Gallery: tidy video cards with a play button; native controls appear once the video plays. Without JS the native controls stay. */
+(function () {
+	'use strict';
+	var figs = document.querySelectorAll('.lof-page-gallery .lofm-all .lofm__video');
+	if (!figs.length) { return; }
+	var vids = [];
+	Array.prototype.forEach.call(figs, function (fig) {
+		var frame = fig.querySelector('.lofm__frame'), v = fig.querySelector('video');
+		if (!frame || !v || frame.querySelector('.lofm__play')) { return; }
+		vids.push(v);
+		var cap = fig.querySelector('figcaption');
+		var label = cap ? cap.textContent.trim() : '';
+		var b = document.createElement('button');
+		b.type = 'button';
+		b.className = 'lofm__play';
+		b.setAttribute('aria-label', label ? 'Play video: ' + label : 'Play video');
+		v.removeAttribute('controls');
+		var start = function () { fig.classList.add('is-playing'); v.setAttribute('controls', ''); };
+		b.addEventListener('click', function () {
+			start();
+			var p = v.play();
+			if (p && typeof p.catch === 'function') { p.catch(function () {}); }
+			v.setAttribute('tabindex', '0');
+			v.focus();
+		});
+		v.addEventListener('play', function () {
+			start();
+			vids.forEach(function (o) { if (o !== v && !o.paused) { o.pause(); } });
+		});
+		frame.appendChild(b);
+	});
+}());
 
 /* 0.63.0: shop category slider arrows. */
 (function () {

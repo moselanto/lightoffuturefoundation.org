@@ -9,7 +9,7 @@
    - Stories: 0.58.3, 0.61.x, 0.63.12-16, 0.64.0             - Give today (Home, .lof-give--compact): 0.64.0 + 0.67.0 cream card
    - Programmes (.lof-progjump, .lof-card--programme): 0.55.0, 0.60.2-3, 0.67.0 (all 11 cards, no sideways scroll)
    - Donate (.lof-pay2, .lofpay): 0.56.0, 0.58.0-1, 0.63.9, 0.67.0 (body.lof-page-donate)
-   - Shop pages / product: 0.51.0, 0.52.x, 0.63.0-4           - Gallery: 0.57.0, 0.58.0, 0.60.x
+   - Shop pages / product: 0.51.0, 0.52.x, 0.63.0-4           - Gallery: 0.57.0, 0.58.0, 0.60.x, 0.61.1, 0.68.0 (redesign, after 0.61.1)
    - Footer: 0.62.x, 0.63.5   - Partners: 0.64.0   - About + Leadership: 0.65.0, 0.65.1
    New CSS: add it inside or straight after the latest block of its component, not as a new override layer at the end. */
 :root{--lof-wa:#25D366;--lof-wa-dark:#128C7E;--lof-brown:#5C3D1E;--lof-gold:#F4AF16;--lof-amber:#DC8C13;--lof-cream:#FCF6E1}
@@ -753,6 +753,91 @@ img,video,iframe,svg{max-width:100%}
 @media (max-width:991px){.lof-intro__band{grid-template-columns:1fr!important;gap:1rem!important}.lof-intro__panel{max-width:none}}
 /* Gallery (phone): a short last row of photos sits in the middle. */
 @media (max-width:600px){.lof-page-gallery .lofm .lofm__grid:has(> .lofm__item:nth-child(1):not(.x-x)){display:flex!important;flex-wrap:wrap;justify-content:center;gap:8px!important}.lof-page-gallery .lofm .lofm__grid > .lofm__item{flex:0 0 calc((100% - 8px)/2);max-width:calc((100% - 8px)/2)}}
+/* ---------- 0.68.0 Gallery redesign (/gallery/, body.lof-page-gallery): featured mosaic without gaps; filter pills in a white panel that wrap on every width (no sideways scrolling, no fixed bar); centred section headings with photo/video counts; uniform 4:3 photo tiles 4 / 3 / 2 per row (desktop >=992 / tablet 641-991 / phone <=640) with short rows centred; subtle hover zoom + expand badge; video cards with a gold play button; sensitive images stay blurred until revealed; polished lightbox with gold focus rings. Reuses existing captions only. ---------- */
+html body.lof-page-gallery{--lofg-cols:4;--lofg-gap:16px;--lofg-r:14px}
+@media (min-width:641px) and (max-width:991px){html body.lof-page-gallery{--lofg-cols:3;--lofg-gap:14px}}
+@media (max-width:640px){html body.lof-page-gallery{--lofg-cols:2;--lofg-gap:10px;--lofg-r:12px}}
+/* Featured photos under the hero: 4 photos fill the mosaic exactly (large + wide + two small). */
+html body.lof-page-gallery .lof-mosaic{gap:var(--lofg-gap);grid-auto-rows:clamp(160px,16vw,230px)}
+html body.lof-page-gallery .lof-mosaic:has(> li:nth-child(4):last-child) > li:nth-child(2){grid-column:span 2}
+@media (max-width:640px){html body.lof-page-gallery .lof-mosaic{grid-auto-rows:150px}}
+html body.lof-page-gallery .lof-mosaic__item a{border-radius:var(--lofg-r);box-shadow:0 14px 30px -24px rgba(43,29,14,.7)}
+html body.lof-page-gallery .lof-mosaic__item a:focus-visible{outline:3px solid #F4AF16;outline-offset:3px}
+html body.lof-page-gallery .lof-mosaic__cap{padding:2rem 1rem .8rem;font-size:.86rem;font-weight:600;line-height:1.35;background:linear-gradient(180deg,rgba(28,18,8,0),rgba(28,18,8,.82))}
+/* Filter: one white panel, pills wrap onto centred rows. */
+html body.lof-page-gallery .lofm-all{max-width:1200px;margin:0 auto}
+html body.lof-page-gallery .lofm-all .lofm-nav{position:static!important;top:auto!important;margin:0 auto clamp(8px,2vw,16px)!important;padding:clamp(12px,2vw,18px)!important;background:var(--lof-surface,#fff)!important;border:1px solid rgba(92,61,30,.1)!important;border-radius:20px;box-shadow:0 18px 40px -34px rgba(43,29,14,.55)!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+html body.lof-page-gallery .lofm-all .lofm-filter{display:flex!important;flex-wrap:wrap!important;justify-content:center;gap:8px!important;overflow:visible!important;padding:0!important;-webkit-mask-image:none!important;mask-image:none!important}
+html body.lof-page-gallery .lofm-all .lofm-filter button{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;min-height:42px;margin:0;padding:0 16px!important;border-radius:999px!important;border:1.5px solid rgba(92,61,30,.2)!important;background:#fff!important;color:#5C3D1E!important;font-family:inherit;font-weight:700;font-size:.88rem;line-height:1.2;white-space:nowrap;box-shadow:none!important;transition:background .2s,border-color .2s,color .2s}
+html body.lof-page-gallery .lofm-all .lofm-filter button:hover{border-color:#F4AF16!important;background:#FCF6E1!important}
+html body.lof-page-gallery .lofm-all .lofm-filter button[aria-pressed="true"]{background:#5C3D1E!important;border-color:#5C3D1E!important;color:#FCF6E1!important}
+html body.lof-page-gallery .lofm-all .lofm-filter button:focus{outline:none}
+html body.lof-page-gallery .lofm-all .lofm-filter button:focus-visible{outline:3px solid #F4AF16!important;outline-offset:2px}
+html body.lof-page-gallery .lofm-all .lofm-filter .lofm-filter__n{display:inline-grid;place-items:center;min-width:24px;height:22px;margin:0!important;padding:0 6px;border-radius:999px;background:rgba(92,61,30,.08);color:inherit;font-size:.74rem;font-weight:800;opacity:1}
+html body.lof-page-gallery .lofm-all .lofm-filter button[aria-pressed="true"] .lofm-filter__n{background:#F4AF16;color:#2B1D0E}
+@media (max-width:640px){html body.lof-page-gallery .lofm-all .lofm-nav{border-radius:16px;padding:10px!important}html body.lof-page-gallery .lofm-all .lofm-filter{gap:6px!important}html body.lof-page-gallery .lofm-all .lofm-filter button{min-height:40px;gap:6px;padding:0 12px!important;font-size:.8rem}html body.lof-page-gallery .lofm-all .lofm-filter .lofm-filter__n{min-width:20px;height:19px;font-size:.68rem}}
+/* Sections: centred heading, count line, hairline between programmes. */
+html body.lof-page-gallery .lofm-all section.lofm{padding-top:clamp(40px,5vw,64px)!important;scroll-margin-top:calc(var(--lof-head-h,72px) + 24px)}
+html body.lof-page-gallery .lofm-all section.lofm + section.lofm{border-top:1px solid rgba(92,61,30,.12)!important}
+html body.lof-page-gallery .lofm-all[data-filter]:not([data-filter="all"]) section.lofm{border-top:0!important;padding-top:clamp(24px,3vw,36px)!important}
+html body.lof-page-gallery .lofm-all .lofm__title{gap:14px;margin:0 auto 6px!important;font-size:clamp(1.3rem,2.2vw,1.75rem)!important;line-height:1.25;text-wrap:balance}
+html body.lof-page-gallery .lofm-all .lofm__meta{margin:0 auto 22px!important;text-align:center;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8A5208}
+@media (max-width:640px){html body.lof-page-gallery .lofm-all .lofm__title{gap:10px}html body.lof-page-gallery .lofm-all .lofm__title::before,html body.lof-page-gallery .lofm-all .lofm__title::after{width:18px}html body.lof-page-gallery .lofm-all .lofm__meta{margin-bottom:16px!important}}
+/* Photos: uniform 4:3 tiles, 4 / 3 / 2 per row, short rows centred. */
+html body.lof-page-gallery .lofm-all section.lofm .lofm__grid.lofm__grid.lofm__grid{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:var(--lofg-gap)!important;grid-template-columns:none!important;max-width:none;margin:0!important;padding:0!important}
+html body.lof-page-gallery .lofm-all section.lofm .lofm__grid.lofm__grid.lofm__grid > .lofm__item{flex:0 0 calc((100% - (var(--lofg-cols) - 1) * var(--lofg-gap)) / var(--lofg-cols))!important;max-width:calc((100% - (var(--lofg-cols) - 1) * var(--lofg-gap)) / var(--lofg-cols))!important;min-width:0;margin:0!important}
+html body.lof-page-gallery .lofm-all .lofm__item figure{position:relative;height:auto!important;min-height:0!important;margin:0;border:0!important;border-radius:var(--lofg-r)!important;overflow:hidden;background:#2A1B0C!important;box-shadow:0 14px 30px -24px rgba(43,29,14,.75)!important;transition:box-shadow .3s}
+html body.lof-page-gallery .lofm-all .lofm__item .lofm__link,html body.lof-page-gallery .lofm-all .lofm__item .lofm__sens{position:relative;display:block;aspect-ratio:4/3!important;height:auto!important;overflow:hidden;background:#2A1B0C!important}
+html body.lof-page-gallery .lofm-all .lofm__item .lofm__link img{width:100%;height:100%!important;aspect-ratio:auto;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+html body.lof-page-gallery .lofm-all .lofm__item .lofm__link::after{content:"";position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(252,246,225,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235C3D1E' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7'/%3E%3C/svg%3E") center/16px no-repeat;opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s;pointer-events:none}
+html body.lof-page-gallery .lofm-all .lofm__item .lofm__link:focus{outline:none}
+html body.lof-page-gallery .lofm-all .lofm__item .lofm__link:focus-visible{outline:3px solid #F4AF16!important;outline-offset:-3px}
+html body.lof-page-gallery .lofm-all .lofm__item .lofm__link:focus-visible::after{opacity:1;transform:none}
+@media (hover:hover){html body.lof-page-gallery .lofm-all .lofm__item:hover figure{box-shadow:0 22px 40px -24px rgba(43,29,14,.85)!important}html body.lof-page-gallery .lofm-all .lofm__item:hover .lofm__link img{transform:scale(1.06)}html body.lof-page-gallery .lofm-all .lofm__item:hover .lofm__link::after{opacity:1;transform:none}}
+html body.lof-page-gallery .lofm-all .lofm__sens:not(.is-open) .lofm__link::after{display:none}
+html body.lof-page-gallery .lofm-all .lofm__item figcaption{position:absolute!important;left:0;right:0;bottom:0;z-index:1;margin:0;padding:34px 14px 11px!important;background:linear-gradient(180deg,rgba(28,18,8,0) 0%,rgba(28,18,8,.55) 45%,rgba(28,18,8,.9) 100%)!important;color:#FCF6E1!important;font-size:.84rem!important;font-weight:600;line-height:1.35;pointer-events:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:640px){html body.lof-page-gallery .lofm-all .lofm__item figcaption{padding:26px 9px 8px!important;font-size:.74rem!important}}
+/* Sensitive images (media plugin "!" prefix): blur kept; the reveal button sits in the middle, above the caption, and goes away once opened. */
+html body.lof-page-gallery .lofm-all .lofm__sens .lofm__reveal{inset:auto!important;top:50%!important;left:50%!important;transform:translate(-50%,-50%);z-index:2;width:auto!important;max-width:calc(100% - 20px);min-height:44px;padding:.5rem .95rem!important;border-radius:999px!important;border:1px solid rgba(252,246,225,.35)!important;background:rgba(28,18,8,.82)!important;color:#FCF6E1!important;box-shadow:0 10px 24px -12px rgba(0,0,0,.6)!important}
+html body.lof-page-gallery .lofm-all .lofm__sens .lofm__reveal:focus-visible{outline:3px solid #F4AF16!important;outline-offset:2px}
+html body.lof-page-gallery .lofm-all .lofm__sens.is-open .lofm__reveal{display:none!important}
+@media (max-width:640px){html body.lof-page-gallery .lofm-all .lofm__sens .lofm__reveal{padding:.4rem .7rem!important;font-size:.72rem!important}}
+/* Show all photos. */
+html body.lof-page-gallery .lofm-all .lofm__more{margin:24px auto 0!important;min-height:46px;padding:0 26px!important;border-radius:999px!important;font-size:.92rem}
+html body.lof-page-gallery .lofm-all .lofm__more:focus:not(:hover){background:transparent!important;color:#5C3D1E!important}
+html body.lof-page-gallery .lofm-all .lofm__more:focus-visible{outline:3px solid #F4AF16!important;outline-offset:3px}
+/* Videos: equal white cards (4:5 poster), same columns as the photos, gold play button until played. */
+html body.lof-page-gallery .lofm-all section.lofm .lofm__videos.lofm__videos{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;align-items:stretch!important;gap:var(--lofg-gap)!important;grid-template-columns:none!important;margin:0 0 var(--lofg-gap)!important}
+html body.lof-page-gallery .lofm-all section.lofm .lofm__video.lofm__video{flex:0 0 calc((100% - (var(--lofg-cols) - 1) * var(--lofg-gap)) / var(--lofg-cols))!important;max-width:calc((100% - (var(--lofg-cols) - 1) * var(--lofg-gap)) / var(--lofg-cols))!important;min-width:0;margin:0!important;display:flex!important;flex-direction:column;background:var(--lof-surface,#fff)!important;border:1px solid rgba(92,61,30,.1);border-radius:var(--lofg-r)!important;overflow:hidden;box-shadow:0 14px 30px -24px rgba(43,29,14,.6)!important}
+html body.lof-page-gallery .lofm-all section.lofm .lofm__video .lofm__frame{width:100%;aspect-ratio:4/5!important;max-width:none!important;max-height:none!important;margin:0;background-color:#2A1B0C}
+html body.lof-page-gallery .lofm-all section.lofm .lofm__video figcaption{flex:1 1 auto;height:auto!important;min-height:0!important;margin:0;padding:.75rem .9rem .85rem!important;color:#3B2A1A!important;font-size:.86rem!important;font-weight:600;line-height:1.4;display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;white-space:normal!important}
+@media (max-width:640px){html body.lof-page-gallery .lofm-all section.lofm .lofm__video figcaption{padding:.6rem .65rem .7rem!important;font-size:.76rem!important}}
+html body.lof-page-gallery .lofm-all .lofm__play{position:absolute!important;inset:0;z-index:2;display:flex!important;align-items:center;justify-content:center;width:100%;height:100%;margin:0;padding:0!important;border:0!important;border-radius:0!important;background:linear-gradient(180deg,rgba(28,18,8,0) 45%,rgba(28,18,8,.45) 100%)!important;cursor:pointer;box-shadow:none!important}
+html body.lof-page-gallery .lofm-all .lofm__play::before{content:"";width:64px;height:64px;border-radius:50%;background:#F4AF16 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5.5v13l10.5-6.5z' fill='%232B1D0E'/%3E%3C/svg%3E") 56% 50%/26px no-repeat;box-shadow:0 10px 26px -8px rgba(0,0,0,.55),0 0 0 6px rgba(252,246,225,.28);transition:transform .25s}
+html body.lof-page-gallery .lofm-all .lofm__play:hover::before{transform:scale(1.08)}
+html body.lof-page-gallery .lofm-all .lofm__play:focus{outline:none}
+html body.lof-page-gallery .lofm-all .lofm__play:focus-visible{outline:3px solid #F4AF16!important;outline-offset:-6px}
+html body.lof-page-gallery .lofm-all .lofm__video.is-playing .lofm__play{display:none!important}
+@media (max-width:640px){html body.lof-page-gallery .lofm-all .lofm__play::before{width:48px;height:48px;background-size:20px}}
+/* Lightbox (photo viewer). */
+html body .lofx{padding:64px 76px 20px;background:rgba(18,12,5,.96);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+html body .lofx:not([hidden]){animation:lofFade .2s ease both}
+html body .lofx .lofx__img{max-height:calc(100vh - 170px);border-radius:12px}
+html body .lofx .lofx__cap{margin:16px auto 0;padding:.55rem 1rem;max-width:min(760px,100%);border-radius:12px;background:rgba(252,246,225,.08);color:#FCF6E1}
+html body .lofx .lofx__cap:empty{display:none}
+html body .lofx .lofx__count{top:20px;left:22px;padding:.3rem .75rem;border-radius:999px;background:rgba(252,246,225,.1);color:#FCF6E1;font-size:.8rem;letter-spacing:.08em;font-variant-numeric:tabular-nums}
+html body .lofx button{border:1px solid rgba(252,246,225,.22)!important;transition:background .2s,color .2s}
+html body .lofx button:focus{outline:none}
+html body .lofx button:focus-visible{outline:3px solid #F4AF16!important;outline-offset:3px}
+html body .lofx .lofx__close{top:14px;right:16px}
+@media (max-width:640px){html body .lofx{padding:60px 12px 84px}html body .lofx .lofx__img{max-height:calc(100vh - 200px)}}
+/* Dark mode. */
+html[data-theme="dark"] body.lof-page-gallery .lofm-all .lofm-nav{border-color:rgba(252,246,225,.12)!important}
+html[data-theme="dark"] body.lof-page-gallery .lofm-all .lofm-filter button{background:#1D1710!important;color:#FCF6E1!important;border-color:rgba(252,246,225,.2)!important}
+html[data-theme="dark"] body.lof-page-gallery .lofm-all .lofm-filter button[aria-pressed="true"]{background:#F4AF16!important;border-color:#F4AF16!important;color:#2B1D0E!important}
+html[data-theme="dark"] body.lof-page-gallery .lofm-all .lofm__meta{color:#F4AF16}
+html[data-theme="dark"] body.lof-page-gallery .lofm-all section.lofm .lofm__video figcaption{color:#FCF6E1!important}
+@media (prefers-reduced-motion:reduce){html body.lof-page-gallery .lofm-all .lofm__item figure,html body.lof-page-gallery .lofm-all .lofm__item .lofm__link img,html body.lof-page-gallery .lofm-all .lofm__item .lofm__link::after,html body.lof-page-gallery .lofm-all .lofm__play::before,html body.lof-page-gallery .lofm-all .lofm-filter button,html body.lof-page-gallery .lof-mosaic__item img{transition:none!important}html body.lof-page-gallery .lofm-all .lofm__item:hover .lofm__link img,html body.lof-page-gallery .lof-mosaic__item a:hover img,html body.lof-page-gallery .lofm-all .lofm__play:hover::before{transform:none!important}html body .lofx:not([hidden]){animation:none}}
 /* ---------- 0.61.2 ---------- */
 /* Stories (desktop): wide featured card shows Margaret's face, not the doorway above her. */
 @media (min-width:992px){.lof-page-stories .lof-spot__media img{object-position:50% 32%!important}}
