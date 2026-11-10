@@ -1292,3 +1292,186 @@ img[src*="story-rosemary-portrait"]{object-position:50% 30%!important}
 /* 0.63.16 Precious: only the approved photos (guardian/home photo hidden); portrait figure for Meshack and Silvester */
 .lofm__item:has(img[src*="edu-precious-guardian"]){display:none!important}
 .lof-single.type-lof_story .lof-single__body figure.lof-fig-portrait img{aspect-ratio:auto!important;width:auto!important;max-width:100%;max-height:640px;margin:0 auto;object-fit:contain!important}
+
+/* ===================== 0.64.0 home redesign (slider, impact, stories, give, partners, shop) ===================== */
+/* --- 0.64.0 slider: cinematic, refined type, smooth crossfade, polished dock --- */
+.lof-cine__slide{transition:opacity 1.1s cubic-bezier(.4,0,.2,1),visibility 1.1s!important}
+.lof-cine__media img{transform:scale(1.06);transition:transform 9s cubic-bezier(.2,.6,.2,1)!important;will-change:transform}
+.lof-cine__slide.is-active .lof-cine__media img{transform:scale(1)}
+.lof-cine__shade{background:linear-gradient(90deg,rgba(22,14,6,.92) 0%,rgba(22,14,6,.72) 36%,rgba(22,14,6,.22) 66%,rgba(22,14,6,.04) 100%),linear-gradient(0deg,rgba(22,14,6,.9) 0%,rgba(22,14,6,0) 46%),linear-gradient(180deg,rgba(22,14,6,.35) 0%,rgba(22,14,6,0) 22%)!important}
+.lof-cine__content::before{width:2px!important;background:linear-gradient(180deg,#F4AF16,rgba(244,175,22,0))!important}
+.lof-cine__eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.78rem!important;font-weight:800!important;letter-spacing:.22em!important;text-transform:uppercase;color:#FBD62B!important}
+.lof-cine__eyebrow::before{content:"";width:28px;height:1px;background:currentColor;opacity:.8}
+.lof-cine__title{font-weight:800!important;line-height:1.04!important;letter-spacing:-.025em!important;text-wrap:balance;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+.lof-cine__title .lof-hl{color:#FBD62B}
+.lof-cine__text{max-width:44ch;font-size:clamp(1rem,1.15vw,1.12rem)!important;line-height:1.6!important;color:rgba(255,250,238,.9)!important}
+.lof-cine .lof-btn-row .lof-btn{border-radius:999px;min-height:48px;padding-inline:1.5rem;font-weight:800;letter-spacing:.01em;transition:transform .25s,background .25s,color .25s,box-shadow .25s}
+.lof-cine .lof-btn-row .lof-btn--sun{box-shadow:0 14px 30px -14px rgba(244,175,22,.7)}
+.lof-cine .lof-btn-row .lof-btn:hover{transform:translateY(-2px)}
+.lof-cine .lof-btn--ghost{background:rgba(255,255,255,.06);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+/* Navigation dock: slimmer, clearer progress, calmer controls */
+.lof-cine__tabs{gap:.35rem!important;padding:.4rem!important;border-radius:16px!important;background:rgba(18,11,4,.55)!important;border:1px solid rgba(255,255,255,.1)!important}
+.lof-cine__tab{position:relative;color:rgba(255,250,238,.72)!important;border-radius:11px!important;transition:background .3s,color .3s!important}
+.lof-cine__tab.is-active{color:#fff!important;background:rgba(255,255,255,.09)!important}
+.lof-cine__bar{height:2px!important;border-radius:2px;background:rgba(255,255,255,.18)!important;overflow:hidden}
+.lof-cine__bar span{background:linear-gradient(90deg,#F4AF16,#FBD62B)!important}
+.lof-cine__tab-n{font-weight:800;letter-spacing:.08em;color:#FBD62B;opacity:1!important}
+.lof-cine__tab-l{font-weight:700}
+.lof-cine__thumb{width:40px!important;height:40px!important;border-radius:9px!important}
+.lof-cine__ctrl{display:flex;align-items:center;gap:.25rem;padding:.35rem!important;background:rgba(18,11,4,.55)!important;border-color:rgba(255,255,255,.1)!important}
+.lof-cine__count{font-size:.82rem;letter-spacing:.08em;color:rgba(255,250,238,.75);font-variant-numeric:tabular-nums}
+.lof-cine__count strong{color:#fff;font-weight:800}
+.lof-cine__btn{width:40px;height:40px;display:inline-grid;place-items:center;border-radius:50%!important;border:1px solid rgba(255,255,255,.22)!important;background:transparent!important;color:#fff!important;transition:background .25s,border-color .25s,color .25s}
+.lof-cine__btn:hover{background:#F4AF16!important;border-color:#F4AF16!important;color:#2E1E0E!important}
+.lof-cine__btn:focus,.lof-cine__tab:focus{outline:none;box-shadow:none;background-color:transparent}
+.lof-cine__btn:focus-visible,.lof-cine__tab:focus-visible{outline:2px solid #FBD62B!important;outline-offset:2px;box-shadow:none!important}
+.lof-cine__btn:focus:not(:hover),.lof-cine__btn:active{color:#fff!important}
+@media (max-width:640px){
+ .lof-cine__eyebrow{font-size:.7rem!important;letter-spacing:.16em!important}
+ .lof-cine__eyebrow::before{width:18px}
+ .lof-cine__title{font-size:clamp(1.6rem,7vw,2rem)!important;line-height:1.1!important}
+ .lof-cine__text{font-size:.92rem!important}
+ .lof-cine .lof-btn-row .lof-btn{min-height:46px;padding-inline:1.1rem;font-size:.9rem}
+ .lof-cine__tab .lof-cine__bar{height:3px!important}
+ .lof-cine__btn{width:36px;height:36px}
+}
+@media (prefers-reduced-motion:reduce){.lof-cine__slide{transition:none!important}.lof-cine__media img,.lof-cine__slide.is-active .lof-cine__media img{transform:none!important;transition:none!important}.lof-cine .lof-btn-row .lof-btn:hover{transform:none}}
+/* Figures card under the slider: crisp, balanced */
+.lof-figbar__grid{border-radius:20px!important;box-shadow:0 24px 50px -32px rgba(43,29,14,.5)!important;border:1px solid var(--lof-line)}
+.lof-figbar__grid dd{letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.lof-figbar__grid dt{letter-spacing:.12em!important;font-size:.72rem!important}
+
+/* --- 0.64.0 impact figures: professional numerals, hairline dividers, gold accent (Home, About, Impact, strips) --- */
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:1px!important;max-width:1180px;margin:0 auto!important;padding:0!important;border:1px solid rgba(252,246,225,.14)!important;border-radius:22px!important;background:rgba(252,246,225,.14)!important;overflow:hidden!important}
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item,html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item:first-child{position:relative;display:flex!important;flex-direction:column-reverse!important;align-items:flex-start!important;justify-content:flex-end!important;gap:.7rem!important;min-height:168px;text-align:left!important;padding:2rem 1.6rem 1.8rem!important;border:0!important;border-radius:0!important;background:#4A3017!important;box-shadow:none!important;transition:background .3s}
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item::before{content:"";position:absolute;left:1.6rem;top:0;width:34px;height:3px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,#F4AF16,#FBD62B)}
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item::after{display:none!important}
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item:hover{background:#523519!important}
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__value{display:flex;align-items:baseline;gap:.1rem;margin:0!important;font-family:var(--lof-font-display,inherit);font-weight:800!important;font-size:clamp(2.3rem,3.4vw,3.15rem)!important;line-height:1!important;letter-spacing:-.03em;color:#FBD62B!important;font-variant-numeric:tabular-nums;white-space:nowrap}
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__value span:last-child{font-size:.62em;color:#F4AF16}
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__label{margin:0!important;max-width:24ch!important;font-size:.8rem!important;font-weight:700!important;line-height:1.45!important;letter-spacing:.06em!important;text-transform:uppercase;color:rgba(252,246,225,.86)!important;opacity:1!important}
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__source,html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__note{display:none!important}
+html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-container::after{content:"Figures supplied by the foundation (November 2026)";display:block;margin-top:1.25rem;text-align:center;font-size:.82rem;letter-spacing:.02em;opacity:.7}
+/* Light tones (if ever used): white cells, brown numerals */
+html body .lof-section.lof-tone-cream.lof-impact.lof-impact.lof-impact .lof-impact__grid,html body .lof-section.lof-tone-white.lof-impact.lof-impact.lof-impact .lof-impact__grid,html body .lof-section.lof-tone-sand.lof-impact.lof-impact.lof-impact .lof-impact__grid{background:var(--lof-line)!important;border-color:var(--lof-line)!important}
+html body .lof-section.lof-tone-cream.lof-impact.lof-impact.lof-impact .lof-impact__item,html body .lof-section.lof-tone-white.lof-impact.lof-impact.lof-impact .lof-impact__item,html body .lof-section.lof-tone-sand.lof-impact.lof-impact.lof-impact .lof-impact__item{background:#fff!important}
+html body .lof-section.lof-tone-cream.lof-impact.lof-impact.lof-impact .lof-impact__value,html body .lof-section.lof-tone-white.lof-impact.lof-impact.lof-impact .lof-impact__value,html body .lof-section.lof-tone-sand.lof-impact.lof-impact.lof-impact .lof-impact__value{color:#5C3D1E!important}
+html body .lof-section.lof-tone-cream.lof-impact.lof-impact.lof-impact .lof-impact__label,html body .lof-section.lof-tone-white.lof-impact.lof-impact.lof-impact .lof-impact__label,html body .lof-section.lof-tone-sand.lof-impact.lof-impact.lof-impact .lof-impact__label{color:var(--lof-muted)!important}
+/* Strip variant on inner pages: same design, slightly tighter */
+html body .lof-section.lof-impact.lof-impact--strip.lof-impact.lof-impact .lof-impact__item{min-height:140px;padding:1.6rem 1.4rem 1.5rem!important}
+html body .lof-section.lof-impact.lof-impact--strip.lof-impact.lof-impact .lof-impact__item::before{left:1.4rem}
+html body .lof-section.lof-impact.lof-impact--strip.lof-impact.lof-impact .lof-impact__value{font-size:clamp(2rem,2.8vw,2.6rem)!important}
+@media (max-width:991px){html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;border-radius:18px!important}html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item,html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item:first-child{min-height:136px;padding:1.5rem 1.2rem 1.35rem!important}}
+@media (max-width:640px){html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item,html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item:first-child{min-height:124px;padding:1.3rem .95rem 1.15rem!important;gap:.55rem!important}html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__item::before{left:.95rem;width:26px}html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__value{font-size:clamp(1.75rem,8vw,2.2rem)!important}html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact .lof-impact__label{font-size:.68rem!important;letter-spacing:.04em!important}}
+
+/* --- 0.64.0 stories: balanced editorial cards (Home, Impact, Stories archive) --- */
+html body .lof-section.lof-stories.lof-stories .lof-grid.lof-grid--3{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:auto!important;gap:1.6rem!important;align-items:stretch!important}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:first-child,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:not(:first-child){position:relative!important;grid-row:auto!important;grid-column:auto!important;display:flex!important;flex-direction:column!important;min-height:0!important;height:100%;margin:0!important;padding:0!important;color:inherit!important;background:#fff!important;border:1px solid var(--lof-line)!important;border-radius:20px!important;overflow:hidden!important;box-shadow:0 18px 40px -34px rgba(43,29,14,.55)!important;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:hover{transform:translateY(-4px);box-shadow:0 28px 50px -30px rgba(43,29,14,.55)!important}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__media,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:first-child .lof-card__media,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:not(:first-child) .lof-card__media{position:relative!important;inset:auto!important;z-index:auto!important;display:block!important;flex:none!important;width:100%!important;height:auto!important;aspect-ratio:4/3!important;min-height:0!important;max-height:none!important;margin:0!important;border-radius:0!important;overflow:hidden!important}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__media::after{display:none!important}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__media img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 25%;transition:transform .7s ease}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:hover .lof-card__media img{transform:scale(1.04)}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__place{display:none!important}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__body,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:first-child .lof-card__body{position:static!important;flex:1 1 auto!important;display:flex!important;flex-direction:column!important;gap:.55rem;margin:0!important;padding:1.35rem 1.45rem 1.4rem!important;background:#fff!important;color:var(--lof-text,#3b2a18)!important}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0!important;font-size:.72rem!important;letter-spacing:.1em!important;color:#B9740F!important}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__dot{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.6}
+.lof-story-tag{display:inline-flex;align-items:center;margin:0;padding:.22rem .6rem;border-radius:999px;background:rgba(244,175,22,.14);color:#8A560B;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__title,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:first-child .lof-card__title{margin:0!important;font-size:1.2rem!important;line-height:1.3!important;text-wrap:balance}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__title a,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:first-child .lof-card__title a{color:var(--lof-heading,#2E1E0E)!important;text-decoration:none}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__body > p:not(.lof-eyebrow),html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:first-child .lof-card__body > p:not(.lof-eyebrow){margin:0!important;color:var(--lof-muted)!important;font-size:.98rem!important;line-height:1.6!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__link,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:first-child .lof-card__link{display:inline-flex!important;align-items:center;gap:.45rem;align-self:flex-start!important;margin-top:auto!important;padding:.85rem 0 0!important;background:none!important;border:0!important;border-radius:0!important;color:#5C3D1E!important;font-weight:800;font-size:.92rem;text-decoration:none}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__arrow{display:inline-block;color:#DC8C13;transition:transform .25s}
+html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:hover .lof-card__arrow{transform:translateX(4px)}
+html[data-theme="dark"] body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story,html[data-theme="dark"] body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__body{background:var(--lof-surface)!important}
+html[data-theme="dark"] body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__link{color:#FBD62B!important}
+/* Featured story on /stories/: balanced split card */
+html body .lof-section.lof-stories.lof-stories .lof-spot{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)!important;align-items:stretch!important;gap:0!important;min-height:0!important;margin:0 0 2.5rem!important;padding:0!important;background:#fff!important;border:1px solid var(--lof-line)!important;border-radius:24px!important;overflow:hidden!important;box-shadow:0 26px 56px -40px rgba(43,29,14,.6)!important}
+html body .lof-section.lof-stories.lof-stories .lof-spot__media{position:relative!important;inset:auto!important;display:block!important;height:100%!important;min-height:380px!important;max-height:520px;aspect-ratio:auto!important;border-radius:0!important;overflow:hidden!important}
+html body .lof-section.lof-stories.lof-stories .lof-spot__media::after{display:none!important}
+html body .lof-section.lof-stories.lof-stories .lof-spot__media img{position:absolute;inset:0;width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 22%}
+html body .lof-section.lof-stories.lof-stories .lof-spot__body{position:static!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:flex-start;gap:.8rem;max-width:none!important;margin:0!important;padding:clamp(1.75rem,3.4vw,3rem)!important;background:#fff!important;color:var(--lof-text,#3b2a18)!important;box-shadow:none!important}
+html body .lof-section.lof-stories.lof-stories .lof-spot__body .lof-eyebrow{margin:0!important;color:#B9740F!important}
+html body .lof-section.lof-stories.lof-stories .lof-spot__title{margin:0!important;font-size:clamp(1.5rem,2.4vw,2.1rem)!important;line-height:1.2!important;text-wrap:balance}
+html body .lof-section.lof-stories.lof-stories .lof-spot__title a{color:var(--lof-heading,#2E1E0E)!important;text-decoration:none}
+html body .lof-section.lof-stories.lof-stories .lof-spot__text{margin:0!important;color:var(--lof-muted)!important;font-size:1.02rem!important;line-height:1.65!important}
+html body .lof-section.lof-stories.lof-stories .lof-spot .lof-btn{margin-top:.4rem;border-radius:999px}
+html[data-theme="dark"] body .lof-section.lof-stories.lof-stories .lof-spot,html[data-theme="dark"] body .lof-section.lof-stories.lof-stories .lof-spot__body{background:var(--lof-surface)!important}
+html body .lof-section.lof-stories.lof-stories .lof-more-head{margin:0 0 1.25rem}
+html body .lof-section.lof-stories.lof-stories .lof-btn-row--center{margin-top:2.25rem}
+html body .lof-section.lof-stories.lof-stories .lof-btn-row--center .lof-btn{border-radius:999px}
+@media (min-width:641px) and (max-width:991px){html body .lof-section.lof-stories.lof-stories .lof-grid.lof-grid--3{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:1.25rem!important}html body .lof-section.lof-stories.lof-stories .lof-spot{grid-template-columns:1fr!important}html body .lof-section.lof-stories.lof-stories .lof-spot__media{min-height:0!important;aspect-ratio:16/10!important;height:auto!important}}
+@media (max-width:640px){html body .lof-section.lof-stories.lof-stories .lof-grid.lof-grid--3{grid-template-columns:1fr!important;gap:1.1rem!important}html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__media{aspect-ratio:16/11!important}html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:not(:first-child){display:flex!important}html body .lof-section.lof-stories.lof-stories .lof-spot{grid-template-columns:1fr!important;border-radius:20px!important}html body .lof-section.lof-stories.lof-stories .lof-spot__media{min-height:0!important;aspect-ratio:4/3!important;height:auto!important}html body .lof-section.lof-stories.lof-stories .lof-spot__body{padding:1.4rem!important}}
+@media (prefers-reduced-motion:reduce){html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__media img{transition:none!important}html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:hover,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:hover .lof-card__media img{transform:none!important}}
+/* Single story: refined top meta and calmer end band (cheap polish) */
+.lof-single.type-lof_story .lof-single__image img{border-radius:20px}
+
+/* --- 0.64.0 Give today on Home: compact, elegant band --- */
+html body .lof-section.lof-give.lof-give--compact{padding-block:clamp(2.5rem,4.5vw,3.5rem)!important}
+.lof-give--compact .lof-give__band{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.2fr);align-items:center;gap:clamp(1.25rem,2.6vw,2.25rem);max-width:1180px;margin:0 auto;padding:clamp(1.1rem,2vw,1.5rem);border-radius:22px;background:rgba(252,246,225,.05);border:1px solid rgba(252,246,225,.14)}
+.lof-give--compact .lof-give__thumb{width:clamp(110px,11vw,150px);aspect-ratio:1;border-radius:16px;overflow:hidden;box-shadow:0 0 0 3px rgba(244,175,22,.35)}
+.lof-give--compact .lof-give__thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
+.lof-give--compact .lof-section__head{margin:0!important;text-align:left!important}
+.lof-give--compact .lof-section__head .lof-eyebrow{margin-bottom:.35rem!important}
+.lof-give--compact .lof-section__title{margin:0 0 .4rem!important;font-size:clamp(1.35rem,2.2vw,1.8rem)!important;line-height:1.2!important}
+.lof-give--compact .lof-section__intro{margin:0!important;max-width:46ch;font-size:.95rem!important;line-height:1.55!important;opacity:.88}
+.lof-give__trustline{margin:.6rem 0 0;font-size:.78rem;letter-spacing:.04em;opacity:.7}
+.lof-give__trustline::before{content:"\2713\00a0";color:#F4AF16;font-weight:800}
+.lof-give--compact .lof-give__body{margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
+.lof-give--compact .lof-givepanel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.65rem .75rem;align-items:end;margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
+.lof-give--compact .lof-givepanel__step{margin:0!important;padding:0!important;border:0!important;min-width:0}
+.lof-give--compact .lof-givepanel__step:first-of-type{grid-column:1/-1}
+.lof-give--compact .lof-givepanel__step legend{margin:0 0 .45rem!important;padding:0!important;font-size:.72rem!important;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.lof-give--compact .lof-givepanel__step legend span{display:none!important}
+.lof-give--compact .lof-give__amounts{display:flex!important;flex-wrap:wrap;gap:.45rem!important;grid-template-columns:none!important}
+.lof-give--compact .lof-chip{min-height:42px!important;padding:.45rem .9rem!important;border-radius:999px!important;font-size:.88rem!important}
+.lof-give--compact .lof-chip strong{font-size:.9rem!important}
+.lof-give--compact .lof-givepanel__other{grid-column:1/-1;margin:0!important}
+.lof-give--compact .lof-givepanel__other:not(.is-active){display:none}
+.lof-give--compact select{min-height:46px;border-radius:12px!important;font-size:.92rem!important}
+.lof-give--compact .lof-givepanel__submit{min-height:46px;margin:0!important;border-radius:999px!important;white-space:nowrap;padding-inline:1.4rem!important}
+.lof-give--compact .lof-givepanel__submit:focus{outline:none}
+.lof-give--compact .lof-givepanel__submit:focus-visible{outline:2px solid #FBD62B;outline-offset:3px}
+@media (min-width:641px) and (max-width:991px){.lof-give--compact .lof-give__band{grid-template-columns:auto minmax(0,1fr)}.lof-give--compact .lof-give__body{grid-column:1/-1}}
+@media (max-width:640px){.lof-give--compact .lof-give__band{grid-template-columns:1fr;padding:1.1rem;gap:1rem}.lof-give--compact .lof-give__thumb{display:none}.lof-give--compact .lof-givepanel{grid-template-columns:1fr}.lof-give--compact .lof-givepanel__submit{width:100%}}
+
+/* --- 0.64.0 partners: full-colour logos on balanced white tiles --- */
+html body .lof-section.lof-partners-sec{padding-block:clamp(3rem,5vw,4.25rem)!important}
+html body .lof-partners-sec .lof-partners.lof-partners--tiles{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(220px,280px));justify-content:center;gap:1.25rem!important;max-width:1180px;margin:0 auto!important;padding:0!important;list-style:none}
+html body .lof-partners-sec .lof-partners__tile{display:flex;align-items:center;justify-content:center;min-height:150px;margin:0;padding:1.5rem 1.75rem;background:#fff;border:1px solid var(--lof-line);border-radius:20px;box-shadow:0 18px 40px -32px rgba(43,29,14,.45);transition:transform .3s,box-shadow .3s,border-color .3s}
+html body .lof-partners-sec .lof-partners__tile:hover{transform:translateY(-3px);border-color:rgba(244,175,22,.55);box-shadow:0 26px 48px -30px rgba(43,29,14,.5)}
+html body .lof-partners-sec .lof-partners__tile a{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+html body .lof-partners-sec .lof-partners img,html body .lof-partners-sec .lof-partners a:hover img{display:block;width:auto!important;height:auto!important;max-width:100%!important;max-height:96px!important;object-fit:contain;filter:none!important;opacity:1!important;-webkit-filter:none!important;mix-blend-mode:normal!important}
+html body .lof-partners-sec .lof-section__head{margin-bottom:1.75rem!important}
+@media (max-width:640px){html body .lof-partners-sec .lof-partners.lof-partners--tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem!important}html body .lof-partners-sec .lof-partners__tile{min-height:112px;padding:1rem}html body .lof-partners-sec .lof-partners img{max-height:68px!important}}
+@media (prefers-reduced-motion:reduce){html body .lof-partners-sec .lof-partners__tile{transition:none}html body .lof-partners-sec .lof-partners__tile:hover{transform:none}}
+
+/* --- 0.64.0 Shop with purpose: placed straight after the slider (Cistern of Hope pattern), cream band, one row of four --- */
+html body .lof-market{padding-block:clamp(3.25rem,6vw,5rem)!important;background:var(--lof-cream,#FCF6E1)!important}
+html[data-theme="dark"] body .lof-market{background:var(--lof-bg)!important}
+html body .lof-market .lof-market__inner{max-width:1180px;margin:0 auto;padding-inline:clamp(1rem,3vw,1.5rem)}
+html body .lof-market .lof-market__head{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:1.5rem 2rem;margin-bottom:clamp(1.6rem,3vw,2.25rem)!important;text-align:left!important}
+html body .lof-market .lof-market__head > div{max-width:640px}
+html body .lof-market .lof-market__eyebrow{display:inline-flex;align-items:center;gap:.6rem;margin:0 0 .5rem!important;color:#B9740F!important;font-size:.78rem!important;font-weight:800!important;letter-spacing:.18em!important;text-transform:uppercase}
+html body .lof-market .lof-market__eyebrow::before{content:"";width:28px;height:2px;border-radius:2px;background:#F4AF16}
+html body .lof-market .lof-market__title{margin:0 0 .55rem!important;font-size:clamp(1.65rem,3vw,2.4rem)!important;line-height:1.15!important;letter-spacing:-.015em;text-wrap:balance}
+html body .lof-market .lof-market__intro{margin:0!important;color:var(--lof-muted)!important;font-size:1rem!important;line-height:1.6}
+html body .lof-market .lof-market__all{display:inline-flex;align-items:center;gap:.45rem;flex:none;padding:.7rem 1.2rem;border-radius:999px;border:1.5px solid #5C3D1E;color:#5C3D1E!important;font-weight:800;font-size:.92rem;text-decoration:none;transition:background .25s,color .25s}
+html body .lof-market .lof-market__all:hover{background:#5C3D1E;color:#fff!important}
+html body .lof-market .lof-market__grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:1.25rem!important;margin:0!important;padding:0!important;list-style:none}
+html body .lof-market .lof-market__card,html body .lof-market .lof-market__card.is-lead{grid-column:auto!important;grid-row:auto!important;display:flex!important;flex-direction:column!important;background:#fff!important;border:1px solid var(--lof-line)!important;border-radius:18px!important;overflow:hidden!important;box-shadow:0 16px 36px -30px rgba(43,29,14,.5)!important;transition:transform .3s,box-shadow .3s}
+html body .lof-market .lof-market__card:hover{transform:translateY(-3px);box-shadow:0 24px 46px -28px rgba(43,29,14,.5)!important}
+html body .lof-market .lof-market__media{position:relative;display:block;aspect-ratio:1/1!important;overflow:hidden;background:#F6EEDA}
+html body .lof-market .lof-market__media img{width:100%!important;height:100%!important;object-fit:cover}
+html body .lof-market .lof-market__body{flex:1;display:flex;flex-direction:column;gap:.35rem;padding:1rem 1.1rem 1.1rem!important}
+html body .lof-market .lof-market__name{margin:0!important;font-size:1rem!important;line-height:1.35!important}
+html body .lof-market .lof-market__price{margin:0!important;font-weight:800;color:#B26B0C}
+html body .lof-market .lof-market__actions{margin-top:auto!important;padding-top:.5rem}
+html body .lof-market .lof-market__trust{display:flex!important;flex-wrap:wrap;justify-content:center;gap:.6rem 2rem;margin:clamp(1.5rem,3vw,2rem) 0 0!important;padding:1rem 1.25rem!important;list-style:none;border-top:1px solid var(--lof-line);background:none!important}
+html body .lof-market .lof-market__trust li{display:flex!important;align-items:center;gap:.5rem;padding:0!important;margin:0!important;background:none!important;border:0!important;box-shadow:none!important}
+html body .lof-market .lof-market__trust li::before{content:"\2713";color:#DC8C13;font-weight:800}
+html body .lof-market .lof-market__trust strong{font-size:.88rem!important}
+html body .lof-market .lof-market__trust span{display:none!important}
+@media (min-width:641px) and (max-width:991px){html body .lof-market .lof-market__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (max-width:640px){html body .lof-market .lof-market__head{flex-direction:column;align-items:flex-start!important}html body .lof-market .lof-market__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.75rem!important}html body .lof-market .lof-market__body{padding:.8rem .8rem .9rem!important}html body .lof-market .lof-market__name{font-size:.92rem!important}html body .lof-market .lof-market__trust{justify-content:flex-start;flex-direction:column;gap:.45rem}}
+@media (prefers-reduced-motion:reduce){html body .lof-market .lof-market__card{transition:none}html body .lof-market .lof-market__card:hover{transform:none}}

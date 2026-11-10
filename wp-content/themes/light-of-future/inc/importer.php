@@ -248,6 +248,8 @@ function lof_setup_page_defs() {
 			'publish',
 			array(
 				lof_el( 'lof-slider', lof_home_slider_settings() ),
+				// 0.64.0: Shop with purpose straight after the slider (as Cistern of Hope places its Hope Market).
+				lof_el( 'shortcode', array( 'shortcode' => '[lof_home_market count="4"]' ) ),
 				lof_el(
 					'lof-intro',
 					array(

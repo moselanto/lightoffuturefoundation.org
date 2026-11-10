@@ -1,5 +1,14 @@
 # Changelog
 
+## Theme 0.64.0 - 2026-11-10
+- **Home slider:** more cinematic and refined. Smoother 1.1s crossfade with a slow photo settle (off with prefers-reduced-motion), stronger type hierarchy (gold rule eyebrow, balanced headline, 44ch text), pill buttons, slimmer navigation dock with gold progress bars, round prev/pause/next controls with visible focus rings (Hello Elementor pink focus overridden). First slide image still eager / fetchpriority high; pause, keyboard and aria unchanged. Figures card under the slider tidied.
+- **Impact figures (Home, About, Impact, inner-page strips):** one professional design everywhere: large gold numerals above uppercase labels, hairline dividers between equal-height cells, a short gold accent line per figure; 4 x 2 on desktop, 2 columns on tablet and phone. Verified-only logic, values and the single source note are unchanged.
+- **Stories of change (Home, Impact "Real people, real change", /stories/):** balanced editorial cards: equal heights, 4:3 face-safe photos, topic tag (from the existing story topic) and location, title, three-line excerpt, "Read the story" link with arrow, gentle hover. The /stories/ featured story is a balanced split card. Location pill on the photo removed (it repeated the meta line).
+- **Give today (Home only):** compact band: small photo, heading, one line, one trust line, amount chips, fund select and Give button. Same form (GET, same action, field names `amount`, `amount_other`, `fund`). /donate/ is unchanged. Filter `lof_give_compact` turns it off.
+- **Our partners:** logos in full original colour (grayscale and opacity removed), larger, on centred white tiles with a subtle border and shadow.
+- **Shop with purpose:** moved straight after the home slider, as Cistern of Hope places its Hope Market section directly after the hero. Restyled like Cistern's: cream band, heading left with "Visit the shop" pill right, one row of four equal product cards (2 per row on tablet and phone), one-line trust strip. Live page reordered by the one-off upgrade `inc/upgrade-0644.php` (`lof_upgrade_0640_home_order`, option `lof_home_0640_order`, backup meta `_lof_layout_backup_0640`); importer home layout updated for fresh installs.
+- CSS: new block `0.64.0` at the end of `assets/css/shop.css` (and `shop.min.css`); slider and shop parts also appended to `assets/css/critical/home-shop.css` so the first paint matches.
+
 ## Theme 0.63.17 - 2026-11-09
 - Education 'Handing out books and pens' photo: the school office sign is blurred (it could not be cropped without cutting people). Copied once by `lof_upgrade_0642_media_rev2` (option `lof_media_0642_rev2`).
 

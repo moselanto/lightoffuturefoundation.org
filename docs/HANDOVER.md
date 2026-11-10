@@ -1,8 +1,10 @@
 # HANDOVER - Light of Future Foundation website (read this first)
 
-Last updated: **9 Nov 2026, 20:30 EAT**, at theme **0.63.13** + Core **0.46.4** (section 0). Sections 1-9 were written on 3 Nov at 0.43.1 and are kept for the code map and history. Where they disagree with section 0, section 0 wins.
+Last updated: **10 Nov 2026, 12:30 EAT**, at theme **0.64.0** (on `main`, to be installed) + Core **0.46.4** (section 0). Sections 1-9 were written on 3 Nov at 0.43.1 and are kept for the code map and history. Where they disagree with section 0, section 0 wins.
 
 ## 0. STATUS AS OF 9 NOV 2026 (read this first; sections 1-9 below are the 3 Nov / 0.43.1 snapshot and partly outdated)
+
+**Status 10 Nov 2026 (theme 0.64.0, on `main`, not yet installed):** home redesign - refined slider, professional impact figures (same design on every page), balanced story cards (Home, Impact, /stories/), compact Give today band on Home, full-colour partner logo tiles, and Shop with purpose moved straight after the slider (Cistern of Hope pattern). Core unchanged (0.46.4). Install: upload `light-of-future-0.64.0.zip` (Content Library: Light of Future Foundation/releases), open the Dashboard once (runs `lof_upgrade_0640_home_order`), purge LiteSpeed, check signed out at desktop and 390px.
 
 **Live versions:** theme `light-of-future` **0.63.17**, plugin `light-of-future-core` **0.46.4** (both installed on the live site and verified signed out on desktop and at 390px). Repo `moselanto/lightoffuturefoundation.org`, branch `main`. Every change is committed; `CHANGELOG.md` has one entry per release.
 
@@ -45,6 +47,8 @@ Last updated: **9 Nov 2026, 20:30 EAT**, at theme **0.63.13** + Core **0.46.4** 
 - `lof_core_settings` passes through `lof_core_sanitize_settings()`, which **drops any key not in `lof_core_setting_fields()`**. A new setting must be added to the fields list (and to defaults). `lof_core_setting()` only falls back to a default when the key is *absent*: an empty saved value returns ''. Fill it with a one-off upgrade (see `lof_core_upgrade_0464_facebook`).
 - Stories without consent are forced to draft by `lof_core_require_story_consent`. Set `lof_consent=1` and `lof_consent_date` before publishing (see upgrade-0637.php).
 - The browser automation cannot type long numeric strings (for example the Facebook profile ID) into admin fields, because it treats them as card numbers. Set such values in code.
+- **0.64.0 home order:** `inc/upgrade-0644.php` (admin only, `admin_init`) moves the existing `[lof_home_market]` Elementor section to right after the `lof-slider` section. Guard option `lof_home_0640_order` stores the outcome (`moved`, `already`, `not-found`, `no-home`, `no-data`, ...). Backup of the previous layout: post meta `_lof_layout_backup_0640` on the home page. Delete the option to run again. CSS overrides for 0.64.0 use the prefix `html body .lof-section.lof-impact.lof-impact.lof-impact.lof-impact` / `.lof-section.lof-stories.lof-stories` (higher than the 0.63.13 rules): add later changes with the same or higher specificity. The Home Give today band is a compact variant (`lof-give--compact`, filter `lof_give_compact`); /donate/ is not affected.
+- **0.64.0 lint:** this release was built in a sandbox without PHP (no root to install php-cli); brackets/strings were checked by script only. Run `php -l` on `inc/upgrade-0644.php`, `inc/importer.php`, `inc/elementor/widgets-dynamic.php`, `inc/elementor/widgets-extra.php`, `functions.php` on the server or in CI if possible.
 - Never invent facts, figures, payment details or partner names. No new wording on the site without the foundation's approval. Francis Ouma Sikuku's personal Gmail is never published.
 
 ## 1. Where we are in one paragraph

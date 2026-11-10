@@ -95,8 +95,21 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 			return;
 		}
 		$has    = $this->has_media( isset( $s['image'] ) ? $s['image'] : array() );
-		$this->open_section( $s, 'lof-give' . ( $has ? ' lof-give--photo lof-give--card' : '' ) );
-		if ( $has ) {
+		// 0.64.0: on Home the giving panel is a compact band (same form, same field names and action).
+		$compact = is_front_page() && (bool) apply_filters( 'lof_give_compact', true );
+		$this->open_section( $s, 'lof-give' . ( $compact ? ' lof-give--compact' : ( $has ? ' lof-give--photo lof-give--card' : '' ) ) );
+		if ( $compact ) {
+			echo '<div class="lof-give__band lof-reveal">';
+			if ( $has ) {
+				echo '<div class="lof-give__thumb">';
+				$this->render_media( $s['image'], 'medium_large', 'lof-give__img' );
+				echo '</div>';
+			}
+			echo '<div class="lof-give__lead">';
+			$this->render_heading( array_merge( $s, array( 'align' => 'left' ) ) );
+			printf( '<p class="lof-give__trustline">%s</p>', esc_html__( 'Registered with the NGO Board of Kenya, 23 May 2025', 'light-of-future' ) );
+			echo '</div><div class="lof-give__body">';
+		} elseif ( $has ) {
 			$tick = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>';
 			echo '<div class="lof-give__card lof-reveal"><div class="lof-give__visual">';
 			$this->render_media( $s['image'], 'large', 'lof-give__img' );
@@ -155,11 +168,11 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 		echo '</select></fieldset>';
 		$lof_live = 'live' === lof_setting( 'payment_mode', 'off' ) || ( function_exists( 'lof_pay_enabled' ) && lof_pay_enabled() );
 		printf( '<button type="submit" class="lof-btn lof-btn--sun lof-givepanel__submit">%s</button>', $lof_live ? esc_html__( 'Continue to give', 'light-of-future' ) : esc_html__( 'Ask us how to give', 'light-of-future' ) );
-		if ( ! $lof_live ) {
+		if ( ! $lof_live && ! $compact ) {
 			printf( '<p class="lof-givepanel__how">%s</p>', esc_html__( 'Online payment is not open yet. Choose an amount and where it goes, then send us a short message. Our team replies with how to complete your gift.', 'light-of-future' ) );
 		}
 		echo '</form>';
-		if ( ! empty( $s['note'] ) ) {
+		if ( ! empty( $s['note'] ) && ! $compact ) {
 			printf( '<p class="lof-give__note">%s</p>', esc_html( $s['note'] ) );
 		}
 		echo '</div></div>';

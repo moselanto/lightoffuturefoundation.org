@@ -72,7 +72,7 @@ class LOF_Widget_Programmes extends LOF_Widget_Base {
 				printf( '<p class="lof-card__lead"><span class="lof-card__lead-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"/></svg></span>%s</p>', esc_html( sprintf( __( 'Lead: %s', 'light-of-future' ), $lead ) ) );
 			}
 			if ( ! empty( $s['more_label'] ) ) {
-				printf( '<a class="lof-card__link" href="%1$s">%2$s<span class="screen-reader-text"> %3$s</span></a>', esc_url( $link ), esc_html( $s['more_label'] ), esc_html( get_the_title( $p ) ) );
+				printf( '<a class="lof-card__link" href="%1$s">%2$s<span class="screen-reader-text"> %3$s</span><span class="lof-card__arrow" aria-hidden="true">&rarr;</span></a>', esc_url( $link ), esc_html( $s['more_label'] ), esc_html( get_the_title( $p ) ) );
 			}
 			echo '</div></article>';
 		}
@@ -179,8 +179,16 @@ class LOF_Widget_Stories extends LOF_Widget_Base {
 			$this->editor_notice( __( 'No published stories yet. A story publishes once consent is ticked.', 'light-of-future' ) );
 			return;
 		}
-		$this->open_section( $s );
+		$this->open_section( $s, 'lof-stories lof-stories--' . ( isset( $s['layout'] ) && 'featured' === $s['layout'] ? 'featured' : 'grid' ) );
 		$this->render_heading( $s, __( 'Impact stories', 'light-of-future' ) );
+		// 0.64.0: topic tag from the Core story topic (existing data only).
+		$lof_topic = function ( $post ) {
+			if ( ! taxonomy_exists( 'lof_story_topic' ) ) {
+				return '';
+			}
+			$terms = get_the_terms( $post, 'lof_story_topic' );
+			return ( $terms && ! is_wp_error( $terms ) ) ? (string) $terms[0]->name : '';
+		};
 		if ( isset( $s['layout'] ) && 'featured' === $s['layout'] ) {
 			$f     = array_shift( $items );
 			$flink = get_permalink( $f );
@@ -190,7 +198,11 @@ class LOF_Widget_Stories extends LOF_Widget_Base {
 			if ( has_post_thumbnail( $f ) ) {
 				printf( '<a class="lof-spot__media" href="%1$s" tabindex="-1" aria-hidden="true">%2$s</a>', esc_url( $flink ), get_the_post_thumbnail( $f, 'large', array( 'loading' => 'lazy' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
+			$ftopic = $lof_topic( $f );
 			echo '<div class="lof-spot__body"><p class="lof-eyebrow">' . esc_html__( 'Featured story', 'light-of-future' ) . ( $fplace ? ' &middot; ' . esc_html( $fplace ) : '' ) . '</p>';
+			if ( $ftopic ) {
+				printf( '<p class="lof-story-tag">%s</p>', esc_html( $ftopic ) );
+			}
 			printf( '<h3 class="lof-spot__title"><a href="%1$s">%2$s</a></h3>', esc_url( $flink ), esc_html( get_the_title( $f ) ) );
 			printf( '<p class="lof-spot__text">%s</p>', esc_html( $fquote ? $fquote : get_the_excerpt( $f ) ) );
 			printf( '<a class="lof-btn lof-btn--earth" href="%1$s">%2$s<span class="screen-reader-text"> %3$s</span></a>', esc_url( $flink ), esc_html( $s['more_label'] ? $s['more_label'] : __( 'Read the story', 'light-of-future' ) ), esc_html( get_the_title( $f ) ) );
@@ -208,14 +220,15 @@ class LOF_Widget_Stories extends LOF_Widget_Base {
 			if ( has_post_thumbnail( $p ) ) {
 				printf( '<a class="lof-card__media" href="%1$s" tabindex="-1" aria-hidden="true">%2$s%3$s</a>', esc_url( $link ), get_the_post_thumbnail( $p, 'large', array( 'loading' => 'lazy' ) ), $place ? '<span class="lof-card__place">' . esc_html( $place ) . '</span>' : '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
+			$topic = $lof_topic( $p );
 			echo '<div class="lof-card__body">';
-			if ( $place ) {
-				printf( '<p class="lof-eyebrow">%s</p>', esc_html( $place ) );
+			if ( $topic || $place ) {
+				printf( '<p class="lof-eyebrow lof-card__meta">%1$s%2$s%3$s</p>', $topic ? '<span class="lof-story-tag">' . esc_html( $topic ) . '</span>' : '', $topic && $place ? '<span class="lof-card__dot" aria-hidden="true"></span>' : '', $place ? '<span class="lof-card__loc">' . esc_html( $place ) . '</span>' : '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped parts.
 			}
 			printf( '<h3 class="lof-card__title"><a href="%1$s">%2$s</a></h3>', esc_url( $link ), esc_html( get_the_title( $p ) ) );
 			printf( '<p>%s</p>', esc_html( $quote ? $quote : get_the_excerpt( $p ) ) );
 			if ( ! empty( $s['more_label'] ) ) {
-				printf( '<a class="lof-card__link" href="%1$s">%2$s<span class="screen-reader-text"> %3$s</span></a>', esc_url( $link ), esc_html( $s['more_label'] ), esc_html( get_the_title( $p ) ) );
+				printf( '<a class="lof-card__link" href="%1$s">%2$s<span class="screen-reader-text"> %3$s</span><span class="lof-card__arrow" aria-hidden="true">&rarr;</span></a>', esc_url( $link ), esc_html( $s['more_label'] ), esc_html( get_the_title( $p ) ) );
 			}
 			echo '</div></article>';
 		}
@@ -353,13 +366,13 @@ class LOF_Widget_Partners extends LOF_Widget_Base {
 			$this->editor_notice( __( 'No approved partners yet. This section stays hidden until one is added.', 'light-of-future' ) );
 			return;
 		}
-		$this->open_section( $s, 'lof-section--compact' );
+		$this->open_section( $s, 'lof-section--compact lof-partners-sec' );
 		$this->render_heading( $s, __( 'Our partners', 'light-of-future' ) );
-		echo '<ul class="lof-partners">';
+		printf( '<ul class="lof-partners lof-partners--tiles lof-partners--n%d">', (int) min( 4, count( $items ) ) );
 		foreach ( $items as $p ) {
 			$url  = (string) get_post_meta( $p->ID, 'lof_url', true );
 			$logo = has_post_thumbnail( $p ) ? get_the_post_thumbnail( $p, 'medium', array( 'loading' => 'lazy', 'alt' => get_the_title( $p ) ) ) : esc_html( get_the_title( $p ) );
-			echo '<li>' . ( $url ? '<a href="' . esc_url( $url ) . '" rel="noopener" target="_blank">' . $logo . '</a>' : $logo ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core image markup or escaped title.
+			echo '<li class="lof-partners__tile lof-reveal">' . ( $url ? '<a href="' . esc_url( $url ) . '" rel="noopener" target="_blank">' . $logo . '</a>' : $logo ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core image markup or escaped title.
 		}
 		echo '</ul>';
 		$this->close_section();

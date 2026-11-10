@@ -27,7 +27,7 @@
 
 ## Current state (9 Nov 2026, 20:30 EAT)
 
-- Theme **0.63.17** and Core **0.46.4** are on `main` and installed live (0.63.17 installed and verified signed out 9 Nov, see work log). For what is done and what is next, see `docs/HANDOVER.md` section 0.
+- Theme **0.64.0** is on `main` (to install; 0.63.17 is live) and Core **0.46.4** is on `main` and installed live (0.63.17 installed and verified signed out 9 Nov, see work log). For what is done and what is next, see `docs/HANDOVER.md` section 0.
 - Consent for the intake-list stories/photos was confirmed on 9 Nov 2026 and they are now published (0.63.16-0.63.17: Precious, Eunice's sons, programme galleries). Open items: talent-development photos; Paystack USD enablement and USD settlement account (USD test failed) and confirmation of live keys/mode; the owner's answer on KES as default; Francis to re-confirm the six older impact figures; Leadership top photo (options D/E/F); partner website links.
 - **Do not use "Apply latest design"** (it times out on this host). Ship page or content changes as one-off upgrades on `admin_init`. PHP lint is available in the build sandbox (`php -l`).
 
@@ -45,6 +45,8 @@
 6. GitHub Actions PHP lint; EDITING-GUIDE, INSTALL-AND-DEPLOY, SECURITY-AUDIT, QA checklist.
 
 ## Work log
+
+- **10 Nov 2026, 12:30 EAT:** 0.64.0: home redesign (see CHANGELOG): cinematic slider polish, one professional impact-figure design everywhere, balanced story cards on Home/Impact/Stories, compact Give today band on Home, full-colour partner logo tiles, Shop with purpose moved after the slider like Cistern of Hope (one-off `inc/upgrade-0644.php`, option `lof_home_0640_order`; importer updated). php -l not available in the build sandbox: lint on the server.
 
 - **5 Nov 2026, 03:00 EAT:** 0.44.0: crafts shop (see CHANGELOG): WhatsApp chat card, Order on WhatsApp, home Shop with purpose, 8 products seeded by one-off upgrades in `inc/shop-setup.php` (run on first wp-admin load). WhatsApp number +254 715 394 295.
 
