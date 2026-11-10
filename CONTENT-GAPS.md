@@ -4,7 +4,8 @@
 - Paystack: USD enabled on the account plus a USD settlement bank account; confirm live keys and mode
 - Re-confirm the older figures (6,000+ mentored, 4,500+ pads, 3,500+ families fed, 2,500+ school materials, 200 school fees, 30 homes) against "55 people supported since 2024"
 - Website links for partners Suivera and Grace International Foundation
-- Owner choice: Leadership page top photo (options D/E/F); KES or USD as the default donation currency
+- Owner choice: Leadership page top photo (options D/E/F)
+- Done 10 Nov (Core 0.46.5), pending the owner's confirmation: KES is the default donation currency (listed first and preselected; switchable back to USD in Light of Future > Organisation details > Default donation currency)
 - Board-approved Privacy Policy and Terms of Use wording
 - Full text of specific objective (h)
 - Resolved 9 Nov: consent for the pending stories and photos (confirmed by the owner)

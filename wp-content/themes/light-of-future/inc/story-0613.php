@@ -21,15 +21,25 @@ function lof_story_video_player( $content ) {
 	}
 	$video  = get_post_meta( $id, 'lof_story_video', true );
 	$poster = get_post_meta( $id, 'lof_story_video_poster', true );
+	$up   = wp_upload_dir();
+	$slug = get_post_field( 'post_name', $id );
+	$dir  = trailingslashit( $up['basedir'] ) . 'lof-videos/';
+	$url  = trailingslashit( $up['baseurl'] ) . 'lof-videos/';
 	if ( ! $video ) {
-		$up   = wp_upload_dir();
-		$slug = get_post_field( 'post_name', $id );
-		$file = trailingslashit( $up['basedir'] ) . 'lof-videos/story-' . $slug . '.mp4';
-		if ( ! $slug || ! file_exists( $file ) ) {
+		if ( ! $slug ) {
 			return $content;
 		}
-		$video  = trailingslashit( $up['baseurl'] ) . 'lof-videos/story-' . $slug . '.mp4';
-		$poster = trailingslashit( $up['baseurl'] ) . 'lof-videos/story-' . $slug . '-poster.jpg';
+		// 0.66.0: prefer a web-sized sibling (story-{slug}-web.mp4) over the original.
+		if ( file_exists( $dir . 'story-' . $slug . '-web.mp4' ) ) {
+			$video = $url . 'story-' . $slug . '-web.mp4';
+		} elseif ( file_exists( $dir . 'story-' . $slug . '.mp4' ) ) {
+			$video = $url . 'story-' . $slug . '.mp4';
+		} else {
+			return $content;
+		}
+	}
+	if ( ! $poster && $slug && file_exists( $dir . 'story-' . $slug . '-poster.jpg' ) ) {
+		$poster = $url . 'story-' . $slug . '-poster.jpg';
 	}
 	$name   = get_post_meta( $id, 'lof_display_name', true );
 	$label  = $name ? sprintf( /* translators: %s: name */ __( 'Watch %s\'s story', 'light-of-future' ), $name ) : __( 'Watch the story', 'light-of-future' );

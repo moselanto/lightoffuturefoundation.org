@@ -113,7 +113,12 @@ class LOF_Widget_Impact extends LOF_Widget_Base {
 			$this->editor_notice( __( 'No verified impact figures yet. Add them under Light of Future > Impact figures.', 'light-of-future' ) );
 			return;
 		}
-		$this->open_section( $s, 'lof-impact' . ( isset( $s['strip'] ) && 'yes' === $s['strip'] ? ' lof-impact--strip' : '' ) );
+		$is_strip = isset( $s['strip'] ) && 'yes' === $s['strip'];
+		// 0.66.0: no figures strip on the home page (the full Our impact section shows the same figures).
+		if ( $is_strip && lof_home_hide_impact_strip() ) {
+			return;
+		}
+		$this->open_section( $s, 'lof-impact' . ( $is_strip ? ' lof-impact--strip' : '' ) );
 		$this->render_heading( $s, __( 'Our impact in numbers', 'light-of-future' ) );
 		$lof_srcs = array();
 		foreach ( $metrics as $m ) {

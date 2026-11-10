@@ -243,3 +243,15 @@ function lof_programme_card_title( $p ) {
 	);
 	return isset( $short[ $p->post_name ] ) ? $short[ $p->post_name ] : get_the_title( $p );
 }
+
+/**
+ * 0.66.0: hide the figures card under the home slider (slider figures bar and any
+ * "strip" Impact figures widget) on the front page only. The full "Our impact"
+ * section further down already shows the same figures. Inner-page strips stay.
+ * Filter lof_home_hide_impact_strip (default true) brings the card back.
+ *
+ * @return bool
+ */
+function lof_home_hide_impact_strip() {
+	return is_front_page() && (bool) apply_filters( 'lof_home_hide_impact_strip', true );
+}

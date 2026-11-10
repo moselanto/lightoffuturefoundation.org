@@ -1633,3 +1633,9 @@ html[data-theme="dark"] body .lof-market .lof-market__trust--v2 .lof-market__txt
 html body .lof-market .lof-market__trust.lof-market__trust--v2 li > span.lof-market__ico{display:inline-flex!important}
 html body .lof-market .lof-market__trust.lof-market__trust--v2 li > span.lof-market__txt{display:flex!important;flex-direction:column}
 html body .lof-market .lof-market__trust.lof-market__trust--v2 li > span.lof-market__txt > span{display:block!important}
+
+/* 0.66.0 Home: no figures card under the slider (the full "Our impact" section shows the figures). The slider no longer reserves space for the floating card, and an emptied strip wrapper takes no room, so the slider runs straight into Shop with purpose. */
+@media (min-width:761px){html body.home .lof-cine.lof-cine--nofig .lof-cine__ui{padding-bottom:clamp(1.1rem,3vh,1.8rem)!important}html body.home .lof-cine.lof-cine--nofig .lof-cine__inner{padding-bottom:clamp(5.5rem,13vh,8rem)!important}}
+html body.home .lof-figbar{display:none!important}
+html body.home .elementor-widget-lof-impact:not(:has(.lof-section)),html body.home .elementor-section:has(.elementor-widget-lof-impact):not(:has(.lof-section)),html body.home .e-con:has(.elementor-widget-lof-impact):not(:has(.lof-section)){display:none!important}
+html body.home .lof-cine + .lof-figbar,html body.home .lof-market{margin-top:0!important}

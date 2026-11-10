@@ -1,35 +1,28 @@
 # Light of Future Foundation website
 
-WordPress + Elementor website for **Light of Future Foundation** (Nairobi, Kenya), to be developed on the new domain **https://lightoffuturefoundation.org/**.
+WordPress + Elementor site for **Light of Future Foundation** (Nairobi, Kenya) at https://lightoffuturefoundation.org/.
 
-The previous site, https://lightoffuture.org/, is a **read-only content source**. The organisation has no access to it or its developer, so nothing here depends on it for hosting, login or domain management.
-
-## What is in this repo
-
-| Path | What it is |
+| Path | What |
 |---|---|
-| `wp-content/themes/light-of-future/` | The theme (child of Hello Elementor). Presentation only: design tokens, header, footer, styles, Elementor integration. |
-| `wp-content/plugins/light-of-future-core/` | Companion plugin. Programmes, projects, impact stories, leaders, partners, reports, verified impact figures and organisation details. Survives a theme change. |
-| `docs/` | Requirements matrix, legacy content capture, brand notes. |
-| `scripts/build-zips.sh` | Builds clean theme and plugin zips in `dist/`. |
+| `wp-content/themes/light-of-future/` | Child theme of Hello Elementor: presentation only. |
+| `wp-content/plugins/light-of-future-core/` | Core plugin: content types, settings, forms, Paystack donations, structured data, media backup. |
+| `scripts/build-zips.sh` | Builds the theme and plugin zips. |
+| `docs/HANDOVER.md` | **Start here**: current status, rules, code map, release steps, pending items. |
 
-Commits go directly to `main`.
+Not in git (server only): the `light-of-future-media` and `light-of-future-video-*` plugins and `wp-content/uploads/lof-videos/`. Back them up with Light of Future > Media backup.
 
-## Install order
+## Install order (fresh site)
+1. Elementor (free), then WooCommerce.
+2. Upload and activate `light-of-future-core.zip`.
+3. Upload and activate `light-of-future.zip` (Hello Elementor installs automatically).
+4. Appearance > Light of Future setup > Run setup (once, on a fresh site only).
+5. Light of Future > Organisation details: confirm contact details. Paystack keys go in `wp-config.php`.
 
-1. Install and activate **Elementor** (free). Elementor Pro is optional; without it the theme's own header and footer are used.
-2. Upload `light-of-future-core.zip` (Plugins > Add New > Upload) and activate.
-3. Upload `light-of-future.zip` (Appearance > Themes > Add New > Upload). WordPress installs **Hello Elementor** (the parent) automatically. Activate **Light of Future Foundation**.
-4. Go to **Appearance > Light of Future setup** and click **Run setup** (pages, Elementor layouts, menus, home page, starter content). Safe to run again.
-5. Go to **Light of Future > Organisation details** and confirm the contact details.
-6. Later: WooCommerce (crafts shop) and Paystack.
+Updates: upload the zips with "Replace current with uploaded", open the Dashboard once, purge LiteSpeed (details in `docs/HANDOVER.md` section 8).
 
 ## Build
-
 ```bash
 bash scripts/build-zips.sh
 ```
 
-## Read before changing anything
-
-`AGENTS.md`, `ARCHITECTURE-ESSENTIALS.md`, `PRD.md`, `CONTENT-GAPS.md`.
+Commits go directly to `main`. Also read `ARCHITECTURE-ESSENTIALS.md`, `PRD.md`, `CONTENT-GAPS.md`.

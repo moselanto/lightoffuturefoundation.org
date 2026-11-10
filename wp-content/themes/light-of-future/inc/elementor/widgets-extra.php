@@ -402,7 +402,8 @@ class LOF_Widget_Slider extends LOF_Widget_Base {
 		}
 		$total = count( $slides );
 		$secs  = max( 4, min( 15, (int) ( isset( $s['interval'] ) ? $s['interval'] : 7 ) ) );
-		printf( '<section class="lof-cine" data-lof-cine data-interval="%1$d" aria-roledescription="carousel" aria-label="%2$s" style="--lof-cine-ms:%3$dms">', (int) $secs, esc_attr__( 'Light of Future Foundation highlights', 'light-of-future' ), (int) $secs * 1000 );
+		$lof_nofig = lof_home_hide_impact_strip();
+		printf( '<section class="lof-cine%4$s" data-lof-cine data-interval="%1$d" aria-roledescription="carousel" aria-label="%2$s" style="--lof-cine-ms:%3$dms">', (int) $secs, esc_attr__( 'Light of Future Foundation highlights', 'light-of-future' ), (int) $secs * 1000, $lof_nofig ? ' lof-cine--nofig' : '' );
 		echo '<div class="lof-cine__track">';
 		foreach ( $slides as $i => $sl ) {
 			$title = esc_html( (string) $sl['title'] );
@@ -458,7 +459,7 @@ class LOF_Widget_Slider extends LOF_Widget_Base {
 				$figs[] = array_map( 'trim', explode( '|', $s[ 'fig' . $n ], 2 ) );
 			}
 		}
-		if ( $figs ) {
+		if ( $figs && ! $lof_nofig ) {
 			echo '<div class="lof-figbar"><div class="lof-container"><dl class="lof-figbar__grid">';
 			foreach ( $figs as $f ) {
 				printf( '<div><dd>%1$s</dd><dt>%2$s</dt></div>', esc_html( $f[0] ), esc_html( $f[1] ) );
