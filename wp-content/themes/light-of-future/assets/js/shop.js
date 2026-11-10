@@ -17,7 +17,7 @@
 		var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		var store = { get: function (k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} } };
 		var open = function () {
-			panel.hidden = false; teaser.hidden = true; dot.hidden = true; chat.classList.remove('is-tucked');
+			panel.hidden = false; teaser.hidden = true; dot.hidden = true;
 			fab.setAttribute('aria-expanded', 'true'); store.set('lofChatSeen', '1');
 			if (!reduce && !store.get('lofChatTyped')) {
 				bubble.hidden = true; typing.hidden = false;
@@ -25,28 +25,14 @@
 			} else { typing.hidden = true; }
 			setTimeout(function () { var c = panel.querySelector('.lof-chat__chip'); if (c) { c.focus(); } }, 50);
 		};
-		var phone = window.matchMedia ? window.matchMedia('(max-width: 991px)') : null;
-		var tuck = function () {
-			var t = phone && phone.matches && window.scrollY < 160 && panel.hidden && teaser.hidden;
-			chat.classList.toggle('is-tucked', !!t);
-		};
-		tuck();
-		var scrollTimer = null;
-		window.addEventListener('scroll', function () {
-			tuck();
-			if (!panel.hidden || chat.contains(document.activeElement)) { return; }
-			chat.classList.add('is-scrolling');
-			clearTimeout(scrollTimer);
-			scrollTimer = setTimeout(function () { chat.classList.remove('is-scrolling'); }, (phone && phone.matches) ? 1600 : 700);
-		}, { passive: true });
-		window.addEventListener('resize', tuck);
+		/* 0.69.0: the WhatsApp button always stays visible on phones and tablets (no hiding at the top of the page, no slide-off while scrolling). */
 		window.lofChat = { open: function (msg) { if (msg) { text.value = msg; } open(); if (msg) { setTimeout(function () { text.focus(); }, 60); } } };
 		var close = function () { panel.hidden = true; fab.setAttribute('aria-expanded', 'false'); fab.focus(); };
 		typing.hidden = true;
 		fab.addEventListener('click', function (e) { e.preventDefault(); if (panel.hidden) { open(); } else { close(); } });
 		chat.querySelector('.lof-chat__close').addEventListener('click', close);
 		chat.querySelector('.lof-chat__teaser-open').addEventListener('click', open);
-		chat.querySelector('.lof-chat__teaser-close').addEventListener('click', function () { teaser.hidden = true; dot.hidden = true; store.set('lofChatSeen', '1'); tuck(); });
+		chat.querySelector('.lof-chat__teaser-close').addEventListener('click', function () { teaser.hidden = true; dot.hidden = true; store.set('lofChatSeen', '1'); });
 		document.addEventListener('keydown', function (e) { if ('Escape' === e.key && !panel.hidden) { close(); } });
 		chat.querySelectorAll('.lof-chat__chip').forEach(function (chip) {
 			chip.addEventListener('click', function () {
@@ -64,7 +50,7 @@
 		/* 0.63.3: the greeting bubble is shown on phones only (on larger screens it covered page content). */
 		var small = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
 		if ('1' !== chat.getAttribute('data-quiet') && !store.get('lofChatSeen') && small) {
-			setTimeout(function () { if (panel.hidden) { teaser.hidden = false; dot.hidden = false; tuck(); store.set('lofChatSeen', '1'); /* 0.65.1: auto-hide so it never sits over content */ setTimeout(function () { teaser.hidden = true; }, 6000); } }, 4000);
+			setTimeout(function () { if (panel.hidden) { teaser.hidden = false; dot.hidden = false; store.set('lofChatSeen', '1'); /* 0.65.1: auto-hide so it never sits over content */ setTimeout(function () { teaser.hidden = true; dot.hidden = true; }, 6000); } }, 4000);
 		}
 	}
 

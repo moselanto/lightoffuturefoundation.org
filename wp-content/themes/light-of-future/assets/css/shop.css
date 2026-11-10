@@ -11,6 +11,7 @@
    - Donate (.lof-pay2, .lofpay): 0.56.0, 0.58.0-1, 0.63.9, 0.67.0 (body.lof-page-donate)
    - Shop pages / product: 0.51.0, 0.52.x, 0.63.0-4           - Gallery: 0.57.0, 0.58.0, 0.60.x, 0.61.1, 0.68.0 (redesign, after 0.61.1)
    - Footer: 0.62.x, 0.63.5   - Partners: 0.64.0   - About + Leadership: 0.65.0, 0.65.1
+   - 0.69.0: WhatsApp button always visible (after the 0.65.1 block; old tuck/slide-off rules removed in place), Give today re-balance (after 0.67.0 Give), one story arrow (after 0.64.0 stories cards), gallery face-safe crops (after 0.68.0 photo tiles), Mobile design system (last block: type scale, spacing, gutters, z-index order)
    New CSS: add it inside or straight after the latest block of its component, not as a new override layer at the end. */
 :root{--lof-wa:#25D366;--lof-wa-dark:#128C7E;--lof-brown:#5C3D1E;--lof-gold:#F4AF16;--lof-amber:#DC8C13;--lof-cream:#FCF6E1}
 /* ---------- Home: Shop with purpose ---------- */
@@ -210,10 +211,7 @@ body.lof-order-open{overflow:hidden}
 .lof-spot__body .lof-eyebrow{color:#3b2410!important}
 /* 0.46.4: beat the light-mode eyebrow rule (html:not([data-theme=dark]) .lof-eyebrow). */
 html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body .lof-eyebrow{color:#2E1E0E!important}
-/* 0.46.5: on phones the chat button waits until the visitor scrolls, so it
-   never covers hero content (e.g. the Stories impact tiles) on first load. */
-@media (max-width:991px){.lof-chat__fab{transition:transform .3s ease,opacity .3s ease,visibility .3s}.lof-chat.is-tucked .lof-chat__fab{transform:translateY(160%);opacity:0;visibility:hidden;pointer-events:none}}
-@media (prefers-reduced-motion:reduce){.lof-chat__fab{transition:none}}
+/* 0.46.5 "tuck until scroll" rule removed in 0.69.0: the WhatsApp button now always stays visible (see the 0.69.0 WhatsApp block). */
 /* ================= 0.47.0 home slider polish ================= */
 .lof-cine__content{position:relative;padding-left:clamp(0rem,1.6vw,1.4rem)}
 .lof-cine__content::before{content:"";position:absolute;left:0;top:.35rem;bottom:.35rem;border-radius:3px}
@@ -272,10 +270,7 @@ html:not([data-theme="dark"]) .lof-spot__body .lof-eyebrow,html .lof-spot__body 
 .lof-chat__fab::after{animation:none!important}
 .lof-chat{right:16px;bottom:16px}
 @media (max-width:991px){.lof-chat{bottom:calc(88px + env(safe-area-inset-bottom,0px))}.lof-chat__fab-icon{width:24px;height:24px}.lof-chat__fab-label{display:none}}
-/* While the visitor scrolls, the button steps aside so it never sits on text they are reading. */
-.lof-chat__fab{transition:transform .3s ease,opacity .3s ease,visibility .3s}
-.lof-chat.is-scrolling .lof-chat__fab{transform:translateX(140%);opacity:0;visibility:hidden;pointer-events:none}
-@media (prefers-reduced-motion:reduce){.lof-chat.is-scrolling .lof-chat__fab{transform:none}}
+/* 0.49.0 slide-off-while-scrolling rule removed in 0.69.0 (the button always stays visible). */
 /* ================= 0.50.0 ================= */
 /* Impact figures: one row on desktop, refined tiles (home, About, Impact, any page). */
 @media (min-width:1100px){.lof-impact .lof-impact__grid{grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0!important;border:1px solid rgba(252,246,225,.16);border-radius:22px;overflow:hidden;background:rgba(252,246,225,.04)}.lof-impact .lof-impact__item{border:0!important;border-left:1px solid rgba(252,246,225,.14)!important;border-radius:0!important;background:none!important;padding:1.75rem 1rem 1.6rem!important;text-align:center;justify-content:flex-start}.lof-impact .lof-impact__item:first-child{border-left:0!important}.lof-tone-cream .lof-impact__grid,.lof-tone-white .lof-impact__grid,.lof-tone-sand .lof-impact__grid{border-color:var(--lof-line);background:#fff}.lof-tone-cream .lof-impact__item,.lof-tone-white .lof-impact__item,.lof-tone-sand .lof-impact__item{border-left-color:var(--lof-line)!important}}
@@ -642,8 +637,7 @@ a[href^="mailto:"]{overflow-wrap:normal;word-break:keep-all}
 /* ---------- 0.58.3 ---------- */
 /* Stories featured card on phones: photo on top, words below, so the label never sits on the photo. */
 @media (max-width:760px){.lof-spot{display:flex!important;flex-direction:column;min-height:0!important;background:#1C1208}.lof-spot__media{position:relative!important;inset:auto!important;z-index:0!important;aspect-ratio:4/5!important;width:100%}.lof-spot__media img{object-position:50% 18%!important}.lof-spot__media::after{background:linear-gradient(0deg,rgba(28,18,8,1) 0%,rgba(28,18,8,0) 28%)!important}.lof-spot__body{min-height:0!important;padding:.25rem 1.4rem 1.6rem!important;max-width:none}}
-/* WhatsApp button on phones: smaller, tucked into the corner, away while the visitor scrolls and for a moment after. */
-@media (max-width:991px){.lof-chat{right:8px}.lof-chat__fab{width:42px!important;height:42px!important;padding:0!important;justify-content:center;opacity:.92}.lof-chat.is-scrolling .lof-chat__fab{transform:translateX(160%)}}
+/* 0.58.3 small/semi-transparent/slide-off phone button replaced in 0.69.0 (see the 0.69.0 WhatsApp block). */
 /* ================= 0.60.0: balanced inner pages ================= */
 /* Media blocks (Gallery, Talent, Programmes, Stories): centred heading, centred rows, equal tiles. */
 .lofm{max-width:1200px;margin-inline:auto!important}
@@ -789,6 +783,9 @@ html body.lof-page-gallery .lofm-all section.lofm .lofm__grid.lofm__grid.lofm__g
 html body.lof-page-gallery .lofm-all .lofm__item figure{position:relative;height:auto!important;min-height:0!important;margin:0;border:0!important;border-radius:var(--lofg-r)!important;overflow:hidden;background:#2A1B0C!important;box-shadow:0 14px 30px -24px rgba(43,29,14,.75)!important;transition:box-shadow .3s}
 html body.lof-page-gallery .lofm-all .lofm__item .lofm__link,html body.lof-page-gallery .lofm-all .lofm__item .lofm__sens{position:relative;display:block;aspect-ratio:4/3!important;height:auto!important;overflow:hidden;background:#2A1B0C!important}
 html body.lof-page-gallery .lofm-all .lofm__item .lofm__link img{width:100%;height:100%!important;aspect-ratio:auto;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+/* 0.69.0 face-safe framing: photo tiles are weighted to the top third so heads stay in frame (e.g. the builder in the Philister grid at about 800px); phones use a taller 4:5 tile, still the same size for every photo. Mosaic photos get the same framing. */
+html body.lof-page-gallery .lofm-all .lofm__item .lofm__link img,html body.lof-page-gallery .lofm-all .lofm__item .lofm__sens img,html body.lof-page-gallery .lof-mosaic__item img{object-position:50% 28%!important}
+@media (max-width:640px){html body.lof-page-gallery .lofm-all .lofm__item .lofm__link,html body.lof-page-gallery .lofm-all .lofm__item .lofm__sens{aspect-ratio:4/5!important}}
 html body.lof-page-gallery .lofm-all .lofm__item .lofm__link::after{content:"";position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(252,246,225,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235C3D1E' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7'/%3E%3C/svg%3E") center/16px no-repeat;opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s;pointer-events:none}
 html body.lof-page-gallery .lofm-all .lofm__item .lofm__link:focus{outline:none}
 html body.lof-page-gallery .lofm-all .lofm__item .lofm__link:focus-visible{outline:3px solid #F4AF16!important;outline-offset:-3px}
@@ -1225,6 +1222,10 @@ html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .
 html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__link,html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:first-child .lof-card__link{display:inline-flex!important;align-items:center;gap:.45rem;align-self:flex-start!important;margin-top:auto!important;padding:.85rem 0 0!important;background:none!important;border:0!important;border-radius:0!important;color:#5C3D1E!important;font-weight:800;font-size:.92rem;text-decoration:none}
 html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__arrow{display:inline-block;color:#DC8C13;transition:transform .25s}
 html body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story:hover .lof-card__arrow{transform:translateX(4px)}
+/* 0.69.0 "Read the story": exactly one arrow. The markup already carries .lof-card__arrow, so the older CSS arrow (sections.css .lof-card__link::after " \2192") is switched off wherever the span exists (Home, Stories, Impact, any page; single-level :has). */
+html body .lof-card__link:has(> .lof-card__arrow)::after{content:none!important;display:none!important}
+html body .lof-card--story .lof-card__link .lof-card__arrow{display:inline-block;color:#DC8C13}
+html[data-theme="dark"] body .lof-card--story .lof-card__link .lof-card__arrow{color:#FBD62B}
 html[data-theme="dark"] body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story,html[data-theme="dark"] body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__body{background:var(--lof-surface)!important}
 html[data-theme="dark"] body .lof-section.lof-stories.lof-stories .lof-grid--3 > .lof-card--story .lof-card__link{color:#FBD62B!important}
 /* Featured story on /stories/: balanced split card */
@@ -1307,6 +1308,24 @@ html[data-theme="dark"] body .lof-give--compact .lof-eyebrow{color:#F4AF16!impor
 @media (min-width:641px) and (max-width:991px){html body .lof-give--compact .lof-give__band{grid-template-columns:auto minmax(0,1fr)}html body .lof-give--compact .lof-give__body{grid-column:1/-1}}
 @media (max-width:640px){html body .lof-give--compact .lof-give__band{grid-template-columns:1fr;padding:1.1rem;gap:1rem;border-radius:20px}html body .lof-give--compact .lof-givepanel{grid-template-columns:1fr;padding:.9rem!important}html body .lof-give--compact .lof-give__amounts{grid-template-columns:repeat(3,minmax(0,1fr))!important}html body .lof-give--compact .lof-givepanel .lof-chip strong{font-size:.86rem!important}html body .lof-give--compact .lof-givepanel__submit{width:100%}}
 @media (prefers-reduced-motion:reduce){html body .lof-give--compact .lof-givepanel .lof-chip{transition:none}}
+/* --- 0.69.0 Give today (Home) re-balance: photo + text in a narrower left column, a wider form column on the right. Amount tiles in a flexible grid with a minimum width so "KES 5,000" and "Other amount" never overflow; the fund select is full width; step labels on one line; full-width button. Same form, fields and action. --- */
+html body .lof-give--compact .lof-give__band{grid-template-columns:minmax(0,1fr) minmax(0,1.45fr)!important;grid-template-areas:"thumb body" "lead body";grid-template-rows:auto 1fr;align-items:start;column-gap:clamp(1.5rem,3.2vw,3rem);row-gap:1rem;max-width:1180px}
+html body .lof-give--compact .lof-give__thumb{grid-area:thumb;align-self:end}
+html body .lof-give--compact .lof-give__lead{grid-area:lead;min-width:0}
+html body .lof-give--compact .lof-give__body{grid-area:body;align-self:center;min-width:0}
+html body .lof-give--compact .lof-section__intro{max-width:44ch}
+html body .lof-give--compact .lof-givepanel{grid-template-columns:minmax(0,1fr)!important;gap:1rem!important}
+html body .lof-give--compact .lof-givepanel__step{min-width:0;width:100%}
+html body .lof-give--compact .lof-givepanel__step legend{white-space:nowrap;line-height:1.2}
+html body .lof-give--compact .lof-give__amounts{grid-template-columns:repeat(auto-fit,minmax(128px,1fr))!important;gap:.55rem!important}
+html body .lof-give--compact .lof-givepanel .lof-chip{min-width:0;padding:.45rem .75rem!important;overflow:hidden}
+html body .lof-give--compact .lof-givepanel .lof-chip strong{white-space:nowrap}
+html body .lof-give--compact .lof-givepanel select{display:block;width:100%!important;max-width:none;min-height:50px;padding-inline:.9rem 2.4rem;font-size:1rem!important;text-overflow:ellipsis}
+html body .lof-give--compact .lof-givepanel__other input{font-size:16px}
+html body .lof-give--compact .lof-givepanel__submit{width:100%;justify-self:stretch;min-height:52px}
+@media (min-width:641px) and (max-width:991px){html body .lof-give--compact .lof-give__band{grid-template-columns:auto minmax(0,1fr)!important;grid-template-areas:"thumb lead" "body body";grid-template-rows:auto auto;align-items:center}html body .lof-give--compact .lof-give__thumb{align-self:center}html body .lof-give--compact .lof-give__body{grid-column:auto}html body .lof-give--compact .lof-give__amounts{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))!important}}
+@media (max-width:640px){html body .lof-give--compact .lof-give__band{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"lead" "body";grid-template-rows:auto auto;padding:1.25rem!important;row-gap:1.1rem}html body .lof-give--compact .lof-give__thumb{display:none}html body .lof-give--compact .lof-give__amounts{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:.5rem!important}html body .lof-give--compact .lof-givepanel .lof-chip{padding:.4rem .3rem!important;min-height:48px!important}html body .lof-give--compact .lof-givepanel .lof-chip--other{grid-column:1/-1}html body .lof-give--compact .lof-givepanel__step legend{white-space:normal}}
+@media (max-width:359px){html body .lof-give--compact .lof-give__amounts{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 /* --- 0.64.0 partners: full-colour logos on balanced white tiles --- */
 html body .lof-section.lof-partners-sec{padding-block:clamp(3rem,5vw,4.25rem)!important}
 html body .lof-partners-sec .lof-partners.lof-partners--tiles{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(220px,280px));justify-content:center;gap:1.25rem!important;max-width:1180px;margin:0 auto!important;padding:0!important;list-style:none}
@@ -1433,6 +1452,20 @@ html body.lof-page-leadership .lof-tone-white .lof-grid--3 > .lof-card--pillar{h
 @media (prefers-reduced-motion:reduce){html body.lof-page-leadership .lof-leaders .lof-person,html body.lof-page-about-us .lof-card--pillar{transition:none!important}html body.lof-page-leadership .lof-leaders .lof-person:hover,html body.lof-page-about-us .lof-card--pillar:hover{transform:none!important}}
 /* 0.65.1 Phone polish: shorter leader portraits, WhatsApp teaser kept clear of content */
 @media (max-width:640px){html body.lof-page-leadership .lof-leaders--board .lof-person__photo,html body.lof-page-leadership .lof-leaders--team .lof-person__photo{aspect-ratio:1/1!important;max-height:300px!important}html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:1fr!important}html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo{aspect-ratio:4/3!important;max-height:320px!important}html body .lof-chat__teaser{max-width:min(240px,calc(100vw - 96px))!important;font-size:.86rem!important}}
+/* 0.69.0 WhatsApp button: always visible on phones and tablets (owner: it loaded, then disappeared). No tuck at the top of the page, no slide-off while scrolling, no opacity flicker.
+   Fixed on the right, 54px tap target, above the phone bottom bar (64px + safe area) with a 14px gap; 20px from the edges on tablets. Teaser (shows once, auto-hides after 6 s) sits above the button. Hidden while the mobile menu drawer is open. */
+html body .lof-chat{right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:950}
+html body .lof-chat .lof-chat__fab{width:54px!important;height:54px!important;padding:0!important;justify-content:center;border-radius:50%!important;opacity:1!important;visibility:visible!important;transform:none;pointer-events:auto;box-shadow:0 10px 24px -10px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.12)!important;transition:background-color .2s,box-shadow .2s}
+html body .lof-chat .lof-chat__fab:hover{transform:none}
+html body .lof-chat .lof-chat__fab:focus{outline:none}
+html body .lof-chat .lof-chat__fab:focus-visible{outline:3px solid #F4AF16!important;outline-offset:3px}
+html body .lof-chat .lof-chat__fab-icon{width:28px;height:28px}
+@media (max-width:991px){html body .lof-chat{right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px))}html body .lof-chat .lof-chat__fab-icon{width:26px;height:26px}}
+@media (max-width:760px){html body .lof-chat{right:max(14px,env(safe-area-inset-right,0px));bottom:calc(64px + 14px + env(safe-area-inset-bottom,0px))}}
+@media (max-width:640px){html body .lof-chat .lof-chat__panel{bottom:66px;max-height:min(560px,calc(100svh - 64px - 160px - env(safe-area-inset-bottom,0px)))}html body .lof-chat .lof-chat__teaser{bottom:66px}}
+html body:has(.lof-nav.is-open) .lof-chat,html body.lof-order-open .lof-chat{visibility:hidden}
+html[data-theme="dark"] body .lof-chat .lof-chat__fab{box-shadow:0 10px 24px -10px rgba(0,0,0,.8),0 0 0 1px rgba(252,246,225,.12)!important}
+@media (prefers-reduced-motion:reduce){html body .lof-chat .lof-chat__fab{transition:none}}
 /* 0.65.2 Shop trust points: three balanced cards with icons (Handmade in Kenya, Shopping that gives back, Easy WhatsApp ordering); Visit the shop label always visible */
 html body .lof-market .lof-market__trust.lof-market__trust--v2{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.75rem,1.6vw,1.25rem);margin:clamp(1.75rem,3.4vw,2.5rem) 0 0!important;padding:0!important;border:0!important;list-style:none;background:none!important}
 html body .lof-market .lof-market__trust--v2 li{display:flex!important;align-items:flex-start;gap:.9rem;padding:1.15rem 1.25rem!important;margin:0!important;background:#fff!important;border:1px solid rgba(92,61,30,.10)!important;border-radius:18px!important;box-shadow:0 14px 32px -28px rgba(43,29,14,.55)!important;text-align:left;transition:transform .25s ease,box-shadow .25s ease}
@@ -1457,3 +1490,109 @@ html[data-theme="dark"] body .lof-market .lof-market__trust--v2 .lof-market__txt
 html body.home .lof-figbar{display:none!important}
 html body.home .elementor-widget-lof-impact:not(:has(.lof-section)),html body.home .elementor-section:has(.elementor-widget-lof-impact):not(:has(.lof-section)),html body.home .e-con:has(.elementor-widget-lof-impact):not(:has(.lof-section)){display:none!important}
 html body.home .lof-cine + .lof-figbar,html body.home .lof-market{margin-top:0!important}
+/* ===================== 0.69.0 Mobile design system (phones <=640px, reference 390px, also 360/414; portrait tablets 641-991px). Desktop (>=992px) is untouched.
+   Type: body 1rem (17px root below 900px), line-height 1.6; section titles clamp(1.6rem,6.6vw,2.05rem); page-hero titles clamp(1.85rem,8vw,2.3rem); card titles 1.12-1.2rem; balanced wrapping.
+   Spacing: section padding 3.25rem (~55px) on phones, 3.75rem on tablets; 20px side gutters; 44-48px tap targets; 16px form text (no iOS zoom).
+   Layers (z-index): sections 0-20 < header 900 (mobile menu drawer lives inside it) < bottom bar 945 < WhatsApp button 950 < order modal 10000 < photo lightbox 99999. Layout/presentation only: no wording, images or form names changed. ===================== */
+@media (max-width:991px){
+:root{--lof-section:3.75rem;--lof-gap:1.25rem}
+html{scroll-padding-top:calc(72px + 16px)}
+html body .lof-section[id],html body [id^="lof-prog-"],html body .lof-card--programme[id]{scroll-margin-top:calc(72px + 16px)}
+html body main,html body .lof-main{overflow-x:clip}
+html body p,html body li,html body dd,html body td,html body th,html body blockquote,html body figcaption{overflow-wrap:break-word}
+html body iframe,html body video,html body embed,html body object{max-width:100%}
+html body .lof-prose table,html body .page-content table,html body .lof-single__body table,html body .woocommerce-Tabs-panel table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+html body .lof-prose pre,html body .lof-single__body pre{white-space:pre-wrap;overflow-wrap:anywhere}
+html body .lof-section__title,html body .lof-hero__title,html body .lof-card__title,html body .lof-spot__title,html body h1,html body h2{text-wrap:balance}
+html body .lof-section__intro,html body .lof-prose p,html body .lof-card p{text-wrap:pretty}
+/* Sticky side columns become normal flow (nothing sticks over content on touch screens). */
+html body .lof-single .lof-single__aside,html body .lof-single__aside,html body .lof-pay2__info,html body .lof-feature--story .lof-feature__media,html body.single-product .woocommerce-product-gallery{position:static!important;top:auto!important}
+/* Forms: 16px text (prevents iOS zoom), comfortable height. */
+html body input[type="text"],html body input[type="email"],html body input[type="tel"],html body input[type="number"],html body input[type="search"],html body input[type="url"],html body input[type="password"],html body input[type="date"],html body select,html body textarea{font-size:16px!important;min-height:48px}
+html body textarea{min-height:120px}
+/* Mobile menu drawer: large items, clear Donate, scrolls on its own, bottom bar never covers the last item. */
+html body .lof-nav{padding:1.25rem 20px calc(2rem + env(safe-area-inset-bottom,0px));overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+html body .lof-nav .lof-menu > li > a{min-height:52px;align-items:center;font-size:1.06rem!important;font-weight:700}
+html body .lof-nav .lof-menu .sub-menu a{min-height:46px;align-items:center}
+html body .lof-nav .lof-nav__cta{display:flex;width:100%;min-height:52px;margin-top:1rem;font-size:1rem}
+html body .lof-nav-toggle,html body .lof-theme-toggle{min-width:44px;min-height:44px}
+}
+@media (min-width:641px) and (max-width:991px){
+html body .lof-container{width:min(100% - 48px,var(--lof-container))}
+html body .lof-hero.lof-hero--page.has-bg{min-height:300px}
+}
+@media (max-width:760px){
+/* The bottom bar is 64px + safe area: the drawer and the footer end clear of it and of the WhatsApp button. */
+html body .lof-nav{padding-bottom:calc(64px + 2rem + env(safe-area-inset-bottom,0px))}
+html body .lof-footer{padding-bottom:56px}
+}
+@media (max-width:640px){
+:root{--lof-section:3.25rem;--lof-gap:1rem}
+html body .lof-container{width:min(100% - 40px,var(--lof-container))}
+html body{font-size:1rem}
+html body .lof-prose p,html body .lof-prose li,html body .lof-section__intro,html body .lof-card p,html body .lof-person__bio,html body .lof-faq__answer,html body .lof-feature__body p,html body .lof-intro__panel p,html body .page-content{line-height:1.6!important}
+html body .lof-section__intro{font-size:1.04rem!important}
+html body .lof-section__head{margin-bottom:1.5rem!important}
+html body .lof-section__title{font-size:clamp(1.6rem,6.6vw,2.05rem)!important;line-height:1.15!important}
+html body .lof-card__title,html body .lof-card--pillar .lof-card__title,html body .lof-person__name{font-size:clamp(1.12rem,4.8vw,1.2rem)!important}
+html body .lof-eyebrow{letter-spacing:.1em}
+/* Header + top bar */
+html body .lof-topbar__contacts{flex-wrap:wrap;justify-content:center;gap:.25rem 1rem}
+html body .lof-topbar__contacts a{display:inline-flex;align-items:center;min-height:36px}
+html body .lof-header__inner{min-height:64px;gap:.5rem}
+html body .lof-logo img,html body .lof-header__brand .custom-logo{height:42px}
+/* Page heroes: compact, readable, buttons stacked. */
+html body .lof-hero.lof-hero--page{padding-block:2.5rem 2.25rem!important}
+html body .lof-hero.lof-hero--page.has-bg{min-height:0!important;align-items:flex-end}
+html body .lof-hero.lof-hero--page .lof-hero__title,html body .lof-hero.lof-hero--page.has-bg .lof-hero__title{font-size:clamp(1.85rem,8vw,2.3rem)!important;line-height:1.12!important;margin:.6rem 0 .6rem!important}
+html body .lof-hero.lof-hero--page .lof-hero__text,html body .lof-hero.lof-hero--page.has-bg .lof-hero__text{font-size:1.02rem!important;line-height:1.55!important}
+html body .lof-hero.lof-hero--page.has-bg::before{background:linear-gradient(180deg,rgba(28,18,8,.45) 0%,rgba(28,18,8,.82) 100%)!important}
+html body .lof-hero .lof-btn-row .lof-btn,html body .lof-cine .lof-btn-row .lof-btn,html body .lof-shopx__actions .lof-btn,html body .lof-shophero__actions .lof-btn{flex:1 1 100%;width:100%;justify-content:center}
+html body .lof-crumbs{gap:.35rem .5rem}
+html body .lof-crumbs a{display:inline-flex;align-items:center;min-height:32px}
+/* Home slider: title size held, buttons full width, controls kept below the text. */
+html body .lof-cine__title{font-size:clamp(1.55rem,7vw,1.95rem)!important;text-wrap:balance}
+html body .lof-cine .lof-btn-row{gap:.6rem;margin-top:1.1rem}
+html body .lof-cine__btn{width:44px!important;height:44px!important}
+/* Cards and grids: one column, equal heights, consistent face-safe images. */
+html body .lof-grid{gap:1rem!important}
+html body .lof-card{height:100%}
+html body .lof-card__media img{object-position:50% 28%}
+html body .lof-card--programme .lof-card__media,html body .lof-card--project .lof-card__media{aspect-ratio:16/10;overflow:hidden}
+html body .lof-card--programme .lof-card__media img,html body .lof-card--project .lof-card__media img{width:100%;height:100%;object-fit:cover}
+html body .lof-card__link{min-height:44px}
+html body .lof-feature__media img,html body .lof-who__photo img,html body .lof-single__image img{max-height:62svh;width:100%;object-fit:cover;object-position:50% 25%}
+/* Buttons: full width in forms and button rows. */
+html body .lof-btn{min-height:48px}
+html body .lof-formsec__form button[type="submit"],html body .lof-formsec__form input[type="submit"],html body .lof-pay2__form button[type="submit"],html body .wpcf7 input[type="submit"],html body .lof-order__submit{width:100%;min-height:52px}
+/* FAQ: big tap rows. */
+html body .lof-faq__item summary{min-height:52px;padding-block:.9rem!important;font-size:1.02rem!important}
+/* Contact rows and lists: readable, no overflow. */
+html body .lof-contact__list dd,html body .lof-contact__list dd a,html body .lof-formsec__details li a{overflow-wrap:anywhere}
+html body .lof-contact__list dd a,html body .lof-formsec__details li a{display:inline-flex;align-items:center;min-height:44px}
+html body .lof-contact__map iframe{width:100%;height:280px}
+/* Shop: products 2-up (0.63.0 rule), order buttons at least 44px. */
+html body .lof-shop63 ul.products li.product .button,html body .lof-shop63 ul.products li.product .lof-btn-order,html body .lof-market__wa,html body .lof-market__view{min-height:44px}
+html body.single-product .lof-wa-order__btn{display:flex;width:100%;justify-content:center;min-height:52px}
+/* WhatsApp order modal: bottom sheet that scrolls inside and clears the safe area. */
+html body .lof-order__dialog{max-height:92svh;overflow-y:auto;overscroll-behavior:contain;padding-bottom:calc(1rem + env(safe-area-inset-bottom,0px))}
+html body .lof-order__close{min-width:44px;min-height:44px}
+/* Footer: stacked sections, readable contact rows, 44px social icons and links. */
+html body .lof-footer__links a{display:inline-flex;align-items:center;min-height:44px}
+html body .lof-footer__social{gap:.75rem}
+html body .lof-footer__social a{width:44px;height:44px}
+html body .lof-footer__tile{padding-block:.85rem}
+html body .lof-footer__tile strong{font-size:.98rem}
+html body .lof-footer__legal{flex-wrap:wrap;gap:.25rem 1rem}
+html body .lof-footer__legal a{display:inline-flex;align-items:center;min-height:44px}
+html body .lof-footer__bottom,html body .lof-footer__base{text-align:center;justify-content:center}
+/* Bottom bar labels stay readable. */
+html body .lof-tabbar__label{white-space:nowrap}
+}
+@media (max-width:359px){
+html body .lof-container{width:min(100% - 32px,var(--lof-container))}
+html body .lof-section__title{font-size:1.5rem!important}
+html body .lof-hero.lof-hero--page .lof-hero__title,html body .lof-hero.lof-hero--page.has-bg .lof-hero__title{font-size:1.75rem!important}
+}
+html[data-theme="dark"] body .lof-hero.lof-hero--page.has-bg::before{background:linear-gradient(180deg,rgba(10,7,3,.5) 0%,rgba(10,7,3,.86) 100%)}
+@media (prefers-reduced-motion:reduce){html body .lof-nav{transition:none!important}}
