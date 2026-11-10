@@ -1,0 +1,64 @@
+<?php
+/**
+ * Community Development agriculture videos on the public site (0.70.2, loaded front end since 0.70.3).
+ * Puts the two agriculture videos first in the goat video row (#lofm-goats .lofm__videos).
+ * URLs come from option lof_agri_video_urls (set by inc/upgrade-0700.php).
+ *
+ * @package LightOfFuture
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Agriculture video figures, in the media plugin's video markup.
+ *
+ * @return string
+ */
+function lof_0702_agri_figures() {
+	$urls = get_option( 'lof_agri_video_urls' );
+	if ( ! is_array( $urls ) || count( $urls ) < 2 ) {
+		return '';
+	}
+	$img   = get_stylesheet_directory_uri() . '/assets/img/agri/';
+	$items = array(
+		array( $urls[0], $img . 'programme-agriculture-1-poster.jpg', __( 'Our banana project.', 'light-of-future' ), '360/640' ),
+		array( $urls[1], $img . 'programme-agriculture-2-poster.jpg', __( 'In the field with our agriculture projects.', 'light-of-future' ), '360/648' ),
+	);
+	$html = '';
+	foreach ( $items as $it ) {
+		$html .= sprintf(
+			'<figure class="lofm__video is-portrait lof-agri-video"><div class="lofm__frame" style="aspect-ratio:%4$s"><video controls playsinline preload="none" poster="%2$s"><source src="%1$s" type="video/mp4"></video></div><figcaption>%3$s</figcaption></figure>',
+			esc_url( $it[0] ),
+			esc_url( $it[1] ),
+			esc_html( $it[2] ),
+			esc_attr( $it[3] )
+		);
+	}
+	return $html;
+}
+
+/**
+ * Put the agriculture videos first in the goat video row on Community Development.
+ * If that row is not in the output, they go at the end of the content instead.
+ *
+ * @param string $content Rendered content.
+ * @return string
+ */
+function lof_0702_agri_in_goat_row( $content ) {
+	if ( is_admin() || ! is_singular( 'lof_programme' ) || 'community-development' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
+		return $content;
+	}
+	if ( false !== strpos( $content, 'lof-agri-video' ) ) {
+		return $content;
+	}
+	$figs = lof_0702_agri_figures();
+	if ( '' === $figs ) {
+		return $content;
+	}
+	$out = preg_replace( '#(id="lofm-goats"[^>]*>\s*<div class="lofm__videos">)#', '$1' . str_replace( '$', '\$', $figs ), $content, 1, $count );
+	if ( $count && is_string( $out ) ) {
+		return $out;
+	}
+	return $content . '<section class="lofm"><div class="lofm__videos">' . $figs . '</div></section>';
+}
+add_filter( 'the_content', 'lof_0702_agri_in_goat_row', 999 );

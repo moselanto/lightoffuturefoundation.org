@@ -1,6 +1,21 @@
 # Changelog
 
 
+## Theme 0.70.3 - 10 Nov 2026
+- Fix: the 0.70.2 front-end filter lived in `inc/upgrade-0700.php`, which only loads in wp-admin, so the agriculture videos did not show. The filter and figure markup moved to `inc/agri-0702.php`, loaded on every request; filter priority raised to 999 so it runs after the media plugin builds the goat row.
+
+## Theme 0.70.2 - 10 Nov 2026
+- Community Development (owner): the two agriculture videos now sit in the same video row as the goat videos (first in `#lofm-goats .lofm__videos`, media-plugin markup and styling) instead of a separate block under the agriculture paragraph. One-off `lof_upgrade_0702_agri_move` removes the 0.70.0 block from the content and stores the URLs in option `lof_agri_video_urls` (guard `lof_agri_move_0702`); a `the_content` filter (priority 99) inserts them, falling back to the end of the content if the goat row is missing. Media plugin untouched.
+
+## Theme 0.70.1 - 10 Nov 2026
+- Agriculture video posters: 0.70.0 built the poster URLs from the parent theme (hello-elementor) so the players showed black until played. `inc/upgrade-0700.php` now uses the child theme URL, and a one-off fix (guard `lof_agri_posters_0701`) corrects the URLs already saved in the Community Development programme.
+
+## Theme 0.70.0 - 10 Nov 2026
+- **Official phone number** (owner): one-off admin upgrade `inc/upgrade-0700.php` sets the Core setting `phone` to +254 716 385 485 (header, footer, Contact, FAQ). WhatsApp number setting not changed (still +254 715 394 295). Guard option `lof_phone_0700`.
+- **Partners: names under logos** (owner): the LOF Partners widget prints the partner name below each logo (Suivera first, Grace International Foundation second, by menu order).
+- **Community Development: agriculture videos** (owner, from the foundation's Drive folder): two videos re-encoded to 360px wide (7.8 MB and 9.5 MB), uploaded via Media as `programme-agriculture-1-web.mp4` and `programme-agriculture-2-web.mp4`; the upgrade inserts them under the bananas/maize/groundnuts paragraph, two across on desktop, stacked on phones, posters in `assets/img/agri/`. Guard option `lof_agri_videos_0700`. Originals are in the foundation's Google Drive.
+- CSS block 0.70.0 appended to shop.css and shop.min.css.
+
 ## Theme 0.69.2 - 10 Nov 2026
 - Gallery "Levelling the floor": on tablet and desktop (4:3 tiles, caption below) the thumbnail is framed at 50% 58% so the worker's head is no longer cut off; phones keep the 0.69.1 framing.
 

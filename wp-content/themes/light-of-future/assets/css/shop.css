@@ -1607,3 +1607,12 @@ html body.lof-page-gallery .lofm-all .lofm__item .lofm__link img[src*="philister
 
 /* 0.69.2 "Levelling the floor": desktop/tablet tiles are 4:3 with the caption below, so frame the middle (head and worker both visible); phones keep the 0.69.1 bottom framing for the taller 4:5 tiles */
 @media (min-width:641px){html body.lof-page-gallery .lofm-all .lofm__item .lofm__link img[src*="philister-floor2"],html body .lofm__item img[src*="philister-floor2"]{object-position:50% 58%!important}}
+
+/* 0.70.0 partner names under logos; Community Development agriculture videos */
+html body .lof-partners-sec .lof-partners__tile,html body .lof-partners-sec .lof-partners__tile a{flex-direction:column;gap:.7rem;text-align:center}
+html body .lof-partners-sec .lof-partners__name{display:block;font-weight:600;font-size:.98rem;line-height:1.3;color:var(--lof-earth,#5a3b1c)}
+.lof-agri-videos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0 2rem}
+.lof-agri-video{margin:0;background:#fff;border:1px solid var(--lof-line,#eadfce);border-radius:16px;overflow:hidden}
+.lof-agri-video video{display:block;width:100%;aspect-ratio:9/16;max-height:560px;object-fit:cover;background:#000}
+.lof-agri-video figcaption{padding:.65rem .9rem;font-size:.92rem;color:var(--lof-earth,#5a3b1c)}
+@media (max-width:640px){html body .lof-partners-sec .lof-partners__name{font-size:.85rem}.lof-agri-videos{grid-template-columns:1fr;gap:.85rem}.lof-agri-video video{max-height:none}}
