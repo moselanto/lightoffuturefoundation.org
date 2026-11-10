@@ -64,7 +64,7 @@
 		/* 0.63.3: the greeting bubble is shown on phones only (on larger screens it covered page content). */
 		var small = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
 		if ('1' !== chat.getAttribute('data-quiet') && !store.get('lofChatSeen') && small) {
-			setTimeout(function () { if (panel.hidden) { teaser.hidden = false; dot.hidden = false; tuck(); } }, 4000);
+			setTimeout(function () { if (panel.hidden) { teaser.hidden = false; dot.hidden = false; tuck(); store.set('lofChatSeen', '1'); /* 0.65.1: auto-hide so it never sits over content */ setTimeout(function () { teaser.hidden = true; }, 6000); } }, 4000);
 		}
 	}
 

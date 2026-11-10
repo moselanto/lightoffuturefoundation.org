@@ -1,5 +1,12 @@
 # Changelog
 
+
+## 0.65.1 - 10 Nov 2026
+- Phone polish after a desktop + 390px review of Home, About Us and Leadership.
+- WhatsApp greeting teaser (phones only) now hides itself 6 seconds after it appears and is marked seen for the session, so it no longer sits over content such as Leadership portraits. The chat icon stays.
+- Leadership at 640px and below: board and programme-lead portraits are square (max 300px) instead of 4:5, and the founder card stacks with a 4:3 photo (max 320px), so names and roles appear without a long scroll.
+- Teaser width capped on phones. CSS appended as block `0.65.1` at the end of shop.css / shop.min.css; JS change in assets/js/shop.js.
+
 ## Theme 0.65.0 - 2026-11-10
 - **About Us: no sticky chip bar.** The "On this page" row of pill chips (section titles such as "Restoring dignity, creating opportunity" ... "Registration and contacts") was built by `assets/js/shop.js` and styled `position: sticky` (`.lof-jump` in sections.css / shop.css), so it stuck under the header and covered the figures band. It is no longer built; any cached copy is hidden on About and Leadership. The objectives heading and founder photo can no longer stick either.
 - **Leadership: no sticky "Jump to" bar.** `initLeaderTabs()` in `assets/js/main.js` inserted a sticky "Jump to: Our founder / Board members / Programme leads / How we are run" bar that appeared to jump while scrolling. Removed; leader cards are still shown at once.

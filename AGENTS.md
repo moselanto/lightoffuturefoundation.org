@@ -206,3 +206,4 @@
 - 2026-11-09: 0.63.16/0.63.17 cleaned programme gallery photos (theme assets/lofm-fix copied over the media plugin photos), Precious approved photos only, Meshack and Silvester on Eunice's story. Do not reinstall the media plugin from the repo (no photos in git).
 - 2026-11-10: 0.64.0 home redesign (slider, figures, story cards, compact Give, partner tiles, shop after slider).
 - 2026-11-10: 0.65.0 About Us and Leadership redesign; removed the sticky chip bars (About "On this page" from shop.js, Leadership "Jump to" from main.js). CSS block `0.65.0 About + Leadership` at the end of shop.css. No content or Elementor data changed.
+- 2026-11-10: 0.65.1 phone polish: WhatsApp teaser auto-hides after 6s (was covering Leadership portraits at 390px), shorter leader portraits on phones. Reviewed Home/About/Leadership at desktop and 390px; no other overlaps found.

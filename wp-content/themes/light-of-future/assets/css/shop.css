@@ -1600,3 +1600,11 @@ html body.lof-page-leadership .lof-leaders--board .lof-grid > .lof-person,html b
 }
 @media (max-width:991px) and (min-width:641px){html body.lof-page-about-us .lof-intro .lof-intro__band{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media (prefers-reduced-motion:reduce){html body.lof-page-leadership .lof-leaders .lof-person,html body.lof-page-about-us .lof-card--pillar{transition:none!important}html body.lof-page-leadership .lof-leaders .lof-person:hover,html body.lof-page-about-us .lof-card--pillar:hover{transform:none!important}}
+
+/* 0.65.1 Phone polish: shorter leader portraits, WhatsApp teaser kept clear of content */
+@media (max-width:640px){
+html body.lof-page-leadership .lof-leaders--board .lof-person__photo,html body.lof-page-leadership .lof-leaders--team .lof-person__photo{aspect-ratio:1/1!important;max-height:300px!important}
+html body.lof-page-leadership .lof-leaders--executive .lof-person--row{grid-template-columns:1fr!important}
+html body.lof-page-leadership .lof-leaders--executive .lof-person--row .lof-person__photo{aspect-ratio:4/3!important;max-height:320px!important}
+html body .lof-chat__teaser{max-width:min(240px,calc(100vw - 96px))!important;font-size:.86rem!important}
+}
