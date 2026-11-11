@@ -1,6 +1,9 @@
 # Changelog
 
 
+## Theme 0.70.6 - 11 Nov 2026
+- Community Empowerment (owner): two new photos of Rosemary at her fruit and vegetable stall (business empowerment start-ups), shown after Margaret's media in the media plugin's photo grid style. Uploaded via Media as `programme-empowerment-rosemary-1.webp` / `-2.webp`; one-off `lof_upgrade_0706_empower_photos` stores the IDs in option `lof_empower_photo_ids`; filter `lof_0706_empower_photos` in `inc/agri-0702.php` inserts them. Captions reuse the approved Rosemary stall wording.
+
 ## Theme 0.70.5 - 10 Nov 2026
 - Gallery (owner): the two agriculture videos also show on /gallery/, first in the "Community enterprise: the goat feedlot vision" section (`#lofm-goats .lofm__videos`), same card style as the goat videos. `inc/agri-0702.php` filter now runs on the Gallery page too; the regex allows the section heading before the video row; on the Gallery it never appends elsewhere if the section is missing. Media plugin untouched.
 

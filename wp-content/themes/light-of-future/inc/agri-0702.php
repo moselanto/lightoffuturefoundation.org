@@ -71,3 +71,40 @@ function lof_0702_agri_in_goat_row( $content ) {
 	return $content . '<section class="lofm"><div class="lofm__videos">' . $figs . '</div></section>';
 }
 add_filter( 'the_content', 'lof_0702_agri_in_goat_row', 999 );
+
+/**
+ * 0.70.6: Rosemary's stall photos after Margaret's media on Community Empowerment (business
+ * empowerment start-ups), in the media plugin's photo grid style. IDs from option lof_empower_photo_ids.
+ *
+ * @param string $content Rendered content.
+ * @return string
+ */
+function lof_0706_empower_photos( $content ) {
+	if ( is_admin() || ! is_singular( 'lof_programme' ) || 'community-empowerment' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
+		return $content;
+	}
+	if ( false !== strpos( $content, 'lofm-rosemary-stall' ) ) {
+		return $content;
+	}
+	$ids = get_option( 'lof_empower_photo_ids' );
+	if ( ! is_array( $ids ) || ! $ids ) {
+		return $content;
+	}
+	$caps  = array( __( 'Rosemary at her fruit and vegetable stall.', 'light-of-future' ), __( 'Rosemary serving at her stall.', 'light-of-future' ) );
+	$items = '';
+	foreach ( array_values( $ids ) as $i => $id ) {
+		$full = wp_get_attachment_url( $id );
+		$img  = wp_get_attachment_image( $id, 'medium_large', false, array( 'loading' => 'lazy', 'alt' => $caps[ $i ] ?? $caps[0], 'sizes' => '(max-width: 700px) 46vw, 300px' ) );
+		if ( ! $full || ! $img ) {
+			continue;
+		}
+		$items .= '<li class="lofm__item"><figure><a class="lofm__link" href="' . esc_url( $full ) . '" target="_blank" rel="noopener">' . $img . '</a><figcaption>' . esc_html( $caps[ $i ] ?? $caps[0] ) . '</figcaption></figure></li>';
+	}
+	if ( '' === $items ) {
+		return $content;
+	}
+	$block = '<section class="lofm" id="lofm-rosemary-stall"><ul class="lofm__grid">' . $items . '</ul></section>';
+	$out   = preg_replace( '#(<section class="lofm" id="lofm-margaret">.*?</section>)#s', '$1' . str_replace( '$', '\$', $block ), $content, 1, $count );
+	return ( $count && is_string( $out ) ) ? $out : $content . $block;
+}
+add_filter( 'the_content', 'lof_0706_empower_photos', 999 );

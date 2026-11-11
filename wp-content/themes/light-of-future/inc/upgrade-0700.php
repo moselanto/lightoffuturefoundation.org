@@ -191,3 +191,37 @@ function lof_upgrade_0704_whatsapp() {
 	update_option( 'lof_whatsapp_0704', 1, false );
 }
 add_action( 'admin_init', 'lof_upgrade_0704_whatsapp', 49 );
+
+/**
+ * 0.70.6 (owner): two photos of Rosemary at her fruit and vegetable stall for the business
+ * empowerment part of the Community Empowerment programme. Uploaded through the Media Library as
+ * programme-empowerment-rosemary-1.webp and -2.webp; this stores their IDs in option
+ * lof_empower_photo_ids for the front-end filter (inc/agri-0702.php). Retries until both exist.
+ */
+function lof_upgrade_0706_empower_photos() {
+	if ( get_option( 'lof_empower_photo_ids' ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	global $wpdb;
+	$ids = array();
+	foreach ( array( 'programme-empowerment-rosemary-1', 'programme-empowerment-rosemary-2' ) as $prefix ) {
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- one-off lookup in wp-admin.
+		$id = (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT p.ID FROM {$wpdb->posts} p INNER JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_wp_attached_file' WHERE p.post_type = 'attachment' AND m.meta_value LIKE %s ORDER BY p.ID DESC LIMIT 1",
+				'%' . $wpdb->esc_like( $prefix ) . '%'
+			)
+		);
+		if ( ! $id ) {
+			return; // Not uploaded yet: try again on the next admin load.
+		}
+		$ids[] = $id;
+		update_post_meta( $id, '_wp_attachment_image_alt', __( 'Rosemary at her fruit and vegetable stall', 'light-of-future' ) );
+	}
+	update_option( 'lof_empower_photo_ids', $ids, true );
+	if ( function_exists( 'litespeed_purge_all' ) ) {
+		litespeed_purge_all();
+	}
+	do_action( 'litespeed_purge_all' );
+}
+add_action( 'admin_init', 'lof_upgrade_0706_empower_photos', 50 );
