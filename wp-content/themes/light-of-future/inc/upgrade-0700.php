@@ -279,3 +279,43 @@ function lof_upgrade_0710_partners() {
 	update_option( 'lof_partners_0710', 1, false );
 }
 add_action( 'admin_init', 'lof_upgrade_0710_partners', 51 );
+
+/**
+ * 0.72.0: the old phone number (+254 715 394295) was still stored in page content (FAQ answer
+ * "How do I contact you?"). Replace it everywhere it is stored. Guard option: lof_phone_text_0720.
+ */
+function lof_upgrade_0720_phone_text() {
+	if ( get_option( 'lof_phone_text_0720' ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	global $wpdb;
+	$from = array( '+254 715 394295', '+254715394295', '0715 394295', '0715394295', '254715394295' );
+	$to   = array( '+254 716 385 485', '+254716385485', '0716 385 485', '0716385485', '254716385485' );
+	$ids  = $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_content LIKE '%394295%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	foreach ( $ids as $id ) {
+		$p = get_post( (int) $id );
+		if ( $p ) {
+			wp_update_post( array( 'ID' => $p->ID, 'post_content' => str_replace( $from, $to, $p->post_content ) ) );
+		}
+	}
+	$metas = $wpdb->get_results( "SELECT meta_id, post_id, meta_value FROM {$wpdb->postmeta} WHERE meta_key = '_elementor_data' AND meta_value LIKE '%394295%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	foreach ( $metas as $m ) {
+		$wpdb->update( $wpdb->postmeta, array( 'meta_value' => str_replace( $from, $to, $m->meta_value ) ), array( 'meta_id' => (int) $m->meta_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		clean_post_cache( (int) $m->post_id );
+	}
+	$set = get_option( 'lof_core_settings', array() );
+	if ( is_array( $set ) && isset( $set['phone'] ) && false !== strpos( (string) $set['phone'], '394295' ) ) {
+		$set['phone'] = '+254 716 385 485';
+		update_option( 'lof_core_settings', $set );
+	}
+	if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+	flush_rewrite_rules( false );
+	if ( function_exists( 'litespeed_purge_all' ) ) {
+		litespeed_purge_all();
+	}
+	do_action( 'litespeed_purge_all' );
+	update_option( 'lof_phone_text_0720', 1, false );
+}
+add_action( 'admin_init', 'lof_upgrade_0720_phone_text', 52 );

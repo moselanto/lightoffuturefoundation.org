@@ -1,6 +1,16 @@
 # Changelog
 
 
+## Theme 0.72.0 - 11 Nov 2026
+Whole-site audit (owner: "go through the entire website, clean it, improve it, check for errors and fix them"). Crawled all 51 sitemap URLs, 370 internal links/images and 15 external links: all return 200 except the item below.
+- **Old phone number removed:** FAQ "How do I contact you?" still said +254 715 394295. Replaced on output (`inc/seo-0720.php`) and in stored page content / Elementor data by `lof_upgrade_0720_phone_text` (guard `lof_phone_text_0720`), which also clears the Elementor CSS cache and flushes rewrite rules.
+- **Broken sitemap entry:** /stories/topic/business-empowerment/ returned 404 but was in the sitemap. Story topics are now out of the sitemap and /stories/topic/* redirects 301 to /stories/.
+- **Unique meta descriptions:** 23 pages shared one description. Each page now uses its own existing intro line (no new wording); product categories and remaining pages get a page-specific fallback.
+- **Social sharing tags:** Open Graph and Twitter card tags (title, description, URL, picture) on every page, so links shared on WhatsApp/Facebook/X show a preview.
+- **Canonical links** added to the shop and product category pages.
+- **Placeholder legal pages:** Privacy Policy and Terms (still awaiting approved wording) are kept out of search results and the sitemap until real wording is published.
+- New always-loaded file `inc/seo-0720.php` (replaces the 0.6x `lof_meta_description` output).
+
 ## Theme 0.71.1 - 11 Nov 2026
 - **Partner pages redesigned** (owner: "improve these two pages more professionally"). `template-parts/partner.php` rewritten: photo hero (the supported programme's featured image under a dark gradient) with a status pill, name, tagline, "See the programme" / "Become a partner" buttons and a large white logo card; "Our partnership" story with a highlighted closing line beside an "At a glance" card (Partner, Partnership, Supports, Programme, Donate); three impact cards with line icons and large faded numbers (no reveal animation, so they never render clipped); full-width photo card for the supported programme (uses the programme excerpt; the old lead showed a person's name); other-partner cards with "Read about our partnership"; refreshed Partner with us band. Phones: logo above the text, stacked buttons, single-column cards.
 - CSS: the 0.71.0 partner-page block replaced by block 0.71.1 in shop.css and shop.min.css (tile link rules kept). No wording added beyond headings/labels; partner text unchanged.
