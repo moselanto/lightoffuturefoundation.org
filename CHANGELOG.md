@@ -1,6 +1,13 @@
 # Changelog
 
 
+## Theme 0.71.0 - 11 Nov 2026
+- **Partner pages** (owner; modelled on the Cistern of Hope partner pages): each approved partner with text now has its own page at `/partners/<slug>/` (`/partners/suivera/`, `/partners/grace-international-foundation/`). `inc/partners-0710.php` (always loaded) makes the Core `lof_partner` type viewable via `register_post_type_args` (public, /partners/ slug, editor + excerpt; excluded from search), 404s unapproved partners or partners without text, and uses `single-lof_partner.php` + `template-parts/partner.php`. Layout: hero (status · focus, name, tagline), logo card + facts (Partnership, Supports, Programme) beside the story, "The difference this partnership makes" numbered impact cards, a card linking to the supported programme, other partners, and a Partner with us band (Become a partner, All our partners).
+- Partner text from the owner's message of 11 Nov 2026 (grammar tidied only) set by one-off `lof_upgrade_0710_partners` (guard `lof_partners_0710`), which also refreshes permalinks. Meta: `lof_tagline`, `lof_status_label`, `lof_focus`, `lof_impacts` (one per line), `lof_programme` (slug: hygiene-kits / food-donations).
+- Home partners: tiles link to the partner page (same tab) with "Read about our partnership"; anchor `#our-partners` added before the tiles. Partners without a page keep the old behaviour.
+- Lightbox on programme and story pages: photos in media sections (e.g. Margaret, Rosemary on Community Empowerment) now open in the same viewer as the Gallery (close, arrows, keyboard, swipe) instead of opening the image file. New block at the end of `shop.js`; skipped on the Gallery, which keeps its own.
+- CSS block 0.71.0 appended to shop.css and shop.min.css.
+
 ## Theme 0.70.6 - 11 Nov 2026
 - Community Empowerment (owner): two new photos of Rosemary at her fruit and vegetable stall (business empowerment start-ups), shown after Margaret's media in the media plugin's photo grid style. Uploaded via Media as `programme-empowerment-rosemary-1.webp` / `-2.webp`; one-off `lof_upgrade_0706_empower_photos` stores the IDs in option `lof_empower_photo_ids`; filter `lof_0706_empower_photos` in `inc/agri-0702.php` inserts them. Captions reuse the approved Rosemary stall wording.
 

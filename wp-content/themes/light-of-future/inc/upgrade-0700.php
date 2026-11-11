@@ -225,3 +225,57 @@ function lof_upgrade_0706_empower_photos() {
 	do_action( 'litespeed_purge_all' );
 }
 add_action( 'admin_init', 'lof_upgrade_0706_empower_photos', 50 );
+
+/**
+ * 0.71.0 (owner, 11 Nov 2026): partner page text for Suivera and Grace International Foundation,
+ * from the owner's own wording (grammar tidied only), then refresh permalinks so /partners/<slug>/
+ * works. Guard option: lof_partners_0710.
+ */
+function lof_upgrade_0710_partners() {
+	if ( get_option( 'lof_partners_0710' ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$data = array(
+		'suivera' => array(
+			'content'  => '<p>Suivera have been our great supporters in girl child hygiene kits, such as sanitary pads.</p><p>Their support has brought great impact in the communities here. It is helping girls to remain in school, leading to good school attendance. It has also reduced early pregnancies among these girls, and it has brought easy access to these materials.</p><p>Suivera are our current donors of sanitary pads.</p>',
+			'tagline'  => 'Our great supporters in girl child hygiene kits, such as sanitary pads.',
+			'status'   => 'Current donor',
+			'focus'    => 'Sanitary pads',
+			'impacts'  => "Girls remain in school, leading to good school attendance.\nEarly pregnancies among these girls have reduced.\nEasy access to sanitary pads and hygiene materials.",
+			'program'  => 'hygiene-kits',
+		),
+		'grace-international-foundation' => array(
+			'content'  => '<p>Grace International Foundation are our great supporters in the Fish and Bread programme, where we donate foodstuff to vulnerable families who cannot afford it. We believe that no child or elderly person should go hungry.</p><p>This programme has reduced hunger and the deficiency diseases that have been affecting families in different communities. It has also led to good school attendance, because children know that after school they will have something to eat.</p><p>Grace International Foundation are our current donors in the food donations programme.</p>',
+			'tagline'  => 'Our great supporters in the Fish and Bread programme.',
+			'status'   => 'Current donor',
+			'focus'    => 'Food donations',
+			'impacts'  => "Hunger has reduced in the communities we serve.\nFewer deficiency diseases affecting families.\nGood school attendance, because children know they will have something to eat after school.",
+			'program'  => 'food-donations',
+		),
+	);
+	foreach ( $data as $slug => $d ) {
+		$p = get_page_by_path( $slug, OBJECT, 'lof_partner' );
+		if ( ! $p ) {
+			continue;
+		}
+		wp_update_post(
+			array(
+				'ID'           => $p->ID,
+				'post_content' => wp_slash( $d['content'] ),
+				'post_excerpt' => wp_slash( $d['tagline'] ),
+			)
+		);
+		update_post_meta( $p->ID, 'lof_tagline', $d['tagline'] );
+		update_post_meta( $p->ID, 'lof_status_label', $d['status'] );
+		update_post_meta( $p->ID, 'lof_focus', $d['focus'] );
+		update_post_meta( $p->ID, 'lof_impacts', $d['impacts'] );
+		update_post_meta( $p->ID, 'lof_programme', $d['program'] );
+	}
+	flush_rewrite_rules( false );
+	if ( function_exists( 'litespeed_purge_all' ) ) {
+		litespeed_purge_all();
+	}
+	do_action( 'litespeed_purge_all' );
+	update_option( 'lof_partners_0710', 1, false );
+}
+add_action( 'admin_init', 'lof_upgrade_0710_partners', 51 );

@@ -373,12 +373,19 @@ class LOF_Widget_Partners extends LOF_Widget_Base {
 		}
 		$this->open_section( $s, 'lof-section--compact lof-partners-sec' );
 		$this->render_heading( $s, __( 'Our partners', 'light-of-future' ) );
+		echo '<span id="our-partners" class="lof-anchor" aria-hidden="true"></span>';
 		printf( '<ul class="lof-partners lof-partners--tiles lof-partners--n%d">', (int) min( 4, count( $items ) ) );
 		foreach ( $items as $p ) {
 			$url  = (string) get_post_meta( $p->ID, 'lof_url', true );
 			$logo = has_post_thumbnail( $p ) ? get_the_post_thumbnail( $p, 'medium', array( 'loading' => 'lazy', 'alt' => get_the_title( $p ) ) ) : esc_html( get_the_title( $p ) );
 			$name = has_post_thumbnail( $p ) ? '<span class="lof-partners__name">' . esc_html( get_the_title( $p ) ) . '</span>' : '';
-			echo '<li class="lof-partners__tile lof-reveal">' . ( $url ? '<a href="' . esc_url( $url ) . '" rel="noopener" target="_blank">' . $logo . $name . '</a>' : $logo . $name ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core image markup or escaped title.
+			$page = function_exists( 'lof_partner_page_url' ) ? lof_partner_page_url( $p ) : '';
+			if ( '' !== $page ) {
+				$more = '<span class="lof-partners__more">' . esc_html__( 'Read about our partnership', 'light-of-future' ) . ' <span aria-hidden="true">&rarr;</span></span>';
+				echo '<li class="lof-partners__tile lof-reveal"><a href="' . esc_url( $page ) . '">' . $logo . $name . $more . '</a></li>';
+			} else {
+				echo '<li class="lof-partners__tile lof-reveal">' . ( $url ? '<a href="' . esc_url( $url ) . '" rel="noopener" target="_blank">' . $logo . $name . '</a>' : $logo . $name ) . '</li>';
+			} // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core image markup or escaped title.
 		}
 		echo '</ul>';
 		$this->close_section();

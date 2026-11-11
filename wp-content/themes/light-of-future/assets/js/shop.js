@@ -394,3 +394,30 @@
 	}
 	if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
 }());
+
+/* 0.71.0 lightbox for photos outside the Gallery (programme and story pages). */
+(function () {
+	if (document.querySelector('.lof-page-gallery .lofm-all')) { return; }
+	if (!document.querySelector('section.lofm a.lofm__link')) { return; }
+	var box = document.createElement('div'); box.className = 'lofx'; box.hidden = true; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', 'Photo viewer');
+	box.innerHTML = '<span class="lofx__count" aria-live="polite"></span><button type="button" class="lofx__close" aria-label="Close">\u00d7</button><button type="button" class="lofx__prev" aria-label="Previous photo">\u2039</button><img class="lofx__img" alt=""><p class="lofx__cap"></p><button type="button" class="lofx__next" aria-label="Next photo">\u203a</button>';
+	document.body.appendChild(box);
+	var img = box.querySelector('.lofx__img'), cap = box.querySelector('.lofx__cap'), cnt = box.querySelector('.lofx__count');
+	var list = [], idx = 0, last = null, sx = null;
+	var usable = function (a) { var s = a.closest('.lofm__sens'); return (!s || s.classList.contains('is-open')) && a.offsetParent !== null; };
+	var show = function (i) { idx = (i + list.length) % list.length; var a = list[idx]; img.src = a.href; var im = a.querySelector('img'); img.alt = im ? im.alt : ''; var fc = a.closest('figure') && a.closest('figure').querySelector('figcaption'); cap.textContent = fc ? fc.textContent : (im ? im.alt : ''); cnt.textContent = (idx + 1) + ' / ' + list.length; var multi = list.length > 1; box.querySelector('.lofx__prev').hidden = !multi; box.querySelector('.lofx__next').hidden = !multi; };
+	var close = function () { box.hidden = true; document.body.classList.remove('lofx-open'); img.removeAttribute('src'); if (last) { last.focus(); } };
+	document.addEventListener('click', function (e) {
+		var a = e.target.closest ? e.target.closest('section.lofm a.lofm__link') : null; if (!a || !usable(a)) { return; }
+		e.preventDefault(); last = a;
+		list = Array.prototype.filter.call(document.querySelectorAll('section.lofm a.lofm__link'), usable);
+		box.hidden = false; document.body.classList.add('lofx-open'); show(list.indexOf(a)); box.querySelector('.lofx__close').focus();
+	});
+	box.querySelector('.lofx__close').addEventListener('click', close);
+	box.querySelector('.lofx__prev').addEventListener('click', function () { show(idx - 1); });
+	box.querySelector('.lofx__next').addEventListener('click', function () { show(idx + 1); });
+	box.addEventListener('click', function (e) { if (e.target === box) { close(); } });
+	document.addEventListener('keydown', function (e) { if (box.hidden) { return; } if (e.key === 'Escape') { close(); } else if (e.key === 'ArrowLeft') { show(idx - 1); } else if (e.key === 'ArrowRight') { show(idx + 1); } });
+	box.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+	box.addEventListener('touchend', function (e) { if (sx === null) { return; } var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50 && list.length > 1) { show(idx + (dx < 0 ? 1 : -1)); } });
+})();
