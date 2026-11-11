@@ -37,11 +37,11 @@ function lof_core_schema_seo_plugin() {
  * @return array<string,string>
  */
 function lof_core_schema_facts() {
-	$phone = preg_replace( '/[^0-9+]/', '', lof_core_setting( 'phone', '+254 715 394295' ) );
+	$phone = preg_replace( '/[^0-9+]/', '', lof_core_setting( 'phone', '+254 716 385 485' ) );
 	$facts = array(
 		'name'            => 'Light of Future Foundation',
 		'email'           => lof_core_setting( 'email', 'info@lightoffuturefoundation.org' ),
-		'telephone'       => $phone ? $phone : '+254715394295',
+		'telephone'       => $phone ? $phone : '+254716385485',
 		// Postal address as published on the About and Contact pages.
 		'postOfficeBox'   => 'P.O. Box 53-00520',
 		'streetAddress'   => 'Ruai, along Kangundo Road',

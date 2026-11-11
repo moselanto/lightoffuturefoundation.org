@@ -1,6 +1,9 @@
 # Changelog
 
 
+## Core 0.46.6 - 11 Nov 2026
+- Built-in default phone in `includes/settings.php` changed from +254 715 394295 to the official +254 716 385 485 (owner request). The same old number was also the fallback in `includes/schema.php` (organisation structured data); updated there too, so the old number no longer appears anywhere in the plugin. Only affects fresh installs or a reset setting; the live "phone" setting was already +254 716 385 485 (theme 0.70.0 / 0.72.0).
+
 ## Theme 0.72.0 - 11 Nov 2026
 Whole-site audit (owner: "go through the entire website, clean it, improve it, check for errors and fix them"). Crawled all 51 sitemap URLs, 370 internal links/images and 15 external links: all return 200 except the item below.
 - **Old phone number removed:** FAQ "How do I contact you?" still said +254 715 394295. Replaced on output (`inc/seo-0720.php`) and in stored page content / Elementor data by `lof_upgrade_0720_phone_text` (guard `lof_phone_text_0720`), which also clears the Elementor CSS cache and flushes rewrite rules.

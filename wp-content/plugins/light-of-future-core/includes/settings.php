@@ -50,7 +50,7 @@ function lof_core_setting_fields() {
  */
 function lof_core_setting_defaults() {
 	return array(
-		'phone'        => '+254 715 394295',
+		'phone'        => '+254 716 385 485',
 		'email'        => 'info@lightoffuturefoundation.org',
 		'address'      => 'Nairobi, Kenya',
 		'payment_mode' => 'off',
