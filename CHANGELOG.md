@@ -1,5 +1,10 @@
 # Changelog
 
+## Core 0.46.7 - 14 Nov 2026
+- **Hide WordPress version files** (owner chose option 1): new `includes/hardening.php` writes a marked block `# BEGIN Light of Future Core hardening` into the site root `.htaccess` that denies `readme.html` and `license.txt` (mod_rewrite `[F]` rule plus a `FilesMatch` deny). WordPress core updates restore these files but do not touch `.htaccess`, so they stay blocked. Runs on `admin_init` for administrators only when the block is missing (re-added if removed); outcome in option `lof_core_harden_0467` (`written` / `removed` / `not-writable`). Removed on plugin deactivation. Off switch: `add_filter( 'lof_core_harden_htaccess', '__return_false' )` (the block is then removed on the next wp-admin load).
+- Housekeeping in wp-admin (not code): inactive plugins Akismet and Hello Dolly deleted.
+- PHP not available in the build sandbox: syntax checked by hand and by a bracket-balance script.
+
 ## Theme 0.72.1 - 14 Nov 2026
 Follow-up audit (crawled all 48 sitemap URLs: all 200, one H1 each, no missing alt text, no PHP notices, no mixed content; HTTP and www redirect to https, author enumeration and the users REST route closed, security headers present; Paystack webhook HMAC check and backup token download reviewed, no issues).
 - **Share picture on Home:** Home (and any page without a featured image) printed no `og:image`, so links shared on WhatsApp/Facebook showed no picture. New fallback `assets/images/brand/og-default.jpg` (1200x630, cropped from the approved `brand-hero-dark.webp`, 31 KB) used after the featured image, front-page image, custom logo and site icon.

@@ -1,8 +1,9 @@
 # HANDOVER - Light of Future Foundation website (single source of truth)
 
-**Status as of 10 Nov 2026, theme `light-of-future` 0.69.0 + plugin `light-of-future-core` 0.46.5 (both on `main`).** This is the one current document. History is in `CHANGELOG.md` (one entry per release), not here. When you release, update section 1 ("Status") and section 9 ("Pending") and prepend a CHANGELOG entry.
+**Status as of 14 Nov 2026, theme `light-of-future` 0.72.1 (live) + plugin `light-of-future-core` 0.46.7 (both on `main`).** This is the one current document. History is in `CHANGELOG.md` (one entry per release), not here. When you release, update section 1 ("Status") and section 9 ("Pending") and prepend a CHANGELOG entry.
 
 ## 1. Status
+- **Core 0.46.7 (14 Nov):** `includes/hardening.php` keeps a marked block in the root `.htaccess` that denies `/readme.html` and `/license.txt` (survives core updates; option `lof_core_harden_0467`; filter `lof_core_harden_htaccess`). Check: both URLs return 403 signed out. Akismet and Hello Dolly were deleted from wp-admin.
 - **Latest (14 Nov):** theme 0.72.1 on `main`, to be installed (Core stays 0.46.6). Adds a default share picture (`og:image`) for Home and pages without a featured image, and keeps Cart / Checkout / My account out of the sitemap. Live was on theme 0.72.0 when audited on 14 Nov. Releases 0.69.1-0.72.0 and Core 0.46.6 are described in `CHANGELOG.md`; the 0.69.0 notes below are kept for reference.
 - **0.72.1 checks:** view source on Home for `og:image` ending `og-default.jpg`; `/wp-sitemap-posts-page-1.xml` no longer lists cart, checkout or my-account; share the home URL in WhatsApp and confirm the preview picture. Server: delete `/readme.html`.
 - **On `main`, to be installed:** theme 0.69.0 (includes 0.64.0-0.68.0) and Core 0.46.5.
