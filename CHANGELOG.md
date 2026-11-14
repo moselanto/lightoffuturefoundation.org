@@ -1,5 +1,9 @@
 # Changelog
 
+## Theme 0.73.1 - 14 Nov 2026
+- Inner-page first-screen CSS (0.73.0) is now **off by default** (`LOF_INNER_CRITICAL_DEFAULT` false; filter `lof_inner_critical` can turn it on) so it can be compared against plain stylesheets. Home is unaffected (speed-062.php).
+- The 13-17 px "first-paint shifts" reported for Leadership/Impact headings and the first /stories/ photo were re-checked: with only the first-screen CSS vs the full stylesheets, every element above the fold has identical computed margins, padding, size and font at 768-1920 px; only the page-loader animation differs. The earlier figures were timing artefacts (loader animation and lazy images), not missing rules, so the critical files are unchanged.
+
 ## Theme 0.73.0 - 14 Nov 2026
 Phone speed for inner pages (Home already had this since 0.62.0).
 - New always-loaded `inc/speed-0730.php`: on every page except Home, Cart, Checkout and My account, the first-screen styles are printed in the head and `elementor-frontend`, `lof-sections` and `lof-shop` load without blocking (media="print" swapped on load, `<noscript>` fallback; no preload so the hero photo downloads first). Off switch: `lof_inner_critical`.

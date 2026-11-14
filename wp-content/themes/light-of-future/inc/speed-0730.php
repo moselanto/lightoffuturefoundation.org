@@ -22,6 +22,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
+if ( ! defined( 'LOF_INNER_CRITICAL_DEFAULT' ) ) {
+	define( 'LOF_INNER_CRITICAL_DEFAULT', false );
+}
+
 /**
  * Which first-screen set applies ('inner', 'shop' or '' for none).
  *
@@ -39,7 +43,8 @@ function lof_inner_critical_group() {
 	if ( function_exists( 'is_cart' ) && ( is_cart() || is_checkout() || is_account_page() ) ) {
 		return $group;
 	}
-	if ( ! apply_filters( 'lof_inner_critical', true ) ) {
+	// 0.73.1: off by default while it is compared against plain stylesheets (A/B, HANDOVER section 9).
+	if ( ! apply_filters( 'lof_inner_critical', (bool) LOF_INNER_CRITICAL_DEFAULT ) ) {
 		return $group;
 	}
 	$group = ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) ? 'shop' : 'inner';
