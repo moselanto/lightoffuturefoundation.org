@@ -3,6 +3,8 @@
 **Status as of 10 Nov 2026, theme `light-of-future` 0.69.0 + plugin `light-of-future-core` 0.46.5 (both on `main`).** This is the one current document. History is in `CHANGELOG.md` (one entry per release), not here. When you release, update section 1 ("Status") and section 9 ("Pending") and prepend a CHANGELOG entry.
 
 ## 1. Status
+- **Latest (14 Nov):** theme 0.72.1 on `main`, to be installed (Core stays 0.46.6). Adds a default share picture (`og:image`) for Home and pages without a featured image, and keeps Cart / Checkout / My account out of the sitemap. Live was on theme 0.72.0 when audited on 14 Nov. Releases 0.69.1-0.72.0 and Core 0.46.6 are described in `CHANGELOG.md`; the 0.69.0 notes below are kept for reference.
+- **0.72.1 checks:** view source on Home for `og:image` ending `og-default.jpg`; `/wp-sitemap-posts-page-1.xml` no longer lists cart, checkout or my-account; share the home URL in WhatsApp and confirm the preview picture. Server: delete `/readme.html`.
 - **On `main`, to be installed:** theme 0.69.0 (includes 0.64.0-0.68.0) and Core 0.46.5.
 - **What 0.69.0 adds:** the WhatsApp button always stays visible on phones/tablets (tuck and slide-off removed in JS and CSS), Home Give today re-balanced (no overflowing amount tiles, full-width fund select), one arrow on story cards, top-weighted gallery crops (4:5 tiles on phones), and a site-wide mobile design pass (see section 3a). Details in `CHANGELOG.md`.
 - **Live:** 0.68.0 was installed and checked by the parent session on 10 Nov (the 0.69.0 fixes come from that check).

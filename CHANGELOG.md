@@ -1,5 +1,13 @@
 # Changelog
 
+## Theme 0.72.1 - 14 Nov 2026
+Follow-up audit (crawled all 48 sitemap URLs: all 200, one H1 each, no missing alt text, no PHP notices, no mixed content; HTTP and www redirect to https, author enumeration and the users REST route closed, security headers present; Paystack webhook HMAC check and backup token download reviewed, no issues).
+- **Share picture on Home:** Home (and any page without a featured image) printed no `og:image`, so links shared on WhatsApp/Facebook showed no picture. New fallback `assets/images/brand/og-default.jpg` (1200x630, cropped from the approved `brand-hero-dark.webp`, 31 KB) used after the featured image, front-page image, custom logo and site icon.
+- **Sitemap:** Cart, Checkout and My account were listed in the page sitemap while marked noindex (Checkout also redirects to Cart). They are now left out (`wc_get_page_id` cart / checkout / myaccount) in `inc/seo-0720.php`.
+- Docs: HANDOVER status brought up to 0.72.1 / Core 0.46.6 and the public phone/WhatsApp corrected to +254 716 385 485.
+- PHP not available in the build sandbox: syntax of the changed lines in `inc/seo-0720.php` checked by hand.
+- Server note (not code): `/readme.html` is publicly readable and reveals the WordPress version; delete it on the server (it returns after core updates).
+
 
 ## Core 0.46.6 - 11 Nov 2026
 - Built-in default phone in `includes/settings.php` changed from +254 715 394295 to the official +254 716 385 485 (owner request). The same old number was also the fallback in `includes/schema.php` (organisation structured data); updated there too, so the old number no longer appears anywhere in the plugin. Only affects fresh installs or a reset setting; the live "phone" setting was already +254 716 385 485 (theme 0.70.0 / 0.72.0).

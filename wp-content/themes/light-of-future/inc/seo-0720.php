@@ -108,7 +108,14 @@ function lof_seo_image() {
 		$id = (int) get_theme_mod( 'custom_logo' );
 	}
 	$url = $id ? wp_get_attachment_image_url( $id, 'large' ) : '';
-	return $url ? $url : (string) get_site_icon_url( 512 );
+	if ( ! $url ) {
+		$url = (string) get_site_icon_url( 512 );
+	}
+	if ( ! $url && file_exists( LOF_THEME_DIR . '/assets/images/brand/og-default.jpg' ) ) {
+		// 0.72.1: Home and other pages without a featured image had no share picture.
+		$url = LOF_THEME_URI . '/assets/images/brand/og-default.jpg';
+	}
+	return $url;
 }
 
 /**
@@ -213,6 +220,15 @@ add_filter(
 			return $args;
 		}
 		$ids = array();
+		// 0.72.1: WooCommerce cart, checkout and account pages are noindex, so keep them out of the sitemap.
+		if ( function_exists( 'wc_get_page_id' ) ) {
+			foreach ( array( 'cart', 'checkout', 'myaccount' ) as $wc_page ) {
+				$wc_id = (int) wc_get_page_id( $wc_page );
+				if ( $wc_id > 0 ) {
+					$ids[] = $wc_id;
+				}
+			}
+		}
 		foreach ( array( 'privacy-policy', 'terms' ) as $slug ) {
 			$p = get_page_by_path( $slug );
 			if ( $p && ( false !== stripos( $p->post_content . (string) get_post_meta( $p->ID, '_elementor_data', true ), 'awaiting wording approved' ) ) ) {
