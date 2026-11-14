@@ -1,5 +1,11 @@
 # Changelog
 
+## Docs and accounts - 14 Nov 2026 (no code change)
+- Installed and verified live: theme 0.72.2 + Core 0.47.0.
+- Google (foundation account lightofthefutureorg@gmail.com): GA4 G-NSPE2134S2 (property 564372601) saved in Organisation details; key events `donate_start`, `generate_lead`, `contact_click` created; Search Console verified and sitemap submitted; Bing Webmaster Tools imported from Search Console with sitemap submitted.
+- New planning docs: `docs/KEYWORD-AND-TOPICAL-MAP.md`, `docs/AEO-PAGE-QA-PLAN.md`, `docs/CONTENT-AUTHORITY-ROADMAP.md`, `docs/DIGITAL-PR-AND-BACKLINK-PLAN.md`, `docs/AI-VISIBILITY-CHECKLIST.md`.
+- `docs/HANDOVER.md` sections 1 and 9 rewritten (live state, account IDs, full pending list); `CONTENT-GAPS.md` updated.
+
 ## Core 0.47.0 + Theme 0.72.2 - 14 Nov 2026
 SEO / AEO / GEO and analytics (owner brief "light of the future aeo geo seo and schema", decisions of 14 Nov: foundation's Google account, cookie notice + Consent Mode v2, allow all AI crawlers, public office for Business Profile). Full write-up: `docs/SEO-AEO-GEO.md`.
 - **Google tag + GA4 with Consent Mode v2** (`includes/analytics.php`): loads only when Organisation details > Google Analytics 4 Measurement ID is set. All consent types default to denied; analytics granted only after Accept on a new cookie notice (brand colours, sits above the phone bottom bar; `#cookie-settings` links reopen it); ad signals always denied; editors not tracked. Events: `donate_start`, `generate_lead`, `contact_click`. Google Search Console and Bing verification meta tags on Home from new settings.

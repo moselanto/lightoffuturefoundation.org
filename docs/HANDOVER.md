@@ -1,13 +1,30 @@
 # HANDOVER - Light of Future Foundation website (single source of truth)
 
-**Status as of 14 Nov 2026, theme `light-of-future` 0.72.1 (live) + plugin `light-of-future-core` 0.46.7 (both on `main`).** This is the one current document. History is in `CHANGELOG.md` (one entry per release), not here. When you release, update section 1 ("Status") and section 9 ("Pending") and prepend a CHANGELOG entry.
+**Status as of 14 Nov 2026 (evening): LIVE = theme `light-of-future` 0.72.2 + plugin `light-of-future-core` 0.47.0, both on `main` and installed in wp-admin.** This is the one current document. History is in `CHANGELOG.md` (one entry per release). When you release, update section 1 ("Status") and section 9 ("Pending") and prepend a CHANGELOG entry.
+
+**Next agent: read section 1, then section 9, then `docs/SEO-AEO-GEO.md`.**
 
 ## 1. Status
-- **Core 0.47.0 + theme 0.72.2 (14 Nov):** SEO/AEO/GEO release, see `docs/SEO-AEO-GEO.md`. Google tag/GA4 with Consent Mode v2 and cookie notice (only once Organisation details > GA4 Measurement ID is set), Search Console / Bing verification settings, connected JSON-LD graph (WebPage types, breadcrumbs, founder and approved leaders, FAQPage from the visible FAQ), robots.txt AI crawler groups (owner: allow all), `/llms.txt`. Checks: view source on Home for `lof-schema` with `#webpage`; /faq/ has `lof-schema-faq`; /robots.txt lists GPTBot etc.; /llms.txt loads; once the GA4 ID is saved, a signed-out visit shows the cookie notice and Accept/Decline works.
-- **Core 0.46.7 (14 Nov):** `includes/hardening.php` keeps a marked block in the root `.htaccess` that denies `/readme.html` and `/license.txt` (survives core updates; option `lof_core_harden_0467`; filter `lof_core_harden_htaccess`). Check: both URLs return 403 signed out. Akismet and Hello Dolly were deleted from wp-admin.
-- **Latest (14 Nov):** theme 0.72.1 on `main`, to be installed (Core stays 0.46.6). Adds a default share picture (`og:image`) for Home and pages without a featured image, and keeps Cart / Checkout / My account out of the sitemap. Live was on theme 0.72.0 when audited on 14 Nov. Releases 0.69.1-0.72.0 and Core 0.46.6 are described in `CHANGELOG.md`; the 0.69.0 notes below are kept for reference.
-- **0.72.1 checks:** view source on Home for `og:image` ending `og-default.jpg`; `/wp-sitemap-posts-page-1.xml` no longer lists cart, checkout or my-account; share the home URL in WhatsApp and confirm the preview picture. Server: delete `/readme.html`.
-- **On `main`, to be installed:** theme 0.69.0 (includes 0.64.0-0.68.0) and Core 0.46.5.
+### Live and verified signed out (14 Nov 2026)
+- **Theme 0.72.2 / Core 0.47.0** installed via wp-admin uploads, Dashboard opened, LiteSpeed purged. 48 sitemap URLs return 200, no PHP warnings.
+- **Theme 0.72.1:** default share picture `assets/images/brand/og-default.jpg` (og:image/twitter:image on Home and pages without a featured image); Cart / Checkout / My account out of the page sitemap.
+- **Core 0.46.7:** `includes/hardening.php` writes a marked `.htaccess` block denying `/readme.html` and `/license.txt` (both return 403). Akismet and Hello Dolly plugins deleted (18 plugins, all active).
+- **Core 0.47.0 (SEO/AEO/GEO):** connected JSON-LD graph (`/#organization` NGO, `/#website`, `/#logo`, `/#founder`, `<url>#webpage` with WebPage/AboutPage/ContactPage/CollectionPage, BreadcrumbList, 11 approved leaders as Person on /leadership/, Article on stories, FAQPage from the visible FAQ: 10 on /faq/, 4 on /donate/); robots.txt AI crawler groups (owner chose: allow all, including training bots); `/llms.txt`; `max-snippet:-1, max-video-preview:-1`; Google tag with Consent Mode v2 + cookie notice; events `donate_start`, `generate_lead`, `contact_click`; verification meta tags. Theme 0.72.2 only adds the FAQ widget hook.
+
+### Google / Bing accounts (owner decision: the foundation's own Google account, lightofthefutureorg@gmail.com)
+- **GA4:** account 416324192, property 564372601, stream 16342148210, **Measurement ID G-NSPE2134S2**, Kenya time, KES. ID saved in Light of Future > Organisation details. Data arriving (Realtime). Key events `donate_start`, `generate_lead`, `contact_click` created by name (Admin > Key events) on 14 Nov; no stream data for them yet.
+- **Search Console:** URL-prefix property https://lightoffuturefoundation.org/ verified (HTML tag in Organisation details + GA). `wp-sitemap.xml` submitted: Success.
+- **Bing Webmaster Tools:** imported from Search Console, sitemap submitted (processing), Search Performance and AI Performance (Copilot citations) reports available.
+- **Google Business Profile:** NOT created. Owner chose a public office address on Maps; needs the office street address and opening hours (P.O. Box not accepted by Google). Then save the Maps link in Organisation details > Google Business Profile link (feeds `sameAs`).
+
+### SEO planning documents (all in `docs/`, 14 Nov)
+`SEO-AEO-GEO.md` (audit, fact register, schema, crawler policy, measurement), `KEYWORD-AND-TOPICAL-MAP.md`, `AEO-PAGE-QA-PLAN.md`, `CONTENT-AUTHORITY-ROADMAP.md` (Dec 2026 - May 2027), `DIGITAL-PR-AND-BACKLINK-PLAN.md`, `AI-VISIBILITY-CHECKLIST.md` (monthly). No search volumes anywhere; estimates are marked.
+
+### Access notes
+- wp-admin sign-in works through the browser driver (owner supplies credentials in the browser; never store them in the repo).
+- Release zips are in the Town Content Library collection Light of Future Foundation/releases (0.72.1, 0.72.2 theme; 0.46.7, 0.47.0 Core).
+
+### Older release notes (reference only)
 - **What 0.69.0 adds:** the WhatsApp button always stays visible on phones/tablets (tuck and slide-off removed in JS and CSS), Home Give today re-balanced (no overflowing amount tiles, full-width fund select), one arrow on story cards, top-weighted gallery crops (4:5 tiles on phones), and a site-wide mobile design pass (see section 3a). Details in `CHANGELOG.md`.
 - **Live:** 0.68.0 was installed and checked by the parent session on 10 Nov (the 0.69.0 fixes come from that check).
 - **What 0.68.0 adds:** Gallery page redesign (CSS block 0.68.0 in shop.css after the 0.61.1 gallery rules + a small shop.js block): featured mosaic without gaps, filter pills that wrap (no sideways scroll, no fixed bar), uniform 4:3 photo tiles 4 / 3 / 2 per row, video cards with a gold play button, sensitive-image button fixed, polished lightbox. Details in `CHANGELOG.md`.
@@ -113,18 +130,20 @@ One `<script type="application/ld+json" id="lof-schema">` in `wp_head` (priority
 
 **0.66.0 / 0.46.5 checks:** Home goes slider > Shop with purpose with no figures card and no gap; inner-page figure strips still show; /donate/ shows KES first and preselected with KES tiers; view source on Home, /donate/ and a story for `lof-schema`; Light of Future > Media backup loads.
 
-## 9. Pending (priority order)
-1. **Install 0.69.0** (theme only; Core stays 0.46.5). Then do the 0.69.0 checks in section 8.
-2. **Owner to confirm KES as the default donation currency** (done in code, pending confirmation).
-3. **Paystack USD:** a $10 test gave "We could not start the payment". USD must be enabled on the foundation's Paystack account with a USD settlement bank account (requirements PDF sent to Francis on 6 Nov). Payment mode was reported "Not set up" on 8 Nov: confirm live keys and mode before telling anyone card giving works.
-4. **Rosemary web video:** upload `story-rosemary-web.mp4` via the Media Library, open the Dashboard, check her story plays.
-5. **Media backup:** run it once after installing, download and store the zips off-server, revoke.
-6. **Figures:** Francis to re-confirm People mentored 6,000+, Girls given sanitary pads 4,500+, Families served with food 3,500+, Children given school materials 2,500+, Children's school fees paid 200, Homes built for widows and widowers 30 next to "55 people supported since 2024" (shown with "500,000 by 2040"; 200+ children and 30+ widows are hidden, not deleted).
-7. **Leadership top photo:** owner to choose option D, E or F.
-8. **Partners:** website links for Suivera and Grace International Foundation.
-9. **Talent-development photos** (the talent gallery has videos only). Publish remaining consented intake photos from the Content Library `projects/Light of Future Foundation/*` collections.
-10. **Board-approved Privacy Policy and Terms of Use** (placeholders live, meta `_lof_legal_placeholder`); full text of specific objective (h).
-11. Optional: shorter Facebook URL if the foundation sets a username; check the Margaret crop on /stories/; recheck the page loader and that the first slide stays still before load; GA4 and cookie notice if analytics is added.
+## 9. Pending (priority order, as of 14 Nov 2026)
+1. **Google Business Profile:** get the office street address and opening hours from the owner, create the profile on lightofthefutureorg@gmail.com (nonprofit category, address shown on Maps), start verification, save the Maps link in Organisation details > Google Business Profile link.
+2. **GA4 watcher routine (Town):** owner wants an unscheduled Town routine that checks GA4 G-NSPE2134S2 for `donate_start`, `generate_lead`, `contact_click` and messages the owner's "Light Future Foundation Improvement" thread when all three appear. Blocked: the Town Google Analytics integration does not show as connected to the assistant (checked 4 times on 14 Nov) although the owner says it shows on the integrations page. Key events are already created, so nothing in GA4 needs changing; the routine only notifies.
+3. **Board approvals:** cookie notice wording (`lof_core_consent_text`) and a Privacy Policy that mentions analytics cookies; Privacy Policy and Terms of Use wording (placeholders live, noindexed, meta `_lof_legal_placeholder`); full text of specific objective (h); whether to publish the registration certificate / PBORA reference number.
+4. **Questionnaire for Francis:** the NEEDS WORDING rows in `docs/AEO-PAGE-QA-PLAN.md` (operating areas, cost per child per term, house build cost/time, governance statement, tax-deductibility, consent line, volunteer roles).
+5. **Figures:** Francis to re-confirm People mentored 6,000+, Girls given sanitary pads 4,500+, Families served with food 3,500+, Children given school materials 2,500+, Children's school fees paid 200, Homes built 30, next to "55 people supported since 2024" ("500,000 by 2040"). Kept out of structured data and llms.txt until confirmed.
+6. **Paystack USD:** USD must be enabled on the foundation's Paystack account with a USD settlement account; confirm live keys and mode before saying card giving works. Owner to confirm KES as default currency (done in code).
+7. **Outreach:** work through `docs/DIGITAL-PR-AND-BACKLINK-PLAN.md` starting with PBORA register check and directory listings; record outcomes in that file.
+8. **Monthly:** run `docs/AI-VISIBILITY-CHECKLIST.md` on the first working day of each month (first run Dec 2026); mark the GA4 events only if they ever disappear from Key events.
+9. **Site language:** WordPress Site Language is English (US) while copy is British English and og:locale is en_GB. Owner to confirm before switching to English (UK) (affects WooCommerce strings).
+10. **Rosemary web video:** upload `story-rosemary-web.mp4` via Media, open the Dashboard, check her story plays.
+11. **Media backup:** run Light of Future > Media backup, store zips off-server, revoke the token.
+12. **Owner choices / content:** Leadership top photo (D/E/F); website links for Suivera and Grace International Foundation; talent-development photos.
+13. Optional: shorter Facebook URL; Margaret crop on /stories/; page loader check.
 
 ## 10. One-off upgrades and their options
 All run on `admin_init` (or `init` in the oldest ones) from files loaded only in wp-admin, each guarded by an option. Delete the option (e.g. `wp option delete NAME`) to run one again.

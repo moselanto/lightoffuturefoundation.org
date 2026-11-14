@@ -1,6 +1,6 @@
 # AGENTS.md
 
-**Read `docs/HANDOVER.md` first.** It is the single, current source of truth (status, rules, code map, release steps, traps, pending items). History lives in `CHANGELOG.md`.
+**Read `docs/HANDOVER.md` first (section 1 = live state, section 9 = pending work), then `docs/SEO-AEO-GEO.md` for SEO, analytics and AI-discovery work.** It is the single, current source of truth (status, rules, code map, release steps, traps, pending items). History lives in `CHANGELOG.md`.
 
 ## Key standing rules (full list in HANDOVER section 3)
 - Never invent facts, figures, quotes, prices, partners or payment details.

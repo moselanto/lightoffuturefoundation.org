@@ -1,5 +1,14 @@
 # Content gaps - what we still need from the foundation
 
+## Open as of 14 Nov 2026 (latest; full priority list in docs/HANDOVER.md section 9)
+- Office street address and opening hours (for the Google Business Profile; a P.O. Box is not accepted by Google)
+- Board approval: cookie notice wording, Privacy Policy that mentions analytics cookies, Terms of Use, objective (h)
+- Whether to publish the registration certificate / PBORA reference number; confirm the foundation appears on the PBORA register (pbora.go.ke/pbos)
+- Whether gifts are tax-deductible (KRA exemption) - only claim it if a certificate exists
+- Answers for the NEEDS WORDING rows in docs/AEO-PAGE-QA-PLAN.md: operating areas, cost per child per term, house build cost/time, governance statement, consent line, volunteer roles
+- Material for each roadmap item in docs/CONTENT-AUTHORITY-ROADMAP.md (photos, notes, figures, consent)
+- Site language: confirm English (UK) before switching WordPress from English (US)
+
 ## Open as of 9 Nov 2026 (latest)
 - Paystack: USD enabled on the account plus a USD settlement bank account; confirm live keys and mode
 - Re-confirm the older figures (6,000+ mentored, 4,500+ pads, 3,500+ families fed, 2,500+ school materials, 200 school fees, 30 homes) against "55 people supported since 2024"
