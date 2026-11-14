@@ -387,6 +387,9 @@ class LOF_Widget_Cards extends LOF_Widget_Base {
 			$lof_phone = function_exists( 'lof_setting' ) ? (string) lof_setting( 'phone' ) : '';
 			echo '<div class="lof-faq-layout"><div class="lof-faq">';
 			foreach ( $s['items'] as $n => $item ) {
+				if ( function_exists( 'lof_core_schema_faq_add' ) ) {
+					lof_core_schema_faq_add( $item['title'], $item['text'] ); // 0.72.2: visible Q&A feeds FAQPage structured data (Core 0.47.0).
+				}
 				printf( '<details class="lof-faq__item"><summary><span class="lof-faq__num" aria-hidden="true">%3$s</span><span class="lof-faq__q">%1$s</span></summary><div class="lof-faq__answer"><p>%2$s</p></div></details>', esc_html( $item['title'] ), nl2br( esc_html( $item['text'] ) ), esc_html( sprintf( '%02d', $n + 1 ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			echo '</div><aside class="lof-faq-help" aria-label="' . esc_attr__( 'More help', 'light-of-future' ) . '">';
