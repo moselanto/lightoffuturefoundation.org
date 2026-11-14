@@ -1,5 +1,12 @@
 # Changelog
 
+## Theme 0.73.0 - 14 Nov 2026
+Phone speed for inner pages (Home already had this since 0.62.0).
+- New always-loaded `inc/speed-0730.php`: on every page except Home, Cart, Checkout and My account, the first-screen styles are printed in the head and `elementor-frontend`, `lof-sections` and `lof-shop` load without blocking (media="print" swapped on load, `<noscript>` fallback; no preload so the hero photo downloads first). Off switch: `lof_inner_critical`.
+- New first-screen files `assets/css/critical/inner-{elementor,sections,shop}.css` (17 inner pages) and `shop-{elementor,sections,shop}.css` (shop, products, categories), extracted 14 Nov from the live site at 320-1920 px (first screen + 15%). Relative `../images/` URLs are rewritten to the theme URL when printed.
+- Pre-release check (live HTML with the new head, full stylesheets blocked vs loaded, 17 pages x 10 widths 320-1920): no sideways scroll anywhere; no first-screen element moved more than 12 px except section headings on Leadership and Impact (13-17 px at 768 px and wider) and the first story photo on /stories/ (13-16 px at 768 px and wider) when the full stylesheet arrives.
+- PHP not available in the build sandbox; syntax checked by hand.
+
 ## Core 0.47.1 - 14 Nov 2026
 Speed audit (Lighthouse 12 run locally, 14 Nov, before this change): desktop Home 92 (LCP 1.4 s), Donate 92 (LCP 1.2 s), Programmes 97 (LCP 1.0 s); mobile (Lighthouse slow-4G + 4x CPU simulation) Home 64 (LCP 5.0 s, TBT 660 ms), Donate 69, Programmes 71, Gallery 62. Accessibility, best practices and SEO 100 on all but Home mobile accessibility 92. Biggest single cost on every page: gtag.js (75 KB, ~300 ms main-thread blocking, flagged as unused JS).
 - `includes/analytics.php`: gtag.js is no longer requested in `<head>`. Consent defaults are still queued first; the tag is injected after the `load` event when the browser is idle (or on the first tap/scroll/keypress). Analytics and consent behaviour unchanged.
