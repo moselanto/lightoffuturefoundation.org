@@ -87,7 +87,15 @@ gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',false);
 (function(){try{var c=localStorage.getItem('lof_consent')||((document.cookie.match(/(?:^|; )lof_consent=([^;]+)/)||[])[1]||'');if(c==='granted'){gtag('consent','update',{analytics_storage:'granted'});}}catch(e){}})();
 gtag('js',new Date());gtag('config','<?php echo esc_js( $id ); ?>',{anonymize_ip:true});
 </script>
-<script async src="<?php echo esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . rawurlencode( $id ) ); ?>"></script>
+<script id="lof-gtag-loader">
+/* 0.47.1: load gtag.js after the page has loaded (and the browser is idle) so the 75 KB tag
+   never competes with the first photo or blocks taps on phones. Consent defaults above are
+   queued first, so nothing is tracked before the visitor accepts. */
+(function(){var done=false;function go(){if(done){return;}done=true;var s=document.createElement('script');s.async=true;s.src=<?php echo wp_json_encode( 'https://www.googletagmanager.com/gtag/js?id=' . rawurlencode( $id ) ); ?>;document.head.appendChild(s);}
+function later(){if('requestIdleCallback' in window){requestIdleCallback(go,{timeout:3000});}else{setTimeout(go,1500);}}
+if(document.readyState==='complete'){later();}else{window.addEventListener('load',later,{once:true});}
+['pointerdown','keydown','scroll'].forEach(function(e){window.addEventListener(e,function(){setTimeout(go,300);},{once:true,passive:true});});})();
+</script>
 	<?php
 }
 add_action( 'wp_head', 'lof_core_analytics_head', 1 );

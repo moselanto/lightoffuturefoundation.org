@@ -1,5 +1,9 @@
 # Changelog
 
+## Core 0.47.1 - 14 Nov 2026
+Speed audit (Lighthouse 12 run locally, 14 Nov, before this change): desktop Home 92 (LCP 1.4 s), Donate 92 (LCP 1.2 s), Programmes 97 (LCP 1.0 s); mobile (Lighthouse slow-4G + 4x CPU simulation) Home 64 (LCP 5.0 s, TBT 660 ms), Donate 69, Programmes 71, Gallery 62. Accessibility, best practices and SEO 100 on all but Home mobile accessibility 92. Biggest single cost on every page: gtag.js (75 KB, ~300 ms main-thread blocking, flagged as unused JS).
+- `includes/analytics.php`: gtag.js is no longer requested in `<head>`. Consent defaults are still queued first; the tag is injected after the `load` event when the browser is idle (or on the first tap/scroll/keypress). Analytics and consent behaviour unchanged.
+
 ## Docs and accounts - 14 Nov 2026 (no code change)
 - Installed and verified live: theme 0.72.2 + Core 0.47.0.
 - Google (foundation account lightofthefutureorg@gmail.com): GA4 G-NSPE2134S2 (property 564372601) saved in Organisation details; key events `donate_start`, `generate_lead`, `contact_click` created; Search Console verified and sitemap submitted; Bing Webmaster Tools imported from Search Console with sitemap submitted.
