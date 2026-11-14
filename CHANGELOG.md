@@ -1,5 +1,10 @@
 # Changelog
 
+## Theme 0.74.1 - 14 Nov 2026
+A/B results for 0.74.0 (Lighthouse mobile, 3 runs each, LCP / blocking time):
+- **Gallery kept** (content-visibility): before 2.75 / 2.12 / 2.75 s, blocking 1412 / 1860 / 1726 ms; after 1.99 / 2.14 / 2.43 s, blocking 932 / 1372 / 1564 ms (median LCP 2.75 -> 2.14 s, median blocking 1726 -> 1372 ms; scores 66-67 -> 66-76).
+- **Home change reverted**: removing the stylesheet preload was not faster (before 3.01 / 3.33 / 3.71 s, median 3.33; after 4.37 / 2.91 / 3.37 s, median 3.37). `lof_home_preload_css` now defaults to true again.
+
 ## Theme 0.74.0 - 14 Nov 2026
 - **Home:** the three full stylesheets are no longer preloaded at high priority (`inc/speed-062.php`, filter `lof_home_preload_css`, default false). They still load without blocking; the slider photo no longer competes with them for bandwidth on phones.
 - **Gallery:** new `inc/speed-0740.php` prints `content-visibility:auto` (placeholder height 1100 px, 1600 px on phones) for the Gallery's photo/video sections, so the browser skips style and layout work for sections far below the screen. Off switch `lof_gallery_cv`.

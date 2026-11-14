@@ -60,8 +60,8 @@ function lof_home_critical_tag( $tag, $handle, $href ) {
 	$id  = esc_attr( $handle ) . '-css';
 	$url = esc_url( $href );
 	$out  = '<style id="' . esc_attr( $handle ) . '-critical">' . $css . "</style>\n";
-	// 0.74.0: no high-priority preload of the full stylesheets; it competed with the slider photo on phones.
-	if ( apply_filters( 'lof_home_preload_css', false ) ) {
+	// 0.74.1: preload kept (0.74.0 tried without it; Home was not faster: median LCP 3.37 s vs 3.33 s).
+	if ( apply_filters( 'lof_home_preload_css', true ) ) {
 		$out .= '<link rel="preload" as="style" href="' . $url . '">' . "\n";
 	}
 	$out .= '<link rel="stylesheet" id="' . $id . '" href="' . $url . '" media="print" onload="this.media=\'all\';this.onload=null">' . "\n";
