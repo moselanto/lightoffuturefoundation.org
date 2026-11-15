@@ -1,5 +1,13 @@
 # Changelog
 
+## Theme 0.79.3 - 15 Nov 2026
+- Version bump only. Restores the 0.79.1 `shop.js` because the 0.79.2 test was slower. Live and checked: Gallery filters (12 + All), 3/3 Show all, photo viewer and 31 video buttons work at 320-1920 px with no errors and no sideways scroll.
+
+## Theme 0.79.2 - 15 Nov 2026 (tested, NOT kept)
+- Test: the Gallery setup queue (`window.lofQ`) waited for the page load event, at most 3 s, before running, so it could not hold up the hero photo.
+- Lighthouse mobile Gallery, 3 runs, 0.79.1 -> 0.79.2: main content 2.12 / 2.12 / 2.36 -> 2.26 / 2.72 / 2.74 s, score 97-99 -> 94-95, blocking 36 / 53 / 65 -> 67 / 30 / 63 ms. Slower, so it was reverted in 0.79.3.
+- Finding: the main content is the hero photo (`lof-food-family.webp`, preloaded, high priority) on every build. In Lighthouse's real, unslowed timing it painted at 0.52-0.79 s on 0.79.1, compared with 0.97-1.94 s on 0.79.0. The 0.79.0 -> 0.79.1 rise appears only in Lighthouse's simulated phone timing and is within normal run-to-run variation (first paint and server response differ by about 300 ms between runs).
+
 ## Theme 0.79.1 - 15 Nov 2026
 - **Gallery:** the setup in `shop.js` (section photo/video counts, Show all buttons, photo viewer, 31 video play buttons) now runs through a small queue (`window.lofQ`) in slices of about 30 ms instead of one 350-480 ms task. Filter buttons are still built straight away.
 - **Result, Lighthouse mobile Gallery, 3 runs, 0.79.0 -> 0.79.1 (KEPT):** blocking 152 / 198 / 285 -> 36 / 53 / 65 ms; longest shop.js task 354-484 -> 102-114 ms; score 91-96 -> 97-99; LCP 2.10 / 1.89 / 1.83 -> 2.12 / 2.12 / 2.36 s (slightly slower, still well under 3 s); layout shift 0.
