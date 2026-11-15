@@ -1,5 +1,11 @@
 # Changelog
 
+## Theme 0.75.0 - 15 Nov 2026
+- **Home:** new `inc/speed-0750.php`. jQuery, the Elementor frontend scripts (webpack runtime, frontend modules, jQuery UI core, frontend), the WooCommerce cart/cookie/blockUI scripts, sourcebuster + order attribution and `shop.js` no longer run before the first screen on Home. They start, in the original order, after the page has loaded and the browser is idle (at most 2.5 s), or at the first tap, key press or scroll. A tap on a button before then is replayed once they are ready; the WhatsApp chat button falls back to its wa.me link. Off switch `lof_home_delay_js`; list of script IDs filterable with `lof_home_delay_ids`.
+- **Result (Lighthouse mobile, 3 runs, Home):** LCP 3.01 / 3.33 / 3.71 s -> 2.50 / 2.61 / 2.60 s (median 3.33 -> 2.60 s); blocking time 1547 / 2143 / 1182 ms -> 482 / 306 / 259 ms; score 62-67 -> 85-91. **Kept.**
+- Checked live: no script errors; after the delay jQuery, Elementor, Woo order attribution (sbjs cookies) and the chat panel all work; the slider still reaches `is-ready`.
+- Zip is built with `zip -9` so it stays under the 10 MB wp-admin upload limit used for installs.
+
 ## Theme 0.74.1 - 14 Nov 2026
 A/B results for 0.74.0 (Lighthouse mobile, 3 runs each, LCP / blocking time):
 - **Gallery kept** (content-visibility): before 2.75 / 2.12 / 2.75 s, blocking 1412 / 1860 / 1726 ms; after 1.99 / 2.14 / 2.43 s, blocking 932 / 1372 / 1564 ms (median LCP 2.75 -> 2.14 s, median blocking 1726 -> 1372 ms; scores 66-67 -> 66-76).
