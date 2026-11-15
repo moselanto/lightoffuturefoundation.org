@@ -19,10 +19,16 @@ defined( 'ABSPATH' ) || exit;
  * @return bool
  */
 function lof_home_delay_on() {
-	if ( is_admin() || ! is_front_page() || isset( $_GET['elementor-preview'] ) || is_customize_preview() || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( is_admin() || isset( $_GET['elementor-preview'] ) || is_customize_preview() || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		return false;
 	}
-	return (bool) apply_filters( 'lof_home_delay_js', true );
+	if ( is_front_page() ) {
+		return (bool) apply_filters( 'lof_home_delay_js', true );
+	}
+	// 0.79.0: also Shop, Gallery and Programmes (filter lof_delay_pages; page slugs, plus 'shop' for the shop page).
+	$pages = (array) apply_filters( 'lof_delay_pages', array( 'shop', 'gallery', 'programmes' ) );
+	$on    = ( in_array( 'shop', $pages, true ) && function_exists( 'is_shop' ) && is_shop() ) || is_page( array_diff( $pages, array( 'shop' ) ) );
+	return $on && (bool) apply_filters( 'lof_inner_delay_js', true );
 }
 
 /**
@@ -48,6 +54,7 @@ function lof_home_delay_ids() {
 			'jquery-ui-core-js',
 			'elementor-frontend-js',
 			'lof-shop-js',
+			'hello-theme-frontend-js',
 		)
 	);
 }
@@ -62,7 +69,11 @@ function lof_home_delay_scripts( $html ) {
 	if ( ! is_string( $html ) || false === stripos( $html, '</body>' ) ) {
 		return $html;
 	}
-	$ids   = array_flip( lof_home_delay_ids() );
+	$list  = lof_home_delay_ids();
+	if ( ! is_front_page() ) {
+		$list = array_diff( $list, array( 'lof-shop-js' ) ); // Gallery filters, lightbox and Shop ordering need it straight away.
+	}
+	$ids   = array_flip( $list );
 	$count = 0;
 	$html  = preg_replace_callback(
 		'#<script\b([^>]*)>(.*?)</script>#is',

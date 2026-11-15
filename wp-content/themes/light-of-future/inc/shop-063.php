@@ -347,7 +347,7 @@ function lof_shop_hero63() {
 	<section class="lof-shopx" aria-labelledby="lof-shopx-title">
 		<div class="lof-shopx__mosaic" aria-hidden="true">
 			<?php foreach ( $tiles as $i => $t ) : ?>
-				<figure class="lof-shopx__tile lof-shopx__tile--<?php echo (int) $i + 1; ?>"><img src="<?php echo esc_url( $img . 'sm/' . $t . '.webp' ); ?>" srcset="<?php echo esc_url( $img . 'sm/' . $t . '.webp' ); ?> 320w, <?php echo esc_url( $img . $t . '.webp' ); ?> 900w" sizes="(max-width: 767px) 34vw, 22vw" alt="" width="900" height="900" <?php echo $i < 3 ? 'fetchpriority="high"' : 'loading="lazy"'; ?> decoding="async"></figure>
+				<figure class="lof-shopx__tile lof-shopx__tile--<?php echo (int) $i + 1; ?>"><img src="<?php echo esc_url( $img . 'sm/' . $t . '.webp' ); ?>" srcset="<?php echo esc_url( $img . 'sm/' . $t . '.webp' ); ?> 320w, <?php echo esc_url( $img . $t . '.webp' ); ?> 900w" sizes="(max-width: 767px) 34vw, 22vw" alt="" width="900" height="900" <?php echo 0 === $i ? 'fetchpriority="high"' : ( $i < 3 ? 'loading="eager"' : 'loading="lazy"' ); ?> decoding="async"></figure>
 			<?php endforeach; ?>
 		</div>
 		<div class="lof-shopx__shade" aria-hidden="true"></div>
