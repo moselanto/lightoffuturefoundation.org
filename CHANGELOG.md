@@ -1,5 +1,11 @@
 # Changelog
 
+## Theme 0.79.1 - 15 Nov 2026
+- **Gallery:** the setup in `shop.js` (section photo/video counts, Show all buttons, photo viewer, 31 video play buttons) now runs through a small queue (`window.lofQ`) in slices of about 30 ms instead of one 350-480 ms task. Filter buttons are still built straight away.
+- **Result, Lighthouse mobile Gallery, 3 runs, 0.79.0 -> 0.79.1 (KEPT):** blocking 152 / 198 / 285 -> 36 / 53 / 65 ms; longest shop.js task 354-484 -> 102-114 ms; score 91-96 -> 97-99; LCP 2.10 / 1.89 / 1.83 -> 2.12 / 2.12 / 2.36 s (slightly slower, still well under 3 s); layout shift 0.
+- Checked live: filters (12 + All), 3/3 Show all, photo viewer, 31 video buttons work at 320-1920 px, no sideways scroll, no errors.
+- Layout re-check with 0.79.0 live (before this release): 17 key pages x 10 widths, no sideways scroll, no broken images, no script errors, no 404s.
+
 ## Theme 0.79.0 - 15 Nov 2026
 - **Shop, Gallery, Programmes:** the Home script delay (`inc/speed-0750.php`) now also applies to these pages (filter `lof_delay_pages`, off switch `lof_inner_delay_js`). jQuery, the Elementor frontend stack, WooCommerce cart/cookie/blockUI, sourcebuster + order attribution, hello-frontend.js and Google Analytics start at the first tap/key/scroll or 8 s after load. Several of these were render-blocking on these pages. shop.js still runs straight away (Gallery filters, lightbox, video buttons, Shop ordering).
 - **Shop hero:** the first mosaic photo is preloaded from the head and is the only one with high priority (`inc/speed-0790.php`, off switch `lof_shop_hero_preload`).

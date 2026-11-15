@@ -131,6 +131,9 @@ One `<script type="application/ld+json" id="lof-schema">` in `wp_head` (priority
 **0.66.0 / 0.46.5 checks:** Home goes slider > Shop with purpose with no figures card and no gap; inner-page figure strips still show; /donate/ shows KES first and preselected with KES tiers; view source on Home, /donate/ and a story for `lof-schema`; Light of Future > Media backup loads.
 
 ## 9. Pending (priority order, as of 14 Nov 2026)
+0i. **Status (15 Nov 13:30 EAT): LIVE = theme 0.79.1 + Core 0.47.1.**
+   Layout re-check on live 0.79.0 (scripts delayed on Home, Shop, Gallery, Programmes): 17 key pages x 10 widths (320-1920 px), each scrolled top to bottom after the delayed scripts ran: no sideways scroll, no broken images, no script errors, no 404s. Interactions on 0.79.0: Gallery filters / Show all / lightbox / videos OK at 320-1920 px; Shop order dialog opens; Programmes loads jQuery + Elementor after the delay with no errors.
+   Gallery blocking: shop.js Gallery setup was one 350-480 ms task. 0.79.1 runs it through `window.lofQ` in ~30 ms slices (filters built first, then counts, Show all, viewer, video buttons). Lighthouse mobile Gallery, 3 runs: blocking 152/198/285 -> 36/53/65 ms, score 91-96 -> 97-99, LCP 2.10/1.89/1.83 -> 2.12/2.12/2.36 s (a little slower, still under 3 s). KEPT. Gallery interactions re-checked on 0.79.1: all OK, no errors.
 0h. **Status (15 Nov 13:20 EAT): LIVE = theme 0.79.0 + Core 0.47.1.** Shop/Gallery/Programmes speed round.
    Cause: on these pages jQuery, Elementor scripts, hello-frontend, sourcebuster and order attribution were render-blocking, and Analytics (0.3-0.7 s of tasks) ran inside the Lighthouse window; Shop's hero photo also started late (load delay ~0.9 s, three tiles at high priority). Fix: Home's script delay extended to these pages (`lof_delay_pages`, shop.js not delayed) + Shop hero preload (`inc/speed-0790.php`).
    Lighthouse mobile, 3 runs, before (0.78.1) -> after (0.79.0), all KEPT:
