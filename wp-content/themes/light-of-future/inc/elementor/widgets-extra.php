@@ -70,21 +70,8 @@ class LOF_Widget_Donate extends LOF_Widget_Base {
 			}
 			echo '</ul>';
 			printf( '<p class="lof-pay2__methods-k">%s</p><ul class="lof-pay2__methods"><li>M-PESA</li><li>Visa</li><li>Mastercard</li></ul>', esc_html__( 'Pay with', 'light-of-future' ) );
-			// 0.63.9: direct giving by M-PESA Paybill or bank transfer, from Light of Future > Settings.
-			$lof_pb   = function_exists( 'lof_core_setting' ) ? (string) lof_core_setting( 'mpesa_paybill' ) : '';
-			$lof_pba  = function_exists( 'lof_core_setting' ) ? (string) lof_core_setting( 'mpesa_account' ) : '';
-			$lof_bank = function_exists( 'lof_core_setting' ) ? (string) lof_core_setting( 'bank_name' ) : '';
-			$lof_bacc = function_exists( 'lof_core_setting' ) ? (string) lof_core_setting( 'bank_account' ) : '';
-			if ( $lof_pb || $lof_bacc ) {
-				printf( '<div class="lof-pay2__direct"><p class="lof-pay2__methods-k">%s</p><dl>', esc_html__( 'Other ways to give', 'light-of-future' ) );
-				if ( $lof_pb ) {
-					printf( '<div><dt>%1$s</dt><dd>%2$s <strong>%3$s</strong>%4$s</dd></div>', esc_html__( 'M-PESA Paybill', 'light-of-future' ), esc_html__( 'Business no.', 'light-of-future' ), esc_html( $lof_pb ), $lof_pba ? ' &middot; ' . esc_html__( 'Account no.', 'light-of-future' ) . ' <strong>' . esc_html( $lof_pba ) . '</strong>' : '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped parts.
-				}
-				if ( $lof_bacc ) {
-					printf( '<div><dt>%1$s</dt><dd>%2$s &middot; %3$s <strong>%4$s</strong></dd></div>', esc_html__( 'Bank transfer', 'light-of-future' ), esc_html( $lof_bank ? $lof_bank : __( 'Our bank', 'light-of-future' ) ), esc_html__( 'Account no.', 'light-of-future' ), esc_html( $lof_bacc ) );
-				}
-				echo '</dl></div>';
-			}
+			// 0.77.0: direct giving by M-PESA Paybill or bank transfer (inc/donate-0770.php).
+			echo lof_give_ways_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the function.
 			printf( '<details class="lof-pay2__manage"><summary>%s</summary>', esc_html__( 'Already give monthly? Manage your gift', 'light-of-future' ) );
 			echo do_shortcode( '[lof_manage_giving]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the shortcode.
 			echo '</details>';
