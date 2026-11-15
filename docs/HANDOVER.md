@@ -131,6 +131,18 @@ One `<script type="application/ld+json" id="lof-schema">` in `wp_head` (priority
 **0.66.0 / 0.46.5 checks:** Home goes slider > Shop with purpose with no figures card and no gap; inner-page figure strips still show; /donate/ shows KES first and preselected with KES tiers; view source on Home, /donate/ and a story for `lof-schema`; Light of Future > Media backup loads.
 
 ## 9. Pending (priority order, as of 14 Nov 2026)
+0l. **Status (15 Nov 17:45 EAT): LIVE = theme 0.79.4 + Core 0.47.1. Font check after the mixed-content fix.**
+   Fonts: on Home, Donate and Gallery at 390 and 1440 px, nunito-latin.woff2 and figtree-latin.woff2 load over https (200), one request each (the preload is reused), `document.fonts` reports Nunito and Figtree "loaded", headings use Nunito and body text uses Figtree, and there are no insecure requests or Mixed Content messages. In every Lighthouse run below both fonts are https 200.
+   Lighthouse x3 (score / main content s / blocking ms / layout shift):
+   - Home mobile: 89 / 2.23 / 386 / 0.025; 91 / 2.28 / 312 / 0.025; 92 / 2.47 / 282 / 0.025. Last baseline (0.77.1, out12): 94-96 / 2.43-2.67 / 15-214 / 0-0.025.
+   - Home desktop: 100 / 0.65 / 29 / 0.000; 100 / 0.66 / 7 / 0.001; 99 / 0.68 / 19 / 0.000. Baseline (out10): 99-100 / 0.71 / 6-18 / 0.002-0.008.
+   - Donate mobile: 94 / 2.40 / 112 / 0; 94 / 2.16 / 163 / 0; 95 / 2.30 / 75 / 0. Baseline (0.75.0, out9): 78-87 / 2.04-2.46 / 441-916 / 0.
+   - Donate desktop: 96 / 0.67 / 0 / 0; 98 / 0.66 / 0 / 0; 98 / 0.63 / 0 / 0. Baseline (out9): 99 / 0.60-0.68 / 0-27 / 0-0.001.
+   - Gallery mobile: 99 / 2.13 / 52 / 0; 98 / 2.12 / 36 / 0; 95 / 2.32 / 53 / 0. Baseline (0.79.1, out15): 97-99 / 2.12-2.36 / 36-65 / 0. Unchanged.
+   - Gallery desktop: 100 / 0.59 / 0 / 0; 96 / 0.63 / 0 / 0; 97 / 0.64 / 0 / 0. Baseline (out9): 98-99 / 0.77-0.80 / 54-67 / 0.
+   Layout shift: no worse. The fonts cause a 0.000 shift. Home mobile's 0.025 is the existing `<main>` shift, already seen in earlier baselines and identical with the fonts blocked.
+   Load time: main content is not slower on any page. Home mobile blocking is the one rise: an A/B with both fonts blocked (out18) gave 156-248 ms against 282-386 ms with them, so the real fonts add about 100 ms of text re-layout on phones. Main content with the fonts blocked was 2.76-3.27 s, so it is not faster. Accepted; possible follow-up: subset the fonts or trim their weight range to cut that re-layout.
+   Open: Donate bank transfer account name, branch and SWIFT (waiting for real values).
 0k. **Status (15 Nov 17:40 EAT): LIVE = theme 0.79.4 + Core 0.47.1.**
    Re-check on live 0.79.3 (17 key pages x 10 widths, 320-1920 px): no sideways scroll, no broken layouts, no 404s, but every page logged "Mixed Content": the inlined main CSS asked for the Nunito and Figtree fonts over http://, so browsers blocked them. Cause: `lof_inline_small_css` (inc/speed-059.php) wrote absolute URLs using the request scheme and cached them (transient). 0.79.4 makes inlined CSS URLs root-relative and changes the cache key; inc/speed-0730.php image URLs are root-relative too. Re-check on live 0.79.4: 17 pages x 10 widths, no sideways scroll, no broken layouts, no script/console errors, no 404s; Gallery OK at all 5 widths (13 filters, 3/3 Show all, viewer, 31 videos).
    Open: Donate "Other ways to give" bank transfer account name, branch and SWIFT. The owner's message contained placeholders ([NAME], [BRANCH], [SWIFT]) rather than real values, so nothing was published.
