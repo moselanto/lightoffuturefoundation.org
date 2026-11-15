@@ -1,5 +1,18 @@
 # Changelog
 
+## Theme 0.77.1 - 15 Nov 2026
+- Donate: the "Other ways to give" heading inherited the cream text colour of the earth-tone section (unreadable on cream); it now uses the heading colour.
+
+## Theme 0.77.0 - 15 Nov 2026
+- **Donate, Other ways to give:** new card under the trust list (`inc/donate-0770.php`, `lof_give_ways_html()`) with M-PESA Paybill (business no. 522522, account no. 1354817087, 3 short steps) and bank transfer (Kenya Commercial Bank (KCB), account no. 1354817087), copy buttons and a receipt note. Values come from Light of Future > Settings; empty fields fall back to these details (the live settings were empty, so nothing showed before). Off switch `lof_give_ways`.
+- **Donate form:** the "How often?" and "Currency" labels sat on a white patch over the option pills. Labels now sit above separate option pills (no overlap at 390 or 1440 px).
+- **About, Vision/Mission panels:** the icon covered the start of the eyebrow ("OUR VISION"). The eyebrow now sits beside the icon and the title starts below it.
+
+## Theme 0.76.1 - 15 Nov 2026
+- Phone layout shift on Home: the stand-in fonts were drawn as a fake bold of the regular face, about 10% narrower than Nunito/Figtree at weight 800, so the slider title wrapped onto fewer lines and moved the buttons when the real fonts arrived. Added bold stand-in faces (weight 600-1000) sized to the brand fonts at 800; the regular stand-ins are now sized to weight 400 and 3% smaller so the slider paragraph wraps like Figtree.
+- Lighthouse mobile, Home, 3 runs: layout shift 0.000 / 0.025 / 0.053 -> 0.001 / 0.029 / 0.002 (worst run 0.053 -> 0.029). KEPT. Re-run on 0.77.1: LCP 2.60 / 2.67 / 2.43 s, blocking 54 / 15 / 214 ms, layout shift 0.000 / 0.000 / 0.025, score 94-96.
+- Layout re-check with 0.76.0 live: 17 key pages x 10 widths (320-1920 px), no sideways scroll, no broken images, no 404s.
+
 ## Theme 0.76.0 - 15 Nov 2026
 - **Layout shift from fonts (all pages):** new `inc/speed-0760.php` + `assets/css/font-fallback.css`. Metric-matched fallback faces for Nunito and Figtree (Arial/Liberation/Helvetica, Roboto for Android, DejaVu Sans for Linux) sit straight after the brand fonts, so text barely moves when the brand fonts arrive. Off switch `lof_font_fallback`.
 - **Home on phones:** the delayed scripts from 0.75.0 and the Google Analytics tag now start at the first tap, key press or scroll, or 8 s after the page has loaded (was load + idle, about 2.5-3 s). Filters `lof_home_late_ms` (default 8000) and `lof_home_late_gtag` (default true).
