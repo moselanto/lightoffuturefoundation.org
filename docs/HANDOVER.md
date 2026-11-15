@@ -131,6 +131,15 @@ One `<script type="application/ld+json" id="lof-schema">` in `wp_head` (priority
 **0.66.0 / 0.46.5 checks:** Home goes slider > Shop with purpose with no figures card and no gap; inner-page figure strips still show; /donate/ shows KES first and preselected with KES tiers; view source on Home, /donate/ and a story for `lof-schema`; Light of Future > Media backup loads.
 
 ## 9. Pending (priority order, as of 14 Nov 2026)
+0h. **Status (15 Nov 13:20 EAT): LIVE = theme 0.79.0 + Core 0.47.1.** Shop/Gallery/Programmes speed round.
+   Cause: on these pages jQuery, Elementor scripts, hello-frontend, sourcebuster and order attribution were render-blocking, and Analytics (0.3-0.7 s of tasks) ran inside the Lighthouse window; Shop's hero photo also started late (load delay ~0.9 s, three tiles at high priority). Fix: Home's script delay extended to these pages (`lof_delay_pages`, shop.js not delayed) + Shop hero preload (`inc/speed-0790.php`).
+   Lighthouse mobile, 3 runs, before (0.78.1) -> after (0.79.0), all KEPT:
+   | Page | LCP before | LCP after | Blocking before | Blocking after | Score |
+   |---|---|---|---|---|---|
+   | Shop | 2.89/2.79/2.92 | 2.54/2.81/2.66 | 262/197/201 | 0/16/5 | 82-92 -> 94-96 |
+   | Gallery | 2.51/2.50/2.22 | 2.10/1.89/1.83 | 388/429/413 | 152/198/285 | 84-87 -> 91-96 |
+   | Programmes | 2.80/2.75/2.47 | 2.24/2.29/2.34 | 168/153/154 | 10/2/24 | 90-95 -> 95-98 |
+   Note: Shop was 3.24 s in the single audit run but under 3 s in all three baseline runs on 0.78.1. Same Analytics trade-off as Home now applies to these three pages (visitors who leave within 8 s without touching the page are not counted). Checked live: Gallery interactions OK at 320-1920 px, Shop order dialog opens, no script errors, no sideways scroll.
 0g. **Status (15 Nov 12:50 EAT): LIVE = theme 0.78.1 + Core 0.47.1.** Full audit before the fixes:
    - Lighthouse phone, all categories, 10 key pages (Home, About, Programmes, Donate, Gallery, Shop, product, Contact, Story, Get involved): best practices 100 and SEO 100 everywhere; accessibility 100 on 7 pages, Home 92 (footer headings with role=button, unnamed slider tabs, slider controls), Shop 96 and Story 96 (colour contrast). Performance 80-96, LCP 2.24-3.24 s in that single run (Shop 3.24 s, Gallery and Programmes scores ~80 from blocking time).
    - 17 pages at 390 and 1440 px: no sideways scroll, no script errors, every image has alt text, one h1 per page, 122 internal links all OK (no 404s). Overlap scan flagged FAQ/accordion and clamped-bio text; checked on screen, these are hidden or clipped text, not visible overlaps.

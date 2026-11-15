@@ -1,5 +1,14 @@
 # Changelog
 
+## Theme 0.79.0 - 15 Nov 2026
+- **Shop, Gallery, Programmes:** the Home script delay (`inc/speed-0750.php`) now also applies to these pages (filter `lof_delay_pages`, off switch `lof_inner_delay_js`). jQuery, the Elementor frontend stack, WooCommerce cart/cookie/blockUI, sourcebuster + order attribution, hello-frontend.js and Google Analytics start at the first tap/key/scroll or 8 s after load. Several of these were render-blocking on these pages. shop.js still runs straight away (Gallery filters, lightbox, video buttons, Shop ordering).
+- **Shop hero:** the first mosaic photo is preloaded from the head and is the only one with high priority (`inc/speed-0790.php`, off switch `lof_shop_hero_preload`).
+- **Results, Lighthouse mobile, 3 runs each, 0.78.1 -> 0.79.0 (all KEPT):**
+  - Shop: LCP 2.89 / 2.79 / 2.92 -> 2.54 / 2.81 / 2.66 s; blocking 262 / 197 / 201 -> 0 / 16 / 5 ms; score 82-92 -> 94-96.
+  - Gallery: LCP 2.51 / 2.50 / 2.22 -> 2.10 / 1.89 / 1.83 s; blocking 388 / 429 / 413 -> 152 / 198 / 285 ms; score 84-87 -> 91-96.
+  - Programmes: LCP 2.80 / 2.75 / 2.47 -> 2.24 / 2.29 / 2.34 s; blocking 168 / 153 / 154 -> 10 / 2 / 24 ms; score 90-95 -> 95-98.
+- Checked live: Gallery filters, Show all, lightbox and video at 320-1920 px work with no sideways scroll; Shop order dialog opens; Programmes and Shop load the delayed scripts with no errors.
+
 ## Theme 0.78.1 - 15 Nov 2026
 - WhatsApp chat teaser link green #128C4B -> #0B6B37 (contrast 4.3:1 -> 6.5:1 on white).
 
