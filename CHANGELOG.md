@@ -1,5 +1,16 @@
 # Changelog
 
+## Theme 0.78.1 - 15 Nov 2026
+- WhatsApp chat teaser link green #128C4B -> #0B6B37 (contrast 4.3:1 -> 6.5:1 on white).
+
+## Theme 0.78.0 - 15 Nov 2026 (site-wide audit fixes, `inc/a11y-0780.php`, off switch `lof_a11y_0780`)
+- Footer columns fold on phones with a real button inside each heading (headings had role="button", not allowed on h2). Desktop keeps plain headings.
+- Home slider tabs have spoken names ("Slide 1: ...") for screen readers.
+- Colour contrast: small amber labels on Shop and product cards (#DC8C13, 2.5-2.7:1) now #8A5208.
+- Story pages: the "Updated ..." date in the dark hero was dark on dark; now cream.
+- Tap targets: breadcrumb links, cookie bar Privacy Policy link, inline text links and checkboxes at least 24 px tall; slider controls sit above the tabs.
+- Audit result after the fix (Lighthouse, phone): Home, Shop (after 0.78.1), Story: accessibility 100, best practices 100, SEO 100.
+
 ## Theme 0.77.1 - 15 Nov 2026
 - Donate: the "Other ways to give" heading inherited the cream text colour of the earth-tone section (unreadable on cream); it now uses the heading colour.
 
