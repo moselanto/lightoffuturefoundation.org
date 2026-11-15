@@ -255,9 +255,12 @@
 	check();
 }());
 
+/* 0.79.1: Gallery setup runs in small slices (about 30 ms each) so phones stay responsive while it builds. */
+window.lofQ = window.lofQ || (function () { var q = [], on = false; function run() { var t0 = Date.now(); while (q.length && Date.now() - t0 < 30) { try { q.shift()(); } catch (e) { if (window.console) { console.error(e); } } } if (q.length) { setTimeout(run, 0); } else { on = false; } } return function (f) { q.push(f); if (!on) { on = true; setTimeout(run, 0); } }; }());
 /* 0.58.0 Gallery: filters, show more, lightbox */
 (function () {
 	'use strict';
+	var lofq = window.lofQ;
 	var all = document.querySelector('.lof-page-gallery .lofm-all');
 	if (!all) { return; }
 	var secs = Array.prototype.slice.call(all.querySelectorAll('section.lofm'));
@@ -275,7 +278,7 @@
 	secs.forEach(function (s) {
 		var t = s.querySelector('.lofm__title'); var label = t ? t.textContent.split(':')[0].replace(/ and school materials| for girls| for boys and girls| in Ugenya|Community enterprise/g, function (m) { return m === 'Community enterprise' ? 'Enterprise' : ''; }).trim() : s.id;
 		bar.appendChild(mk(label, count(s), s.id));
-		if (t && !s.querySelector('.lofm__meta')) { var meta = document.createElement('p'); meta.className = 'lofm__meta'; var p = s.querySelectorAll('.lofm__item').length, v = s.querySelectorAll('.lofm__video').length; meta.textContent = [p ? p + (p === 1 ? ' photo' : ' photos') : '', v ? v + (v === 1 ? ' video' : ' videos') : ''].filter(Boolean).join(' \u00b7 '); t.parentNode.insertBefore(meta, t.nextSibling); }
+		if (t && !s.querySelector('.lofm__meta')) { lofq(function () { var meta = document.createElement('p'); meta.className = 'lofm__meta'; var p = s.querySelectorAll('.lofm__item').length, v = s.querySelectorAll('.lofm__video').length; meta.textContent = [p ? p + (p === 1 ? ' photo' : ' photos') : '', v ? v + (v === 1 ? ' video' : ' videos') : ''].filter(Boolean).join(' \u00b7 '); t.parentNode.insertBefore(meta, t.nextSibling); }); }
 	});
 	if (nav) { var ul = nav.querySelector('ul'); if (ul) { nav.replaceChild(bar, ul); } else { nav.appendChild(bar); } } else { all.insertBefore(bar, all.firstChild); }
 	all.setAttribute('data-filter', 'all');
@@ -288,14 +291,15 @@
 		var top = all.getBoundingClientRect().top + window.pageYOffset - 90; if (window.pageYOffset > top) { window.scrollTo(0, top); }
 	});
 	/* Show more: eight photos per section at first. */
-	secs.forEach(function (s) {
+	secs.forEach(function (s) { lofq(function () {
 		var items = s.querySelectorAll('.lofm__item'); if (items.length <= 8) { return; }
 		Array.prototype.forEach.call(items, function (it, i) { if (i >= 8) { it.classList.add('is-more'); } });
 		var more = document.createElement('button'); more.type = 'button'; more.className = 'lofm__more'; more.textContent = 'Show all ' + items.length + ' photos';
 		more.addEventListener('click', function () { var open = s.classList.toggle('is-expanded'); more.textContent = open ? 'Show fewer' : 'Show all ' + items.length + ' photos'; });
 		var grid = s.querySelector('.lofm__grid'); grid.parentNode.insertBefore(more, grid.nextSibling);
-	});
+	}); });
 	/* Lightbox for photos. */
+	lofq(function () {
 	var box = document.createElement('div'); box.className = 'lofx'; box.hidden = true; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', 'Photo viewer');
 	box.innerHTML = '<span class="lofx__count" aria-live="polite"></span><button type="button" class="lofx__close" aria-label="Close">\u00d7</button><button type="button" class="lofx__prev" aria-label="Previous photo">\u2039</button><img class="lofx__img" alt=""><p class="lofx__cap"></p><button type="button" class="lofx__next" aria-label="Next photo">\u203a</button>';
 	document.body.appendChild(box);
@@ -317,6 +321,7 @@
 	document.addEventListener('keydown', function (e) { if (box.hidden) { return; } if (e.key === 'Escape') { close(); } else if (e.key === 'ArrowLeft') { show(idx - 1); } else if (e.key === 'ArrowRight') { show(idx + 1); } else if (e.key === 'Tab') { var f = box.querySelectorAll('button'); var first = f[0], lastB = f[f.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastB.focus(); } else if (!e.shiftKey && document.activeElement === lastB) { e.preventDefault(); first.focus(); } } });
 	var sx = null; box.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
 	box.addEventListener('touchend', function (e) { if (sx === null) { return; } var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) { show(idx + (dx < 0 ? 1 : -1)); } sx = null; });
+	});
 }());
 
 /* 0.59.0: Gallery video posters load only when near the screen */
@@ -341,7 +346,7 @@
 	var figs = document.querySelectorAll('.lof-page-gallery .lofm-all .lofm__video');
 	if (!figs.length) { return; }
 	var vids = [];
-	Array.prototype.forEach.call(figs, function (fig) {
+	Array.prototype.forEach.call(figs, function (fig) { window.lofQ(function () {
 		var frame = fig.querySelector('.lofm__frame'), v = fig.querySelector('video');
 		if (!frame || !v || frame.querySelector('.lofm__play')) { return; }
 		vids.push(v);
@@ -365,7 +370,7 @@
 			vids.forEach(function (o) { if (o !== v && !o.paused) { o.pause(); } });
 		});
 		frame.appendChild(b);
-	});
+	}); });
 }());
 
 /* 0.63.0: shop category slider arrows. */
