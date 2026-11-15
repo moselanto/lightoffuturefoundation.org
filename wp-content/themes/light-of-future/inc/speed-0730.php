@@ -16,6 +16,9 @@
  * Not used on Cart, Checkout and My account (they keep normal blocking stylesheets),
  * in wp-admin, in the Elementor preview, with SCRIPT_DEBUG, or in the Customizer.
  * Off switch: add_filter( 'lof_inner_critical', '__return_false' );
+ * 0.75.1: off by default since 0.73.1 (A/B was slower), so the inner-*.css and shop-*.css files
+ * were removed from the package. Turning it on now does nothing until they are regenerated
+ * (missing files fall back to the normal stylesheets).
  *
  * @package LightOfFuture
  */

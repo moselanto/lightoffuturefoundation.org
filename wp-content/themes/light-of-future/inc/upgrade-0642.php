@@ -21,6 +21,10 @@ function lof_upgrade_0642_media() {
 		return;
 	}
 	$src_dir = LOF_THEME_DIR . '/assets/lofm-fix/';
+	// 0.75.1: the source photos were removed from the theme package (already copied to the media plugin on the live site).
+	if ( ! is_dir( $src_dir ) ) {
+		return;
+	}
 	$dst_dir = WP_PLUGIN_DIR . '/light-of-future-media/assets/photos/';
 	if ( ! is_dir( $dst_dir ) ) {
 		return;
@@ -65,7 +69,7 @@ function lof_upgrade_0642_media_rev2() {
 		return;
 	}
 	$dst = WP_PLUGIN_DIR . '/light-of-future-media/assets/photos/';
-	if ( ! is_dir( $dst ) ) {
+	if ( ! is_dir( $dst ) || ! is_dir( LOF_THEME_DIR . '/assets/lofm-fix/' ) ) {
 		return;
 	}
 	foreach ( array( 'edu-books-team.webp', 'edu-books-team-sm.webp' ) as $name ) {
