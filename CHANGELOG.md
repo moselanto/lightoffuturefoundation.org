@@ -1,5 +1,14 @@
 # Changelog
 
+## Theme 0.75.1 - 15 Nov 2026
+- **Smaller package:** zip 10.47 MB -> 8.43 MB (about 2 MB under the 10 MB upload limit). No change to what visitors see.
+  - Removed 10 theme images not used in theme code or on any of the 45 sitemap pages (6 old logo/brand files, 4 old Home photos), 324 KB.
+  - Removed `assets/lofm-fix/` (20 photos, 1.4 MB). The one-time 0.64.2 upgrade already copied them to the media plugin (checked live: they load from the plugin folder). `inc/upgrade-0642.php` now returns early if the folder is missing.
+  - Removed the unused inner-page and shop first-screen CSS (`assets/css/critical/inner-*`, `shop-*`), switched off by default since 0.73.1. Turning `lof_inner_critical` on now falls back to the normal stylesheets until they are regenerated. The Home files are kept.
+  - `screenshot.png` 579 KB -> 139 KB (256 colours).
+- Checked live after install: Home and Gallery work (see HANDOVER section 9).
+- Lighthouse with 0.75.0 live (3 runs each, mobile / desktop LCP medians): Home 2.86 / 0.71 s, Donate 2.11 / 0.62 s, Programmes 2.51 / 0.76 s, Gallery 2.62 / 0.78 s.
+
 ## Theme 0.75.0 - 15 Nov 2026
 - **Home:** new `inc/speed-0750.php`. jQuery, the Elementor frontend scripts (webpack runtime, frontend modules, jQuery UI core, frontend), the WooCommerce cart/cookie/blockUI scripts, sourcebuster + order attribution and `shop.js` no longer run before the first screen on Home. They start, in the original order, after the page has loaded and the browser is idle (at most 2.5 s), or at the first tap, key press or scroll. A tap on a button before then is replayed once they are ready; the WhatsApp chat button falls back to its wa.me link. Off switch `lof_home_delay_js`; list of script IDs filterable with `lof_home_delay_ids`.
 - **Result (Lighthouse mobile, 3 runs, Home):** LCP 3.01 / 3.33 / 3.71 s -> 2.50 / 2.61 / 2.60 s (median 3.33 -> 2.60 s); blocking time 1547 / 2143 / 1182 ms -> 482 / 306 / 259 ms; score 62-67 -> 85-91. **Kept.**
