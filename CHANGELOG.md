@@ -1,5 +1,13 @@
 # Changelog
 
+## Theme 0.76.0 - 15 Nov 2026
+- **Layout shift from fonts (all pages):** new `inc/speed-0760.php` + `assets/css/font-fallback.css`. Metric-matched fallback faces for Nunito and Figtree (Arial/Liberation/Helvetica, Roboto for Android, DejaVu Sans for Linux) sit straight after the brand fonts, so text barely moves when the brand fonts arrive. Off switch `lof_font_fallback`.
+- **Home on phones:** the delayed scripts from 0.75.0 and the Google Analytics tag now start at the first tap, key press or scroll, or 8 s after the page has loaded (was load + idle, about 2.5-3 s). Filters `lof_home_late_ms` (default 8000) and `lof_home_late_gtag` (default true).
+- **Results, Lighthouse, Home, 3 runs, kept:**
+  - Desktop layout shift 0.129 / 0.027 / 0.082 -> 0.008 / 0.005 / 0.002 (LCP 0.83 / 0.71 / 0.66 -> 0.71 / 0.71 / 0.71 s, score 94-99 -> 99-100).
+  - Mobile LCP 2.86 / 2.89 / 2.62 -> 2.45 / 2.45 / 2.93 s (median 2.86 -> 2.45 s); blocking 655 / 1128 / 1171 -> 77 / 275 / 238 ms; score 71-78 -> 90-97. Mobile layout shift 0.000 -> 0.000 / 0.025 / 0.053 (still under 0.1).
+- Layout re-check with 0.75.1 live (before this release): 17 key pages x 10 widths, no sideways scroll, no broken images, no 404s.
+
 ## Theme 0.75.1 - 15 Nov 2026
 - **Smaller package:** zip 10.47 MB -> 8.43 MB (about 2 MB under the 10 MB upload limit). No change to what visitors see.
   - Removed 10 theme images not used in theme code or on any of the 45 sitemap pages (6 old logo/brand files, 4 old Home photos), 324 KB.

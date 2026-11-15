@@ -84,10 +84,15 @@ function lof_home_delay_scripts( $html ) {
 	$js = "(function(){var go=false,ready=false,q=[];function run(){if(go){return;}go=true;var list=[].slice.call(document.querySelectorAll('script[type=\"text/lof-delay\"]'));"
 		. "(function next(){var o=list.shift();if(!o){ready=true;document.documentElement.classList.add('lof-js-ready');try{window.dispatchEvent(new Event('lof:delayed-ready'));}catch(e){}q.forEach(function(el){if(document.contains(el)){el.click();}});q=[];return;}"
 		. "var s=document.createElement('script');if(o.id){s.id=o.id;}var u=o.getAttribute('data-lof-src');if(u){s.src=u;s.async=false;s.onload=s.onerror=next;o.parentNode.replaceChild(s,o);}else{s.text=o.text;o.parentNode.replaceChild(s,o);next();}})();}"
-		. "function idle(){if('requestIdleCallback' in window){requestIdleCallback(run,{timeout:2500});}else{setTimeout(run,1200);}}"
+		. "function idle(){setTimeout(run," . (int) apply_filters( 'lof_home_late_ms', 8000 ) . ");}"
 		. "if(document.readyState==='complete'){idle();}else{window.addEventListener('load',idle,{once:true});}"
 		. "['pointerdown','keydown','touchstart','scroll','wheel'].forEach(function(t){window.addEventListener(t,run,{once:true,passive:true});});"
 		. "document.addEventListener('click',function(e){if(ready){return;}var b=e.target.closest&&e.target.closest('button,[role=button],[data-lof-chat] a,.lof-btn-order,.add_to_cart_button');if(!b||(b.tagName==='A'&&b.getAttribute('href')&&b.getAttribute('href').charAt(0)!=='#'&&!b.classList.contains('add_to_cart_button'))){return;}if(b.closest('[data-lof-cine],.lof-header,.lof-nav,#lof-consent')){return;}e.preventDefault();e.stopPropagation();if(q.indexOf(b)<0){q.push(b);}run();},true);})();";
+	// 0.76.0: on Home the analytics tag also waits for the first tap/key/scroll or the same late timer.
+	if ( apply_filters( 'lof_home_late_gtag', true ) ) {
+		$ms   = (int) apply_filters( 'lof_home_late_ms', 8000 );
+		$html = str_replace( "function later(){if('requestIdleCallback' in window){requestIdleCallback(go,{timeout:3000});}else{setTimeout(go,1500);}}", 'function later(){setTimeout(go,' . $ms . ');}', $html );
+	}
 	$starter = '<script id="lof-delay-js">' . $js . '</script>';
 	$pos     = strripos( $html, '</body>' );
 	return substr( $html, 0, $pos ) . $starter . "\n" . substr( $html, $pos );
