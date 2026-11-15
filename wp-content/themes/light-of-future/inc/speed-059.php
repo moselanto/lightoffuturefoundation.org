@@ -92,11 +92,11 @@ function lof_inline_small_css( $tag, $handle, $href ) {
 	if ( ! is_readable( $file ) || filesize( $file ) > 24000 ) {
 		return $tag;
 	}
-	$key = 'lof_ic_' . md5( $file . filemtime( $file ) );
+	$key = 'lof_ic2_' . md5( $file . filemtime( $file ) ); // 0.79.4: new key drops copies saved with http:// font URLs.
 	$css = get_transient( $key );
 	if ( false === $css ) {
 		$css = (string) file_get_contents( $file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-		$dir = trailingslashit( dirname( $url ) );
+		$dir = trailingslashit( wp_make_link_relative( dirname( $url ) ) ); // 0.79.4: root-relative, so fonts never load over http.
 		$css = preg_replace_callback(
 			'/url\(\s*([\'"]?)([^\'")]+)\1\s*\)/i',
 			function ( $m ) use ( $dir ) {

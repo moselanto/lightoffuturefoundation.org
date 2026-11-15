@@ -1,5 +1,10 @@
 # Changelog
 
+## Theme 0.79.4 - 15 Nov 2026
+- **Fix: fonts blocked as insecure on every page.** The re-check on 0.79.3 found a "Mixed Content" console error on all 17 key pages. The inlined main stylesheet (`lof-main-css`) had saved its Nunito and Figtree font addresses as `http://...`, so browsers blocked them and the pages fell back to system fonts. The inliner in `inc/speed-059.php` built absolute URLs from the request scheme, and a copy made during a non-HTTPS request had been cached.
+- `inc/speed-059.php`: inlined CSS `url()`s are now root-relative (`/wp-content/...`), and the cache key changed (`lof_ic2_`) so the old http copy is dropped. `inc/speed-0730.php`: inlined image URLs are also root-relative.
+- Checked live: no `http://lightoffuturefoundation.org` addresses in the Home page HTML. 17 key pages x 10 widths (320-1920 px): no sideways scroll, no broken layouts, no script or console errors, no 404s. Gallery at 320-1920 px: 13 filters, 3/3 Show all, photo viewer, 31 video buttons, no errors.
+
 ## Theme 0.79.3 - 15 Nov 2026
 - Version bump only. Restores the 0.79.1 `shop.js` because the 0.79.2 test was slower. Live and checked: Gallery filters (12 + All), 3/3 Show all, photo viewer and 31 video buttons work at 320-1920 px with no errors and no sideways scroll.
 

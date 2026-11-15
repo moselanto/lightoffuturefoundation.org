@@ -90,7 +90,8 @@ function lof_inner_critical_tag( $tag, $handle, $href ) {
 	}
 	$css = (string) file_get_contents( $file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 	// Relative image paths in the theme stylesheets point to assets/images/.
-	$css = str_replace( array( 'url("../images/', "url('../images/", 'url(../images/' ), array( 'url("' . LOF_THEME_URI . '/assets/images/', "url('" . LOF_THEME_URI . '/assets/images/', 'url(' . LOF_THEME_URI . '/assets/images/' ), $css );
+	$lof_rel = wp_make_link_relative( LOF_THEME_URI ); // 0.79.4: root-relative, never http.
+	$css = str_replace( array( 'url("../images/', "url('../images/", 'url(../images/' ), array( 'url("' . $lof_rel . '/assets/images/', "url('" . $lof_rel . '/assets/images/', 'url(' . $lof_rel . '/assets/images/' ), $css );
 	$css = str_ireplace( '</style', '<\/style', $css );
 	$url = esc_url( $href );
 	$out  = '<style id="' . esc_attr( $handle ) . '-critical">' . $css . "</style>\n";
